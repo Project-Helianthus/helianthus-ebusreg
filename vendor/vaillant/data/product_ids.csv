@@ -5,6 +5,7 @@ Saunier Duval,Thelia Condens,Thelia Condens 25-A (H-RO),0010016101,Boiler
 Saunier Duval,Thelia Condens,Thelia Condens 30-A (H-RO),0010016102,Boiler
 Saunier Duval,Thelia Condens,Thelia Condens 35-A (H-RO),0010016103,Boiler
 Saunier Duval,Examaster,Examaster,0020110658,Module
+Saunier Duval,MiLink Plus,,0020116884,Gateway
 Saunier Duval,Exacontrol,E7 C,0020118071,Regulator
 Saunier Duval,Exacontrol,E7R C,0020118072,Regulator
 Saunier Duval,Exacontrol,E7 C,0020118080,Regulator
@@ -16,8 +17,13 @@ Saunier Duval,MiLink v2,SR920,0020252925,Gateway
 Saunier Duval,MiLink v3,SR921,0020261008,Gateway
 Saunier Duval,MiLink v3,SR921,0020282697,Gateway
 Saunier Duval,MiLink Go,SR940f,0020292013,Gateway
+Vaillant,atmoCOMPACT,,0010002315,Boiler
+Vaillant,atmoCOMPACT,,0010002316,Boiler
+Vaillant,atmoCOMPACT,,0010002317,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 415,0010002460,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 418,0010002461,Boiler
+Vaillant,EUROBIG/SMALL,,0010002465,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010002498,Boiler
 Vaillant,ecoTEC exclusive,ecoTEC exclusive 832,0010002668,Boiler
 Vaillant,ecoTEC exclusive,ecoTEC exclusive 838,0010002669,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 428,0010002724,Boiler
@@ -32,8 +38,170 @@ Vaillant,geoTHERM,VWW 81/2,0010002790,Heat Pump
 Vaillant,geoTHERM,VWW 101/2,0010002791,Heat Pump
 Vaillant,geoTHERM,VWW 141/2,0010002792,Heat Pump
 Vaillant,geoTHERM,VWW 171/2,0010002793,Heat Pump
+Vaillant,,,0010003812,Boiler
+Vaillant,ecoCOMPACT2,,0010003857,Boiler
+Vaillant,ecoCOMPACT2,,0010003858,Boiler
+Vaillant,ecoCOMPACT2,,0010003860,Boiler
+Vaillant,ecoCOMPACT2,,0010003861,Boiler
+Vaillant,ecoCOMPACT2,,0010003862,Boiler
+Vaillant,ecoCOMPACT2,,0010003863,Boiler
+Vaillant,ecoCOMPACT2,,0010003864,Boiler
+Vaillant,ecoCOMPACT2,,0010003865,Boiler
+Vaillant,ecoCOMPACT2,,0010003869,Boiler
+Vaillant,ecoCOMPACT2,,0010003872,Boiler
+Vaillant,ecoCOMPACT2,,0010003874,Boiler
+Vaillant,ecoCOMPACT2,,0010003875,Boiler
+Vaillant,ecoCOMPACT2,,0010003876,Boiler
+Vaillant,ecoCOMPACT2,,0010003877,Boiler
+Vaillant,ecoCOMPACT2,,0010003878,Boiler
+Vaillant,ecoCOMPACT2,,0010003881,Boiler
+Vaillant,auroCOMPACT/2,,0010003882,Boiler
+Vaillant,auroCOMPACT/2,,0010003883,Boiler
+Vaillant,auroCOMPACT/2,,0010003886,Boiler
+Vaillant,auroCOMPACT/2,,0010003887,Boiler
+Vaillant,EUROBIG/SMALL,,0010003958,Boiler
+Vaillant,EUROBIG/SMALL,,0010003959,Boiler
+Vaillant,EUROBIG/SMALL,,0010003960,Boiler
+Vaillant,EUROBIG/SMALL,,0010003961,Boiler
+Vaillant,EUROBIG/SMALL,,0010003962,Boiler
+Vaillant,EUROBIG/SMALL,,0010003963,Boiler
+Vaillant,EUROBIG/SMALL,,0010003964,Boiler
+Vaillant,EUROBIG/SMALL,,0010003965,Boiler
+Vaillant,EUROBIG/SMALL,,0010003966,Boiler
+Vaillant,EUROBIG/SMALL,,0010003967,Boiler
+Vaillant,EUROBIG/SMALL,,0010003968,Boiler
+Vaillant,EUROBIG/SMALL,,0010003969,Boiler
+Vaillant,EUROBIG/SMALL,,0010003970,Boiler
+Vaillant,EUROBIG/SMALL,,0010003971,Boiler
+Vaillant,EUROBIG/SMALL,,0010003972,Boiler
+Vaillant,EUROBIG/SMALL,,0010003973,Boiler
+Vaillant,EUROBIG/SMALL,,0010003974,Boiler
+Vaillant,EUROBIG/SMALL,,0010003975,Boiler
+Vaillant,EUROBIG/SMALL,,0010003976,Boiler
+Vaillant,EUROBIG/SMALL,,0010003977,Boiler
+Vaillant,EUROBIG/SMALL,,0010003991,Boiler
+Vaillant,EUROBIG/SMALL,,0010004015,Boiler
+Vaillant,EUROBIG/SMALL,,0010004016,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010004110,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010004111,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010004112,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010004113,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010004114,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010004121,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010004122,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010004123,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010004124,Boiler
+Vaillant,ecoTEC/4 eGAS,,0010004125,Boiler
+Vaillant,ECOBIG pneumatisch,,0010004126,Boiler
+Vaillant,ECOBIG pneumatisch,,0010004127,Boiler
+Vaillant,,,0010004134,Boiler
+Vaillant,ecoTEC,,0010004276,Boiler
+Vaillant,ecoTEC,,0010004277,Boiler
+Vaillant,ecoTEC,,0010004279,Boiler
+Vaillant,ecoTEC,,0010004280,Boiler
+Vaillant,ecoTEC,,0010004281,Boiler
+Vaillant,ecoTEC,,0010004282,Boiler
+Vaillant,ecoTEC,,0010004283,Boiler
+Vaillant,ecoTEC,,0010004285,Boiler
+Vaillant,ecoTEC,,0010004286,Boiler
+Vaillant,ecoTEC,,0010004288,Boiler
+Vaillant,ecoTEC,,0010004289,Boiler
+Vaillant,ecoTEC,,0010004290,Boiler
+Vaillant,ecoTEC,,0010004291,Boiler
+Vaillant,ecoTEC,,0010004292,Boiler
+Vaillant,ecoTEC,,0010004336,Boiler
+Vaillant,ecoTEC,,0010004337,Boiler
+Vaillant,ecoTEC,,0010004338,Boiler
+Vaillant,ecoTEC,,0010004339,Boiler
+Vaillant,ecoTEC,,0010004340,Boiler
+Vaillant,,,0010005311,Boiler
+Vaillant,ecoCRAFT/3,,0010005400,Boiler
+Vaillant,ecoCRAFT/3,,0010005401,Boiler
+Vaillant,ecoCRAFT/3,,0010005402,Boiler
+Vaillant,ecoCRAFT/3,,0010005403,Boiler
+Vaillant,ecoCRAFT/3,,0010005404,Boiler
+Vaillant,ecoCRAFT/3,,0010005405,Boiler
+Vaillant,ecoCRAFT/3,,0010005406,Boiler
+Vaillant,ecoCRAFT/3,,0010005407,Boiler
+Vaillant,ecoCRAFT/3,,0010005408,Boiler
+Vaillant,ecoCRAFT/3,,0010005409,Boiler
+Vaillant,ecoTEC,,0010005466,Boiler
+Vaillant,ecoTEC,,0010005467,Boiler
+Vaillant,ecoTEC,,0010005468,Boiler
+Vaillant,ecoTEC,,0010005469,Boiler
+Vaillant,TEC/4,,0010006080,Boiler
+Vaillant,TEC/4,,0010006081,Boiler
+Vaillant,TEC/4,,0010006082,Boiler
+Vaillant,TEC/4,,0010006083,Boiler
+Vaillant,TEC/4,,0010006084,Boiler
+Vaillant,TEC/4,,0010006085,Boiler
+Vaillant,TEC/4,,0010006086,Boiler
+Vaillant,TEC/4,,0010006087,Boiler
+Vaillant,TEC/4,,0010006088,Boiler
+Vaillant,TEC/4,,0010006089,Boiler
+Vaillant,TEC/4,,0010006090,Boiler
+Vaillant,TEC/4,,0010006091,Boiler
+Vaillant,TEC/4,,0010006092,Boiler
+Vaillant,TEC/4,,0010006093,Boiler
+Vaillant,TEC/4,,0010006094,Boiler
+Vaillant,TEC/4,,0010006095,Boiler
+Vaillant,TEC/4,,0010006096,Boiler
+Vaillant,TEC/4,,0010006097,Boiler
+Vaillant,TEC/4,,0010006098,Boiler
+Vaillant,TEC/4,,0010006099,Boiler
+Vaillant,TEC/4,,0010006100,Boiler
+Vaillant,TEC/4,,0010006101,Boiler
+Vaillant,TEC/4,,0010006102,Boiler
+Vaillant,TEC/4,,0010006103,Boiler
+Vaillant,TEC/4,,0010006104,Boiler
+Vaillant,TEC/4,,0010006105,Boiler
+Vaillant,TEC/4,,0010006106,Boiler
+Vaillant,TEC/4,,0010006107,Boiler
+Vaillant,TEC/4,,0010006108,Boiler
+Vaillant,TEC/4,,0010006109,Boiler
+Vaillant,TEC/4,,0010006110,Boiler
+Vaillant,TEC/4,,0010006111,Boiler
+Vaillant,TEC/4,,0010006112,Boiler
+Vaillant,TEC/4,,0010006113,Boiler
+Vaillant,TEC/4,,0010006114,Boiler
+Vaillant,TEC/4,,0010006115,Boiler
+Vaillant,TEC/4,,0010006118,Boiler
+Vaillant,TEC/4,,0010006119,Boiler
+Vaillant,TEC/4,,0010006120,Boiler
+Vaillant,TEC/4,,0010006121,Boiler
+Vaillant,TEC/4,,0010006122,Boiler
+Vaillant,TEC/4,,0010006123,Boiler
+Vaillant,TEC/4,,0010006126,Boiler
+Vaillant,TEC/4,,0010006127,Boiler
+Vaillant,TEC/4,,0010006129,Boiler
+Vaillant,TEC/4,,0010006130,Boiler
+Vaillant,TEC/4,,0010006131,Boiler
+Vaillant,TEC/4,,0010006134,Boiler
+Vaillant,TEC/4,,0010006135,Boiler
+Vaillant,TEC/4,,0010006136,Boiler
+Vaillant,TEC/4,,0010006137,Boiler
+Vaillant,TEC/4,,0010006138,Boiler
+Vaillant,TEC/4,,0010006139,Boiler
+Vaillant,TEC/4,,0010006140,Boiler
+Vaillant,TEC/4,,0010006141,Boiler
+Vaillant,icoVIT/7,,0010006341,Boiler
 Vaillant,aguaFLOW,VPM 20/25 W,0010007267,Module
 Vaillant,aguaFLOW,VPM 30/35 W,0010007268,Module
+Vaillant,ecoVIT pneumatic/4,,0010007508,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007510,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007512,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007514,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007516,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007518,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007520,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007522,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007524,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007526,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007688,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007692,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007696,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007700,Boiler
+Vaillant,ecoVIT pneumatic/4,,0010007704,Boiler
 Vaillant,Panther,25KOV v.19,0010008045,Boiler
 Vaillant,Panther,25KOV v.19,0010008863,Boiler
 Vaillant,geoTHERM,VWS 61/3,0010009068,Heat Pump
@@ -49,13 +217,41 @@ Vaillant,geoTHERM,VWW 81/3,0010009083,Heat Pump
 Vaillant,geoTHERM,VWW 101/3,0010009084,Heat Pump
 Vaillant,geoTHERM,VWW 141/3,0010009085,Heat Pump
 Vaillant,geoTHERM,VWW 171/3,0010009086,Heat Pump
+Vaillant,ecoCOMPACT2,,0010009340,Boiler
+Vaillant,ecoCOMPACT2,,0010009341,Boiler
+Vaillant,ecoCOMPACT2,,0010009342,Boiler
+Vaillant,ecoCOMPACT2,,0010009343,Boiler
+Vaillant,ecoCOMPACT2,,0010009344,Boiler
+Vaillant,ecoCOMPACT2,,0010009345,Boiler
+Vaillant,ecoCOMPACT2,,0010009346,Boiler
+Vaillant,ecoCOMPACT2,,0010009347,Boiler
+Vaillant,ecoCOMPACT2,,0010009348,Boiler
+Vaillant,ecoCOMPACT2,,0010009349,Boiler
+Vaillant,ecoCOMPACT2,,0010009350,Boiler
+Vaillant,auroCOMPACT/2,,0010009351,Boiler
+Vaillant,auroCOMPACT/2,,0010009352,Boiler
+Vaillant,ECOBIG pneumatisch,,0010010384,Boiler
+Vaillant,ecoTEC,,0010010392,Boiler
+Vaillant,ecoTEC,,0010010393,Boiler
+Vaillant,ecoTEC,,0010010394,Boiler
+Vaillant,ecoTEC,,0010010400,Boiler
+Vaillant,icoVIT two stage/7,,0010010674,Boiler
+Vaillant,icoVIT two stage/7,,0010010676,Boiler
+Vaillant,icoVIT two stage/7,,0010010678,Boiler
 Vaillant,ecoTEC plus,VM 806/5-5,0010010759,Boiler
 Vaillant,ecoTEC exclusive,VU OE 806/5-5,0010010764,Boiler
 Vaillant,ecoTEC plus,VM 1006/5-5,0010010772,Boiler
 Vaillant,ecoTEC exclusive,VU OE 1006/5-5,0010010777,Boiler
 Vaillant,ecoTEC plus,VM 1206/5-5,0010010784,Boiler
 Vaillant,ecoTEC exclusive,VU OE 1206/5-5,0010010789,Boiler
+Vaillant,,,0010011630,Boiler
 Vaillant,FM3 Functional Module,VR 70,0010011633,Control Centre
+Vaillant,,,0010011640,Boiler
+Vaillant,EcoTEC plus VHR,,0010011701,Boiler
+Vaillant,EcoTEC plus VHR,,0010011702,Boiler
+Vaillant,EcoTEC plus VHR,,0010011703,Boiler
+Vaillant,EcoTEC plus VHR,,0010011704,Boiler
+Vaillant,EcoTEC plus VHR,,0010011709,Boiler
 Vaillant,ecoTEC plus,VU INT II 146/5-5,0010011737,Boiler
 Vaillant,ecoTEC plus,VU INT II 206/5-5,0010011738,Boiler
 Vaillant,ecoTEC plus,VU INT II 256/5-5,0010011739,Boiler
@@ -73,12 +269,42 @@ Vaillant,allSTOR,VPM 40/45/2 W,0010014313,Module
 Vaillant,FM5 Functional Module,VR 71,0010014314,Control Centre
 Vaillant,aroTHERM,VWL 55/2 A 230 V,0010014566,Heat Pump
 Vaillant,aroTHERM,VWL 155/2 A 400 V,0010014568,Heat Pump
+Vaillant,ecoCompact (euro),,0010014629,Boiler
+Vaillant,ecoCompact (euro),,0010014630,Boiler
+Vaillant,ecoCompact (euro),,0010014631,Boiler
+Vaillant,ecoCompact (euro),,0010014632,Boiler
+Vaillant,ecoCompact (euro),,0010014633,Boiler
+Vaillant,,,0010014683,Boiler
+Vaillant,ecoCompact (euro),,0010014917,Boiler
+Vaillant,,,0010015325,Boiler
+Vaillant,ecoCompact (euro),,0010015596,Boiler
+Vaillant,ecoCompact (euro),,0010015597,Boiler
+Vaillant,ecoCompact (euro),,0010015598,Boiler
+Vaillant,ecoCompact (euro),,0010015599,Boiler
+Vaillant,ecoCompact (euro),,0010015600,Boiler
+Vaillant,ecoCompact (euro),,0010015601,Boiler
+Vaillant,ecoCompact (euro),,0010015602,Boiler
+Vaillant,ecoCompact (euro),,0010015603,Boiler
+Vaillant,ecoCompact (euro),,0010015604,Boiler
+Vaillant,ecoCompact (euro),,0010015605,Boiler
+Vaillant,ecoCompact (euro),,0010015606,Boiler
+Vaillant,ecoCompact (euro),,0010015607,Boiler
+Vaillant,ecoCompact (euro),,0010015608,Boiler
+Vaillant,ecoCompact (euro),,0010015609,Boiler
+Vaillant,ecoCompact (euro),,0010015610,Boiler
+Vaillant,ecoCompact (euro),,0010015611,Boiler
+Vaillant,ecoCompact (euro),,0010015612,Boiler
+Vaillant,ecoCompact (euro),,0010015613,Boiler
+Vaillant,ecoCompact (euro),,0010015614,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 412,0010015669,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 415,0010015670,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 418,0010015671,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 424,0010015672,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 430,0010015673,Boiler
+Vaillant,,,0010015908,Boiler
 Vaillant,FM3 Functional Module,VR 70,0010016097,Control Centre
+Vaillant,EcoTEC plus VHR,,0010016402,Boiler
+Vaillant,EcoTEC plus VHR,,0010016403,Boiler
 Vaillant,aroTHERM,VWL 55/2 A 230 V,0010016408,Heat Pump
 Vaillant,aroTHERM,VWL 85/2 A 230 V,0010016409,Heat Pump
 Vaillant,aroTHERM,VWL 115/2 A 230 V,0010016410,Heat Pump
@@ -103,11 +329,15 @@ Vaillant,flexoCOMPACT exclusive,VWF 118/4,0010016692,Heat Pump
 Vaillant,aroCOLLECT,VWL 11/4 SA,0010016715,Module
 Vaillant,fluoCOLLECT,VWW 11/4 SI,0010016719,Module
 Vaillant,fluoCOLLECT,VWW 19/4 SI,0010016720,Module
+Vaillant,,,0010017387,Boiler
+Vaillant,,,0010017390,Boiler
+Vaillant,,,0010017826,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 825,0010018353,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 832,0010018354,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 832 LPG,0010018355,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 838,0010018356,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 938,0010018357,Boiler
+Vaillant,,,0010018461,Boiler
 Vaillant,ecoTEC pro,ecoTEC pro 24,0010018494,Boiler
 Vaillant,ecoTEC pro,ecoTEC pro 28,0010018495,Boiler
 Vaillant,ecoTEC pro,ecoTEC pro 28 LPG,0010018496,Boiler
@@ -119,12 +349,15 @@ Vaillant,ecoTEC plus,ecoTEC plus 624,0010018535,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 630,0010018536,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 630 LPG,0010018537,Boiler
 Vaillant,ecoTEC plus,ecoTEC plus 637,0010018538,Boiler
+Vaillant,ecoCompact (euro),,0010019268,Boiler
+Vaillant,ecoCompact (euro),,0010019276,Boiler
 Vaillant,FM5 Functional Module,VR 71,0010019412,Control Centre
 Vaillant,ecoFIT pure,VU 126/6-3,0010020395,Boiler
 Vaillant,ecoFIT pure,VU 156/6-3,0010020396,Boiler
 Vaillant,ecoFIT pure,VU 186/6-3,0010020397,Boiler
 Vaillant,ecoFIT pure,VU 256/6-3,0010020398,Boiler
 Vaillant,ecoFIT pure,VU 306/6-3,0010020399,Boiler
+Vaillant,,,0010020408,Boiler
 Vaillant,aroTHERM,VWL 35/5 AS S2 (230 V),0010021109,Heat Pump
 Vaillant,aroTHERM,VWL 55/5 AS S2 (230 V),0010021110,Heat Pump
 Vaillant,aroTHERM,VWL 75/5 AS S2 (230 V),0010021111,Heat Pump
@@ -152,8 +385,24 @@ Vaillant,ecoTEC plus,VMW 346/5-5,0010021812,Boiler
 Vaillant,ecoTEC plus,VMW 246/5-5,0010021813,Boiler
 Vaillant,ecoTEC plus,VMI 306/5-5,0010021814,Boiler
 Vaillant,ecoTEC plus,VMI 346/5-5,0010021815,Boiler
+Vaillant,,,0010021843,Boiler
+Vaillant,ecoCompact (euro),,0010021875,Boiler
+Vaillant,ecoCompact (euro),,0010021887,Boiler
+Vaillant,ecoCompact (euro),,0010021888,Boiler
+Vaillant,ecoCompact (euro),,0010021891,Boiler
+Vaillant,IsotwinCondens 30-B,,0010021901,Boiler
 Vaillant,FM5 Functional Module,VR 71,0010021924,Control Centre
+Vaillant,ecoCompact (euro),,0010021929,Boiler
+Vaillant,,,0010021934,Boiler
+Vaillant,ecoCompact (euro),,0010021961,Boiler
+Vaillant,ecoCompact (euro),,0010021962,Boiler
+Vaillant,ecoCompact (euro),,0010021963,Boiler
+Vaillant,ecoCompact (euro),,0010021964,Boiler
+Vaillant,ecoCompact (euro),,0010021965,Boiler
+Vaillant,ecoCompact (euro),,0010021966,Boiler
+Vaillant,ecoCompact (euro),,0010021967,Boiler
 Vaillant,FM5 Functional Module,VR 71,0010022008,Control Centre
+Vaillant,,,0010022010,Boiler
 Vaillant,uniTOWER,VIH QW 190/6 E,0010022078,Module
 Vaillant,aroTHERM,VWL/5 split,0010023494,Heat Pump
 Vaillant,FM5 Functional Module,VR 71,0010023523,Control Centre
@@ -176,6 +425,7 @@ Vaillant,sensoCOMFORT,VRC 720/2,0010036819,Regulator
 Vaillant,ecoTEC exclusive,VU 20CS/1-7 (N-INT2),0010038488,Boiler
 Vaillant,ecoTEC exclusive,VU 25CS/1-7 (N-INT2),0010038489,Boiler
 Vaillant,ecoTEC plus,VC 15CS/1-5,0010043897,Boiler
+Vaillant,,,0010043962,Boiler
 Vaillant,ecoTEC plus,VU 25CS/1-5 (N-INT2),0010043963,Boiler
 Vaillant,ecoTEC plus,VU 30CS/1-5 (N-INT2),0010043964,Boiler
 Vaillant,ecoTEC plus,VU 35CS/1-5 (N-INT2),0010043965,Boiler
@@ -185,10 +435,17 @@ Vaillant,ecoTEC plus,VUW 36CS/1-5 (N-INT2),0010043968,Boiler
 Vaillant,ecoTEC plus,VUW 40CS/1-5 (N-INT2),0010043969,Boiler
 Vaillant,ecoTEC plus,VUI 32CS/1-5 (N-INT2),0010043970,Boiler
 Vaillant,FM5 Functional Module,VR 71,0010045478,Control Centre
+Vaillant,,,0020017837,Unknown
+Vaillant,,VRT 50,0020018266,Thermostat
 Vaillant,calorMATIC 430f,VRC 430f,0020028521,Regulator
 Vaillant,calorMATIC 430f,VRC 430f,0020028524,Regulator
 Vaillant,calorMATIC 630,VRC 630,0020040079,Regulator
+Vaillant,,,0020045492,Unknown
 Vaillant,calorMATIC 360,VRT 360,0020045552,Regulator
+Vaillant,ecoTEC,,0020051714,Boiler
+Vaillant,ecoTEC,,0020051715,Boiler
+Vaillant,ecoTEC,,0020051716,Boiler
+Vaillant,ecoTEC,,0020051717,Boiler
 Vaillant,calorMATIC 430f,VRC 430f,0020058640,Regulator
 Vaillant,calorMATIC 430,VRC 430,0020060427,Regulator
 Vaillant,auroFLOW,VPM 20 S,0020071488,Module
@@ -199,17 +456,20 @@ Vaillant,geoTHERM,VWL /3 S,0020075230,Heat Pump
 Vaillant,auroFLOW,VPM 60 S,0020079950,Module
 Vaillant,aguaFLOW exclusive,VPM /2 W,0020080448,Module
 Vaillant,auroMATIC,VRC 620,0020080463,Regulator
+Vaillant,,,0020080465,Unknown
 Vaillant,calorMATIC 630,VRC 630,0020080467,Regulator
 Vaillant,calorMATIC 630,VRC 630,0020080468,Regulator
 Vaillant,calorMATIC 630,VRC 630,0020080472,Regulator
 Vaillant,calorMATIC 630,VRC 630,0020092435,Regulator
 Vaillant,calorMATIC 630,VRC 630,0020092440,Regulator
+Vaillant,,,0020101780,Unknown
 Vaillant,calorMATIC 470,VRT 470,0020108128,Regulator
 Vaillant,calorMATIC 470,VRT 470,0020108132,Regulator
 Vaillant,calorMATIC 470f,VRC 470f,0020108135,Regulator
 Vaillant,calorMATIC 470f,VRC 470f,0020108137,Regulator
 Vaillant,calorMATIC 470f,VRC 470f,0020112594,Regulator
 Vaillant,Radio Receiver,Radio Receiver,0020112595,Module
+Vaillant,commDialog Plus,,0020116884,Gateway
 Vaillant,FM5 Functional Module,VR 71,0020117049,Control Centre
 Vaillant,calorMATIC 350,VRT 350,0020124472,Regulator
 Vaillant,calorMATIC 450,VRT 450,0020124489,Regulator
@@ -232,6 +492,7 @@ Vaillant,Internet communication module,VR900,0020197117,Gateway
 Vaillant,Internet communication module,VR900,0020197118,Gateway
 Vaillant,Internet communication module,VR900,0020197120,Gateway
 Vaillant,Internet communication module,VR900,0020197148,Gateway
+Vaillant,,,0020197207,Unknown
 Vaillant,eRELAX,eRELAX,0020197222,Thermostat
 Vaillant,multiMATIC,VRC 700/4,0020218357,Regulator
 Vaillant,FM3 Functional Module,VR 70,0020218373,Control Centre

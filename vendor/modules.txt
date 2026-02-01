@@ -1,0 +1,5 @@
+# github.com/d3vi1/helianthus-ebusgo v0.0.0-20260201200950-6fa99f8750e2
+## explicit
+## go 1.22
+github.com/d3vi1/helianthus-ebusgo/errors
+github.com/d3vi1/helianthus-ebusgo/types

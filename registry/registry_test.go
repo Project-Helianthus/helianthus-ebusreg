@@ -1,6 +1,10 @@
 package registry
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/d3vi1/helianthus-ebusreg/schema"
+)
 
 type mockTemplate struct {
 	primary   byte
@@ -19,6 +23,7 @@ type mockMethod struct {
 	name     string
 	readOnly bool
 	template FrameTemplate
+	response schema.SchemaSelector
 }
 
 func (m mockMethod) Name() string {
@@ -31,6 +36,10 @@ func (m mockMethod) ReadOnly() bool {
 
 func (m mockMethod) Template() FrameTemplate {
 	return m.template
+}
+
+func (m mockMethod) ResponseSchema() schema.SchemaSelector {
+	return m.response
 }
 
 type mockPlane struct {

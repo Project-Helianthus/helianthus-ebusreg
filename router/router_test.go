@@ -8,6 +8,7 @@ import (
 	ebuserrors "github.com/d3vi1/helianthus-ebusgo/errors"
 	"github.com/d3vi1/helianthus-ebusgo/protocol"
 	"github.com/d3vi1/helianthus-ebusreg/registry"
+	"github.com/d3vi1/helianthus-ebusreg/schema"
 )
 
 type mockPlane struct {
@@ -38,6 +39,7 @@ type mockMethod struct {
 	name     string
 	readOnly bool
 	template registry.FrameTemplate
+	response schema.SchemaSelector
 }
 
 func (method mockMethod) Name() string {
@@ -50,6 +52,10 @@ func (method mockMethod) ReadOnly() bool {
 
 func (method mockMethod) Template() registry.FrameTemplate {
 	return method.template
+}
+
+func (method mockMethod) ResponseSchema() schema.SchemaSelector {
+	return method.response
 }
 
 func (plane *mockPlane) Name() string {

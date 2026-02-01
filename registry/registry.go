@@ -1,6 +1,10 @@
 package registry
 
-import "sync"
+import (
+	"sync"
+
+	"github.com/d3vi1/helianthus-ebusreg/schema"
+)
 
 type DeviceInfo struct {
 	Address         byte
@@ -34,6 +38,7 @@ type Method interface {
 	Name() string
 	ReadOnly() bool
 	Template() FrameTemplate
+	ResponseSchema() schema.SchemaSelector
 }
 
 type FrameTemplate interface {

@@ -64,6 +64,28 @@ func (p mockProvider) CreatePlanes(info DeviceInfo) []Plane {
 	return p.planes
 }
 
+type countingProvider struct {
+	name        string
+	matchFn     func(DeviceInfo) bool
+	createFn    func(DeviceInfo) []Plane
+	matchCalls  int
+	createCalls int
+}
+
+func (p *countingProvider) Name() string {
+	return p.name
+}
+
+func (p *countingProvider) Match(info DeviceInfo) bool {
+	p.matchCalls++
+	return p.matchFn(info)
+}
+
+func (p *countingProvider) CreatePlanes(info DeviceInfo) []Plane {
+	p.createCalls++
+	return p.createFn(info)
+}
+
 func TestDeviceRegistry_RegisterLookupIterate(t *testing.T) {
 	planeA := mockPlane{
 		name: "heating",
@@ -146,5 +168,80 @@ func TestDeviceRegistry_RegisterLookupIterate(t *testing.T) {
 	}
 	if addresses[0] != 0x08 || addresses[1] != 0x10 {
 		t.Fatalf("unexpected iteration order: %v", addresses)
+	}
+}
+
+func TestDeviceRegistry_IterateStops(t *testing.T) {
+	registry := NewDeviceRegistry(nil)
+	registry.Register(DeviceInfo{Address: 0x08})
+	registry.Register(DeviceInfo{Address: 0x10})
+	registry.Register(DeviceInfo{Address: 0x30})
+
+	addresses := make([]byte, 0)
+	registry.Iterate(func(entry DeviceEntry) bool {
+		addresses = append(addresses, entry.Address())
+		return len(addresses) < 2
+	})
+
+	if len(addresses) != 2 {
+		t.Fatalf("expected early stop after 2 entries, got %d", len(addresses))
+	}
+	if addresses[0] != 0x08 || addresses[1] != 0x10 {
+		t.Fatalf("unexpected iteration order: %v", addresses)
+	}
+}
+
+func TestDeviceRegistry_ProviderMatching(t *testing.T) {
+	planeHeating := mockPlane{name: "heating"}
+	planeSystem := mockPlane{name: "system"}
+
+	providerA := &countingProvider{
+		name:    "vaillant",
+		matchFn: func(info DeviceInfo) bool { return info.Manufacturer == "vaillant" },
+		createFn: func(info DeviceInfo) []Plane {
+			return []Plane{planeHeating}
+		},
+	}
+	providerB := &countingProvider{
+		name:    "noop",
+		matchFn: func(info DeviceInfo) bool { return false },
+		createFn: func(info DeviceInfo) []Plane {
+			return []Plane{mockPlane{name: "noop"}}
+		},
+	}
+	providerC := &countingProvider{
+		name:    "system",
+		matchFn: func(info DeviceInfo) bool { return info.Address == 0x10 },
+		createFn: func(info DeviceInfo) []Plane {
+			return []Plane{planeSystem}
+		},
+	}
+
+	registry := NewDeviceRegistry([]PlaneProvider{providerA, providerB, providerC})
+
+	registry.Register(DeviceInfo{Address: 0x08, Manufacturer: "vaillant"})
+	registry.Register(DeviceInfo{Address: 0x10, Manufacturer: "other"})
+
+	entry, ok := registry.Lookup(0x08)
+	if !ok {
+		t.Fatalf("expected device 0x08 to be registered")
+	}
+	if len(entry.Planes()) != 1 || entry.Planes()[0].Name() != "heating" {
+		t.Fatalf("unexpected planes for 0x08: %v", entry.Planes())
+	}
+
+	entry, ok = registry.Lookup(0x10)
+	if !ok {
+		t.Fatalf("expected device 0x10 to be registered")
+	}
+	if len(entry.Planes()) != 1 || entry.Planes()[0].Name() != "system" {
+		t.Fatalf("unexpected planes for 0x10: %v", entry.Planes())
+	}
+
+	if providerA.matchCalls != 2 || providerB.matchCalls != 2 || providerC.matchCalls != 2 {
+		t.Fatalf("unexpected match call counts: A=%d B=%d C=%d", providerA.matchCalls, providerB.matchCalls, providerC.matchCalls)
+	}
+	if providerA.createCalls != 1 || providerB.createCalls != 0 || providerC.createCalls != 1 {
+		t.Fatalf("unexpected create call counts: A=%d B=%d C=%d", providerA.createCalls, providerB.createCalls, providerC.createCalls)
 	}
 }

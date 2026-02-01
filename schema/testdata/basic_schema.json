@@ -1,0 +1,7 @@
+{
+  "fields": [
+    {"name": "status", "type": "BCD"},
+    {"name": "temp", "type": "DATA2b"},
+    {"name": "flags", "type": "BITFIELD", "size": 2}
+  ]
+}

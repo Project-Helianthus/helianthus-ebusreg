@@ -1,0 +1,25 @@
+{
+  "default": {
+    "fields": [
+      {"name": "default", "type": "DATA1b"}
+    ]
+  },
+  "conditions": [
+    {
+      "target": 16,
+      "schema": {
+        "fields": [
+          {"name": "target", "type": "WORD"}
+        ]
+      }
+    },
+    {
+      "min_hw": 7603,
+      "schema": {
+        "fields": [
+          {"name": "hw", "type": "DATA2c"}
+        ]
+      }
+    }
+  ]
+}

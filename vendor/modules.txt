@@ -2,4 +2,7 @@
 ## explicit
 ## go 1.22
 github.com/d3vi1/helianthus-ebusgo/errors
+github.com/d3vi1/helianthus-ebusgo/internal/crc
+github.com/d3vi1/helianthus-ebusgo/protocol
+github.com/d3vi1/helianthus-ebusgo/transport
 github.com/d3vi1/helianthus-ebusgo/types

@@ -18,9 +18,9 @@ type SchemaSelector struct {
 }
 
 // Select returns the first matching schema or the default.
-func (s SchemaSelector) Select(target byte, hwVersion string) Schema {
+func (selector SchemaSelector) Select(target byte, hwVersion string) Schema {
 	hwValue, hasHW := parseHWVersion(hwVersion)
-	for _, condition := range s.Conditions {
+	for _, condition := range selector.Conditions {
 		if condition.HasTarget && condition.Target != target {
 			continue
 		}
@@ -35,7 +35,7 @@ func (s SchemaSelector) Select(target byte, hwVersion string) Schema {
 		}
 		return condition.Schema
 	}
-	return s.Default
+	return selector.Default
 }
 
 func parseHWVersion(value string) (uint16, bool) {

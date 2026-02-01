@@ -25,7 +25,7 @@ func TestProviderMethods(t *testing.T) {
 	t.Parallel()
 
 	provider := NewProvider()
-	planes := provider.CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant"})
+	planes := provider.CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", HardwareVersion: "7500"})
 	if len(planes) != 1 {
 		t.Fatalf("expected 1 plane, got %d", len(planes))
 	}
@@ -59,4 +59,74 @@ func TestProviderMethods(t *testing.T) {
 	if methods[2].Template().Primary() != 0xB5 || methods[2].Template().Secondary() != 0x04 {
 		t.Fatalf("unexpected get_parameters template")
 	}
+}
+
+func TestEnergyStatsGating(t *testing.T) {
+	t.Parallel()
+
+	provider := NewProvider()
+	planes := provider.CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", HardwareVersion: "7603"})
+	if len(planes) != 1 {
+		t.Fatalf("expected 1 plane, got %d", len(planes))
+	}
+
+	methods := planes[0].Methods()
+	if !hasMethod(methods, methodEnergyStats) {
+		t.Fatalf("expected energy stats method for HW>=7603")
+	}
+
+	planes = provider.CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", HardwareVersion: "7500"})
+	methods = planes[0].Methods()
+	if hasMethod(methods, methodEnergyStats) {
+		t.Fatalf("did not expect energy stats method for HW<7603")
+	}
+}
+
+func TestEnergyTemplateEncoding(t *testing.T) {
+	t.Parallel()
+
+	provider := NewProvider()
+	planes := provider.CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", HardwareVersion: "7603"})
+	methods := planes[0].Methods()
+	energyMethod, ok := findMethod(methods, methodEnergyStats)
+	if !ok {
+		t.Fatalf("expected energy stats method")
+	}
+
+	template, ok := energyMethod.Template().(interface {
+		Build(params map[string]any) ([]byte, error)
+	})
+	if !ok {
+		t.Fatalf("energy template missing Build")
+	}
+
+	payload, err := template.Build(map[string]any{
+		"period": uint8(1),
+		"source": uint8(2),
+		"usage":  uint8(3),
+	})
+	if err != nil {
+		t.Fatalf("Build error = %v", err)
+	}
+	if len(payload) != 3 || payload[0] != 1 || payload[1] != 2 || payload[2] != 3 {
+		t.Fatalf("unexpected payload %v", payload)
+	}
+}
+
+func hasMethod(methods []registry.Method, name string) bool {
+	for _, method := range methods {
+		if method.Name() == name {
+			return true
+		}
+	}
+	return false
+}
+
+func findMethod(methods []registry.Method, name string) (registry.Method, bool) {
+	for _, method := range methods {
+		if method.Name() == name {
+			return method, true
+		}
+	}
+	return nil, false
 }

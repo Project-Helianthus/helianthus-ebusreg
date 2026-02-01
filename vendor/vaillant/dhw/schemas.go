@@ -32,3 +32,13 @@ func parametersSchemaSelector() schema.SchemaSelector {
 		},
 	}
 }
+
+func energySchemaSelector() schema.SchemaSelector {
+	return schema.SchemaSelector{
+		Default: schema.Schema{
+			Fields: []schema.SchemaField{
+				{Name: "energy", Type: types.WORD{}},
+			},
+		},
+	}
+}

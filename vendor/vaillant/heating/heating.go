@@ -11,6 +11,7 @@ const (
 	methodGetStatus     = "get_status"
 	methodSetTargetTemp = "set_target_temp"
 	methodGetParameters = "get_parameters"
+	methodEnergyStats   = "get_energy_stats"
 )
 
 type Provider struct{}
@@ -36,7 +37,7 @@ func (Provider) Match(info registry.DeviceInfo) bool {
 
 func (Provider) CreatePlanes(info registry.DeviceInfo) []registry.Plane {
 	return []registry.Plane{
-		newHeatingPlane(),
+		newHeatingPlane(info),
 	}
 }
 
@@ -45,14 +46,24 @@ type plane struct {
 	methods []registry.Method
 }
 
-func newHeatingPlane() *plane {
+func newHeatingPlane(info registry.DeviceInfo) *plane {
+	methods := []registry.Method{
+		method{name: methodGetStatus, readOnly: true, template: template{primary: 0xB5, secondary: 0x04}, response: statusSchemaSelector()},
+		method{name: methodSetTargetTemp, readOnly: false, template: template{primary: 0xB5, secondary: 0x05}, response: setTargetTempSchemaSelector()},
+		method{name: methodGetParameters, readOnly: true, template: template{primary: 0xB5, secondary: 0x04}, response: parametersSchemaSelector()},
+	}
+	if supportsEnergyStats(info) {
+		methods = append(methods, method{
+			name:     methodEnergyStats,
+			readOnly: true,
+			template: energyTemplate{primary: 0xB5, secondary: 0x16},
+			response: energySchemaSelector(),
+		})
+	}
+
 	return &plane{
-		name: "heating",
-		methods: []registry.Method{
-			method{name: methodGetStatus, readOnly: true, template: template{primary: 0xB5, secondary: 0x04}, response: statusSchemaSelector()},
-			method{name: methodSetTargetTemp, readOnly: false, template: template{primary: 0xB5, secondary: 0x05}, response: setTargetTempSchemaSelector()},
-			method{name: methodGetParameters, readOnly: true, template: template{primary: 0xB5, secondary: 0x04}, response: parametersSchemaSelector()},
-		},
+		name:    "heating",
+		methods: methods,
 	}
 }
 

@@ -35,6 +35,10 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 
 	entries := make([]DeviceEntry, 0)
 	for _, target := range targets {
+		frameType := protocol.FrameTypeForTarget(target)
+		if frameType == protocol.FrameTypeMasterMaster || frameType == protocol.FrameTypeUnknown {
+			continue
+		}
 		request := protocol.Frame{
 			Source:    source,
 			Target:    target,

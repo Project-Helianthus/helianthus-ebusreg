@@ -39,8 +39,8 @@ func TestScanRegistersDevices(t *testing.T) {
 				Secondary: scanSecondary,
 				Data:      []byte{0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08},
 			},
-			0x10: {
-				Source:    0x10,
+			0x09: {
+				Source:    0x09,
 				Target:    0x10,
 				Primary:   scanPrimary,
 				Secondary: scanSecondary,
@@ -48,11 +48,11 @@ func TestScanRegistersDevices(t *testing.T) {
 			},
 		},
 		errors: map[byte]error{
-			0x30: ebuserrors.ErrNoSuchDevice,
+			0x21: ebuserrors.ErrNoSuchDevice,
 		},
 	}
 
-	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x08, 0x10, 0x30})
+	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x08, 0x09, 0x21})
 	if err != nil {
 		t.Fatalf("Scan error = %v", err)
 	}
@@ -68,16 +68,34 @@ func TestScanRegistersDevices(t *testing.T) {
 		t.Fatalf("unexpected device 0x08 info: %+v", entry)
 	}
 
-	entry, ok = registry.Lookup(0x10)
+	entry, ok = registry.Lookup(0x09)
 	if !ok {
-		t.Fatalf("expected device 0x10 to be registered")
+		t.Fatalf("expected device 0x09 to be registered")
 	}
 	if entry.Manufacturer() != "0A0B" || entry.DeviceID() != "0C0D" || entry.SoftwareVersion() != "0E0F" || entry.HardwareVersion() != "1011" {
-		t.Fatalf("unexpected device 0x10 info: %+v", entry)
+		t.Fatalf("unexpected device 0x09 info: %+v", entry)
 	}
 
 	if len(bus.calls) != 3 {
 		t.Fatalf("expected 3 scan calls, got %d", len(bus.calls))
+	}
+}
+
+func TestScanSkipsMasterAndUnknownTargets(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	bus := &mockScanBus{}
+
+	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x10, protocol.SymbolEscape})
+	if err != nil {
+		t.Fatalf("Scan error = %v", err)
+	}
+	if len(entries) != 0 {
+		t.Fatalf("expected 0 entries, got %d", len(entries))
+	}
+	if len(bus.calls) != 0 {
+		t.Fatalf("expected 0 scan calls, got %d", len(bus.calls))
 	}
 }
 

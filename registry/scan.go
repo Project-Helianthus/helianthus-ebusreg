@@ -37,6 +37,10 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 
 	entries := make([]DeviceEntry, 0)
 	for _, target := range targets {
+		if err := ctx.Err(); err != nil {
+			return nil, err
+		}
+
 		frameType := protocol.FrameTypeForTarget(target)
 		if frameType == protocol.FrameTypeMasterMaster || frameType == protocol.FrameTypeUnknown {
 			continue
@@ -49,6 +53,9 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 		}
 		response, err := bus.Send(ctx, request)
 		if err != nil {
+			if ctx.Err() != nil {
+				return nil, ctx.Err()
+			}
 			if shouldSkipScanError(err) {
 				continue
 			}
@@ -104,6 +111,7 @@ func parseDeviceInfo(address byte, payload []byte) (DeviceInfo, error) {
 func shouldSkipScanError(err error) bool {
 	return errors.Is(err, ebuserrors.ErrNoSuchDevice) ||
 		errors.Is(err, ebuserrors.ErrTimeout) ||
+		errors.Is(err, context.DeadlineExceeded) ||
 		errors.Is(err, ebuserrors.ErrNACK) ||
 		errors.Is(err, ebuserrors.ErrCRCMismatch) ||
 		errors.Is(err, errScanResponsePayload)

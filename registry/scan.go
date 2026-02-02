@@ -110,6 +110,7 @@ func parseDeviceInfo(address byte, payload []byte) (DeviceInfo, error) {
 
 func shouldSkipScanError(err error) bool {
 	return errors.Is(err, ebuserrors.ErrNoSuchDevice) ||
+		errors.Is(err, ebuserrors.ErrBusCollision) ||
 		errors.Is(err, ebuserrors.ErrTimeout) ||
 		errors.Is(err, context.DeadlineExceeded) ||
 		errors.Is(err, ebuserrors.ErrNACK) ||

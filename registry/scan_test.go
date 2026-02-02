@@ -27,6 +27,21 @@ func (bus *mockScanBus) Send(ctx context.Context, frame protocol.Frame) (*protoc
 	return nil, ebuserrors.ErrNoSuchDevice
 }
 
+type collisionThenResponseBus struct {
+	response  *protocol.Frame
+	calls     []protocol.Frame
+	collided  bool
+}
+
+func (bus *collisionThenResponseBus) Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	bus.calls = append(bus.calls, frame)
+	if !bus.collided {
+		bus.collided = true
+		return nil, ebuserrors.ErrBusCollision
+	}
+	return bus.response, nil
+}
+
 func TestScanRegistersDevices(t *testing.T) {
 	t.Parallel()
 
@@ -79,6 +94,35 @@ func TestScanRegistersDevices(t *testing.T) {
 
 	if len(bus.calls) != 3 {
 		t.Fatalf("expected 3 scan calls, got %d", len(bus.calls))
+	}
+}
+
+func TestScanRetriesBusCollision(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	bus := &collisionThenResponseBus{
+		response: &protocol.Frame{
+			Source:    0x08,
+			Target:    0x10,
+			Primary:   scanPrimary,
+			Secondary: scanSecondary,
+			Data:      []byte{0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08},
+		},
+	}
+
+	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x08})
+	if err != nil {
+		t.Fatalf("Scan error = %v", err)
+	}
+	if len(entries) != 1 {
+		t.Fatalf("expected 1 entry, got %d", len(entries))
+	}
+	if _, ok := registry.Lookup(0x08); !ok {
+		t.Fatalf("expected device 0x08 to be registered")
+	}
+	if len(bus.calls) != 2 {
+		t.Fatalf("expected 2 scan calls, got %d", len(bus.calls))
 	}
 }
 

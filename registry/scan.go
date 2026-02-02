@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"time"
 
 	ebuserrors "github.com/d3vi1/helianthus-ebusgo/errors"
 	"github.com/d3vi1/helianthus-ebusgo/protocol"
@@ -19,6 +20,8 @@ var errScanResponsePayload = errors.New("scan: invalid response payload")
 type ScanBus interface {
 	Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error)
 }
+
+const scanCollisionMaxPasses = 3
 
 // Scan performs a 07 04 identification scan over the provided targets.
 func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byte, targets []byte) ([]DeviceEntry, error) {
@@ -36,51 +39,85 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 	}
 
 	entries := make([]DeviceEntry, 0)
-	for _, target := range targets {
-		if err := ctx.Err(); err != nil {
-			return nil, err
+	found := make(map[byte]struct{})
+	pending := dedupeScanTargets(targets)
+	for pass := 0; pass <= scanCollisionMaxPasses && len(pending) > 0; pass++ {
+		collisions := make([]byte, 0)
+
+		for _, target := range pending {
+			if err := ctx.Err(); err != nil {
+				return nil, err
+			}
+
+			frameType := protocol.FrameTypeForTarget(target)
+			if frameType == protocol.FrameTypeMasterMaster || frameType == protocol.FrameTypeUnknown {
+				continue
+			}
+
+			request := protocol.Frame{
+				Source:    source,
+				Target:    target,
+				Primary:   scanPrimary,
+				Secondary: scanSecondary,
+			}
+			response, err := bus.Send(ctx, request)
+			if err != nil {
+				if ctx.Err() != nil {
+					return nil, ctx.Err()
+				}
+				// Arbitration collisions are transient and do not imply a missing device.
+				// ebusd retries later; mimic that by deferring the address to a later pass.
+				if errors.Is(err, ebuserrors.ErrBusCollision) {
+					collisions = append(collisions, target)
+					continue
+				}
+				if shouldSkipScanError(err) {
+					continue
+				}
+				return nil, fmt.Errorf("scan target %02x: %w", target, err)
+			}
+			if response == nil {
+				err := fmt.Errorf("scan target %02x empty response: %w", target, errors.Join(errScanResponsePayload, ebuserrors.ErrInvalidPayload))
+				if shouldSkipScanError(err) {
+					continue
+				}
+				return nil, err
+			}
+
+			address := response.Source
+			if address == 0 {
+				address = target
+			}
+			if _, ok := found[address]; ok {
+				continue
+			}
+
+			info, err := parseDeviceInfo(address, response.Data)
+			if err != nil {
+				if shouldSkipScanError(err) {
+					continue
+				}
+				return nil, fmt.Errorf("scan target %02x parse: %w", target, err)
+			}
+			entries = append(entries, registry.Register(info))
+			found[address] = struct{}{}
 		}
 
-		frameType := protocol.FrameTypeForTarget(target)
-		if frameType == protocol.FrameTypeMasterMaster || frameType == protocol.FrameTypeUnknown {
-			continue
+		if len(collisions) == 0 {
+			break
 		}
-		request := protocol.Frame{
-			Source:    source,
-			Target:    target,
-			Primary:   scanPrimary,
-			Secondary: scanSecondary,
+		if pass == scanCollisionMaxPasses {
+			break
 		}
-		response, err := bus.Send(ctx, request)
-		if err != nil {
-			if ctx.Err() != nil {
-				return nil, ctx.Err()
-			}
-			if shouldSkipScanError(err) {
-				continue
-			}
-			return nil, fmt.Errorf("scan target %02x: %w", target, err)
-		}
-		if response == nil {
-			err := fmt.Errorf("scan target %02x empty response: %w", target, errors.Join(errScanResponsePayload, ebuserrors.ErrInvalidPayload))
-			if shouldSkipScanError(err) {
-				continue
-			}
-			return nil, err
-		}
+		pending = dedupeScanTargets(collisions)
 
-		address := response.Source
-		if address == 0 {
-			address = target
+		timer := time.NewTimer(25 * time.Millisecond)
+		select {
+		case <-ctx.Done():
+			timer.Stop()
+			return nil, ctx.Err()
+		case <-timer.C:
 		}
-		info, err := parseDeviceInfo(address, response.Data)
-		if err != nil {
-			if shouldSkipScanError(err) {
-				continue
-			}
-			return nil, fmt.Errorf("scan target %02x parse: %w", target, err)
-		}
-		entries = append(entries, registry.Register(info))
 	}
 
 	return entries, nil
@@ -110,10 +147,25 @@ func parseDeviceInfo(address byte, payload []byte) (DeviceInfo, error) {
 
 func shouldSkipScanError(err error) bool {
 	return errors.Is(err, ebuserrors.ErrNoSuchDevice) ||
-		errors.Is(err, ebuserrors.ErrBusCollision) ||
 		errors.Is(err, ebuserrors.ErrTimeout) ||
 		errors.Is(err, context.DeadlineExceeded) ||
 		errors.Is(err, ebuserrors.ErrNACK) ||
 		errors.Is(err, ebuserrors.ErrCRCMismatch) ||
 		errors.Is(err, errScanResponsePayload)
+}
+
+func dedupeScanTargets(targets []byte) []byte {
+	if len(targets) == 0 {
+		return nil
+	}
+	seen := make(map[byte]struct{}, len(targets))
+	out := make([]byte, 0, len(targets))
+	for _, target := range targets {
+		if _, ok := seen[target]; ok {
+			continue
+		}
+		seen[target] = struct{}{}
+		out = append(out, target)
+	}
+	return out
 }

@@ -14,6 +14,8 @@ const (
 	scanSecondary = byte(0x04)
 )
 
+var errScanResponsePayload = errors.New("scan: invalid response payload")
+
 type ScanBus interface {
 	Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error)
 }
@@ -53,10 +55,11 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 			return nil, fmt.Errorf("scan target %02x: %w", target, err)
 		}
 		if response == nil {
-			if shouldSkipScanError(ebuserrors.ErrInvalidPayload) {
+			err := fmt.Errorf("scan target %02x empty response: %w", target, errors.Join(errScanResponsePayload, ebuserrors.ErrInvalidPayload))
+			if shouldSkipScanError(err) {
 				continue
 			}
-			return nil, fmt.Errorf("scan target %02x empty response: %w", target, ebuserrors.ErrInvalidPayload)
+			return nil, err
 		}
 
 		address := response.Source
@@ -87,7 +90,7 @@ func DefaultScanTargets() []byte {
 
 func parseDeviceInfo(address byte, payload []byte) (DeviceInfo, error) {
 	if len(payload) < 8 {
-		return DeviceInfo{}, fmt.Errorf("short device info payload: %w", ebuserrors.ErrInvalidPayload)
+		return DeviceInfo{}, fmt.Errorf("short device info payload: %w", errors.Join(errScanResponsePayload, ebuserrors.ErrInvalidPayload))
 	}
 	return DeviceInfo{
 		Address:         address,
@@ -103,5 +106,5 @@ func shouldSkipScanError(err error) bool {
 		errors.Is(err, ebuserrors.ErrTimeout) ||
 		errors.Is(err, ebuserrors.ErrNACK) ||
 		errors.Is(err, ebuserrors.ErrCRCMismatch) ||
-		errors.Is(err, ebuserrors.ErrInvalidPayload)
+		errors.Is(err, errScanResponsePayload)
 }

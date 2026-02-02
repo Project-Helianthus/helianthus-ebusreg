@@ -2,6 +2,7 @@ package registry
 
 import (
 	"context"
+	"errors"
 	"testing"
 
 	ebuserrors "github.com/d3vi1/helianthus-ebusgo/errors"
@@ -171,7 +172,7 @@ func TestScanSkipsInvalidPayloadResponses(t *testing.T) {
 	}
 }
 
-func TestScanSkipsCRCMismatchAndInvalidPayloadErrors(t *testing.T) {
+func TestScanSkipsCRCMismatchAndFailsOnInvalidPayloadError(t *testing.T) {
 	t.Parallel()
 
 	registry := NewDeviceRegistry(nil)
@@ -192,14 +193,14 @@ func TestScanSkipsCRCMismatchAndInvalidPayloadErrors(t *testing.T) {
 	}
 
 	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x08, 0x21, 0x22})
-	if err != nil {
-		t.Fatalf("Scan error = %v", err)
+	if err == nil {
+		t.Fatalf("expected Scan error")
 	}
-	if len(entries) != 1 {
-		t.Fatalf("expected 1 entry, got %d", len(entries))
+	if entries != nil {
+		t.Fatalf("expected no entries, got %d", len(entries))
 	}
-	if _, ok := registry.Lookup(0x08); !ok {
-		t.Fatalf("expected device 0x08 to be registered")
+	if !errors.Is(err, ebuserrors.ErrInvalidPayload) {
+		t.Fatalf("expected ErrInvalidPayload, got %v", err)
 	}
 	if len(bus.calls) != 3 {
 		t.Fatalf("expected 3 scan calls, got %d", len(bus.calls))

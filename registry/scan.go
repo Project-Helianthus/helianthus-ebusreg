@@ -47,12 +47,15 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 		}
 		response, err := bus.Send(ctx, request)
 		if err != nil {
-			if errors.Is(err, ebuserrors.ErrNoSuchDevice) || errors.Is(err, ebuserrors.ErrTimeout) || errors.Is(err, ebuserrors.ErrNACK) {
+			if shouldSkipScanError(err) {
 				continue
 			}
 			return nil, fmt.Errorf("scan target %02x: %w", target, err)
 		}
 		if response == nil {
+			if shouldSkipScanError(ebuserrors.ErrInvalidPayload) {
+				continue
+			}
 			return nil, fmt.Errorf("scan target %02x empty response: %w", target, ebuserrors.ErrInvalidPayload)
 		}
 
@@ -62,6 +65,9 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 		}
 		info, err := parseDeviceInfo(address, response.Data)
 		if err != nil {
+			if shouldSkipScanError(err) {
+				continue
+			}
 			return nil, fmt.Errorf("scan target %02x parse: %w", target, err)
 		}
 		entries = append(entries, registry.Register(info))
@@ -90,4 +96,12 @@ func parseDeviceInfo(address byte, payload []byte) (DeviceInfo, error) {
 		SoftwareVersion: fmt.Sprintf("%02X%02X", payload[4], payload[5]),
 		HardwareVersion: fmt.Sprintf("%02X%02X", payload[6], payload[7]),
 	}, nil
+}
+
+func shouldSkipScanError(err error) bool {
+	return errors.Is(err, ebuserrors.ErrNoSuchDevice) ||
+		errors.Is(err, ebuserrors.ErrTimeout) ||
+		errors.Is(err, ebuserrors.ErrNACK) ||
+		errors.Is(err, ebuserrors.ErrCRCMismatch) ||
+		errors.Is(err, ebuserrors.ErrInvalidPayload)
 }

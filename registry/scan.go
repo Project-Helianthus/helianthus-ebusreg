@@ -47,7 +47,7 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 		}
 		response, err := bus.Send(ctx, request)
 		if err != nil {
-			if errors.Is(err, ebuserrors.ErrNoSuchDevice) {
+			if errors.Is(err, ebuserrors.ErrNoSuchDevice) || errors.Is(err, ebuserrors.ErrTimeout) || errors.Is(err, ebuserrors.ErrNACK) {
 				continue
 			}
 			return nil, fmt.Errorf("scan target %02x: %w", target, err)

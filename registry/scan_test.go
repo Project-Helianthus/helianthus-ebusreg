@@ -156,8 +156,8 @@ func TestScanSkipsTimeoutAndNACK(t *testing.T) {
 	if _, ok := registry.Lookup(0x08); !ok {
 		t.Fatalf("expected device 0x08 to be registered")
 	}
-	if len(bus.calls) != 3 {
-		t.Fatalf("expected 3 scan calls, got %d", len(bus.calls))
+	if len(bus.calls) != 6 {
+		t.Fatalf("expected 6 scan calls, got %d", len(bus.calls))
 	}
 }
 
@@ -200,8 +200,8 @@ func TestScanSkipsContextDeadlineExceeded(t *testing.T) {
 	if _, ok := registry.Lookup(0x09); !ok {
 		t.Fatalf("expected device 0x09 to be registered")
 	}
-	if len(bus.calls) != 3 {
-		t.Fatalf("expected 3 scan calls, got %d", len(bus.calls))
+	if len(bus.calls) != 6 {
+		t.Fatalf("expected 6 scan calls, got %d", len(bus.calls))
 	}
 }
 
@@ -280,8 +280,8 @@ func TestScanSkipsInvalidPayloadResponses(t *testing.T) {
 	if _, ok := registry.Lookup(0x09); !ok {
 		t.Fatalf("expected device 0x09 to be registered")
 	}
-	if len(bus.calls) != 2 {
-		t.Fatalf("expected 2 scan calls, got %d", len(bus.calls))
+	if len(bus.calls) != 5 {
+		t.Fatalf("expected 5 scan calls, got %d", len(bus.calls))
 	}
 }
 

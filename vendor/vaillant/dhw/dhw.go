@@ -12,6 +12,9 @@ const (
 	methodSetTargetTemp = "set_target_temp"
 	methodGetParameters = "get_parameters"
 	methodEnergyStats   = "get_energy_stats"
+
+	opStatus     = byte(0x0D)
+	opParameters = byte(0x09)
 )
 
 type Provider struct{}
@@ -48,9 +51,9 @@ type plane struct {
 
 func newDHWPlane(info registry.DeviceInfo) *plane {
 	methods := []registry.Method{
-		method{name: methodGetStatus, readOnly: true, template: template{primary: 0xB5, secondary: 0x04}, response: statusSchemaSelector()},
+		method{name: methodGetStatus, readOnly: true, template: opTemplate{primary: 0xB5, secondary: 0x04, op: opStatus}, response: statusSchemaSelector()},
 		method{name: methodSetTargetTemp, readOnly: false, template: template{primary: 0xB5, secondary: 0x05}, response: setTargetTempSchemaSelector()},
-		method{name: methodGetParameters, readOnly: true, template: template{primary: 0xB5, secondary: 0x04}, response: parametersSchemaSelector()},
+		method{name: methodGetParameters, readOnly: true, template: opTemplate{primary: 0xB5, secondary: 0x04, op: opParameters}, response: parametersSchemaSelector()},
 	}
 	if supportsEnergyStats(info) {
 		methods = append(methods, method{
@@ -109,4 +112,22 @@ func (template template) Primary() byte {
 
 func (template template) Secondary() byte {
 	return template.secondary
+}
+
+type opTemplate struct {
+	primary   byte
+	secondary byte
+	op        byte
+}
+
+func (template opTemplate) Primary() byte {
+	return template.primary
+}
+
+func (template opTemplate) Secondary() byte {
+	return template.secondary
+}
+
+func (template opTemplate) Build(map[string]any) ([]byte, error) {
+	return []byte{template.op}, nil
 }

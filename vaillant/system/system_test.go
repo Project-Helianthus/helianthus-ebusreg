@@ -50,3 +50,43 @@ func TestSubscriptions(t *testing.T) {
 		}
 	}
 }
+
+func TestMethods(t *testing.T) {
+	t.Parallel()
+
+	planes := NewProvider().CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", Address: 0x08})
+	if len(planes) != 1 {
+		t.Fatalf("expected 1 plane, got %d", len(planes))
+	}
+
+	systemPlane, ok := planes[0].(*plane)
+	if !ok {
+		t.Fatalf("expected system plane type")
+	}
+
+	methods := systemPlane.Methods()
+	getMethod, ok := findMethod(methods, methodGetOperationalData)
+	if !ok || !getMethod.ReadOnly() {
+		t.Fatalf("expected get_operational_data method")
+	}
+	if getMethod.Template().Primary() != 0xB5 || getMethod.Template().Secondary() != 0x04 {
+		t.Fatalf("unexpected get_operational_data template")
+	}
+
+	setMethod, ok := findMethod(methods, methodSetOperationalData)
+	if !ok || setMethod.ReadOnly() {
+		t.Fatalf("expected set_operational_data method")
+	}
+	if setMethod.Template().Primary() != 0xB5 || setMethod.Template().Secondary() != 0x05 {
+		t.Fatalf("unexpected set_operational_data template")
+	}
+}
+
+func findMethod(methods []registry.Method, name string) (registry.Method, bool) {
+	for _, method := range methods {
+		if method.Name() == name {
+			return method, true
+		}
+	}
+	return nil, false
+}

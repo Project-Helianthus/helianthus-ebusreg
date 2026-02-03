@@ -88,6 +88,24 @@ func (plane *plane) DecodeResponse(method registry.Method, response protocol.Fra
 			return nil, fmt.Errorf("system DecodeResponse op: %w", ebuserrors.ErrInvalidPayload)
 		}
 		return decodeOperationalWriteResponse(op, response.Data), nil
+	case methodGetRegister:
+		addr, ok, err := registerAddrParam(params, "addr")
+		if err != nil {
+			return nil, fmt.Errorf("system DecodeResponse addr: %w", err)
+		}
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse addr: %w", ebuserrors.ErrInvalidPayload)
+		}
+		return decodeRegisterResponse(registerCmdRead, addr, response.Data), nil
+	case methodSetRegister:
+		addr, ok, err := registerAddrParam(params, "addr")
+		if err != nil {
+			return nil, fmt.Errorf("system DecodeResponse addr: %w", err)
+		}
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse addr: %w", ebuserrors.ErrInvalidPayload)
+		}
+		return decodeRegisterResponse(registerCmdWrite, addr, response.Data), nil
 	default:
 		return nil, fmt.Errorf("system DecodeResponse unknown method %q: %w", method.Name(), ebuserrors.ErrInvalidPayload)
 	}

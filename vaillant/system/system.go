@@ -51,6 +51,8 @@ func newSystemPlane(info registry.DeviceInfo) *plane {
 		methods: []registry.Method{
 			method{name: methodGetOperationalData, readOnly: true, template: operationalTemplate{primary: 0xB5, secondary: 0x04}, response: schema.SchemaSelector{}},
 			method{name: methodSetOperationalData, readOnly: false, template: operationalWriteTemplate{primary: 0xB5, secondary: 0x05}, response: schema.SchemaSelector{}},
+			method{name: methodGetRegister, readOnly: true, template: registerReadTemplate{primary: 0xB5, secondary: 0x09}, response: schema.SchemaSelector{}},
+			method{name: methodSetRegister, readOnly: false, template: registerWriteTemplate{primary: 0xB5, secondary: 0x09}, response: schema.SchemaSelector{}},
 		},
 		subscriptions: []router.Subscription{
 			{Primary: 0xB5, Secondary: 0x16},

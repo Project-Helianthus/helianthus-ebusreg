@@ -126,3 +126,106 @@ func TestVaillantSystem_GetOperationalData_MissingParams(t *testing.T) {
 		t.Fatalf("expected ErrInvalidPayload, got %v", err)
 	}
 }
+
+func TestVaillantSystem_SetOperationalData_SendsPayload(t *testing.T) {
+	t.Parallel()
+
+	planes := system.NewProvider().CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", Address: 0x08})
+	plane := planes[0].(router.Plane)
+
+	bus := &vaillantMockBus{
+		response: &protocol.Frame{
+			Source:    0x08,
+			Target:    0x10,
+			Primary:   0xB5,
+			Secondary: 0x05,
+		},
+	}
+	eventRouter := router.NewBusEventRouter(bus)
+
+	result, err := eventRouter.Invoke(context.Background(), plane, "set_operational_data", map[string]any{
+		"source": byte(0x10),
+		"op":     byte(0x02),
+		"data":   []byte{0xAA, 0xBB},
+	})
+	if err != nil {
+		t.Fatalf("Invoke error = %v", err)
+	}
+
+	if bus.lastRequest.Source != 0x10 || bus.lastRequest.Target != 0x08 {
+		t.Fatalf("unexpected request addresses: %+v", bus.lastRequest)
+	}
+	if bus.lastRequest.Primary != 0xB5 || bus.lastRequest.Secondary != 0x05 {
+		t.Fatalf("unexpected request type: %+v", bus.lastRequest)
+	}
+	if !bytes.Equal(bus.lastRequest.Data, []byte{0x02, 0xAA, 0xBB}) {
+		t.Fatalf("unexpected request data %v", bus.lastRequest.Data)
+	}
+
+	values, ok := result.(map[string]types.Value)
+	if !ok {
+		t.Fatalf("expected map[string]types.Value, got %T", result)
+	}
+	if op := values["op"]; !op.Valid || op.Value != byte(0x02) {
+		t.Fatalf("op = %+v; want 0x02 valid", op)
+	}
+	if got := values["payload"]; !got.Valid || len(got.Value.([]byte)) != 0 {
+		t.Fatalf("payload = %+v; want empty valid", got)
+	}
+}
+
+func TestVaillantSystem_SetOperationalData_InputValidation(t *testing.T) {
+	t.Parallel()
+
+	planes := system.NewProvider().CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", Address: 0x08})
+	plane := planes[0].(router.Plane)
+
+	eventRouter := router.NewBusEventRouter(&vaillantMockBus{})
+
+	_, err := eventRouter.Invoke(context.Background(), plane, "set_operational_data", map[string]any{
+		"source": byte(0x10),
+	})
+	if !errors.Is(err, ebuserrors.ErrInvalidPayload) {
+		t.Fatalf("expected ErrInvalidPayload, got %v", err)
+	}
+
+	_, err = eventRouter.Invoke(context.Background(), plane, "set_operational_data", map[string]any{
+		"source": byte(0x10),
+		"op":     byte(0x02),
+		"data":   "nope",
+	})
+	if !errors.Is(err, ebuserrors.ErrInvalidPayload) {
+		t.Fatalf("expected ErrInvalidPayload, got %v", err)
+	}
+}
+
+func TestVaillantSystem_SetOperationalData_TypedErrors(t *testing.T) {
+	t.Parallel()
+
+	planes := system.NewProvider().CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", Address: 0x08})
+	plane := planes[0].(router.Plane)
+
+	tests := []struct {
+		name string
+		err  error
+	}{
+		{name: "NACK", err: ebuserrors.ErrNACK},
+		{name: "NoDevice", err: ebuserrors.ErrNoSuchDevice},
+		{name: "Timeout", err: ebuserrors.ErrTimeout},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			bus := &vaillantMockBus{err: tc.err}
+			eventRouter := router.NewBusEventRouter(bus)
+
+			_, err := eventRouter.Invoke(context.Background(), plane, "set_operational_data", map[string]any{
+				"source": byte(0x10),
+				"op":     byte(0x02),
+			})
+			if !errors.Is(err, tc.err) {
+				t.Fatalf("expected %v, got %v", tc.err, err)
+			}
+		})
+	}
+}

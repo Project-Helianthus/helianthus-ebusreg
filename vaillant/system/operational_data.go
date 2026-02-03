@@ -9,7 +9,10 @@ import (
 	"github.com/d3vi1/helianthus-ebusreg/schema"
 )
 
-const methodGetOperationalData = "get_operational_data"
+const (
+	methodGetOperationalData = "get_operational_data"
+	methodSetOperationalData = "set_operational_data"
+)
 
 type method struct {
 	name     string
@@ -59,6 +62,50 @@ func (template operationalTemplate) Build(params map[string]any) ([]byte, error)
 	return []byte{op}, nil
 }
 
+type operationalWriteTemplate struct {
+	primary   byte
+	secondary byte
+}
+
+func (template operationalWriteTemplate) Primary() byte {
+	return template.primary
+}
+
+func (template operationalWriteTemplate) Secondary() byte {
+	return template.secondary
+}
+
+func (template operationalWriteTemplate) Build(params map[string]any) ([]byte, error) {
+	if params == nil {
+		return nil, fmt.Errorf("operational write template missing params: %w", ebuserrors.ErrInvalidPayload)
+	}
+
+	op, ok := uint8Param(params, "op")
+	if !ok {
+		return nil, fmt.Errorf("operational write template op: %w", ebuserrors.ErrInvalidPayload)
+	}
+
+	data, hasData, err := bytesParam(params, "data")
+	if err != nil {
+		return nil, fmt.Errorf("operational write template data: %w", err)
+	}
+	if !hasData {
+		data, _, err = bytesParam(params, "payload")
+		if err != nil {
+			return nil, fmt.Errorf("operational write template payload: %w", err)
+		}
+	}
+
+	if len(data) > 0xFE {
+		return nil, fmt.Errorf("operational write template data too long: %w", ebuserrors.ErrInvalidPayload)
+	}
+
+	payload := make([]byte, 0, 1+len(data))
+	payload = append(payload, op)
+	payload = append(payload, data...)
+	return payload, nil
+}
+
 func decodeOperationalData(op byte, payload []byte) (map[string]types.Value, error) {
 	values := map[string]types.Value{
 		"op":      {Value: op, Valid: true},
@@ -77,6 +124,13 @@ func decodeOperationalData(op byte, payload []byte) (map[string]types.Value, err
 		values[key] = value
 	}
 	return values, nil
+}
+
+func decodeOperationalWriteResponse(op byte, payload []byte) map[string]types.Value {
+	return map[string]types.Value{
+		"op":      {Value: op, Valid: true},
+		"payload": {Value: append([]byte(nil), payload...), Valid: true},
+	}
 }
 
 func decodeOperationalDateTime(payload []byte) (map[string]types.Value, error) {

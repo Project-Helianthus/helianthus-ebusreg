@@ -82,6 +82,12 @@ func (plane *plane) DecodeResponse(method registry.Method, response protocol.Fra
 			return nil, fmt.Errorf("system DecodeResponse operational: %w", err)
 		}
 		return decoded, nil
+	case methodSetOperationalData:
+		op, ok := uint8Param(params, "op")
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse op: %w", ebuserrors.ErrInvalidPayload)
+		}
+		return decodeOperationalWriteResponse(op, response.Data), nil
 	default:
 		return nil, fmt.Errorf("system DecodeResponse unknown method %q: %w", method.Name(), ebuserrors.ErrInvalidPayload)
 	}

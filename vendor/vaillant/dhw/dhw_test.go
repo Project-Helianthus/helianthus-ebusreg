@@ -113,6 +113,50 @@ func TestEnergyTemplateEncoding(t *testing.T) {
 	}
 }
 
+func TestOperationalTemplateEncoding(t *testing.T) {
+	t.Parallel()
+
+	provider := NewProvider()
+	planes := provider.CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", HardwareVersion: "7603"})
+	methods := planes[0].Methods()
+
+	statusMethod, ok := findMethod(methods, methodGetStatus)
+	if !ok {
+		t.Fatalf("expected get_status method")
+	}
+	statusTemplate, ok := statusMethod.Template().(interface {
+		Build(params map[string]any) ([]byte, error)
+	})
+	if !ok {
+		t.Fatalf("get_status template missing Build")
+	}
+	statusPayload, err := statusTemplate.Build(nil)
+	if err != nil {
+		t.Fatalf("get_status Build error = %v", err)
+	}
+	if len(statusPayload) != 1 || statusPayload[0] != opStatus {
+		t.Fatalf("get_status payload %v; want [%d]", statusPayload, opStatus)
+	}
+
+	paramsMethod, ok := findMethod(methods, methodGetParameters)
+	if !ok {
+		t.Fatalf("expected get_parameters method")
+	}
+	paramsTemplate, ok := paramsMethod.Template().(interface {
+		Build(params map[string]any) ([]byte, error)
+	})
+	if !ok {
+		t.Fatalf("get_parameters template missing Build")
+	}
+	paramsPayload, err := paramsTemplate.Build(nil)
+	if err != nil {
+		t.Fatalf("get_parameters Build error = %v", err)
+	}
+	if len(paramsPayload) != 1 || paramsPayload[0] != opParameters {
+		t.Fatalf("get_parameters payload %v; want [%d]", paramsPayload, opParameters)
+	}
+}
+
 func hasMethod(methods []registry.Method, name string) bool {
 	for _, method := range methods {
 		if method.Name() == name {

@@ -44,6 +44,7 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 	pending := dedupeScanTargets(targets)
 	for pass := 0; pass <= scanCollisionMaxPasses && len(pending) > 0; pass++ {
 		collisions := make([]byte, 0)
+		retries := make([]byte, 0)
 
 		for _, target := range pending {
 			if err := ctx.Err(); err != nil {
@@ -72,6 +73,10 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 					collisions = append(collisions, target)
 					continue
 				}
+				if shouldRetryScanError(err) {
+					retries = append(retries, target)
+					continue
+				}
 				if shouldSkipScanError(err) {
 					continue
 				}
@@ -79,6 +84,10 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 			}
 			if response == nil {
 				err := fmt.Errorf("scan target %02x empty response: %w", target, errors.Join(errScanResponsePayload, ebuserrors.ErrInvalidPayload))
+				if shouldRetryScanError(err) {
+					retries = append(retries, target)
+					continue
+				}
 				if shouldSkipScanError(err) {
 					continue
 				}
@@ -95,6 +104,10 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 
 			info, err := parseDeviceInfo(address, response.Data)
 			if err != nil {
+				if shouldRetryScanError(err) {
+					retries = append(retries, target)
+					continue
+				}
 				if shouldSkipScanError(err) {
 					continue
 				}
@@ -104,13 +117,13 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 			found[address] = struct{}{}
 		}
 
-		if len(collisions) == 0 {
+		if len(collisions) == 0 && len(retries) == 0 {
 			break
 		}
 		if pass == scanCollisionMaxPasses {
 			break
 		}
-		pending = dedupeScanTargets(collisions)
+		pending = dedupeScanTargets(append(collisions, retries...))
 
 		timer := time.NewTimer(25 * time.Millisecond)
 		select {
@@ -157,6 +170,13 @@ func shouldSkipScanError(err error) bool {
 		errors.Is(err, ebuserrors.ErrTimeout) ||
 		errors.Is(err, context.DeadlineExceeded) ||
 		errors.Is(err, ebuserrors.ErrNACK) ||
+		errors.Is(err, ebuserrors.ErrCRCMismatch) ||
+		errors.Is(err, errScanResponsePayload)
+}
+
+func shouldRetryScanError(err error) bool {
+	return errors.Is(err, ebuserrors.ErrTimeout) ||
+		errors.Is(err, context.DeadlineExceeded) ||
 		errors.Is(err, ebuserrors.ErrCRCMismatch) ||
 		errors.Is(err, errScanResponsePayload)
 }

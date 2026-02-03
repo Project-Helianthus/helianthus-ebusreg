@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	ebuserrors "github.com/d3vi1/helianthus-ebusgo/errors"
@@ -133,15 +134,21 @@ func DefaultScanTargets() []byte {
 }
 
 func parseDeviceInfo(address byte, payload []byte) (DeviceInfo, error) {
-	if len(payload) < 8 {
+	if len(payload) < 10 {
 		return DeviceInfo{}, fmt.Errorf("short device info payload: %w", errors.Join(errScanResponsePayload, ebuserrors.ErrInvalidPayload))
 	}
+
+	manufacturer := fmt.Sprintf("0x%02X", payload[0])
+	if payload[0] == 0xB5 {
+		manufacturer = "Vaillant"
+	}
+
 	return DeviceInfo{
 		Address:         address,
-		Manufacturer:    fmt.Sprintf("%02X%02X", payload[0], payload[1]),
-		DeviceID:        fmt.Sprintf("%02X%02X", payload[2], payload[3]),
-		SoftwareVersion: fmt.Sprintf("%02X%02X", payload[4], payload[5]),
-		HardwareVersion: fmt.Sprintf("%02X%02X", payload[6], payload[7]),
+		Manufacturer:    manufacturer,
+		DeviceID:        strings.Trim(string(payload[1:6]), " \x00"),
+		SoftwareVersion: fmt.Sprintf("%02X%02X", payload[6], payload[7]),
+		HardwareVersion: fmt.Sprintf("%02X%02X", payload[8], payload[9]),
 	}, nil
 }
 

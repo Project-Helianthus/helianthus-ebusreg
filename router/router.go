@@ -7,12 +7,23 @@ import (
 
 	ebuserrors "github.com/d3vi1/helianthus-ebusgo/errors"
 	"github.com/d3vi1/helianthus-ebusgo/protocol"
+	"github.com/d3vi1/helianthus-ebusgo/types"
 	"github.com/d3vi1/helianthus-ebusreg/registry"
 )
 
 type Subscription struct {
 	Primary   byte
 	Secondary byte
+}
+
+type BroadcastEvent struct {
+	Plane  string
+	Frame  protocol.Frame
+	Values map[string]types.Value
+}
+
+type BroadcastDecoder interface {
+	DecodeBroadcast(frame protocol.Frame) (map[string]types.Value, bool, error)
 }
 
 type Plane interface {
@@ -32,6 +43,7 @@ type BusEventRouter struct {
 	bus           Bus
 	mu            sync.RWMutex
 	subscriptions map[subscriptionKey][]Plane
+	events        chan BroadcastEvent
 }
 
 type subscriptionKey struct {
@@ -43,7 +55,15 @@ func NewBusEventRouter(bus Bus) *BusEventRouter {
 	return &BusEventRouter{
 		bus:           bus,
 		subscriptions: make(map[subscriptionKey][]Plane),
+		events:        make(chan BroadcastEvent, 64),
 	}
+}
+
+func (router *BusEventRouter) Events() <-chan BroadcastEvent {
+	if router == nil {
+		return nil
+	}
+	return router.events
 }
 
 func (router *BusEventRouter) SetPlanes(planes []Plane) {
@@ -75,6 +95,29 @@ func (router *BusEventRouter) HandleBroadcast(frame protocol.Frame) []error {
 	for _, plane := range planes {
 		if err := plane.OnBroadcast(frame); err != nil {
 			errors = append(errors, err)
+		}
+
+		decoder, ok := plane.(BroadcastDecoder)
+		if !ok {
+			continue
+		}
+		decoded, handled, err := decoder.DecodeBroadcast(frame)
+		if err != nil {
+			errors = append(errors, err)
+			continue
+		}
+		if !handled {
+			continue
+		}
+
+		event := BroadcastEvent{
+			Plane:  plane.Name(),
+			Frame:  frame,
+			Values: decoded,
+		}
+		select {
+		case router.events <- event:
+		default:
 		}
 	}
 	return errors

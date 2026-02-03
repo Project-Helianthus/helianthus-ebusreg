@@ -4,9 +4,11 @@ import (
 	"context"
 	"errors"
 	"testing"
+	"time"
 
 	ebuserrors "github.com/d3vi1/helianthus-ebusgo/errors"
 	"github.com/d3vi1/helianthus-ebusgo/protocol"
+	"github.com/d3vi1/helianthus-ebusgo/types"
 	"github.com/d3vi1/helianthus-ebusreg/registry"
 	"github.com/d3vi1/helianthus-ebusreg/schema"
 )
@@ -208,5 +210,53 @@ func TestBusEventRouter_InvokeMissingMethod(t *testing.T) {
 	_, err := router.Invoke(context.Background(), plane, "missing", map[string]any{})
 	if !errors.Is(err, ebuserrors.ErrInvalidPayload) {
 		t.Fatalf("expected ErrInvalidPayload, got %v", err)
+	}
+}
+
+type decodingPlane struct {
+	*mockPlane
+	decoded map[string]types.Value
+	handled bool
+	err     error
+}
+
+func (plane *decodingPlane) DecodeBroadcast(frame protocol.Frame) (map[string]types.Value, bool, error) {
+	return plane.decoded, plane.handled, plane.err
+}
+
+func TestBusEventRouter_EmitsDecodedBroadcastEvents(t *testing.T) {
+	t.Parallel()
+
+	router := NewBusEventRouter(&mockBus{})
+	plane := &decodingPlane{
+		mockPlane: &mockPlane{
+			name: "A",
+			subscriptions: []Subscription{
+				{Primary: 0xB5, Secondary: 0x16},
+			},
+		},
+		decoded: map[string]types.Value{
+			"foo": {Value: uint8(1), Valid: true},
+		},
+		handled: true,
+	}
+	router.SetPlanes([]Plane{plane})
+
+	errors := router.HandleBroadcast(protocol.Frame{Primary: 0xB5, Secondary: 0x16})
+	if len(errors) != 0 {
+		t.Fatalf("unexpected errors: %v", errors)
+	}
+
+	select {
+	case event := <-router.Events():
+		if event.Plane != "A" {
+			t.Fatalf("event.Plane = %q; want A", event.Plane)
+		}
+		value, ok := event.Values["foo"]
+		if !ok || !value.Valid || value.Value != uint8(1) {
+			t.Fatalf("event.Values[foo] = %+v; want valid 1", value)
+		}
+	case <-time.After(200 * time.Millisecond):
+		t.Fatal("timeout waiting for broadcast event")
 	}
 }

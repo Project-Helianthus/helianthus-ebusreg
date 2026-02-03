@@ -106,6 +106,40 @@ func (plane *plane) DecodeResponse(method registry.Method, response protocol.Fra
 			return nil, fmt.Errorf("system DecodeResponse addr: %w", ebuserrors.ErrInvalidPayload)
 		}
 		return decodeRegisterResponse(registerCmdWrite, addr, response.Data), nil
+	case methodGetExtRegister:
+		group, ok := uint8Param(params, "group")
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse group: %w", ebuserrors.ErrInvalidPayload)
+		}
+		instance, ok := uint8Param(params, "instance")
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse instance: %w", ebuserrors.ErrInvalidPayload)
+		}
+		addr, ok, err := registerAddrParam(params, "addr")
+		if err != nil {
+			return nil, fmt.Errorf("system DecodeResponse addr: %w", err)
+		}
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse addr: %w", ebuserrors.ErrInvalidPayload)
+		}
+		return decodeExtRegisterResponse(extRegisterCmdRead, group, instance, addr, response.Data), nil
+	case methodSetExtRegister:
+		group, ok := uint8Param(params, "group")
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse group: %w", ebuserrors.ErrInvalidPayload)
+		}
+		instance, ok := uint8Param(params, "instance")
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse instance: %w", ebuserrors.ErrInvalidPayload)
+		}
+		addr, ok, err := registerAddrParam(params, "addr")
+		if err != nil {
+			return nil, fmt.Errorf("system DecodeResponse addr: %w", err)
+		}
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse addr: %w", ebuserrors.ErrInvalidPayload)
+		}
+		return decodeExtRegisterResponse(extRegisterCmdWrite, group, instance, addr, response.Data), nil
 	default:
 		return nil, fmt.Errorf("system DecodeResponse unknown method %q: %w", method.Name(), ebuserrors.ErrInvalidPayload)
 	}

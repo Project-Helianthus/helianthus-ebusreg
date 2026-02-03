@@ -19,7 +19,7 @@ type mockPlane struct {
 	lastBroadcast  protocol.Frame
 	broadcastErr   error
 	buildRequest   func(registry.Method, map[string]any) (protocol.Frame, error)
-	decodeResponse func(registry.Method, protocol.Frame) (any, error)
+	decodeResponse func(registry.Method, protocol.Frame, map[string]any) (any, error)
 }
 
 type mockTemplate struct {
@@ -80,8 +80,8 @@ func (plane *mockPlane) BuildRequest(method registry.Method, params map[string]a
 	return plane.buildRequest(method, params)
 }
 
-func (plane *mockPlane) DecodeResponse(method registry.Method, response protocol.Frame) (any, error) {
-	return plane.decodeResponse(method, response)
+func (plane *mockPlane) DecodeResponse(method registry.Method, response protocol.Frame, params map[string]any) (any, error) {
+	return plane.decodeResponse(method, response, params)
 }
 
 type mockBus struct {
@@ -169,7 +169,7 @@ func TestBusEventRouter_InvokeRoutesResponse(t *testing.T) {
 		buildRequest: func(method registry.Method, params map[string]any) (protocol.Frame, error) {
 			return protocol.Frame{Source: 0x10, Target: 0x08, Primary: 0xB5, Secondary: 0x04}, nil
 		},
-		decodeResponse: func(method registry.Method, response protocol.Frame) (any, error) {
+		decodeResponse: func(method registry.Method, response protocol.Frame, params map[string]any) (any, error) {
 			return "ok", nil
 		},
 	}
@@ -200,7 +200,7 @@ func TestBusEventRouter_InvokeMissingMethod(t *testing.T) {
 		buildRequest: func(method registry.Method, params map[string]any) (protocol.Frame, error) {
 			return protocol.Frame{}, nil
 		},
-		decodeResponse: func(method registry.Method, response protocol.Frame) (any, error) {
+		decodeResponse: func(method registry.Method, response protocol.Frame, params map[string]any) (any, error) {
 			return nil, nil
 		},
 	}

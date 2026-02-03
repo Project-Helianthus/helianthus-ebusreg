@@ -28,9 +28,9 @@ func (bus *mockScanBus) Send(ctx context.Context, frame protocol.Frame) (*protoc
 }
 
 type collisionThenResponseBus struct {
-	response  *protocol.Frame
-	calls     []protocol.Frame
-	collided  bool
+	response *protocol.Frame
+	calls    []protocol.Frame
+	collided bool
 }
 
 func (bus *collisionThenResponseBus) Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error) {
@@ -53,14 +53,14 @@ func TestScanRegistersDevices(t *testing.T) {
 				Target:    0x10,
 				Primary:   scanPrimary,
 				Secondary: scanSecondary,
-				Data:      []byte{0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08},
+				Data:      []byte{0x01, 'D', 'E', 'V', '0', '8', 0x05, 0x06, 0x07, 0x08},
 			},
 			0x09: {
 				Source:    0x09,
 				Target:    0x10,
 				Primary:   scanPrimary,
 				Secondary: scanSecondary,
-				Data:      []byte{0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11},
+				Data:      []byte{0x0A, 'D', 'E', 'V', '0', '9', 0x0E, 0x0F, 0x10, 0x11},
 			},
 		},
 		errors: map[byte]error{
@@ -80,7 +80,7 @@ func TestScanRegistersDevices(t *testing.T) {
 	if !ok {
 		t.Fatalf("expected device 0x08 to be registered")
 	}
-	if entry.Manufacturer() != "0102" || entry.DeviceID() != "0304" || entry.SoftwareVersion() != "0506" || entry.HardwareVersion() != "0708" {
+	if entry.Manufacturer() != "0x01" || entry.DeviceID() != "DEV08" || entry.SoftwareVersion() != "0506" || entry.HardwareVersion() != "0708" {
 		t.Fatalf("unexpected device 0x08 info: %+v", entry)
 	}
 
@@ -88,7 +88,7 @@ func TestScanRegistersDevices(t *testing.T) {
 	if !ok {
 		t.Fatalf("expected device 0x09 to be registered")
 	}
-	if entry.Manufacturer() != "0A0B" || entry.DeviceID() != "0C0D" || entry.SoftwareVersion() != "0E0F" || entry.HardwareVersion() != "1011" {
+	if entry.Manufacturer() != "0x0A" || entry.DeviceID() != "DEV09" || entry.SoftwareVersion() != "0E0F" || entry.HardwareVersion() != "1011" {
 		t.Fatalf("unexpected device 0x09 info: %+v", entry)
 	}
 
@@ -107,7 +107,7 @@ func TestScanRetriesBusCollision(t *testing.T) {
 			Target:    0x10,
 			Primary:   scanPrimary,
 			Secondary: scanSecondary,
-			Data:      []byte{0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08},
+			Data:      []byte{0x01, 'D', 'E', 'V', '0', '8', 0x05, 0x06, 0x07, 0x08},
 		},
 	}
 
@@ -137,7 +137,7 @@ func TestScanSkipsTimeoutAndNACK(t *testing.T) {
 				Target:    0x10,
 				Primary:   scanPrimary,
 				Secondary: scanSecondary,
-				Data:      []byte{0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08},
+				Data:      []byte{0x01, 'D', 'E', 'V', '0', '8', 0x05, 0x06, 0x07, 0x08},
 			},
 		},
 		errors: map[byte]error{
@@ -172,14 +172,14 @@ func TestScanSkipsContextDeadlineExceeded(t *testing.T) {
 				Target:    0x10,
 				Primary:   scanPrimary,
 				Secondary: scanSecondary,
-				Data:      []byte{0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08},
+				Data:      []byte{0x01, 'D', 'E', 'V', '0', '8', 0x05, 0x06, 0x07, 0x08},
 			},
 			0x09: {
 				Source:    0x09,
 				Target:    0x10,
 				Primary:   scanPrimary,
 				Secondary: scanSecondary,
-				Data:      []byte{0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11},
+				Data:      []byte{0x0A, 'D', 'E', 'V', '0', '9', 0x0E, 0x0F, 0x10, 0x11},
 			},
 		},
 		errors: map[byte]error{
@@ -265,7 +265,7 @@ func TestScanSkipsInvalidPayloadResponses(t *testing.T) {
 				Target:    0x10,
 				Primary:   scanPrimary,
 				Secondary: scanSecondary,
-				Data:      []byte{0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11},
+				Data:      []byte{0x0A, 'D', 'E', 'V', '0', '9', 0x0E, 0x0F, 0x10, 0x11},
 			},
 		},
 	}
@@ -296,7 +296,7 @@ func TestScanSkipsCRCMismatchAndFailsOnInvalidPayloadError(t *testing.T) {
 				Target:    0x10,
 				Primary:   scanPrimary,
 				Secondary: scanSecondary,
-				Data:      []byte{0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08},
+				Data:      []byte{0x01, 'D', 'E', 'V', '0', '8', 0x05, 0x06, 0x07, 0x08},
 			},
 		},
 		errors: map[byte]error{

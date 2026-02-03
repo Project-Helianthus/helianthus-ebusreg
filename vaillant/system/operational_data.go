@@ -134,34 +134,72 @@ func decodeOperationalWriteResponse(op byte, payload []byte) map[string]types.Va
 }
 
 func decodeOperationalDateTime(payload []byte) (map[string]types.Value, error) {
-	const expectedSize = 8
-	if len(payload) < expectedSize {
+	const legacySize = 8
+	const btiBdaSize = 10 // BTI (3 bytes) + BDA (4 bytes) + temp2 (2 bytes) + dcfstate
+
+	if len(payload) < legacySize {
 		return nil, fmt.Errorf("operational datetime short payload: %w", ebuserrors.ErrInvalidPayload)
 	}
 
-	hour, err := types.BCD{}.Decode(payload[1:2])
-	if err != nil {
-		return nil, fmt.Errorf("operational datetime hour: %w", err)
-	}
-	minute, err := types.BCD{}.Decode(payload[2:3])
-	if err != nil {
-		return nil, fmt.Errorf("operational datetime minute: %w", err)
-	}
-	day, err := types.BCD{}.Decode(payload[3:4])
-	if err != nil {
-		return nil, fmt.Errorf("operational datetime day: %w", err)
-	}
-	month, err := types.BCD{}.Decode(payload[4:5])
-	if err != nil {
-		return nil, fmt.Errorf("operational datetime month: %w", err)
-	}
-	year, err := types.BCD{}.Decode(payload[5:6])
-	if err != nil {
-		return nil, fmt.Errorf("operational datetime year: %w", err)
-	}
-	temp, err := types.DATA2b{}.Decode(payload[6:8])
-	if err != nil {
-		return nil, fmt.Errorf("operational datetime temp: %w", err)
+	var (
+		hour, minute, day, month, year types.Value
+		temp                          types.Value
+		err                           error
+	)
+	if len(payload) >= btiBdaSize {
+		// ebusd types:
+		// - BTI (24-bit, BCD|REV): wire order is SS,MM,HH
+		// - BDA (32-bit, BCD): DD,MM,<weekday>,YY
+		hour, err = types.BCD{}.Decode(payload[3:4])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime hour: %w", err)
+		}
+		minute, err = types.BCD{}.Decode(payload[2:3])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime minute: %w", err)
+		}
+		day, err = types.BCD{}.Decode(payload[4:5])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime day: %w", err)
+		}
+		month, err = types.BCD{}.Decode(payload[5:6])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime month: %w", err)
+		}
+		year, err = types.BCD{}.Decode(payload[7:8])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime year: %w", err)
+		}
+		temp, err = types.DATA2b{}.Decode(payload[8:10])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime temp: %w", err)
+		}
+	} else {
+		// Legacy layout (older configs): HH,MM,DD,MM,YY,temp2.
+		hour, err = types.BCD{}.Decode(payload[1:2])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime hour: %w", err)
+		}
+		minute, err = types.BCD{}.Decode(payload[2:3])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime minute: %w", err)
+		}
+		day, err = types.BCD{}.Decode(payload[3:4])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime day: %w", err)
+		}
+		month, err = types.BCD{}.Decode(payload[4:5])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime month: %w", err)
+		}
+		year, err = types.BCD{}.Decode(payload[5:6])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime year: %w", err)
+		}
+		temp, err = types.DATA2b{}.Decode(payload[6:8])
+		if err != nil {
+			return nil, fmt.Errorf("operational datetime temp: %w", err)
+		}
 	}
 
 	return map[string]types.Value{

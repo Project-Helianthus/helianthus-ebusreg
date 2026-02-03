@@ -40,12 +40,14 @@ func TestVaillantSystem_GetOperationalData_DateTime(t *testing.T) {
 
 	payload := []byte{
 		0x01,       // dcfstate
-		0x12,       // hour (BCD 12)
+		0x56,       // second (BCD 56) [BTI is REV: SS,MM,HH]
 		0x34,       // minute (BCD 34)
-		0x03,       // day (BCD 03)
+		0x12,       // hour (BCD 12)
+		0x03,       // day (BCD 03) [BDA: DD,MM,<weekday>,YY]
 		0x02,       // month (BCD 02)
+		0x04,       // weekday (ignored)
 		0x26,       // year (BCD 26)
-		0x80, 0x14, // temp (DATA2b 20.5)
+		0x80, 0x14, // temp2 (DATA2b 20.5)
 	}
 
 	bus := &vaillantMockBus{

@@ -5,6 +5,7 @@ import (
 
 	"github.com/d3vi1/helianthus-ebusreg/registry"
 	"github.com/d3vi1/helianthus-ebusreg/router"
+	"github.com/d3vi1/helianthus-ebusreg/schema"
 )
 
 type Provider struct{}
@@ -30,18 +31,26 @@ func (Provider) Match(info registry.DeviceInfo) bool {
 
 func (Provider) CreatePlanes(info registry.DeviceInfo) []registry.Plane {
 	return []registry.Plane{
-		newSystemPlane(),
+		newSystemPlane(info),
 	}
 }
 
 type plane struct {
 	name          string
+	address       byte
+	hwVersion     string
+	methods       []registry.Method
 	subscriptions []router.Subscription
 }
 
-func newSystemPlane() *plane {
+func newSystemPlane(info registry.DeviceInfo) *plane {
 	return &plane{
-		name: "system",
+		name:      "system",
+		address:   info.Address,
+		hwVersion: info.HardwareVersion,
+		methods: []registry.Method{
+			method{name: methodGetOperationalData, readOnly: true, template: operationalTemplate{primary: 0xB5, secondary: 0x04}, response: schema.SchemaSelector{}},
+		},
 		subscriptions: []router.Subscription{
 			{Primary: 0xB5, Secondary: 0x16},
 			{Primary: 0xB5, Secondary: 0x16},
@@ -55,7 +64,7 @@ func (plane *plane) Name() string {
 }
 
 func (plane *plane) Methods() []registry.Method {
-	return nil
+	return plane.methods
 }
 
 func (plane *plane) Subscriptions() []router.Subscription {

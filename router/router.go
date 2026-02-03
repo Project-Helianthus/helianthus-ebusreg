@@ -21,7 +21,7 @@ type Plane interface {
 	Subscriptions() []Subscription
 	OnBroadcast(frame protocol.Frame) error
 	BuildRequest(method registry.Method, params map[string]any) (protocol.Frame, error)
-	DecodeResponse(method registry.Method, response protocol.Frame) (any, error)
+	DecodeResponse(method registry.Method, response protocol.Frame, params map[string]any) (any, error)
 }
 
 type Bus interface {
@@ -103,7 +103,7 @@ func (router *BusEventRouter) Invoke(ctx context.Context, plane Plane, methodNam
 		return nil, fmt.Errorf("router.Invoke empty response plane=%s method=%s: %w", plane.Name(), method.Name(), ebuserrors.ErrInvalidPayload)
 	}
 
-	decoded, err := plane.DecodeResponse(method, *response)
+	decoded, err := plane.DecodeResponse(method, *response, params)
 	if err != nil {
 		return nil, fmt.Errorf("router.Invoke decode plane=%s method=%s: %w", plane.Name(), method.Name(), err)
 	}

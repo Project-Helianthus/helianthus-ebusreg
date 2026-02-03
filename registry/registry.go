@@ -10,6 +10,8 @@ type DeviceInfo struct {
 	Address         byte
 	Manufacturer    string
 	DeviceID        string
+	SerialNumber    string
+	MacAddress      string
 	SoftwareVersion string
 	HardwareVersion string
 }
@@ -18,6 +20,8 @@ type DeviceEntry interface {
 	Address() byte
 	Manufacturer() string
 	DeviceID() string
+	SerialNumber() string
+	MacAddress() string
 	SoftwareVersion() string
 	HardwareVersion() string
 	Planes() []Plane
@@ -142,6 +146,14 @@ func (d *deviceEntry) Manufacturer() string {
 
 func (d *deviceEntry) DeviceID() string {
 	return d.info.DeviceID
+}
+
+func (d *deviceEntry) SerialNumber() string {
+	return d.info.SerialNumber
+}
+
+func (d *deviceEntry) MacAddress() string {
+	return d.info.MacAddress
 }
 
 func (d *deviceEntry) SoftwareVersion() string {

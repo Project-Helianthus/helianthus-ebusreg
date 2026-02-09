@@ -25,6 +25,7 @@ type DeviceEntry interface {
 	SoftwareVersion() string
 	HardwareVersion() string
 	Planes() []Plane
+	Projections() []Projection
 }
 
 type Plane interface {
@@ -36,6 +37,10 @@ type PlaneProvider interface {
 	Name() string
 	Match(info DeviceInfo) bool
 	CreatePlanes(info DeviceInfo) []Plane
+}
+
+type ProjectionProvider interface {
+	CreateProjections(info DeviceInfo, planes []Plane) []Projection
 }
 
 type Method interface {
@@ -79,15 +84,27 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	r.mu.RUnlock()
 
 	planes := make([]Plane, 0)
+	matched := make([]PlaneProvider, 0, len(providers))
 	for _, provider := range providers {
 		if provider.Match(info) {
+			matched = append(matched, provider)
 			planes = append(planes, provider.CreatePlanes(info)...)
 		}
 	}
 
+	projections := make([]Projection, 0)
+	for _, provider := range matched {
+		projectionProvider, ok := provider.(ProjectionProvider)
+		if !ok {
+			continue
+		}
+		projections = append(projections, projectionProvider.CreateProjections(info, planes)...)
+	}
+
 	entry := &deviceEntry{
-		info:   info,
-		planes: planes,
+		info:        info,
+		planes:      planes,
+		projections: projections,
 	}
 
 	r.mu.Lock()
@@ -132,8 +149,9 @@ func (r *DeviceRegistry) Iterate(fn func(DeviceEntry) bool) {
 }
 
 type deviceEntry struct {
-	info   DeviceInfo
-	planes []Plane
+	info        DeviceInfo
+	planes      []Plane
+	projections []Projection
 }
 
 func (d *deviceEntry) Address() byte {
@@ -166,4 +184,8 @@ func (d *deviceEntry) HardwareVersion() string {
 
 func (d *deviceEntry) Planes() []Plane {
 	return d.planes
+}
+
+func (d *deviceEntry) Projections() []Projection {
+	return d.projections
 }

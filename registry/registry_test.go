@@ -73,6 +73,15 @@ func (p mockProvider) CreatePlanes(info DeviceInfo) []Plane {
 	return p.planes
 }
 
+type mockProjectionProvider struct {
+	mockProvider
+	projections []Projection
+}
+
+func (p mockProjectionProvider) CreateProjections(info DeviceInfo, planes []Plane) []Projection {
+	return p.projections
+}
+
 type countingProvider struct {
 	name        string
 	matchFn     func(DeviceInfo) bool
@@ -177,6 +186,46 @@ func TestDeviceRegistry_RegisterLookupIterate(t *testing.T) {
 	}
 	if addresses[0] != 0x08 || addresses[1] != 0x10 {
 		t.Fatalf("unexpected iteration order: %v", addresses)
+	}
+}
+
+func TestDeviceRegistry_Projections(t *testing.T) {
+	path := ProjectionPath{
+		Plane: ServicePlane,
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+		},
+	}
+	node, err := NewNode(path, path)
+	if err != nil {
+		t.Fatalf("unexpected node error: %v", err)
+	}
+	projection, err := NewProjection(ServicePlane, []Node{node}, nil)
+	if err != nil {
+		t.Fatalf("unexpected projection error: %v", err)
+	}
+
+	provider := mockProjectionProvider{
+		mockProvider: mockProvider{
+			name:  "projection",
+			match: func(info DeviceInfo) bool { return info.Address == 0x08 },
+			planes: []Plane{
+				mockPlane{name: "heating"},
+			},
+		},
+		projections: []Projection{projection},
+	}
+
+	registry := NewDeviceRegistry([]PlaneProvider{provider})
+	entry := registry.Register(DeviceInfo{Address: 0x08})
+
+	projections := entry.Projections()
+	if len(projections) != 1 {
+		t.Fatalf("expected 1 projection, got %d", len(projections))
+	}
+	if projections[0].Plane != ServicePlane {
+		t.Fatalf("unexpected projection plane: %s", projections[0].Plane)
 	}
 }
 

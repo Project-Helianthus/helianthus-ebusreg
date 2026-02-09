@@ -24,7 +24,7 @@ func TestVaillantSystem_GetExtRegister_RequestEncodesPayload(t *testing.T) {
 			Target:    0x10,
 			Primary:   0xB5,
 			Secondary: 0x24,
-			Data:      []byte{0x02, 0x00, 0x00, 0x00, 0xAA},
+			Data:      []byte{0x01, 0x00, 0x00, 0x5C, 0xAA},
 		},
 	}
 	eventRouter := router.NewBusEventRouter(bus)
@@ -39,8 +39,8 @@ func TestVaillantSystem_GetExtRegister_RequestEncodesPayload(t *testing.T) {
 		t.Fatalf("Invoke error = %v", err)
 	}
 
-	if !bytes.Equal(bus.lastRequest.Data, []byte{0x02, 0x00, 0x00, 0x00, 0x5C, 0x00}) {
-		t.Fatalf("unexpected request data %v; want [02 00 00 00 5c 00]", bus.lastRequest.Data)
+	if !bytes.Equal(bus.lastRequest.Data, []byte{0x02, 0x00, 0x00, 0x00, 0x00, 0x5C}) {
+		t.Fatalf("unexpected request data %v; want [02 00 00 00 00 5c]", bus.lastRequest.Data)
 	}
 }
 
@@ -59,7 +59,7 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 				Target:    0x10,
 				Primary:   0xB5,
 				Secondary: 0x24,
-				Data:      []byte{0x02, 0x00, 0x00, 0x00, 0xAA, 0xBB},
+				Data:      []byte{0x01, 0x00, 0x00, 0x5C, 0xAA, 0xBB},
 			},
 		}
 		eventRouter := router.NewBusEventRouter(bus)
@@ -87,8 +87,20 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 		if got := values["addr_hex"]; !got.Valid || got.Value != "5C00" {
 			t.Fatalf("addr_hex = %+v; want 5C00 valid", got)
 		}
-		if got := values["prefix"]; !got.Valid || !bytes.Equal(got.Value.([]byte), []byte{0x02, 0x00, 0x00, 0x00}) {
-			t.Fatalf("prefix = %+v; want [02 00 00 00] valid", got)
+		if got := values["prefix"]; !got.Valid || !bytes.Equal(got.Value.([]byte), []byte{0x01, 0x00, 0x00, 0x5C}) {
+			t.Fatalf("prefix = %+v; want [01 00 00 5c] valid", got)
+		}
+		if got := values["reply_kind"]; !got.Valid || got.Value != byte(0x01) {
+			t.Fatalf("reply_kind = %+v; want 0x01 valid", got)
+		}
+		if got := values["reply_group"]; !got.Valid || got.Value != byte(0x00) {
+			t.Fatalf("reply_group = %+v; want 0x00 valid", got)
+		}
+		if got := values["reply_addr"]; !got.Valid || got.Value != uint16(0x5C00) {
+			t.Fatalf("reply_addr = %+v; want 0x5C00 valid", got)
+		}
+		if got := values["reply_addr_hex"]; !got.Valid || got.Value != "5C00" {
+			t.Fatalf("reply_addr_hex = %+v; want 5C00 valid", got)
 		}
 		if got := values["value"]; !got.Valid || !bytes.Equal(got.Value.([]byte), []byte{0xAA, 0xBB}) {
 			t.Fatalf("value = %+v; want [aa bb] valid", got)
@@ -154,7 +166,7 @@ func TestVaillantSystem_SetExtRegister_SendsPayload(t *testing.T) {
 		t.Fatalf("Invoke error = %v", err)
 	}
 
-	if !bytes.Equal(bus.lastRequest.Data, []byte{0x02, 0x01, 0x00, 0x00, 0x5C, 0x00, 0xAA, 0xBB}) {
-		t.Fatalf("unexpected request data %v; want [02 01 00 00 5c 00 aa bb]", bus.lastRequest.Data)
+	if !bytes.Equal(bus.lastRequest.Data, []byte{0x02, 0x01, 0x00, 0x00, 0x00, 0x5C, 0xAA, 0xBB}) {
+		t.Fatalf("unexpected request data %v; want [02 01 00 00 00 5c aa bb]", bus.lastRequest.Data)
 	}
 }

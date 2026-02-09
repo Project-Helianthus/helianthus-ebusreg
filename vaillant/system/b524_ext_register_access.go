@@ -13,9 +13,10 @@ const (
 )
 
 const (
-	extRegisterCmdRead  = byte(0x00)
-	extRegisterCmdWrite = byte(0x01)
-	extRegisterPrefix   = byte(0x02)
+	extRegisterOpLocal  = byte(0x02)
+	extRegisterOpRemote = byte(0x06)
+	extRegisterOpRead   = byte(0x00)
+	extRegisterOpWrite  = byte(0x01)
 )
 
 type extRegisterReadTemplate struct {
@@ -36,6 +37,10 @@ func (template extRegisterReadTemplate) Build(params map[string]any) ([]byte, er
 		return nil, fmt.Errorf("ext register read template missing params: %w", ebuserrors.ErrInvalidPayload)
 	}
 
+	opcode, err := extRegisterOpcode(params)
+	if err != nil {
+		return nil, fmt.Errorf("ext register read template opcode: %w", err)
+	}
 	group, ok := uint8Param(params, "group")
 	if !ok {
 		return nil, fmt.Errorf("ext register read template group: %w", ebuserrors.ErrInvalidPayload)
@@ -52,7 +57,7 @@ func (template extRegisterReadTemplate) Build(params map[string]any) ([]byte, er
 		return nil, fmt.Errorf("ext register read template addr: %w", ebuserrors.ErrInvalidPayload)
 	}
 
-	return []byte{extRegisterPrefix, extRegisterCmdRead, group, instance, byte(addr >> 8), byte(addr)}, nil
+	return []byte{opcode, extRegisterOpRead, group, instance, byte(addr), byte(addr >> 8)}, nil
 }
 
 type extRegisterWriteTemplate struct {
@@ -73,6 +78,10 @@ func (template extRegisterWriteTemplate) Build(params map[string]any) ([]byte, e
 		return nil, fmt.Errorf("ext register write template missing params: %w", ebuserrors.ErrInvalidPayload)
 	}
 
+	opcode, err := extRegisterOpcode(params)
+	if err != nil {
+		return nil, fmt.Errorf("ext register write template opcode: %w", err)
+	}
 	group, ok := uint8Param(params, "group")
 	if !ok {
 		return nil, fmt.Errorf("ext register write template group: %w", ebuserrors.ErrInvalidPayload)
@@ -105,14 +114,15 @@ func (template extRegisterWriteTemplate) Build(params map[string]any) ([]byte, e
 	}
 
 	payload := make([]byte, 0, 6+len(data))
-	payload = append(payload, extRegisterPrefix, extRegisterCmdWrite, group, instance, byte(addr>>8), byte(addr))
+	payload = append(payload, opcode, extRegisterOpWrite, group, instance, byte(addr), byte(addr>>8))
 	payload = append(payload, data...)
 	return payload, nil
 }
 
-func decodeExtRegisterResponse(cmd byte, group, instance byte, addr uint16, payload []byte) map[string]types.Value {
+func decodeExtRegisterResponse(cmd byte, opcode byte, group, instance byte, addr uint16, payload []byte) map[string]types.Value {
 	values := map[string]types.Value{
-		"cmd":      {Value: cmd, Valid: true},
+		"optype":   {Value: cmd, Valid: true},
+		"opcode":   {Value: opcode, Valid: true},
 		"group":    {Value: group, Valid: true},
 		"instance": {Value: instance, Valid: true},
 		"addr":     {Value: addr, Valid: true},
@@ -122,8 +132,19 @@ func decodeExtRegisterResponse(cmd byte, group, instance byte, addr uint16, payl
 
 	if len(payload) >= 4 {
 		values["prefix"] = types.Value{Value: append([]byte(nil), payload[:4]...), Valid: true}
+		replyGroup := payload[1]
+		replyAddr := uint16(payload[3])<<8 | uint16(payload[2])
+		values["reply_group"] = types.Value{Value: replyGroup, Valid: true}
+		values["reply_addr"] = types.Value{Value: replyAddr, Valid: true}
+		values["reply_addr_hex"] = types.Value{Value: fmt.Sprintf("%04X", replyAddr), Valid: true}
 	} else {
 		values["prefix"] = types.Value{Valid: false}
+	}
+
+	if len(payload) >= 1 {
+		values["reply_kind"] = types.Value{Value: payload[0], Valid: true}
+	} else {
+		values["reply_kind"] = types.Value{Valid: false}
 	}
 
 	if len(payload) == 1 && payload[0] == 0x00 {
@@ -137,4 +158,23 @@ func decodeExtRegisterResponse(cmd byte, group, instance byte, addr uint16, payl
 
 	values["value"] = types.Value{Value: append([]byte(nil), payload[4:]...), Valid: true}
 	return values
+}
+
+func extRegisterOpcode(params map[string]any) (byte, error) {
+	if params == nil {
+		return extRegisterOpLocal, nil
+	}
+	if opcode, ok := uint8Param(params, "opcode"); ok {
+		if opcode != extRegisterOpLocal && opcode != extRegisterOpRemote {
+			return 0, ebuserrors.ErrInvalidPayload
+		}
+		return opcode, nil
+	}
+	if opcode, ok := uint8Param(params, "op"); ok {
+		if opcode != extRegisterOpLocal && opcode != extRegisterOpRemote {
+			return 0, ebuserrors.ErrInvalidPayload
+		}
+		return opcode, nil
+	}
+	return extRegisterOpLocal, nil
 }

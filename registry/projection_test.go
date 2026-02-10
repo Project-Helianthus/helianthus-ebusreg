@@ -270,6 +270,40 @@ func TestBuildCanonicalIndex_RejectsMismatch(t *testing.T) {
 	}
 }
 
+func TestBuildCanonicalIndex_RejectsServicePathMismatch(t *testing.T) {
+	canonical := ProjectionPath{
+		Plane: ServicePlane,
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+		},
+	}
+	servicePath := ProjectionPath{
+		Plane: ServicePlane,
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "other"},
+		},
+	}
+	id, err := StableNodeID(canonical)
+	if err != nil {
+		t.Fatalf("unexpected stable id error: %v", err)
+	}
+	node := Node{
+		ID:            id,
+		Path:          servicePath,
+		CanonicalPath: canonical,
+	}
+	projection := Projection{
+		Plane: ServicePlane,
+		Nodes: []Node{node},
+	}
+
+	if _, err := BuildCanonicalIndex([]Projection{projection}); err == nil {
+		t.Fatalf("expected service path mismatch error")
+	}
+}
+
 func TestBuildCanonicalIndex_RequiresServicePlaneNodes(t *testing.T) {
 	canonicalA := ProjectionPath{
 		Plane: ServicePlane,

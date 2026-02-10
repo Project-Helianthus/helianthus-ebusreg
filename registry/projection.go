@@ -229,6 +229,9 @@ func BuildCanonicalIndex(projections []Projection) (CanonicalIndex, error) {
 			if node.ID != expectedID {
 				return CanonicalIndex{}, fmt.Errorf("projection %d node %d id mismatch: %w", projectionIndex, nodeIndex, ErrProjectionInvalidNode)
 			}
+			if plane == ServicePlane && node.Path.String() != node.CanonicalPath.String() {
+				return CanonicalIndex{}, fmt.Errorf("projection %d node %d service path mismatch: %w", projectionIndex, nodeIndex, ErrProjectionInvalidNode)
+			}
 
 			if existing, ok := index.canonicalByID[node.ID]; ok {
 				if existing.String() != node.CanonicalPath.String() {

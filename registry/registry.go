@@ -101,10 +101,17 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 		projections = append(projections, projectionProvider.CreateProjections(info, planes)...)
 	}
 
+	index, projectionErr := BuildCanonicalIndex(projections)
+	if projectionErr != nil {
+		projections = nil
+	}
+
 	entry := &deviceEntry{
 		info:        info,
 		planes:      planes,
 		projections: projections,
+		index:       index,
+		indexErr:    projectionErr,
 	}
 
 	r.mu.Lock()
@@ -152,6 +159,8 @@ type deviceEntry struct {
 	info        DeviceInfo
 	planes      []Plane
 	projections []Projection
+	index       CanonicalIndex
+	indexErr    error
 }
 
 func (d *deviceEntry) Address() byte {
@@ -188,4 +197,14 @@ func (d *deviceEntry) Planes() []Plane {
 
 func (d *deviceEntry) Projections() []Projection {
 	return d.projections
+}
+
+func CanonicalIndexForEntry(entry DeviceEntry) (CanonicalIndex, error) {
+	if entry == nil {
+		return CanonicalIndex{}, ErrProjectionInvalidNode
+	}
+	if internal, ok := entry.(*deviceEntry); ok {
+		return internal.index, internal.indexErr
+	}
+	return BuildCanonicalIndex(entry.Projections())
 }

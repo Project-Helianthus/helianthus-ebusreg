@@ -144,12 +144,131 @@ type Projection struct {
 	Edges []Edge
 }
 
+type CanonicalIndex struct {
+	canonicalByID map[NodeID]ProjectionPath
+	planePaths    map[string]map[NodeID]ProjectionPath
+}
+
+func (index CanonicalIndex) Canonical(id NodeID) (ProjectionPath, bool) {
+	if index.canonicalByID == nil {
+		return ProjectionPath{}, false
+	}
+	path, ok := index.canonicalByID[id]
+	return path, ok
+}
+
+func (index CanonicalIndex) PlanePath(plane string, id NodeID) (ProjectionPath, bool) {
+	if index.planePaths == nil {
+		return ProjectionPath{}, false
+	}
+	planeMap, ok := index.planePaths[plane]
+	if !ok {
+		return ProjectionPath{}, false
+	}
+	path, ok := planeMap[id]
+	return path, ok
+}
+
+func (index CanonicalIndex) PlanePaths(id NodeID) map[string]ProjectionPath {
+	if index.planePaths == nil {
+		return nil
+	}
+	out := make(map[string]ProjectionPath)
+	for plane, planeMap := range index.planePaths {
+		if path, ok := planeMap[id]; ok {
+			out[plane] = path
+		}
+	}
+	if len(out) == 0 {
+		return nil
+	}
+	return out
+}
+
 func NewProjection(plane string, nodes []Node, edges []Edge) (Projection, error) {
 	projection := Projection{Plane: plane, Nodes: nodes, Edges: edges}
 	if err := projection.Validate(); err != nil {
 		return Projection{}, err
 	}
 	return projection, nil
+}
+
+func BuildCanonicalIndex(projections []Projection) (CanonicalIndex, error) {
+	index := CanonicalIndex{
+		canonicalByID: make(map[NodeID]ProjectionPath),
+		planePaths:    make(map[string]map[NodeID]ProjectionPath),
+	}
+	if len(projections) == 0 {
+		return index, nil
+	}
+
+	hasService := false
+	serviceIDs := make(map[NodeID]struct{})
+
+	for projectionIndex, projection := range projections {
+		if err := projection.Validate(); err != nil {
+			return CanonicalIndex{}, fmt.Errorf("projection %d: %w", projectionIndex, err)
+		}
+
+		plane := projection.Plane
+		if plane == ServicePlane {
+			hasService = true
+		}
+
+		planeMap, ok := index.planePaths[plane]
+		if !ok {
+			planeMap = make(map[NodeID]ProjectionPath, len(projection.Nodes))
+			index.planePaths[plane] = planeMap
+		}
+
+		for nodeIndex, node := range projection.Nodes {
+			expectedID, err := StableNodeID(node.CanonicalPath)
+			if err != nil {
+				return CanonicalIndex{}, fmt.Errorf("projection %d node %d canonical: %w", projectionIndex, nodeIndex, err)
+			}
+			if node.ID != expectedID {
+				return CanonicalIndex{}, fmt.Errorf("projection %d node %d id mismatch: %w", projectionIndex, nodeIndex, ErrProjectionInvalidNode)
+			}
+			if plane == ServicePlane && node.Path.String() != node.CanonicalPath.String() {
+				return CanonicalIndex{}, fmt.Errorf("projection %d node %d service path mismatch: %w", projectionIndex, nodeIndex, ErrProjectionInvalidNode)
+			}
+
+			if existing, ok := index.canonicalByID[node.ID]; ok {
+				if existing.String() != node.CanonicalPath.String() {
+					return CanonicalIndex{}, fmt.Errorf("projection %d node %d id collision: %w", projectionIndex, nodeIndex, ErrProjectionInvalidNode)
+				}
+			} else {
+				index.canonicalByID[node.ID] = node.CanonicalPath
+			}
+
+			if existing, ok := planeMap[node.ID]; ok {
+				if existing.String() != node.Path.String() {
+					return CanonicalIndex{}, fmt.Errorf("projection %d node %d plane path mismatch: %w", projectionIndex, nodeIndex, ErrProjectionInvalidNode)
+				}
+			} else {
+				planeMap[node.ID] = node.Path
+			}
+
+			if plane == ServicePlane {
+				serviceIDs[node.ID] = struct{}{}
+			}
+		}
+	}
+
+	if hasService {
+		for plane, planeMap := range index.planePaths {
+			if plane == ServicePlane {
+				continue
+			}
+			for id := range planeMap {
+				if _, ok := serviceIDs[id]; !ok {
+					return CanonicalIndex{}, fmt.Errorf("plane %q node %s missing service canonical: %w", plane, id, ErrProjectionInvalidNode)
+				}
+			}
+		}
+	}
+
+	return index, nil
 }
 
 func (projection Projection) Validate() error {

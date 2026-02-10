@@ -163,3 +163,156 @@ func TestProjection_ValidatesPathsAndEdges(t *testing.T) {
 		t.Fatalf("expected error for missing edge nodes")
 	}
 }
+
+func TestBuildCanonicalIndex_Success(t *testing.T) {
+	canonical := ProjectionPath{
+		Plane: ServicePlane,
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+			{Name: "status"},
+		},
+	}
+	serviceNode, err := NewNode(canonical, canonical)
+	if err != nil {
+		t.Fatalf("unexpected service node error: %v", err)
+	}
+	obsNode, err := NewNode(ProjectionPath{
+		Plane: "Observability",
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+			{Name: "status"},
+		},
+	}, canonical)
+	if err != nil {
+		t.Fatalf("unexpected observability node error: %v", err)
+	}
+
+	serviceProjection, err := NewProjection(ServicePlane, []Node{serviceNode}, nil)
+	if err != nil {
+		t.Fatalf("unexpected service projection error: %v", err)
+	}
+	obsProjection, err := NewProjection("Observability", []Node{obsNode}, nil)
+	if err != nil {
+		t.Fatalf("unexpected observability projection error: %v", err)
+	}
+
+	index, err := BuildCanonicalIndex([]Projection{serviceProjection, obsProjection})
+	if err != nil {
+		t.Fatalf("unexpected canonical index error: %v", err)
+	}
+
+	if path, ok := index.Canonical(serviceNode.ID); !ok || path.String() != canonical.String() {
+		t.Fatalf("unexpected canonical path: %v %v", ok, path.String())
+	}
+	if path, ok := index.PlanePath("Observability", serviceNode.ID); !ok || path.Plane != "Observability" {
+		t.Fatalf("unexpected observability path lookup")
+	}
+	paths := index.PlanePaths(serviceNode.ID)
+	if len(paths) != 2 {
+		t.Fatalf("expected 2 plane paths, got %d", len(paths))
+	}
+}
+
+func TestBuildCanonicalIndex_RejectsMismatch(t *testing.T) {
+	canonicalA := ProjectionPath{
+		Plane: ServicePlane,
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+			{Name: "temp"},
+		},
+	}
+	canonicalB := ProjectionPath{
+		Plane: ServicePlane,
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+			{Name: "status"},
+		},
+	}
+	nodeA, err := NewNode(ProjectionPath{
+		Plane: "Observability",
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+			{Name: "temp"},
+		},
+	}, canonicalA)
+	if err != nil {
+		t.Fatalf("unexpected node error: %v", err)
+	}
+	nodeB, err := NewNode(ProjectionPath{
+		Plane: "Debug",
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+			{Name: "status"},
+		},
+	}, canonicalB)
+	if err != nil {
+		t.Fatalf("unexpected node error: %v", err)
+	}
+	nodeB.ID = nodeA.ID
+
+	obsProjection, err := NewProjection("Observability", []Node{nodeA}, nil)
+	if err != nil {
+		t.Fatalf("unexpected projection error: %v", err)
+	}
+	debugProjection, err := NewProjection("Debug", []Node{nodeB}, nil)
+	if err != nil {
+		t.Fatalf("unexpected projection error: %v", err)
+	}
+
+	if _, err := BuildCanonicalIndex([]Projection{obsProjection, debugProjection}); err == nil {
+		t.Fatalf("expected canonical mismatch error")
+	}
+}
+
+func TestBuildCanonicalIndex_RequiresServicePlaneNodes(t *testing.T) {
+	canonicalA := ProjectionPath{
+		Plane: ServicePlane,
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+			{Name: "a"},
+		},
+	}
+	canonicalB := ProjectionPath{
+		Plane: ServicePlane,
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+			{Name: "b"},
+		},
+	}
+	serviceNode, err := NewNode(canonicalA, canonicalA)
+	if err != nil {
+		t.Fatalf("unexpected service node error: %v", err)
+	}
+	otherNode, err := NewNode(ProjectionPath{
+		Plane: "Debug",
+		Segments: []PathSegment{
+			{Name: "devices"},
+			{Name: "boiler"},
+			{Name: "b"},
+		},
+	}, canonicalB)
+	if err != nil {
+		t.Fatalf("unexpected node error: %v", err)
+	}
+
+	serviceProjection, err := NewProjection(ServicePlane, []Node{serviceNode}, nil)
+	if err != nil {
+		t.Fatalf("unexpected service projection error: %v", err)
+	}
+	debugProjection, err := NewProjection("Debug", []Node{otherNode}, nil)
+	if err != nil {
+		t.Fatalf("unexpected debug projection error: %v", err)
+	}
+
+	if _, err := BuildCanonicalIndex([]Projection{serviceProjection, debugProjection}); err == nil {
+		t.Fatalf("expected missing service node error")
+	}
+}

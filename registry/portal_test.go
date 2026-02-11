@@ -249,3 +249,10 @@ func TestPortalIndexForEntry_Nil(t *testing.T) {
 		t.Fatalf("expected invalid entry error, got %v", err)
 	}
 }
+
+func TestPortalIndexForEntry_TypedNil(t *testing.T) {
+	var entry DeviceEntry = (*deviceEntry)(nil)
+	if _, err := PortalIndexForEntry(entry); err == nil || !errors.Is(err, ErrPortalInvalidEntry) {
+		t.Fatalf("expected invalid entry error, got %v", err)
+	}
+}

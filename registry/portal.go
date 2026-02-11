@@ -3,6 +3,7 @@ package registry
 import (
 	"errors"
 	"fmt"
+	"reflect"
 )
 
 var (
@@ -39,10 +40,15 @@ type PortalIndex struct {
 
 // PortalIndexForEntry builds a portal index from the entry projections.
 func PortalIndexForEntry(entry DeviceEntry) (PortalIndex, error) {
-	if entry == nil {
+	if entry == nil || isNilDeviceEntry(entry) {
 		return PortalIndex{}, ErrPortalInvalidEntry
 	}
 	return NewPortalIndex(entry.Projections())
+}
+
+func isNilDeviceEntry(entry DeviceEntry) bool {
+	value := reflect.ValueOf(entry)
+	return value.Kind() == reflect.Ptr && value.IsNil()
 }
 
 // PlaneIndex returns the plane-specific index if present.

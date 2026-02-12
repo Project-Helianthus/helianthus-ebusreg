@@ -52,7 +52,7 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 			}
 
 			frameType := protocol.FrameTypeForTarget(target)
-			if frameType == protocol.FrameTypeMasterMaster || frameType == protocol.FrameTypeUnknown {
+			if frameType == protocol.FrameTypeUnknown || isInitiatorCapableAddress(target) {
 				continue
 			}
 
@@ -195,4 +195,25 @@ func dedupeScanTargets(targets []byte) []byte {
 		out = append(out, target)
 	}
 	return out
+}
+
+func isInitiatorCapableAddress(address byte) bool {
+	return initiatorPartIndex(address&0x0F) > 0 && initiatorPartIndex((address&0xF0)>>4) > 0
+}
+
+func initiatorPartIndex(bits byte) byte {
+	switch bits {
+	case 0x0:
+		return 1
+	case 0x1:
+		return 2
+	case 0x3:
+		return 3
+	case 0x7:
+		return 4
+	case 0xF:
+		return 5
+	default:
+		return 0
+	}
 }

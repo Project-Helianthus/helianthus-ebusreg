@@ -229,7 +229,7 @@ func TestScanFailsWhenContextDone(t *testing.T) {
 	}
 }
 
-func TestScanSkipsMasterAndUnknownTargets(t *testing.T) {
+func TestScanSkipsInitiatorCapableAndUnknownTargets(t *testing.T) {
 	t.Parallel()
 
 	registry := NewDeviceRegistry(nil)

@@ -98,7 +98,7 @@ eventRouter.SetPlanes(planesFromEntries(entries))
 | schema selectors/loaders | `go test ./schema -count=1` |
 | Vaillant providers/planes | `go test ./vaillant/... -count=1` |
 | lint (if installed locally) | `golangci-lint run` |
-| TinyGo CI parity | `mains=$(go list -f '{{if eq .Name "main"}}{{.ImportPath}}{{end}}' ./... | sed '/^$/d'); if [ -z "$mains" ]; then echo "No main packages found; skipping TinyGo build."; else for pkg in $mains; do tinygo build -target esp32 \"$pkg\"; done; fi` |
+| TinyGo CI parity | `mains=$(go list -f '{{if eq .Name "main"}}{{.ImportPath}}{{end}}' ./... | sed '/^$/d'); if [ -z "$mains" ]; then echo "No main packages found; skipping TinyGo build."; else for pkg in $mains; do tinygo build -target esp32 "$pkg"; done; fi` |
 
 ## Link Map
 

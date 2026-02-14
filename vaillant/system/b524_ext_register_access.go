@@ -131,6 +131,7 @@ func decodeExtRegisterResponse(cmd byte, opcode byte, group, instance byte, addr
 	}
 
 	constraint, hasConstraint := lookupB524Constraint(group, addr)
+	constraintRecord := addr
 
 	if len(payload) >= 4 {
 		values["prefix"] = types.Value{Value: append([]byte(nil), payload[:4]...), Valid: true}
@@ -142,6 +143,7 @@ func decodeExtRegisterResponse(cmd byte, opcode byte, group, instance byte, addr
 		if resolved, ok := lookupB524Constraint(replyGroup, replyAddr); ok {
 			constraint = resolved
 			hasConstraint = true
+			constraintRecord = replyAddr
 		}
 	} else {
 		values["prefix"] = types.Value{Valid: false}
@@ -155,27 +157,27 @@ func decodeExtRegisterResponse(cmd byte, opcode byte, group, instance byte, addr
 
 	if len(payload) == 1 && payload[0] == 0x00 {
 		values["value"] = types.Value{Valid: false}
-		addB524ConstraintValues(values, constraint, hasConstraint)
+		addB524ConstraintValues(values, constraint, hasConstraint, constraintRecord)
 		return values
 	}
 	if len(payload) <= 4 {
 		values["value"] = types.Value{Valid: false}
-		addB524ConstraintValues(values, constraint, hasConstraint)
+		addB524ConstraintValues(values, constraint, hasConstraint, constraintRecord)
 		return values
 	}
 
 	values["value"] = types.Value{Value: append([]byte(nil), payload[4:]...), Valid: true}
-	addB524ConstraintValues(values, constraint, hasConstraint)
+	addB524ConstraintValues(values, constraint, hasConstraint, constraintRecord)
 	return values
 }
 
-func addB524ConstraintValues(values map[string]types.Value, constraint b524Constraint, hasConstraint bool) {
+func addB524ConstraintValues(values map[string]types.Value, constraint b524Constraint, hasConstraint bool, constraintRecord uint16) {
 	if !hasConstraint {
 		return
 	}
 	values["constraints"] = types.Value{Value: constraint.mapValue(), Valid: true}
-	values["constraint_record"] = types.Value{Value: values["addr"].Value, Valid: true}
-	values["constraint_record_hex"] = types.Value{Value: values["addr_hex"].Value, Valid: true}
+	values["constraint_record"] = types.Value{Value: constraintRecord, Valid: true}
+	values["constraint_record_hex"] = types.Value{Value: fmt.Sprintf("%04X", constraintRecord), Valid: true}
 	values["constraint_type"] = types.Value{Value: constraint.Type, Valid: true}
 	values["constraint_min"] = types.Value{Value: constraint.Min, Valid: true}
 	values["constraint_max"] = types.Value{Value: constraint.Max, Valid: true}

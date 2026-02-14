@@ -144,6 +144,8 @@ func decodeExtRegisterResponse(cmd byte, opcode byte, group, instance byte, addr
 			constraint = resolved
 			hasConstraint = true
 			constraintRecord = replyAddr
+		} else {
+			hasConstraint = false
 		}
 	} else {
 		values["prefix"] = types.Value{Valid: false}

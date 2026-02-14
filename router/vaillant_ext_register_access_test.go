@@ -206,6 +206,39 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 		}
 	})
 
+	t.Run("echoed reply without mapping clears request constraints", func(t *testing.T) {
+		t.Parallel()
+
+		bus := &vaillantMockBus{
+			response: &protocol.Frame{
+				Source:    0x08,
+				Target:    0x10,
+				Primary:   0xB5,
+				Secondary: 0x24,
+				Data:      []byte{0x01, 0x7F, 0x00, 0x01, 0x2A},
+			},
+		}
+		eventRouter := router.NewBusEventRouter(bus)
+
+		result, err := eventRouter.Invoke(context.Background(), plane, "get_ext_register", map[string]any{
+			"source":   byte(0x10),
+			"group":    byte(0x01),
+			"instance": byte(0x01),
+			"addr":     uint16(0x0400),
+		})
+		if err != nil {
+			t.Fatalf("Invoke error = %v", err)
+		}
+
+		values := result.(map[string]types.Value)
+		if got, ok := values["constraints"]; ok {
+			t.Fatalf("constraints = %+v; want absent when echoed GG/RR has no mapping", got)
+		}
+		if got, ok := values["constraint_record"]; ok {
+			t.Fatalf("constraint_record = %+v; want absent when echoed GG/RR has no mapping", got)
+		}
+	})
+
 	t.Run("short zero payload", func(t *testing.T) {
 		t.Parallel()
 

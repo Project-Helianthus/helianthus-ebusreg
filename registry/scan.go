@@ -120,7 +120,7 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 			}
 
 			if info.Manufacturer == "Vaillant" && info.SerialNumber == "" {
-				if serial, ok := readVaillantScanID(ctx, bus, source, target); ok {
+				if serial, ok := readVaillantScanID(ctx, bus, source, address); ok {
 					info.SerialNumber = serial
 				}
 			}

@@ -161,6 +161,84 @@ func TestScanSkipsTimeoutAndNACK(t *testing.T) {
 	}
 }
 
+type vaillantScanIDBus struct {
+	calls []protocol.Frame
+}
+
+func (bus *vaillantScanIDBus) Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	bus.calls = append(bus.calls, frame)
+
+	if frame.Primary == scanPrimary && frame.Secondary == scanSecondary {
+		if frame.Target != 0x20 {
+			return nil, ebuserrors.ErrNoSuchDevice
+		}
+		return &protocol.Frame{
+			Source:    0x30,
+			Target:    frame.Source,
+			Primary:   scanPrimary,
+			Secondary: scanSecondary,
+			Data:      []byte{0xB5, 'D', 'E', 'V', '3', '0', 0x05, 0x14, 0x12, 0x04},
+		}, nil
+	}
+
+	if frame.Primary == vaillantPrimary && frame.Secondary == vaillantScanIDSecondary {
+		if frame.Target != 0x30 || len(frame.Data) != 1 {
+			return nil, ebuserrors.ErrNoSuchDevice
+		}
+
+		var chunk []byte
+		switch frame.Data[0] {
+		case 0x24:
+			chunk = []byte("21220900")
+		case 0x25:
+			chunk = []byte("20184848")
+		case 0x26:
+			chunk = []byte("00820054")
+		case 0x27:
+			chunk = []byte{'0', '9', 'N', '4', 0x00, 0x00, 0x00, 0x00}
+		default:
+			return nil, ebuserrors.ErrNoSuchDevice
+		}
+
+		return &protocol.Frame{
+			Source:    frame.Target,
+			Target:    frame.Source,
+			Primary:   vaillantPrimary,
+			Secondary: vaillantScanIDSecondary,
+			Data:      append([]byte{0x00}, chunk...),
+		}, nil
+	}
+
+	return nil, ebuserrors.ErrNoSuchDevice
+}
+
+func TestScanUsesDiscoveredAddressForVaillantScanID(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	bus := &vaillantScanIDBus{}
+
+	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x20})
+	if err != nil {
+		t.Fatalf("Scan error = %v", err)
+	}
+	if len(entries) != 1 {
+		t.Fatalf("expected 1 entry, got %d", len(entries))
+	}
+
+	entry, ok := registry.Lookup(0x30)
+	if !ok {
+		t.Fatalf("expected device 0x30 to be registered")
+	}
+	if entry.SerialNumber() != "21-22-09-0020184848-0082-005409-N4" {
+		t.Fatalf("unexpected serial number: %q", entry.SerialNumber())
+	}
+
+	if len(bus.calls) != 5 {
+		t.Fatalf("expected 5 calls (scan + 4 scan.id), got %d", len(bus.calls))
+	}
+}
+
 func TestScanSkipsContextDeadlineExceeded(t *testing.T) {
 	t.Parallel()
 

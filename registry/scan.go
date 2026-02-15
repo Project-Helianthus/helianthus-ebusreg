@@ -16,6 +16,11 @@ const (
 	scanSecondary = byte(0x04)
 )
 
+const (
+	vaillantPrimary        = byte(0xB5)
+	vaillantScanIDSecondary = byte(0x09)
+)
+
 var errScanResponsePayload = errors.New("scan: invalid response payload")
 
 type ScanBus interface {
@@ -113,6 +118,12 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 				}
 				return nil, fmt.Errorf("scan target %02x parse: %w", target, err)
 			}
+
+			if info.Manufacturer == "Vaillant" && info.SerialNumber == "" {
+				if serial, ok := readVaillantScanID(ctx, bus, source, target); ok {
+					info.SerialNumber = serial
+				}
+			}
 			entries = append(entries, registry.Register(info))
 			found[address] = struct{}{}
 		}
@@ -163,6 +174,84 @@ func parseDeviceInfo(address byte, payload []byte) (DeviceInfo, error) {
 		SoftwareVersion: fmt.Sprintf("%02X%02X", payload[6], payload[7]),
 		HardwareVersion: fmt.Sprintf("%02X%02X", payload[8], payload[9]),
 	}, nil
+}
+
+func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target byte) (string, bool) {
+	if bus == nil {
+		return "", false
+	}
+	if ctx == nil {
+		ctx = context.Background()
+	}
+
+	raw := make([]byte, 0, 32)
+	for qq := byte(0x24); qq <= byte(0x27); qq++ {
+		request := protocol.Frame{
+			Source:    source,
+			Target:    target,
+			Primary:   vaillantPrimary,
+			Secondary: vaillantScanIDSecondary,
+			Data:      []byte{qq},
+		}
+		response, err := bus.Send(ctx, request)
+		if err != nil || response == nil {
+			return "", false
+		}
+		if len(response.Data) != 9 || response.Data[0] != 0x00 {
+			return "", false
+		}
+		raw = append(raw, response.Data[1:]...)
+	}
+
+	trimmed := trimScanIDBytes(raw)
+	if len(trimmed) == 0 {
+		return "", false
+	}
+
+	formatted := formatVaillantSerial(string(trimmed))
+	if formatted == "" {
+		return "", false
+	}
+	return formatted, true
+}
+
+func trimScanIDBytes(data []byte) []byte {
+	end := len(data)
+	for end > 0 {
+		last := data[end-1]
+		if last == 0x00 || last == 0x20 || last == 0xFF {
+			end--
+			continue
+		}
+		break
+	}
+	return data[:end]
+}
+
+func formatVaillantSerial(raw string) string {
+	raw = strings.TrimSpace(raw)
+	if raw == "" {
+		return ""
+	}
+	if len(raw) < 28 {
+		return raw
+	}
+	raw = raw[:28]
+	for i := 0; i < 26; i++ {
+		if raw[i] < '0' || raw[i] > '9' {
+			return raw
+		}
+	}
+	return fmt.Sprintf(
+		"%s-%s-%s-%s-%s-%s-%s",
+		raw[0:2],
+		raw[2:4],
+		raw[4:6],
+		raw[6:16],
+		raw[16:20],
+		raw[20:26],
+		raw[26:28],
+	)
 }
 
 func shouldSkipScanError(err error) bool {

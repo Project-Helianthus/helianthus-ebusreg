@@ -346,6 +346,39 @@ func TestScanPreservesKnownSerialWhenScanIDFails(t *testing.T) {
 	}
 }
 
+func TestScanDoesNotReuseSerialForDifferentDeviceIdentity(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	registry.Register(DeviceInfo{
+		Address:         0x30,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "OLD30",
+		SerialNumber:    "21-22-09-0020184848-0082-005409-N4",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+	})
+	bus := &vaillantScanIDTimeoutBus{}
+
+	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x20})
+	if err != nil {
+		t.Fatalf("Scan error = %v", err)
+	}
+	if len(entries) != 1 {
+		t.Fatalf("expected 1 entry, got %d", len(entries))
+	}
+	entry, ok := registry.Lookup(0x30)
+	if !ok {
+		t.Fatalf("expected device 0x30 to be registered")
+	}
+	if entry.DeviceID() != "DEV30" {
+		t.Fatalf("device id = %q; want DEV30", entry.DeviceID())
+	}
+	if entry.SerialNumber() != "" {
+		t.Fatalf("serial number = %q; want empty for identity mismatch", entry.SerialNumber())
+	}
+}
+
 func TestScanSkipsContextDeadlineExceeded(t *testing.T) {
 	t.Parallel()
 

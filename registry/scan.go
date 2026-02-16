@@ -128,6 +128,11 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 					info.SerialNumber = serial
 				}
 			}
+			if info.SerialNumber == "" {
+				if existing, ok := registry.Lookup(info.Address); ok {
+					info.SerialNumber = existing.SerialNumber()
+				}
+			}
 			entries = append(entries, registry.Register(info))
 			found[address] = struct{}{}
 		}

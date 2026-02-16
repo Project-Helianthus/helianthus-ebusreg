@@ -17,7 +17,7 @@ const (
 )
 
 const (
-	vaillantPrimary        = byte(0xB5)
+	vaillantPrimary         = byte(0xB5)
 	vaillantScanIDSecondary = byte(0x09)
 )
 
@@ -120,7 +120,11 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 			}
 
 			if info.Manufacturer == "Vaillant" && info.SerialNumber == "" {
-				if serial, ok := readVaillantScanID(ctx, bus, source, address); ok {
+				serial, ok, err := readVaillantScanID(ctx, bus, source, address)
+				if err != nil {
+					return nil, err
+				}
+				if ok {
 					info.SerialNumber = serial
 				}
 			}
@@ -176,9 +180,9 @@ func parseDeviceInfo(address byte, payload []byte) (DeviceInfo, error) {
 	}, nil
 }
 
-func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target byte) (string, bool) {
+func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target byte) (string, bool, error) {
 	if bus == nil {
-		return "", false
+		return "", false, nil
 	}
 	if ctx == nil {
 		ctx = context.Background()
@@ -194,25 +198,31 @@ func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target by
 			Data:      []byte{qq},
 		}
 		response, err := bus.Send(ctx, request)
-		if err != nil || response == nil {
-			return "", false
+		if err != nil {
+			if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
+				return "", false, err
+			}
+			return "", false, nil
+		}
+		if response == nil {
+			return "", false, nil
 		}
 		if len(response.Data) != 9 || response.Data[0] != 0x00 {
-			return "", false
+			return "", false, nil
 		}
 		raw = append(raw, response.Data[1:]...)
 	}
 
 	trimmed := trimScanIDBytes(raw)
 	if len(trimmed) == 0 {
-		return "", false
+		return "", false, nil
 	}
 
 	formatted := formatVaillantSerial(string(trimmed))
 	if formatted == "" {
-		return "", false
+		return "", false, nil
 	}
-	return formatted, true
+	return formatted, true, nil
 }
 
 func trimScanIDBytes(data []byte) []byte {

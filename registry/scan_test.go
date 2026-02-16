@@ -212,6 +212,28 @@ func (bus *vaillantScanIDBus) Send(ctx context.Context, frame protocol.Frame) (*
 	return nil, ebuserrors.ErrNoSuchDevice
 }
 
+type vaillantScanIDCanceledBus struct {
+	calls []protocol.Frame
+}
+
+func (bus *vaillantScanIDCanceledBus) Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	bus.calls = append(bus.calls, frame)
+
+	if frame.Primary == scanPrimary && frame.Secondary == scanSecondary {
+		return &protocol.Frame{
+			Source:    0x30,
+			Target:    frame.Source,
+			Primary:   scanPrimary,
+			Secondary: scanSecondary,
+			Data:      []byte{0xB5, 'D', 'E', 'V', '3', '0', 0x05, 0x14, 0x12, 0x04},
+		}, nil
+	}
+	if frame.Primary == vaillantPrimary && frame.Secondary == vaillantScanIDSecondary {
+		return nil, context.Canceled
+	}
+	return nil, ebuserrors.ErrNoSuchDevice
+}
+
 func TestScanUsesDiscoveredAddressForVaillantScanID(t *testing.T) {
 	t.Parallel()
 
@@ -236,6 +258,21 @@ func TestScanUsesDiscoveredAddressForVaillantScanID(t *testing.T) {
 
 	if len(bus.calls) != 5 {
 		t.Fatalf("expected 5 calls (scan + 4 scan.id), got %d", len(bus.calls))
+	}
+}
+
+func TestScanPropagatesContextCancellationFromVaillantScanID(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	bus := &vaillantScanIDCanceledBus{}
+
+	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x20})
+	if !errors.Is(err, context.Canceled) {
+		t.Fatalf("Scan error = %v; want context.Canceled", err)
+	}
+	if entries != nil {
+		t.Fatalf("expected nil entries on cancellation, got %d", len(entries))
 	}
 }
 

@@ -252,21 +252,21 @@ func formatVaillantSerial(raw string) string {
 	if len(raw) < 28 {
 		return raw
 	}
-	raw = raw[:28]
+	candidate := raw[:28]
 	for i := 0; i < 26; i++ {
-		if raw[i] < '0' || raw[i] > '9' {
+		if candidate[i] < '0' || candidate[i] > '9' {
 			return raw
 		}
 	}
 	return fmt.Sprintf(
 		"%s-%s-%s-%s-%s-%s-%s",
-		raw[0:2],
-		raw[2:4],
-		raw[4:6],
-		raw[6:16],
-		raw[16:20],
-		raw[20:26],
-		raw[26:28],
+		candidate[0:2],
+		candidate[2:4],
+		candidate[4:6],
+		candidate[6:16],
+		candidate[16:20],
+		candidate[20:26],
+		candidate[26:28],
 	)
 }
 

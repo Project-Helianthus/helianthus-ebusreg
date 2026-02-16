@@ -474,3 +474,18 @@ func TestScanSkipsCRCMismatchAndFailsOnInvalidPayloadError(t *testing.T) {
 		t.Fatalf("expected 3 scan calls, got %d", len(bus.calls))
 	}
 }
+
+func TestFormatVaillantSerial(t *testing.T) {
+	t.Parallel()
+
+	formatted := formatVaillantSerial("21220900201848480082005409N4")
+	if formatted != "21-22-09-0020184848-0082-005409-N4" {
+		t.Fatalf("formatted = %q", formatted)
+	}
+
+	rawWithSuffix := "2122ABCD0020184848XYZZ005409N4TAIL"
+	got := formatVaillantSerial(rawWithSuffix)
+	if got != rawWithSuffix {
+		t.Fatalf("fallback serial = %q; want full raw value", got)
+	}
+}

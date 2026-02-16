@@ -199,8 +199,14 @@ func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target by
 		}
 		response, err := bus.Send(ctx, request)
 		if err != nil {
-			if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
+			if errors.Is(err, context.Canceled) {
 				return "", false, err
+			}
+			if errors.Is(err, context.DeadlineExceeded) {
+				if ctxErr := ctx.Err(); ctxErr != nil {
+					return "", false, ctxErr
+				}
+				return "", false, nil
 			}
 			return "", false, nil
 		}

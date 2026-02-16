@@ -234,6 +234,24 @@ func (bus *vaillantScanIDCanceledBus) Send(ctx context.Context, frame protocol.F
 	return nil, ebuserrors.ErrNoSuchDevice
 }
 
+type vaillantScanIDTimeoutBus struct{}
+
+func (bus *vaillantScanIDTimeoutBus) Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	if frame.Primary == scanPrimary && frame.Secondary == scanSecondary {
+		return &protocol.Frame{
+			Source:    0x30,
+			Target:    frame.Source,
+			Primary:   scanPrimary,
+			Secondary: scanSecondary,
+			Data:      []byte{0xB5, 'D', 'E', 'V', '3', '0', 0x05, 0x14, 0x12, 0x04},
+		}, nil
+	}
+	if frame.Primary == vaillantPrimary && frame.Secondary == vaillantScanIDSecondary {
+		return nil, context.DeadlineExceeded
+	}
+	return nil, ebuserrors.ErrNoSuchDevice
+}
+
 func TestScanUsesDiscoveredAddressForVaillantScanID(t *testing.T) {
 	t.Parallel()
 
@@ -273,6 +291,28 @@ func TestScanPropagatesContextCancellationFromVaillantScanID(t *testing.T) {
 	}
 	if entries != nil {
 		t.Fatalf("expected nil entries on cancellation, got %d", len(entries))
+	}
+}
+
+func TestScanIgnoresScanIDTimeouts(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	bus := &vaillantScanIDTimeoutBus{}
+
+	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x20})
+	if err != nil {
+		t.Fatalf("Scan error = %v", err)
+	}
+	if len(entries) != 1 {
+		t.Fatalf("expected 1 entry, got %d", len(entries))
+	}
+	entry, ok := registry.Lookup(0x30)
+	if !ok {
+		t.Fatalf("expected device 0x30 to be registered")
+	}
+	if entry.SerialNumber() != "" {
+		t.Fatalf("serial number = %q; want empty on timeout", entry.SerialNumber())
 	}
 }
 

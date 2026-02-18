@@ -73,7 +73,7 @@ func NewBus(tr transport.RawTransport, config BusConfig, queueCapacity int) *Bus
 		queue:     newPriorityQueue(),
 		// Capacity 1 to coalesce wake-ups from multiple Send calls.
 		notify: make(chan struct{}, 1),
-		outCap:    queueCapacity,
+		outCap: queueCapacity,
 	}
 }
 

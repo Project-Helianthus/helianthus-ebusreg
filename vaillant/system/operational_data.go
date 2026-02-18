@@ -143,8 +143,8 @@ func decodeOperationalDateTime(payload []byte) (map[string]types.Value, error) {
 
 	var (
 		hour, minute, day, month, year types.Value
-		temp                          types.Value
-		err                           error
+		temp                           types.Value
+		err                            error
 	)
 	if len(payload) >= btiBdaSize {
 		// ebusd types:

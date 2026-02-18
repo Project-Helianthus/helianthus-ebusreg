@@ -1,11 +1,11 @@
 package productids
 
 import (
+	_ "embed"
 	"encoding/csv"
 	"errors"
 	"io"
 	"strings"
-	_ "embed"
 )
 
 //go:embed product_ids.csv

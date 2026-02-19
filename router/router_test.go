@@ -3,6 +3,7 @@ package router
 import (
 	"context"
 	"errors"
+	"sync"
 	"testing"
 	"time"
 
@@ -97,6 +98,35 @@ func (bus *mockBus) Send(ctx context.Context, frame protocol.Frame) (*protocol.F
 	bus.callCount++
 	bus.lastRequest = frame
 	return bus.response, bus.err
+}
+
+type coalescingBus struct {
+	mu        sync.Mutex
+	response  protocol.Frame
+	delay     time.Duration
+	callCount int
+}
+
+func (bus *coalescingBus) Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	if bus.delay > 0 {
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		case <-time.After(bus.delay):
+		}
+	}
+
+	bus.mu.Lock()
+	bus.callCount++
+	response := cloneFrame(bus.response)
+	bus.mu.Unlock()
+	return &response, nil
+}
+
+func (bus *coalescingBus) Calls() int {
+	bus.mu.Lock()
+	defer bus.mu.Unlock()
+	return bus.callCount
 }
 
 func TestBusEventRouter_BroadcastFanOut(t *testing.T) {
@@ -258,5 +288,212 @@ func TestBusEventRouter_EmitsDecodedBroadcastEvents(t *testing.T) {
 		}
 	case <-time.After(200 * time.Millisecond):
 		t.Fatal("timeout waiting for broadcast event")
+	}
+}
+
+func TestBusEventRouter_InvokeCoalescesConcurrentReadOnlyCalls(t *testing.T) {
+	t.Parallel()
+
+	method := mockMethod{
+		name:     "read_state",
+		readOnly: true,
+		template: mockTemplate{primary: 0xB5, secondary: 0x24},
+	}
+
+	plane := &mockPlane{
+		name:    "system",
+		methods: []registry.Method{method},
+		buildRequest: func(method registry.Method, params map[string]any) (protocol.Frame, error) {
+			return protocol.Frame{Source: 0x31, Target: 0x15, Primary: 0xB5, Secondary: 0x24}, nil
+		},
+		decodeResponse: func(method registry.Method, response protocol.Frame, params map[string]any) (any, error) {
+			return map[string]any{"ok": true}, nil
+		},
+	}
+
+	bus := &coalescingBus{
+		response: protocol.Frame{Source: 0x15, Target: 0x31, Primary: 0xB5, Secondary: 0x24, Data: []byte{0x01}},
+		delay:    40 * time.Millisecond,
+	}
+	eventRouter := NewBusEventRouter(bus)
+
+	const workers = 6
+	var wg sync.WaitGroup
+	errCh := make(chan error, workers)
+	for worker := 0; worker < workers; worker++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			_, err := eventRouter.Invoke(context.Background(), plane, "read_state", map[string]any{"addr": 0x10})
+			errCh <- err
+		}()
+	}
+	wg.Wait()
+	close(errCh)
+
+	for err := range errCh {
+		if err != nil {
+			t.Fatalf("Invoke error = %v", err)
+		}
+	}
+	if got := bus.Calls(); got != 1 {
+		t.Fatalf("bus calls = %d; want 1", got)
+	}
+}
+
+func TestBusEventRouter_InvokeUsesRefreshPolicyWindows(t *testing.T) {
+	t.Parallel()
+
+	methodState := mockMethod{
+		name:     "read_state",
+		readOnly: true,
+		template: mockTemplate{primary: 0xB5, secondary: 0x24},
+	}
+	methodConfig := mockMethod{
+		name:     "read_config",
+		readOnly: true,
+		template: mockTemplate{primary: 0xB5, secondary: 0x24},
+	}
+	plane := &mockPlane{
+		name:    "system",
+		methods: []registry.Method{methodState, methodConfig},
+		buildRequest: func(method registry.Method, params map[string]any) (protocol.Frame, error) {
+			return protocol.Frame{Source: 0x31, Target: 0x15, Primary: 0xB5, Secondary: 0x24}, nil
+		},
+		decodeResponse: func(method registry.Method, response protocol.Frame, params map[string]any) (any, error) {
+			return map[string]any{"name": method.Name()}, nil
+		},
+	}
+
+	bus := &coalescingBus{
+		response: protocol.Frame{Source: 0x15, Target: 0x31, Primary: 0xB5, Secondary: 0x24, Data: []byte{0x01}},
+	}
+
+	eventRouter := NewBusEventRouterWithOptions(bus, RouterOptions{
+		StateRefreshInterval:  30 * time.Millisecond,
+		ConfigRefreshInterval: 90 * time.Millisecond,
+	})
+
+	_, err := eventRouter.Invoke(context.Background(), plane, "read_state", map[string]any{"addr": 0x10})
+	if err != nil {
+		t.Fatalf("Invoke state #1 error = %v", err)
+	}
+	_, err = eventRouter.Invoke(context.Background(), plane, "read_state", map[string]any{"addr": 0x10})
+	if err != nil {
+		t.Fatalf("Invoke state #2 error = %v", err)
+	}
+	if got := bus.Calls(); got != 1 {
+		t.Fatalf("state warm cache calls = %d; want 1", got)
+	}
+
+	time.Sleep(35 * time.Millisecond)
+	_, err = eventRouter.Invoke(context.Background(), plane, "read_state", map[string]any{"addr": 0x10})
+	if err != nil {
+		t.Fatalf("Invoke state #3 error = %v", err)
+	}
+	if got := bus.Calls(); got != 2 {
+		t.Fatalf("state after ttl calls = %d; want 2", got)
+	}
+
+	_, err = eventRouter.Invoke(context.Background(), plane, "read_config", map[string]any{"addr": 0x11})
+	if err != nil {
+		t.Fatalf("Invoke config #1 error = %v", err)
+	}
+	time.Sleep(35 * time.Millisecond)
+	_, err = eventRouter.Invoke(context.Background(), plane, "read_config", map[string]any{"addr": 0x11})
+	if err != nil {
+		t.Fatalf("Invoke config #2 error = %v", err)
+	}
+	if got := bus.Calls(); got != 3 {
+		t.Fatalf("config still cached calls = %d; want 3", got)
+	}
+	time.Sleep(65 * time.Millisecond)
+	_, err = eventRouter.Invoke(context.Background(), plane, "read_config", map[string]any{"addr": 0x11})
+	if err != nil {
+		t.Fatalf("Invoke config #3 error = %v", err)
+	}
+	if got := bus.Calls(); got != 4 {
+		t.Fatalf("config after ttl calls = %d; want 4", got)
+	}
+}
+
+func TestBusEventRouter_InvokeRefreshClassParamOverridesMethodHeuristic(t *testing.T) {
+	t.Parallel()
+
+	method := mockMethod{
+		name:     "read_state",
+		readOnly: true,
+		template: mockTemplate{primary: 0xB5, secondary: 0x24},
+	}
+	plane := &mockPlane{
+		name:    "system",
+		methods: []registry.Method{method},
+		buildRequest: func(method registry.Method, params map[string]any) (protocol.Frame, error) {
+			return protocol.Frame{Source: 0x31, Target: 0x15, Primary: 0xB5, Secondary: 0x24}, nil
+		},
+		decodeResponse: func(method registry.Method, response protocol.Frame, params map[string]any) (any, error) {
+			return map[string]any{"name": method.Name()}, nil
+		},
+	}
+	bus := &coalescingBus{
+		response: protocol.Frame{Source: 0x15, Target: 0x31, Primary: 0xB5, Secondary: 0x24, Data: []byte{0x01}},
+	}
+
+	eventRouter := NewBusEventRouterWithOptions(bus, RouterOptions{
+		StateRefreshInterval:  25 * time.Millisecond,
+		ConfigRefreshInterval: 80 * time.Millisecond,
+	})
+
+	params := map[string]any{"addr": 0x12, "cache_class": "config"}
+	_, err := eventRouter.Invoke(context.Background(), plane, "read_state", params)
+	if err != nil {
+		t.Fatalf("Invoke #1 error = %v", err)
+	}
+	time.Sleep(30 * time.Millisecond)
+	_, err = eventRouter.Invoke(context.Background(), plane, "read_state", params)
+	if err != nil {
+		t.Fatalf("Invoke #2 error = %v", err)
+	}
+	if got := bus.Calls(); got != 1 {
+		t.Fatalf("calls = %d; want 1 with config override", got)
+	}
+}
+
+func TestBusEventRouter_InvokeWriteMethodsDoNotUseCache(t *testing.T) {
+	t.Parallel()
+
+	method := mockMethod{
+		name:     "set_register",
+		readOnly: false,
+		template: mockTemplate{primary: 0xB5, secondary: 0x24},
+	}
+	plane := &mockPlane{
+		name:    "system",
+		methods: []registry.Method{method},
+		buildRequest: func(method registry.Method, params map[string]any) (protocol.Frame, error) {
+			return protocol.Frame{Source: 0x31, Target: 0x15, Primary: 0xB5, Secondary: 0x24}, nil
+		},
+		decodeResponse: func(method registry.Method, response protocol.Frame, params map[string]any) (any, error) {
+			return map[string]any{"ok": true}, nil
+		},
+	}
+	bus := &coalescingBus{
+		response: protocol.Frame{Source: 0x15, Target: 0x31, Primary: 0xB5, Secondary: 0x24, Data: []byte{0x01}},
+	}
+	eventRouter := NewBusEventRouterWithOptions(bus, RouterOptions{
+		StateRefreshInterval:  1 * time.Minute,
+		ConfigRefreshInterval: 5 * time.Minute,
+	})
+
+	_, err := eventRouter.Invoke(context.Background(), plane, "set_register", map[string]any{"addr": 0x20})
+	if err != nil {
+		t.Fatalf("Invoke #1 error = %v", err)
+	}
+	_, err = eventRouter.Invoke(context.Background(), plane, "set_register", map[string]any{"addr": 0x20})
+	if err != nil {
+		t.Fatalf("Invoke #2 error = %v", err)
+	}
+	if got := bus.Calls(); got != 2 {
+		t.Fatalf("calls = %d; want 2 for write method", got)
 	}
 }

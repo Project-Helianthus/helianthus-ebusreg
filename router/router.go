@@ -2,8 +2,11 @@ package router
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"strings"
 	"sync"
+	"time"
 
 	ebuserrors "github.com/d3vi1/helianthus-ebusgo/errors"
 	"github.com/d3vi1/helianthus-ebusgo/protocol"
@@ -44,6 +47,11 @@ type BusEventRouter struct {
 	mu            sync.RWMutex
 	subscriptions map[subscriptionKey][]Plane
 	events        chan BroadcastEvent
+
+	invokeMu    sync.Mutex
+	invokeCache map[string]*invokeEntry
+	options     RouterOptions
+	now         func() time.Time
 }
 
 type subscriptionKey struct {
@@ -51,11 +59,59 @@ type subscriptionKey struct {
 	secondary byte
 }
 
+type RefreshClass string
+
+const (
+	RefreshClassState  RefreshClass = "state"
+	RefreshClassConfig RefreshClass = "config"
+)
+
+const (
+	defaultStateRefreshInterval  = 1 * time.Minute
+	defaultConfigRefreshInterval = 5 * time.Minute
+)
+
+type ClassifyInvocationFunc func(
+	planeName string,
+	methodName string,
+	params map[string]any,
+) RefreshClass
+
+type RouterOptions struct {
+	StateRefreshInterval  time.Duration
+	ConfigRefreshInterval time.Duration
+	ClassifyInvocation    ClassifyInvocationFunc
+	DisableCoalescing     bool
+}
+
+type invokeEntry struct {
+	running bool
+	done    chan struct{}
+
+	lastOKAt     time.Time
+	lastFrame    protocol.Frame
+	hasLastFrame bool
+}
+
 func NewBusEventRouter(bus Bus) *BusEventRouter {
+	return NewBusEventRouterWithOptions(bus, RouterOptions{})
+}
+
+func NewBusEventRouterWithOptions(bus Bus, options RouterOptions) *BusEventRouter {
+	if options.StateRefreshInterval <= 0 {
+		options.StateRefreshInterval = defaultStateRefreshInterval
+	}
+	if options.ConfigRefreshInterval <= 0 {
+		options.ConfigRefreshInterval = defaultConfigRefreshInterval
+	}
+
 	return &BusEventRouter{
 		bus:           bus,
 		subscriptions: make(map[subscriptionKey][]Plane),
 		events:        make(chan BroadcastEvent, 64),
+		invokeCache:   make(map[string]*invokeEntry),
+		options:       options,
+		now:           time.Now,
 	}
 }
 
@@ -127,6 +183,9 @@ func (router *BusEventRouter) Invoke(ctx context.Context, plane Plane, methodNam
 	if plane == nil {
 		return nil, fmt.Errorf("router.Invoke missing plane: %w", ebuserrors.ErrInvalidPayload)
 	}
+	if ctx == nil {
+		ctx = context.Background()
+	}
 
 	method, ok := findMethod(plane.Methods(), methodName)
 	if !ok {
@@ -138,19 +197,218 @@ func (router *BusEventRouter) Invoke(ctx context.Context, plane Plane, methodNam
 		return nil, fmt.Errorf("router.Invoke build plane=%s method=%s: %w", plane.Name(), method.Name(), err)
 	}
 
-	response, err := router.bus.Send(ctx, request)
-	if err != nil {
-		return nil, fmt.Errorf("router.Invoke send plane=%s method=%s: %w", plane.Name(), method.Name(), err)
-	}
-	if response == nil {
-		return nil, fmt.Errorf("router.Invoke empty response plane=%s method=%s: %w", plane.Name(), method.Name(), ebuserrors.ErrInvalidPayload)
+	maxAge := router.invokeMaxAge(plane.Name(), method, params)
+	if maxAge <= 0 {
+		decoded, _, err := router.sendAndDecode(ctx, plane, method, params, request)
+		return decoded, err
 	}
 
-	decoded, err := plane.DecodeResponse(method, *response, params)
+	cacheKey, err := buildInvokeCacheKey(plane.Name(), method.Name(), params)
 	if err != nil {
-		return nil, fmt.Errorf("router.Invoke decode plane=%s method=%s: %w", plane.Name(), method.Name(), err)
+		return nil, fmt.Errorf("router.Invoke key plane=%s method=%s: %w", plane.Name(), method.Name(), err)
 	}
-	return decoded, nil
+
+	for {
+		router.invokeMu.Lock()
+		entry := router.invokeCache[cacheKey]
+		if entry == nil {
+			entry = &invokeEntry{}
+			router.invokeCache[cacheKey] = entry
+		}
+
+		if !entry.running && entry.hasLastFrame {
+			age := router.now().Sub(entry.lastOKAt)
+			if age >= 0 && age <= maxAge {
+				frame := cloneFrame(entry.lastFrame)
+				router.invokeMu.Unlock()
+				decoded, decodeErr := plane.DecodeResponse(method, frame, params)
+				if decodeErr != nil {
+					return nil, fmt.Errorf(
+						"router.Invoke decode plane=%s method=%s: %w",
+						plane.Name(),
+						method.Name(),
+						decodeErr,
+					)
+				}
+				return decoded, nil
+			}
+		}
+
+		if entry.running {
+			done := entry.done
+			router.invokeMu.Unlock()
+			select {
+			case <-ctx.Done():
+				return nil, ctx.Err()
+			case <-done:
+				continue
+			}
+		}
+
+		entry.running = true
+		entry.done = make(chan struct{})
+		done := entry.done
+		router.invokeMu.Unlock()
+
+		decoded, frame, invokeErr := router.sendAndDecode(ctx, plane, method, params, request)
+
+		router.invokeMu.Lock()
+		entry.running = false
+		if invokeErr == nil {
+			entry.lastOKAt = router.now()
+			entry.lastFrame = cloneFrame(frame)
+			entry.hasLastFrame = true
+		}
+		close(done)
+		router.invokeMu.Unlock()
+
+		if invokeErr != nil {
+			return nil, invokeErr
+		}
+		return decoded, nil
+	}
+}
+
+func (router *BusEventRouter) sendAndDecode(
+	ctx context.Context,
+	plane Plane,
+	method registry.Method,
+	params map[string]any,
+	request protocol.Frame,
+) (any, protocol.Frame, error) {
+	response, err := router.bus.Send(ctx, request)
+	if err != nil {
+		return nil, protocol.Frame{}, fmt.Errorf(
+			"router.Invoke send plane=%s method=%s: %w",
+			plane.Name(),
+			method.Name(),
+			err,
+		)
+	}
+	if response == nil {
+		return nil, protocol.Frame{}, fmt.Errorf(
+			"router.Invoke empty response plane=%s method=%s: %w",
+			plane.Name(),
+			method.Name(),
+			ebuserrors.ErrInvalidPayload,
+		)
+	}
+	frame := cloneFrame(*response)
+
+	decoded, err := plane.DecodeResponse(method, frame, params)
+	if err != nil {
+		return nil, protocol.Frame{}, fmt.Errorf(
+			"router.Invoke decode plane=%s method=%s: %w",
+			plane.Name(),
+			method.Name(),
+			err,
+		)
+	}
+	return decoded, frame, nil
+}
+
+func (router *BusEventRouter) invokeMaxAge(
+	planeName string,
+	method registry.Method,
+	params map[string]any,
+) time.Duration {
+	if router == nil || router.options.DisableCoalescing || method == nil || !method.ReadOnly() {
+		return 0
+	}
+
+	class := inferRefreshClass(method.Name())
+	if router.options.ClassifyInvocation != nil {
+		override := router.options.ClassifyInvocation(planeName, method.Name(), params)
+		if override != "" {
+			class = override
+		}
+	}
+	if paramClass, ok := refreshClassFromParams(params); ok {
+		class = paramClass
+	}
+
+	if class == RefreshClassConfig {
+		return router.options.ConfigRefreshInterval
+	}
+	return router.options.StateRefreshInterval
+}
+
+func inferRefreshClass(methodName string) RefreshClass {
+	normalized := strings.ToLower(strings.TrimSpace(methodName))
+	if normalized == "" {
+		return RefreshClassState
+	}
+
+	configTokens := []string{
+		"config",
+		"setpoint",
+		"desired",
+		"mode",
+		"curve",
+		"holiday",
+		"name",
+		"limit",
+		"offset",
+		"schedule",
+		"timer",
+		"mapping",
+	}
+	for _, token := range configTokens {
+		if strings.Contains(normalized, token) {
+			return RefreshClassConfig
+		}
+	}
+	return RefreshClassState
+}
+
+func refreshClassFromParams(params map[string]any) (RefreshClass, bool) {
+	if len(params) == 0 {
+		return "", false
+	}
+	for _, key := range []string{"cache_class", "refresh_class"} {
+		value, ok := params[key]
+		if !ok {
+			continue
+		}
+		text, ok := value.(string)
+		if !ok {
+			continue
+		}
+		normalized := strings.ToLower(strings.TrimSpace(text))
+		switch normalized {
+		case string(RefreshClassState):
+			return RefreshClassState, true
+		case string(RefreshClassConfig):
+			return RefreshClassConfig, true
+		}
+	}
+	return "", false
+}
+
+func buildInvokeCacheKey(
+	planeName string,
+	methodName string,
+	params map[string]any,
+) (string, error) {
+	normalizedParams := params
+	if normalizedParams == nil {
+		normalizedParams = map[string]any{}
+	}
+	serialized, err := json.Marshal(normalizedParams)
+	if err != nil {
+		return "", err
+	}
+	return planeName + "|" + methodName + "|" + string(serialized), nil
+}
+
+func cloneFrame(frame protocol.Frame) protocol.Frame {
+	return protocol.Frame{
+		Source:    frame.Source,
+		Target:    frame.Target,
+		Primary:   frame.Primary,
+		Secondary: frame.Secondary,
+		Data:      append([]byte(nil), frame.Data...),
+	}
 }
 
 func findMethod(methods []registry.Method, name string) (registry.Method, bool) {

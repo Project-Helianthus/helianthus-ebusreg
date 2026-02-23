@@ -57,6 +57,12 @@ For MCP and GraphQL service-layer reuse, `registry` exposes projection helpers:
 
 Projected method data includes frame template bytes plus normalized method metadata (`mutability`, `danger`, `routable`) through `ResolveMethodMetadata`.
 
+Deterministic ordering guarantees for projected views:
+
+- devices: `address` ascending, then manufacturer/device/hardware/serial (case-insensitive)
+- planes: name ascending (case-insensitive)
+- methods: name ascending (case-insensitive), then template `(primary, secondary)`
+
 ## Quickstart (copy/paste)
 
 ### 1) Clone and baseline checks

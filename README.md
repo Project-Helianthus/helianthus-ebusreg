@@ -46,6 +46,22 @@ Backward-compatible defaults for legacy `registry.Method` implementations:
 Methods can override defaults by implementing optional interfaces in `registry`:
 `MethodMutabilityProvider`, `MethodDangerProvider`, and `MethodRoutableProvider`.
 
+### Method Contract Semantics
+
+Normalization semantics are stable and test-backed:
+
+| Input | Result |
+|---|---|
+| no mutability provider + `ReadOnly()==true` | `mutability=read_only` |
+| no mutability provider + `ReadOnly()==false` | `mutability=mutating` |
+| explicit mutability provider (`unknown/read_only/mutating`) | provider value is preserved |
+| invalid mutability provider value | fallback to `ReadOnly()` inference |
+| no danger provider | derived from mutability (`read_only -> safe`, otherwise `dangerous`) |
+| explicit danger provider (`safe/dangerous`) | provider value is preserved |
+| danger provider returns `unknown` or invalid | fallback to derived danger |
+| no routable provider | `routable=true` |
+| explicit routable provider | provider value is preserved |
+
 ## Shared Service Projections
 
 For MCP and GraphQL service-layer reuse, `registry` exposes projection helpers:

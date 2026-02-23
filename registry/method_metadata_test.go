@@ -65,6 +65,33 @@ func (m noMetadataMethod) ResponseSchema() schema.SchemaSelector {
 	return schema.SchemaSelector{}
 }
 
+type mutabilityOnlyMethod struct {
+	noMetadataMethod
+	mutability MethodMutability
+}
+
+func (m mutabilityOnlyMethod) Mutability() MethodMutability {
+	return m.mutability
+}
+
+type dangerOnlyMethod struct {
+	noMetadataMethod
+	danger MethodDanger
+}
+
+func (m dangerOnlyMethod) Danger() MethodDanger {
+	return m.danger
+}
+
+type routableOnlyMethod struct {
+	noMetadataMethod
+	routable bool
+}
+
+func (m routableOnlyMethod) Routable() bool {
+	return m.routable
+}
+
 func TestResolveMethodMetadata_DefaultsFromReadOnly(t *testing.T) {
 	t.Parallel()
 
@@ -183,4 +210,111 @@ func TestResolveMethodMetadata_NilMethodDefaults(t *testing.T) {
 	if metadata.Routable {
 		t.Fatalf("routable = true; want false")
 	}
+}
+
+func TestResolveMethodMetadata_PartialProviders(t *testing.T) {
+	t.Parallel()
+
+	t.Run("mutability provider influences danger fallback", func(t *testing.T) {
+		t.Parallel()
+
+		method := mutabilityOnlyMethod{
+			noMetadataMethod: noMetadataMethod{
+				name:     "custom",
+				readOnly: false,
+				template: mockTemplate{primary: 0xB5, secondary: 0x04},
+			},
+			mutability: MethodMutabilityReadOnly,
+		}
+		metadata := ResolveMethodMetadata(method)
+		if metadata.Mutability != MethodMutabilityReadOnly {
+			t.Fatalf("mutability = %q; want %q", metadata.Mutability, MethodMutabilityReadOnly)
+		}
+		if metadata.Danger != MethodDangerSafe {
+			t.Fatalf("danger = %q; want %q", metadata.Danger, MethodDangerSafe)
+		}
+		if !metadata.Routable {
+			t.Fatalf("routable = false; want true")
+		}
+	})
+
+	t.Run("unknown mutability remains dangerous without explicit danger", func(t *testing.T) {
+		t.Parallel()
+
+		method := mutabilityOnlyMethod{
+			noMetadataMethod: noMetadataMethod{
+				name:     "custom_unknown",
+				readOnly: true,
+				template: mockTemplate{primary: 0xB5, secondary: 0x04},
+			},
+			mutability: MethodMutabilityUnknown,
+		}
+		metadata := ResolveMethodMetadata(method)
+		if metadata.Mutability != MethodMutabilityUnknown {
+			t.Fatalf("mutability = %q; want %q", metadata.Mutability, MethodMutabilityUnknown)
+		}
+		if metadata.Danger != MethodDangerDangerous {
+			t.Fatalf("danger = %q; want %q", metadata.Danger, MethodDangerDangerous)
+		}
+	})
+
+	t.Run("danger provider override respected", func(t *testing.T) {
+		t.Parallel()
+
+		method := dangerOnlyMethod{
+			noMetadataMethod: noMetadataMethod{
+				name:     "danger_override",
+				readOnly: false,
+				template: mockTemplate{primary: 0xB5, secondary: 0x05},
+			},
+			danger: MethodDangerSafe,
+		}
+		metadata := ResolveMethodMetadata(method)
+		if metadata.Mutability != MethodMutabilityMutating {
+			t.Fatalf("mutability = %q; want %q", metadata.Mutability, MethodMutabilityMutating)
+		}
+		if metadata.Danger != MethodDangerSafe {
+			t.Fatalf("danger = %q; want %q", metadata.Danger, MethodDangerSafe)
+		}
+	})
+
+	t.Run("unknown danger falls back to derived value", func(t *testing.T) {
+		t.Parallel()
+
+		method := dangerOnlyMethod{
+			noMetadataMethod: noMetadataMethod{
+				name:     "danger_unknown",
+				readOnly: true,
+				template: mockTemplate{primary: 0xB5, secondary: 0x04},
+			},
+			danger: MethodDangerUnknown,
+		}
+		metadata := ResolveMethodMetadata(method)
+		if metadata.Danger != MethodDangerSafe {
+			t.Fatalf("danger = %q; want %q", metadata.Danger, MethodDangerSafe)
+		}
+	})
+
+	t.Run("routable provider only affects routable", func(t *testing.T) {
+		t.Parallel()
+
+		method := routableOnlyMethod{
+			noMetadataMethod: noMetadataMethod{
+				name:     "non_routable",
+				readOnly: true,
+				template: mockTemplate{primary: 0xB5, secondary: 0x04},
+			},
+			routable: false,
+		}
+		metadata := ResolveMethodMetadata(method)
+		if metadata.Mutability != MethodMutabilityReadOnly {
+			t.Fatalf("mutability = %q; want %q", metadata.Mutability, MethodMutabilityReadOnly)
+		}
+		if metadata.Danger != MethodDangerSafe {
+			t.Fatalf("danger = %q; want %q", metadata.Danger, MethodDangerSafe)
+		}
+		if metadata.Routable {
+			t.Fatalf("routable = true; want false")
+		}
+	})
 }

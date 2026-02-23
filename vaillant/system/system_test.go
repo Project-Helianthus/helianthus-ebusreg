@@ -72,6 +72,16 @@ func TestMethods(t *testing.T) {
 	if getMethod.Template().Primary() != 0xB5 || getMethod.Template().Secondary() != 0x04 {
 		t.Fatalf("unexpected get_operational_data template")
 	}
+	getMetadata := registry.ResolveMethodMetadata(getMethod)
+	if getMetadata.Mutability != registry.MethodMutabilityReadOnly {
+		t.Fatalf("get_operational_data mutability = %q; want %q", getMetadata.Mutability, registry.MethodMutabilityReadOnly)
+	}
+	if getMetadata.Danger != registry.MethodDangerSafe {
+		t.Fatalf("get_operational_data danger = %q; want %q", getMetadata.Danger, registry.MethodDangerSafe)
+	}
+	if !getMetadata.Routable {
+		t.Fatalf("get_operational_data routable = false; want true")
+	}
 
 	setMethod, ok := findMethod(methods, methodSetOperationalData)
 	if !ok || setMethod.ReadOnly() {
@@ -79,6 +89,16 @@ func TestMethods(t *testing.T) {
 	}
 	if setMethod.Template().Primary() != 0xB5 || setMethod.Template().Secondary() != 0x05 {
 		t.Fatalf("unexpected set_operational_data template")
+	}
+	setMetadata := registry.ResolveMethodMetadata(setMethod)
+	if setMetadata.Mutability != registry.MethodMutabilityMutating {
+		t.Fatalf("set_operational_data mutability = %q; want %q", setMetadata.Mutability, registry.MethodMutabilityMutating)
+	}
+	if setMetadata.Danger != registry.MethodDangerDangerous {
+		t.Fatalf("set_operational_data danger = %q; want %q", setMetadata.Danger, registry.MethodDangerDangerous)
+	}
+	if !setMetadata.Routable {
+		t.Fatalf("set_operational_data routable = false; want true")
 	}
 }
 

@@ -29,6 +29,23 @@ helianthus-ebusgo  ->  helianthus-ebusreg  ->  helianthus-ebusgateway  ->  integ
   (transport)          (registry/schema)        (runtime/api/smoke)
 ```
 
+## Method Metadata Contract
+
+Method safety/routing metadata is exposed via `registry.ResolveMethodMetadata(method)`.
+
+- `mutability`: `read_only`, `mutating`, or `unknown`
+- `danger`: `safe`, `dangerous`, or `unknown`
+- `routable`: `true` or `false`
+
+Backward-compatible defaults for legacy `registry.Method` implementations:
+
+- `mutability`: inferred from `ReadOnly()` (`true` -> `read_only`, `false` -> `mutating`)
+- `danger`: inferred from mutability (`read_only` -> `safe`, otherwise -> `dangerous`)
+- `routable`: defaults to `true`
+
+Methods can override defaults by implementing optional interfaces in `registry`:
+`MethodMutabilityProvider`, `MethodDangerProvider`, and `MethodRoutableProvider`.
+
 ## Quickstart (copy/paste)
 
 ### 1) Clone and baseline checks

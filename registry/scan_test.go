@@ -3,6 +3,7 @@ package registry
 import (
 	"context"
 	"errors"
+	"slices"
 	"testing"
 	"time"
 
@@ -252,6 +253,24 @@ func (bus *vaillantScanIDTimeoutBus) Send(ctx context.Context, frame protocol.Fr
 	return nil, ebuserrors.ErrNoSuchDevice
 }
 
+type vaillantScanIDAliasTimeoutBus struct{}
+
+func (bus *vaillantScanIDAliasTimeoutBus) Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	if frame.Primary == scanPrimary && frame.Secondary == scanSecondary {
+		return &protocol.Frame{
+			Source:    0x31,
+			Target:    frame.Source,
+			Primary:   scanPrimary,
+			Secondary: scanSecondary,
+			Data:      []byte{0xB5, 'D', 'E', 'V', '3', '0', 0x05, 0x14, 0x12, 0x04},
+		}, nil
+	}
+	if frame.Primary == vaillantPrimary && frame.Secondary == vaillantScanIDSecondary {
+		return nil, context.DeadlineExceeded
+	}
+	return nil, ebuserrors.ErrNoSuchDevice
+}
+
 func TestScanUsesDiscoveredAddressForVaillantScanID(t *testing.T) {
 	t.Parallel()
 
@@ -346,6 +365,46 @@ func TestScanPreservesKnownSerialWhenScanIDFails(t *testing.T) {
 	}
 }
 
+func TestScanReusesSerialAcrossAliasAddressesByIdentity(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	registry.Register(DeviceInfo{
+		Address:         0x30,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "DEV30",
+		SerialNumber:    "21-22-09-0020184848-0082-005409-N4",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+	})
+	bus := &vaillantScanIDAliasTimeoutBus{}
+
+	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x20})
+	if err != nil {
+		t.Fatalf("Scan error = %v", err)
+	}
+	if len(entries) != 1 {
+		t.Fatalf("expected 1 entry, got %d", len(entries))
+	}
+	if entries[0].Address() != 0x30 {
+		t.Fatalf("canonical address = %02x; want 30", entries[0].Address())
+	}
+	if !slices.Equal(entries[0].Addresses(), []byte{0x30, 0x31}) {
+		t.Fatalf("addresses = %v; want [48 49]", entries[0].Addresses())
+	}
+
+	entry, ok := registry.Lookup(0x31)
+	if !ok {
+		t.Fatalf("expected alias 0x31 to be registered")
+	}
+	if entry.Address() != 0x30 {
+		t.Fatalf("lookup canonical address = %02x; want 30", entry.Address())
+	}
+	if entry.SerialNumber() != "21-22-09-0020184848-0082-005409-N4" {
+		t.Fatalf("serial number = %q; want preserved value", entry.SerialNumber())
+	}
+}
+
 func TestScanDoesNotReuseSerialForDifferentDeviceIdentity(t *testing.T) {
 	t.Parallel()
 
@@ -376,6 +435,52 @@ func TestScanDoesNotReuseSerialForDifferentDeviceIdentity(t *testing.T) {
 	}
 	if entry.SerialNumber() != "" {
 		t.Fatalf("serial number = %q; want empty for identity mismatch", entry.SerialNumber())
+	}
+}
+
+func TestScanDeduplicatesAliasAddressesIntoSingleEntry(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	bus := &mockScanBus{
+		responses: map[byte]*protocol.Frame{
+			0x08: {
+				Source:    0x08,
+				Target:    0x10,
+				Primary:   scanPrimary,
+				Secondary: scanSecondary,
+				Data:      []byte{0xB5, 'B', 'A', 'I', '0', '0', 0x07, 0x04, 0x76, 0x03},
+			},
+			0x09: {
+				Source:    0x09,
+				Target:    0x10,
+				Primary:   scanPrimary,
+				Secondary: scanSecondary,
+				Data:      []byte{0xB5, 'B', 'A', 'I', '0', '0', 0x07, 0x04, 0x76, 0x03},
+			},
+		},
+	}
+
+	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x08, 0x09})
+	if err != nil {
+		t.Fatalf("Scan error = %v", err)
+	}
+	if len(entries) != 1 {
+		t.Fatalf("expected 1 canonical entry, got %d", len(entries))
+	}
+	if entries[0].Address() != 0x08 {
+		t.Fatalf("canonical address = %02x; want 08", entries[0].Address())
+	}
+	if !slices.Equal(entries[0].Addresses(), []byte{0x08, 0x09}) {
+		t.Fatalf("addresses = %v; want [8 9]", entries[0].Addresses())
+	}
+
+	entry, ok := registry.Lookup(0x09)
+	if !ok {
+		t.Fatalf("expected alias address 0x09 lookup")
+	}
+	if entry.Address() != 0x08 {
+		t.Fatalf("lookup canonical address = %02x; want 08", entry.Address())
 	}
 }
 

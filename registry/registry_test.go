@@ -1,6 +1,7 @@
 package registry
 
 import (
+	"slices"
 	"testing"
 
 	"github.com/d3vi1/helianthus-ebusreg/schema"
@@ -301,5 +302,92 @@ func TestDeviceRegistry_ProviderMatching(t *testing.T) {
 	}
 	if providerA.createCalls != 1 || providerB.createCalls != 0 || providerC.createCalls != 1 {
 		t.Fatalf("unexpected create call counts: A=%d B=%d C=%d", providerA.createCalls, providerB.createCalls, providerC.createCalls)
+	}
+}
+
+func TestDeviceRegistry_AliasAddressesShareCanonicalEntry(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	registry.Register(DeviceInfo{
+		Address:         0x08,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "BAI00",
+		SoftwareVersion: "0704",
+		HardwareVersion: "7603",
+	})
+	registry.Register(DeviceInfo{
+		Address:         0x09,
+		Manufacturer:    "vaillant",
+		DeviceID:        "bai00",
+		SoftwareVersion: "0704",
+		HardwareVersion: "7603",
+	})
+
+	entry08, ok := registry.Lookup(0x08)
+	if !ok {
+		t.Fatalf("expected alias primary address lookup")
+	}
+	entry09, ok := registry.Lookup(0x09)
+	if !ok {
+		t.Fatalf("expected alias secondary address lookup")
+	}
+	if entry08 != entry09 {
+		t.Fatalf("expected aliases to resolve to the same device entry")
+	}
+	if entry08.Address() != 0x08 {
+		t.Fatalf("canonical address = %02x; want 08", entry08.Address())
+	}
+	if !slices.Equal(entry08.Addresses(), []byte{0x08, 0x09}) {
+		t.Fatalf("addresses = %v; want [8 9]", entry08.Addresses())
+	}
+
+	addresses := make([]byte, 0)
+	registry.Iterate(func(entry DeviceEntry) bool {
+		addresses = append(addresses, entry.Address())
+		return true
+	})
+	if !slices.Equal(addresses, []byte{0x08}) {
+		t.Fatalf("iterate canonical addresses = %v; want [8]", addresses)
+	}
+}
+
+func TestDeviceRegistry_DoesNotMergeDifferentSerials(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	registry.Register(DeviceInfo{
+		Address:         0x08,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "VR92",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+		SerialNumber:    "SN-1",
+	})
+	registry.Register(DeviceInfo{
+		Address:         0x09,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "VR92",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+		SerialNumber:    "SN-2",
+	})
+
+	entry08, ok := registry.Lookup(0x08)
+	if !ok {
+		t.Fatalf("expected address 0x08 to exist")
+	}
+	entry09, ok := registry.Lookup(0x09)
+	if !ok {
+		t.Fatalf("expected address 0x09 to exist")
+	}
+	if entry08 == entry09 {
+		t.Fatalf("different serial numbers must not merge")
+	}
+	if !slices.Equal(entry08.Addresses(), []byte{0x08}) {
+		t.Fatalf("entry08 addresses = %v; want [8]", entry08.Addresses())
+	}
+	if !slices.Equal(entry09.Addresses(), []byte{0x09}) {
+		t.Fatalf("entry09 addresses = %v; want [9]", entry09.Addresses())
 	}
 }

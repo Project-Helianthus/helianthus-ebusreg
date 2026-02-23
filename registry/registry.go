@@ -18,6 +18,7 @@ type DeviceInfo struct {
 
 type DeviceEntry interface {
 	Address() byte
+	Addresses() []byte
 	Manufacturer() string
 	DeviceID() string
 	SerialNumber() string
@@ -59,7 +60,8 @@ type DeviceRegistry struct {
 	mu        sync.RWMutex
 	providers []PlaneProvider
 	entries   map[byte]*deviceEntry
-	order     []byte
+	identity  map[string]*deviceEntry
+	order     []*deviceEntry
 }
 
 func NewDeviceRegistry(providers []PlaneProvider) *DeviceRegistry {
@@ -68,6 +70,7 @@ func NewDeviceRegistry(providers []PlaneProvider) *DeviceRegistry {
 	return &DeviceRegistry{
 		providers: providerCopy,
 		entries:   make(map[byte]*deviceEntry),
+		identity:  make(map[string]*deviceEntry),
 	}
 }
 
@@ -78,17 +81,59 @@ func (r *DeviceRegistry) RegisterProvider(provider PlaneProvider) {
 }
 
 func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
-	r.mu.RLock()
-	providers := make([]PlaneProvider, len(r.providers))
-	copy(providers, r.providers)
-	r.mu.RUnlock()
+	r.mu.Lock()
+	defer r.mu.Unlock()
 
+	physical := canonicalPhysicalIdentity(info)
+	identityKey := physical.key()
 	planes := make([]Plane, 0)
-	matched := make([]PlaneProvider, 0, len(providers))
-	for _, provider := range providers {
-		if provider.Match(info) {
+	matched := make([]PlaneProvider, 0, len(r.providers))
+
+	existingByAddress := r.entries[info.Address]
+	if identityKey == "" && existingByAddress != nil {
+		physical = existingByAddress.physical
+		identityKey = existingByAddress.identityKey
+	}
+
+	existingByIdentity := (*deviceEntry)(nil)
+	if identityKey != "" {
+		existingByIdentity = r.identity[identityKey]
+	}
+
+	entry := existingByIdentity
+	if entry == nil {
+		entry = existingByAddress
+	}
+	if entry == nil {
+		if fallback, ok := r.lookupCompatibleBySignatureLocked(info); ok {
+			entry = fallback
+		}
+	}
+
+	if existingByAddress != nil && existingByAddress != entry {
+		r.detachAddressLocked(existingByAddress, info.Address)
+	}
+
+	if entry == nil {
+		entry = &deviceEntry{
+			primaryAddress: info.Address,
+			addresses:      []byte{info.Address},
+		}
+		r.order = append(r.order, entry)
+	} else if !containsAddress(entry.addresses, info.Address) {
+		entry.addresses = append(entry.addresses, info.Address)
+	}
+
+	storedInfo := info
+	storedInfo.Address = entry.primaryAddress
+	if info.SerialNumber == "" && info.MacAddress == "" && entry.identityKey != "" {
+		identityKey = entry.identityKey
+	}
+
+	for _, provider := range r.providers {
+		if provider.Match(storedInfo) {
 			matched = append(matched, provider)
-			planes = append(planes, provider.CreatePlanes(info)...)
+			planes = append(planes, provider.CreatePlanes(storedInfo)...)
 		}
 	}
 
@@ -98,7 +143,7 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 		if !ok {
 			continue
 		}
-		projections = append(projections, projectionProvider.CreateProjections(info, planes)...)
+		projections = append(projections, projectionProvider.CreateProjections(storedInfo, planes)...)
 	}
 
 	index, projectionErr := BuildCanonicalIndex(projections)
@@ -106,22 +151,89 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 		projections = nil
 	}
 
-	entry := &deviceEntry{
-		info:        info,
-		planes:      planes,
-		projections: projections,
-		index:       index,
-		indexErr:    projectionErr,
+	if entry.identityKey != "" && entry.identityKey != identityKey {
+		delete(r.identity, entry.identityKey)
 	}
+	entry.info = storedInfo
+	entry.physical = physical
+	entry.identityKey = identityKey
+	entry.planes = planes
+	entry.projections = projections
+	entry.index = index
+	entry.indexErr = projectionErr
 
-	r.mu.Lock()
-	if _, exists := r.entries[info.Address]; !exists {
-		r.order = append(r.order, info.Address)
+	if identityKey != "" {
+		r.identity[identityKey] = entry
 	}
 	r.entries[info.Address] = entry
-	r.mu.Unlock()
 
 	return entry
+}
+
+func (r *DeviceRegistry) lookupByIdentity(info DeviceInfo) (DeviceEntry, bool) {
+	identity := canonicalPhysicalIdentity(info).key()
+	if identity == "" {
+		return r.lookupBySignature(info)
+	}
+
+	r.mu.RLock()
+	entry, ok := r.identity[identity]
+	r.mu.RUnlock()
+	if !ok {
+		return r.lookupBySignature(info)
+	}
+	return entry, true
+}
+
+func (r *DeviceRegistry) lookupBySignature(info DeviceInfo) (DeviceEntry, bool) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+	entry, ok := r.lookupCompatibleBySignatureLocked(info)
+	if !ok {
+		return nil, false
+	}
+	return entry, true
+}
+
+func (r *DeviceRegistry) lookupCompatibleBySignatureLocked(info DeviceInfo) (*deviceEntry, bool) {
+	signature := canonicalPhysicalIdentity(info).withFallbackModelSignature()
+	if signature == "" {
+		return nil, false
+	}
+	var match *deviceEntry
+	for _, candidate := range r.order {
+		if candidate == nil {
+			continue
+		}
+		if candidate.physical.withFallbackModelSignature() != signature {
+			continue
+		}
+		if !canMergeIdentity(info, candidate.info) {
+			continue
+		}
+		if match != nil && match != candidate {
+			return nil, false
+		}
+		match = candidate
+	}
+	if match == nil {
+		return nil, false
+	}
+	return match, true
+}
+
+func canMergeIdentity(incoming DeviceInfo, existing DeviceInfo) bool {
+	normalizedIncomingSerial := normalizeIdentityPart(incoming.SerialNumber)
+	normalizedExistingSerial := normalizeIdentityPart(existing.SerialNumber)
+	if normalizedIncomingSerial != "" && normalizedExistingSerial != "" && normalizedIncomingSerial != normalizedExistingSerial {
+		return false
+	}
+	normalizedIncomingMAC := normalizeIdentityPart(incoming.MacAddress)
+	normalizedExistingMAC := normalizeIdentityPart(existing.MacAddress)
+	if normalizedIncomingMAC != "" && normalizedExistingMAC != "" && normalizedIncomingMAC != normalizedExistingMAC {
+		return false
+	}
+	return true
 }
 
 func (r *DeviceRegistry) Lookup(address byte) (DeviceEntry, bool) {
@@ -136,17 +248,12 @@ func (r *DeviceRegistry) Lookup(address byte) (DeviceEntry, bool) {
 
 func (r *DeviceRegistry) Iterate(fn func(DeviceEntry) bool) {
 	r.mu.RLock()
-	order := make([]byte, len(r.order))
+	order := make([]*deviceEntry, len(r.order))
 	copy(order, r.order)
-	entries := make(map[byte]*deviceEntry, len(r.entries))
-	for address, entry := range r.entries {
-		entries[address] = entry
-	}
 	r.mu.RUnlock()
 
-	for _, address := range order {
-		entry, ok := entries[address]
-		if !ok {
+	for _, entry := range order {
+		if entry == nil {
 			continue
 		}
 		if !fn(entry) {
@@ -155,16 +262,58 @@ func (r *DeviceRegistry) Iterate(fn func(DeviceEntry) bool) {
 	}
 }
 
+func (r *DeviceRegistry) detachAddressLocked(entry *deviceEntry, address byte) {
+	if entry == nil {
+		return
+	}
+	delete(r.entries, address)
+	if !containsAddress(entry.addresses, address) {
+		return
+	}
+
+	entry.addresses = removeAddress(entry.addresses, address)
+	if len(entry.addresses) == 0 {
+		if entry.identityKey != "" {
+			delete(r.identity, entry.identityKey)
+		}
+		r.order = removeEntry(r.order, entry)
+		return
+	}
+	if entry.primaryAddress == address {
+		entry.primaryAddress = entry.addresses[0]
+		entry.info.Address = entry.primaryAddress
+	}
+}
+
 type deviceEntry struct {
-	info        DeviceInfo
-	planes      []Plane
-	projections []Projection
-	index       CanonicalIndex
-	indexErr    error
+	primaryAddress byte
+	addresses      []byte
+	physical       physicalIdentity
+	identityKey    string
+	info           DeviceInfo
+	planes         []Plane
+	projections    []Projection
+	index          CanonicalIndex
+	indexErr       error
 }
 
 func (d *deviceEntry) Address() byte {
+	if d.primaryAddress != 0 {
+		return d.primaryAddress
+	}
 	return d.info.Address
+}
+
+func (d *deviceEntry) Addresses() []byte {
+	if len(d.addresses) == 0 {
+		if d.info.Address == 0 {
+			return nil
+		}
+		return []byte{d.info.Address}
+	}
+	out := make([]byte, len(d.addresses))
+	copy(out, d.addresses)
+	return out
 }
 
 func (d *deviceEntry) Manufacturer() string {
@@ -207,4 +356,33 @@ func CanonicalIndexForEntry(entry DeviceEntry) (CanonicalIndex, error) {
 		return internal.index, internal.indexErr
 	}
 	return BuildCanonicalIndex(entry.Projections())
+}
+
+func containsAddress(addresses []byte, address byte) bool {
+	for _, existing := range addresses {
+		if existing == address {
+			return true
+		}
+	}
+	return false
+}
+
+func removeAddress(addresses []byte, address byte) []byte {
+	for index, existing := range addresses {
+		if existing != address {
+			continue
+		}
+		return append(addresses[:index], addresses[index+1:]...)
+	}
+	return addresses
+}
+
+func removeEntry(entries []*deviceEntry, entry *deviceEntry) []*deviceEntry {
+	for index, existing := range entries {
+		if existing != entry {
+			continue
+		}
+		return append(entries[:index], entries[index+1:]...)
+	}
+	return entries
 }

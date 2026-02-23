@@ -46,6 +46,7 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 
 	entries := make([]DeviceEntry, 0)
 	found := make(map[byte]struct{})
+	registered := make(map[byte]struct{})
 	pending := dedupeScanTargets(targets)
 	for pass := 0; pass <= scanCollisionMaxPasses && len(pending) > 0; pass++ {
 		collisions := make([]byte, 0)
@@ -129,11 +130,16 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 				}
 			}
 			if info.SerialNumber == "" && info.Manufacturer == "Vaillant" {
-				if existing, ok := registry.Lookup(info.Address); ok && shouldReuseSerial(info, existing) {
+				if existing, ok := registry.lookupByIdentity(info); ok && shouldReuseSerial(info, existing) {
 					info.SerialNumber = existing.SerialNumber()
 				}
 			}
-			entries = append(entries, registry.Register(info))
+			entry := registry.Register(info)
+			canonicalAddress := entry.Address()
+			if _, ok := registered[canonicalAddress]; !ok {
+				registered[canonicalAddress] = struct{}{}
+				entries = append(entries, entry)
+			}
 			found[address] = struct{}{}
 		}
 

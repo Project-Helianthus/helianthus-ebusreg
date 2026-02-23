@@ -46,6 +46,17 @@ Backward-compatible defaults for legacy `registry.Method` implementations:
 Methods can override defaults by implementing optional interfaces in `registry`:
 `MethodMutabilityProvider`, `MethodDangerProvider`, and `MethodRoutableProvider`.
 
+## Shared Service Projections
+
+For MCP and GraphQL service-layer reuse, `registry` exposes projection helpers:
+
+- `ProjectRegistryDevices(iter EntryIterator)`
+- `ProjectDeviceEntry(entry DeviceEntry)`
+- `ProjectPlane(plane Plane)`
+- `ProjectMethod(method Method)`
+
+Projected method data includes frame template bytes plus normalized method metadata (`mutability`, `danger`, `routable`) through `ResolveMethodMetadata`.
+
 ## Quickstart (copy/paste)
 
 ### 1) Clone and baseline checks

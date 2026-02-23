@@ -104,6 +104,9 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	if entry == nil {
 		entry = existingByAddress
 	}
+	if entry == existingByAddress && existingByIdentity == nil && existingByAddress != nil && (!canMergeIdentity(info, existingByAddress.info) || hasConflictingModelSignature(info, existingByAddress.info)) {
+		entry = nil
+	}
 	if entry == nil {
 		if fallback, ok := r.lookupCompatibleBySignatureLocked(info); ok {
 			entry = fallback
@@ -125,6 +128,24 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	}
 
 	storedInfo := info
+	if storedInfo.Manufacturer == "" {
+		storedInfo.Manufacturer = entry.info.Manufacturer
+	}
+	if storedInfo.DeviceID == "" {
+		storedInfo.DeviceID = entry.info.DeviceID
+	}
+	if storedInfo.SoftwareVersion == "" {
+		storedInfo.SoftwareVersion = entry.info.SoftwareVersion
+	}
+	if storedInfo.HardwareVersion == "" {
+		storedInfo.HardwareVersion = entry.info.HardwareVersion
+	}
+	if storedInfo.SerialNumber == "" {
+		storedInfo.SerialNumber = entry.info.SerialNumber
+	}
+	if storedInfo.MacAddress == "" {
+		storedInfo.MacAddress = entry.info.MacAddress
+	}
 	storedInfo.Address = entry.primaryAddress
 	if info.SerialNumber == "" && info.MacAddress == "" && entry.identityKey != "" {
 		identityKey = entry.identityKey
@@ -234,6 +255,21 @@ func canMergeIdentity(incoming DeviceInfo, existing DeviceInfo) bool {
 		return false
 	}
 	return true
+}
+
+func hasConflictingModelSignature(incoming DeviceInfo, existing DeviceInfo) bool {
+	incomingDeviceID := normalizeIdentityPart(incoming.DeviceID)
+	existingDeviceID := normalizeIdentityPart(existing.DeviceID)
+	incomingSoftware := normalizeIdentityPart(incoming.SoftwareVersion)
+	existingSoftware := normalizeIdentityPart(existing.SoftwareVersion)
+	incomingHardware := normalizeIdentityPart(incoming.HardwareVersion)
+	existingHardware := normalizeIdentityPart(existing.HardwareVersion)
+
+	if incomingDeviceID == "" || existingDeviceID == "" || incomingSoftware == "" || existingSoftware == "" || incomingHardware == "" || existingHardware == "" {
+		return false
+	}
+
+	return incomingDeviceID != existingDeviceID || incomingSoftware != existingSoftware || incomingHardware != existingHardware
 }
 
 func (r *DeviceRegistry) Lookup(address byte) (DeviceEntry, bool) {

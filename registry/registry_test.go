@@ -391,3 +391,90 @@ func TestDeviceRegistry_DoesNotMergeDifferentSerials(t *testing.T) {
 		t.Fatalf("entry09 addresses = %v; want [9]", entry09.Addresses())
 	}
 }
+
+func TestDeviceRegistry_SplitsAliasWhenConflictingSerialArrives(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	registry.Register(DeviceInfo{
+		Address:         0x08,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "VR92",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+	})
+	registry.Register(DeviceInfo{
+		Address:         0x09,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "VR92",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+	})
+	registry.Register(DeviceInfo{
+		Address:         0x09,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "VR92",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+		SerialNumber:    "SN-B",
+	})
+	registry.Register(DeviceInfo{
+		Address:         0x08,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "VR92",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+		SerialNumber:    "SN-A",
+	})
+
+	entry08, ok := registry.Lookup(0x08)
+	if !ok {
+		t.Fatalf("expected address 0x08 to exist")
+	}
+	entry09, ok := registry.Lookup(0x09)
+	if !ok {
+		t.Fatalf("expected address 0x09 to exist")
+	}
+	if entry08 == entry09 {
+		t.Fatalf("conflicting serial numbers must split aliases")
+	}
+	if entry08.SerialNumber() != "SN-A" {
+		t.Fatalf("entry08 serial = %q; want SN-A", entry08.SerialNumber())
+	}
+	if entry09.SerialNumber() != "SN-B" {
+		t.Fatalf("entry09 serial = %q; want SN-B", entry09.SerialNumber())
+	}
+}
+
+func TestDeviceRegistry_PreservesKnownIdentityOnSparseUpdate(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	registry.Register(DeviceInfo{
+		Address:         0x08,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "BASV2",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+		SerialNumber:    "SN-KEEP",
+		MacAddress:      "AA:BB:CC:DD:EE:FF",
+	})
+	registry.Register(DeviceInfo{
+		Address:         0x08,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "BASV2",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+	})
+
+	entry, ok := registry.Lookup(0x08)
+	if !ok {
+		t.Fatalf("expected address 0x08 to exist")
+	}
+	if entry.SerialNumber() != "SN-KEEP" {
+		t.Fatalf("serial = %q; want SN-KEEP", entry.SerialNumber())
+	}
+	if entry.MacAddress() != "AA:BB:CC:DD:EE:FF" {
+		t.Fatalf("mac = %q; want preserved MAC", entry.MacAddress())
+	}
+}

@@ -62,7 +62,7 @@ func MethodMutabilityOf(method Method) MethodMutability {
 		return MethodMutabilityUnknown
 	}
 	if provider, ok := method.(MethodMutabilityProvider); ok {
-		if mutability := normalizeMethodMutability(provider.Mutability()); mutability != MethodMutabilityUnknown {
+		if mutability, valid := normalizeMethodMutability(provider.Mutability()); valid {
 			return mutability
 		}
 	}
@@ -100,12 +100,12 @@ func MethodRoutableOf(method Method) bool {
 	return true
 }
 
-func normalizeMethodMutability(mutability MethodMutability) MethodMutability {
+func normalizeMethodMutability(mutability MethodMutability) (MethodMutability, bool) {
 	switch mutability {
-	case MethodMutabilityReadOnly, MethodMutabilityMutating:
-		return mutability
+	case MethodMutabilityUnknown, MethodMutabilityReadOnly, MethodMutabilityMutating:
+		return mutability, true
 	default:
-		return MethodMutabilityUnknown
+		return MethodMutabilityUnknown, false
 	}
 }
 

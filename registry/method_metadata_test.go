@@ -125,6 +125,27 @@ func TestResolveMethodMetadata_ExplicitOverrides(t *testing.T) {
 	}
 }
 
+func TestResolveMethodMetadata_ExplicitUnknownMutabilityIsPreserved(t *testing.T) {
+	t.Parallel()
+
+	method := metadataTestMethod{
+		name:       "set_register",
+		readOnly:   true,
+		mutability: MethodMutabilityUnknown,
+		danger:     MethodDangerDangerous,
+		routable:   true,
+		template:   mockTemplate{primary: 0xB5, secondary: 0x09},
+	}
+
+	metadata := ResolveMethodMetadata(method)
+	if metadata.Mutability != MethodMutabilityUnknown {
+		t.Fatalf("mutability = %q; want %q", metadata.Mutability, MethodMutabilityUnknown)
+	}
+	if metadata.Danger != MethodDangerDangerous {
+		t.Fatalf("danger = %q; want %q", metadata.Danger, MethodDangerDangerous)
+	}
+}
+
 func TestResolveMethodMetadata_InvalidOverrideFallsBack(t *testing.T) {
 	t.Parallel()
 

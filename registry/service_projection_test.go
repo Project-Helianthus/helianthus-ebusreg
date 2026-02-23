@@ -240,6 +240,84 @@ func TestProjectRegistryDevices(t *testing.T) {
 	}
 }
 
+func TestProjectRegistryDevicesDeterministicOrdering(t *testing.T) {
+	t.Parallel()
+
+	methodZ := projectionTestMethod{
+		name:       "zeta",
+		readOnly:   true,
+		template:   projectionTestTemplate{primary: 0xB5, secondary: 0x09},
+		selector:   schema.SchemaSelector{},
+		mutability: MethodMutabilityReadOnly,
+		danger:     MethodDangerSafe,
+		routable:   true,
+	}
+	methodA := projectionTestMethod{
+		name:       "alpha",
+		readOnly:   true,
+		template:   projectionTestTemplate{primary: 0xB5, secondary: 0x01},
+		selector:   schema.SchemaSelector{},
+		mutability: MethodMutabilityReadOnly,
+		danger:     MethodDangerSafe,
+		routable:   true,
+	}
+
+	entryB := projectionTestEntry{
+		address:         0x10,
+		addresses:       []byte{0x15, 0x10, 0x12},
+		manufacturer:    "vaillant",
+		deviceID:        "B",
+		hardwareVersion: "2",
+		serialNumber:    "2",
+		planes: []Plane{
+			projectionTestPlane{name: "zPlane", methods: []Method{methodZ, methodA}},
+			projectionTestPlane{name: "APlane", methods: []Method{methodZ}},
+		},
+	}
+	entryA := projectionTestEntry{
+		address:         0x08,
+		addresses:       []byte{0x09, 0x08, 0x0A},
+		manufacturer:    "Vaillant",
+		deviceID:        "A",
+		hardwareVersion: "1",
+		serialNumber:    "1",
+		planes: []Plane{
+			projectionTestPlane{name: "System", methods: []Method{methodZ, methodA}},
+		},
+	}
+
+	projected, err := ProjectRegistryDevices(projectionTestIterator{entries: []DeviceEntry{entryB, entryA}})
+	if err != nil {
+		t.Fatalf("ProjectRegistryDevices error = %v", err)
+	}
+
+	if len(projected) != 2 {
+		t.Fatalf("devices len = %d; want 2", len(projected))
+	}
+	if projected[0].Address != 0x08 || projected[1].Address != 0x10 {
+		t.Fatalf("device order = [%02x,%02x]; want [08,10]", projected[0].Address, projected[1].Address)
+	}
+	if !reflect.DeepEqual(projected[1].Addresses, []byte{0x10, 0x12, 0x15}) {
+		t.Fatalf("addresses order = %v; want [16 18 21]", projected[1].Addresses)
+	}
+	if len(projected[1].Planes) != 2 {
+		t.Fatalf("plane len = %d; want 2", len(projected[1].Planes))
+	}
+	if projected[1].Planes[0].Name != "APlane" || projected[1].Planes[1].Name != "zPlane" {
+		t.Fatalf("plane order = [%s,%s]; want [APlane,zPlane]", projected[1].Planes[0].Name, projected[1].Planes[1].Name)
+	}
+	if len(projected[1].Planes[1].Methods) != 2 {
+		t.Fatalf("method len = %d; want 2", len(projected[1].Planes[1].Methods))
+	}
+	if projected[1].Planes[1].Methods[0].Name != "alpha" || projected[1].Planes[1].Methods[1].Name != "zeta" {
+		t.Fatalf(
+			"method order = [%s,%s]; want [alpha,zeta]",
+			projected[1].Planes[1].Methods[0].Name,
+			projected[1].Planes[1].Methods[1].Name,
+		)
+	}
+}
+
 func TestProjectPlaneErrors(t *testing.T) {
 	t.Parallel()
 
@@ -254,5 +332,41 @@ func TestProjectPlaneErrors(t *testing.T) {
 
 	if _, err := ProjectDeviceEntry(nil); !stderrors.Is(err, ebuserrors.ErrInvalidPayload) {
 		t.Fatalf("ProjectDeviceEntry(nil) error = %v; want ErrInvalidPayload", err)
+	}
+}
+
+func TestProjectPlaneDeterministicOrdering(t *testing.T) {
+	t.Parallel()
+
+	methods := []Method{
+		projectionTestMethod{
+			name:       "zeta",
+			readOnly:   true,
+			template:   projectionTestTemplate{primary: 0xB5, secondary: 0x02},
+			selector:   schema.SchemaSelector{},
+			mutability: MethodMutabilityReadOnly,
+			danger:     MethodDangerSafe,
+			routable:   true,
+		},
+		projectionTestMethod{
+			name:       "alpha",
+			readOnly:   true,
+			template:   projectionTestTemplate{primary: 0xB5, secondary: 0x01},
+			selector:   schema.SchemaSelector{},
+			mutability: MethodMutabilityReadOnly,
+			danger:     MethodDangerSafe,
+			routable:   true,
+		},
+	}
+
+	projected, err := ProjectPlane(projectionTestPlane{name: "Heating", methods: methods})
+	if err != nil {
+		t.Fatalf("ProjectPlane error = %v", err)
+	}
+	if len(projected.Methods) != 2 {
+		t.Fatalf("methods len = %d; want 2", len(projected.Methods))
+	}
+	if projected.Methods[0].Name != "alpha" || projected.Methods[1].Name != "zeta" {
+		t.Fatalf("method order = [%s,%s]; want [alpha,zeta]", projected.Methods[0].Name, projected.Methods[1].Name)
 	}
 }

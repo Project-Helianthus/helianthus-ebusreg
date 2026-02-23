@@ -45,7 +45,6 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 	}
 
 	entries := make([]DeviceEntry, 0)
-	found := make(map[byte]struct{})
 	registered := make(map[byte]struct{})
 	pending := dedupeScanTargets(targets)
 	for pass := 0; pass <= scanCollisionMaxPasses && len(pending) > 0; pass++ {
@@ -104,9 +103,6 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 			if address == 0 {
 				address = target
 			}
-			if _, ok := found[address]; ok {
-				continue
-			}
 
 			info, err := parseDeviceInfo(address, response.Data)
 			if err != nil {
@@ -135,12 +131,16 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 				}
 			}
 			entry := registry.Register(info)
+			if address != target {
+				alias := info
+				alias.Address = target
+				entry = registry.Register(alias)
+			}
 			canonicalAddress := entry.Address()
 			if _, ok := registered[canonicalAddress]; !ok {
 				registered[canonicalAddress] = struct{}{}
 				entries = append(entries, entry)
 			}
-			found[address] = struct{}{}
 		}
 
 		if len(collisions) == 0 && len(retries) == 0 {

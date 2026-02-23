@@ -389,8 +389,8 @@ func TestScanReusesSerialAcrossAliasAddressesByIdentity(t *testing.T) {
 	if entries[0].Address() != 0x30 {
 		t.Fatalf("canonical address = %02x; want 30", entries[0].Address())
 	}
-	if !slices.Equal(entries[0].Addresses(), []byte{0x30, 0x31}) {
-		t.Fatalf("addresses = %v; want [48 49]", entries[0].Addresses())
+	if !slices.Equal(entries[0].Addresses(), []byte{0x30, 0x31, 0x20}) {
+		t.Fatalf("addresses = %v; want [48 49 32]", entries[0].Addresses())
 	}
 
 	entry, ok := registry.Lookup(0x31)
@@ -481,6 +481,52 @@ func TestScanDeduplicatesAliasAddressesIntoSingleEntry(t *testing.T) {
 	}
 	if entry.Address() != 0x08 {
 		t.Fatalf("lookup canonical address = %02x; want 08", entry.Address())
+	}
+}
+
+func TestScanRegistersQueriedAliasWhenResponseSourceRepeats(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	bus := &mockScanBus{
+		responses: map[byte]*protocol.Frame{
+			0x15: {
+				Source:    0x15,
+				Target:    0x10,
+				Primary:   scanPrimary,
+				Secondary: scanSecondary,
+				Data:      []byte{0xB5, 'B', 'A', 'S', 'V', '2', 0x05, 0x07, 0x17, 0x04},
+			},
+			0xEC: {
+				Source:    0x15,
+				Target:    0x10,
+				Primary:   scanPrimary,
+				Secondary: scanSecondary,
+				Data:      []byte{0xB5, 'B', 'A', 'S', 'V', '2', 0x05, 0x07, 0x17, 0x04},
+			},
+		},
+	}
+
+	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x15, 0xEC})
+	if err != nil {
+		t.Fatalf("Scan error = %v", err)
+	}
+	if len(entries) != 1 {
+		t.Fatalf("expected 1 canonical entry, got %d", len(entries))
+	}
+	if entries[0].Address() != 0x15 {
+		t.Fatalf("canonical address = %02x; want 15", entries[0].Address())
+	}
+	if !slices.Equal(entries[0].Addresses(), []byte{0x15, 0xEC}) {
+		t.Fatalf("addresses = %v; want [21 236]", entries[0].Addresses())
+	}
+
+	entry, ok := registry.Lookup(0xEC)
+	if !ok {
+		t.Fatalf("expected alias address 0xEC lookup")
+	}
+	if entry.Address() != 0x15 {
+		t.Fatalf("lookup canonical address = %02x; want 15", entry.Address())
 	}
 }
 

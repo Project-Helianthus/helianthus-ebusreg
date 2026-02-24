@@ -120,40 +120,11 @@ func registerAddrParam(params map[string]any, key string) (uint16, bool, error) 
 	if value == nil {
 		return 0, true, ebuserrors.ErrInvalidPayload
 	}
+	if parsed, ok := parseUint(value, 0xFFFF); ok {
+		return uint16(parsed), true, nil
+	}
 
 	switch typed := value.(type) {
-	case uint16:
-		return typed, true, nil
-	case int:
-		if typed < 0 || typed > 0xFFFF {
-			return 0, true, ebuserrors.ErrInvalidPayload
-		}
-		return uint16(typed), true, nil
-	case int32:
-		if typed < 0 || typed > 0xFFFF {
-			return 0, true, ebuserrors.ErrInvalidPayload
-		}
-		return uint16(typed), true, nil
-	case int64:
-		if typed < 0 || typed > 0xFFFF {
-			return 0, true, ebuserrors.ErrInvalidPayload
-		}
-		return uint16(typed), true, nil
-	case uint:
-		if typed > 0xFFFF {
-			return 0, true, ebuserrors.ErrInvalidPayload
-		}
-		return uint16(typed), true, nil
-	case uint32:
-		if typed > 0xFFFF {
-			return 0, true, ebuserrors.ErrInvalidPayload
-		}
-		return uint16(typed), true, nil
-	case uint64:
-		if typed > 0xFFFF {
-			return 0, true, ebuserrors.ErrInvalidPayload
-		}
-		return uint16(typed), true, nil
 	case string:
 		s := strings.TrimSpace(typed)
 		s = strings.TrimPrefix(s, "0x")

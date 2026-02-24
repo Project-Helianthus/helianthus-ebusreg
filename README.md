@@ -46,6 +46,39 @@ Backward-compatible defaults for legacy `registry.Method` implementations:
 Methods can override defaults by implementing optional interfaces in `registry`:
 `MethodMutabilityProvider`, `MethodDangerProvider`, and `MethodRoutableProvider`.
 
+### Method Contract Semantics
+
+Normalization semantics are stable and test-backed:
+
+| Input | Result |
+|---|---|
+| no mutability provider + `ReadOnly()==true` | `mutability=read_only` |
+| no mutability provider + `ReadOnly()==false` | `mutability=mutating` |
+| explicit mutability provider (`unknown/read_only/mutating`) | provider value is preserved |
+| invalid mutability provider value | fallback to `ReadOnly()` inference |
+| no danger provider | derived from mutability (`read_only -> safe`, otherwise `dangerous`) |
+| explicit danger provider (`safe/dangerous`) | provider value is preserved |
+| danger provider returns `unknown` or invalid | fallback to derived danger |
+| no routable provider | `routable=true` |
+| explicit routable provider | provider value is preserved |
+
+## Shared Service Projections
+
+For MCP and GraphQL service-layer reuse, `registry` exposes projection helpers:
+
+- `ProjectRegistryDevices(iter EntryIterator)`
+- `ProjectDeviceEntry(entry DeviceEntry)`
+- `ProjectPlane(plane Plane)`
+- `ProjectMethod(method Method)`
+
+Projected method data includes frame template bytes plus normalized method metadata (`mutability`, `danger`, `routable`) through `ResolveMethodMetadata`.
+
+Deterministic ordering guarantees for projected views:
+
+- devices: `address` ascending, then manufacturer/device/hardware/serial (case-insensitive)
+- planes: name ascending (case-insensitive)
+- methods: name ascending (case-insensitive), then template `(primary, secondary)`
+
 ## Quickstart (copy/paste)
 
 ### 1) Clone and baseline checks

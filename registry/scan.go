@@ -191,6 +191,14 @@ func parseDeviceInfo(address byte, payload []byte) (DeviceInfo, error) {
 	}, nil
 }
 
+// ReadVaillantScanID sends B5.09 identity reads (chunks 0x24..0x27) and
+// returns the formatted Vaillant serial number.  It is the exported twin of
+// the internal readVaillantScanID so that callers outside this package (e.g.
+// the gateway's ebusd-tcp preload enrichment) can invoke it.
+func ReadVaillantScanID(ctx context.Context, bus ScanBus, source byte, target byte) (string, bool, error) {
+	return readVaillantScanID(ctx, bus, source, target)
+}
+
 func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target byte) (string, bool, error) {
 	if bus == nil {
 		return "", false, nil

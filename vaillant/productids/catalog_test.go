@@ -97,6 +97,32 @@ func TestControllerCapabilityString(t *testing.T) {
 	}
 }
 
+func TestControllerCapabilityCaseInsensitive(t *testing.T) {
+	catalog := Catalog{
+		ByPartNumber: map[string]Record{
+			"PN_REG": {PartNumber: "PN_REG", Role: "regulator"},
+		},
+	}
+
+	got := catalog.ControllerCapability("PN_REG")
+	if got != ControllerPresent {
+		t.Fatalf("expected ControllerPresent for lowercase role, got %v", got)
+	}
+}
+
+func TestControllerCapabilityTrimSpace(t *testing.T) {
+	catalog := Catalog{
+		ByPartNumber: map[string]Record{
+			"PN_REG": {PartNumber: "PN_REG", Role: "Regulator"},
+		},
+	}
+
+	got := catalog.ControllerCapability("  PN_REG  ")
+	if got != ControllerPresent {
+		t.Fatalf("expected ControllerPresent for padded part number, got %v", got)
+	}
+}
+
 func TestControllerCapabilityRealCatalog(t *testing.T) {
 	catalog, err := LoadCatalog()
 	if err != nil {

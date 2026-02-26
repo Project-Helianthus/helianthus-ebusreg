@@ -112,7 +112,7 @@ func (c ControllerCapability) String() string {
 }
 
 func (c Catalog) ControllerCapability(partNumber string) ControllerCapability {
-	record, found := c.ByPartNumber[partNumber]
+	record, found := c.ByPartNumber[strings.TrimSpace(partNumber)]
 	if !found {
 		return ControllerUnknown
 	}

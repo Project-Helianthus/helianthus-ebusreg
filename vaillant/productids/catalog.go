@@ -89,3 +89,35 @@ func valueAt(row []string, idx int) string {
 	}
 	return row[idx]
 }
+
+type ControllerCapability int
+
+const (
+	ControllerUnknown ControllerCapability = iota
+	ControllerNone
+	ControllerPresent
+)
+
+func (c ControllerCapability) String() string {
+	switch c {
+	case ControllerUnknown:
+		return "ControllerUnknown"
+	case ControllerNone:
+		return "ControllerNone"
+	case ControllerPresent:
+		return "ControllerPresent"
+	default:
+		return "ControllerCapability(invalid)"
+	}
+}
+
+func (c Catalog) ControllerCapability(partNumber string) ControllerCapability {
+	record, found := c.ByPartNumber[strings.TrimSpace(partNumber)]
+	if !found {
+		return ControllerUnknown
+	}
+	if strings.EqualFold(record.Role, "Regulator") {
+		return ControllerPresent
+	}
+	return ControllerNone
+}

@@ -54,6 +54,10 @@ func (Provider) CreateProjections(info registry.DeviceInfo, planes []registry.Pl
 		Plane:    registry.ServicePlane,
 		Segments: appendSegment(base, methodSegment(methodGetRegister)),
 	}
+	registerService, ok := newNode(registry.ServicePlane, registerCanonical.Segments, registerCanonical)
+	if !ok {
+		return nil
+	}
 	registerDebug, ok := newNode(projectionPlaneDebug, appendSegment(base, registry.PathSegment{Name: "register@b509"}), registerCanonical)
 	if !ok {
 		return nil
@@ -63,6 +67,10 @@ func (Provider) CreateProjections(info registry.DeviceInfo, planes []registry.Pl
 		Plane:    registry.ServicePlane,
 		Segments: appendSegment(base, methodSegment(methodGetExtRegister)),
 	}
+	extRegisterService, ok := newNode(registry.ServicePlane, extRegisterCanonical.Segments, extRegisterCanonical)
+	if !ok {
+		return nil
+	}
 	extRegisterDebug, ok := newNode(projectionPlaneDebug, appendSegment(base, registry.PathSegment{Name: "register@b524"}), extRegisterCanonical)
 	if !ok {
 		return nil
@@ -70,11 +78,17 @@ func (Provider) CreateProjections(info registry.DeviceInfo, planes []registry.Pl
 
 	projections := make([]registry.Projection, 0, 7)
 
-	serviceEdges := make([]registry.Edge, 0, 1)
+	serviceEdges := make([]registry.Edge, 0, 3)
 	if edge, err := registry.NewEdge(registry.ServicePlane, rootService.ID, operationalService.ID); err == nil {
 		serviceEdges = append(serviceEdges, edge)
 	}
-	if projection, err := registry.NewProjection(registry.ServicePlane, []registry.Node{rootService, operationalService}, serviceEdges); err == nil {
+	if edge, err := registry.NewEdge(registry.ServicePlane, rootService.ID, registerService.ID); err == nil {
+		serviceEdges = append(serviceEdges, edge)
+	}
+	if edge, err := registry.NewEdge(registry.ServicePlane, rootService.ID, extRegisterService.ID); err == nil {
+		serviceEdges = append(serviceEdges, edge)
+	}
+	if projection, err := registry.NewProjection(registry.ServicePlane, []registry.Node{rootService, operationalService, registerService, extRegisterService}, serviceEdges); err == nil {
 		projections = append(projections, projection)
 	}
 

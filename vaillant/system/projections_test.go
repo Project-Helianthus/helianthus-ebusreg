@@ -66,14 +66,42 @@ func TestCreateProjections_DeviceFilter(t *testing.T) {
 	}
 	planes := NewProvider().CreatePlanes(info)
 	projections := NewProvider().CreateProjections(info, planes)
-	if len(projections) != 0 {
-		t.Fatalf("expected no projections, got %d", len(projections))
+	if len(projections) == 0 {
+		t.Fatalf("expected projections for VRC720, got 0")
+	}
+	if !hasNodePath(projections, "Service", "Service:/ebus/addr@10/device@VRC720/method@get_operational_data") {
+		t.Fatalf("missing Service operational node for VRC720")
+	}
+	if !hasNodePath(projections, "Debug", "Debug:/ebus/addr@10/device@VRC720/register@b509") {
+		t.Fatalf("missing Debug b509 node for VRC720")
 	}
 
 	info.DeviceID = "VR_71"
 	projections = NewProvider().CreateProjections(info, planes)
 	if len(projections) == 0 {
 		t.Fatalf("expected projections for VR_71")
+	}
+}
+
+func TestCreateProjections_NoPlanes(t *testing.T) {
+	t.Parallel()
+
+	info := registry.DeviceInfo{
+		Manufacturer: "Vaillant",
+		DeviceID:     "BASV2",
+		Address:      0x10,
+	}
+	projections := NewProvider().CreateProjections(info, nil)
+	if projections != nil {
+		t.Fatalf("expected nil projections for empty planes, got %d", len(projections))
+	}
+	projections = NewProvider().CreateProjections(info, []registry.Plane{})
+	if projections != nil {
+		t.Fatalf("expected nil projections for zero-length planes, got %d", len(projections))
+	}
+	projections = NewProvider().CreateProjections(info, []registry.Plane{nil, nil})
+	if projections != nil {
+		t.Fatalf("expected nil projections for nil-element planes, got %d", len(projections))
 	}
 }
 

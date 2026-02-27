@@ -20,6 +20,12 @@ func TestCreateProjections_BASV2(t *testing.T) {
 	if !hasNodePath(projections, registry.ServicePlane, "Service:/ebus/addr@10/device@BASV2/method@get_operational_data") {
 		t.Fatalf("missing Service operational node")
 	}
+	if !hasNodePath(projections, registry.ServicePlane, "Service:/ebus/addr@10/device@BASV2/method@get_register") {
+		t.Fatalf("missing Service register node")
+	}
+	if !hasNodePath(projections, registry.ServicePlane, "Service:/ebus/addr@10/device@BASV2/method@get_ext_register") {
+		t.Fatalf("missing Service ext_register node")
+	}
 	if !hasNodePath(projections, "Observability", "Observability:/ebus/addr@10/device@BASV2/method@get_operational_data") {
 		t.Fatalf("missing Observability operational node")
 	}
@@ -44,6 +50,12 @@ func TestCreateProjections_BAI00(t *testing.T) {
 
 	if !hasNodePath(projections, registry.ServicePlane, "Service:/ebus/addr@08/device@BAI00/method@get_operational_data") {
 		t.Fatalf("missing Service operational node")
+	}
+	if !hasNodePath(projections, registry.ServicePlane, "Service:/ebus/addr@08/device@BAI00/method@get_register") {
+		t.Fatalf("missing Service register node")
+	}
+	if !hasNodePath(projections, registry.ServicePlane, "Service:/ebus/addr@08/device@BAI00/method@get_ext_register") {
+		t.Fatalf("missing Service ext_register node")
 	}
 	if !hasNodePath(projections, "Observability", "Observability:/ebus/addr@08/device@BAI00/method@get_operational_data") {
 		t.Fatalf("missing Observability operational node")
@@ -102,6 +114,28 @@ func TestCreateProjections_NoPlanes(t *testing.T) {
 	projections = NewProvider().CreateProjections(info, []registry.Plane{nil, nil})
 	if projections != nil {
 		t.Fatalf("expected nil projections for nil-element planes, got %d", len(projections))
+	}
+}
+
+func TestCreateProjections_BuildCanonicalIndex(t *testing.T) {
+	t.Parallel()
+
+	devices := []registry.DeviceInfo{
+		{Manufacturer: "Vaillant", DeviceID: "BAI00", Address: 0x08},
+		{Manufacturer: "Vaillant", DeviceID: "BASV2", Address: 0x15},
+		{Manufacturer: "Vaillant", DeviceID: "VRC720", Address: 0x10},
+	}
+	provider := NewProvider()
+	for _, info := range devices {
+		planes := provider.CreatePlanes(info)
+		projections := provider.CreateProjections(info, planes)
+		if len(projections) == 0 {
+			t.Fatalf("expected projections for %s", info.DeviceID)
+		}
+		_, err := registry.BuildCanonicalIndex(projections)
+		if err != nil {
+			t.Fatalf("BuildCanonicalIndex failed for %s: %v", info.DeviceID, err)
+		}
 	}
 }
 

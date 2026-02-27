@@ -99,6 +99,10 @@ func TestCreateProjections_NoPlanes(t *testing.T) {
 	if projections != nil {
 		t.Fatalf("expected nil projections for zero-length planes, got %d", len(projections))
 	}
+	projections = NewProvider().CreateProjections(info, []registry.Plane{nil, nil})
+	if projections != nil {
+		t.Fatalf("expected nil projections for nil-element planes, got %d", len(projections))
+	}
 }
 
 func hasNodePath(projections []registry.Projection, plane string, path string) bool {

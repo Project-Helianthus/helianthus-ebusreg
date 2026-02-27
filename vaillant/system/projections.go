@@ -138,18 +138,7 @@ func planeNameSet(planes []registry.Plane) map[string]struct{} {
 }
 
 func shouldCreateProjections(planes []registry.Plane) bool {
-	return len(planes) > 0
-}
-
-func normalizeDeviceID(id string) string {
-	if strings.TrimSpace(id) == "" {
-		return ""
-	}
-	normalized := strings.ToUpper(strings.TrimSpace(id))
-	normalized = strings.ReplaceAll(normalized, "_", "")
-	normalized = strings.ReplaceAll(normalized, " ", "")
-	normalized = strings.ReplaceAll(normalized, "-", "")
-	return normalized
+	return len(planeNameSet(planes)) > 0
 }
 
 func projectionBaseSegments(info registry.DeviceInfo) []registry.PathSegment {

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"math"
 
-	ebuserrors "github.com/d3vi1/helianthus-ebusgo/errors"
+	ebuserrors "github.com/Project-Helianthus/helianthus-ebusgo/errors"
 )
 
 func uint8Param(params map[string]any, key string) (byte, bool) {

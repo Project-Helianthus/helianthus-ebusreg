@@ -3,8 +3,8 @@ package system
 import (
 	"testing"
 
-	"github.com/d3vi1/helianthus-ebusreg/registry"
-	"github.com/d3vi1/helianthus-ebusreg/router"
+	"github.com/Project-Helianthus/helianthus-ebusreg/registry"
+	"github.com/Project-Helianthus/helianthus-ebusreg/router"
 )
 
 func TestProviderMatch(t *testing.T) {

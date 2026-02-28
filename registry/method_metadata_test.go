@@ -3,7 +3,7 @@ package registry
 import (
 	"testing"
 
-	"github.com/d3vi1/helianthus-ebusreg/schema"
+	"github.com/Project-Helianthus/helianthus-ebusreg/schema"
 )
 
 type metadataTestMethod struct {

@@ -3,7 +3,7 @@ package heating
 import (
 	"testing"
 
-	"github.com/d3vi1/helianthus-ebusgo/types"
+	"github.com/Project-Helianthus/helianthus-ebusgo/types"
 )
 
 func TestParametersSchemaSelector_BoilerVariant(t *testing.T) {

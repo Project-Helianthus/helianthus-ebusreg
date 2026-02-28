@@ -1,11 +1,11 @@
 package vaillant
 
 import (
-	"github.com/d3vi1/helianthus-ebusreg/registry"
-	"github.com/d3vi1/helianthus-ebusreg/vaillant/dhw"
-	"github.com/d3vi1/helianthus-ebusreg/vaillant/heating"
-	"github.com/d3vi1/helianthus-ebusreg/vaillant/solar"
-	"github.com/d3vi1/helianthus-ebusreg/vaillant/system"
+	"github.com/Project-Helianthus/helianthus-ebusreg/registry"
+	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/dhw"
+	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/heating"
+	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/solar"
+	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/system"
 )
 
 func System() registry.PlaneProvider {

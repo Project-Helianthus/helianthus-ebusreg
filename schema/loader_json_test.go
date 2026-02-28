@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/d3vi1/helianthus-ebusreg/schema"
+	"github.com/Project-Helianthus/helianthus-ebusreg/schema"
 )
 
 func TestLoadSchemaJSON(t *testing.T) {

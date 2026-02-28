@@ -3,9 +3,9 @@ package system
 import (
 	"fmt"
 
-	"github.com/d3vi1/helianthus-ebusgo/protocol"
-	"github.com/d3vi1/helianthus-ebusgo/types"
-	"github.com/d3vi1/helianthus-ebusreg/schema"
+	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
+	"github.com/Project-Helianthus/helianthus-ebusgo/types"
+	"github.com/Project-Helianthus/helianthus-ebusreg/schema"
 )
 
 const (

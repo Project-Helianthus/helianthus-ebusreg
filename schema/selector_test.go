@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/d3vi1/helianthus-ebusgo/types"
-	"github.com/d3vi1/helianthus-ebusreg/schema"
+	"github.com/Project-Helianthus/helianthus-ebusgo/types"
+	"github.com/Project-Helianthus/helianthus-ebusreg/schema"
 )
 
 func TestSchemaSelector_SelectsByTarget(t *testing.T) {

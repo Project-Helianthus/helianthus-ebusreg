@@ -5,11 +5,11 @@ import (
 	"context"
 	"testing"
 
-	"github.com/d3vi1/helianthus-ebusgo/protocol"
-	"github.com/d3vi1/helianthus-ebusgo/types"
-	"github.com/d3vi1/helianthus-ebusreg/registry"
-	"github.com/d3vi1/helianthus-ebusreg/router"
-	"github.com/d3vi1/helianthus-ebusreg/vaillant/system"
+	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
+	"github.com/Project-Helianthus/helianthus-ebusgo/types"
+	"github.com/Project-Helianthus/helianthus-ebusreg/registry"
+	"github.com/Project-Helianthus/helianthus-ebusreg/router"
+	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/system"
 )
 
 func TestVaillantSystem_GetRegister_RequestEncodesAddr(t *testing.T) {

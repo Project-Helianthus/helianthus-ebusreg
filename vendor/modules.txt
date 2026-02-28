@@ -1,8 +1,7 @@
-# github.com/d3vi1/helianthus-ebusgo v0.0.0-20260201200950-6fa99f8750e2
-## explicit
-## go 1.22
-github.com/d3vi1/helianthus-ebusgo/errors
-github.com/d3vi1/helianthus-ebusgo/internal/crc
-github.com/d3vi1/helianthus-ebusgo/protocol
-github.com/d3vi1/helianthus-ebusgo/transport
-github.com/d3vi1/helianthus-ebusgo/types
+# github.com/Project-Helianthus/helianthus-ebusgo v0.0.0-20260228114515-463da768cb9f
+## explicit; go 1.22
+github.com/Project-Helianthus/helianthus-ebusgo/errors
+github.com/Project-Helianthus/helianthus-ebusgo/internal/crc
+github.com/Project-Helianthus/helianthus-ebusgo/protocol
+github.com/Project-Helianthus/helianthus-ebusgo/transport
+github.com/Project-Helianthus/helianthus-ebusgo/types

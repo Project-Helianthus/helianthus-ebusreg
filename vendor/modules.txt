@@ -1,7 +1,0 @@
-# github.com/Project-Helianthus/helianthus-ebusgo v0.0.0-20260228114515-463da768cb9f
-## explicit; go 1.22
-github.com/Project-Helianthus/helianthus-ebusgo/errors
-github.com/Project-Helianthus/helianthus-ebusgo/internal/crc
-github.com/Project-Helianthus/helianthus-ebusgo/protocol
-github.com/Project-Helianthus/helianthus-ebusgo/transport
-github.com/Project-Helianthus/helianthus-ebusgo/types

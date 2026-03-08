@@ -459,6 +459,94 @@ func TestDecodeResponse_TimerRead(t *testing.T) {
 	assertValue(t, values, "temperature_c", float64(22.5))
 }
 
+func TestDecodeResponse_SlotsRead(t *testing.T) {
+	pl := newTimerPlane(registry.DeviceInfo{Address: 0x15, Manufacturer: "Vaillant"})
+	methods := pl.Methods()
+	result, err := pl.DecodeResponse(methods[1], protocol.Frame{
+		Primary:   0xB5,
+		Secondary: 0x55,
+		Data:      []byte{0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00},
+	}, map[string]any{"zone": 0, "hc": 0})
+	if err != nil {
+		t.Fatal(err)
+	}
+	values, ok := result.(map[string]types.Value)
+	if !ok {
+		t.Fatalf("result type = %T, want map[string]types.Value", result)
+	}
+	assertValue(t, values, "available", true)
+}
+
+func TestDecodeResponse_TimerWrite(t *testing.T) {
+	pl := newTimerPlane(registry.DeviceInfo{Address: 0x15, Manufacturer: "Vaillant"})
+	methods := pl.Methods()
+	result, err := pl.DecodeResponse(methods[3], protocol.Frame{
+		Primary:   0xB5,
+		Secondary: 0x55,
+		Data:      []byte{0x00},
+	}, map[string]any{"zone": 0, "hc": 0, "weekday": 0, "slot": 0})
+	if err != nil {
+		t.Fatal(err)
+	}
+	values, ok := result.(map[string]types.Value)
+	if !ok {
+		t.Fatalf("result type = %T, want map[string]types.Value", result)
+	}
+	assertValue(t, values, "accepted", true)
+}
+
+func TestConfigReadTemplate_AcceptsHC4(t *testing.T) {
+	tmpl := configReadTemplate{primary: 0xB5, secondary: 0x55}
+	payload, err := tmpl.Build(map[string]any{"zone": 0, "hc": 4})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if payload[2] != 0x04 {
+		t.Errorf("hc = %d, want 4", payload[2])
+	}
+}
+
+func TestTimerWriteTemplate_AcceptsMinute59(t *testing.T) {
+	tmpl := timerWriteTemplate{primary: 0xB5, secondary: 0x55}
+	_, err := tmpl.Build(map[string]any{
+		"zone": 0, "hc": 0, "weekday": 0, "slot": 0, "slot_count": 1,
+		"start_hour": 0, "start_minute": 59, "end_hour": 24, "end_minute": 59,
+		"temperature": 225,
+	})
+	if err != nil {
+		t.Fatalf("expected no error for minute=59, got %v", err)
+	}
+}
+
+func TestTimerWriteTemplate_RejectsEndHourOver24(t *testing.T) {
+	tmpl := timerWriteTemplate{primary: 0xB5, secondary: 0x55}
+	_, err := tmpl.Build(map[string]any{
+		"zone": 0, "hc": 0, "weekday": 0, "slot": 0, "slot_count": 1,
+		"start_hour": 0, "start_minute": 0, "end_hour": 25, "end_minute": 0,
+		"temperature": 225,
+	})
+	if err == nil {
+		t.Fatal("expected error for end_hour=25")
+	}
+}
+
+func TestTimerWriteTemplate_RejectsEndMinuteOver59(t *testing.T) {
+	tmpl := timerWriteTemplate{primary: 0xB5, secondary: 0x55}
+	_, err := tmpl.Build(map[string]any{
+		"zone": 0, "hc": 0, "weekday": 0, "slot": 0, "slot_count": 1,
+		"start_hour": 0, "start_minute": 0, "end_hour": 24, "end_minute": 60,
+		"temperature": 225,
+	})
+	if err == nil {
+		t.Fatal("expected error for end_minute=60")
+	}
+}
+
+func TestDecodeSlotsResponse_ShortPayload(t *testing.T) {
+	values := decodeSlotsResponse(0x00, 0x00, []byte{0x00, 0x01})
+	assertNotValid(t, values, "status")
+}
+
 func TestDecodeResponse_RejectsWrongSecondary(t *testing.T) {
 	pl := newTimerPlane(registry.DeviceInfo{Address: 0x15, Manufacturer: "Vaillant"})
 	methods := pl.Methods()

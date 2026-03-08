@@ -148,6 +148,27 @@ func (plane *plane) DecodeResponse(method registry.Method, response protocol.Fra
 			return nil, fmt.Errorf("system DecodeResponse addr: %w", ebuserrors.ErrInvalidPayload)
 		}
 		return decodeExtRegisterResponse(extRegisterOpWrite, opcode, group, instance, addr, response.Data), nil
+	case methodReadTimer:
+		sel1, ok := uint8Param(params, "sel1")
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse sel1: %w", ebuserrors.ErrInvalidPayload)
+		}
+		sel2, ok := uint8Param(params, "sel2")
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse sel2: %w", ebuserrors.ErrInvalidPayload)
+		}
+		sel3, ok := uint8Param(params, "sel3")
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse sel3: %w", ebuserrors.ErrInvalidPayload)
+		}
+		weekday, ok := uint8Param(params, "weekday")
+		if !ok {
+			return nil, fmt.Errorf("system DecodeResponse weekday: %w", ebuserrors.ErrInvalidPayload)
+		}
+		return decodeTimerResponse(sel1, sel2, sel3, weekday, response.Data), nil
+	case methodReadRaw:
+		requestPayload, _, _ := bytesParam(params, "payload")
+		return decodeRawResponse(requestPayload, response.Data), nil
 	default:
 		return nil, fmt.Errorf("system DecodeResponse unknown method %q: %w", method.Name(), ebuserrors.ErrInvalidPayload)
 	}

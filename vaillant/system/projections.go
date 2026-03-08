@@ -76,9 +76,35 @@ func (Provider) CreateProjections(info registry.DeviceInfo, planes []registry.Pl
 		return nil
 	}
 
+	timerCanonical := registry.ProjectionPath{
+		Plane:    registry.ServicePlane,
+		Segments: appendSegment(base, methodSegment(methodReadTimer)),
+	}
+	timerService, ok := newNode(registry.ServicePlane, timerCanonical.Segments, timerCanonical)
+	if !ok {
+		return nil
+	}
+	timerDebug, ok := newNode(projectionPlaneDebug, appendSegment(base, registry.PathSegment{Name: "timer@b524"}), timerCanonical)
+	if !ok {
+		return nil
+	}
+
+	rawCanonical := registry.ProjectionPath{
+		Plane:    registry.ServicePlane,
+		Segments: appendSegment(base, methodSegment(methodReadRaw)),
+	}
+	rawService, ok := newNode(registry.ServicePlane, rawCanonical.Segments, rawCanonical)
+	if !ok {
+		return nil
+	}
+	rawDebug, ok := newNode(projectionPlaneDebug, appendSegment(base, registry.PathSegment{Name: "raw@b524"}), rawCanonical)
+	if !ok {
+		return nil
+	}
+
 	projections := make([]registry.Projection, 0, 7)
 
-	serviceEdges := make([]registry.Edge, 0, 3)
+	serviceEdges := make([]registry.Edge, 0, 5)
 	if edge, err := registry.NewEdge(registry.ServicePlane, rootService.ID, operationalService.ID); err == nil {
 		serviceEdges = append(serviceEdges, edge)
 	}
@@ -88,7 +114,13 @@ func (Provider) CreateProjections(info registry.DeviceInfo, planes []registry.Pl
 	if edge, err := registry.NewEdge(registry.ServicePlane, rootService.ID, extRegisterService.ID); err == nil {
 		serviceEdges = append(serviceEdges, edge)
 	}
-	if projection, err := registry.NewProjection(registry.ServicePlane, []registry.Node{rootService, operationalService, registerService, extRegisterService}, serviceEdges); err == nil {
+	if edge, err := registry.NewEdge(registry.ServicePlane, rootService.ID, timerService.ID); err == nil {
+		serviceEdges = append(serviceEdges, edge)
+	}
+	if edge, err := registry.NewEdge(registry.ServicePlane, rootService.ID, rawService.ID); err == nil {
+		serviceEdges = append(serviceEdges, edge)
+	}
+	if projection, err := registry.NewProjection(registry.ServicePlane, []registry.Node{rootService, operationalService, registerService, extRegisterService, timerService, rawService}, serviceEdges); err == nil {
 		projections = append(projections, projection)
 	}
 
@@ -100,14 +132,20 @@ func (Provider) CreateProjections(info registry.DeviceInfo, planes []registry.Pl
 		projections = append(projections, projection)
 	}
 
-	debugEdges := make([]registry.Edge, 0, 2)
+	debugEdges := make([]registry.Edge, 0, 4)
 	if edge, err := registry.NewEdge(projectionPlaneDebug, rootDebug.ID, registerDebug.ID); err == nil {
 		debugEdges = append(debugEdges, edge)
 	}
 	if edge, err := registry.NewEdge(projectionPlaneDebug, rootDebug.ID, extRegisterDebug.ID); err == nil {
 		debugEdges = append(debugEdges, edge)
 	}
-	if projection, err := registry.NewProjection(projectionPlaneDebug, []registry.Node{rootDebug, registerDebug, extRegisterDebug}, debugEdges); err == nil {
+	if edge, err := registry.NewEdge(projectionPlaneDebug, rootDebug.ID, timerDebug.ID); err == nil {
+		debugEdges = append(debugEdges, edge)
+	}
+	if edge, err := registry.NewEdge(projectionPlaneDebug, rootDebug.ID, rawDebug.ID); err == nil {
+		debugEdges = append(debugEdges, edge)
+	}
+	if projection, err := registry.NewProjection(projectionPlaneDebug, []registry.Node{rootDebug, registerDebug, extRegisterDebug, timerDebug, rawDebug}, debugEdges); err == nil {
 		projections = append(projections, projection)
 	}
 

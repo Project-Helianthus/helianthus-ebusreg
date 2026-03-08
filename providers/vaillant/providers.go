@@ -2,6 +2,7 @@ package vaillant
 
 import (
 	"github.com/Project-Helianthus/helianthus-ebusreg/registry"
+	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/b555"
 	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/dhw"
 	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/heating"
 	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/solar"
@@ -24,11 +25,16 @@ func Solar() registry.PlaneProvider {
 	return solar.NewProvider()
 }
 
+func Timer() registry.PlaneProvider {
+	return b555.NewProvider()
+}
+
 func Default() []registry.PlaneProvider {
 	return []registry.PlaneProvider{
 		System(),
 		Heating(),
 		DHW(),
 		Solar(),
+		Timer(),
 	}
 }

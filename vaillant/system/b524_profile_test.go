@@ -43,11 +43,11 @@ func TestB524Profile_RegistersDualNamespaceEntries(t *testing.T) {
 	t.Parallel()
 
 	type dualEntry struct {
-		group                byte
-		localInstanceMax     byte
-		localRegisterMax     uint16
-		remoteInstanceMax    byte
-		remoteRegisterMax    uint16
+		group             byte
+		localInstanceMax  byte
+		localRegisterMax  uint16
+		remoteInstanceMax byte
+		remoteRegisterMax uint16
 	}
 
 	dualGroups := []dualEntry{

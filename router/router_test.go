@@ -292,8 +292,6 @@ func TestBusEventRouter_EmitsDecodedBroadcastEvents(t *testing.T) {
 }
 
 func TestBusEventRouter_SurfacesBroadcastEventOverflow(t *testing.T) {
-	t.Parallel()
-
 	before := routerBroadcastEventOverflowTotal.Value()
 	router := NewBusEventRouter(&mockBus{})
 	plane := &decodingPlane{
@@ -330,8 +328,6 @@ func TestBusEventRouter_SurfacesBroadcastEventOverflow(t *testing.T) {
 }
 
 func TestBusEventRouter_SurfacesBroadcastEventOverflowPerPlane(t *testing.T) {
-	t.Parallel()
-
 	before := routerBroadcastEventOverflowTotal.Value()
 	router := NewBusEventRouter(&mockBus{})
 	planeA := &decodingPlane{

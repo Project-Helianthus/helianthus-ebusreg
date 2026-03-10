@@ -291,6 +291,96 @@ func TestBusEventRouter_EmitsDecodedBroadcastEvents(t *testing.T) {
 	}
 }
 
+func TestBusEventRouter_SurfacesBroadcastEventOverflow(t *testing.T) {
+	t.Parallel()
+
+	before := routerBroadcastEventOverflowTotal.Value()
+	router := NewBusEventRouter(&mockBus{})
+	plane := &decodingPlane{
+		mockPlane: &mockPlane{
+			name: "A",
+			subscriptions: []Subscription{
+				{Primary: 0xB5, Secondary: 0x16},
+			},
+		},
+		decoded: map[string]types.Value{
+			"foo": {Value: uint8(1), Valid: true},
+		},
+		handled: true,
+	}
+	router.SetPlanes([]Plane{plane})
+
+	for i := 0; i < cap(router.events); i++ {
+		router.events <- BroadcastEvent{Plane: "seed"}
+	}
+
+	errs := router.HandleBroadcast(protocol.Frame{Primary: 0xB5, Secondary: 0x16})
+	if len(errs) != 1 {
+		t.Fatalf("errors = %d; want 1", len(errs))
+	}
+	if !errors.Is(errs[0], ErrBroadcastEventOverflow) {
+		t.Fatalf("error = %v; want ErrBroadcastEventOverflow", errs[0])
+	}
+	if plane.broadcastCalls != 1 {
+		t.Fatalf("broadcast calls = %d; want 1", plane.broadcastCalls)
+	}
+	if got := routerBroadcastEventOverflowTotal.Value(); got != before+1 {
+		t.Fatalf("routerBroadcastEventOverflowTotal = %d; want %d", got, before+1)
+	}
+}
+
+func TestBusEventRouter_SurfacesBroadcastEventOverflowPerPlane(t *testing.T) {
+	t.Parallel()
+
+	before := routerBroadcastEventOverflowTotal.Value()
+	router := NewBusEventRouter(&mockBus{})
+	planeA := &decodingPlane{
+		mockPlane: &mockPlane{
+			name: "A",
+			subscriptions: []Subscription{
+				{Primary: 0xB5, Secondary: 0x16},
+			},
+		},
+		decoded: map[string]types.Value{
+			"foo": {Value: uint8(1), Valid: true},
+		},
+		handled: true,
+	}
+	planeB := &decodingPlane{
+		mockPlane: &mockPlane{
+			name: "B",
+			subscriptions: []Subscription{
+				{Primary: 0xB5, Secondary: 0x16},
+			},
+		},
+		decoded: map[string]types.Value{
+			"bar": {Value: uint8(2), Valid: true},
+		},
+		handled: true,
+	}
+	router.SetPlanes([]Plane{planeA, planeB})
+
+	for i := 0; i < cap(router.events); i++ {
+		router.events <- BroadcastEvent{Plane: "seed"}
+	}
+
+	errs := router.HandleBroadcast(protocol.Frame{Primary: 0xB5, Secondary: 0x16})
+	if len(errs) != 2 {
+		t.Fatalf("errors = %d; want 2", len(errs))
+	}
+	for _, err := range errs {
+		if !errors.Is(err, ErrBroadcastEventOverflow) {
+			t.Fatalf("error = %v; want ErrBroadcastEventOverflow", err)
+		}
+	}
+	if planeA.broadcastCalls != 1 || planeB.broadcastCalls != 1 {
+		t.Fatalf("broadcast calls = (%d, %d); want (1, 1)", planeA.broadcastCalls, planeB.broadcastCalls)
+	}
+	if got := routerBroadcastEventOverflowTotal.Value(); got != before+2 {
+		t.Fatalf("routerBroadcastEventOverflowTotal = %d; want %d", got, before+2)
+	}
+}
+
 func TestBusEventRouter_InvokeCoalescesConcurrentReadOnlyCalls(t *testing.T) {
 	t.Parallel()
 

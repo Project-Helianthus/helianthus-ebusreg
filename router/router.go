@@ -3,6 +3,8 @@ package router
 import (
 	"context"
 	"encoding/json"
+	"errors"
+	"expvar"
 	"fmt"
 	"strings"
 	"sync"
@@ -18,6 +20,10 @@ type Subscription struct {
 	Primary   byte
 	Secondary byte
 }
+
+var ErrBroadcastEventOverflow = errors.New("router broadcast event queue full")
+
+var routerBroadcastEventOverflowTotal = expvar.NewInt("router_broadcast_event_overflow_total")
 
 type BroadcastEvent struct {
 	Plane  string
@@ -147,10 +153,10 @@ func (router *BusEventRouter) HandleBroadcast(frame protocol.Frame) []error {
 		return nil
 	}
 
-	errors := make([]error, 0)
+	errs := make([]error, 0)
 	for _, plane := range planes {
 		if err := plane.OnBroadcast(frame); err != nil {
-			errors = append(errors, err)
+			errs = append(errs, err)
 		}
 
 		decoder, ok := plane.(BroadcastDecoder)
@@ -159,7 +165,7 @@ func (router *BusEventRouter) HandleBroadcast(frame protocol.Frame) []error {
 		}
 		decoded, handled, err := decoder.DecodeBroadcast(frame)
 		if err != nil {
-			errors = append(errors, err)
+			errs = append(errs, err)
 			continue
 		}
 		if !handled {
@@ -174,9 +180,11 @@ func (router *BusEventRouter) HandleBroadcast(frame protocol.Frame) []error {
 		select {
 		case router.events <- event:
 		default:
+			routerBroadcastEventOverflowTotal.Add(1)
+			errs = append(errs, fmt.Errorf("router.HandleBroadcast plane=%s: %w", plane.Name(), ErrBroadcastEventOverflow))
 		}
 	}
-	return errors
+	return errs
 }
 
 func (router *BusEventRouter) Invoke(ctx context.Context, plane Plane, methodName string, params map[string]any) (any, error) {

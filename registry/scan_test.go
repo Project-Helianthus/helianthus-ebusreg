@@ -213,6 +213,57 @@ func (bus *vaillantScanIDBus) Send(ctx context.Context, frame protocol.Frame) (*
 	return nil, ebuserrors.ErrNoSuchDevice
 }
 
+type vaillantScanIDMixedChunkBus struct {
+	calls []protocol.Frame
+}
+
+func (bus *vaillantScanIDMixedChunkBus) Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	bus.calls = append(bus.calls, frame)
+
+	if frame.Primary == scanPrimary && frame.Secondary == scanSecondary {
+		if frame.Target != 0x08 {
+			return nil, ebuserrors.ErrNoSuchDevice
+		}
+		return &protocol.Frame{
+			Source:    0x08,
+			Target:    frame.Source,
+			Primary:   scanPrimary,
+			Secondary: scanSecondary,
+			Data:      []byte{0xB5, 'B', 'A', 'I', '0', '0', 0x12, 0x01, 0x76, 0x03},
+		}, nil
+	}
+
+	if frame.Primary == vaillantPrimary && frame.Secondary == vaillantScanIDSecondary {
+		if frame.Target != 0x08 || len(frame.Data) != 1 {
+			return nil, ebuserrors.ErrNoSuchDevice
+		}
+
+		var chunk []byte
+		switch frame.Data[0] {
+		case 0x24:
+			chunk = []byte{0x00, '2', '1', '2', '2', '0', '1', '0', '0'}
+		case 0x25:
+			chunk = []byte{'1', '0', '0', '2', '4', '6', '0', '4', '0'}
+		case 0x26:
+			chunk = []byte{'0', '0', '1', '0', '0', '5', '0', '3', '4'}
+		case 0x27:
+			chunk = []byte{'N', '9', '<', '<', '<', '<', '<', '<', '<'}
+		default:
+			return nil, ebuserrors.ErrNoSuchDevice
+		}
+
+		return &protocol.Frame{
+			Source:    frame.Target,
+			Target:    frame.Source,
+			Primary:   vaillantPrimary,
+			Secondary: vaillantScanIDSecondary,
+			Data:      chunk,
+		}, nil
+	}
+
+	return nil, ebuserrors.ErrNoSuchDevice
+}
+
 type vaillantScanIDCanceledBus struct {
 	calls []protocol.Frame
 }
@@ -290,6 +341,33 @@ func TestScanUsesDiscoveredAddressForVaillantScanID(t *testing.T) {
 		t.Fatalf("expected device 0x30 to be registered")
 	}
 	if entry.SerialNumber() != "21-22-09-0020184848-0082-005409-N4" {
+		t.Fatalf("unexpected serial number: %q", entry.SerialNumber())
+	}
+
+	if len(bus.calls) != 5 {
+		t.Fatalf("expected 5 calls (scan + 4 scan.id), got %d", len(bus.calls))
+	}
+}
+
+func TestScanUsesFallbackChunkLayoutForVaillantScanID(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	bus := &vaillantScanIDMixedChunkBus{}
+
+	entries, err := Scan(context.Background(), bus, registry, 0x71, []byte{0x08})
+	if err != nil {
+		t.Fatalf("Scan error = %v", err)
+	}
+	if len(entries) != 1 {
+		t.Fatalf("expected 1 entry, got %d", len(entries))
+	}
+
+	entry, ok := registry.Lookup(0x08)
+	if !ok {
+		t.Fatalf("expected device 0x08 to be registered")
+	}
+	if entry.SerialNumber() != "21-22-01-0010024604-0001-005034-N9" {
 		t.Fatalf("unexpected serial number: %q", entry.SerialNumber())
 	}
 

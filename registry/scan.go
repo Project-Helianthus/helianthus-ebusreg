@@ -259,7 +259,7 @@ func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target by
 
 	fullRaw := make([]byte, 0, 36)
 	for _, chunk := range chunks {
-		fullRaw = append(fullRaw, chunk...)
+		fullRaw = append(fullRaw, normalizeScanIDChunk(chunk)...)
 	}
 
 	trimmed := trimScanIDBytes(fullRaw)
@@ -272,6 +272,13 @@ func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target by
 		return "", false, nil
 	}
 	return formatted, true, nil
+}
+
+func normalizeScanIDChunk(chunk []byte) []byte {
+	if len(chunk) == 9 && chunk[0] == 0x00 {
+		return chunk[1:]
+	}
+	return chunk
 }
 
 func trimScanIDBytes(data []byte) []byte {

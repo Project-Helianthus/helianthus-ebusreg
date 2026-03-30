@@ -23,14 +23,13 @@ func canonicalPhysicalIdentity(info DeviceInfo) physicalIdentity {
 }
 
 func (identity physicalIdentity) key() string {
-	if identity.manufacturer == "" || identity.deviceID == "" {
+	if identity.manufacturer == "" {
 		return identity.withFallbackModelSignature()
 	}
 	if identity.serialNumber != "" {
 		return strings.Join([]string{
 			"sn",
 			identity.manufacturer,
-			identity.deviceID,
 			identity.serialNumber,
 		}, "|")
 	}
@@ -38,7 +37,6 @@ func (identity physicalIdentity) key() string {
 		return strings.Join([]string{
 			"mac",
 			identity.manufacturer,
-			identity.deviceID,
 			identity.macAddress,
 		}, "|")
 	}

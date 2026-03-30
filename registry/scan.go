@@ -207,7 +207,7 @@ func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target by
 		ctx = context.Background()
 	}
 
-	raw := make([]byte, 0, 32)
+	chunks := make([][]byte, 0, 4)
 	for qq := byte(0x24); qq <= byte(0x27); qq++ {
 		request := protocol.Frame{
 			Source:    source,
@@ -232,13 +232,37 @@ func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target by
 		if response == nil {
 			return "", false, nil
 		}
-		if len(response.Data) != 9 || response.Data[0] != 0x00 {
+		if len(response.Data) == 0 {
 			return "", false, nil
 		}
-		raw = append(raw, response.Data[1:]...)
+		chunks = append(chunks, append([]byte(nil), response.Data...))
 	}
 
-	trimmed := trimScanIDBytes(raw)
+	statusRaw := make([]byte, 0, 32)
+	statusOK := true
+	for _, chunk := range chunks {
+		if len(chunk) != 9 || chunk[0] != 0x00 {
+			statusOK = false
+			break
+		}
+		statusRaw = append(statusRaw, chunk[1:]...)
+	}
+	if statusOK {
+		trimmed := trimScanIDBytes(statusRaw)
+		if len(trimmed) > 0 {
+			formatted := formatVaillantSerial(string(trimmed))
+			if formatted != "" {
+				return formatted, true, nil
+			}
+		}
+	}
+
+	fullRaw := make([]byte, 0, 36)
+	for _, chunk := range chunks {
+		fullRaw = append(fullRaw, chunk...)
+	}
+
+	trimmed := trimScanIDBytes(fullRaw)
 	if len(trimmed) == 0 {
 		return "", false, nil
 	}
@@ -251,8 +275,18 @@ func readVaillantScanID(ctx context.Context, bus ScanBus, source byte, target by
 }
 
 func trimScanIDBytes(data []byte) []byte {
+	start := 0
+	for start < len(data) {
+		first := data[start]
+		if first == 0x00 || first == 0x20 || first == 0xFF {
+			start++
+			continue
+		}
+		break
+	}
+
 	end := len(data)
-	for end > 0 {
+	for end > start {
 		last := data[end-1]
 		if last == 0x00 || last == 0x20 || last == 0xFF {
 			end--
@@ -260,7 +294,7 @@ func trimScanIDBytes(data []byte) []byte {
 		}
 		break
 	}
-	return data[:end]
+	return data[start:end]
 }
 
 func formatVaillantSerial(raw string) string {

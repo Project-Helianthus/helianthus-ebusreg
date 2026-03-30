@@ -131,7 +131,9 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	if storedInfo.Manufacturer == "" {
 		storedInfo.Manufacturer = entry.info.Manufacturer
 	}
-	if storedInfo.DeviceID == "" {
+	if existingByIdentity != nil && entry.info.DeviceID != "" && storedInfo.DeviceID != entry.info.DeviceID {
+		storedInfo.DeviceID = entry.info.DeviceID
+	} else if storedInfo.DeviceID == "" {
 		storedInfo.DeviceID = entry.info.DeviceID
 	}
 	if storedInfo.SoftwareVersion == "" {
@@ -147,7 +149,9 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 		storedInfo.MacAddress = entry.info.MacAddress
 	}
 	storedInfo.Address = entry.primaryAddress
-	if info.SerialNumber == "" && info.MacAddress == "" && entry.identityKey != "" {
+	physical = canonicalPhysicalIdentity(storedInfo)
+	identityKey = physical.key()
+	if identityKey == "" && entry.identityKey != "" {
 		identityKey = entry.identityKey
 	}
 

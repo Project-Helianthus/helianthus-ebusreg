@@ -73,6 +73,16 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 				Secondary: scanSecondary,
 			}
 			response, err := bus.Send(ctx, request)
+
+			// Pace every probe — whether it succeeded, timed out, or got
+			// a NACK — so scan traffic never monopolises the bus.runLoop
+			// queue.  Context cancellation still returns immediately.
+			select {
+			case <-time.After(scanProbeDelay):
+			case <-ctx.Done():
+				return nil, ctx.Err()
+			}
+
 			if err != nil {
 				if ctx.Err() != nil {
 					return nil, ctx.Err()
@@ -145,13 +155,6 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 			if _, ok := registered[canonicalAddress]; !ok {
 				registered[canonicalAddress] = struct{}{}
 				entries = append(entries, entry)
-			}
-
-			// Pace scan probes to avoid monopolising the bus.runLoop queue.
-			select {
-			case <-time.After(scanProbeDelay):
-			case <-ctx.Done():
-				return nil, ctx.Err()
 			}
 		}
 

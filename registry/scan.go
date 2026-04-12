@@ -29,6 +29,11 @@ type ScanBus interface {
 
 const scanCollisionMaxPasses = 3
 
+// scanProbeDelay is the pause between scan probes. The eBUS supports ~10
+// frames/second; 100 ms per probe uses ~10 % of bus capacity for scanning
+// while leaving 90 % for semantic B524 polling traffic.
+const scanProbeDelay = 100 * time.Millisecond
+
 // Scan performs a 07 04 identification scan over the provided targets.
 func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byte, targets []byte) ([]DeviceEntry, error) {
 	if bus == nil {
@@ -140,6 +145,13 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 			if _, ok := registered[canonicalAddress]; !ok {
 				registered[canonicalAddress] = struct{}{}
 				entries = append(entries, entry)
+			}
+
+			// Pace scan probes to avoid monopolising the bus.runLoop queue.
+			select {
+			case <-time.After(scanProbeDelay):
+			case <-ctx.Done():
+				return nil, ctx.Err()
 			}
 		}
 

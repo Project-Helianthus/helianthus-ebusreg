@@ -138,8 +138,8 @@ services:
         safety_class: read_only_bus_load
 `
 	type axis struct {
-		name       string
-		defaults   map[string]string
+		name        string
+		defaults    map[string]string
 		typoedField string
 		typoedValue string
 	}

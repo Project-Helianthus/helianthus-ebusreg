@@ -66,7 +66,7 @@ func isKnownSafetyClass(s SafetyClass) bool {
 func identityKeyFingerprint(k IdentityKey) string {
 	return fmt.Sprintf(
 		"ns=%s|pb=%02X|sb=%02X|sel=%s|tc=%s|dir=%s|rr=%s|ba=%s|ap=%s|lpm=%s|sd=%s|sv=%s|tcr=%v|ver=%s",
-		k.Namespace, k.PB, k.SB, k.SelectorPath, k.TelegramClass, k.Direction,
+		k.Namespace, k.PBValue(), k.SBValue(), k.SelectorPath, k.TelegramClass, k.Direction,
 		k.RequestOrResponseRole, k.BroadcastOrAddressed, k.AnswerPolicy,
 		k.LengthPrefixMode, k.SelectorDecoder, k.ServiceVariant,
 		k.TransportCapabilityRequirements, k.Version,
@@ -107,7 +107,7 @@ func detectAmbiguousLengthSelectors(cat Catalog) error {
 				continue
 			}
 			key := fmt.Sprintf("%s|%02X|%02X|%s|%s|%s|%s",
-				k.Namespace, k.PB, k.SB, k.SelectorDecoder,
+				k.Namespace, k.PBValue(), k.SBValue(), k.SelectorDecoder,
 				k.SelectorPath, k.Direction, k.RequestOrResponseRole)
 			buckets[key] = append(buckets[key], bucket{cmd.ID, k.LengthPrefixMode})
 		}

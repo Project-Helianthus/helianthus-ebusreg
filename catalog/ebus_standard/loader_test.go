@@ -42,6 +42,64 @@ func TestLoadCatalog_AmbiguousLengthSelector(t *testing.T) {
 	}
 }
 
+// TestLoadCatalog_MissingPB asserts that a YAML fixture omitting the `pb`
+// key in the identity block is rejected with ErrIncompleteIdentityKey. The
+// value 0x00 must NOT be accepted as a default; absence of the key is the
+// only signal the loader has to distinguish "missing" from "explicit 0x00".
+func TestLoadCatalog_MissingPB(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "missing_pb.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrIncompleteIdentityKey, got nil")
+	}
+	if !errors.Is(err, ErrIncompleteIdentityKey) {
+		t.Fatalf("LoadCatalog: expected ErrIncompleteIdentityKey, got %v", err)
+	}
+}
+
+// TestLoadCatalog_MissingSB asserts the symmetric rejection when the `sb`
+// key is absent.
+func TestLoadCatalog_MissingSB(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "missing_sb.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrIncompleteIdentityKey, got nil")
+	}
+	if !errors.Is(err, ErrIncompleteIdentityKey) {
+		t.Fatalf("LoadCatalog: expected ErrIncompleteIdentityKey, got %v", err)
+	}
+}
+
+// TestLoadCatalog_ExplicitZeroPBSB asserts that explicitly-set `pb: 0x00`
+// and `sb: 0x00` are ACCEPTED — the value zero is legitimate when the YAML
+// author wrote it out. Only absence of the key must be rejected.
+func TestLoadCatalog_ExplicitZeroPBSB(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "explicit_zero_pb_sb.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	cat, err := LoadCatalog(data)
+	if err != nil {
+		t.Fatalf("LoadCatalog: expected success for explicit zero PB/SB, got %v", err)
+	}
+	if len(cat.Services) != 1 || len(cat.Services[0].Commands) != 1 {
+		t.Fatalf("LoadCatalog: expected 1 service with 1 command, got %+v", cat.Services)
+	}
+	id := cat.Services[0].Commands[0].Identity
+	if id.PB == nil || *id.PB != 0x00 {
+		t.Fatalf("LoadCatalog: PB: expected explicit 0x00, got %v", id.PB)
+	}
+	if id.SB == nil || *id.SB != 0x00 {
+		t.Fatalf("LoadCatalog: SB: expected explicit 0x00, got %v", id.SB)
+	}
+}
+
 // TestEmbeddedCatalog_SHAPinning asserts that the embedded catalog carries
 // a ContentSHA256 value and that it matches the SHA of its raw bytes. This
 // enforces the plan's "Catalog is SHA-pinned and version-tagged"

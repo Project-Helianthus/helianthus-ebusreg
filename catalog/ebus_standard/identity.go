@@ -78,9 +78,12 @@ const (
 // canonical §3 of the locked plan. Every catalog entry must populate every
 // field; generation fails on duplicate identity keys.
 type IdentityKey struct {
-	Namespace                       string                `yaml:"namespace"`
-	PB                              uint8                 `yaml:"pb"`
-	SB                              uint8                 `yaml:"sb"`
+	Namespace string `yaml:"namespace"`
+	// PB and SB are pointer-typed so the YAML loader can distinguish an
+	// absent key (nil → ErrIncompleteIdentityKey) from an explicit zero
+	// value (e.g. `pb: 0x00` is legitimate and must be accepted).
+	PB                              *uint8                `yaml:"pb"`
+	SB                              *uint8                `yaml:"sb"`
 	SelectorPath                    string                `yaml:"selector_path"` // nullable ("" = no selector)
 	TelegramClass                   TelegramClass         `yaml:"telegram_class"`
 	Direction                       Direction             `yaml:"direction"`
@@ -102,6 +105,14 @@ type IdentityKey struct {
 // every catalog entry.
 func (k IdentityKey) IsComplete() bool {
 	if k.Namespace == "" {
+		return false
+	}
+	// PB/SB must be present in the source document. The value 0x00 is
+	// legitimate when explicitly set; only absence (nil) is rejected.
+	if k.PB == nil {
+		return false
+	}
+	if k.SB == nil {
 		return false
 	}
 	if k.TelegramClass == "" {
@@ -134,8 +145,24 @@ func (k IdentityKey) IsComplete() bool {
 	if k.Version == "" {
 		return false
 	}
-	// PB, SB, SelectorPath are value-typed; zero is semantically valid for
-	// PB/SB (e.g. 0x03, 0x00) and empty is explicitly nullable for
-	// SelectorPath.
+	// SelectorPath is value-typed; empty is explicitly nullable.
 	return true
+}
+
+// PBValue returns the dereferenced PB byte, or 0 if PB is nil. Callers that
+// need to distinguish "absent" from "explicit 0x00" must check the pointer
+// field directly or use IsComplete().
+func (k IdentityKey) PBValue() uint8 {
+	if k.PB == nil {
+		return 0
+	}
+	return *k.PB
+}
+
+// SBValue returns the dereferenced SB byte, or 0 if SB is nil.
+func (k IdentityKey) SBValue() uint8 {
+	if k.SB == nil {
+		return 0
+	}
+	return *k.SB
 }

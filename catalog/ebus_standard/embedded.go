@@ -1,25 +1,23 @@
 package ebus_standard_catalog
 
-// EmbeddedYAML returns the raw bytes of the embedded catalog YAML.
-//
-// RED stub: the real implementation go-embeds catalog.yaml. Until the
-// GREEN commit lands, this panics to keep the package compiling while
-// making every embedded-catalog test fail loudly.
+import _ "embed"
+
+//go:embed catalog.yaml
+var embeddedYAMLBytes []byte
+
+// EmbeddedYAML returns the raw bytes of the embedded catalog YAML. The
+// returned slice is shared; callers must not modify it.
 func EmbeddedYAML() []byte {
-	panic("not implemented: embedded ebus_standard catalog YAML (M2 RED stub)")
+	return embeddedYAMLBytes
 }
 
-// MustEmbeddedCatalog returns the parsed embedded catalog or panics.
+// MustEmbeddedCatalog returns the parsed embedded catalog or panics. This
+// is safe because the embedded bytes are compile-time constants and any
+// load failure is a build-breaking catalog error that CI catches.
 func MustEmbeddedCatalog() Catalog {
 	cat, err := LoadCatalog(EmbeddedYAML())
 	if err != nil {
 		panic("ebus_standard: embedded catalog failed to load: " + err.Error())
 	}
 	return cat
-}
-
-// ComputeContentSHA256 returns the lowercase hex SHA-256 of the given bytes.
-// Stub to be implemented alongside the loader.
-func ComputeContentSHA256(data []byte) string {
-	panic("not implemented: ComputeContentSHA256 (M2 RED stub)")
 }

@@ -23,6 +23,12 @@ var (
 	// ErrUnknownSafetyClass is returned when an entry's safety_class is
 	// not one of the enumerated values.
 	ErrUnknownSafetyClass = errors.New("ebus_standard: unknown safety_class")
+
+	// ErrUnknownEnumValue is returned when an identity-key enum field
+	// (telegram_class, direction, request_or_response_role,
+	// broadcast_or_addressed, answer_policy, length_prefix_mode) carries
+	// a value that is not one of the constants defined in identity.go.
+	ErrUnknownEnumValue = errors.New("ebus_standard: unknown enum value")
 )
 
 // LoadCatalog parses and validates a YAML catalog document. The returned

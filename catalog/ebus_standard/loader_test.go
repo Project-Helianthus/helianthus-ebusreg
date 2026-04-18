@@ -2,8 +2,10 @@ package ebus_standard_catalog
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -98,6 +100,106 @@ func TestLoadCatalog_ExplicitZeroPBSB(t *testing.T) {
 	if id.SB == nil || *id.SB != 0x00 {
 		t.Fatalf("LoadCatalog: SB: expected explicit 0x00, got %v", id.SB)
 	}
+}
+
+// TestLoadCatalog_UnknownEnumValue asserts that typos in any of the enum-
+// typed identity-key axes are rejected at load time with
+// ErrUnknownEnumValue — rather than silently accepted as opaque strings,
+// which would break downstream matching without a deterministic error.
+//
+// One sub-test per axis, each starts from a valid template and replaces
+// a single field with a deliberate typo.
+func TestLoadCatalog_UnknownEnumValue(t *testing.T) {
+	const validTemplate = `
+namespace: ebus_standard
+version: v1.0-locked
+plan_sha256: 9e0a29bb76d99f551904b05749e322aafd3972621858aa6d1acbe49b9ef37305
+services:
+  - pb: 0x07
+    name: System Data
+    commands:
+      - id: ebus_standard.enum_typo_test
+        name: Enum typo probe
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0x04
+          selector_path: ""
+          telegram_class: {{TELEGRAM_CLASS}}
+          direction: {{DIRECTION}}
+          request_or_response_role: {{ROLE}}
+          broadcast_or_addressed: {{ADDRESSING}}
+          answer_policy: {{ANSWER_POLICY}}
+          length_prefix_mode: {{LPM}}
+          selector_decoder: none
+          service_variant: enum_probe
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+`
+	type axis struct {
+		name       string
+		defaults   map[string]string
+		typoedField string
+		typoedValue string
+	}
+	baseline := map[string]string{
+		"TELEGRAM_CLASS": "addressed",
+		"DIRECTION":      "request",
+		"ROLE":           "initiator",
+		"ADDRESSING":     "addressed",
+		"ANSWER_POLICY":  "answer_required",
+		"LPM":            "none",
+	}
+	// Sanity: the baseline template itself must load successfully.
+	t.Run("baseline_loads", func(t *testing.T) {
+		yml := applyTemplate(validTemplate, baseline)
+		if _, err := LoadCatalog([]byte(yml)); err != nil {
+			t.Fatalf("baseline template: expected success, got %v", err)
+		}
+	})
+
+	cases := []axis{
+		{name: "telegram_class", typoedField: "TELEGRAM_CLASS", typoedValue: "addresed_typo"},
+		{name: "direction", typoedField: "DIRECTION", typoedValue: "requset"},
+		{name: "request_or_response_role", typoedField: "ROLE", typoedValue: "initator"},
+		{name: "broadcast_or_addressed", typoedField: "ADDRESSING", typoedValue: "addresed"},
+		{name: "answer_policy", typoedField: "ANSWER_POLICY", typoedValue: "answer_req"},
+		{name: "length_prefix_mode", typoedField: "LPM", typoedValue: "fixd"},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			vals := make(map[string]string, len(baseline))
+			for k, v := range baseline {
+				vals[k] = v
+			}
+			vals[tc.typoedField] = tc.typoedValue
+			yml := applyTemplate(validTemplate, vals)
+			_, err := LoadCatalog([]byte(yml))
+			if err == nil {
+				t.Fatalf("axis %s with typo %q: expected ErrUnknownEnumValue, got nil", tc.name, tc.typoedValue)
+			}
+			if !errors.Is(err, ErrUnknownEnumValue) {
+				t.Fatalf("axis %s with typo %q: expected ErrUnknownEnumValue, got %v", tc.name, tc.typoedValue, err)
+			}
+			// Error message must name the field and the bad value for
+			// deterministic diagnosis.
+			if !strings.Contains(err.Error(), tc.name) {
+				t.Fatalf("axis %s: error %q does not name the field", tc.name, err.Error())
+			}
+			if !strings.Contains(err.Error(), tc.typoedValue) {
+				t.Fatalf("axis %s: error %q does not include the bad value", tc.name, err.Error())
+			}
+		})
+	}
+}
+
+func applyTemplate(tpl string, vals map[string]string) string {
+	out := tpl
+	for k, v := range vals {
+		out = strings.ReplaceAll(out, fmt.Sprintf("{{%s}}", k), v)
+	}
+	return out
 }
 
 // TestEmbeddedCatalog_SHAPinning asserts that the embedded catalog carries

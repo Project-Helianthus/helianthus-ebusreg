@@ -35,6 +35,9 @@ func loadCatalogImpl(data []byte) (Catalog, error) {
 			if !isKnownSafetyClass(cmd.SafetyClass) {
 				return Catalog{}, fmt.Errorf("%w: command %q safety_class=%q", ErrUnknownSafetyClass, cmd.ID, cmd.SafetyClass)
 			}
+			if err := validateIdentityEnums(cmd.ID, cmd.Identity); err != nil {
+				return Catalog{}, err
+			}
 		}
 	}
 
@@ -50,6 +53,55 @@ func loadCatalogImpl(data []byte) (Catalog, error) {
 
 	cat.ContentSHA256 = ComputeContentSHA256(data)
 	return cat, nil
+}
+
+// validateIdentityEnums checks every enum-typed identity axis against the
+// constants declared in identity.go. Any value that is non-empty but not
+// one of the enumerated constants is rejected with ErrUnknownEnumValue so
+// typos fail deterministically at load time rather than silently breaking
+// downstream matching.
+//
+// Empty values are NOT handled here — they are caught earlier by
+// IdentityKey.IsComplete(), which returns ErrIncompleteIdentityKey.
+func validateIdentityEnums(cmdID string, k IdentityKey) error {
+	switch k.TelegramClass {
+	case TelegramClassAddressed, TelegramClassBroadcast,
+		TelegramClassInitiatorInitiator, TelegramClassControllerBroadcast:
+	default:
+		return fmt.Errorf("%w: command %q field=telegram_class value=%q",
+			ErrUnknownEnumValue, cmdID, k.TelegramClass)
+	}
+	switch k.Direction {
+	case DirectionRequest, DirectionResponse:
+	default:
+		return fmt.Errorf("%w: command %q field=direction value=%q",
+			ErrUnknownEnumValue, cmdID, k.Direction)
+	}
+	switch k.RequestOrResponseRole {
+	case RoleInitiator, RoleResponder, RoleOriginator:
+	default:
+		return fmt.Errorf("%w: command %q field=request_or_response_role value=%q",
+			ErrUnknownEnumValue, cmdID, k.RequestOrResponseRole)
+	}
+	switch k.BroadcastOrAddressed {
+	case AddressedDirect, AddressedBroadcast:
+	default:
+		return fmt.Errorf("%w: command %q field=broadcast_or_addressed value=%q",
+			ErrUnknownEnumValue, cmdID, k.BroadcastOrAddressed)
+	}
+	switch k.AnswerPolicy {
+	case AnswerRequired, AnswerNone:
+	default:
+		return fmt.Errorf("%w: command %q field=answer_policy value=%q",
+			ErrUnknownEnumValue, cmdID, k.AnswerPolicy)
+	}
+	switch k.LengthPrefixMode {
+	case LengthPrefixNone, LengthPrefixFixed, LengthPrefixByte, LengthPrefixTypedPayload:
+	default:
+		return fmt.Errorf("%w: command %q field=length_prefix_mode value=%q",
+			ErrUnknownEnumValue, cmdID, k.LengthPrefixMode)
+	}
+	return nil
 }
 
 func isKnownSafetyClass(s SafetyClass) bool {

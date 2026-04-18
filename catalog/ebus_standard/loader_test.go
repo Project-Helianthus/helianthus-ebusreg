@@ -139,7 +139,6 @@ services:
 `
 	type axis struct {
 		name        string
-		defaults    map[string]string
 		typoedField string
 		typoedValue string
 	}

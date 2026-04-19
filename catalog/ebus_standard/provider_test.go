@@ -63,12 +63,11 @@ func TestProvider_DisabledReturnsSentinel(t *testing.T) {
 	}
 }
 
-// TestProvider_FromEnv_DefaultEnabled confirms the env-var default (unset =
-// enabled).
+// TestProvider_FromEnv_DefaultEnabled confirms the env-var default
+// behavior: an empty string MUST be treated as "unset" and the provider
+// MUST default to enabled.
 func TestProvider_FromEnv_DefaultEnabled(t *testing.T) {
 	t.Setenv(DisableEnvVar, "")
-	// An empty string MUST be treated as "unset" => enabled by default.
-	// Use Unsetenv path via Setenv to "" then explicit unset.
 	p, err := NewProviderFromEnv(MustEmbeddedCatalog())
 	if err != nil {
 		t.Fatalf("NewProviderFromEnv: %v", err)
@@ -95,8 +94,6 @@ func TestProvider_FromEnv_DisabledByFalse(t *testing.T) {
 	}
 }
 
-// TestProvider_UnknownMethodID confirms Invoke distinguishes "not in
-// catalog" from "safety denied".
 // TestProvider_DuplicateMethodIDRejected asserts NewProvider surfaces
 // ErrDuplicateMethodID when two catalog commands share the same ID. A
 // previous implementation silently overwrote the first entry in the
@@ -156,6 +153,9 @@ func TestProvider_DuplicateMethodIDRejected(t *testing.T) {
 	}
 }
 
+// TestProvider_UnknownMethodID confirms Invoke distinguishes "not in
+// catalog" from "safety denied" by returning ErrUnknownMethod when the
+// requested method ID is absent from the catalog's method index.
 func TestProvider_UnknownMethodID(t *testing.T) {
 	p, err := NewProvider(MustEmbeddedCatalog(), true)
 	if err != nil {

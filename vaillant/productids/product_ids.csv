@@ -434,7 +434,7 @@ Vaillant,ecoTEC plus,VUW 32CS/1-5 (N-INT2),0010043967,Boiler,
 Vaillant,ecoTEC plus,VUW 36CS/1-5 (N-INT2),0010043968,Boiler,
 Vaillant,ecoTEC plus,VUW 40CS/1-5 (N-INT2),0010043969,Boiler,
 Vaillant,ecoTEC plus,VUI 32CS/1-5 (N-INT2),0010043970,Boiler,
-Vaillant,FM5 Functional Module,VR 71,0010045478,Control Centre,
+Vaillant,sensoCOMFORT,VRC 720/3,0010045478,Regulator,eBUS wired; weather compensation; TFT touch display 3.5 inch; up to 9 heating circuits; cascade of up to 7 generators; supports myVAILLANT app via VR 940f; newer /3 generation (2022+); previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: loebbeshop.de heizung-billiger.de
 Vaillant,,,0020017837,Unknown,
 Vaillant,,VRT 50,0020018266,Thermostat,
 Vaillant,calorMATIC 430f,VRC 430f,0020028521,Regulator,
@@ -522,7 +522,7 @@ Vaillant,flexoTHERM,VWF 157/4,0020223459,Heat Pump,
 Vaillant,flexoTHERM,VWF 197/4,0020223460,Heat Pump,
 Vaillant,multiMATIC,VRC 700(f)/4,0020231561,Regulator,
 Vaillant,multiMATIC,VR 91f,0020231566,Thermostat,
-Vaillant,FM5 Functional Module,VR 71,0020242192,Control Centre,
+Vaillant,multiMATIC,VRC 700/5,0020242192,Regulator,weather compensated; eBUS; multi-circuit (up to 3 direct + 15 mixed with VR70/VR71); radio DCF variant (set with outside sensor); previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: heiz24.de heizungsdiscount24.de
 Vaillant,Internet communication module,VR920,0020252922,Gateway,
 Vaillant,Internet communication module,VR920,0020252923,Gateway,
 Vaillant,Internet communication module,VR920,0020252924,Gateway,
@@ -536,7 +536,7 @@ Vaillant,SensoNET,VR921,0020260963,Gateway,
 Vaillant,SensoNET,VR921,0020260964,Gateway,
 Vaillant,SensoNET,VR921,0020260965,Gateway,
 Vaillant,sensoCOMFORT RF,VRC 720f/2,0020262148,Regulator,
-Vaillant,FM3 Functional Module,VR 70,0020266797,Control Centre,
+Vaillant,multiMATIC,VRC 700/6,0020266797,Regulator,weather compensated; eBUS; multi-circuit (up to 3 direct + 15 mixed with VR70/VR71); wired variant 1 HK base; previously mismapped as FM3 VR 70; CONFIDENCE: HIGH; src: loebbeshop.de amazon.de obadis.com
 Vaillant,sensoDIRECT,VRC 710,0020274790,Regulator,
 Vaillant,SensoNET,VR921,0020282696,Gateway,
 Vaillant,myVaillant Connect,VR940f,0020292012,Gateway,
@@ -791,3 +791,84 @@ Vaillant,eloBLOCK,VE 18/14 EU I,0010023694,Boiler,electric wall heater; 18 kW; /
 Vaillant,eloBLOCK,VE 24/14 EU I,0010023696,Boiler,electric wall heater; 24 kW; /14 EU I generation; 400V 3-ph; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
 Vaillant,eloBLOCK,VE 28/14 EU I,0010023697,Boiler,electric wall heater; 28 kW; /14 EU I generation; 400V 3-ph; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
 Vaillant,ecoPOWER,Systemregler ecoPOWER 1.0,0020085296,Control Centre,system regulator for ecoPOWER 1.0 (Honda Stirling mCHP 1 kW el / 2.5 kW th); eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,calorMATIC 332,VRT 332,0020124465,Thermostat,eBUS room temperature regulator with clear-text display; wired; successor to VRT 330; compatible with Vaillant heat generators with eBUS interface (ecoTEC atmoTEC); CONFIDENCE: HIGH; src: heizung-billiger.de
+Vaillant,calorMATIC 370,VRT 370,0020108141,Thermostat,eBUS room temperature regulator with clear-text display; wired; successor to VRT 360; compatible with all Vaillant heat generators with eBUS interface; CONFIDENCE: HIGH; src: haustechnik-express.de
+Vaillant,calorMATIC 370f,VRT 370f,0020108148,Thermostat,Wireless (Funk) eBUS room temperature regulator; RF link to wall-mounted receiver unit; CONFIDENCE: HIGH; src: fort-lake-baltic.com
+Vaillant,calorMATIC 370f,VRT 370f,0020112592,Thermostat,Wireless Funk eBUS room temperature regulator (alternative SKU; controller-only); CONFIDENCE: HIGH; src: raleo.de
+Vaillant,calorMATIC 392,VRT 392,0020028505,Thermostat,eBUS room temperature regulator (digital modulating); wired; successor to VRT 390; CONFIDENCE: HIGH; src: ebay.com
+Vaillant,calorMATIC 392f,VRT 392f,0020028510,Thermostat,Wireless Funk eBUS room temperature regulator with RF receiver; digital modulating; CONFIDENCE: HIGH; src: warmteservice.nl
+Vaillant,calorMATIC 470,VRC 470,0020108127,Regulator,Weather-compensated eBUS regulator (original 470/1 generation); wired; outdoor sensor VRC DCF/VRC 693; CONFIDENCE: HIGH; src: ebay.com
+Vaillant,calorMATIC 470/4,VRC 470/4,0020171280,Regulator,Weather-compensated eBUS regulator (470/4 generation with wall socket); supports cooling switchover with aroTHERM and geoTHERM; CONFIDENCE: HIGH; src: ebay.com
+Vaillant,calorMATIC 470/4,VRC 470/4,0020184593,Regulator,Weather-compensated eBUS regulator (470/4 replacement without wall socket); replaces 0020112593; supports cooling switchover; 23-language display; CONFIDENCE: HIGH; src: heizung-billiger.de
+Vaillant,calorMATIC 470/3,VRC 470/3,0020171208,Regulator,Weather-compensated eBUS regulator (470/3 generation); wired; CONFIDENCE: HIGH; src: ebay.de
+Vaillant,sensoCOMFORT RF,VRC 720f/3,0010045481,Regulator,eBUS wireless RF; weather compensation; TFT touch display; up to 9 heating circuits; includes RF receiver + wireless outdoor sensor + 4x AA; supports myVAILLANT Pro; /3 generation; CONFIDENCE: HIGH; src: loebbeshop.de heizung-billiger.de
+Vaillant,myVAILLANT Pro,VR 940f (CIM cable),0010037346,Gateway,eBUS via CIM cable; WLAN/WiFi internet gateway; for newer ecoTEC plus (no external PSU); supports myVAILLANT Pro service; Apple HomeKit/Alexa; CONFIDENCE: HIGH; src: elecmec.co.uk plumbnation.co.uk
+Vaillant,myVAILLANT Pro,VR 940f (Plug + VRA 42),0010038367,Gateway,eBUS; WLAN/WiFi internet gateway; ships with plug-in PSU and VRA 42 adapter for older (2006+) eBUS appliances; CONFIDENCE: HIGH; src: cclcomponents.com cityplumbing.co.uk
+Vaillant,auroMATIC,VRS 570,0020203653,Regulator,solar differential temperature controller; eBUS link to heat generator for reheat demand; PWM pump control; color display; CONFIDENCE: HIGH; src: loebbeshop.de heizungsdiscount24.de
+Vaillant,auroMATIC,VRS 570 (UK/BE/CH),0020203654,Regulator,solar differential temperature controller; regional variant UK/BE/CH; eBUS link to heat generator; CONFIDENCE: MED; src: picclick.co.uk wolseley.co.uk
+Vaillant,VR 80,VR 80,306766,Regulator,Fernbediengerät (remote control unit with display) for calorMATIC 630/2 and auroMATIC 620/2; eBUS 2-wire; compatible with geoTHERM VWS; legacy 6-digit part; CONFIDENCE: HIGH; src: loebbeshop.de professional.vaillant.co.uk
+Vaillant,VR 81,VR 81,0020028539,Regulator,wired remote for calorMATIC VRC 430 (one heating circuit A1/A2); eBUS 2-wire; Turn-and-Click dial; CONFIDENCE: HIGH; src: ebay.de manualslib.de
+Vaillant,VR 81,VR 81 (regional variant 1),0020028541,Regulator,Fernbediengerät for calorMATIC 430/430f via eBUS (regional variant); CONFIDENCE: HIGH; src: manualslib.com
+Vaillant,VR 81,VR 81 (regional variant 2),0020028542,Regulator,Fernbediengerät for calorMATIC 430/430f via eBUS (regional variant); CONFIDENCE: HIGH; src: manualslib.com
+Vaillant,VR 81/2,VR 81/2,0020129322,Regulator,successor wired remote for calorMATIC 430/430f/470/470f; eBUS 2-wire; one remote per system; CONFIDENCE: HIGH; src: wolf-online-shop.de
+Vaillant,VR module,VR 30/3,0020139894,Module,Modulating bus coupler for cascading up to 6 eBUS heat generators on VRC 630/2 and auroMATIC 620/2; integrated in boiler switch box; unique bus address via rotary switch; CONFIDENCE: HIGH; src: heizung-billiger.de
+Vaillant,VR module,VR 31,306786,Module,Switching/non-modulating bus coupler (eBUS) for cascade installations on legacy VRC 630/auroMATIC 620; legacy 6-digit part; CONFIDENCE: HIGH; src: heatingspareparts.com amazon.de
+Vaillant,VR module,VR 32 B,0020235465,Module,Modulating eBUS bus coupler (galvanically isolated) for aroTHERM/aroTHERM plus and eloBLOCK cascade with sensoCOMFORT/multiMATIC 700; CONFIDENCE: HIGH; src: raleo.de eibabo.com
+Vaillant,VR module,VR 32/3,0020139895,Module,Modulating eBUS bus coupler for cascading modulating heat generators with eBUS electronics (flexoTHERM heat pumps recoVAIR gas boilers); CONFIDENCE: HIGH; src: professional.vaillant.co.uk heizung-billiger.de
+Vaillant,VR module,VR 34,0020017897,Module,Modulating bus coupler eBUS to 0-10 V interface for third-party heat generators; CONFIDENCE: HIGH; src: heizung-billiger.de loebbeshop.de
+Vaillant,VR module,VR 36,0020117036,Module,eBUS-Adapter Zusatzmodul connecting existing non-eBUS controller to eBUS heat generator; CONFIDENCE: HIGH; src: heizungsdiscount24.de loebbeshop.de
+Vaillant,VR module,VR 38,0020139836,Module,eBUS Spannungsnetzteil (power supply booster) required when connecting multiple eBUS systems to internet module VR 920/921; CONFIDENCE: HIGH; src: heizung-billiger.de loebbeshop.de
+Vaillant,VR module,VR 40,0020017744,Module,Multifunktionsmodul 2-of-7 (DHW circulation pump / external solenoid valve / error message / external HC pump demand / gas pressure damper / flap confirmation / steam extraction) for ecoTEC plus/atmoTEC/turboTEC; CONFIDENCE: HIGH; src: galaxus.ch vaillant.de
+Vaillant,VR module,VR 50 (UK/IE),0020242487,Regulator,ambiSENSE smart TRV radiator thermostat UK/IE variant; communicates wirelessly to VR 920 gateway (not direct wired eBUS); paired via VRC 700 app; discontinued 2024-03-31; CONFIDENCE: HIGH; src: amazon.co.uk plumbnation
+Vaillant,VR module,VR 50 (DE/AT/FR),0020242486,Regulator,ambiSENSE smart TRV radiator thermostat DE/AT/FR variant; CONFIDENCE: HIGH; src: amazon.de
+Vaillant,VR module,VR 50 (later variant),0020247920,Regulator,ambiSENSE smart TRV later variant; CONFIDENCE: MED; src: thermostat.guide
+Vaillant,VR module,VR 60/3,306782,Module,Mischermodul extending auroMATIC 620 / calorMATIC 630 / geoTHERM VWS/2 with 2 mixer circuits; eBUS-connected; max 6 modules cascaded; legacy 6-digit part; CONFIDENCE: HIGH; src: heizung-billiger.de amazon.de
+Vaillant,VR module,VR 65,307215,Module,Control Centre for storage connection; bridges Vaillant low-voltage eBUS controls to traditional 230 V S-plan/Y-plan zone valves and DHW cylinders (UK system); legacy 6-digit part; CONFIDENCE: HIGH; src: supremeplumb.com wolseley.co.uk
+Vaillant,recoVAIR,VAR 260/4,0010016040,Ventilation Unit,HRV central ventilation wall-mounted; 260 m3/h at 100 Pa; /4 generation; sensible plastic cross-counterflow heat exchanger (no enthalpy); modulating bypass; eBUS direct; DE/AT market; CONFIDENCE: HIGH; src: heizung-billiger.de
+Vaillant,recoVAIR,VAR 360/4 CH,0010016041,Ventilation Unit,HRV central ventilation wall-mounted; 360 m3/h; /4 generation; sensible cross-counterflow HX; bypass; eBUS direct; CH (Switzerland) market; CONFIDENCE: HIGH; src: tavolla.com
+Vaillant,recoVAIR,VAR 260/4 CH,0010016042,Ventilation Unit,HRV central ventilation wall-mounted; 260 m3/h; /4 generation; sensible HX; bypass; eBUS direct; CH market; CONFIDENCE: HIGH; src: vaillant.de PDF 276675
+Vaillant,recoVAIR,VAR 150/4 R CH,0010016047,Ventilation Unit,HRV central ventilation ceiling-mounted right-handed; 150 m3/h; /4 generation; sensible cross-counterflow HX; bypass; eBUS direct; CH market; CONFIDENCE: MED; src: vaillant.de PDF 276801
+Vaillant,recoVAIR,VAR 150/4 L CH,0010016048,Ventilation Unit,HRV central ventilation ceiling-mounted left-handed; 150 m3/h; /4 generation; sensible cross-counterflow HX; bypass; eBUS direct; CH market; CONFIDENCE: MED; src: vaillant.de PDF 276801
+Vaillant,recoVAIR,VAR 260/4 E CH,0010016350,Ventilation Unit,HRV central ventilation wall-mounted; 260 m3/h; /4 generation; E=enthalpy cross-counterflow HX (humidity recovery); bypass; eBUS direct; CH market; CONFIDENCE: HIGH; src: tavolla.com
+Vaillant,recoVAIR,VAR 360/4 E CH,0010016351,Ventilation Unit,HRV central ventilation wall-mounted; 360 m3/h; /4 generation; E=enthalpy HX; bypass; eBUS direct; CH market; CONFIDENCE: HIGH; src: kontakt.vaillant.de
+Vaillant,recoVAIR,VAR 275/3,0010005354,Ventilation Unit,HRV central ventilation; 275 m3/h; /3 generation legacy (2009-2014 R1); sensible cross-counterflow HX; eBUS direct; DE/AT market; CONFIDENCE: HIGH; src: heatingspareparts.com
+Vaillant,recoVAIR,VAR 275/3 (UK),0020064652,Ventilation Unit,HRV central ventilation; 275 m3/h; /3 generation legacy (UK/service-stock part); sensible HX; eBUS direct; CONFIDENCE: MED; src: mytub.co.uk
+Vaillant,recoVAIR,VAR 350/3,0010005355,Ventilation Unit,HRV central ventilation; 350 m3/h; /3 generation legacy (2009-2014 R1); sensible cross-counterflow HX; eBUS direct; DE/AT market; CONFIDENCE: HIGH; src: heatingspareparts.com
+Vaillant,recoVAIR,VAR 60/1 D,0010020773,Ventilation Unit,HRV decentralized/ductless single-room wall unit; up to 60 m3/h; /1 generation; regenerative ceramic heat accumulator (alternating airflow ~70s); wired master/slave up to 16 units; eBUS only via external bus coupler (VR32) to multiMATIC; DE/AT market; CONFIDENCE: MED - indirect eBUS only; src: heizung-billiger.de
+Vaillant,recoVAIR,VAR 60/1 DW,0010020774,Ventilation Unit,HRV decentralized wall unit; /1 wireless (DW); ceramic accumulator; wireless master/slave up to 16 units; eBUS via external bus coupler; DE/AT market; CONFIDENCE: MED - indirect eBUS only; src: heizung-billiger.de
+Vaillant,recoVAIR,VAR 60/2 D,0010047340,Ventilation Unit,HRV decentralized wall unit; /2 generation wired; ceramic accumulator; eBUS via external bus coupler; DE/AT/IT market; CONFIDENCE: MED - indirect eBUS only; src: eibabo.us
+Vaillant,recoVAIR,VAR 60/2 DW,0010047341,Ventilation Unit,HRV decentralized wall unit; /2 wireless (DW); ceramic accumulator; built-in humidity+light sensors; eBUS via external bus coupler; DE/AT market; CONFIDENCE: MED - indirect eBUS only; src: heizung-billiger.de
+Vaillant,eloBLOCK,VE 6/14 EU I,0010023690,Boiler,electric wall heater; 6 kW; 400V 3-ph (3x230V/400V+N+PE); /14 generation; integrated HE pump; eBUS; EAN 4024074831380; DE/AT/Western EU market; CONFIDENCE: HIGH; src: heima24.de heizung-billiger.de raleo.de
+Vaillant,eloBLOCK,VE 12/14 EU I,0010023692,Boiler,electric wall heater; 12 kW; 400V 3-ph; /14 generation; integrated HE pump; eBUS; EAN 4024074831403; DE/AT market; CONFIDENCE: HIGH; src: heima24.de heizung-billiger.de raleo.de
+Vaillant,eloBLOCK,VE 14/14 EU I,0010023693,Boiler,electric wall heater; 14 kW; 400V 3-ph; /14 generation; integrated HE pump; eBUS; EAN 4024074831410; DE/AT market; CONFIDENCE: HIGH; src: heima24.de heizung-billiger.de obeta.de
+Vaillant,eloBLOCK,VE 21/14 EU I,0010023695,Boiler,electric wall heater; 21 kW; 400V 3-ph; /14 generation; integrated HE pump; eBUS; EAN 4024074830451; DE/AT market; CONFIDENCE: HIGH; src: heima24.de heizung-billiger.de raleo.de
+Vaillant,eloBLOCK,VE 6/14 (IT mono),0010023698,Boiler,electric wall heater; 6 kW; 230V single-phase (monofase); /14 generation; integrated HE pump; eBUS; IT market variant; CONFIDENCE: HIGH; src: caldaiemurali.it climapower.it tavolla.com
+Vaillant,eloBLOCK,VE 9/14 (IT mono),0010023699,Boiler,electric wall heater; 9 kW; 230V single-phase; /14 generation; integrated HE pump; eBUS; IT market variant; CONFIDENCE: HIGH; src: climapower.it tavolla.com
+Vaillant,eloBLOCK,VE 12/14 (IT tri),0010023700,Boiler,electric wall heater; 12 kW; 400V 3-ph (trifase); /14 generation; integrated HE pump; eBUS; IT market variant; CONFIDENCE: HIGH; src: tavolla.com climaconvenienza.it
+Vaillant,eloBLOCK,VE 14/14 (IT tri),0010023701,Boiler,electric wall heater; 14 kW; 400V 3-ph; /14 generation; integrated HE pump; eBUS; IT market variant; CONFIDENCE: HIGH; src: tavolla.com caldaiemurali.it
+Vaillant,eloBLOCK,VE 18/14 (PL),0010023702,Boiler,electric wall heater; 18 kW; 3x230V/400V; /14 generation; integrated HE pump; eBUS; PL market variant; CONFIDENCE: HIGH; src: grzanieplus.pl bridom.pl
+Vaillant,eloBLOCK,VE 21/14 (PL),0010023703,Boiler,electric wall heater; 21 kW; 3x230V/400V; /14 generation; integrated HE pump; eBUS; PL market variant; CONFIDENCE: HIGH; src: grzanieplus.pl bridom.pl
+Vaillant,eloBLOCK,VE 24/14 (PL),0010023704,Boiler,electric wall heater; 24 kW; 3x230V/400V; /14 generation; integrated HE pump; eBUS; PL market variant; CONFIDENCE: HIGH; src: grzanieplus.pl bridom.pl
+Vaillant,eloBLOCK,VE 6/14 SEE,0010023706,Boiler,electric wall heater; 6 kW; 230V/400V; /14 generation; integrated HE pump; eBUS; SEE (Serbia/BA/ME/KO) market; CONFIDENCE: HIGH; src: unicor.rs vaillant.rs
+Vaillant,eloBLOCK,VE 9/14 SEE,0010023707,Boiler,electric wall heater; 9 kW; 230V/400V; /14 generation; integrated HE pump; eBUS; SEE market; CONFIDENCE: HIGH; src: unicor.rs vaillant.rs
+Vaillant,eloBLOCK,VE 12/14 SEE,0010023708,Boiler,electric wall heater; 12 kW; 400V 3-ph; /14 generation; integrated HE pump; eBUS; SEE market; CONFIDENCE: HIGH; src: eponuda.ba senigorshop.ba
+Vaillant,eloBLOCK,VE 14/14 SEE,0010023709,Boiler,electric wall heater; 14 kW; 400V 3-ph; /14 generation; integrated HE pump; eBUS; SEE market; CONFIDENCE: HIGH; src: senigorshop.ba magnet.rs vaillant.rs
+Vaillant,eloBLOCK,VE 18/14 SEE,0010023710,Boiler,electric wall heater; 18 kW; 400V 3-ph; /14 generation; integrated HE pump; eBUS; SEE market; CONFIDENCE: HIGH; src: inelektronik.rs vaillant.rs
+Vaillant,eloBLOCK,VE 21/14 SEE,0010023711,Boiler,electric wall heater; 21 kW; 400V 3-ph; /14 generation; integrated HE pump; eBUS; SEE market; CONFIDENCE: HIGH; src: inelektronik.rs unicor.rs
+Vaillant,eloBLOCK,VE 24/14 SEE,0010023712,Boiler,electric wall heater; 24 kW; 400V 3-ph; /14 generation; integrated HE pump; eBUS; SEE market; CONFIDENCE: HIGH; src: inelektronik.rs vaillant.rs
+Vaillant,eloBLOCK,VE 28/14 SEE,0010023713,Boiler,electric wall heater; 28 kW; 400V 3-ph; /14 generation; integrated HE pump; eBUS; SEE market; CONFIDENCE: HIGH; src: inelektronik.rs vaillant.rs
+Protherm,Ray,Ray 6 KE /14 EU,0010023670,Boiler,Protherm-rebranded eloBLOCK; electric wall heater; 1-6 kW; 230V/400V; /14 generation; integrated HE pump; eBUS; CZ/SK/RO market; EE class D; CONFIDENCE: HIGH; src: koupelny-venta.cz protherm.cz
+Protherm,Ray,Ray 9 KE /14 EU,0010023671,Boiler,Protherm-rebranded eloBLOCK; 1-9 kW; 230V/400V; /14 generation; eBUS; CZ/SK/RO market; CONFIDENCE: HIGH; src: akoupelnyatopeni.cz hornbach.ro
+Protherm,Ray,Ray 12 KE /14 EU,0010023672,Boiler,Protherm-rebranded eloBLOCK; 2-12 kW; 400V 3-ph; /14 generation; eBUS; CZ/SK/RO market; CONFIDENCE: HIGH; src: koupelny-venta.cz
+Protherm,Ray,Ray 14 KE /14 EU,0010023673,Boiler,Protherm-rebranded eloBLOCK; 14 kW; 400V 3-ph; /14 generation; eBUS; CZ/SK/RO market; CONFIDENCE: HIGH; src: akoupelnyatopeni.cz plusterm.ro
+Protherm,Ray,Ray 18 KE /14 EU,0010023674,Boiler,Protherm-rebranded eloBLOCK; 18 kW; 400V 3-ph; /14 generation; eBUS; CZ/SK/RO market; CONFIDENCE: HIGH; src: spishop.ro greenindustries.ro
+Protherm,Ray,Ray 21 KE /14 EU,0010023675,Boiler,Protherm-rebranded eloBLOCK; 21 kW; 400V 3-ph; /14 generation; eBUS; CZ/SK/RO market; CONFIDENCE: HIGH; src: spishop.ro
+Protherm,Ray,Ray 24 KE /14 EU,0010023676,Boiler,Protherm-rebranded eloBLOCK; 2-24 kW; 400V 3-ph; /14 generation; eBUS; CZ/SK/RO market; CONFIDENCE: HIGH; src: koupelny-venta.cz instalgo.ro
+Protherm,Ray,Ray 28 KE /14 EU,0010023677,Boiler,Protherm-rebranded eloBLOCK; 2.3-28 kW; 400V 3-ph; /14 generation; eBUS; CZ/SK/RO market; CONFIDENCE: HIGH; src: plynop.cz akoupelnyatopeni.cz
+Vaillant,zeoTHERM,VAS 106/3,0010008697,Heat Pump,zeolite-gas adsorption heat pump (first-gen /3); gas condensing + zeolite thermo-chemical sorption module; ~10 kW heating; natural gas E/H; DE (also AT) market; requires solar collectors (auroTHERM VFK or VTK); eBUS via VRC 700/calorMATIC; discontinued 2018; CONFIDENCE: HIGH; src: vaillant.de PDF 75693 manualslib
+Vaillant,zeoTHERM,VAS 156/4,0010014231,Heat Pump,zeolite-gas adsorption heat pump (/4 larger output); gas condensing + zeolite sorption; 15 kW heating (1.5-15 kW heating / 4.6-15 kW DHW); G20/G31; DE/AT market; requires solar collectors; eBUS via calorMATIC/VRC; discontinued 2018; CONFIDENCE: HIGH; src: ebay.de intec-heizung.de
+Vaillant,zeoTHERM,VAS 156/4 CH,0010014244,Heat Pump,zeolite-gas adsorption heat pump Swiss variant; 15 kW; G20 H / G31 P per CH gas qualities; requires solar field; eBUS via calorMATIC 470/VRC 700; discontinued 2018; CONFIDENCE: MED; src: vaillant.de PDF 185237 manualslib
+Vaillant,ecoPOWER,ecoPOWER 4.7/1 (VNC 138+5 - H),0010012972,CHP,mCHP first generation (pre-/2); 4.7 kW electric / 12.5 kW thermal; Honda Otto gas engine (modulating); Erdgas E/LL (H); predecessor to 0010020568; DE/AT/CHde market; eBUS; CONFIDENCE: HIGH; src: vaillant Betriebsanleitung 0020131410
+Vaillant,ecoPOWER,ecoPOWER 4.7/1 (VNC 138+5 - P),0010012973,CHP,mCHP first generation; 4.7 kW electric / 13.8 kW thermal; Honda Otto engine; Flüssiggas P (LPG); predecessor to 0010020569; eBUS; CONFIDENCE: HIGH; src: vaillant Betriebsanleitung 0020131410
+Vaillant,ecoPOWER,ecoPOWER 3.0/1 (VNC 88+3 - H),0010012974,CHP,mCHP first generation; 3.0 kW electric / 8.8 kW thermal; Honda Otto gas engine; Erdgas E/LL (H); predecessor to 0010020570; DE/AT/CHde market; eBUS; CONFIDENCE: HIGH; src: vaillant Betriebsanleitung 0020131410
+Vaillant,ecoPOWER,ecoPOWER 3.0/1 (VNC 88+3 - P),0010012975,CHP,mCHP first generation; 3.0 kW electric / 8.8 kW thermal; Honda Otto engine; Flüssiggas P (LPG); predecessor to 0010020571; eBUS; CONFIDENCE: HIGH; src: vaillant Betriebsanleitung 0020131410

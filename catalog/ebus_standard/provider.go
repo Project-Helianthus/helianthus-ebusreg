@@ -297,8 +297,16 @@ func CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) Provena
 			})
 		}
 		// Preferred value: deterministic precedence => device_info wins.
+		// When existingVal is empty, the descriptor value is only promoted
+		// to Preferred if the descriptor is marked valid. An invalid
+		// descriptor (desc.Valid == false) must NOT surface malformed or
+		// failed-decode identity as the canonical preferred value; leave
+		// Preferred empty so the caller falls through to the next source
+		// in the deterministic precedence chain (operator_seed > passive >
+		// "unknown"). The invalid value is still retained in Sources with
+		// Valid=false so the evidence trail is preserved.
 		preferred := existingVal
-		if preferred == "" {
+		if preferred == "" && desc.Valid {
 			preferred = descVal
 		}
 		// Agreement requires BOTH sources present AND equal. If only one

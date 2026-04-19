@@ -6,13 +6,13 @@ Saunier Duval,Thelia Condens,Thelia Condens 30-A (H-RO),0010016102,Boiler,
 Saunier Duval,Thelia Condens,Thelia Condens 35-A (H-RO),0010016103,Boiler,
 Saunier Duval,Examaster,Examaster,0020110658,Module,
 Saunier Duval,MiLink Plus,,0020116884,Gateway,
-Saunier Duval,Exacontrol,E7 C,0020118071,Regulator,
-Saunier Duval,Exacontrol,E7R C,0020118072,Regulator,
-Saunier Duval,Exacontrol,E7 C,0020118080,Regulator,
+Saunier Duval,Exacontrol,E7 C,0020118071,Thermostat,
+Saunier Duval,Exacontrol,E7R C,0020118072,Thermostat,
+Saunier Duval,Exacontrol,E7 C,0020118080,Thermostat,
 Saunier Duval,Examaster,Examaster,0020128485,Module,
-Saunier Duval,ExaControl,E7(R)C,0020128488,Regulator,
+Saunier Duval,Exacontrol,E7(R)C,0020128488,Thermostat,
 Saunier Duval,MiLink,SR900,0020135099,Gateway,
-Saunier Duval,Exacontrol,E7R C/SH,0020147973,Regulator,
+Saunier Duval,Exacontrol,E7R C/SH,0020147973,Thermostat,
 Saunier Duval,MiLink v2,SR920,0020252925,Gateway,
 Saunier Duval,MiLink v3,SR921,0020261008,Gateway,
 Saunier Duval,MiLink v3,SR921,0020282697,Gateway,
@@ -985,12 +985,12 @@ Saunier Duval,GeniaAir Split,GeniaAir Split HA 10-5 OS (400V),0010021152,Heat Pu
 Saunier Duval,GeniaAir Split,GeniaAir Split HA 12-5 OS,0010021153,Heat Pump,air-water split outdoor unit R410A 11.9 kW 230V Inverter eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: cedeo.fr
 Saunier Duval,GeniaSet Split,GeniaSet Split HA 3/5 (indoor hydraulic unit),0010023171,Module,Split indoor hydraulic module (colonne hydraulique ECS); pairs with GeniaAir Split outdoor; eBUS internal to GeniaAir system; NOT a DHW heat pump (HRV analog to Vaillant uniTOWER); CONFIDENCE: HIGH; src: manomano.fr
 Saunier Duval,GeniaSet Split,GeniaSet Split HA 7-5 STB (indoor hydraulic with tank),0010023172,Module,Split indoor hydraulic module with integrated DHW tank (analog to Vaillant uniTOWER); pairs with GeniaAir Split outdoor; eBUS internal; CONFIDENCE: HIGH; src: cedeo.fr
-Saunier Duval,Exacontrol,E7R B,0020049691,Regulator,eBUS via radio receiver; battery-powered wireless programmable room thermostat; pre-2012 generation; compatible with SD eBUS boilers; CONFIDENCE: HIGH; src: piecesxpress.com cedeo.fr
-Saunier Duval,Exacontrol,E7R B-S,0020085060,Regulator,eBUS wired version (no radio receiver) of E7R B; pre-2012 generation; listed as obsolete; CONFIDENCE: HIGH; src: piecesxpress.com
-Saunier Duval,Exacontrol,E (E-TA modulant),0020017839,Regulator,eBUS modulating non-programmable wired 230V room thermostat; legacy pre-E7 generation; compatible with SD eBUS boilers (older H2BUS models need translator 0020076951); CONFIDENCE: HIGH; src: cedeo.fr piecesxpress.com
-Saunier Duval,Exacontrol,Select SRT 50/2,0010041872,Regulator,eBUS modulating wired programmable regulator (self-powered via eBUS); compatible with all SD eBUS boilers since 2010; newer generation replacing E7 C; optional MiGo Link gateway; note non-standard 0010 prefix; CONFIDENCE: HIGH; src: cedeo.fr suner.eu
-Bulex,Exacontrol,E7 C,0020118074,Regulator,eBUS programmable wired thermostat self-powered from boiler card; Bulex (BE/NL) variant of SD E7 C; CONFIDENCE: HIGH; src: paulpromo.be eshop.dupontsanitair.be
-Bulex,Exacontrol,E7R C,0020118075,Regulator,eBUS via radio receiver; Bulex variant of SD E7R C; battery-powered wireless programmable; CONFIDENCE: MED; src: sanionline.be lambrechtsprofessionals.eu
+Saunier Duval,Exacontrol,E7R B,0020049691,Thermostat,eBUS via radio receiver; battery-powered wireless programmable room thermostat; pre-2012 generation; compatible with SD eBUS boilers; CONFIDENCE: HIGH; src: piecesxpress.com cedeo.fr
+Saunier Duval,Exacontrol,E7R B-S,0020085060,Thermostat,eBUS wired version (no radio receiver) of E7R B; pre-2012 generation; listed as obsolete; CONFIDENCE: HIGH; src: piecesxpress.com
+Saunier Duval,Exacontrol,E (E-TA modulant),0020017839,Thermostat,eBUS modulating non-programmable wired 230V room thermostat; legacy pre-E7 generation; compatible with SD eBUS boilers (older H2BUS models need translator 0020076951); CONFIDENCE: HIGH; src: cedeo.fr piecesxpress.com
+Saunier Duval,Exacontrol,Select SRT 50/2,0010041872,Thermostat,eBUS modulating wired programmable regulator (self-powered via eBUS); compatible with all SD eBUS boilers since 2010; newer generation replacing E7 C; optional MiGo Link gateway; note non-standard 0010 prefix; CONFIDENCE: HIGH; src: cedeo.fr suner.eu
+Bulex,Exacontrol,E7 C,0020118074,Thermostat,eBUS programmable wired thermostat self-powered from boiler card; Bulex (BE/NL) variant of SD E7 C; CONFIDENCE: HIGH; src: paulpromo.be eshop.dupontsanitair.be
+Bulex,Exacontrol,E7R C,0020118075,Thermostat,eBUS via radio receiver; Bulex variant of SD E7R C; battery-powered wireless programmable; CONFIDENCE: MED; src: sanionline.be lambrechtsprofessionals.eu
 Vaillant,sensoCOMFORT RF,sensoCOMFORT RF,0010036820,Regulator,eBUS wireless (RF) variant of sensoCOMFORT; successor line to VRC 720; CONFIDENCE: HIGH (user provided); src: Vaillant UK sensoCOMFORT brochure device.report
 Vaillant,calorMATIC 392f,VRT 392f,0020028511,Regulator,Wireless Funk eBUS room temperature regulator with RF receiver; additional regional variant; CONFIDENCE: HIGH (user provided); src: Vaillant PL manual calormatic-392f-115367
 Vaillant,calorMATIC 392f,VRT 392f,0020028512,Regulator,Wireless Funk eBUS room temperature regulator with RF receiver; additional regional variant; CONFIDENCE: HIGH (user provided); src: Vaillant PL manual calormatic-392f-115367

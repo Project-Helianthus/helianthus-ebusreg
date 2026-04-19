@@ -29,6 +29,12 @@ var (
 	// broadcast_or_addressed, answer_policy, length_prefix_mode) carries
 	// a value that is not one of the constants defined in identity.go.
 	ErrUnknownEnumValue = errors.New("ebus_standard: unknown enum value")
+
+	// ErrServiceMissingCommands is returned when a service entry deserializes
+	// with an empty commands list. A service with no commands is always a
+	// typo or omission in the YAML (wrong key name, empty list) and must
+	// fail loudly rather than silently load an empty service.
+	ErrServiceMissingCommands = errors.New("ebus_standard: service has no commands")
 )
 
 // LoadCatalog parses and validates a YAML catalog document. The returned

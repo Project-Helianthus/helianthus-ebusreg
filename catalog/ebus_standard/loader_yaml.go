@@ -27,6 +27,14 @@ func loadCatalogImpl(data []byte) (Catalog, error) {
 	// Validate identity-key completeness and check safety_class values.
 	for si := range cat.Services {
 		svc := &cat.Services[si]
+		// Reject services with no commands. An empty commands list is
+		// almost always a YAML typo (wrong key name, missing block) and
+		// must fail loudly rather than silently accept a service with no
+		// method definitions.
+		if len(svc.Commands) == 0 {
+			return Catalog{}, fmt.Errorf("%w: service %q (pb=0x%02X)",
+				ErrServiceMissingCommands, svc.Name, svc.PB)
+		}
 		for ci := range svc.Commands {
 			cmd := &svc.Commands[ci]
 			if !cmd.Identity.IsComplete() {

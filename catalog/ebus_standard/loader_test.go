@@ -201,6 +201,33 @@ func applyTemplate(tpl string, vals map[string]string) string {
 	return out
 }
 
+// TestLoadCatalog_ServiceWithoutCommands asserts that a YAML fixture whose
+// service block deserializes with no commands (typo or omission of the
+// `commands:` key) is rejected with ErrServiceMissingCommands. The baseline
+// catalog satisfies len(commands) > 0 by construction.
+func TestLoadCatalog_ServiceWithoutCommands(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "service_without_commands.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrServiceMissingCommands, got nil")
+	}
+	if !errors.Is(err, ErrServiceMissingCommands) {
+		t.Fatalf("LoadCatalog: expected ErrServiceMissingCommands, got %v", err)
+	}
+}
+
+// TestLoadCatalog_EmbeddedBaselineLoads asserts that the embedded baseline
+// catalog passes the empty-commands guard — i.e. every declared service has
+// at least one command.
+func TestLoadCatalog_EmbeddedBaselineLoads(t *testing.T) {
+	if _, err := LoadCatalog(EmbeddedYAML()); err != nil {
+		t.Fatalf("LoadCatalog(embedded): unexpected error: %v", err)
+	}
+}
+
 // TestEmbeddedCatalog_SHAPinning asserts that the embedded catalog carries
 // a ContentSHA256 value and that it matches the SHA of its raw bytes. This
 // enforces the plan's "Catalog is SHA-pinned and version-tagged"

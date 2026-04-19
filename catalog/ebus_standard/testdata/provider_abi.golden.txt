@@ -1,0 +1,93 @@
+ebus_standard_catalog const AddressedBroadcast
+ebus_standard_catalog const AddressedDirect
+ebus_standard_catalog const AnswerNone
+ebus_standard_catalog const AnswerRequired
+ebus_standard_catalog const CallerContextSystemNMRuntime
+ebus_standard_catalog const CallerContextUserFacing
+ebus_standard_catalog const CanonicalPlanSHA256
+ebus_standard_catalog const CatalogVersion
+ebus_standard_catalog const DirectionRequest
+ebus_standard_catalog const DirectionResponse
+ebus_standard_catalog const DisableEnvVar
+ebus_standard_catalog const LengthPrefixByte
+ebus_standard_catalog const LengthPrefixFixed
+ebus_standard_catalog const LengthPrefixNone
+ebus_standard_catalog const LengthPrefixTypedPayload
+ebus_standard_catalog const Namespace
+ebus_standard_catalog const RoleInitiator
+ebus_standard_catalog const RoleOriginator
+ebus_standard_catalog const RoleResponder
+ebus_standard_catalog const SafetyBroadcast
+ebus_standard_catalog const SafetyDestructive
+ebus_standard_catalog const SafetyMemoryWrite
+ebus_standard_catalog const SafetyMutating
+ebus_standard_catalog const SafetyReadOnlyBusLoad
+ebus_standard_catalog const SafetyReadOnlySafe
+ebus_standard_catalog const SourceDeviceInfo
+ebus_standard_catalog const SourceEBUSStandardIdent
+ebus_standard_catalog const SourceOperatorSeed
+ebus_standard_catalog const SourcePassiveObservation
+ebus_standard_catalog const TelegramClassAddressed
+ebus_standard_catalog const TelegramClassBroadcast
+ebus_standard_catalog const TelegramClassControllerBroadcast
+ebus_standard_catalog const TelegramClassInitiatorInitiator
+ebus_standard_catalog func (*Provider) Identificationfunc (p *Provider) Identification(ctx context.Context) (IdentificationDescriptor, error)
+ebus_standard_catalog func (*Provider) Invokefunc (p *Provider) Invoke(ctx context.Context, methodID string, params map[string]any, caller CallerContext) (map[string]any, error)
+ebus_standard_catalog func (*Provider) IsEnabledfunc (p *Provider) IsEnabled() bool
+ebus_standard_catalog func (IdentityKey) IsCompletefunc (k IdentityKey) IsComplete() bool
+ebus_standard_catalog func (IdentityKey) PBValuefunc (k IdentityKey) PBValue() uint8
+ebus_standard_catalog func (IdentityKey) SBValuefunc (k IdentityKey) SBValue() uint8
+ebus_standard_catalog func (Service) PBValuefunc (s Service) PBValue() uint8
+ebus_standard_catalog func CompareIdentityfunc CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord
+ebus_standard_catalog func ComputeContentSHA256func ComputeContentSHA256(data []byte) string
+ebus_standard_catalog func ComputeContentSHA256func ComputeContentSHA256(data []byte) string
+ebus_standard_catalog func EmbeddedYAMLfunc EmbeddedYAML() []byte
+ebus_standard_catalog func LoadCatalogfunc LoadCatalog(data []byte) (Catalog, error)
+ebus_standard_catalog func MustEmbeddedCatalogfunc MustEmbeddedCatalog() Catalog
+ebus_standard_catalog func NewProviderFromEnvfunc NewProviderFromEnv(cat Catalog) *Provider
+ebus_standard_catalog func NewProviderfunc NewProvider(cat Catalog, enabled bool) *Provider
+ebus_standard_catalog type AnswerPolicy = string
+ebus_standard_catalog type BroadcastOrAddressed = string
+ebus_standard_catalog type CallerContext = int
+ebus_standard_catalog type Catalog = struct { Namespace string `yaml:"namespace"` Version string `yaml:"version"` PlanSHA256 string `yaml:"plan_sha256"` Services []Service `yaml:"services"` // ContentSHA256 is the SHA-256 of the raw YAML bytes. It is populated // by the loader, not read from the YAML itself. ContentSHA256 string `yaml:"-"` }
+ebus_standard_catalog type Command = struct { ID string `yaml:"id"` Name string `yaml:"name"` Description string `yaml:"description,omitempty"` Identity IdentityKey `yaml:"identity"` SafetyClass SafetyClass `yaml:"safety_class"` Request []Parameter `yaml:"request,omitempty"` Response []Parameter `yaml:"response,omitempty"` }
+ebus_standard_catalog type DeviceInfo = struct { Manufacturer string DeviceID string SoftwareVersion string HardwareVersion string }
+ebus_standard_catalog type Direction = string
+ebus_standard_catalog type FieldProvenance = struct { Preferred string Sources []IdentitySourceValue Agreement bool }
+ebus_standard_catalog type IdentificationDescriptor = struct { Manufacturer string DeviceID string SoftwareVersion string HardwareVersion string // Provenance fields per architecture doc 07-identity-provenance.md // (source=ebus_standard.identification, catalog version, decode // validity). Source string CatalogVersion string Valid bool }
+ebus_standard_catalog type IdentityKey = struct { Namespace string `yaml:"namespace"` // PB and SB are pointer-typed so the YAML loader can distinguish an // absent key (nil → ErrIncompleteIdentityKey) from an explicit zero // value (e.g. `pb: 0x00` is legitimate and must be accepted). PB *uint8 `yaml:"pb"` SB *uint8 `yaml:"sb"` SelectorPath string `yaml:"selector_path"` // nullable ("" = no selector) TelegramClass TelegramClass `yaml:"telegram_class"` Direction Direction `yaml:"direction"` RequestOrResponseRole RequestOrResponseRole `yaml:"request_or_response_role"` BroadcastOrAddressed BroadcastOrAddressed `yaml:"broadcast_or_addressed"` AnswerPolicy AnswerPolicy `yaml:"answer_policy"` LengthPrefixMode LengthPrefixMode `yaml:"length_prefix_mode"` SelectorDecoder string `yaml:"selector_decoder"` ServiceVariant string `yaml:"service_variant"` TransportCapabilityRequirements []string `yaml:"transport_capability_requirements"` Version string `yaml:"version"` }
+ebus_standard_catalog type IdentitySource = string
+ebus_standard_catalog type IdentitySourceValue = struct { Source IdentitySource Value string Valid bool }
+ebus_standard_catalog type LengthPrefixMode = string
+ebus_standard_catalog type Parameter = struct { Name string `yaml:"name"` Type string `yaml:"type"` Description string `yaml:"description,omitempty"` }
+ebus_standard_catalog type ProvenanceRecord = struct { Manufacturer FieldProvenance DeviceID FieldProvenance SoftwareVersion FieldProvenance HardwareVersion FieldProvenance }
+ebus_standard_catalog type Provider = struct { catalog Catalog methodIdx map[string]Command enabled bool }
+ebus_standard_catalog type RequestOrResponseRole = string
+ebus_standard_catalog type SafetyClass = string
+ebus_standard_catalog type Service = struct { PB *uint8 `yaml:"pb"` Name string `yaml:"name"` Description string `yaml:"description,omitempty"` Commands []Command `yaml:"commands"` }
+ebus_standard_catalog type TelegramClass = string
+ebus_standard_catalog var ErrAmbiguousLengthSelector
+ebus_standard_catalog var ErrCatalogMissingServices
+ebus_standard_catalog var ErrDuplicateIdentityKey
+ebus_standard_catalog var ErrIncompleteIdentityKey
+ebus_standard_catalog var ErrInvalidNamespace
+ebus_standard_catalog var ErrProviderDisabled
+ebus_standard_catalog var ErrSafetyClassDenied
+ebus_standard_catalog var ErrServiceMissingCommands
+ebus_standard_catalog var ErrServiceMissingPB
+ebus_standard_catalog var ErrServicePBMismatch
+ebus_standard_catalog var ErrTinyGoUnsupported
+ebus_standard_catalog var ErrUnknownEnumValue
+ebus_standard_catalog var ErrUnknownMethod
+ebus_standard_catalog var ErrUnknownSafetyClass
+safetypolicy const Broadcast
+safetypolicy const CallerSystemNMRuntime
+safetypolicy const CallerUserFacing
+safetypolicy const Destructive
+safetypolicy const MemoryWrite
+safetypolicy const Mutating
+safetypolicy const ReadOnlyBusLoad
+safetypolicy const ReadOnlySafe
+safetypolicy func Allowfunc Allow(class Class, caller Caller) bool
+safetypolicy type Caller = int
+safetypolicy type Class = string

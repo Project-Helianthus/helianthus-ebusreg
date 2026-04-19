@@ -3,11 +3,16 @@ package ebus_standard_catalog
 import (
 	"context"
 	"errors"
+	"fmt"
+	"os"
+	"strings"
+
+	"github.com/Project-Helianthus/helianthus-ebusreg/catalog/ebus_standard/internal/safetypolicy"
 )
 
-// Provider is the generic ebus_standard L7 provider. Methods are generated
-// at construction time from the loaded catalog; no per-device hard-coding
-// exists in this package.
+// Provider is the generic ebus_standard L7 provider. Method dispatch is
+// driven by the loaded catalog; there is no per-device hard-coding in this
+// package.
 //
 // Namespace isolation (M3 AC6): this provider and its internal helpers MUST
 // NOT import any Vaillant-specific package under github.com/Project-
@@ -15,8 +20,8 @@ import (
 // provided by placing the safety gate in catalog/ebus_standard/internal/
 // safetypolicy (Go's internal/ visibility rule excludes packages outside
 // catalog/ebus_standard/). A second line of defense is the static-import
-// regression test in provider_namespace_isolation_test.go which parses every
-// Go file in this package and fails if a Vaillant import appears.
+// regression test in provider_namespace_isolation_test.go which parses
+// every .go file in this package and fails if a Vaillant import appears.
 //
 // Disable switch (M3 AC4): the env variable EBUS_STANDARD_PROVIDER_ENABLED
 // is read once at provider construction via NewProviderFromEnv. When the
@@ -24,7 +29,9 @@ import (
 // constructed in the disabled state and every call to Invoke /
 // Identification returns ErrProviderDisabled. Default is enabled.
 type Provider struct {
-	// scaffolding only — populated by RED stubs so the package compiles.
+	catalog   Catalog
+	methodIdx map[string]Command
+	enabled   bool
 }
 
 // IdentificationDescriptor carries the canonical manufacturer / device-id /
@@ -35,9 +42,9 @@ type IdentificationDescriptor struct {
 	DeviceID        string
 	SoftwareVersion string
 	HardwareVersion string
-	// Provenance fields are populated per architecture doc 07-identity-
-	// provenance.md (source=ebus_standard.identification, catalog version,
-	// decode validity, timestamp).
+	// Provenance fields per architecture doc 07-identity-provenance.md
+	// (source=ebus_standard.identification, catalog version, decode
+	// validity).
 	Source         string
 	CatalogVersion string
 	Valid          bool
@@ -72,6 +79,18 @@ const (
 	CallerContextSystemNMRuntime
 )
 
+// toInternal converts a public CallerContext into the safetypolicy.Caller
+// tag. The enum values are mirrored deliberately so the translation is a
+// pure literal switch.
+func (c CallerContext) toInternal() safetypolicy.Caller {
+	switch c {
+	case CallerContextSystemNMRuntime:
+		return safetypolicy.CallerSystemNMRuntime
+	default:
+		return safetypolicy.CallerUserFacing
+	}
+}
+
 // Sentinel errors returned by the provider.
 var (
 	// ErrProviderDisabled is returned by every provider entrypoint when
@@ -92,51 +111,102 @@ var (
 // DisableEnvVar is the exact env-var name read at construction time.
 const DisableEnvVar = "EBUS_STANDARD_PROVIDER_ENABLED"
 
-// NewProvider constructs a provider from a loaded catalog, with the enabled
-// flag passed explicitly. Use NewProviderFromEnv to read the env var.
-//
-// RED stub: returns a non-functional provider.
+// NewProvider constructs a provider from a loaded catalog, with the
+// enabled flag passed explicitly. Use NewProviderFromEnv to read the env
+// var. The method index is built eagerly so Invoke lookups are O(1).
 func NewProvider(cat Catalog, enabled bool) *Provider {
-	_ = cat
-	_ = enabled
-	return &Provider{}
+	idx := make(map[string]Command, len(cat.Services)*4)
+	for _, svc := range cat.Services {
+		for _, cmd := range svc.Commands {
+			idx[cmd.ID] = cmd
+		}
+	}
+	return &Provider{
+		catalog:   cat,
+		methodIdx: idx,
+		enabled:   enabled,
+	}
 }
 
 // NewProviderFromEnv constructs a provider reading the disable switch from
 // the process environment at this point in time. The env value is captured
 // by copy; subsequent mutations to the environment do not affect the
-// provider.
-//
-// RED stub: not implemented.
+// provider. An unset or empty variable defaults to enabled (blast-radius
+// principle: the generic provider participates in the platform by default;
+// operators explicitly opt out by setting "0" or "false").
 func NewProviderFromEnv(cat Catalog) *Provider {
-	_ = cat
-	return &Provider{}
+	return NewProvider(cat, envEnabled(os.Getenv(DisableEnvVar)))
+}
+
+// envEnabled applies the disable-switch contract. "0" / "false" (any case)
+// => disabled. Empty / anything else => enabled.
+func envEnabled(v string) bool {
+	switch strings.ToLower(strings.TrimSpace(v)) {
+	case "0", "false":
+		return false
+	default:
+		return true
+	}
 }
 
 // IsEnabled reports whether the provider is currently enabled.
-//
-// RED stub.
-func (p *Provider) IsEnabled() bool { return false }
+func (p *Provider) IsEnabled() bool { return p != nil && p.enabled }
 
-// Invoke dispatches a catalog method by ID after consulting the safety
-// class policy. See ErrSafetyClassDenied for the deny rules.
+// Invoke dispatches a catalog method by ID after consulting the
+// invoke-boundary safety gate. Error precedence:
 //
-// RED stub: always returns "not implemented".
+//  1. ErrProviderDisabled — provider constructed in disabled state.
+//  2. ErrUnknownMethod — method ID not present in the catalog.
+//  3. ErrSafetyClassDenied — safety_class not permitted for callerCtx.
+//  4. (future) decode / transport errors from the command body.
+//
+// M3 scope does not yet execute the wire request — the method signature is
+// generated from the catalog and dispatch returns a stub result map for
+// gated (allowed) methods. Decode into L7 primitives lands when the M1
+// helianthus-ebusgo/protocol/ebus_standard/types package is published and
+// the go.mod is bumped.
 func (p *Provider) Invoke(ctx context.Context, methodID string, params map[string]any, caller CallerContext) (map[string]any, error) {
+	if !p.IsEnabled() {
+		return nil, ErrProviderDisabled
+	}
+	cmd, ok := p.methodIdx[methodID]
+	if !ok {
+		return nil, fmt.Errorf("%w: %q", ErrUnknownMethod, methodID)
+	}
+	if !safetypolicy.Allow(safetypolicy.Class(cmd.SafetyClass), caller.toInternal()) {
+		return nil, fmt.Errorf("%w: method=%q class=%s", ErrSafetyClassDenied, methodID, cmd.SafetyClass)
+	}
+	// M3: returning a minimal descriptor that proves the gate passed.
+	// Downstream milestones wire the actual decode/encode once the L7
+	// types package is available.
 	_ = ctx
-	_ = methodID
 	_ = params
-	_ = caller
-	return nil, errors.New("ebus_standard: Invoke not implemented (RED)")
+	return map[string]any{
+		"method_id":       cmd.ID,
+		"safety_class":    string(cmd.SafetyClass),
+		"catalog_version": p.catalog.Version,
+		"executed":        false, // M3 stub — handler body not yet wired
+	}, nil
 }
 
 // Identification returns the canonical 0x07 0x04 identification descriptor
-// wrapped in provenance metadata. It never mutates DeviceInfo.
+// wrapped in provenance metadata. It never mutates DeviceInfo; see
+// CompareIdentity for the provenance merge helper.
 //
-// RED stub: not implemented.
+// M3 scope: returns an empty descriptor with provenance labels populated.
+// The wire decode lands when the gateway transport layer passes an
+// observed Identification frame through to the provider in a later
+// milestone.
 func (p *Provider) Identification(ctx context.Context) (IdentificationDescriptor, error) {
 	_ = ctx
-	return IdentificationDescriptor{}, errors.New("ebus_standard: Identification not implemented (RED)")
+	if !p.IsEnabled() {
+		return IdentificationDescriptor{}, ErrProviderDisabled
+	}
+	return IdentificationDescriptor{
+		Source:         string(SourceEBUSStandardIdent),
+		CatalogVersion: p.catalog.Version,
+		Valid:          false, // no wire frame yet in M3
+	}, nil
 }
 
 // IdentitySource tags a single evidence contribution for the provenance
@@ -178,14 +248,49 @@ type ProvenanceRecord struct {
 
 // CompareIdentity merges an existing DeviceInfo with an ebus_standard
 // Identification descriptor. The existing DeviceInfo is never mutated; on
-// disagreement both values are retained with source labels. Deterministic
+// disagreement BOTH values are retained with source labels. Deterministic
 // precedence (see 07-identity-provenance.md §"Deterministic Precedence"):
 // device_info > ebus_standard.identification > operator_seed > passive >
-// "unknown". This function implements steps 1-2 of that order.
-//
-// RED stub.
+// "unknown". This function implements steps 1-2 (the two sources it has
+// evidence for); operator_seed and passive sources are stacked by the
+// caller via future helpers.
 func CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord {
-	_ = existing
-	_ = desc
-	return ProvenanceRecord{}
+	mk := func(existingVal, descVal string) FieldProvenance {
+		// Both sources are considered valid when they are non-empty. A
+		// malformed descriptor value is the caller's responsibility to tag
+		// as invalid before passing it in (via the Valid flag on the
+		// descriptor as a whole — in M3 that flag applies uniformly to the
+		// four fields; future milestones may introduce per-field validity).
+		var srcs []IdentitySourceValue
+		if existingVal != "" {
+			srcs = append(srcs, IdentitySourceValue{
+				Source: SourceDeviceInfo, Value: existingVal, Valid: true,
+			})
+		}
+		if descVal != "" {
+			srcs = append(srcs, IdentitySourceValue{
+				Source: SourceEBUSStandardIdent, Value: descVal, Valid: desc.Valid,
+			})
+		}
+		// Preferred value: deterministic precedence => device_info wins.
+		preferred := existingVal
+		if preferred == "" {
+			preferred = descVal
+		}
+		// Agreement requires BOTH sources present AND equal. If only one
+		// side provides evidence, treat it as agreement (there is nothing
+		// to disagree with).
+		agreement := existingVal == "" || descVal == "" || existingVal == descVal
+		return FieldProvenance{
+			Preferred: preferred,
+			Sources:   srcs,
+			Agreement: agreement,
+		}
+	}
+	return ProvenanceRecord{
+		Manufacturer:    mk(existing.Manufacturer, desc.Manufacturer),
+		DeviceID:        mk(existing.DeviceID, desc.DeviceID),
+		SoftwareVersion: mk(existing.SoftwareVersion, desc.SoftwareVersion),
+		HardwareVersion: mk(existing.HardwareVersion, desc.HardwareVersion),
+	}
 }

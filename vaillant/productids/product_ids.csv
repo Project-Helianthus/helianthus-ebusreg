@@ -1199,7 +1199,7 @@ Vaillant,aroTHERM pure,VWL 85/7.2 AS 230V S3,0010036172,Heat Pump,monobloc R290 
 Vaillant,aroTHERM pure,VWL 105/7.2 AS 230V S3,0010036173,Heat Pump,monobloc R290 air-water heat pump (entry-level); VWL 105/7.2 AS 230V S3; /7.2 generation; eBUS; SI/EU market; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,uniTOWER,VWL 108/7.2 IS,0010038163,Module,indoor tower package with DHW; VWL 108/7.2 IS; pairs with aroTHERM outdoor; eBUS; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,uniTOWER,VWL 108/7.2 IS C2,0010038164,Module,indoor tower package with DHW; VWL 108/7.2 IS C2; pairs with aroTHERM outdoor; eBUS; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,Hydraulic module,Hidravlicni modul VWL 107/7.2 IS,0010038169,Module,wall hydraulic station; Hidravlicni modul VWL 107/7.2 IS; pairs with aroTHERM outdoor; eBUS; CONFIDENCE: HIGH; src: tapro.si
+Vaillant,aroTHERM pure,VWL 107/7.2 IS,0010038169,Module,aroTHERM pure indoor unit /7.2; wall hydraulic station (no integrated DHW tank - external cylinder required via VR71); pairs with aroTHERM pure VWL xxx/7.2 AS outdoor; eBUS; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,ecoTEC plus,VUW 25/26CS/1-5 (N-INT1),0010043954,Boiler,gas condensing wall-hung boiler; VUW 25/26CS/1-5 (N-INT1); eBUS; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,ecoTEC plus,VUW 11/26CS/1-5 (N-INT1),0010024589,Boiler,gas condensing wall-hung boiler; VUW 11/26CS/1-5 (N-INT1); eBUS; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,ecoTEC plus,VU 10CS/1-5 (N-INT2),0010043960,Boiler,gas condensing wall-hung boiler; VU 10CS/1-5 (N-INT2); eBUS; CONFIDENCE: HIGH; src: tapro.si

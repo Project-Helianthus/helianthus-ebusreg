@@ -329,7 +329,7 @@ Vaillant,flexoCOMPACT exclusive,VWF 118/4,0010016692,Heat Pump,
 Vaillant,aroCOLLECT,VWL 11/4 SA,0010016715,Module,
 Vaillant,fluoCOLLECT,VWW 11/4 SI,0010016719,Module,
 Vaillant,fluoCOLLECT,VWW 19/4 SI,0010016720,Module,
-Vaillant,,,0010017387,Boiler,
+Saunier Duval,ThemaPlus Condens,ThemaPlus Condens F25-A (H-FR),0010017387,Boiler,FR market premium combi; 5-18.1 kW heating / 25.5 kW DHW; MicroFast 3.2L micro-accumulation; FlameFit; G20/G31; ErP A/A; eBUS (MiPro/MiLink); CONFIDENCE: HIGH; src: cedeo.fr richardson.fr easysav.com
 Vaillant,,,0010017390,Boiler,
 Vaillant,,,0010017826,Boiler,
 Vaillant,ecoTEC plus,ecoTEC plus 825,0010018353,Boiler,
@@ -357,7 +357,7 @@ Vaillant,ecoFIT pure,VU 156/6-3,0010020396,Boiler,
 Vaillant,ecoFIT pure,VU 186/6-3,0010020397,Boiler,
 Vaillant,ecoFIT pure,VU 256/6-3,0010020398,Boiler,
 Vaillant,ecoFIT pure,VU 306/6-3,0010020399,Boiler,
-Vaillant,,,0010020408,Boiler,
+Saunier Duval,Semiatek Condens,Semiatek Condens 24 AS/1 (H-HU),0010020408,Boiler,gas condensing wall-hung combi entry-level; 6.5-24.7 kW heating / 24 kW DHW; HU market (H-HU G20); ErP; eBUS 2-wire; MiPro/MiGo/Exacontrol compatible; CONFIDENCE: HIGH; src: vizgazwebshop.hu netkazan.hu kazanwebshop.hu
 Vaillant,aroTHERM,VWL 35/5 AS S2 (230 V),0010021109,Heat Pump,
 Vaillant,aroTHERM,VWL 55/5 AS S2 (230 V),0010021110,Heat Pump,
 Vaillant,aroTHERM,VWL 75/5 AS S2 (230 V),0010021111,Heat Pump,
@@ -406,7 +406,7 @@ Vaillant,ecoTEC plus,VCW 20/26 CS/1-5 (E-DE),0010022010,Boiler,CS/1-5 combi; 20 
 Vaillant,uniTOWER,VIH QW 190/6 E,0010022078,Module,
 Vaillant,aroTHERM,VWL/5 split,0010023494,Heat Pump,
 Vaillant,Hydraulic module,VWL 127/5 IS wall hydraulic station,0010023523,Module,wall-mounted hydraulic station; pairs with VWL 105/5 & 125/5 AS outdoor; R410A split; eBUS; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: heizung-billiger.de raleo.de
-Vaillant,FM5 Functional Module,VR 71,0010023609,Control Centre,
+Vaillant,VWZ MEH,VWZ MEH 97/6,0010023609,Module,Hydraulic station with modulating electric backup heater up to 9 kW for aroTHERM plus VWL .../6 A; 3-way DHW valve 10L expansion tank; eBUS via DIA-System; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: eibabo.com
 Vaillant,Hydraulic module,VWZ MEH 97,0010023611,Module,
 Protherm,Skat,12 KE/14,0010023648,Boiler,
 Vaillant,ecoTEC plus,VU 25CS/1-5 (N-INT2),0010024600,Boiler,
@@ -418,7 +418,7 @@ Vaillant,ecoTEC exclusive,VUW 36CF/1-7 (N-INT2),0010024607,Boiler,
 Vaillant,ecoTEC plus,VUW 36CS/1-5 (N-INT2),0010024609,Boiler,
 Vaillant,ecoTEC plus,VUW 40CS/1-5 (N-INT2),0010024610,Boiler,
 Vaillant,ecoTEC plus,VUI 32CS/1-5 (N-INT2),0010025178,Boiler,
-Vaillant,FM5 Functional Module,VR 71,0010031643,Control Centre,
+Vaillant,VWZ AI,VWZ AI for aroTHERM+,0010031643,Module,Heat pump control/appliance interface module for aroTHERM plus; DIA-System digital display; eBUS; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: eibabo.us
 Vaillant,aroTHERM,VWZ AI Plus control module,0010031645,Heat Pump,
 Vaillant,aroTHERM plus,VWL 65/6 A 230V,0010031658,Heat Pump,
 Vaillant,sensoCOMFORT,VRC 720/2,0010036819,Regulator,
@@ -1302,3 +1302,20 @@ Vaillant,ecoVIT pneumatic/4,VKK FR 286/4 R1,0010027276,Boiler,floor-standing gas
 Vaillant,ecoVIT pneumatic/4,VKK FR 366/4 R1,0010027277,Boiler,floor-standing gas condensing; 36.4 kW; FR market R1 revision; /4 generation; eBUS; CONFIDENCE: HIGH (user provided); src: vaillant.be PDF 0020258613_02
 Vaillant,ecoVIT pneumatic/4,VKK FR 476/4 R1,0010027278,Boiler,floor-standing gas condensing; 48.2 kW; FR market R1 revision; /4 generation; eBUS; CONFIDENCE: HIGH (user provided); src: vaillant.be PDF 0020258613_02
 Vaillant,ecoVIT pneumatic/4,VKK FR 656/4 R1,0010027279,Boiler,floor-standing gas condensing; 65 kW; FR market R1 revision; /4 generation; eBUS; CONFIDENCE: HIGH (user provided); src: vaillant.be PDF 0020258613_02
+Vaillant,VWZ MEH,VWZ MEH 60,0020145030,Module,Inline electric backup heater 2/4/6 kW 400/230V; for aroTHERM VWL .../2 or /3 flexoTHERM geoTHERM; eBUS; CONFIDENCE: HIGH; src: eibabo.com
+Protherm,Lev,Lev 25 KKZ90,0010014608,Boiler,gas condensing floor-standing with 90L DHW tank; 25 kW; eBUS; Slovak market; CONFIDENCE: HIGH; src: protherm.sk
+Protherm,Lev Heliotwin,Lev Heliotwin 20 KKZ150,0010018362,Boiler,gas condensing floor-standing solar-ready 150L tank current ErP edition; 20 kW; eBUS; Slovak market; CONFIDENCE: HIGH; src: heureka.sk
+Saunier Duval,Semiatek Condens,Semiatek Condens 28 AS/1 (H-HU),0010020409,Boiler,gas condensing wall-hung combi entry-level; ~28 kW DHW; HU market (H-HU G20); ErP; eBUS; CONFIDENCE: HIGH; src: mestershop.hu saunierduval.hu
+Hermann Saunier Duval,Semiatek Condens,Semiatek Condens 24-AS/1 (H-IT),0010026091,Boiler,IT market Hermann SD entry combi; 24 kW; G20 natural gas (convertible G31); ErP A/A; stainless-steel primary exchanger; fan-push premix; eBUS; MiGo WiFi ready; CONFIDENCE: HIGH; src: desivero.com biscegliasrl.com elettronew.com
+Hermann Saunier Duval,Semiatek Condens,Semiatek Condens 28-AS/1 (H-IT),0010026092,Boiler,IT market Hermann SD entry combi; 28 kW; G20 (convertible G31); ErP A/A; eBUS; MiGo WiFi ready; CONFIDENCE: HIGH; src: desivero.com
+Hermann Saunier Duval,Thematek Condens,Thematek Condens 24 AS/1 (H-IT),0010026147,Boiler,IT market Hermann SD combi; 18 kW heating / 25 kW DHW; G20 (convertible G31); ErP A/A; stainless primary exchanger; 270mm depth ultra-compact; touchscreen UI; eBUS; MiGo Select WiFi compatible; CONFIDENCE: HIGH; src: etaweb.eu desivero.com
+Hermann Saunier Duval,Master Condens,Master Condens 26 T-CS/1 (H-IT),0010025217,Boiler,IT market Hermann SD premium combi with integrated DHW (2x21L Aquaspeed PLUS); 3.5-21 kW heating + DHW; G20 set G31 regulable; FlameFit combustion (H2 20%); ErP A/A; eBUS; CONFIDENCE: HIGH; src: tecnomat.it shop.puntoluce.net
+Hermann Saunier Duval,Master Condens,Master Condens 31 T-CS/1 (H-IT),0010025215,Boiler,IT market Hermann SD premium combi with integrated DHW (2x21L); 3.5-25 kW heating 1:9; 42L storage; 21 l/min DHW; 108.3% efficiency; G20 set G31; eBUS; CONFIDENCE: HIGH; src: tecnomat.it climaconvenienza.it
+Hermann Saunier Duval,Master Condens,Master Condens 35 T-CS/1 (H-IT),0010025216,Boiler,IT market Hermann SD premium combi with integrated DHW (2x21L); 35 kW; Aquaspeed PLUS; G20 set G31; ErP A/A; eBUS; CONFIDENCE: HIGH; src: matyco.com elettroclick.com termoidraulicashop.it
+Saunier Duval,ThemaPlus Condens,ThemaPlus Condens F30-A (H-FR),0010017388,Boiler,FR market premium combi; 30.6 kW DHW; MicroFast; ErP A/A; 109.2% efficiency; eBUS; CONFIDENCE: HIGH; src: cedeo.fr chauffage.fr
+Saunier Duval,ThemaPlus Condens,ThemaPlus Condens F35-A (H-FR),0010017418,Boiler,FR market premium combi; 35.7 kW DHW; MicroFast; ErP A/A; 109.2% efficiency; eBUS; CONFIDENCE: HIGH; src: cedeo.fr chauffage.fr
+Saunier Duval,ThemaPlus Condens,ThemaPlus Condens F25 GN (N-FR newer),0010021497,Boiler,FR market premium combi replacement (GN G20); 4.9-18.1 kW heating / 25.5 kW DHW; MicroFast + FlameFit; ErP A/A; eBUS; CONFIDENCE: HIGH; src: cedeo.fr geoplanete.fr
+Saunier Duval,ThemaPlus Condens,ThemaPlus Condens MA 26-CS/1 (N-FR),0010025107,Boiler,FR market current-gen premium combi; 26 kW; 12.3 l/min DHW; FlameFit auto combustion (G20/G31); MicroFast; ErP A/A; eBUS; CONFIDENCE: HIGH; src: thermocom.fr saunierduval.fr manual 0020292704
+Saunier Duval,ThemaPlus Condens,ThemaPlus Condens MA 31-CS/1 (N-FR),0010025109,Boiler,FR market current-gen premium combi; 31 kW; 14.8 l/min DHW; FlameFit; MicroFast; ErP A/A; eBUS; CONFIDENCE: HIGH; src: saunierduval.fr manual 0020292704
+Saunier Duval,ThemaPlus Condens,ThemaPlus Condens MA 36-CS/1 (N-FR),0010025111,Boiler,FR market current-gen premium combi; 36 kW; 17 l/min DHW; FlameFit; MicroFast; ErP A/A; eBUS; CONFIDENCE: HIGH; src: thermocom.fr saunierduval.fr manual 0020292704
+Saunier Duval,SemiaFast Condens,SemiaFast Condens F30 (H-FR),0010016082,Boiler,FR market entry-level combi wall-hung with AquaFast (plate exchanger maintained at temperature); 25 kW; Al-Si exchanger; 108.5% efficiency; ErP A/A; eBUS (MiPro/MiLink); CONFIDENCE: HIGH; src: manomano.fr afdb.fr thermocom.fr

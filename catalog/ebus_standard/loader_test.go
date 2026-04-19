@@ -64,6 +64,29 @@ func TestLoadCatalog_AmbiguousLengthSelector_NoneDecoder(t *testing.T) {
 	}
 }
 
+// TestLoadCatalog_ServicePBMismatch asserts that a command whose
+// identity.pb differs from the enclosing service.pb is rejected with
+// ErrServicePBMismatch. A typo in the service header would otherwise
+// silently group the command under the wrong service code.
+func TestLoadCatalog_ServicePBMismatch(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "service_pb_mismatch.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrServicePBMismatch, got nil")
+	}
+	if !errors.Is(err, ErrServicePBMismatch) {
+		t.Fatalf("LoadCatalog: expected ErrServicePBMismatch, got %v", err)
+	}
+	// Error must name both the service pb and the identity pb for
+	// deterministic diagnosis.
+	if !strings.Contains(err.Error(), "0x07") || !strings.Contains(err.Error(), "0x08") {
+		t.Fatalf("error %q must include both 0x07 and 0x08", err.Error())
+	}
+}
+
 // TestLoadCatalog_MissingPB asserts that a YAML fixture omitting the `pb`
 // key in the identity block is rejected with ErrIncompleteIdentityKey. The
 // value 0x00 must NOT be accepted as a default; absence of the key is the

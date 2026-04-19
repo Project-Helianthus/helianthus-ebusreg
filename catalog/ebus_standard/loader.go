@@ -41,6 +41,12 @@ var (
 	// (e.g. "ebus_standrad") is otherwise silently treated as a distinct
 	// identity and bypasses duplicate detection.
 	ErrInvalidNamespace = errors.New("ebus_standard: identity-key namespace must be ebus_standard")
+
+	// ErrServicePBMismatch is returned when a service's declared pb does
+	// not match the pb of one of its command identity keys. A typo in the
+	// service header would otherwise produce a catalog where commands are
+	// silently grouped under the wrong service code.
+	ErrServicePBMismatch = errors.New("ebus_standard: service pb does not match command identity pb")
 )
 
 // LoadCatalog parses and validates a YAML catalog document. The returned

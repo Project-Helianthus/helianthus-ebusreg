@@ -43,6 +43,16 @@ func loadCatalogImpl(data []byte) (Catalog, error) {
 			if err := validateNamespace(cmd.ID, cmd.Identity); err != nil {
 				return Catalog{}, err
 			}
+			// Guard against a typo in the service header that would
+			// otherwise silently group commands under the wrong service
+			// code. IsComplete() only asserts PB is non-nil, and the
+			// duplicate detector fingerprints the identity pb (not the
+			// service pb), so a mismatch is invisible without this check.
+			if cmd.Identity.PBValue() != svc.PB {
+				return Catalog{}, fmt.Errorf(
+					"%w: service %q pb=0x%02X, command %q identity.pb=0x%02X",
+					ErrServicePBMismatch, svc.Name, svc.PB, cmd.ID, cmd.Identity.PBValue())
+			}
 			if !isKnownSafetyClass(cmd.SafetyClass) {
 				return Catalog{}, fmt.Errorf("%w: command %q safety_class=%q", ErrUnknownSafetyClass, cmd.ID, cmd.SafetyClass)
 			}

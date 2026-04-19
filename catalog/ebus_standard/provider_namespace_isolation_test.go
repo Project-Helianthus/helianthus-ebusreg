@@ -26,14 +26,14 @@ import (
 //     cross-vendor provider and silently bind the catalog to a single
 //     manufacturer.
 //
-// The test also includes a synthetic planted violation guarded by the
-// build tag `namespace_guard_violation`. When that tag is active (explicit
-// operator target), the file at testdata/planted_vaillant_import.go.txt
-// would be detected here. The test body ignores .txt fixtures (they are
-// not compiled), but under the build tag the fixture is symlinked or
-// copied by the Makefile/CI into a .go file to prove the scanner fires.
-// In the default build the .txt content is inert, keeping the regression
-// test zero-cost for normal runs.
+// The scanner's liveness is proven by companion tests below
+// (TestNamespaceIsolation_PlantedViolationCaught and
+// TestNamespaceIsolation_RecursiveWalk_CatchesNestedViolation) which
+// parse the `.go.txt` fixtures under testdata/ directly. The fixtures
+// are stored with a `.go.txt` extension specifically so that the default
+// go build ignores them (no build tags / Makefile / symlink indirection
+// is involved), which keeps this regression test zero-cost for normal
+// runs while still pinning the scanner's "not a no-op" guarantee.
 func TestNamespaceIsolation_NoVaillantImports(t *testing.T) {
 	var violations []string
 	// Walk the entire catalog/ebus_standard subtree recursively. A prior
@@ -162,7 +162,7 @@ func TestNamespaceIsolation_PlantedViolationCaught(t *testing.T) {
 			hits++
 		}
 	}
-	if hits == 0 {
-		t.Fatal("planted vaillant import was NOT caught — namespace-isolation scanner regressed")
+	if hits != 1 {
+		t.Fatalf("planted vaillant import: got %d hits, want exactly 1 — namespace-isolation scanner regressed or fixture changed", hits)
 	}
 }

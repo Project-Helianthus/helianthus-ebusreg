@@ -1258,11 +1258,8 @@ Vaillant,multiMATIC,VRC 700 f/4 AF,0020231564,Regulator,eBUS weather-compensated
 Vaillant,multiMATIC,VR 91f,0020231567,Thermostat,eBUS room thermostat / remote; VR 91f; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,sensoCOMFORT RF,sensoCOMFORT VRC 720/3,0020260919,Regulator,eBUS weather-compensated regulator; sensoCOMFORT VRC 720/3; /3 generation; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,sensoCOMFORT RF,VRC 720f/3,0020260935,Regulator,eBUS weather-compensated regulator; VRC 720f/3; /3 generation; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,VRT thermostat,VRT 380,0020260951,Thermostat,eBUS room thermostat; VRT 380; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,VRT thermostat,VRT 380f,0020260961,Thermostat,eBUS room thermostat; VRT 380f; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,VR module,VR 10,306787,Module,eBUS accessory module; VR 10; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,VR module,VR 11,306788,Module,eBUS accessory module; VR 11; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,VR module,VR 55,306790,Module,eBUS accessory module; VR 55; CONFIDENCE: HIGH; src: tapro.si
+Vaillant,VRT 380,VRT 380,0020260951,Regulator,eBUS regulator with thermostat function (NOT weather-compensating - no outdoor sensor unit); VRT 380; CONFIDENCE: HIGH; src: tapro.si
+Vaillant,VRT 380,VRT 380f,0020260961,Regulator,eBUS wireless regulator with thermostat function (NOT weather-compensating); VRT 380f; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,allSTOR exclusive,VPS 300/3-7,0010015124,Module,heating buffer tank; VPS 300/3-7; /3-7 exclusive generation; eBUS via system controller; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,allSTOR exclusive,VPS 500/3-7,0010015125,Module,heating buffer tank; VPS 500/3-7; /3-7 exclusive generation; eBUS via system controller; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,allSTOR exclusive,VPS 800/3-7,0010015126,Module,heating buffer tank; VPS 800/3-7; /3-7 exclusive generation; eBUS via system controller; CONFIDENCE: HIGH; src: tapro.si
@@ -1280,8 +1277,8 @@ Vaillant,aguaFLOW exclusive,VPM 30/35/2 W,0010015137,Module,fresh water station;
 Vaillant,aguaFLOW exclusive,VPM 40/45/2 W,0010015138,Module,fresh water station; VPM 40/45/2 W; eBUS control; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,auroFLOW,exclusive VPM 20/2 S,0010015139,Module,solar station; exclusive VPM 20/2 S; eBUS; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,auroFLOW,exclusive VPM 60/2 S,0010015140,Module,solar station; exclusive VPM 60/2 S; eBUS; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,VPS R,Zalogovnik VPS R 100/1 M,0010021456,Module,buffer tank; Zalogovnik VPS R 100/1 M; eBUS sensor; SI market; CONFIDENCE: MED; src: tapro.si
-Vaillant,VPS R,Zalogovnik VPS R 200/1 B,0010021457,Module,buffer tank; Zalogovnik VPS R 200/1 B; eBUS sensor; SI market; CONFIDENCE: MED; src: tapro.si
+Vaillant,uniSTOR,VPS R 100/1 M,0010021456,Module,DHW buffer/storage tank; VPS R 100/1 M; eBUS sensor; SI market; CONFIDENCE: MED; src: tapro.si
+Vaillant,uniSTOR,VPS R 200/1 B,0010021457,Module,DHW buffer/storage tank; VPS R 200/1 B; eBUS sensor; SI market; CONFIDENCE: MED; src: tapro.si
 Vaillant,eloBLOCK,VE 6 /14 EU II,0010023682,Boiler,electric wall heater; VE 6 /14 EU II; /14 EU II generation (SI variant of EU I); eBUS; integrated HE pump; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,eloBLOCK,VE 9 /14 EU II,0010023683,Boiler,electric wall heater; VE 9 /14 EU II; /14 EU II generation (SI variant of EU I); eBUS; integrated HE pump; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,eloBLOCK,VE 12 /14 EU II,0010023684,Boiler,electric wall heater; VE 12 /14 EU II; /14 EU II generation (SI variant of EU I); eBUS; integrated HE pump; CONFIDENCE: HIGH; src: tapro.si
@@ -1290,11 +1287,11 @@ Vaillant,eloBLOCK,VE 18 /14 EU II,0010023686,Boiler,electric wall heater; VE 18 
 Vaillant,eloBLOCK,VE 21 /14 EU II,0010023687,Boiler,electric wall heater; VE 21 /14 EU II; /14 EU II generation (SI variant of EU I); eBUS; integrated HE pump; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,eloBLOCK,VE 24 /14 EU II,0010023688,Boiler,electric wall heater; VE 24 /14 EU II; /14 EU II generation (SI variant of EU I); eBUS; integrated HE pump; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,eloBLOCK,VE 28 /14 EU II,0010023689,Boiler,electric wall heater; VE 28 /14 EU II; /14 EU II generation (SI variant of EU I); eBUS; integrated HE pump; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,VPV I,VPV I 1500/2 230V,0010024742,Module,Photovoltaic inverter; VPV I 1500/2 230V; eBUS via myVAILLANT Connect gateway; SI/NO market; CONFIDENCE: MED; src: vaillant.no PDF 0020273427 + tapro.si
-Vaillant,VPV I,VPV I 2000/2 230V,0010024743,Module,Photovoltaic inverter; VPV I 2000/2 230V; eBUS via myVAILLANT Connect gateway; SI/NO market; CONFIDENCE: MED; src: vaillant.no PDF 0020273427 + tapro.si
-Vaillant,VPV I,VPV I 2500/2 230V,0010024744,Module,Photovoltaic inverter; VPV I 2500/2 230V; eBUS via myVAILLANT Connect gateway; SI/NO market; CONFIDENCE: MED; src: vaillant.no PDF 0020273427 + tapro.si
-Vaillant,VPV I,VPV I 3000/2 230V,0010024745,Module,Photovoltaic inverter; VPV I 3000/2 230V; eBUS via myVAILLANT Connect gateway; SI/NO market; CONFIDENCE: MED; src: vaillant.no PDF 0020273427 + tapro.si
-Vaillant,VPV I,VPV I 4000/2 230V,0010024746,Module,Photovoltaic inverter; VPV I 4000/2 230V; eBUS via myVAILLANT Connect gateway; SI/NO market; CONFIDENCE: MED; src: vaillant.no PDF 0020273427 + tapro.si
+Vaillant,auroPOWER VPV,VPV I 1500/2 230V,0010024742,PV Inverter,solar PV inverter; VPV I 1500/2 230V; eBUS via myVAILLANT Connect gateway; SI/NO market; CONFIDENCE: MED; src: vaillant.no PDF 0020273427 + tapro.si
+Vaillant,auroPOWER VPV,VPV I 2000/2 230V,0010024743,PV Inverter,solar PV inverter; VPV I 2000/2 230V; eBUS via myVAILLANT Connect gateway; SI/NO market; CONFIDENCE: MED; src: vaillant.no PDF 0020273427 + tapro.si
+Vaillant,auroPOWER VPV,VPV I 2500/2 230V,0010024744,PV Inverter,solar PV inverter; VPV I 2500/2 230V; eBUS via myVAILLANT Connect gateway; SI/NO market; CONFIDENCE: MED; src: vaillant.no PDF 0020273427 + tapro.si
+Vaillant,auroPOWER VPV,VPV I 3000/2 230V,0010024745,PV Inverter,solar PV inverter; VPV I 3000/2 230V; eBUS via myVAILLANT Connect gateway; SI/NO market; CONFIDENCE: MED; src: vaillant.no PDF 0020273427 + tapro.si
+Vaillant,auroPOWER VPV,VPV I 4000/2 230V,0010024746,PV Inverter,solar PV inverter; VPV I 4000/2 230V; eBUS via myVAILLANT Connect gateway; SI/NO market; CONFIDENCE: MED; src: vaillant.no PDF 0020273427 + tapro.si
 Vaillant,ecoVIT pneumatic/4,VKK SWE 226/4 (BE/IT),0010007511,Boiler,floor-standing gas condensing; 23.5 kW; BE/IT market variant (SWE suffix); /4 generation; eBUS; CONFIDENCE: HIGH (user provided); src: vaillant.be PDF 0020258613_02
 Vaillant,ecoVIT pneumatic/4,VKK SWE 286/4 (BE/IT),0010007515,Boiler,floor-standing gas condensing; 28.1 kW; BE/IT market variant; /4 generation; eBUS; CONFIDENCE: HIGH (user provided); src: vaillant.be PDF 0020258613_02
 Vaillant,ecoVIT pneumatic/4,VKK SWE 366/4 (BE/IT),0010007519,Boiler,floor-standing gas condensing; 36.4 kW; BE/IT market variant; /4 generation; eBUS; CONFIDENCE: HIGH (user provided); src: vaillant.be PDF 0020258613_02

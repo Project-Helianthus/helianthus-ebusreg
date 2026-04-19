@@ -46,26 +46,26 @@ ebus_standard_catalog func LoadCatalogfunc(data []byte) (Catalog, error)
 ebus_standard_catalog func MustEmbeddedCatalogfunc() Catalog
 ebus_standard_catalog func NewProviderFromEnvfunc(cat Catalog) (*Provider, error)
 ebus_standard_catalog func NewProviderfunc(cat Catalog, enabled bool) (*Provider, error)
-ebus_standard_catalog type AnswerPolicy = string
-ebus_standard_catalog type BroadcastOrAddressed = string
-ebus_standard_catalog type CallerContext = int
-ebus_standard_catalog type Catalog = struct { Namespace string `yaml:"namespace"` Version string `yaml:"version"` PlanSHA256 string `yaml:"plan_sha256"` Services []Service `yaml:"services"` ContentSHA256 string `yaml:"-"` }
-ebus_standard_catalog type Command = struct { ID string `yaml:"id"` Name string `yaml:"name"` Description string `yaml:"description,omitempty"` Identity IdentityKey `yaml:"identity"` SafetyClass SafetyClass `yaml:"safety_class"` Request []Parameter `yaml:"request,omitempty"` Response []Parameter `yaml:"response,omitempty"` }
-ebus_standard_catalog type DeviceInfo = struct { Manufacturer string DeviceID string SoftwareVersion string HardwareVersion string }
-ebus_standard_catalog type Direction = string
-ebus_standard_catalog type FieldProvenance = struct { Preferred string Sources []IdentitySourceValue Agreement bool }
-ebus_standard_catalog type IdentificationDescriptor = struct { Manufacturer string DeviceID string SoftwareVersion string HardwareVersion string Source string CatalogVersion string Valid bool }
-ebus_standard_catalog type IdentityKey = struct { Namespace string `yaml:"namespace"` PB *uint8 `yaml:"pb"` SB *uint8 `yaml:"sb"` SelectorPath string `yaml:"selector_path"` TelegramClass TelegramClass `yaml:"telegram_class"` Direction Direction `yaml:"direction"` RequestOrResponseRole RequestOrResponseRole `yaml:"request_or_response_role"` BroadcastOrAddressed BroadcastOrAddressed `yaml:"broadcast_or_addressed"` AnswerPolicy AnswerPolicy `yaml:"answer_policy"` LengthPrefixMode LengthPrefixMode `yaml:"length_prefix_mode"` SelectorDecoder string `yaml:"selector_decoder"` ServiceVariant string `yaml:"service_variant"` TransportCapabilityRequirements []string `yaml:"transport_capability_requirements"` Version string `yaml:"version"` }
-ebus_standard_catalog type IdentitySource = string
-ebus_standard_catalog type IdentitySourceValue = struct { Source IdentitySource Value string Valid bool }
-ebus_standard_catalog type LengthPrefixMode = string
-ebus_standard_catalog type Parameter = struct { Name string `yaml:"name"` Type string `yaml:"type"` Description string `yaml:"description,omitempty"` }
-ebus_standard_catalog type ProvenanceRecord = struct { Manufacturer FieldProvenance DeviceID FieldProvenance SoftwareVersion FieldProvenance HardwareVersion FieldProvenance }
-ebus_standard_catalog type Provider = struct { catalog Catalog methodIdx map[string]Command enabled bool }
-ebus_standard_catalog type RequestOrResponseRole = string
-ebus_standard_catalog type SafetyClass = string
-ebus_standard_catalog type Service = struct { PB *uint8 `yaml:"pb"` Name string `yaml:"name"` Description string `yaml:"description,omitempty"` Commands []Command `yaml:"commands"` }
-ebus_standard_catalog type TelegramClass = string
+ebus_standard_catalog type AnswerPolicy string
+ebus_standard_catalog type BroadcastOrAddressed string
+ebus_standard_catalog type CallerContext int
+ebus_standard_catalog type Catalog struct { Namespace string `yaml:"namespace"` Version string `yaml:"version"` PlanSHA256 string `yaml:"plan_sha256"` Services []Service `yaml:"services"` ContentSHA256 string `yaml:"-"` }
+ebus_standard_catalog type Command struct { ID string `yaml:"id"` Name string `yaml:"name"` Description string `yaml:"description,omitempty"` Identity IdentityKey `yaml:"identity"` SafetyClass SafetyClass `yaml:"safety_class"` Request []Parameter `yaml:"request,omitempty"` Response []Parameter `yaml:"response,omitempty"` }
+ebus_standard_catalog type DeviceInfo struct { Manufacturer string DeviceID string SoftwareVersion string HardwareVersion string }
+ebus_standard_catalog type Direction string
+ebus_standard_catalog type FieldProvenance struct { Preferred string Sources []IdentitySourceValue Agreement bool }
+ebus_standard_catalog type IdentificationDescriptor struct { Manufacturer string DeviceID string SoftwareVersion string HardwareVersion string Source string CatalogVersion string Valid bool }
+ebus_standard_catalog type IdentityKey struct { Namespace string `yaml:"namespace"` PB *uint8 `yaml:"pb"` SB *uint8 `yaml:"sb"` SelectorPath string `yaml:"selector_path"` TelegramClass TelegramClass `yaml:"telegram_class"` Direction Direction `yaml:"direction"` RequestOrResponseRole RequestOrResponseRole `yaml:"request_or_response_role"` BroadcastOrAddressed BroadcastOrAddressed `yaml:"broadcast_or_addressed"` AnswerPolicy AnswerPolicy `yaml:"answer_policy"` LengthPrefixMode LengthPrefixMode `yaml:"length_prefix_mode"` SelectorDecoder string `yaml:"selector_decoder"` ServiceVariant string `yaml:"service_variant"` TransportCapabilityRequirements []string `yaml:"transport_capability_requirements"` Version string `yaml:"version"` }
+ebus_standard_catalog type IdentitySource string
+ebus_standard_catalog type IdentitySourceValue struct { Source IdentitySource Value string Valid bool }
+ebus_standard_catalog type LengthPrefixMode string
+ebus_standard_catalog type Parameter struct { Name string `yaml:"name"` Type string `yaml:"type"` Description string `yaml:"description,omitempty"` }
+ebus_standard_catalog type ProvenanceRecord struct { Manufacturer FieldProvenance DeviceID FieldProvenance SoftwareVersion FieldProvenance HardwareVersion FieldProvenance }
+ebus_standard_catalog type Provider struct { catalog Catalog methodIdx map[string]Command enabled bool }
+ebus_standard_catalog type RequestOrResponseRole string
+ebus_standard_catalog type SafetyClass string
+ebus_standard_catalog type Service struct { PB *uint8 `yaml:"pb"` Name string `yaml:"name"` Description string `yaml:"description,omitempty"` Commands []Command `yaml:"commands"` }
+ebus_standard_catalog type TelegramClass string
 ebus_standard_catalog var ErrAmbiguousLengthSelector
 ebus_standard_catalog var ErrCatalogMissingServices
 ebus_standard_catalog var ErrDuplicateIdentityKey
@@ -90,5 +90,5 @@ safetypolicy const Mutating
 safetypolicy const ReadOnlyBusLoad
 safetypolicy const ReadOnlySafe
 safetypolicy func Allowfunc(class Class, caller Caller) bool
-safetypolicy type Caller = int
-safetypolicy type Class = string
+safetypolicy type Caller int
+safetypolicy type Class string

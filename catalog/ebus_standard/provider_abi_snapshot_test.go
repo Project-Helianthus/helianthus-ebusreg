@@ -193,12 +193,124 @@ func ExportedFunc(a int) error { return nil }
 	}
 }
 
+// TestABISnapshot_PreservesTypeDeclForm asserts that formatTypeDecl
+// distinguishes defined types from aliases and renders type parameters
+// for generics. These are ABI-significant shape differences: a
+// defined→alias flip changes method-set reachability; a generic type
+// param add/remove changes the exported surface. The snapshot MUST
+// catch both.
+func TestABISnapshot_PreservesTypeDeclForm(t *testing.T) {
+	render := func(src string) []string {
+		fset := token.NewFileSet()
+		file, err := parser.ParseFile(fset, "sample.go", src, 0)
+		if err != nil {
+			t.Fatalf("parse: %v", err)
+		}
+		file.Comments = nil
+		var lines []string
+		for _, decl := range file.Decls {
+			gd, ok := decl.(*ast.GenDecl)
+			if !ok {
+				continue
+			}
+			for _, spec := range gd.Specs {
+				if s, ok := spec.(*ast.TypeSpec); ok && s.Name.IsExported() {
+					lines = append(lines, formatTypeDecl(file.Name.Name, s, fset))
+				}
+			}
+		}
+		sort.Strings(lines)
+		return lines
+	}
+
+	// Defined type: no `=`.
+	defined := render(`package sample
+type Defined string
+`)
+	if len(defined) != 1 || !strings.Contains(defined[0], "type Defined string") {
+		t.Fatalf("defined type render wrong: %q", defined)
+	}
+	if strings.Contains(defined[0], "Defined = string") {
+		t.Fatalf("defined type rendered as alias: %q", defined[0])
+	}
+
+	// Alias type: `=` present.
+	alias := render(`package sample
+type Alias = string
+`)
+	if len(alias) != 1 || !strings.Contains(alias[0], "type Alias = string") {
+		t.Fatalf("alias type render wrong: %q", alias)
+	}
+
+	// Defined vs alias MUST produce distinct snapshot lines. This is the
+	// core regression: the pre-fix implementation hardcoded `" = "` and
+	// collapsed the two forms.
+	definedLine := render(`package sample
+type T string
+`)
+	aliasLine := render(`package sample
+type T = string
+`)
+	if definedLine[0] == aliasLine[0] {
+		t.Fatalf("defined and alias rendered identically: %q", definedLine[0])
+	}
+
+	// Generic type: type params present.
+	generic := render(`package sample
+type Generic[T any] struct{ Val T }
+`)
+	if len(generic) != 1 || !strings.Contains(generic[0], "Generic[T any]") {
+		t.Fatalf("generic type params missing: %q", generic)
+	}
+
+	// Adding/removing a type parameter MUST produce a snapshot diff.
+	oneParam := render(`package sample
+type G[T any] struct{ V T }
+`)
+	twoParams := render(`package sample
+type G[T any, U comparable] struct{ V T }
+`)
+	if oneParam[0] == twoParams[0] {
+		t.Fatalf("type-param count change not detected: %q", oneParam[0])
+	}
+}
+
 func formatTypeDecl(pkg string, s *ast.TypeSpec, fset *token.FileSet) string {
 	var buf bytes.Buffer
 	buf.WriteString(pkg)
 	buf.WriteString(" type ")
 	buf.WriteString(s.Name.Name)
-	buf.WriteString(" = ")
+	// Emit type parameters for generic type declarations (Go 1.18+):
+	// `type Generic[T any, U comparable] struct{...}`. TypeParams is nil
+	// for non-generic types, so guard the render.
+	if s.TypeParams != nil && len(s.TypeParams.List) > 0 {
+		buf.WriteString("[")
+		for i, field := range s.TypeParams.List {
+			if i > 0 {
+				buf.WriteString(", ")
+			}
+			for j, name := range field.Names {
+				if j > 0 {
+					buf.WriteString(", ")
+				}
+				buf.WriteString(name.Name)
+			}
+			if len(field.Names) > 0 {
+				buf.WriteString(" ")
+			}
+			_ = printNode(&buf, fset, field.Type)
+		}
+		buf.WriteString("]")
+	}
+	// Distinguish a type alias (`type T = U`, TypeSpec.Assign != NoPos)
+	// from a defined type (`type T U`). The two forms are ABI-distinct:
+	// flipping one to the other changes method-set reachability and
+	// conversion rules, so the snapshot MUST preserve the separator.
+	if s.Assign != token.NoPos {
+		buf.WriteString(" = ")
+	} else {
+		buf.WriteString(" ")
+	}
 	_ = printNode(&buf, fset, s.Type)
 	return compactWhitespace(buf.String())
 }

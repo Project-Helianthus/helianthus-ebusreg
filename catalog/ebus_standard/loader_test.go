@@ -44,6 +44,26 @@ func TestLoadCatalog_AmbiguousLengthSelector(t *testing.T) {
 	}
 }
 
+// TestLoadCatalog_AmbiguousLengthSelector_NoneDecoder asserts that two
+// entries sharing the on-wire identity axes with selector_decoder="none"
+// but differing only by length_prefix_mode are still rejected as
+// ambiguous. Without a selector branch, no decode-time disambiguation is
+// possible, so the ambiguity detector must treat "none" as a bundling axis
+// rather than skipping it.
+func TestLoadCatalog_AmbiguousLengthSelector_NoneDecoder(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "ambiguous_length_selector_none_decoder.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrAmbiguousLengthSelector, got nil")
+	}
+	if !errors.Is(err, ErrAmbiguousLengthSelector) {
+		t.Fatalf("LoadCatalog: expected ErrAmbiguousLengthSelector, got %v", err)
+	}
+}
+
 // TestLoadCatalog_MissingPB asserts that a YAML fixture omitting the `pb`
 // key in the identity block is rejected with ErrIncompleteIdentityKey. The
 // value 0x00 must NOT be accepted as a default; absence of the key is the

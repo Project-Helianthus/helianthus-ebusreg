@@ -1,0 +1,47 @@
+namespace: ebus_standard
+version: v1.0-locked
+plan_sha256: 9e0a29bb76d99f551904b05749e322aafd3972621858aa6d1acbe49b9ef37305
+services:
+  - pb: 0x05
+    name: Burner Control
+    commands:
+      # Two entries share (namespace, PB=0x05, SB=0x07, direction=response,
+      # role=responder) with selector_decoder="none" but declare incompatible
+      # length_prefix_mode values. With no selector branch available, the
+      # decoder cannot pick between fixed and byte_prefix at decode time.
+      - id: ebus_standard.burner.none_decoder_fixed
+        name: None-decoder fixed variant
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x07
+          selector_path: ""
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: none_decoder_fixed
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.none_decoder_byte
+        name: None-decoder byte-prefix variant
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x07
+          selector_path: ""
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: none_decoder_byte
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating

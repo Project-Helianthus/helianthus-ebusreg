@@ -169,6 +169,12 @@ func detectDuplicateIdentityKeys(cat Catalog) error {
 // disambiguated at decode time because the only differing axis is the
 // length-prefix rule itself, which the decoder applies BEFORE it knows
 // which branch to pick.
+//
+// When selector_decoder is "none" (or empty), there is no selector branch
+// at all — so two entries sharing the remaining on-wire identity axes but
+// differing only by length_prefix_mode are STILL ambiguous (there is no
+// branch to disambiguate on). These cases are bundled under a canonical
+// "none" decoder key rather than skipped.
 func detectAmbiguousLengthSelectors(cat Catalog) error {
 	type bucket struct {
 		cmdID string
@@ -178,11 +184,15 @@ func detectAmbiguousLengthSelectors(cat Catalog) error {
 	for _, svc := range cat.Services {
 		for _, cmd := range svc.Commands {
 			k := cmd.Identity
-			if k.SelectorDecoder == "" || k.SelectorDecoder == "none" {
-				continue
+			// Canonicalise empty selector_decoder to "none" so that the
+			// two values are treated as the same bundling axis and do not
+			// fragment otherwise-ambiguous buckets.
+			decoder := k.SelectorDecoder
+			if decoder == "" {
+				decoder = "none"
 			}
 			key := fmt.Sprintf("%s|%02X|%02X|%s|%s|%s|%s",
-				k.Namespace, k.PBValue(), k.SBValue(), k.SelectorDecoder,
+				k.Namespace, k.PBValue(), k.SBValue(), decoder,
 				k.SelectorPath, k.Direction, k.RequestOrResponseRole)
 			buckets[key] = append(buckets[key], bucket{cmd.ID, k.LengthPrefixMode})
 		}

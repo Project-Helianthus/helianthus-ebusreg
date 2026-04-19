@@ -24,6 +24,18 @@ func loadCatalogImpl(data []byte) (Catalog, error) {
 		cat.Namespace = Namespace
 	}
 
+	// Reject catalogs with no services at all. A YAML document that omits
+	// the `services:` key (or supplies an empty list) would otherwise load
+	// successfully as an effectively empty catalog, silently dropping every
+	// method definition at runtime and bypassing the per-service typo/
+	// omission guards (ErrServiceMissingPB, ErrServiceMissingCommands,
+	// identity/namespace checks, duplicate detection). Fail fast here so a
+	// malformed document cannot masquerade as a valid (but empty) catalog.
+	if len(cat.Services) == 0 {
+		return Catalog{}, fmt.Errorf("%w: document has no services: entries",
+			ErrCatalogMissingServices)
+	}
+
 	// Validate identity-key completeness and check safety_class values.
 	for si := range cat.Services {
 		svc := &cat.Services[si]

@@ -1,0 +1,6 @@
+# Fixture: catalog document with no `services:` key at all.
+# LoadCatalog must reject with ErrCatalogMissingServices, not silently
+# return an empty catalog.
+namespace: ebus_standard
+version: v1.0-locked
+plan_sha256: 9e0a29bb76d99f551904b05749e322aafd3972621858aa6d1acbe49b9ef37305

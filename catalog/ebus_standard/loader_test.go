@@ -284,6 +284,36 @@ func TestLoadCatalog_ServiceWithoutCommands(t *testing.T) {
 	}
 }
 
+// TestLoadCatalog_EmptyCatalog asserts that a YAML document with no
+// top-level services (key absent, or `services: []`) is rejected with
+// ErrCatalogMissingServices. Without this guard, a malformed document would
+// silently load as an empty catalog and bypass every per-service validation.
+func TestLoadCatalog_EmptyCatalog(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "empty_catalog.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrCatalogMissingServices, got nil")
+	}
+	if !errors.Is(err, ErrCatalogMissingServices) {
+		t.Fatalf("LoadCatalog: expected ErrCatalogMissingServices, got %v", err)
+	}
+
+	// Explicit empty list must also be rejected.
+	empty := []byte("namespace: ebus_standard\nservices: []\n")
+	if _, err := LoadCatalog(empty); !errors.Is(err, ErrCatalogMissingServices) {
+		t.Fatalf("LoadCatalog(services:[]): expected ErrCatalogMissingServices, got %v", err)
+	}
+
+	// A document with nothing but a comment must also be rejected.
+	commentOnly := []byte("# just a comment, no services\n")
+	if _, err := LoadCatalog(commentOnly); !errors.Is(err, ErrCatalogMissingServices) {
+		t.Fatalf("LoadCatalog(comment-only): expected ErrCatalogMissingServices, got %v", err)
+	}
+}
+
 // TestLoadCatalog_EmbeddedBaselineLoads asserts that the embedded baseline
 // catalog passes the empty-commands guard — i.e. every declared service has
 // at least one command.

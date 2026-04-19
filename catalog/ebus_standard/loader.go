@@ -50,6 +50,13 @@ var (
 	// IdentityKey.PB / IdentityKey.SB.
 	ErrServiceMissingPB = errors.New("ebus_standard: service is missing pb key")
 
+	// ErrCatalogMissingServices is returned when a YAML document deserializes
+	// with an empty (or absent) top-level `services:` collection. Without
+	// this guard, a malformed document silently produces an effectively empty
+	// catalog and bypasses every per-service validation (ErrServiceMissingPB,
+	// ErrServiceMissingCommands, identity checks, duplicate detection).
+	ErrCatalogMissingServices = errors.New("ebus_standard: catalog has no services")
+
 	// ErrServicePBMismatch is returned when a service's declared pb does
 	// not match the pb of one of its command identity keys. A typo in the
 	// service header would otherwise produce a catalog where commands are

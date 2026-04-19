@@ -22,6 +22,7 @@ type Record struct {
 	ProductModel string
 	PartNumber   string
 	Role         string
+	Notes        string
 }
 
 type Catalog struct {
@@ -51,6 +52,8 @@ func parseCatalog(r io.Reader) (Catalog, error) {
 		}
 	}
 
+	notesIdx, hasNotes := indexByName["notes"]
+
 	catalog := Catalog{
 		All:          make([]Record, 0),
 		ByPartNumber: make(map[string]Record),
@@ -69,6 +72,9 @@ func parseCatalog(r io.Reader) (Catalog, error) {
 			ProductModel: strings.TrimSpace(valueAt(row, indexByName["product_model"])),
 			PartNumber:   strings.TrimSpace(valueAt(row, indexByName["part_number"])),
 			Role:         strings.TrimSpace(valueAt(row, indexByName["role"])),
+		}
+		if hasNotes {
+			record.Notes = strings.TrimSpace(valueAt(row, notesIdx))
 		}
 		catalog.All = append(catalog.All, record)
 		if record.Brand == "" || record.Family == "" || record.ProductModel == "" || record.PartNumber == "" || record.Role == "" {

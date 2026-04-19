@@ -1,0 +1,9 @@
+// Deeply nested planted namespace-isolation violation fixture. Mirrors
+// testdata/planted_vaillant_import.go.txt but lives at a multi-level path
+// to exercise the recursive-walk guarantee in
+// TestNamespaceIsolation_RecursiveWalk_CatchesNestedViolation.
+package ebus_standard_catalog
+
+import (
+	_ "github.com/Project-Helianthus/helianthus-ebusreg/vaillant/dhw"
+)

@@ -3,6 +3,7 @@ package ebus_standard_catalog
 import (
 	"go/parser"
 	"go/token"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"strings"
@@ -35,33 +36,98 @@ import (
 // test zero-cost for normal runs.
 func TestNamespaceIsolation_NoVaillantImports(t *testing.T) {
 	var violations []string
-	roots := []string{".", filepath.Join("internal", "safetypolicy")}
-	for _, root := range roots {
-		entries, err := os.ReadDir(root)
-		if err != nil {
-			t.Fatalf("readdir %s: %v", root, err)
+	// Walk the entire catalog/ebus_standard subtree recursively. A prior
+	// implementation only called os.ReadDir on two top-level roots, which
+	// produced a false-negative path: any Vaillant import dropped into a
+	// nested subdirectory (e.g. internal/anything/deeper/foo.go) escaped
+	// the scanner entirely. filepath.WalkDir catches the full subtree.
+	err := filepath.WalkDir(".", func(path string, d fs.DirEntry, werr error) error {
+		if werr != nil {
+			return werr
 		}
-		for _, ent := range entries {
-			if ent.IsDir() || !strings.HasSuffix(ent.Name(), ".go") {
-				continue
+		if d.IsDir() {
+			// Skip testdata/ — it contains planted .go.txt fixtures that are
+			// exercised explicitly by TestNamespaceIsolation_PlantedViolationCaught.
+			if d.Name() == "testdata" {
+				return filepath.SkipDir
 			}
-			path := filepath.Join(root, ent.Name())
-			fset := token.NewFileSet()
-			file, err := parser.ParseFile(fset, path, nil, parser.ImportsOnly)
-			if err != nil {
-				t.Fatalf("parse %s: %v", path, err)
-			}
-			for _, imp := range file.Imports {
-				p := strings.Trim(imp.Path.Value, `"`)
-				if strings.Contains(p, "/vaillant/") || strings.HasSuffix(p, "/vaillant") {
-					violations = append(violations, path+": imports "+p)
-				}
+			return nil
+		}
+		if !strings.HasSuffix(path, ".go") {
+			return nil
+		}
+		// Test files are allowed to reference fixtures by string path but
+		// must not import Vaillant packages either, so both .go and
+		// _test.go files are scanned uniformly.
+		fset := token.NewFileSet()
+		file, perr := parser.ParseFile(fset, path, nil, parser.ImportsOnly)
+		if perr != nil {
+			return perr
+		}
+		for _, imp := range file.Imports {
+			p := strings.Trim(imp.Path.Value, `"`)
+			if strings.Contains(p, "/vaillant/") || strings.HasSuffix(p, "/vaillant") {
+				violations = append(violations, path+": imports "+p)
 			}
 		}
+		return nil
+	})
+	if err != nil {
+		t.Fatalf("walk: %v", err)
 	}
 	if len(violations) > 0 {
 		t.Fatalf("namespace isolation violation (catalog/ebus_standard must not import Vaillant packages):\n  %s",
 			strings.Join(violations, "\n  "))
+	}
+}
+
+// TestNamespaceIsolation_RecursiveWalk_CatchesNestedViolation proves the
+// scanner descends into subdirectories. It copies the planted nested
+// fixture into a tempdir at a multi-level path and runs the same WalkDir
+// + parser.ImportsOnly pipeline the real test uses. A flat ReadDir
+// implementation would miss the deeply-nested file — this regression
+// test pins the recursive behavior.
+func TestNamespaceIsolation_RecursiveWalk_CatchesNestedViolation(t *testing.T) {
+	plantedPath := filepath.Join("testdata", "nested", "deeper", "planted_vaillant_nested.go.txt")
+	raw, err := os.ReadFile(plantedPath)
+	if err != nil {
+		t.Fatalf("read nested planted fixture: %v", err)
+	}
+	tmp := t.TempDir()
+	deep := filepath.Join(tmp, "a", "b", "c")
+	if err := os.MkdirAll(deep, 0o755); err != nil {
+		t.Fatalf("mkdir nested: %v", err)
+	}
+	tmpPath := filepath.Join(deep, "planted.go")
+	if err := os.WriteFile(tmpPath, raw, 0o644); err != nil {
+		t.Fatalf("write nested planted copy: %v", err)
+	}
+	var violations []string
+	err = filepath.WalkDir(tmp, func(path string, d fs.DirEntry, werr error) error {
+		if werr != nil {
+			return werr
+		}
+		if d.IsDir() || !strings.HasSuffix(path, ".go") {
+			return nil
+		}
+		fset := token.NewFileSet()
+		file, perr := parser.ParseFile(fset, path, nil, parser.ImportsOnly)
+		if perr != nil {
+			return perr
+		}
+		for _, imp := range file.Imports {
+			p := strings.Trim(imp.Path.Value, `"`)
+			if strings.Contains(p, "/vaillant/") || strings.HasSuffix(p, "/vaillant") {
+				violations = append(violations, path+": imports "+p)
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		t.Fatalf("walk nested: %v", err)
+	}
+	if len(violations) == 0 {
+		t.Fatal("nested planted vaillant import was NOT caught — recursive walk regressed to flat ReadDir")
 	}
 }
 

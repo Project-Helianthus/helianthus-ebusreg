@@ -1,0 +1,1102 @@
+# ebus_standard catalog — first-delivery baseline
+#
+# Plan: ebus-standard-l7-services-w16-26.locked/00-canonical.md
+# Canonical SHA-256: 9e0a29bb76d99f551904b05749e322aafd3972621858aa6d1acbe49b9ef37305
+# Services sourced from architecture/ebus_standard/01-services-catalog.md
+#
+# M2 scope: enumerate every method with full 14-tuple identity keys. Command
+# bodies (Request/Response parameter schemas) land in M3 once L7 type
+# primitives in helianthus-ebusgo (M1) are available for cross-linking.
+namespace: ebus_standard
+version: v1.0-locked
+plan_sha256: 9e0a29bb76d99f551904b05749e322aafd3972621858aa6d1acbe49b9ef37305
+services:
+  # -----------------------------------------------------------------------
+  # Service 0x03 — Service Data
+  # -----------------------------------------------------------------------
+  - pb: 0x03
+    name: Service Data
+    description: Diagnostic counter and operating-time reads. read_only_bus_load.
+    commands:
+      - id: ebus_standard.service_data.start_counts
+        name: Start Counts
+        identity:
+          namespace: ebus_standard
+          pb: 0x03
+          sb: 0x04
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: none
+          selector_decoder: none
+          service_variant: start_counts
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.service_data.operating_time_l1
+        name: Operating Time Level 1
+        identity:
+          namespace: ebus_standard
+          pb: 0x03
+          sb: 0x05
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: none
+          selector_decoder: none
+          service_variant: operating_time_l1
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.service_data.operating_time_l2
+        name: Operating Time Level 2
+        identity:
+          namespace: ebus_standard
+          pb: 0x03
+          sb: 0x06
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: none
+          selector_decoder: none
+          service_variant: operating_time_l2
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.service_data.operating_time_l3
+        name: Operating Time Level 3
+        identity:
+          namespace: ebus_standard
+          pb: 0x03
+          sb: 0x07
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: none
+          selector_decoder: none
+          service_variant: operating_time_l3
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.service_data.fuel_quantity_counter
+        name: Fuel Quantity Counter
+        identity:
+          namespace: ebus_standard
+          pb: 0x03
+          sb: 0x08
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: none
+          selector_decoder: none
+          service_variant: fuel_quantity_counter
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.service_data.meter_reading
+        name: Meter Reading
+        identity:
+          namespace: ebus_standard
+          pb: 0x03
+          sb: 0x10
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: none
+          selector_decoder: none
+          service_variant: meter_reading
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+
+  # -----------------------------------------------------------------------
+  # Service 0x05 — Burner Control
+  # -----------------------------------------------------------------------
+  - pb: 0x05
+    name: Burner Control
+    description: Cyclic burner control telegrams. Default-deny for user invocation.
+    commands:
+      - id: ebus_standard.burner.op_data_req_b2c
+        name: Operational Data Request, burner to controller
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x00
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: op_data_req_b2c
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.op_data_c2b
+        name: Operational Data, controller to burner
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x01
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: op_data_c2b
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.op_data_req_c2b
+        name: Operational Data Request, controller to burner
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x02
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: op_data_req_c2b
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.op_data_b2c_block1
+        name: Operational Data, burner to controller, block 1
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x03
+          selector_path: block_number=0x01
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: typed_payload
+          selector_decoder: block_number
+          service_variant: op_data_b2c_block
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.op_data_b2c_block2
+        name: Operational Data, burner to controller, block 2
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x03
+          selector_path: block_number=0x02
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: typed_payload
+          selector_decoder: block_number
+          service_variant: op_data_b2c_block
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.control_stop_response
+        name: Control Stop Response
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x04
+          selector_path: ""
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: control_stop_response
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.barred_reserved
+        name: Barred / Reserved
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x05
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: no_answer
+          length_prefix_mode: none
+          selector_decoder: none
+          service_variant: barred_reserved
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: destructive
+      - id: ebus_standard.burner.op_data_req_chB_b2c
+        name: Operational Data Request, channel B, burner to controller
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x06
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: op_data_req_chB_b2c
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.op_data_chB_c2b
+        name: Operational Data, channel B, controller to burner
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x07
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: op_data_chB_c2b
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.op_data_req_chB_c2b
+        name: Operational Data Request, channel B, controller to burner
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x08
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: op_data_req_chB_c2b
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.op_data_chB_b2c_block1
+        name: Operational Data, channel B, block 1
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x09
+          selector_path: block_number=0x01
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: typed_payload
+          selector_decoder: block_number
+          service_variant: op_data_chB_b2c_block
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.op_data_chB_b2c_block2
+        name: Operational Data, channel B, block 2
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x09
+          selector_path: block_number=0x02
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: typed_payload
+          selector_decoder: block_number
+          service_variant: op_data_chB_b2c_block
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.op_data_chB_b2c_block3
+        name: Operational Data, channel B, block 3
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x09
+          selector_path: block_number=0x03
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: typed_payload
+          selector_decoder: block_number
+          service_variant: op_data_chB_b2c_block
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.config_data_request
+        name: Configuration Data Request
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x0A
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: config_data_request
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.burner.config_data_response
+        name: Configuration Data Response
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x0B
+          selector_path: ""
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: config_data_response
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_safe
+      - id: ebus_standard.burner.operational_requirements
+        name: Operational Requirements
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x0C
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: operational_requirements
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.op_data_ext_c2b
+        name: Operational Data, extended controller to burner
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x0D
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: op_data_ext_c2b
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+
+  # -----------------------------------------------------------------------
+  # Service 0x07 — System Data
+  # -----------------------------------------------------------------------
+  - pb: 0x07
+    name: System Data
+    description: Identification, capability discovery, broadcast date/time.
+    commands:
+      - id: ebus_standard.system_data.date_time_broadcast
+        name: Date/Time Broadcast
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0x00
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: date_time_broadcast
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+      - id: ebus_standard.system_data.set_date_time
+        name: Set Date/Time
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0x01
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: set_date_time
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.system_data.set_outside_temperature
+        name: Set Outside Temperature
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0x02
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: set_outside_temperature
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.system_data.query_supported_commands
+        name: Query Supported Commands
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0x03
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: query_supported_commands
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.system_data.identification_addressed
+        name: Identification (addressed)
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0x04
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: identification_query
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.system_data.identification_self_broadcast
+        name: Identification Self-Broadcast
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0x04
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: identification_self_broadcast
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+      - id: ebus_standard.system_data.query_supported_commands_ext
+        name: Query Supported Commands, extended
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0x05
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: query_supported_commands_ext
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.system_data.inquiry_of_existence
+        name: Inquiry of Existence
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0xFE
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: none
+          selector_decoder: none
+          service_variant: inquiry_of_existence
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+      - id: ebus_standard.system_data.sign_of_life
+        name: Sign of Life
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0xFF
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: none
+          selector_decoder: none
+          service_variant: sign_of_life
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+
+  # -----------------------------------------------------------------------
+  # Service 0x08 — Controller-to-Controller
+  # -----------------------------------------------------------------------
+  - pb: 0x08
+    name: Controller-to-Controller
+    description: Broadcast coordination between controllers. Mostly default-denied.
+    commands:
+      - id: ebus_standard.c2c.target_values
+        name: Target Values
+        identity:
+          namespace: ebus_standard
+          pb: 0x08
+          sb: 0x00
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: target_values
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+      - id: ebus_standard.c2c.operational_data
+        name: Operational Data
+        identity:
+          namespace: ebus_standard
+          pb: 0x08
+          sb: 0x01
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: operational_data
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+      - id: ebus_standard.c2c.control_commands
+        name: Control Commands
+        identity:
+          namespace: ebus_standard
+          pb: 0x08
+          sb: 0x02
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: control_commands
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+      - id: ebus_standard.c2c.boiler_parameters
+        name: Boiler Parameters
+        identity:
+          namespace: ebus_standard
+          pb: 0x08
+          sb: 0x03
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: boiler_parameters
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+      - id: ebus_standard.c2c.system_remote_control
+        name: System Remote Control
+        identity:
+          namespace: ebus_standard
+          pb: 0x08
+          sb: 0x04
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: system_remote_control
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+
+  # -----------------------------------------------------------------------
+  # Service 0x09 — Memory Server
+  # -----------------------------------------------------------------------
+  - pb: 0x09
+    name: Memory Server
+    description: Service-mode memory reads and writes (RAM/EEPROM).
+    commands:
+      - id: ebus_standard.memory_server.read_ram
+        name: Read RAM
+        identity:
+          namespace: ebus_standard
+          pb: 0x09
+          sb: 0x00
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: read_ram
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.memory_server.write_ram
+        name: Write RAM
+        identity:
+          namespace: ebus_standard
+          pb: 0x09
+          sb: 0x01
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: write_ram
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: memory_write
+      - id: ebus_standard.memory_server.read_eeprom
+        name: Read EEPROM
+        identity:
+          namespace: ebus_standard
+          pb: 0x09
+          sb: 0x02
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: read_eeprom
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.memory_server.write_eeprom
+        name: Write EEPROM
+        identity:
+          namespace: ebus_standard
+          pb: 0x09
+          sb: 0x03
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: write_eeprom
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: memory_write
+
+  # -----------------------------------------------------------------------
+  # Service 0x0F — Test Commands
+  # -----------------------------------------------------------------------
+  - pb: 0x0F
+    name: Test Commands
+    description: Factory/service test mode. All destructive, default-denied.
+    commands:
+      - id: ebus_standard.test.start_of_test
+        name: Start of Test (NN=0x02)
+        identity:
+          namespace: ebus_standard
+          pb: 0x0F
+          sb: 0x01
+          selector_path: nn=0x02
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: nn
+          service_variant: start_of_test
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: destructive
+      - id: ebus_standard.test.ready
+        name: Ready (NN=0x01)
+        identity:
+          namespace: ebus_standard
+          pb: 0x0F
+          sb: 0x01
+          selector_path: nn=0x01
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: nn
+          service_variant: ready
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: destructive
+      - id: ebus_standard.test.test_message
+        name: Test Message
+        identity:
+          namespace: ebus_standard
+          pb: 0x0F
+          sb: 0x02
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: no_answer
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: test_message
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: destructive
+      - id: ebus_standard.test.end_of_test
+        name: End of Test
+        identity:
+          namespace: ebus_standard
+          pb: 0x0F
+          sb: 0x03
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: end_of_test
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: destructive
+
+  # -----------------------------------------------------------------------
+  # Service 0xFE — General Broadcast
+  # -----------------------------------------------------------------------
+  - pb: 0xFE
+    name: General Broadcast
+    description: General-purpose broadcast error signalling.
+    commands:
+      - id: ebus_standard.broadcast.error_message
+        name: Error Message
+        identity:
+          namespace: ebus_standard
+          pb: 0xFE
+          sb: 0x01
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: error_message
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+
+  # -----------------------------------------------------------------------
+  # Service 0xFF — Network Management
+  # -----------------------------------------------------------------------
+  - pb: 0xFF
+    name: Network Management
+    description: NM reset, failure, net status, monitored participants, failed nodes, required services.
+    commands:
+      - id: ebus_standard.nm.reset_status
+        name: Reset Status NM
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x00
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: reset_status
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+      - id: ebus_standard.nm.reset_target_configuration
+        name: Reset Target Configuration NM
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x01
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: reset_target_configuration
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+      - id: ebus_standard.nm.failure_message
+        name: Failure Message
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x02
+          selector_path: ""
+          telegram_class: broadcast
+          direction: request
+          request_or_response_role: originator
+          broadcast_or_addressed: broadcast
+          answer_policy: no_answer
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: failure_message
+          transport_capability_requirements: [broadcast_send]
+          version: v1.0-locked
+        safety_class: broadcast
+      - id: ebus_standard.nm.net_status_query_request
+        name: Net Status Query Request
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x03
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: net_status_query
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.nm.net_status_query_response
+        name: Net Status Query Response
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x03
+          selector_path: ""
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: none
+          service_variant: net_status_query
+          transport_capability_requirements: [responder]
+          version: v1.0-locked
+        safety_class: read_only_safe
+      - id: ebus_standard.nm.monitored_participants_query_request
+        name: Monitored Participants Query Request
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x04
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: monitored_participants_query
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.nm.monitored_participants_query_response
+        name: Monitored Participants Query Response
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x04
+          selector_path: ""
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: monitored_participants_query
+          transport_capability_requirements: [responder]
+          version: v1.0-locked
+        safety_class: read_only_safe
+      - id: ebus_standard.nm.failed_nodes_query_request
+        name: Failed Nodes Query Request
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x05
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: failed_nodes_query
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.nm.failed_nodes_query_response
+        name: Failed Nodes Query Response
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x05
+          selector_path: ""
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: failed_nodes_query
+          transport_capability_requirements: [responder]
+          version: v1.0-locked
+        safety_class: read_only_safe
+      - id: ebus_standard.nm.required_services_query_request
+        name: Required Services Query Request
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x06
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: required_services_query
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+      - id: ebus_standard.nm.required_services_query_response
+        name: Required Services Query Response
+        identity:
+          namespace: ebus_standard
+          pb: 0xFF
+          sb: 0x06
+          selector_path: ""
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: none
+          service_variant: required_services_query
+          transport_capability_requirements: [responder]
+          version: v1.0-locked
+        safety_class: read_only_safe

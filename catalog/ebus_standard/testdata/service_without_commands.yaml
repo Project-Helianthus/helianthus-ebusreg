@@ -1,0 +1,9 @@
+namespace: ebus_standard
+version: v1.0-locked
+plan_sha256: 9e0a29bb76d99f551904b05749e322aafd3972621858aa6d1acbe49b9ef37305
+services:
+  - pb: 0x07
+    name: System Data (typoed commands key)
+    # The `commands:` key is intentionally omitted. A malformed catalog
+    # that drops the commands block must be rejected loudly rather than
+    # loaded as an empty service with no method definitions.

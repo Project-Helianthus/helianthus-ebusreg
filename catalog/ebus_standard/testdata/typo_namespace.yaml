@@ -1,0 +1,25 @@
+namespace: ebus_standard
+version: v1.0-locked
+plan_sha256: 9e0a29bb76d99f551904b05749e322aafd3972621858aa6d1acbe49b9ef37305
+services:
+  - pb: 0x07
+    name: System Data
+    commands:
+      - id: ebus_standard.typo_namespace
+        name: Typoed namespace identity key
+        identity:
+          namespace: ebus_standrad
+          pb: 0x07
+          sb: 0x04
+          selector_path: ""
+          telegram_class: addressed
+          direction: request
+          request_or_response_role: initiator
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: none
+          selector_decoder: none
+          service_variant: test_variant
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load

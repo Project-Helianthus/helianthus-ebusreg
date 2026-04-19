@@ -1,0 +1,46 @@
+namespace: ebus_standard
+version: v1.0-locked
+plan_sha256: 9e0a29bb76d99f551904b05749e322aafd3972621858aa6d1acbe49b9ef37305
+services:
+  - pb: 0x05
+    name: Burner Control
+    commands:
+      # Two entries share (namespace, PB=0x05, SB=0x03, selector_decoder=block_number)
+      # but declare incompatible length_prefix_mode values. Decode time has no
+      # way to pick a branch, so generation must fail.
+      - id: ebus_standard.burner.operational_data.block_ambiguous_fixed
+        name: Operational Data, block 1 (fixed-length variant)
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x03
+          selector_path: block_number=0x01
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: fixed
+          selector_decoder: block_number
+          service_variant: operational_data_block
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating
+      - id: ebus_standard.burner.operational_data.block_ambiguous_byte
+        name: Operational Data, block 1 (byte-prefix variant)
+        identity:
+          namespace: ebus_standard
+          pb: 0x05
+          sb: 0x03
+          selector_path: block_number=0x01
+          telegram_class: addressed
+          direction: response
+          request_or_response_role: responder
+          broadcast_or_addressed: addressed
+          answer_policy: answer_required
+          length_prefix_mode: byte_prefix
+          selector_decoder: block_number
+          service_variant: operational_data_block
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: mutating

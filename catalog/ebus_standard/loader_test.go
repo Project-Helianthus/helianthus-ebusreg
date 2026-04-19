@@ -1,0 +1,662 @@
+package ebus_standard_catalog
+
+import (
+	"errors"
+	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+	"testing"
+)
+
+// TestLoadCatalog_DuplicateIdentityKey asserts that a YAML fixture with a
+// planted duplicate 14-tuple identity key causes LoadCatalog to fail with
+// ErrDuplicateIdentityKey. This is the canonical collision-detection
+// guarantee from locked plan §3.
+func TestLoadCatalog_DuplicateIdentityKey(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "collision_duplicate.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrDuplicateIdentityKey, got nil")
+	}
+	if !errors.Is(err, ErrDuplicateIdentityKey) {
+		t.Fatalf("LoadCatalog: expected ErrDuplicateIdentityKey, got %v", err)
+	}
+}
+
+// TestLoadCatalog_AmbiguousLengthSelector asserts that two entries sharing
+// (namespace, PB, SB, selector_decoder) with incompatible length_prefix_mode
+// cause LoadCatalog to fail.
+func TestLoadCatalog_AmbiguousLengthSelector(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "ambiguous_length_selector.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrAmbiguousLengthSelector, got nil")
+	}
+	if !errors.Is(err, ErrAmbiguousLengthSelector) {
+		t.Fatalf("LoadCatalog: expected ErrAmbiguousLengthSelector, got %v", err)
+	}
+}
+
+// TestLoadCatalog_AmbiguousLengthSelector_NoneDecoder asserts that two
+// entries sharing the on-wire identity axes with selector_decoder="none"
+// but differing only by length_prefix_mode are still rejected as
+// ambiguous. Without a selector branch, no decode-time disambiguation is
+// possible, so the ambiguity detector must treat "none" as a bundling axis
+// rather than skipping it.
+func TestLoadCatalog_AmbiguousLengthSelector_NoneDecoder(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "ambiguous_length_selector_none_decoder.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrAmbiguousLengthSelector, got nil")
+	}
+	if !errors.Is(err, ErrAmbiguousLengthSelector) {
+		t.Fatalf("LoadCatalog: expected ErrAmbiguousLengthSelector, got %v", err)
+	}
+}
+
+// TestLoadCatalog_AmbiguousLengthSelector_NoneDecoder_WithPath asserts
+// that when selector_decoder="none", the ambiguity-bundling key ignores
+// selector_path. Two entries sharing the on-wire identity axes with
+// different selector_path strings but incompatible length_prefix_mode
+// values must still collide: without a decoder, selector_path is inert
+// at decode time and cannot disambiguate the branches.
+func TestLoadCatalog_AmbiguousLengthSelector_NoneDecoder_WithPath(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "ambiguous_length_selector_none_decoder_with_path.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrAmbiguousLengthSelector, got nil")
+	}
+	if !errors.Is(err, ErrAmbiguousLengthSelector) {
+		t.Fatalf("LoadCatalog: expected ErrAmbiguousLengthSelector, got %v", err)
+	}
+}
+
+// TestLoadCatalog_ServicePBMismatch asserts that a command whose
+// identity.pb differs from the enclosing service.pb is rejected with
+// ErrServicePBMismatch. A typo in the service header would otherwise
+// silently group the command under the wrong service code.
+func TestLoadCatalog_ServicePBMismatch(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "service_pb_mismatch.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrServicePBMismatch, got nil")
+	}
+	if !errors.Is(err, ErrServicePBMismatch) {
+		t.Fatalf("LoadCatalog: expected ErrServicePBMismatch, got %v", err)
+	}
+	// Error must name both the service pb and the identity pb for
+	// deterministic diagnosis.
+	if !strings.Contains(err.Error(), "0x07") || !strings.Contains(err.Error(), "0x08") {
+		t.Fatalf("error %q must include both 0x07 and 0x08", err.Error())
+	}
+}
+
+// TestLoadCatalog_ServiceMissingPB asserts that a service entry without an
+// explicit `pb:` key is rejected with ErrServiceMissingPB. A value-typed
+// uint8 would silently deserialize omission as 0x00 and match a command
+// whose identity.pb is also 0x00, defeating the service/identity pb
+// mismatch check. The error must name the offending service.
+func TestLoadCatalog_ServiceMissingPB(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "service_missing_pb.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrServiceMissingPB, got nil")
+	}
+	if !errors.Is(err, ErrServiceMissingPB) {
+		t.Fatalf("LoadCatalog: expected ErrServiceMissingPB, got %v", err)
+	}
+	if !strings.Contains(err.Error(), "System Data (missing pb header)") {
+		t.Fatalf("error %q must include the offending service name", err.Error())
+	}
+}
+
+// TestLoadCatalog_MissingPB asserts that a YAML fixture omitting the `pb`
+// key in the identity block is rejected with ErrIncompleteIdentityKey. The
+// value 0x00 must NOT be accepted as a default; absence of the key is the
+// only signal the loader has to distinguish "missing" from "explicit 0x00".
+func TestLoadCatalog_MissingPB(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "missing_pb.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrIncompleteIdentityKey, got nil")
+	}
+	if !errors.Is(err, ErrIncompleteIdentityKey) {
+		t.Fatalf("LoadCatalog: expected ErrIncompleteIdentityKey, got %v", err)
+	}
+}
+
+// TestLoadCatalog_MissingSB asserts the symmetric rejection when the `sb`
+// key is absent.
+func TestLoadCatalog_MissingSB(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "missing_sb.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrIncompleteIdentityKey, got nil")
+	}
+	if !errors.Is(err, ErrIncompleteIdentityKey) {
+		t.Fatalf("LoadCatalog: expected ErrIncompleteIdentityKey, got %v", err)
+	}
+}
+
+// TestLoadCatalog_ExplicitZeroPBSB asserts that explicitly-set `pb: 0x00`
+// and `sb: 0x00` are ACCEPTED — the value zero is legitimate when the YAML
+// author wrote it out. Only absence of the key must be rejected.
+func TestLoadCatalog_ExplicitZeroPBSB(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "explicit_zero_pb_sb.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	cat, err := LoadCatalog(data)
+	if err != nil {
+		t.Fatalf("LoadCatalog: expected success for explicit zero PB/SB, got %v", err)
+	}
+	if len(cat.Services) != 1 || len(cat.Services[0].Commands) != 1 {
+		t.Fatalf("LoadCatalog: expected 1 service with 1 command, got %+v", cat.Services)
+	}
+	id := cat.Services[0].Commands[0].Identity
+	if id.PB == nil || *id.PB != 0x00 {
+		t.Fatalf("LoadCatalog: PB: expected explicit 0x00, got %v", id.PB)
+	}
+	if id.SB == nil || *id.SB != 0x00 {
+		t.Fatalf("LoadCatalog: SB: expected explicit 0x00, got %v", id.SB)
+	}
+}
+
+// TestLoadCatalog_UnknownEnumValue asserts that typos in any of the enum-
+// typed identity-key axes are rejected at load time with
+// ErrUnknownEnumValue — rather than silently accepted as opaque strings,
+// which would break downstream matching without a deterministic error.
+//
+// One sub-test per axis, each starts from a valid template and replaces
+// a single field with a deliberate typo.
+func TestLoadCatalog_UnknownEnumValue(t *testing.T) {
+	const validTemplate = `
+namespace: ebus_standard
+version: v1.0-locked
+plan_sha256: 9e0a29bb76d99f551904b05749e322aafd3972621858aa6d1acbe49b9ef37305
+services:
+  - pb: 0x07
+    name: System Data
+    commands:
+      - id: ebus_standard.enum_typo_test
+        name: Enum typo probe
+        identity:
+          namespace: ebus_standard
+          pb: 0x07
+          sb: 0x04
+          selector_path: ""
+          telegram_class: {{TELEGRAM_CLASS}}
+          direction: {{DIRECTION}}
+          request_or_response_role: {{ROLE}}
+          broadcast_or_addressed: {{ADDRESSING}}
+          answer_policy: {{ANSWER_POLICY}}
+          length_prefix_mode: {{LPM}}
+          selector_decoder: none
+          service_variant: enum_probe
+          transport_capability_requirements: [master_slave]
+          version: v1.0-locked
+        safety_class: read_only_bus_load
+`
+	type axis struct {
+		name        string
+		typoedField string
+		typoedValue string
+	}
+	baseline := map[string]string{
+		"TELEGRAM_CLASS": "addressed",
+		"DIRECTION":      "request",
+		"ROLE":           "initiator",
+		"ADDRESSING":     "addressed",
+		"ANSWER_POLICY":  "answer_required",
+		"LPM":            "none",
+	}
+	// Sanity: the baseline template itself must load successfully.
+	t.Run("baseline_loads", func(t *testing.T) {
+		yml := applyTemplate(validTemplate, baseline)
+		if _, err := LoadCatalog([]byte(yml)); err != nil {
+			t.Fatalf("baseline template: expected success, got %v", err)
+		}
+	})
+
+	cases := []axis{
+		{name: "telegram_class", typoedField: "TELEGRAM_CLASS", typoedValue: "addresed_typo"},
+		{name: "direction", typoedField: "DIRECTION", typoedValue: "requset"},
+		{name: "request_or_response_role", typoedField: "ROLE", typoedValue: "initator"},
+		{name: "broadcast_or_addressed", typoedField: "ADDRESSING", typoedValue: "addresed"},
+		{name: "answer_policy", typoedField: "ANSWER_POLICY", typoedValue: "answer_req"},
+		{name: "length_prefix_mode", typoedField: "LPM", typoedValue: "fixd"},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			vals := make(map[string]string, len(baseline))
+			for k, v := range baseline {
+				vals[k] = v
+			}
+			vals[tc.typoedField] = tc.typoedValue
+			yml := applyTemplate(validTemplate, vals)
+			_, err := LoadCatalog([]byte(yml))
+			if err == nil {
+				t.Fatalf("axis %s with typo %q: expected ErrUnknownEnumValue, got nil", tc.name, tc.typoedValue)
+			}
+			if !errors.Is(err, ErrUnknownEnumValue) {
+				t.Fatalf("axis %s with typo %q: expected ErrUnknownEnumValue, got %v", tc.name, tc.typoedValue, err)
+			}
+			// Error message must name the field and the bad value for
+			// deterministic diagnosis.
+			if !strings.Contains(err.Error(), tc.name) {
+				t.Fatalf("axis %s: error %q does not name the field", tc.name, err.Error())
+			}
+			if !strings.Contains(err.Error(), tc.typoedValue) {
+				t.Fatalf("axis %s: error %q does not include the bad value", tc.name, err.Error())
+			}
+		})
+	}
+}
+
+func applyTemplate(tpl string, vals map[string]string) string {
+	out := tpl
+	for k, v := range vals {
+		out = strings.ReplaceAll(out, fmt.Sprintf("{{%s}}", k), v)
+	}
+	return out
+}
+
+// TestLoadCatalog_ServiceWithoutCommands asserts that a YAML fixture whose
+// service block deserializes with no commands (typo or omission of the
+// `commands:` key) is rejected with ErrServiceMissingCommands. The baseline
+// catalog satisfies len(commands) > 0 by construction.
+func TestLoadCatalog_ServiceWithoutCommands(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "service_without_commands.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrServiceMissingCommands, got nil")
+	}
+	if !errors.Is(err, ErrServiceMissingCommands) {
+		t.Fatalf("LoadCatalog: expected ErrServiceMissingCommands, got %v", err)
+	}
+}
+
+// TestLoadCatalog_EmptyCatalog asserts that a YAML document with no
+// top-level services (key absent, or `services: []`) is rejected with
+// ErrCatalogMissingServices. Without this guard, a malformed document would
+// silently load as an empty catalog and bypass every per-service validation.
+func TestLoadCatalog_EmptyCatalog(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "empty_catalog.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrCatalogMissingServices, got nil")
+	}
+	if !errors.Is(err, ErrCatalogMissingServices) {
+		t.Fatalf("LoadCatalog: expected ErrCatalogMissingServices, got %v", err)
+	}
+
+	// Explicit empty list must also be rejected.
+	empty := []byte("namespace: ebus_standard\nservices: []\n")
+	if _, err := LoadCatalog(empty); !errors.Is(err, ErrCatalogMissingServices) {
+		t.Fatalf("LoadCatalog(services:[]): expected ErrCatalogMissingServices, got %v", err)
+	}
+
+	// A document with nothing but a comment must also be rejected.
+	commentOnly := []byte("# just a comment, no services\n")
+	if _, err := LoadCatalog(commentOnly); !errors.Is(err, ErrCatalogMissingServices) {
+		t.Fatalf("LoadCatalog(comment-only): expected ErrCatalogMissingServices, got %v", err)
+	}
+}
+
+// TestEmbeddedYAML_DefensiveCopy asserts that EmbeddedYAML() returns a
+// fresh copy on every call. Mutating the returned slice must not affect
+// subsequent calls or corrupt the package-global embedded bytes. This
+// guarantees catalog immutability across goroutines and external callers.
+func TestEmbeddedYAML_DefensiveCopy(t *testing.T) {
+	first := EmbeddedYAML()
+	if len(first) == 0 {
+		t.Fatalf("EmbeddedYAML: returned empty slice")
+	}
+	original := first[0]
+	// Mutate the returned slice.
+	first[0] = original ^ 0xFF
+
+	second := EmbeddedYAML()
+	if len(second) != len(first) {
+		t.Fatalf("EmbeddedYAML: length changed between calls: %d vs %d",
+			len(first), len(second))
+	}
+	if second[0] != original {
+		t.Fatalf("EmbeddedYAML: mutation leaked across calls: got 0x%02X, want 0x%02X",
+			second[0], original)
+	}
+	// Embedded baseline must still load successfully after an external
+	// mutation of a prior EmbeddedYAML() return.
+	if _, err := LoadCatalog(EmbeddedYAML()); err != nil {
+		t.Fatalf("LoadCatalog(embedded) after mutation: %v", err)
+	}
+}
+
+// TestLoadCatalog_EmbeddedBaselineLoads asserts that the embedded baseline
+// catalog passes the empty-commands guard — i.e. every declared service has
+// at least one command.
+func TestLoadCatalog_EmbeddedBaselineLoads(t *testing.T) {
+	if _, err := LoadCatalog(EmbeddedYAML()); err != nil {
+		t.Fatalf("LoadCatalog(embedded): unexpected error: %v", err)
+	}
+}
+
+// TestLoadCatalog_TypoNamespace asserts that an identity-key namespace that
+// differs from the fixed Namespace constant (e.g. "ebus_standrad") is
+// rejected at load time with ErrInvalidNamespace. Without this guard, the
+// typo would be silently treated as a distinct identity and bypass the
+// duplicate-14-tuple collision detector.
+func TestLoadCatalog_TypoNamespace(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "typo_namespace.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrInvalidNamespace, got nil")
+	}
+	if !errors.Is(err, ErrInvalidNamespace) {
+		t.Fatalf("LoadCatalog: expected ErrInvalidNamespace, got %v", err)
+	}
+	// Error message must name the field and the bad value for
+	// deterministic diagnosis.
+	if !strings.Contains(err.Error(), "namespace") {
+		t.Fatalf("error %q does not name the field", err.Error())
+	}
+	if !strings.Contains(err.Error(), "ebus_standrad") {
+		t.Fatalf("error %q does not include the bad value", err.Error())
+	}
+}
+
+// TestEmbeddedCatalog_SHAPinning asserts that the embedded catalog carries
+// a ContentSHA256 value and that it matches the SHA of its raw bytes. This
+// enforces the plan's "Catalog is SHA-pinned and version-tagged"
+// requirement.
+func TestEmbeddedCatalog_SHAPinning(t *testing.T) {
+	cat := MustEmbeddedCatalog()
+	if cat.Version == "" {
+		t.Fatalf("embedded catalog: Version empty")
+	}
+	if cat.Version != CatalogVersion {
+		t.Fatalf("embedded catalog: Version=%q, want %q", cat.Version, CatalogVersion)
+	}
+	if cat.PlanSHA256 != CanonicalPlanSHA256 {
+		t.Fatalf("embedded catalog: PlanSHA256=%q, want %q", cat.PlanSHA256, CanonicalPlanSHA256)
+	}
+	if cat.ContentSHA256 == "" {
+		t.Fatalf("embedded catalog: ContentSHA256 empty")
+	}
+	// The loader must compute ContentSHA256 from the raw YAML bytes, not
+	// from any post-parse structure. We re-compute from EmbeddedYAML() and
+	// assert equality.
+	want := ComputeContentSHA256(EmbeddedYAML())
+	if cat.ContentSHA256 != want {
+		t.Fatalf("embedded catalog: ContentSHA256=%q, want %q", cat.ContentSHA256, want)
+	}
+}
+
+// TestEmbeddedCatalog_IdentityKeyCompleteness walks every command in the
+// embedded catalog and asserts that its 14-tuple identity key is fully
+// populated per canonical §3.
+func TestEmbeddedCatalog_IdentityKeyCompleteness(t *testing.T) {
+	cat := MustEmbeddedCatalog()
+	var failures int
+	for _, svc := range cat.Services {
+		for _, cmd := range svc.Commands {
+			if !cmd.Identity.IsComplete() {
+				t.Errorf("command %q: incomplete identity key: %+v", cmd.ID, cmd.Identity)
+				failures++
+			}
+			if cmd.Identity.Namespace != Namespace {
+				t.Errorf("command %q: namespace=%q, want %q", cmd.ID, cmd.Identity.Namespace, Namespace)
+			}
+		}
+	}
+	if failures > 0 {
+		t.Fatalf("%d commands have incomplete identity keys", failures)
+	}
+}
+
+// TestEmbeddedCatalog_ServiceCoverage asserts that every service required
+// by the locked plan's first-delivery baseline is present.
+func TestEmbeddedCatalog_ServiceCoverage(t *testing.T) {
+	cat := MustEmbeddedCatalog()
+	required := []uint8{0x03, 0x05, 0x07, 0x08, 0x09, 0x0F, 0xFE, 0xFF}
+	present := make(map[uint8]bool, len(cat.Services))
+	for _, svc := range cat.Services {
+		present[svc.PBValue()] = true
+	}
+	for _, pb := range required {
+		if !present[pb] {
+			t.Errorf("service PB=0x%02X missing from embedded catalog", pb)
+		}
+	}
+}
+
+// TestIdentityKeyFingerprint_SliceEncodingIsInjective guards against a
+// regression in which TransportCapabilityRequirements was serialized with
+// %v, causing []string{"a b"} and []string{"a","b"} to produce the same
+// fingerprint ("[a b]") and therefore to collide under
+// ErrDuplicateIdentityKey even though the identities are distinct. The
+// fingerprint MUST distinguish the two shapes.
+func TestIdentityKeyFingerprint_SliceEncodingIsInjective(t *testing.T) {
+	base := IdentityKey{
+		Namespace:                       Namespace,
+		TelegramClass:                   TelegramClassAddressed,
+		Direction:                       DirectionRequest,
+		RequestOrResponseRole:           RoleInitiator,
+		BroadcastOrAddressed:            AddressedDirect,
+		AnswerPolicy:                    AnswerRequired,
+		LengthPrefixMode:                LengthPrefixNone,
+		SelectorDecoder:                 "none",
+		ServiceVariant:                  "sv",
+		Version:                         "v1",
+		SelectorPath:                    "sel",
+		TransportCapabilityRequirements: []string{"a b"},
+	}
+	a := base
+	a.TransportCapabilityRequirements = []string{"a b"}
+	b := base
+	b.TransportCapabilityRequirements = []string{"a", "b"}
+
+	fpA := identityKeyFingerprint(a)
+	fpB := identityKeyFingerprint(b)
+	if fpA == fpB {
+		t.Fatalf("identityKeyFingerprint: collision between []string{\"a b\"} and []string{\"a\",\"b\"}: %q == %q", fpA, fpB)
+	}
+
+	// Also verify other whitespace-sensitive shapes are distinguished.
+	c := base
+	c.TransportCapabilityRequirements = []string{"", "ab"}
+	d := base
+	d.TransportCapabilityRequirements = []string{"ab", ""}
+	if identityKeyFingerprint(c) == identityKeyFingerprint(d) {
+		t.Fatalf("identityKeyFingerprint: collision between [\"\",\"ab\"] and [\"ab\",\"\"]")
+	}
+
+	// Determinism: two distinct IdentityKey values with identical
+	// contents must produce identical fingerprints (guards against any
+	// future incidental map iteration or pointer formatting).
+	e1 := base
+	e1.TransportCapabilityRequirements = []string{"x", "y"}
+	e2 := base
+	e2.TransportCapabilityRequirements = []string{"x", "y"}
+	if identityKeyFingerprint(e1) != identityKeyFingerprint(e2) {
+		t.Fatalf("identityKeyFingerprint: non-deterministic output for equal inputs")
+	}
+}
+
+// TestIdentityKeyFingerprint_DelimiterInjective guards against a
+// regression in which the fingerprint was rendered as a `|`-delimited
+// format string. Free-form fields (selector_path, selector_decoder,
+// service_variant) that happened to contain delimiter-shaped substrings
+// such as "|sv=" could collapse two distinct identities into the same
+// fingerprint, causing false-positive ErrDuplicateIdentityKey on
+// otherwise valid catalogs. The fingerprint MUST distinguish such
+// shapes — JSON encoding escapes embedded quotes/backslashes and is
+// injective for any string content.
+func TestIdentityKeyFingerprint_DelimiterInjective(t *testing.T) {
+	base := IdentityKey{
+		Namespace:             Namespace,
+		TelegramClass:         TelegramClassAddressed,
+		Direction:             DirectionRequest,
+		RequestOrResponseRole: RoleInitiator,
+		BroadcastOrAddressed:  AddressedDirect,
+		AnswerPolicy:          AnswerRequired,
+		LengthPrefixMode:      LengthPrefixNone,
+		SelectorDecoder:       "decoder",
+		ServiceVariant:        "variant",
+		Version:               "v1",
+		SelectorPath:          "path",
+	}
+
+	// Pair 1: cross-talk between selector_path and selector_decoder via
+	// a `|sd=`-shaped substring. Under the legacy `|`-concat encoding
+	// these two collapsed onto the same fingerprint.
+	a := base
+	a.SelectorPath = "x|sd=y"
+	a.SelectorDecoder = "z"
+	b := base
+	b.SelectorPath = "x"
+	b.SelectorDecoder = "y|sd=z"
+	// Defensive: also vary an unrelated axis between the pair so a
+	// trivially-equal sanity check would still fire if encoding broke.
+	if identityKeyFingerprint(a) == identityKeyFingerprint(b) {
+		t.Fatalf("identityKeyFingerprint: delimiter-shaped substring collision: %q == %q",
+			identityKeyFingerprint(a), identityKeyFingerprint(b))
+	}
+
+	// Pair 2: cross-talk between service_variant and version via a
+	// `|ver=`-shaped substring.
+	c := base
+	c.ServiceVariant = "v1|ver=x"
+	c.Version = "y"
+	d := base
+	d.ServiceVariant = "v1"
+	d.Version = "x|ver=y"
+	if identityKeyFingerprint(c) == identityKeyFingerprint(d) {
+		t.Fatalf("identityKeyFingerprint: service_variant/version delimiter collision: %q == %q",
+			identityKeyFingerprint(c), identityKeyFingerprint(d))
+	}
+
+	// Determinism: identical inputs produce identical fingerprints
+	// across repeated calls (struct field order is compile-time fixed).
+	// Capture the first value, then compare subsequent calls against
+	// it; staticcheck (SA4000) rejects `f(x) != f(x)` even though the
+	// intent is to detect non-deterministic output.
+	first := identityKeyFingerprint(a)
+	for i := 0; i < 8; i++ {
+		if identityKeyFingerprint(a) != first {
+			t.Fatalf("identityKeyFingerprint: non-deterministic across repeated calls (iter %d)", i)
+		}
+	}
+}
+
+// TestDetectAmbiguousLengthSelectors_DelimiterInjective guards against
+// a regression in which the ambiguity-bucket key was built by
+// `|`-joining selector_decoder and selector_path. Two entries whose
+// decoder/path strings contained delimiter-shaped substrings (e.g.
+// `selector_decoder="dec|sel="`) could collapse into the same bucket
+// and be incorrectly flagged with ErrAmbiguousLengthSelector. Distinct
+// axis combinations MUST land in distinct buckets.
+func TestDetectAmbiguousLengthSelectors_DelimiterInjective(t *testing.T) {
+	pb := uint8(0x05)
+	mk := func(id, decoder, path string) Command {
+		return Command{
+			ID:          id,
+			Name:        id,
+			SafetyClass: SafetyReadOnlySafe,
+			Identity: IdentityKey{
+				Namespace:             Namespace,
+				PB:                    &pb,
+				SelectorPath:          path,
+				TelegramClass:         TelegramClassAddressed,
+				Direction:             DirectionRequest,
+				RequestOrResponseRole: RoleInitiator,
+				BroadcastOrAddressed:  AddressedDirect,
+				AnswerPolicy:          AnswerRequired,
+				LengthPrefixMode:      LengthPrefixNone,
+				SelectorDecoder:       decoder,
+				ServiceVariant:        "sv",
+				Version:               "v1",
+			},
+		}
+	}
+	cat := Catalog{
+		Namespace: Namespace,
+		Services: []Service{{
+			PB:   &pb,
+			Name: "svc",
+			Commands: []Command{
+				// Differ ONLY in how a `|`-shaped substring is split
+				// across decoder vs path. Under the legacy concat
+				// these would land in the same bucket.
+				mk("cmd_a", "dec|sel=A", "path"),
+				mk("cmd_b", "dec", "sel=A|path"),
+			},
+		}},
+	}
+
+	// Both commands carry LengthPrefixNone, so even if they DID land in
+	// the same bucket (regression behaviour), no length_prefix_mode
+	// disagreement would surface and the test would silently pass.
+	// Force a disagreement: mutate one to a different lpm value. If
+	// the bucket key is non-injective, the bucket merges and an
+	// ErrAmbiguousLengthSelector is emitted; if injective, the two
+	// land in separate buckets and no error is emitted.
+	cat.Services[0].Commands[1].Identity.LengthPrefixMode = LengthPrefixByte
+
+	if err := detectAmbiguousLengthSelectors(cat); err != nil {
+		t.Fatalf("detectAmbiguousLengthSelectors: false-positive merge of distinct decoder/path tuples: %v", err)
+	}
+
+	// Cross-check: when the on-wire identity axes (and decoder/path)
+	// are genuinely identical and lpm differs, the detector must still
+	// fire. Otherwise the new encoding would have masked a real bug.
+	cat2 := Catalog{
+		Namespace: Namespace,
+		Services: []Service{{
+			PB:   &pb,
+			Name: "svc",
+			Commands: []Command{
+				mk("cmd_x", "dec", "sel=A|path"),
+				mk("cmd_y", "dec", "sel=A|path"),
+			},
+		}},
+	}
+	cat2.Services[0].Commands[1].Identity.LengthPrefixMode = LengthPrefixByte
+	if err := detectAmbiguousLengthSelectors(cat2); err == nil {
+		t.Fatalf("detectAmbiguousLengthSelectors: expected ErrAmbiguousLengthSelector for genuine collision, got nil")
+	}
+}

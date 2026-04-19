@@ -363,7 +363,7 @@ Vaillant,aroTHERM,VWL 55/5 AS S2 (230 V),0010021110,Heat Pump,
 Vaillant,aroTHERM,VWL 75/5 AS S2 (230 V),0010021111,Heat Pump,
 Vaillant,aroTHERM,VWL 105/5 AS S2 (230 V),0010021112,Heat Pump,
 Vaillant,aroTHERM,VWL 125/5 AS S2 (230 V),0010021114,Heat Pump,
-Vaillant,FM5 Functional Module,VR 71,0010021115,Control Centre,
+Vaillant,aroTHERM Split,VWL 125/5 AS 400V S2,0010021115,Heat Pump,CS split 2nd-gen outdoor; R410A; 12 kW class @A7/W35 10.25 kW; 400V 3N; pairs with uniTOWER VWL 128/5 IS; eBUS; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: heizung-billiger.de
 Vaillant,FM5 Functional Module,VR 71,0010021118,Control Centre,
 Vaillant,FM5 Functional Module,VR 71,0010021122,Control Centre,
 Vaillant,ecoTEC plus,VU 486/5-5 (H-INT II),0010021530,Boiler,
@@ -405,7 +405,7 @@ Vaillant,ecoTEC plus,VC 20 CS/1-5 (E-DE),0010022008,Boiler,CS/1-5 generation; 19
 Vaillant,ecoTEC plus,VCW 20/26 CS/1-5 (E-DE),0010022010,Boiler,CS/1-5 combi; 20 kW heating / 26 kW DHW flow-through; gas E/LL/P; H2-ready 20%; ioniDetect; modulation 1:8; original launch SKU; CONFIDENCE: HIGH; src: heizung-billiger.de klimaworld.com
 Vaillant,uniTOWER,VIH QW 190/6 E,0010022078,Module,
 Vaillant,aroTHERM,VWL/5 split,0010023494,Heat Pump,
-Vaillant,FM5 Functional Module,VR 71,0010023523,Control Centre,
+Vaillant,Hydraulic module,VWL 127/5 IS wall hydraulic station,0010023523,Module,wall-mounted hydraulic station; pairs with VWL 105/5 & 125/5 AS outdoor; R410A split; eBUS; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: heizung-billiger.de raleo.de
 Vaillant,FM5 Functional Module,VR 71,0010023609,Control Centre,
 Vaillant,Hydraulic module,VWZ MEH 97,0010023611,Module,
 Protherm,Skat,12 KE/14,0010023648,Boiler,
@@ -470,7 +470,7 @@ Vaillant,calorMATIC 470f,VRC 470f,0020108137,Regulator,
 Vaillant,calorMATIC 470f,VRC 470f,0020112594,Regulator,
 Vaillant,Radio Receiver,Radio Receiver,0020112595,Module,
 Vaillant,commDialog Plus,,0020116884,Gateway,
-Vaillant,FM5 Functional Module,VR 71,0020117049,Control Centre,
+Vaillant,Hydraulic module,VWZ AI VWL X/2 A (West),0020117049,Module,heat pump appliance interface / bridge between VRC 470 controller and aroTHERM VWL/2 A monobloc or split systems; 230V; eBUS; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: vaillant.co.uk manual 3027915
 Vaillant,calorMATIC 350,VRT 350,0020124472,Regulator,
 Vaillant,calorMATIC 450,VRT 450,0020124489,Regulator,
 Vaillant,VR module,VR 61/2,0020129329,Module,
@@ -614,3 +614,76 @@ Vaillant,ecoTEC exclusive,VC 25CS/1-7 I (N-AT),0010024622,Boiler,/1-7 CS generat
 Vaillant,ecoTEC exclusive,VC 25CS/1-7 (N-PL),0010024643,Boiler,/1-7 CS generation; ioniDetect; Polish market variant; ~25 kW; CONFIDENCE: MED; src: grzanieplus.pl
 Vaillant,ecoTEC exclusive,VC 25CS/1-7 (N-PL alt-gas),0010039096,Boiler,/1-7 CS generation; ioniDetect; Polish market alternative gas variant; CONFIDENCE: LOW; src: grzanieplus.pl listing title
 Vaillant,ecoTEC exclusive,VC 20CS/1-7 I (N-BE),0010024563,Boiler,/1-7 CS generation; ioniDetect; Belgian market variant; ~20 kW; CONFIDENCE: MED
+Vaillant,ecoFIT pure,VUW 256/6-3 (GB),0010020389,Boiler,ecoFIT pure 825 combi; 25 kW; NG (G20 2H 20 mbar); GC 47-044-68; H-GB; stainless HEX; CONFIDENCE: HIGH; src: professional.vaillant.co.uk PDF 1943272
+Vaillant,ecoFIT pure,VUW 306/6-3 (GB),0010020390,Boiler,ecoFIT pure 830 combi; 30 kW; NG; GC 47-044-74; H-GB; stainless HEX; CONFIDENCE: HIGH; src: professional.vaillant.co.uk PDF 1943272
+Vaillant,ecoFIT pure,VUW 356/6-3 (GB),0010020391,Boiler,ecoFIT pure 835 combi; 35 kW; NG; GC 47-044-70; H-GB; stainless HEX; CONFIDENCE: HIGH; src: professional.vaillant.co.uk PDF 1943272
+Vaillant,ecoFIT pure,VU 126/6-3 OV (GB),0010020400,Boiler,ecoFIT pure 412 open-vent/regular heat-only; 12 kW; NG; GC 41-694-08; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk open-vent install PDF
+Vaillant,ecoFIT pure,VU 156/6-3 OV (GB),0010020401,Boiler,ecoFIT pure 415 open-vent heat-only; 15 kW; NG; GC 41-694-09; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk open-vent install PDF
+Vaillant,ecoFIT pure,VU 186/6-3 OV (GB),0010020402,Boiler,ecoFIT pure 418 open-vent heat-only; 18 kW; NG; GC 41-694-10; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk open-vent install PDF
+Vaillant,ecoFIT pure,VU 256/6-3 OV (GB),0010020403,Boiler,ecoFIT pure 425 open-vent heat-only; 25 kW; NG; GC 41-694-11; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk open-vent install PDF
+Vaillant,ecoFIT pure,VU 306/6-3 OV (GB),0010020404,Boiler,ecoFIT pure 430 open-vent heat-only; 30 kW; NG; GC 41-694-12; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk open-vent install PDF
+Vaillant,ecoFIT pure,VU 356/6-3 OV (GB),0010020405,Boiler,ecoFIT pure 435 open-vent heat-only; 35 kW; NG; GC 41-694-19; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk open-vent install PDF
+Vaillant,ecoFIT sustain,VUW 256/6-3 (GB),0010020392,Boiler,ecoFIT sustain 825 combi; 25 kW; NG; GC 47-044-71; H-GB; successor to ecoFIT pure combi; CONFIDENCE: HIGH; src: professional.vaillant.co.uk PDF 1943282
+Vaillant,ecoFIT sustain,VUW 306/6-3 (GB),0010020393,Boiler,ecoFIT sustain 830 combi; 30 kW; NG; GC 47-044-72; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk PDF 1943282
+Vaillant,ecoFIT sustain,VUW 356/6-3 (GB),0010020394,Boiler,ecoFIT sustain 835 combi; 35 kW; NG; GC 47-044-73; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk PDF 1943282
+Vaillant,ecoFIT sustain,VU 156/6-3 (GB),0010025271,Boiler,ecoFIT sustain 615 system; 15 kW; NG; GC 41-694-30; H-GB; sealed-system; CONFIDENCE: HIGH; src: professional.vaillant.co.uk PDF 1672143
+Vaillant,ecoFIT sustain,VU 186/6-3 (GB),0010025272,Boiler,ecoFIT sustain 618 system; 18 kW; NG; GC 41-694-31; H-GB; sealed-system; CONFIDENCE: HIGH; src: getplumb.co.uk
+Vaillant,ecoFIT sustain,VU 306/6-3 (GB),0010025273,Boiler,ecoFIT sustain 630 system; 30 kW; NG; GC 41-694-32; H-GB; sealed-system; CONFIDENCE: HIGH; src: cityplumbing.co.uk
+Vaillant,ecoFIT sustain,VU 156/6-3 OV (GB),0010025274,Boiler,ecoFIT sustain 415 open-vent heat-only; 15 kW; NG; GC 41-694-33; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk open-vent PDF 2913946
+Vaillant,ecoFIT sustain,VU 186/6-3 OV (GB),0010025275,Boiler,ecoFIT sustain 418 open-vent heat-only; 18 kW; NG; GC 41-694-34; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk open-vent PDF 2913946
+Vaillant,ecoFIT sustain,VU 306/6-3 OV (GB),0010025276,Boiler,ecoFIT sustain 430 open-vent heat-only; 30 kW; NG; GC 41-694-35; H-GB; CONFIDENCE: HIGH; src: professional.vaillant.co.uk open-vent PDF 2913946
+Vaillant,ecoTEC Sustain,VUW 246/7-2 ecoTEC Sustain 24,0010019980,Boiler,Sustain line; Combi; 24 kW; NG; modulation 1:3.8; ErP A; no ioniDETECT (Plus-only); not H2-ready per datasheet; GC 47-044-79; CONFIDENCE: HIGH; src: professional.vaillant.co.uk/ecotec-sustain-24-28-34kw-28928
+Vaillant,ecoTEC Sustain,VUW 286/7-2 ecoTEC Sustain 28,0010019981,Boiler,Sustain line; Combi; 28 kW; NG; modulation 1:3.8; ErP A; no ioniDETECT (Plus-only); not H2-ready; GC 47-044-80; CONFIDENCE: HIGH; src: cityplumbing.co.uk
+Vaillant,ecoTEC Sustain,VUW 346/7-2 ecoTEC Sustain 34,0010019982,Boiler,Sustain line; Combi; 34 kW; NG; modulation 1:4; ErP A; no ioniDETECT (Plus-only); not H2-ready; GC 47-044-81; CONFIDENCE: HIGH; src: cityplumbing.co.uk
+Vaillant,ecoCRAFT,VKK GB 806/3-E-H,0010005410,Boiler,UK commercial floor-standing gas condensing; 80 kW; /3 generation (pre-R1); NG; cascade up to 723 kW (3-unit) via VRC630; modulation 17-100%; obsolete 17/05/2024; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT,VKK GB 1206/3-E-H,0010005411,Boiler,UK commercial floor-standing gas condensing; 120 kW; /3 generation (pre-R1); NG; cascadable via VRC630; modulation 17-100%; obsolete 03/06/2019; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT,VKK GB 1606/3-E-H,0010005412,Boiler,UK commercial floor-standing gas condensing; 160 kW; /3 generation (pre-R1); NG; cascadable via VRC630; modulation 17-100%; obsolete 21/09/2016; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT,VKK GB 2006/3-E-H,0010005413,Boiler,UK commercial floor-standing gas condensing; 200 kW; /3 generation (pre-R1); NG; cascadable via VRC630; modulation 17-100%; obsolete 17/05/2024; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT,VKK GB 2406/3-E-H,0010005414,Boiler,UK commercial floor-standing gas condensing; 240 kW; /3 generation (pre-R1); NG; cascadable via VRC630; modulation 17-100%; obsolete 17/05/2024; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT,VKK GB 2806/3-E-H,0010005415,Boiler,UK commercial floor-standing gas condensing; 280 kW; /3 generation (pre-R1); NG; cascade up to 723 kW (3-unit) via VRC630; modulation 17-100%; obsolete 09/12/2021; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT exclusiv,VKK GB 806/3-E-HL R1,0010014388,Boiler,UK commercial floor-standing gas condensing; 80 kW; /3 rev R1 (2012 onwards); NG; cascade up to 723 kW; modulation 17-100%; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT exclusiv,VKK GB 1206/3-E-HL R1,0010014389,Boiler,UK commercial floor-standing gas condensing; 120 kW; /3 rev R1 (2012 onwards); NG; cascadable; modulation 17-100%; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT exclusiv,VKK GB 1606/3-E-HL R1,0010014390,Boiler,UK commercial floor-standing gas condensing; 160 kW; /3 rev R1 (2012 onwards); NG; cascadable; modulation 17-100%; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT exclusiv,VKK GB 2006/3-E-HL R1,0010014391,Boiler,UK commercial floor-standing gas condensing; 200 kW; /3 rev R1 (2012 onwards); NG; cascadable; modulation 17-100%; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT exclusiv,VKK GB 2406/3-E-HL R1,0010014392,Boiler,UK commercial floor-standing gas condensing; 240 kW; /3 rev R1 (2012 onwards); NG; cascadable; modulation 17-100%; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,ecoCRAFT exclusiv,VKK GB 2806/3-E-HL R1,0010014393,Boiler,UK commercial floor-standing gas condensing; 280 kW; /3 rev R1 (2012 onwards); NG; cascade up to 723 kW; modulation 17-100%; CONFIDENCE: HIGH; src: mytub.co.uk
+Vaillant,turboMAX plus,VUW 282/2-5 R3 (828E),306321,Boiler,UK 2001-2008; turbo balanced flue; /2-5; 28 kW; NG; pre-ecoTEC classic combi; ATENȚIE pre-eBUS (proprietary 7-8-9 bus); CONFIDENCE: HIGH; src: easysav.com
+Vaillant,turboMAX plus,VUW 282/2-5 R3 (828E) alt-gas,306322,Boiler,UK 2001-2008; turbo; /2-5; 28 kW; LPG/region variant; pre-eBUS proprietary bus; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VUW 240/2-5 R1 (BE),306462,Boiler,BE/UK 2001-2004; atmo open-chamber chimney; /2-5; 24 kW; NG; pre-eBUS proprietary bus; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VUW 240/2-5 R1 (BE alt-gas),306463,Boiler,BE/UK 2001-2004; atmo; /2-5; 24 kW; LPG/region variant; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VUW 280/2-5 R3 (BE),306415,Boiler,BE/UK 2001-2008; atmo; /2-5; 28 kW; NG; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VUW 280/2-5 R3 (BE alt-gas),306416,Boiler,BE/UK 2001-2008; atmo; /2-5; 28 kW; LPG/region variant; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VU 240/2-5 R3 (system BE),306412,Boiler,BE 2001-2008; atmo heating-only; /2-5; 24 kW; NG; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VU 240/2-5 R3 (system BE alt-gas),306413,Boiler,BE 2001-2008; atmo heating-only; /2-5; 24 kW; LPG/region variant; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VU 280/2-5 (system BE),306414,Boiler,BE 2001-2008; atmo heating-only; /2-5; 28 kW; NG; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VU 200/2-5 (system BE),306411,Boiler,BE 2001-2008; atmo heating-only; /2-5; 20 kW; NG; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VU 202/2-5 (system FR),306318,Boiler,FR/BE 2001-2008; atmo heating-only; /2-5; 20 kW; NG (FR); pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,turboMAX plus,VU 242/2-5 R3 (824E system),306319,Boiler,FR/BE/UK 2001-2008; turbo heating-only; /2-5; 24 kW; NG; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,turboMAX plus,VU 242/2-5 R3 (824E system alt-gas),306320,Boiler,FR/BE/UK 2001-2008; turbo heating-only; /2-5; 24 kW; LPG/region variant; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX pro,VUW 240/2-3 R1 (BE),306605,Boiler,BE/UK 2000-2008; atmo pro; /2-3; 24 kW combi; NG; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX pro,VUW 240/2-3 R1 (BE alt-gas),306624,Boiler,BE/UK 2000-2008; atmo pro; /2-3; 24 kW combi; LPG/region variant; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,turboMAX pro,VUW 242/2-3 R2 (24E),306504,Boiler,UK/FR 2000-2008; turbo pro; /2-3; 24 kW combi; NG; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,turboMAX pro,VUW 242/2-3 R2 (24E alt-gas),306511,Boiler,UK/FR 2000-2008; turbo pro; /2-3; 24 kW combi; LPG/region variant; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VUW 252/2-5 R3,306561,Boiler,FR/BE 2004-2008; atmo /2-5 R3; 25 kW combi; NG; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VUW 250/2-5 R3,306677,Boiler,FR/BE 2004-2008; atmo /2-5 R3; 25 kW combi; NG; sold in FR as atmoTOP plus; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,atmoMAX plus,VUW 250/2-5 R3 alt-gas,306678,Boiler,FR/BE 2004-2008; atmo /2-5 R3; 25 kW combi; LPG/region variant; pre-eBUS; CONFIDENCE: HIGH; src: easysav.com
+Vaillant,aroTHERM Split,VWL 35/5 AS 230V S2,0010021621,Heat Pump,split 2nd-gen outdoor; R410A; 3 kW class; 230V; pairs with uniTOWER VWL 58/5 IS or hydraulic module VWL 57/5 IS; eBUS; CONFIDENCE: MED; src: loodgietshop.nl
+Vaillant,aroTHERM Split,VWL 105/5 AS 400V S2,0010021113,Heat Pump,split; R410A; 10 kW class @A7/W35 8.69 kW; 400V 3N; /5 AS; pairs with uniTOWER VWL 128/5 IS; eBUS; CONFIDENCE: HIGH; src: heizung-billiger.de
+Vaillant,aroTHERM Split,VWL 35/5 AS 230V (rev),0010021631,Heat Pump,split; R410A; 3.2 kW @A7/W35; 230V; 2nd-gen /5 AS rev; pairs uniTOWER VWL 58/5 IS; eBUS; CONFIDENCE: HIGH; src: e-catalog.com
+Vaillant,aroTHERM Split,VWL 55/5 AS 230V,0010021632,Heat Pump,split; R410A; ~5 kW @A7/W35; 230V; /5 AS; pairs uniTOWER VWL 58/5 IS; eBUS; CONFIDENCE: HIGH; src: vaillantbolt.hu
+Vaillant,aroTHERM Split,VWL 75/5 AS 230V,0010021633,Heat Pump,split; R410A; 7 kW @A7/W35 ~5.8 kW; 230V; /5 AS; pairs uniTOWER VWL 78/5 IS; eBUS; CONFIDENCE: HIGH; src: termometal.hr
+Vaillant,aroTHERM Split,VWL 105/5 AS 230V,0010021634,Heat Pump,split; R410A; 10 kW @A7/W35 ~9.8 kW; 230V; /5 AS; pairs uniTOWER VWL 128/5 IS; eBUS; CONFIDENCE: HIGH; src: termometal.hr
+Vaillant,aroTHERM Split,VWL 105/5 AS 400V,0010021635,Heat Pump,split; R410A; 10 kW @A7/W35 9.8 kW; 400V 3N; /5 AS; pairs uniTOWER VWL 128/5 IS; eBUS; CONFIDENCE: HIGH; src: termometal.hr
+Vaillant,aroTHERM Split,VWL 125/5 AS 230V,0010021636,Heat Pump,split; R410A; 12 kW @A7/W35 ~11 kW; 230V; /5 AS; pairs uniTOWER VWL 128/5 IS; eBUS; CONFIDENCE: HIGH; src: e-catalog.com
+Vaillant,aroTHERM Split,VWL 125/5 AS 400V,0010021637,Heat Pump,split; R410A; 12 kW @A7/W35 11.9 kW; 400V 3N; /5 AS; pairs uniTOWER VWL 128/5 IS; eBUS; CONFIDENCE: HIGH; src: vaillantbolt.hu
+Vaillant,aroTHERM Split,VWL 35/5 AS 230V (gen3),0010031631,Heat Pump,split; R410A; 3.2 kW @A7/W35; 230V; 3rd-gen /5 AS; eBUS; CONFIDENCE: HIGH; src: termometal.hr
+Vaillant,aroTHERM Split,VWL 125/5 AS 230V (gen3),0010031636,Heat Pump,split; R410A; 12 kW @A7/W35 10.3 kW; 230V; 3rd-gen /5 AS; eBUS; CONFIDENCE: HIGH; src: termometal.hr
+Vaillant,aroTHERM Split,VWL 125/5 AS 400V (gen3),0010031637,Heat Pump,split; R410A; 12 kW @A7/W35 10.3 kW; 400V 3N; 3rd-gen /5 AS; eBUS; CONFIDENCE: HIGH; src: termometal.hr
+Vaillant,uniTOWER,VWL 58/5 IS,0010022069,Module,indoor package w/ 190L DHW tank; companion to VWL 35/5 & 55/5 AS outdoors; split R410A; 6 kW aux electric (230V); eBUS; CONFIDENCE: HIGH; src: raleo.de heizung-billiger.de
+Vaillant,uniTOWER,VWL 78/5 IS,0010022070,Module,indoor package w/ 190L DHW tank; companion to VWL 75/5 AS outdoor; split R410A; 6 kW aux electric (230V); eBUS; CONFIDENCE: HIGH; src: raleo.de
+Vaillant,uniTOWER,VWL 128/5 IS,0010022071,Module,indoor package w/ 190L DHW tank; companion to VWL 105/5 & 125/5 AS outdoor; split R410A; 6/9 kW aux electric (230V/400V); eBUS; CONFIDENCE: HIGH; src: solyd.be
+Vaillant,uniTOWER,VWL 128/5 IS (400V rev),0010022092,Module,indoor package w/ 188/190L DHW tank; companion to VWL 105/5 & 125/5 AS outdoor; split R410A; 9 kW aux electric 400V; 2nd-gen rev; eBUS; CONFIDENCE: HIGH; src: termometal.hr
+Vaillant,Hydraulic module,VWL 57/5 IS wall hydraulic station,0010023503,Module,wall-mounted hydraulic module (no DHW tank); pairs with VWL 35/5 & 55/5 AS outdoors; split R410A; 1.5 kg refrigerant fill; eBUS; CONFIDENCE: HIGH; src: termometal.hr
+Vaillant,Hydraulic module,VWL 127/5 IS wall hydraulic station (rev),0010023526,Module,wall-mounted hydraulic module rev; pairs with VWL 105/5 & 125/5 AS; split R410A; eBUS; CONFIDENCE: MED; src: termometal.hr
+Vaillant,Hydraulic module,VWZ AI VWL X/2 A (East),0020139944,Module,heat pump appliance interface (East/EE variant); for aroTHERM VWL/2 A; 230V; eBUS; CONFIDENCE: MED; src: manualslib 2205649
+Vaillant,Hydraulic module,VWZ AI 7,8000035574,Module,heat pump appliance interface for aroTHERM plus (VWL X/6 & newer); replaces VWZ AI Plus; eBUS bridge; CONFIDENCE: HIGH; src: heizman24.de tga-shop.de

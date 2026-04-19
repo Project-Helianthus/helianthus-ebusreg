@@ -35,6 +35,12 @@ var (
 	// typo or omission in the YAML (wrong key name, empty list) and must
 	// fail loudly rather than silently load an empty service.
 	ErrServiceMissingCommands = errors.New("ebus_standard: service has no commands")
+
+	// ErrInvalidNamespace is returned when an identity-key namespace does
+	// not exactly match the package's fixed Namespace constant. A typo
+	// (e.g. "ebus_standrad") is otherwise silently treated as a distinct
+	// identity and bypasses duplicate detection.
+	ErrInvalidNamespace = errors.New("ebus_standard: identity-key namespace must be ebus_standard")
 )
 
 // LoadCatalog parses and validates a YAML catalog document. The returned

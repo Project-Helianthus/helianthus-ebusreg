@@ -40,6 +40,9 @@ func loadCatalogImpl(data []byte) (Catalog, error) {
 			if !cmd.Identity.IsComplete() {
 				return Catalog{}, fmt.Errorf("%w: command %q", ErrIncompleteIdentityKey, cmd.ID)
 			}
+			if err := validateNamespace(cmd.ID, cmd.Identity); err != nil {
+				return Catalog{}, err
+			}
 			if !isKnownSafetyClass(cmd.SafetyClass) {
 				return Catalog{}, fmt.Errorf("%w: command %q safety_class=%q", ErrUnknownSafetyClass, cmd.ID, cmd.SafetyClass)
 			}
@@ -108,6 +111,18 @@ func validateIdentityEnums(cmdID string, k IdentityKey) error {
 	default:
 		return fmt.Errorf("%w: command %q field=length_prefix_mode value=%q",
 			ErrUnknownEnumValue, cmdID, k.LengthPrefixMode)
+	}
+	return nil
+}
+
+// validateNamespace enforces that the identity-key namespace matches the
+// package's fixed Namespace constant exactly. IdentityKey.IsComplete() only
+// asserts non-emptiness, so a typo like "ebus_standrad" would otherwise slip
+// through and bypass duplicate detection (fingerprints include Namespace).
+func validateNamespace(cmdID string, k IdentityKey) error {
+	if k.Namespace != Namespace {
+		return fmt.Errorf("%w: command %q field=namespace value=%q",
+			ErrInvalidNamespace, cmdID, k.Namespace)
 	}
 	return nil
 }

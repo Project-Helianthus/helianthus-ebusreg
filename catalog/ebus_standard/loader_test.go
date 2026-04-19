@@ -228,6 +228,33 @@ func TestLoadCatalog_EmbeddedBaselineLoads(t *testing.T) {
 	}
 }
 
+// TestLoadCatalog_TypoNamespace asserts that an identity-key namespace that
+// differs from the fixed Namespace constant (e.g. "ebus_standrad") is
+// rejected at load time with ErrInvalidNamespace. Without this guard, the
+// typo would be silently treated as a distinct identity and bypass the
+// duplicate-14-tuple collision detector.
+func TestLoadCatalog_TypoNamespace(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "typo_namespace.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrInvalidNamespace, got nil")
+	}
+	if !errors.Is(err, ErrInvalidNamespace) {
+		t.Fatalf("LoadCatalog: expected ErrInvalidNamespace, got %v", err)
+	}
+	// Error message must name the field and the bad value for
+	// deterministic diagnosis.
+	if !strings.Contains(err.Error(), "namespace") {
+		t.Fatalf("error %q does not name the field", err.Error())
+	}
+	if !strings.Contains(err.Error(), "ebus_standrad") {
+		t.Fatalf("error %q does not include the bad value", err.Error())
+	}
+}
+
 // TestEmbeddedCatalog_SHAPinning asserts that the embedded catalog carries
 // a ContentSHA256 value and that it matches the SHA of its raw bytes. This
 // enforces the plan's "Catalog is SHA-pinned and version-tagged"

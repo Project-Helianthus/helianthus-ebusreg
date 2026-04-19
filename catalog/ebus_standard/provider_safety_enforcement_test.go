@@ -28,8 +28,11 @@ func TestInvoke_SafetyClassGate(t *testing.T) {
 	for _, tc := range cases {
 		t.Run(string(tc.class), func(t *testing.T) {
 			cat := syntheticCatalogForClass(tc.class)
-			p := NewProvider(cat, true)
-			_, err := p.Invoke(context.Background(), "ebus_standard.test.method", nil, CallerContextUserFacing)
+			p, err := NewProvider(cat, true)
+			if err != nil {
+				t.Fatalf("NewProvider: %v", err)
+			}
+			_, err = p.Invoke(context.Background(), "ebus_standard.test.method", nil, CallerContextUserFacing)
 			if tc.denied {
 				if !errors.Is(err, ErrSafetyClassDenied) {
 					t.Fatalf("class=%s err=%v, want ErrSafetyClassDenied", tc.class, err)
@@ -49,8 +52,11 @@ func TestInvoke_SafetyClassGate(t *testing.T) {
 // leak an earlier-than-planned escalation.
 func TestInvoke_SystemNMRuntimeCallerStillDenied(t *testing.T) {
 	cat := syntheticCatalogForClass(SafetyMutating)
-	p := NewProvider(cat, true)
-	_, err := p.Invoke(context.Background(), "ebus_standard.test.method", nil, CallerContextSystemNMRuntime)
+	p, err := NewProvider(cat, true)
+	if err != nil {
+		t.Fatalf("NewProvider: %v", err)
+	}
+	_, err = p.Invoke(context.Background(), "ebus_standard.test.method", nil, CallerContextSystemNMRuntime)
 	if !errors.Is(err, ErrSafetyClassDenied) {
 		t.Fatalf("err=%v, want ErrSafetyClassDenied for system_nm_runtime in M3", err)
 	}

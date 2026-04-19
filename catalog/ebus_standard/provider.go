@@ -106,6 +106,15 @@ var (
 	// ErrUnknownMethod is returned when Invoke receives a method ID that
 	// does not exist in the loaded catalog.
 	ErrUnknownMethod = errors.New("ebus_standard: unknown method id")
+
+	// ErrDuplicateMethodID is returned by NewProvider when two catalog
+	// commands share the same ID. This is distinct from
+	// ErrDuplicateIdentityKey (loader-level, identity-fingerprint based): a
+	// catalog may pass loader validation yet still contain two commands
+	// with identical string IDs (e.g. YAML typo or merge mistake). Without
+	// this check the second entry would silently overwrite the first in
+	// the method index and Invoke would dispatch the wrong command.
+	ErrDuplicateMethodID = errors.New("ebus_standard: duplicate catalog method id")
 )
 
 // DisableEnvVar is the exact env-var name read at construction time.
@@ -114,10 +123,22 @@ const DisableEnvVar = "EBUS_STANDARD_PROVIDER_ENABLED"
 // NewProvider constructs a provider from a loaded catalog, with the
 // enabled flag passed explicitly. Use NewProviderFromEnv to read the env
 // var. The method index is built eagerly so Invoke lookups are O(1).
-func NewProvider(cat Catalog, enabled bool) *Provider {
+//
+// Returns ErrDuplicateMethodID wrapped with the colliding command names
+// when two catalog commands share the same ID. This is distinct from the
+// loader-level ErrDuplicateIdentityKey (which fingerprints on the identity
+// tuple). Two commands with identical IDs but different identity keys
+// would pass the loader yet silently overwrite each other in the method
+// index; this check converts that silent-correctness failure mode into a
+// loud configuration error at construction time.
+func NewProvider(cat Catalog, enabled bool) (*Provider, error) {
 	idx := make(map[string]Command, len(cat.Services)*4)
 	for _, svc := range cat.Services {
 		for _, cmd := range svc.Commands {
+			if prev, dup := idx[cmd.ID]; dup {
+				return nil, fmt.Errorf("%w: id=%q first=%q second=%q",
+					ErrDuplicateMethodID, cmd.ID, prev.Name, cmd.Name)
+			}
 			idx[cmd.ID] = cmd
 		}
 	}
@@ -125,7 +146,7 @@ func NewProvider(cat Catalog, enabled bool) *Provider {
 		catalog:   cat,
 		methodIdx: idx,
 		enabled:   enabled,
-	}
+	}, nil
 }
 
 // NewProviderFromEnv constructs a provider reading the disable switch from
@@ -134,7 +155,10 @@ func NewProvider(cat Catalog, enabled bool) *Provider {
 // provider. An unset or empty variable defaults to enabled (blast-radius
 // principle: the generic provider participates in the platform by default;
 // operators explicitly opt out by setting "0" or "false").
-func NewProviderFromEnv(cat Catalog) *Provider {
+//
+// Propagates ErrDuplicateMethodID from NewProvider when the catalog has
+// colliding command IDs.
+func NewProviderFromEnv(cat Catalog) (*Provider, error) {
 	return NewProvider(cat, envEnabled(os.Getenv(DisableEnvVar)))
 }
 

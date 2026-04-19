@@ -774,3 +774,20 @@ Vaillant,aguaFLOW plus,VPM 60/3 W,0010039318,Module,fresh water station; 60 l/mi
 Vaillant,aguaFLOW plus,VPM 90/3 W,0010039319,Module,fresh water station; 90 l/min continuous output; stainless steel plate heat exchanger; primary circuit pump; eBUS control; pairs with allSTOR plus; CONFIDENCE: HIGH; src: heizungsdiscount24.de
 Vaillant,aguaFLOW plus,VPM 135/3 W,0010039320,Module,fresh water station; 135 l/min continuous output; stainless steel plate heat exchanger; primary circuit pump; eBUS control; pairs with allSTOR plus; CONFIDENCE: HIGH; src: heizung-billiger.de
 Vaillant,aguaFLOW plus,VPM 180/3 W,0010039321,Module,fresh water station; 180 l/min continuous output; stainless steel plate heat exchanger; primary circuit pump; illuminated graphic display; eBUS control; pairs with allSTOR plus; CONFIDENCE: HIGH; src: raleo.de
+Vaillant,zeoTHERM,VAS 106/4 (DE AT),0010008698,Heat Pump,zeolite absorption heat pump; gas-fired with zeolite thermo-chemical storage; ~5 kW heating output; DE/AT market; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,zeoTHERM,VAS 106/4 (CH),0010013643,Heat Pump,zeolite absorption heat pump; CH market variant; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,recoVAIR,VAR 360/4,0010015166,Ventilation Unit,HRV central ventilation unit; 360 m3/h nominal; /4 generation; eBUS interface; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,recoVAIR,VAR 150/4 R,0010015167,Ventilation Unit,HRV central ventilation unit; 150 m3/h; right-handed variant; /4 generation; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,recoVAIR,VAR 150/4 L,0010015168,Ventilation Unit,HRV central ventilation unit; 150 m3/h; left-handed variant; /4 generation; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,recoVAIR,VAR 260/4 E,0010016348,Ventilation Unit,HRV central ventilation unit; 260 m3/h; E variant (with enthalpy exchanger?); /4 generation; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,recoVAIR,VAR 360/4 E,0010016349,Ventilation Unit,HRV central ventilation unit; 360 m3/h; E variant; /4 generation; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,ecoPOWER,ecoPOWER 20.0 (VNC 448+20/2),0010018607,CHP,micro combined heat + power (mCHP); 20 kW electric / 44.8 kW thermal; commercial; /2 generation; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,ecoPOWER,ecoPOWER 4.7/2 (VNC 138+5/2 - H),0010020568,CHP,mCHP; 4.7 kW electric / 13.8 kW thermal (VNC 138+5/2); Erdgas H; /2 generation; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,ecoPOWER,ecoPOWER 4.7/2 (VNC 138+5/2 - P),0010020569,CHP,mCHP; 4.7 kW electric / 13.8 kW thermal; Flüssiggas P (LPG); /2 generation; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,ecoPOWER,ecoPOWER 3.0/2 (VNC 88+3/2 - H),0010020570,CHP,mCHP; 3.0 kW electric / 8.8 kW thermal (VNC 88+3/2); Erdgas H; /2 generation; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,ecoPOWER,ecoPOWER 3.0/2 (VNC 88+3/2 - P),0010020571,CHP,mCHP; 3.0 kW electric / 8.8 kW thermal; Flüssiggas P (LPG); /2 generation; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,eloBLOCK,VE 9/14 EU I,0010023691,Boiler,electric wall heater; 9 kW; /14 EU I generation; 230V/400V; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,eloBLOCK,VE 18/14 EU I,0010023694,Boiler,electric wall heater; 18 kW; /14 EU I generation; 400V 3-ph; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,eloBLOCK,VE 24/14 EU I,0010023696,Boiler,electric wall heater; 24 kW; /14 EU I generation; 400V 3-ph; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,eloBLOCK,VE 28/14 EU I,0010023697,Boiler,electric wall heater; 28 kW; /14 EU I generation; 400V 3-ph; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
+Vaillant,ecoPOWER,Systemregler ecoPOWER 1.0,0020085296,Control Centre,system regulator for ecoPOWER 1.0 (Honda Stirling mCHP 1 kW el / 2.5 kW th); eBUS; CONFIDENCE: HIGH (per user provided enrichment)

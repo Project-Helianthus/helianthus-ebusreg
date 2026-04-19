@@ -6,6 +6,7 @@ package ebus_standard_catalog
 import (
 	"crypto/sha256"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
 
 	"gopkg.in/yaml.v3"
@@ -173,13 +174,29 @@ func isKnownSafetyClass(s SafetyClass) bool {
 
 // identityKeyFingerprint returns a deterministic string covering every
 // field of the 14-tuple. Equal fingerprints mean duplicate identity keys.
+//
+// Slice/map fields MUST be serialized with an injective encoding: naive
+// %v formatting of []string renders both []string{"a b"} and
+// []string{"a","b"} as "[a b]", which would collapse two distinct
+// identities into one fingerprint and cause false-positive
+// ErrDuplicateIdentityKey (or, worse, hide real collisions). JSON
+// encoding is canonical, escapes embedded separators, and round-trips
+// losslessly for any []string, so it is used for every slice/map field
+// in the tuple (currently just TransportCapabilityRequirements).
 func identityKeyFingerprint(k IdentityKey) string {
+	tcrJSON, err := json.Marshal(k.TransportCapabilityRequirements)
+	if err != nil {
+		// json.Marshal of []string cannot fail in practice; fall back to
+		// a clearly non-injective sentinel so a future failure is
+		// visible rather than silently masked.
+		tcrJSON = []byte(fmt.Sprintf("<json-error:%v>", err))
+	}
 	return fmt.Sprintf(
-		"ns=%s|pb=%02X|sb=%02X|sel=%s|tc=%s|dir=%s|rr=%s|ba=%s|ap=%s|lpm=%s|sd=%s|sv=%s|tcr=%v|ver=%s",
+		"ns=%s|pb=%02X|sb=%02X|sel=%s|tc=%s|dir=%s|rr=%s|ba=%s|ap=%s|lpm=%s|sd=%s|sv=%s|tcr=%s|ver=%s",
 		k.Namespace, k.PBValue(), k.SBValue(), k.SelectorPath, k.TelegramClass, k.Direction,
 		k.RequestOrResponseRole, k.BroadcastOrAddressed, k.AnswerPolicy,
 		k.LengthPrefixMode, k.SelectorDecoder, k.ServiceVariant,
-		k.TransportCapabilityRequirements, k.Version,
+		string(tcrJSON), k.Version,
 	)
 }
 

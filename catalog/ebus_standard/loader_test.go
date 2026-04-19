@@ -463,3 +463,56 @@ func TestEmbeddedCatalog_ServiceCoverage(t *testing.T) {
 		}
 	}
 }
+
+// TestIdentityKeyFingerprint_SliceEncodingIsInjective guards against a
+// regression in which TransportCapabilityRequirements was serialized with
+// %v, causing []string{"a b"} and []string{"a","b"} to produce the same
+// fingerprint ("[a b]") and therefore to collide under
+// ErrDuplicateIdentityKey even though the identities are distinct. The
+// fingerprint MUST distinguish the two shapes.
+func TestIdentityKeyFingerprint_SliceEncodingIsInjective(t *testing.T) {
+	base := IdentityKey{
+		Namespace:                       Namespace,
+		TelegramClass:                   TelegramClassAddressed,
+		Direction:                       DirectionRequest,
+		RequestOrResponseRole:           RoleInitiator,
+		BroadcastOrAddressed:            AddressedDirect,
+		AnswerPolicy:                    AnswerRequired,
+		LengthPrefixMode:                LengthPrefixNone,
+		SelectorDecoder:                 "none",
+		ServiceVariant:                  "sv",
+		Version:                         "v1",
+		SelectorPath:                    "sel",
+		TransportCapabilityRequirements: []string{"a b"},
+	}
+	a := base
+	a.TransportCapabilityRequirements = []string{"a b"}
+	b := base
+	b.TransportCapabilityRequirements = []string{"a", "b"}
+
+	fpA := identityKeyFingerprint(a)
+	fpB := identityKeyFingerprint(b)
+	if fpA == fpB {
+		t.Fatalf("identityKeyFingerprint: collision between []string{\"a b\"} and []string{\"a\",\"b\"}: %q == %q", fpA, fpB)
+	}
+
+	// Also verify other whitespace-sensitive shapes are distinguished.
+	c := base
+	c.TransportCapabilityRequirements = []string{"", "ab"}
+	d := base
+	d.TransportCapabilityRequirements = []string{"ab", ""}
+	if identityKeyFingerprint(c) == identityKeyFingerprint(d) {
+		t.Fatalf("identityKeyFingerprint: collision between [\"\",\"ab\"] and [\"ab\",\"\"]")
+	}
+
+	// Determinism: two distinct IdentityKey values with identical
+	// contents must produce identical fingerprints (guards against any
+	// future incidental map iteration or pointer formatting).
+	e1 := base
+	e1.TransportCapabilityRequirements = []string{"x", "y"}
+	e2 := base
+	e2.TransportCapabilityRequirements = []string{"x", "y"}
+	if identityKeyFingerprint(e1) != identityKeyFingerprint(e2) {
+		t.Fatalf("identityKeyFingerprint: non-deterministic output for equal inputs")
+	}
+}

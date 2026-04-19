@@ -1231,8 +1231,8 @@ Vaillant,ecoTEC pro,VUW 186/5-3 (H-INT I),0010021958,Boiler,gas condensing wall-
 Vaillant,ecoTEC pro,VUW 246/5-3 (H-INT I),0010021959,Boiler,gas condensing wall-hung boiler (pro line); VUW 246/5-3 (H-INT I); eBUS; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,atmoMAG,mini 114/1 I (PB-INT),0010022596,Boiler,gas water heater (point-of-use); mini 114/1 I (PB-INT); atmospheric draft; eBUS uncertain for this segment; CONFIDENCE: MED; src: tapro.si
 Vaillant,atmoMAG,mini 114/1 I (H-INT),0010022598,Boiler,gas water heater (point-of-use); mini 114/1 I (H-INT); atmospheric draft; eBUS uncertain for this segment; CONFIDENCE: MED; src: tapro.si
-Vaillant,MAG,MAG 125/1-5 RT(H-INT) R1,0010023395,Boiler,gas water heater; MAG 125/1-5 RT(H-INT) R1; eBUS uncertain; CONFIDENCE: MED; src: tapro.si
-Vaillant,MAG,MAG 125/1-5 RT(P-INT),0010023412,Boiler,gas water heater; MAG 125/1-5 RT(P-INT); eBUS uncertain; CONFIDENCE: MED; src: tapro.si
+Vaillant,turboMAG,turboMAG 125/1-5 RT (H-INT) R1,0010023395,Boiler,gas water heater (forced-draft turbo); turboMAG 125/1-5 RT (H-INT) R1; Erdgas H natural gas; SI/EU INT market; eBUS uncertain; CONFIDENCE: MED; src: tapro.si
+Vaillant,turboMAG,turboMAG 125/1-5 RT (P-INT),0010023412,Boiler,gas water heater (forced-draft turbo); turboMAG 125/1-5 RT (P-INT); propane LPG; SI/EU INT market; eBUS uncertain; CONFIDENCE: MED; src: tapro.si
 Vaillant,icoVIT exclusiv,VKO 156/3-7,0010010675,Boiler,oil condensing boiler (2-stage blue burner); VKO 156/3-7; /3-7 generation; eBUS; SI/EU market; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,icoVIT exclusiv,VKO 256/3-7,0010010677,Boiler,oil condensing boiler (2-stage blue burner); VKO 256/3-7; /3-7 generation; eBUS; SI/EU market; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,icoVIT exclusiv,VKO 356/3-7,0010010679,Boiler,oil condensing boiler (2-stage blue burner); VKO 356/3-7; /3-7 generation; eBUS; SI/EU market; CONFIDENCE: HIGH; src: tapro.si

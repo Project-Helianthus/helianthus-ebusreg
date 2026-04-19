@@ -302,7 +302,7 @@ Vaillant,ecoTEC plus,ecoTEC plus 418,0010015671,Boiler,
 Vaillant,ecoTEC plus,ecoTEC plus 424,0010015672,Boiler,
 Vaillant,ecoTEC plus,ecoTEC plus 430,0010015673,Boiler,
 Vaillant,,,0010015908,Boiler,
-Vaillant,FM3 Functional Module,VR 70,0010016097,Control Centre,
+Saunier Duval,Thelia Condens,Thelia Condens AS 18-A (H-PL),0010016097,Boiler,gas condensing wall-hung heating-only (system); 19.1 kW; PL market; eBUS; previously mismapped as Vaillant FM3 VR 70; CONFIDENCE: HIGH
 Vaillant,EcoTEC plus VHR,,0010016402,Boiler,
 Vaillant,EcoTEC plus VHR,,0010016403,Boiler,
 Vaillant,aroTHERM,VWL 55/2 A 230 V,0010016408,Heat Pump,
@@ -872,3 +872,81 @@ Vaillant,ecoPOWER,ecoPOWER 4.7/1 (VNC 138+5 - H),0010012972,CHP,mCHP first gener
 Vaillant,ecoPOWER,ecoPOWER 4.7/1 (VNC 138+5 - P),0010012973,CHP,mCHP first generation; 4.7 kW electric / 13.8 kW thermal; Honda Otto engine; Flüssiggas P (LPG); predecessor to 0010020569; eBUS; CONFIDENCE: HIGH; src: vaillant Betriebsanleitung 0020131410
 Vaillant,ecoPOWER,ecoPOWER 3.0/1 (VNC 88+3 - H),0010012974,CHP,mCHP first generation; 3.0 kW electric / 8.8 kW thermal; Honda Otto gas engine; Erdgas E/LL (H); predecessor to 0010020570; DE/AT/CHde market; eBUS; CONFIDENCE: HIGH; src: vaillant Betriebsanleitung 0020131410
 Vaillant,ecoPOWER,ecoPOWER 3.0/1 (VNC 88+3 - P),0010012975,CHP,mCHP first generation; 3.0 kW electric / 8.8 kW thermal; Honda Otto engine; Flüssiggas P (LPG); predecessor to 0010020571; eBUS; CONFIDENCE: HIGH; src: vaillant Betriebsanleitung 0020131410
+Saunier Duval,Thema Condens,Thema Condens F AS 25 (N-FR),0010007669,Boiler,gas condensing single-service (heating + DHW via external cylinder); ~25 kW; FR market (G20); early model pre-2013; eBUS interface; MiPro/MiLink compatible; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thema Condens,Thema Condens F AS 12 (N-FR),0010007668,Boiler,gas condensing heating-only with external DHW cylinder; ~12 kW; FR market (G20); early model; eBUS; MiPro/MiLink; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thema Condens,Thema Condens F30 (N-FR),0010007667,Boiler,gas condensing combi (heating + instantaneous DHW); ~30 kW; FR market (G20); early model; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thema Condens,Thema Condens AS 25-A (H-FR),0010017419,Boiler,gas condensing heating-only with external DHW cylinder; ~25 kW; FR market (H-FR); -A pneumatic gas block; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thema Condens,Thema Condens AS 15-CS/1 (N-FR),0010025100,Boiler,gas condensing heating-only; ~15 kW; FR market (N-FR); current CS/1 generation; eBUS; MiPro Sense/MiLink compatible; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thema Condens,Thema Condens AS 25-CS/1 (N-FR),0010025101,Boiler,gas condensing heating-only; ~25 kW; FR market; current CS/1 generation; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thema Condens,Thema Condens 25-A (H-ES),0010021496,Boiler,gas condensing combi (19.6 kW heating / 25 kW DHW); ES market (H-ES G20); -A pneumatic gas valve; eBUS; CONFIDENCE: HIGH; src: saunierduval.es manual 0020238205_01
+Saunier Duval,Thema Condens,Thema Condens 25-A (P-ES),0010023509,Boiler,gas condensing combi; ~25 kW; ES market (P-ES propane G31); eBUS; CONFIDENCE: HIGH; src: saunierduval.es manual 0020238205_01
+Saunier Duval,Thema Condens,Thema Condens AS 25-A (H-ES),0010017384,Boiler,gas condensing heating-only; ~25 kW; ES market (H-ES G20); eBUS; CONFIDENCE: HIGH; src: saunierduval.es manual 0020238205_01
+Saunier Duval,Thema Condens,Thema Condens AS 30-A (H-ES),0010017385,Boiler,gas condensing heating-only; ~30 kW; ES market (H-ES G20); eBUS; CONFIDENCE: HIGH; src: saunierduval.es manual 0020238205_01
+Saunier Duval,Thema Condens,Thema Condens 25-A (H-PL),0010023511,Boiler,gas condensing combi (heating + DHW 11.5 l/min); ~25 kW; PL market (GZ 50/G20); eBUS; CONFIDENCE: HIGH; src: tanie-grzanie.net
+Saunier Duval,IsoTwin Condens,IsoTwin Condens F 25-A (N-FR),0010007948,Boiler,gas condensing combi; 25 kW; 2x21L integrated stratified DHW tank (IsoDyn2/IsoDyn3); FR market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoTwin Condens,IsoTwin Condens F 25-A (H-FR),0010017345,Boiler,gas condensing combi; 25 kW; 2x21L stratified DHW tank; FR market (H-series); eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoTwin Condens,IsoTwin Condens T 26-CS/1 (N-FR),0010025210,Boiler,gas condensing combi; 26 kW; 2x21L IsoDyn3 DHW tank; FR market; MiPro Sense included; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoTwin Condens,IsoTwin Condens T 31-CS/1 (N-FR),0010025212,Boiler,gas condensing combi; 31 kW; 2x21L IsoDyn3 DHW tank; FR market; MiPro Sense included; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoTwin Condens,IsoTwin Condens T 26-CS/1 (N-PL),0010025220,Boiler,gas condensing combi; 26 kW; 2x21L IsoDyn3 DHW tank; PL market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoTwin Condens,IsoTwin Condens T 31-CS/1 (N-PL),0010025218,Boiler,gas condensing combi; 31 kW; 2x21L IsoDyn3 DHW tank; PL market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoTwin Condens,IsoTwin Condens T 26-CS/1 + SRC 720 MiPro sense (N-PL),0010038115,Boiler,gas condensing combi bundle; 26 kW; 2x21L IsoDyn3 DHW; PL market; ships with MiPro Sense SRC 720; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoTwin Condens,IsoTwin Condens 35-B (H-PL),0010021902,Boiler,gas condensing combi; 35 kW; 2x21L IsoDyn2 DHW tank; PL market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoMax Condens,IsoMax Condens 30-B (H-P),0010021869,Boiler,gas condensing combi; 30 kW; 2x21L IsoDyn2 DHW tank; PL market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoMax Condens,IsoMax Condens 35-B (H-P),0010021870,Boiler,gas condensing combi; 35 kW; 2x21L IsoDyn2 DHW tank; PL market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoMax Condens,IsoMax Condens F 30-B (N-FR),0010007949,Boiler,gas condensing combi; 30 kW; 2x21L IsoDyn2 DHW tank; FR market natural gas; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoMax Condens,IsoMax Condens F 30-B (P-FR),0010007950,Boiler,gas condensing combi; 30 kW; 2x21L IsoDyn2 DHW tank; FR market propane; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoMax Condens,IsoMax Condens F 35-B (N-FR),0010007951,Boiler,gas condensing combi; 35 kW; 2x21L IsoDyn2 DHW tank; FR market natural gas; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoMax Condens,IsoMax Condens F 35-B (P-FR),0010007952,Boiler,gas condensing combi; 35 kW; 2x21L IsoDyn2 DHW tank; FR market propane; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoMax Condens,IsoMax Condens T 31-CS/1-C (N-FR),0010025208,Boiler,gas condensing combi; 31 kW; 2x21L IsoDyn3 DHW tank; FR market; MiPro Sense included; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoMax Condens,IsoMax Condens T 35-CS/1-Cf (N-FR),0010025209,Boiler,gas condensing combi; 35 kW; 2x21L IsoDyn3 DHW tank; FR market; MiPro Sense included; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoFast Condens,IsoFast 21 Condens F 25-A (N-FR),0010007947,Boiler,gas condensing combi with micro-accumulation; 25 kW; integrated ~21L DHW tank; FR market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoFast Condens,IsoFast 21 Condens T 26-CS/1 (N-PL),0010025219,Boiler,gas condensing combi; 26 kW; 21L stratified IsoDyn3 DHW tank; PL market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoFast Condens,IsoFast 21 Condens T 26-CS/1 + MiGo (N-PL),0010038119,Boiler,gas condensing combi bundle; 26 kW; 21L DHW tank; PL market; ships with MiGo Internet controller; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,IsoFast Condens,IsoFast 21 Condens T 26-CS/1 + SRC 720 MiPro sense (N-PL),0010038118,Boiler,gas condensing combi bundle; 26 kW; 21L DHW tank; PL market; ships with MiPro Sense SRC 720; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Duomax Condens,Duomax Condens F30 90,0010014601,Boiler,gas condensing; floor-standing combi column with 90L tank; 25 kW heating / ACS; FR market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Duomax Condens,Duomax Condens F34 90,0010014602,Boiler,gas condensing; floor-standing combi column with 90L tank; 30-35 kW; FR/ES/PT market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Duomax Condens,Duomax Condens F34 150C,0010014603,Boiler,gas condensing; floor-standing combi column with 150L tank; 30-35 kW; FR/ES market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Heliotwin Condens,Heliotwin Condens F24 150,0010014604,Boiler,solar + combi integrated (floor-standing column); 3-20 kW heating / 24 kW DHW (21.5 L/min); 141L integrated solar DHW tank; self-draining solar system paired with HelioPlan SRD 2.3 flat collector; eBUS (MiPro/Exacontrol E7R); CONFIDENCE: HIGH; src: cedeo.fr easysav.com
+Saunier Duval,Thelia Condens,Thelia Condens 25-A (H-PL),0010016096,Boiler,gas condensing wall-hung combi; 19.1/25.2 kW; PL market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thelia Condens,Thelia Condens AS 25-A (H-PL),0010016098,Boiler,gas condensing wall-hung heating-only (system); 26.5 kW; PL market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thelia Condens,Thelia Condens AS 30-A (H-PL) R1,0010019943,Boiler,gas condensing wall-hung heating-only (system); 29.8/30.6 kW; PL market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thelia Condens,Thelia Condens 25-A (H-HU),0010016090,Boiler,gas condensing wall-hung combi; 19.1 kW; HU market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thelia Condens,Thelia Condens 30-A (H-HU),0010016091,Boiler,gas condensing wall-hung combi; 30 kW; HU market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thelia Condens,Thelia Condens 35-A (H-HU),0010016092,Boiler,gas condensing wall-hung combi; 35 kW; HU market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thelia Condens,Thelia Condens AS 12-A (H-HU),0010016093,Boiler,gas condensing wall-hung heating-only (system); 12 kW; HU market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thelia Condens,Thelia Condens AS 25-A (H-HU),0010016094,Boiler,gas condensing wall-hung heating-only (system); 26.5 kW; HU market; eBUS; CONFIDENCE: HIGH; src: easysav.com
+Saunier Duval,Thelia Condens,Thelia Condens AS 30-A (H-HU),0010019941,Boiler,gas condensing wall-hung heating-only (system); 29.8 kW; HU market; eBUS; CONFIDENCE: MED; src: easysav.com
+Saunier Duval,Thelia Condens,Thelia Condens 35-A (H-PL),0010019942,Boiler,gas condensing wall-hung combi; 35 kW; PL market; eBUS; CONFIDENCE: MED; src: easysav.com
+Bulex,ThemaCondens,Thema Condens F 25/30-A (H-BE),0010017363,Boiler,BE market Bulex rebrand; gas condensing combi (heating 24.6 kW + instant DHW 30.6 kW / 17.5 L/min); I2E+ natural gas G20; -A pneumatic gas block; eBUS; CONFIDENCE: HIGH; src: paulpromo.be
+Bulex,ThemaCondens,Thema Condens F 30/35-A (H-BE),0010017364,Boiler,BE market Bulex; gas condensing combi (heating 30 kW + DHW 35.7 kW); natural gas G20; eBUS; CONFIDENCE: HIGH; src: solyd.be
+Bulex,ThemaCondens,Thema Condens 25/30-B (E-BE),0010017365,Boiler,BE market Bulex; gas condensing combi (heating 24.6 kW + DHW ~30 kW); natural gas G20/G25 (E-BE); -B electronic gas valve; eBUS; CONFIDENCE: HIGH; src: Bulex manual 0020244947_03
+Bulex,ThemaCondens,Thema Condens 30/35-B (E-BE),0010021855,Boiler,BE market Bulex; gas condensing combi (heating ~30 kW + DHW ~35 kW); natural gas G20/G25 (E-BE); -B electronic gas valve; eBUS; CONFIDENCE: HIGH; src: Bulex manual 0020244947_03
+Bulex,ThemaCondens,Thema Condens 25/30-B (P-BE),0010017423,Boiler,BE market Bulex; gas condensing combi; propane G31 (P-BE); -B electronic gas valve; eBUS; CONFIDENCE: HIGH; src: Bulex manual 0020244947_03
+Bulex,ThemaCondens,Thema Condens AS 30-B (E-BE),0010021852,Boiler,BE market Bulex; gas condensing heating-only with external DHW cylinder; ~30 kW; natural gas G20/G25; -B electronic gas valve; eBUS; CONFIDENCE: HIGH; src: Bulex manual 0020244947_03
+Bulex,ThemaCondens,Thema Condens AS 30-CS/1 (N-BE),0010043887,Boiler,BE market Bulex; gas condensing heating-only; 29.8 kW; I2E+ natural gas; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaFast Condens,ThemaFast Condens 20/26-CS/1 (N-BE),0010025076,Boiler,BE market Bulex; gas condensing combi; 19.7 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaFast Condens,ThemaFast Condens 20/26-CS/1 (N-BE) CLV,0010043888,Boiler,BE market Bulex; replaces 0010025076 for CLV (collective flue); 20 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaFast Condens,ThemaFast Condens 25/31-CS/1 (N-BE),0010025077,Boiler,BE market Bulex; gas condensing combi; 25 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaFast Condens,ThemaFast Condens 25/31-CS/1 (N-BE) CLV,0010043889,Boiler,BE market Bulex; replaces 0010025077 for CLV; 25 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaFast Condens,ThemaFast Condens 25/31-CS/1 (P-BE),0010025114,Boiler,BE market Bulex; gas condensing combi; 25 kW; propane I3P; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaFast Condens,ThemaFast Condens 30/35-CS/1 (N-BE),0010025078,Boiler,BE market Bulex; gas condensing combi; 30 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaFast Condens,ThemaFast Condens 30/35-CS/1 (N-BE) CLV,0010043890,Boiler,BE market Bulex; replaces 0010025078 for CLV; 29.8 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaPlus Condens,ThemaPlus Condens MA 20/26-CS/1 (N-BE),0010025079,Boiler,BE market Bulex; gas condensing combi MicroFast; 21.7 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaPlus Condens,ThemaPlus Condens MA 20/26-CS/1 (N-BE) CLV,0010043891,Boiler,BE market Bulex; replaces 0010025079 for CLV; 20 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaPlus Condens,ThemaPlus Condens MA 25/31-CS/1 (N-BE),0010025080,Boiler,BE market Bulex; gas condensing combi MicroFast; 27.3 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaPlus Condens,ThemaPlus Condens MA 25/31-CS/1 (N-BE) CLV,0010043892,Boiler,BE market Bulex; replaces 0010025080 for CLV; 25 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaPlus Condens,ThemaPlus Condens MA 30/35-CS/1 (N-BE),0010025081,Boiler,BE market Bulex; gas condensing combi MicroFast; 32.8 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,IsoTwin Condens,IsoTwin Condens F25/30-B (E-BE),0010021850,Boiler,BE market Bulex; gas condensing combi; 25 kW; natural gas I2E+; 2x21L DHW tank; eBUS+OpenTherm opt; CONFIDENCE: HIGH
+Bulex,IsoTwin Condens,IsoTwin Condens F30/35-B (E-BE),0010021851,Boiler,BE market Bulex; gas condensing combi; 30 kW; natural gas I2E+; 2x21L DHW tank; eBUS+OpenTherm opt; CONFIDENCE: HIGH
+Bulex,IsoTwin Condens,IsoTwin Condens T 25/31-CS/1 (N-BE),0010025203,Boiler,BE market Bulex; gas condensing combi; 25 kW + 42L tank; natural gas I2E+; eBUS+OpenTherm opt; CONFIDENCE: HIGH
+Bulex,IsoTwin Condens,IsoTwin Condens T 25/31-CS/1 (N-BE) CLV,0010043894,Boiler,BE market Bulex; replaces 0010025203 for CLV; 25 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,IsoTwin Condens,IsoTwin Condens T 30/35-CS/1 (N-BE),0010025204,Boiler,BE market Bulex; gas condensing combi; 30 kW + 42L tank; natural gas I2E+; eBUS+OpenTherm opt; CONFIDENCE: HIGH
+Bulex,ThermoMaster,ThermoMaster T 18/25-A (E-BE),0010016077,Boiler,BE market Bulex; gas condensing combi WarmStart; 18 kW; natural gas I2E(S)/I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThermoMaster,ThermoMaster T 25/30-A (E-BE),0010016078,Boiler,BE market Bulex; gas condensing combi WarmStart; 25 kW; natural gas I2E(S)/I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThermoMaster,ThermoMaster T 30/35-A (E-BE),0010016667,Boiler,BE market Bulex; gas condensing combi WarmStart; 30 kW; natural gas I2E(S)/I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThermoSystem,ThermoSystem 80 condens,0010014394,Boiler,BE market Bulex commercial floor-standing; 80 kW; natural gas I2E+; cascade capable; eBUS; CONFIDENCE: MED
+Bulex,ThermoSystem,ThermoSystem 120 condens,0010014395,Boiler,BE market Bulex commercial floor-standing; 120 kW; natural gas I2E+; cascade capable; eBUS; CONFIDENCE: MED
+Bulex,ThermoSystem,ThermoSystem 160 condens,0010014396,Boiler,BE market Bulex commercial floor-standing; 160 kW; natural gas I2E+; cascade capable; eBUS; CONFIDENCE: MED
+Bulex,ThermoSystem,ThermoSystem 200 condens,0010014397,Boiler,BE market Bulex commercial floor-standing; 200 kW; natural gas I2E+; cascade capable; eBUS; CONFIDENCE: MED
+Bulex,ThermoSystem,ThermoSystem 240 condens,0010014398,Boiler,BE market Bulex commercial floor-standing; 240 kW; natural gas I2E+; cascade capable; eBUS; CONFIDENCE: MED
+Bulex,ThermoSystem,ThermoSystem 280 condens,0010014399,Boiler,BE market Bulex commercial floor-standing; 280 kW; natural gas I2E+; cascade capable; eBUS; CONFIDENCE: MED

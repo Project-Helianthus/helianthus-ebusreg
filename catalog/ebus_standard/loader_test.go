@@ -87,6 +87,28 @@ func TestLoadCatalog_ServicePBMismatch(t *testing.T) {
 	}
 }
 
+// TestLoadCatalog_ServiceMissingPB asserts that a service entry without an
+// explicit `pb:` key is rejected with ErrServiceMissingPB. A value-typed
+// uint8 would silently deserialize omission as 0x00 and match a command
+// whose identity.pb is also 0x00, defeating the service/identity pb
+// mismatch check. The error must name the offending service.
+func TestLoadCatalog_ServiceMissingPB(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "service_missing_pb.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrServiceMissingPB, got nil")
+	}
+	if !errors.Is(err, ErrServiceMissingPB) {
+		t.Fatalf("LoadCatalog: expected ErrServiceMissingPB, got %v", err)
+	}
+	if !strings.Contains(err.Error(), "System Data (missing pb header)") {
+		t.Fatalf("error %q must include the offending service name", err.Error())
+	}
+}
+
 // TestLoadCatalog_MissingPB asserts that a YAML fixture omitting the `pb`
 // key in the identity block is rejected with ErrIncompleteIdentityKey. The
 // value 0x00 must NOT be accepted as a default; absence of the key is the
@@ -354,7 +376,7 @@ func TestEmbeddedCatalog_ServiceCoverage(t *testing.T) {
 	required := []uint8{0x03, 0x05, 0x07, 0x08, 0x09, 0x0F, 0xFE, 0xFF}
 	present := make(map[uint8]bool, len(cat.Services))
 	for _, svc := range cat.Services {
-		present[svc.PB] = true
+		present[svc.PBValue()] = true
 	}
 	for _, pb := range required {
 		if !present[pb] {

@@ -36,11 +36,29 @@ type Command struct {
 }
 
 // Service groups commands by primary-byte service code.
+//
+// PB is pointer-typed so the YAML loader can distinguish an absent key
+// (nil → ErrServiceMissingPB) from an explicit zero value (e.g. `pb: 0x00`
+// is legitimate and must be accepted). This parallels the treatment of
+// IdentityKey.PB/SB: a value-typed uint8 would silently accept schema
+// typos because an omitted key deserializes as 0, which would then match
+// any command identity whose pb is also 0x00 and defeat the
+// service/identity mismatch check.
 type Service struct {
-	PB          uint8     `yaml:"pb"`
+	PB          *uint8    `yaml:"pb"`
 	Name        string    `yaml:"name"`
 	Description string    `yaml:"description,omitempty"`
 	Commands    []Command `yaml:"commands"`
+}
+
+// PBValue returns the dereferenced PB byte, or 0 if PB is nil. Callers that
+// need to distinguish "absent" from "explicit 0x00" must check the pointer
+// field directly.
+func (s Service) PBValue() uint8 {
+	if s.PB == nil {
+		return 0
+	}
+	return *s.PB
 }
 
 // Catalog is the root document produced by the YAML loader.

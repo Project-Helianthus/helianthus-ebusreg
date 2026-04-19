@@ -27,13 +27,23 @@ func loadCatalogImpl(data []byte) (Catalog, error) {
 	// Validate identity-key completeness and check safety_class values.
 	for si := range cat.Services {
 		svc := &cat.Services[si]
+		// Reject services without an explicit `pb:` key. A value-typed
+		// uint8 would silently deserialize omission as 0x00 and defeat
+		// the service/identity mismatch check below when an identity.pb
+		// also happens to be 0x00. Presence is checked before the empty-
+		// commands guard so that diagnostics include the pb axis even
+		// when multiple fields are malformed.
+		if svc.PB == nil {
+			return Catalog{}, fmt.Errorf("%w: service %q",
+				ErrServiceMissingPB, svc.Name)
+		}
 		// Reject services with no commands. An empty commands list is
 		// almost always a YAML typo (wrong key name, missing block) and
 		// must fail loudly rather than silently accept a service with no
 		// method definitions.
 		if len(svc.Commands) == 0 {
 			return Catalog{}, fmt.Errorf("%w: service %q (pb=0x%02X)",
-				ErrServiceMissingCommands, svc.Name, svc.PB)
+				ErrServiceMissingCommands, svc.Name, svc.PBValue())
 		}
 		for ci := range svc.Commands {
 			cmd := &svc.Commands[ci]
@@ -48,10 +58,10 @@ func loadCatalogImpl(data []byte) (Catalog, error) {
 			// code. IsComplete() only asserts PB is non-nil, and the
 			// duplicate detector fingerprints the identity pb (not the
 			// service pb), so a mismatch is invisible without this check.
-			if cmd.Identity.PBValue() != svc.PB {
+			if cmd.Identity.PBValue() != svc.PBValue() {
 				return Catalog{}, fmt.Errorf(
 					"%w: service %q pb=0x%02X, command %q identity.pb=0x%02X",
-					ErrServicePBMismatch, svc.Name, svc.PB, cmd.ID, cmd.Identity.PBValue())
+					ErrServicePBMismatch, svc.Name, svc.PBValue(), cmd.ID, cmd.Identity.PBValue())
 			}
 			if !isKnownSafetyClass(cmd.SafetyClass) {
 				return Catalog{}, fmt.Errorf("%w: command %q safety_class=%q", ErrUnknownSafetyClass, cmd.ID, cmd.SafetyClass)

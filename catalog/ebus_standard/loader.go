@@ -42,6 +42,14 @@ var (
 	// identity and bypasses duplicate detection.
 	ErrInvalidNamespace = errors.New("ebus_standard: identity-key namespace must be ebus_standard")
 
+	// ErrServiceMissingPB is returned when a service entry deserializes
+	// without an explicit `pb:` key. A value-typed uint8 would silently
+	// accept the omission as 0x00 and defeat the service/identity pb
+	// mismatch check; requiring the key to be present makes schema typos
+	// fail loudly at load time. This parallels the treatment of
+	// IdentityKey.PB / IdentityKey.SB.
+	ErrServiceMissingPB = errors.New("ebus_standard: service is missing pb key")
+
 	// ErrServicePBMismatch is returned when a service's declared pb does
 	// not match the pb of one of its command identity keys. A typo in the
 	// service header would otherwise produce a catalog where commands are

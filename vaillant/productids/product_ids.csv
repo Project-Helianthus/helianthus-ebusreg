@@ -495,7 +495,7 @@ Vaillant,Internet communication module,VR900,0020197148,Gateway,
 Vaillant,,,0020197207,Unknown,
 Vaillant,eRELAX,eRELAX,0020197222,Thermostat,
 Vaillant,multiMATIC,VRC 700/4,0020218357,Regulator,
-Vaillant,FM3 Functional Module,VR 70,0020218373,Control Centre,
+Saunier Duval,MiPro,SRC 710,0020218373,Regulator,eBUS wired weather-compensated regulator; external sensor included; multi-zone up to 3 circuits (1 direct + 2 mixed via RED-3/RED-5); compatible with all SD eBUS boilers/heat pumps/solar since 2010; previously mismapped as Vaillant FM3 VR 70; CONFIDENCE: HIGH; src: elyotherm.fr grzanieplus.pl
 Vaillant,flexoCOMPACT,VWF 58/4,0020223437,Heat Pump,
 Vaillant,flexoCOMPACT,VWF 88/4,0020223438,Heat Pump,
 Vaillant,flexoCOMPACT,VWF 118/4,0020223439,Heat Pump,
@@ -950,3 +950,44 @@ Bulex,ThermoSystem,ThermoSystem 160 condens,0010014396,Boiler,BE market Bulex co
 Bulex,ThermoSystem,ThermoSystem 200 condens,0010014397,Boiler,BE market Bulex commercial floor-standing; 200 kW; natural gas I2E+; cascade capable; eBUS; CONFIDENCE: MED
 Bulex,ThermoSystem,ThermoSystem 240 condens,0010014398,Boiler,BE market Bulex commercial floor-standing; 240 kW; natural gas I2E+; cascade capable; eBUS; CONFIDENCE: MED
 Bulex,ThermoSystem,ThermoSystem 280 condens,0010014399,Boiler,BE market Bulex commercial floor-standing; 280 kW; natural gas I2E+; cascade capable; eBUS; CONFIDENCE: MED
+Saunier Duval,MiPro R,SRC 710f,0020231583,Regulator,eBUS wireless (868 MHz radio) weather-compensated regulator; external sensor included; multi-zone up to 3 circuits; compatible with all SD eBUS boilers since 2010; CONFIDENCE: HIGH; src: hydrotermo.pl
+Saunier Duval,MiPro Sense,SRC 720,0020260972,Regulator,eBUS wired weather-compensated regulator with touch panel room sensor; external sensor included; up to 3 heating circuits (1 direct + 2 mixed via RED-3/RED-5); compatible with all SD eBUS boilers/heat pumps/solar since 2010; CONFIDENCE: HIGH; src: technika-grzewcza-sklep.pl saunierduval.pl
+Saunier Duval,MiPro Sense,SRC 720f (PL),0020260947,Regulator,eBUS wireless radio weather-compensated regulator with touch panel room sensor; external sensor included; up to 3 heating circuits; PL market SKU; CONFIDENCE: HIGH; src: technika-grzewcza-sklep.pl
+Saunier Duval,MiPro Sense,SRC 720f (FR),0020260979,Regulator,eBUS wireless radio weather-compensated regulator with touch panel room sensor; external sensor included; multi-zone; FR market SKU for MiPro Sense Radio; CONFIDENCE: HIGH; src: cedeo.fr
+Saunier Duval,MiPro,MiPro Connecté (SRC 710 + MiLink),0010023224,Regulator,eBUS wired weather-compensated regulator bundled with MiLink gateway (0020135099) for internet/app control; multi-zone up to 3 circuits; CONFIDENCE: HIGH; src: elyotherm.fr
+Saunier Duval,MiPro R,MiPro R Connecté (SRC 710f + MiLink),0010023225,Regulator,eBUS wireless regulator bundled with MiLink gateway for internet/app control; multi-zone up to 3 circuits; CONFIDENCE: HIGH; src: elyotherm.fr
+Bulex,MiPro,MiPro v5 wired,0020218374,Regulator,eBUS wired weather-compensated regulator; BE Bulex SKU (SD MiPro equivalent); external sensor included; multi-zone up to 3 circuits; CONFIDENCE: HIGH; src: bulex.be manual 0020257159
+Bulex,MiPro R,MiPro R wireless,0020231584,Regulator,eBUS wireless radio weather-compensated regulator; BE Bulex SKU (SD MiPro R equivalent); external sensor included; multi-zone; CONFIDENCE: HIGH; src: bulex.be manual 0020243677
+Bulex,MiPro Sense,SRC 720,0020260970,Regulator,eBUS wired weather-compensated regulator with touch panel room sensor; BE Bulex SKU; external sensor included; up to 3 heating circuits; CONFIDENCE: HIGH; src: blue.vanmarcke.com
+Saunier Duval,MiSet,MiSet SRT 380 (filaire),0020260997,Thermostat,eBUS wired modulating room thermostat; self-powered via eBUS; single zone; compatible with all SD eBUS boilers since 2010; CONFIDENCE: HIGH; src: technika-grzewcza-sklep.pl geoplanete.fr
+Bulex,MiSet,MiSet SRT 380,0020260994,Thermostat,eBUS wired modulating room thermostat (BE/NL Bulex variant); self-powered via eBUS; single zone; CONFIDENCE: HIGH; src: geoplanete.fr
+Saunier Duval,MiGo,MiGo Link SR 940f,0010037345,Gateway,Wi-Fi-to-eBUS bridge; 2-wire eBUS connection to boiler; pairs with MiGo Select or MiSet Radio; app control; HomeKit; CONFIDENCE: HIGH; src: grzanieplus.pl saunierduval.fr
+Saunier Duval,MiGo,MiGo (legacy Wi-Fi thermostat),0020197230,Gateway,Legacy MiGo combined thermostat + Wi-Fi; connects to boiler via eBUS 2-wire; compatible with SD eBUS boilers since 2010; superseded by MiGo Link; CONFIDENCE: MED; src: caldaiemurali.it lbge.be
+Saunier Duval,GeniaAir Max,GeniaAir Max 5,0010031693,Heat Pump,air-water monobloc R290 ~5 kW 230V SCOP A+++ 32dB@5m eBUS; MiPro/MiPro Sense compatible; aroTHERM plus equivalent; CONFIDENCE: HIGH; src: cedeo.fr
+Saunier Duval,GeniaAir Max,GeniaAir Max 8,0010031695,Heat Pump,air-water monobloc R290 7.6-8.2 kW 230V SCOP A+++ 32dB@5m eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: cedeo.fr
+Saunier Duval,GeniaAir Max,GeniaAir Max 12 (230V),0010031696,Heat Pump,air-water monobloc R290 10.6 kW 230V monophasé SCOP A+++ eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: richardson.fr
+Saunier Duval,GeniaAir Max,GeniaAir Max 12 (400V),0010031697,Heat Pump,air-water monobloc R290 11.6 kW 400V triphasé SCOP A+++ eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: cedeo.fr
+Saunier Duval,GeniaAir Max,GeniaAir Max 15 (230V),0010031698,Heat Pump,air-water monobloc R290 14.2 kW 230V SCOP A+++ 39dB@5m eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: manomano.fr
+Saunier Duval,GeniaAir Max,GeniaAir Max 15 (400V),0010031699,Heat Pump,air-water monobloc R290 14.2 kW 400V triphasé SCOP A+++ 39dB@5m eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: discountetqualite.fr
+Bulex,GeniaAir Mono,GeniaAir Mono HA 5-6,0010021156,Heat Pump,air-water monobloc R290 5.4 kW 230V A+++ COP 5.4 @A7/W35 eBUS; MiPro/MiPro Sense; BE equivalent of GeniaAir Max; CONFIDENCE: HIGH; src: lbge.be
+Bulex,GeniaAir Mono,GeniaAir Mono HA 7-6,0010021157,Heat Pump,air-water monobloc R290 7.0 kW 230V A+++ COP up to 5.4 eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: caldaria.net
+Bulex,GeniaAir Mono,GeniaAir Mono HA 10-6 (230V),0010021158,Heat Pump,air-water monobloc R290 9.2 kW 230V A+++ COP 5.3 @A7/W35 eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: lbge.be
+Bulex,GeniaAir Mono,GeniaAir Mono HA 10-6 (400V),0010021159,Heat Pump,air-water monobloc R290 ~10 kW 400V triphasé A+++ eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: vanoirschot.be
+Bulex,GeniaAir Mono,GeniaAir Mono HA 12-6 (230V),0010021160,Heat Pump,air-water monobloc R290 12.2 kW 230V A+++ eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: caldaria.net
+Bulex,GeniaAir Mono,GeniaAir Mono HA 12-6 (400V),0010021161,Heat Pump,air-water monobloc R290 12.2 kW 400V triphasé A+++ eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: lbge.be
+AWB,GeniaAir Mono,GeniaAir Mono HA 5-6 O,0010021183,Heat Pump,air-water monobloc R290 3.4 kW @A7/W35 230V A+++ COP 4.8 eBUS; MiPro/MiPro Sense; NL market; RVO KA16909; CONFIDENCE: HIGH; src: awb.nl
+AWB,GeniaAir Mono,GeniaAir Mono HA 7-6 O,0010021655,Heat Pump,air-water monobloc R290 4.6 kW @A7/W35 230V A+++ COP 4.8 eBUS; MiPro/MiPro Sense; NL market; RVO KA16910; CONFIDENCE: HIGH; src: wasco.nl
+Saunier Duval,GeniaAir Split,GeniaAir Split HA 3-5 OS,0010021148,Heat Pump,air-water split outdoor unit R410A 3.6 kW 230V Inverter eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: saunierduval.fr PDF 0020264946
+Saunier Duval,GeniaAir Split,GeniaAir Split HA 5-5 OS,0010021149,Heat Pump,air-water split outdoor unit R410A ~5 kW 230V Inverter eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: cedeo.fr
+Saunier Duval,GeniaAir Split,GeniaAir Split HA 7-5 OS,0010021150,Heat Pump,air-water split outdoor unit R410A 6.7 kW 230V Inverter eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: cedeo.fr
+Saunier Duval,GeniaAir Split,GeniaAir Split HA 10-5 OS (230V),0010021151,Heat Pump,air-water split outdoor unit R410A 10.2 kW 230V Inverter eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: cedeo.fr
+Saunier Duval,GeniaAir Split,GeniaAir Split HA 10-5 OS (400V),0010021152,Heat Pump,air-water split outdoor unit R410A 10.15 kW 400V triphasé Inverter eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: protor.pl
+Saunier Duval,GeniaAir Split,GeniaAir Split HA 12-5 OS,0010021153,Heat Pump,air-water split outdoor unit R410A 11.9 kW 230V Inverter eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: cedeo.fr
+Saunier Duval,GeniaSet Split,GeniaSet Split HA 3/5 (indoor hydraulic unit),0010023171,Module,Split indoor hydraulic module (colonne hydraulique ECS); pairs with GeniaAir Split outdoor; eBUS internal to GeniaAir system; NOT a DHW heat pump (HRV analog to Vaillant uniTOWER); CONFIDENCE: HIGH; src: manomano.fr
+Saunier Duval,GeniaSet Split,GeniaSet Split HA 7-5 STB (indoor hydraulic with tank),0010023172,Module,Split indoor hydraulic module with integrated DHW tank (analog to Vaillant uniTOWER); pairs with GeniaAir Split outdoor; eBUS internal; CONFIDENCE: HIGH; src: cedeo.fr
+Saunier Duval,Exacontrol,E7R B,0020049691,Regulator,eBUS via radio receiver; battery-powered wireless programmable room thermostat; pre-2012 generation; compatible with SD eBUS boilers; CONFIDENCE: HIGH; src: piecesxpress.com cedeo.fr
+Saunier Duval,Exacontrol,E7R B-S,0020085060,Regulator,eBUS wired version (no radio receiver) of E7R B; pre-2012 generation; listed as obsolete; CONFIDENCE: HIGH; src: piecesxpress.com
+Saunier Duval,Exacontrol,E (E-TA modulant),0020017839,Regulator,eBUS modulating non-programmable wired 230V room thermostat; legacy pre-E7 generation; compatible with SD eBUS boilers (older H2BUS models need translator 0020076951); CONFIDENCE: HIGH; src: cedeo.fr piecesxpress.com
+Saunier Duval,Exacontrol,Select SRT 50/2,0010041872,Regulator,eBUS modulating wired programmable regulator (self-powered via eBUS); compatible with all SD eBUS boilers since 2010; newer generation replacing E7 C; optional MiGo Link gateway; note non-standard 0010 prefix; CONFIDENCE: HIGH; src: cedeo.fr suner.eu
+Bulex,Exacontrol,E7 C,0020118074,Regulator,eBUS programmable wired thermostat self-powered from boiler card; Bulex (BE/NL) variant of SD E7 C; CONFIDENCE: HIGH; src: paulpromo.be eshop.dupontsanitair.be
+Bulex,Exacontrol,E7R C,0020118075,Regulator,eBUS via radio receiver; Bulex variant of SD E7R C; battery-powered wireless programmable; CONFIDENCE: MED; src: sanionline.be lambrechtsprofessionals.eu

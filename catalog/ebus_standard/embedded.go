@@ -1,3 +1,6 @@
+//go:build !tinygo
+// +build !tinygo
+
 package ebus_standard_catalog
 
 import _ "embed"
@@ -17,6 +20,13 @@ func EmbeddedYAML() []byte {
 // MustEmbeddedCatalog returns the parsed embedded catalog or panics. This
 // is safe because the embedded bytes are compile-time constants and any
 // load failure is a build-breaking catalog error that CI catches.
+//
+// This symbol is defined only on non-TinyGo builds because the YAML loader
+// is unavailable under TinyGo (see loader_tinygo.go). TinyGo consumers
+// must construct a Catalog via a pre-validated path (embedded literal or
+// host-generated snapshot) rather than calling this helper; a compile-time
+// "undefined: MustEmbeddedCatalog" guides them to the correct API instead
+// of deterministically panicking at runtime.
 func MustEmbeddedCatalog() Catalog {
 	cat, err := LoadCatalog(EmbeddedYAML())
 	if err != nil {

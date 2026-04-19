@@ -115,6 +115,15 @@ var (
 	// this check the second entry would silently overwrite the first in
 	// the method index and Invoke would dispatch the wrong command.
 	ErrDuplicateMethodID = errors.New("ebus_standard: duplicate catalog method id")
+
+	// ErrEmptyMethodID is returned by NewProvider when a catalog command
+	// has an empty string ID. Without this check the bad entry would be
+	// indexed under "" and every normal method-name lookup would still
+	// succeed, while Invoke("") would silently dispatch the malformed
+	// command. LoadCatalog does not currently enforce non-empty IDs, so
+	// the provider converts this silent-correctness failure mode into a
+	// loud configuration error at construction time.
+	ErrEmptyMethodID = errors.New("ebus_standard: empty catalog method id")
 )
 
 // DisableEnvVar is the exact env-var name read at construction time.
@@ -135,6 +144,10 @@ func NewProvider(cat Catalog, enabled bool) (*Provider, error) {
 	idx := make(map[string]Command, len(cat.Services)*4)
 	for _, svc := range cat.Services {
 		for _, cmd := range svc.Commands {
+			if cmd.ID == "" {
+				return nil, fmt.Errorf("%w: service=%q command=%q",
+					ErrEmptyMethodID, svc.Name, cmd.Name)
+			}
 			if prev, dup := idx[cmd.ID]; dup {
 				return nil, fmt.Errorf("%w: id=%q first=%q second=%q",
 					ErrDuplicateMethodID, cmd.ID, prev.Name, cmd.Name)

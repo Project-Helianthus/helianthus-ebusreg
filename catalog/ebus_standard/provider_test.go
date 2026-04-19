@@ -153,6 +153,63 @@ func TestProvider_DuplicateMethodIDRejected(t *testing.T) {
 	}
 }
 
+// TestProvider_EmptyMethodIDRejected asserts NewProvider fails fast with
+// ErrEmptyMethodID when a catalog command has an empty string ID. Without
+// this guard the bad entry would be indexed under "" and silently registered,
+// later surfacing as hard-to-diagnose ErrUnknownMethod behavior for normal
+// method names.
+func TestProvider_EmptyMethodIDRejected(t *testing.T) {
+	pb := uint8(0x03)
+	sb := uint8(0xF2)
+	cat := Catalog{
+		Namespace:  Namespace,
+		Version:    CatalogVersion,
+		PlanSHA256: CanonicalPlanSHA256,
+		Services: []Service{
+			{
+				PB:   &pb,
+				Name: "synthetic",
+				Commands: []Command{
+					{
+						ID:   "",
+						Name: "nameless",
+						Identity: IdentityKey{
+							Namespace:                       Namespace,
+							PB:                              &pb,
+							SB:                              &sb,
+							TelegramClass:                   TelegramClassAddressed,
+							Direction:                       DirectionRequest,
+							RequestOrResponseRole:           RoleInitiator,
+							BroadcastOrAddressed:            AddressedDirect,
+							AnswerPolicy:                    AnswerRequired,
+							LengthPrefixMode:                LengthPrefixNone,
+							SelectorDecoder:                 "none",
+							ServiceVariant:                  "synthetic",
+							TransportCapabilityRequirements: []string{"master_slave"},
+							Version:                         CatalogVersion,
+						},
+						SafetyClass: SafetyReadOnlySafe,
+					},
+				},
+			},
+		},
+	}
+	p, err := NewProvider(cat, true)
+	if !errors.Is(err, ErrEmptyMethodID) {
+		t.Fatalf("err=%v, want ErrEmptyMethodID", err)
+	}
+	if errors.Is(err, ErrDuplicateMethodID) {
+		t.Fatalf("err=%v must not be ErrDuplicateMethodID (empty-ID check must fire first)", err)
+	}
+	if p != nil {
+		t.Fatalf("expected nil provider on empty id, got %+v", p)
+	}
+	msg := err.Error()
+	if !strings.Contains(msg, "synthetic") || !strings.Contains(msg, "nameless") {
+		t.Fatalf("error message %q must name service and command", msg)
+	}
+}
+
 // TestProvider_UnknownMethodID confirms Invoke distinguishes "not in
 // catalog" from "safety denied" by returning ErrUnknownMethod when the
 // requested method ID is absent from the catalog's method index.

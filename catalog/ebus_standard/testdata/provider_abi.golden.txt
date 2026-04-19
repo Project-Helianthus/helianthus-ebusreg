@@ -69,6 +69,7 @@ ebus_standard_catalog var ErrAmbiguousLengthSelector
 ebus_standard_catalog var ErrCatalogMissingServices
 ebus_standard_catalog var ErrDuplicateIdentityKey
 ebus_standard_catalog var ErrDuplicateMethodID
+ebus_standard_catalog var ErrEmptyMethodID
 ebus_standard_catalog var ErrIncompleteIdentityKey
 ebus_standard_catalog var ErrInvalidNamespace
 ebus_standard_catalog var ErrProviderDisabled

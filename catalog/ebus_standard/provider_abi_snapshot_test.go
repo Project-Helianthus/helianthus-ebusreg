@@ -5,6 +5,7 @@ import (
 	"flag"
 	"go/ast"
 	"go/parser"
+	"go/printer"
 	"go/token"
 	"os"
 	"path/filepath"
@@ -73,10 +74,19 @@ func mustComputeABISnapshot(t *testing.T) []byte {
 			}
 			path := filepath.Join(root, ent.Name())
 			fset := token.NewFileSet()
-			file, err := parser.ParseFile(fset, path, nil, parser.ParseComments)
+			// Parse WITHOUT parser.ParseComments: comments are irrelevant
+			// to the exported-API shape. Excluding them at parse time
+			// keeps the downstream AST serialization free of comment
+			// nodes and prevents comment-only edits from causing ABI
+			// golden drift (pre-fix behavior: raw-src slicing captured
+			// any comments that happened to fall inside a node's Pos..End
+			// range, causing false-positive CI failures).
+			file, err := parser.ParseFile(fset, path, nil, 0)
 			if err != nil {
 				t.Fatalf("parse %s: %v", path, err)
 			}
+			// Detach any parsed comment groups defensively.
+			file.Comments = nil
 			pkgLabel := file.Name.Name
 			for _, decl := range file.Decls {
 				switch d := decl.(type) {
@@ -120,6 +130,69 @@ func mustComputeABISnapshot(t *testing.T) []byte {
 	return buf.Bytes()
 }
 
+// TestABISnapshot_CommentsInsensitive is the regression gate for the
+// go/printer-based serialization: it feeds the snapshot pipeline two
+// variants of the same exported type — one bare, one decorated with doc
+// comments and inline comments inside a struct field — and asserts the
+// formatter produces byte-identical output for both. A regression that
+// re-introduces raw-source slicing would make the commented variant
+// capture comment bytes and diverge.
+func TestABISnapshot_CommentsInsensitive(t *testing.T) {
+	bare := `package sample
+
+type ExportedShape struct {
+	Field1 int
+	Field2 string
+}
+
+func ExportedFunc(a int) error { return nil }
+`
+	commented := `package sample
+
+// ExportedShape is the documented shape.
+//
+// Multiple paragraphs of doc comments MUST NOT leak into the ABI snapshot.
+type ExportedShape struct {
+	// Field1 is the first field.
+	Field1 int // trailing comment on Field1
+	// Field2 is the second field.
+	Field2 string
+}
+
+// ExportedFunc has a lengthy doc comment that describes
+// every edge case in excruciating detail.
+func ExportedFunc(a int) error { return nil }
+`
+	render := func(src string) string {
+		fset := token.NewFileSet()
+		file, err := parser.ParseFile(fset, "sample.go", src, 0)
+		if err != nil {
+			t.Fatalf("parse: %v", err)
+		}
+		file.Comments = nil
+		var lines []string
+		for _, decl := range file.Decls {
+			switch d := decl.(type) {
+			case *ast.GenDecl:
+				for _, spec := range d.Specs {
+					if s, ok := spec.(*ast.TypeSpec); ok && s.Name.IsExported() {
+						lines = append(lines, formatTypeDecl(file.Name.Name, s, fset))
+					}
+				}
+			case *ast.FuncDecl:
+				if d.Name.IsExported() {
+					lines = append(lines, formatFuncDecl(file.Name.Name, d, fset))
+				}
+			}
+		}
+		sort.Strings(lines)
+		return strings.Join(lines, "\n")
+	}
+	if got, want := render(commented), render(bare); got != want {
+		t.Fatalf("ABI snapshot leaked comment bytes.\n  bare=%q\n  comm=%q", want, got)
+	}
+}
+
 func formatTypeDecl(pkg string, s *ast.TypeSpec, fset *token.FileSet) string {
 	var buf bytes.Buffer
 	buf.WriteString(pkg)
@@ -145,25 +218,18 @@ func formatFuncDecl(pkg string, d *ast.FuncDecl, fset *token.FileSet) string {
 }
 
 func printNode(buf *bytes.Buffer, fset *token.FileSet, node ast.Node) error {
-	// Use a minimal printer to avoid pulling go/format (which would pin us to
-	// a specific gofmt revision). The ast package's default String via
-	// position-aware extraction suffices for deterministic output across Go
-	// toolchain revisions.
-	start := fset.Position(node.Pos()).Offset
-	end := fset.Position(node.End()).Offset
-	file := fset.File(node.Pos())
-	if file == nil {
-		return nil
-	}
-	src, err := os.ReadFile(file.Name())
-	if err != nil {
-		return err
-	}
-	if start < 0 || end > len(src) {
-		return nil
-	}
-	buf.Write(src[start:end])
-	return nil
+	// Serialize the AST node canonically via go/printer with mode=0 (no
+	// raw-source/comment passthrough). This replaces a prior
+	// implementation that sliced raw source between node.Pos() and
+	// node.End(): that approach silently captured inline comments sitting
+	// inside struct literals and type declarations, which caused the
+	// golden fixture to drift on comment-only edits and produced
+	// false-positive ABI-gate failures in CI. Serializing the node itself
+	// is comments-insensitive by construction (comments live on
+	// *ast.File.Comments, not on the type/func node, and are additionally
+	// scrubbed by the caller via file.Comments = nil defensively).
+	cfg := printer.Config{Mode: 0, Tabwidth: 8}
+	return cfg.Fprint(buf, fset, node)
 }
 
 func compactWhitespace(s string) string {

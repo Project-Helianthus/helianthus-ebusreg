@@ -40,7 +40,6 @@ ebus_standard_catalog func (IdentityKey) SBValuefunc() uint8
 ebus_standard_catalog func (Service) PBValuefunc() uint8
 ebus_standard_catalog func CompareIdentityfunc(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord
 ebus_standard_catalog func ComputeContentSHA256func(data []byte) string
-ebus_standard_catalog func ComputeContentSHA256func(data []byte) string
 ebus_standard_catalog func EmbeddedYAMLfunc() []byte
 ebus_standard_catalog func LoadCatalogfunc(data []byte) (Catalog, error)
 ebus_standard_catalog func MustEmbeddedCatalogfunc() Catalog
@@ -77,7 +76,6 @@ ebus_standard_catalog var ErrSafetyClassDenied
 ebus_standard_catalog var ErrServiceMissingCommands
 ebus_standard_catalog var ErrServiceMissingPB
 ebus_standard_catalog var ErrServicePBMismatch
-ebus_standard_catalog var ErrTinyGoUnsupported
 ebus_standard_catalog var ErrUnknownEnumValue
 ebus_standard_catalog var ErrUnknownMethod
 ebus_standard_catalog var ErrUnknownSafetyClass

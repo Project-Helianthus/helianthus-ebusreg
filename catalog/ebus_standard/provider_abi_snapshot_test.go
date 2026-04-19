@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"flag"
 	"go/ast"
+	"go/build"
 	"go/parser"
 	"go/printer"
 	"go/token"
@@ -60,6 +61,15 @@ func mustComputeABISnapshot(t *testing.T) []byte {
 	// Package roots to cover. Relative paths are resolved against the
 	// package directory (where `go test` runs).
 	roots := []string{".", filepath.Join("internal", "safetypolicy")}
+	// Use the default build context so files behind build tags that are
+	// inactive in the current build (e.g. loader_tinygo.go under `tinygo`
+	// while we're running the non-tinygo default) are excluded. Without
+	// this filter, mutually-exclusive tagged files were parsed together
+	// and produced duplicate symbols in the golden fixture (observed:
+	// ComputeContentSHA256 appearing twice from embedded.go + its tinygo
+	// counterpart). go/build.Context.MatchFile applies the same logic the
+	// compiler uses to decide which files belong in the package build.
+	bctx := build.Default
 	for _, root := range roots {
 		entries, err := os.ReadDir(root)
 		if err != nil {
@@ -70,6 +80,13 @@ func mustComputeABISnapshot(t *testing.T) []byte {
 				continue
 			}
 			if strings.HasSuffix(ent.Name(), "_test.go") {
+				continue
+			}
+			match, merr := bctx.MatchFile(root, ent.Name())
+			if merr != nil {
+				t.Fatalf("build.MatchFile %s/%s: %v", root, ent.Name(), merr)
+			}
+			if !match {
 				continue
 			}
 			path := filepath.Join(root, ent.Name())

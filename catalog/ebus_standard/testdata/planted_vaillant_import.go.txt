@@ -1,0 +1,12 @@
+// Planted namespace-isolation violation fixture. This file is a .go.txt
+// (not .go) so the Go toolchain ignores it during normal builds. The M3
+// AC6 regression test `TestNamespaceIsolation_PlantedViolationCaught`
+// copies the fixture into a temp file and re-parses it through the same
+// import-scanner used on the real tree, asserting the scanner flags it.
+// That keeps the regression proof self-contained without any real build-
+// tag tagging of a compiled .go file that could drift.
+package ebus_standard_catalog
+
+import (
+	_ "github.com/Project-Helianthus/helianthus-ebusreg/vaillant/system"
+)

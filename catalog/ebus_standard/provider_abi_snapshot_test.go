@@ -342,8 +342,57 @@ func formatFuncDecl(pkg string, d *ast.FuncDecl, fset *token.FileSet) string {
 		buf.WriteString(") ")
 	}
 	buf.WriteString(d.Name.Name)
-	_ = printNode(&buf, fset, d.Type)
+	// Render just the parameter/result lists. Printing d.Type (*ast.FuncType)
+	// directly via go/printer emits a leading "func" keyword, which
+	// concatenates with the function name to produce artifacts like
+	// "ComputeContentSHA256func(...)". We build the signature by hand:
+	// type parameters (generics), parameter list, result list.
+	if d.Type.TypeParams != nil && len(d.Type.TypeParams.List) > 0 {
+		buf.WriteString("[")
+		writeFieldList(&buf, fset, d.Type.TypeParams.List)
+		buf.WriteString("]")
+	}
+	buf.WriteString("(")
+	if d.Type.Params != nil {
+		writeFieldList(&buf, fset, d.Type.Params.List)
+	}
+	buf.WriteString(")")
+	if d.Type.Results != nil && len(d.Type.Results.List) > 0 {
+		buf.WriteString(" ")
+		// Parenthesize multi-result or named-result lists for clarity; a
+		// single unnamed result is rendered bare to match standard Go
+		// notation ("func F() error" vs "func F() (a, b int)").
+		multi := len(d.Type.Results.List) > 1 || (len(d.Type.Results.List) == 1 && len(d.Type.Results.List[0].Names) > 0)
+		if multi {
+			buf.WriteString("(")
+		}
+		writeFieldList(&buf, fset, d.Type.Results.List)
+		if multi {
+			buf.WriteString(")")
+		}
+	}
 	return compactWhitespace(buf.String())
+}
+
+// writeFieldList serializes an AST field list (function params, results,
+// or type params) as "name1, name2 Type, nextType" — the compact form
+// expected in Go signatures. Empty-name fields render only the type.
+func writeFieldList(buf *bytes.Buffer, fset *token.FileSet, fields []*ast.Field) {
+	for i, field := range fields {
+		if i > 0 {
+			buf.WriteString(", ")
+		}
+		for j, name := range field.Names {
+			if j > 0 {
+				buf.WriteString(", ")
+			}
+			buf.WriteString(name.Name)
+		}
+		if len(field.Names) > 0 {
+			buf.WriteString(" ")
+		}
+		_ = printNode(buf, fset, field.Type)
+	}
 }
 
 func printNode(buf *bytes.Buffer, fset *token.FileSet, node ast.Node) error {

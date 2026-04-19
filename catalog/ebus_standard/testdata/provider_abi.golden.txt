@@ -31,20 +31,20 @@ ebus_standard_catalog const TelegramClassAddressed
 ebus_standard_catalog const TelegramClassBroadcast
 ebus_standard_catalog const TelegramClassControllerBroadcast
 ebus_standard_catalog const TelegramClassInitiatorInitiator
-ebus_standard_catalog func (*Provider) Identificationfunc(ctx context.Context) (IdentificationDescriptor, error)
-ebus_standard_catalog func (*Provider) Invokefunc(ctx context.Context, methodID string, params map[string]any, caller CallerContext) (map[string]any, error)
-ebus_standard_catalog func (*Provider) IsEnabledfunc() bool
-ebus_standard_catalog func (IdentityKey) IsCompletefunc() bool
-ebus_standard_catalog func (IdentityKey) PBValuefunc() uint8
-ebus_standard_catalog func (IdentityKey) SBValuefunc() uint8
-ebus_standard_catalog func (Service) PBValuefunc() uint8
-ebus_standard_catalog func CompareIdentityfunc(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord
-ebus_standard_catalog func ComputeContentSHA256func(data []byte) string
-ebus_standard_catalog func EmbeddedYAMLfunc() []byte
-ebus_standard_catalog func LoadCatalogfunc(data []byte) (Catalog, error)
-ebus_standard_catalog func MustEmbeddedCatalogfunc() Catalog
-ebus_standard_catalog func NewProviderFromEnvfunc(cat Catalog) (*Provider, error)
-ebus_standard_catalog func NewProviderfunc(cat Catalog, enabled bool) (*Provider, error)
+ebus_standard_catalog func (*Provider) Identification(ctx context.Context) (IdentificationDescriptor, error)
+ebus_standard_catalog func (*Provider) Invoke(ctx context.Context, methodID string, params map[string]any, caller CallerContext) (map[string]any, error)
+ebus_standard_catalog func (*Provider) IsEnabled() bool
+ebus_standard_catalog func (IdentityKey) IsComplete() bool
+ebus_standard_catalog func (IdentityKey) PBValue() uint8
+ebus_standard_catalog func (IdentityKey) SBValue() uint8
+ebus_standard_catalog func (Service) PBValue() uint8
+ebus_standard_catalog func CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord
+ebus_standard_catalog func ComputeContentSHA256(data []byte) string
+ebus_standard_catalog func EmbeddedYAML() []byte
+ebus_standard_catalog func LoadCatalog(data []byte) (Catalog, error)
+ebus_standard_catalog func MustEmbeddedCatalog() Catalog
+ebus_standard_catalog func NewProvider(cat Catalog, enabled bool) (*Provider, error)
+ebus_standard_catalog func NewProviderFromEnv(cat Catalog) (*Provider, error)
 ebus_standard_catalog type AnswerPolicy string
 ebus_standard_catalog type BroadcastOrAddressed string
 ebus_standard_catalog type CallerContext int
@@ -87,6 +87,6 @@ safetypolicy const MemoryWrite
 safetypolicy const Mutating
 safetypolicy const ReadOnlyBusLoad
 safetypolicy const ReadOnlySafe
-safetypolicy func Allowfunc(class Class, caller Caller) bool
+safetypolicy func Allow(class Class, caller Caller) bool
 safetypolicy type Caller int
 safetypolicy type Class string

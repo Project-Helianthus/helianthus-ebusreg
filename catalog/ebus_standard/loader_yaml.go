@@ -226,9 +226,21 @@ func detectAmbiguousLengthSelectors(cat Catalog) error {
 			if decoder == "" {
 				decoder = "none"
 			}
+			// When there is no selector branch (decoder == "none"),
+			// selector_path is not a real disambiguator: with no decoder
+			// to interpret it, the value is inert at decode time. Two
+			// entries with the same on-wire identity and different
+			// length_prefix_mode values must still collide even if they
+			// carry different selector_path strings, otherwise a YAML
+			// typo or cosmetic difference bypasses the ambiguity check.
+			// Drop selector_path from the bundling key in this case.
+			selectorPath := k.SelectorPath
+			if decoder == "none" {
+				selectorPath = ""
+			}
 			key := fmt.Sprintf("%s|%02X|%02X|%s|%s|%s|%s",
 				k.Namespace, k.PBValue(), k.SBValue(), decoder,
-				k.SelectorPath, k.Direction, k.RequestOrResponseRole)
+				selectorPath, k.Direction, k.RequestOrResponseRole)
 			buckets[key] = append(buckets[key], bucket{cmd.ID, k.LengthPrefixMode})
 		}
 	}

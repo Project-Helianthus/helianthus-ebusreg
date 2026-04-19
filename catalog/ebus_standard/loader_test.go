@@ -64,6 +64,26 @@ func TestLoadCatalog_AmbiguousLengthSelector_NoneDecoder(t *testing.T) {
 	}
 }
 
+// TestLoadCatalog_AmbiguousLengthSelector_NoneDecoder_WithPath asserts
+// that when selector_decoder="none", the ambiguity-bundling key ignores
+// selector_path. Two entries sharing the on-wire identity axes with
+// different selector_path strings but incompatible length_prefix_mode
+// values must still collide: without a decoder, selector_path is inert
+// at decode time and cannot disambiguate the branches.
+func TestLoadCatalog_AmbiguousLengthSelector_NoneDecoder_WithPath(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("testdata", "ambiguous_length_selector_none_decoder_with_path.yaml"))
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	_, err = LoadCatalog(data)
+	if err == nil {
+		t.Fatalf("LoadCatalog: expected ErrAmbiguousLengthSelector, got nil")
+	}
+	if !errors.Is(err, ErrAmbiguousLengthSelector) {
+		t.Fatalf("LoadCatalog: expected ErrAmbiguousLengthSelector, got %v", err)
+	}
+}
+
 // TestLoadCatalog_ServicePBMismatch asserts that a command whose
 // identity.pb differs from the enclosing service.pb is rejected with
 // ErrServicePBMismatch. A typo in the service header would otherwise

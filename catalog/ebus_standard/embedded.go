@@ -5,10 +5,13 @@ import _ "embed"
 //go:embed catalog.yaml
 var embeddedYAMLBytes []byte
 
-// EmbeddedYAML returns the raw bytes of the embedded catalog YAML. The
-// returned slice is shared; callers must not modify it.
+// EmbeddedYAML returns a defensive copy of the raw bytes of the embedded
+// catalog YAML. A copy is returned (rather than the package-global slice)
+// so that mutations by external callers cannot corrupt subsequent catalog
+// loads or introduce data races across goroutines. Modifications to the
+// returned slice do not affect future calls.
 func EmbeddedYAML() []byte {
-	return embeddedYAMLBytes
+	return append([]byte(nil), embeddedYAMLBytes...)
 }
 
 // MustEmbeddedCatalog returns the parsed embedded catalog or panics. This

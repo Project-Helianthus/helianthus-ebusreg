@@ -314,6 +314,35 @@ func TestLoadCatalog_EmptyCatalog(t *testing.T) {
 	}
 }
 
+// TestEmbeddedYAML_DefensiveCopy asserts that EmbeddedYAML() returns a
+// fresh copy on every call. Mutating the returned slice must not affect
+// subsequent calls or corrupt the package-global embedded bytes. This
+// guarantees catalog immutability across goroutines and external callers.
+func TestEmbeddedYAML_DefensiveCopy(t *testing.T) {
+	first := EmbeddedYAML()
+	if len(first) == 0 {
+		t.Fatalf("EmbeddedYAML: returned empty slice")
+	}
+	original := first[0]
+	// Mutate the returned slice.
+	first[0] = original ^ 0xFF
+
+	second := EmbeddedYAML()
+	if len(second) != len(first) {
+		t.Fatalf("EmbeddedYAML: length changed between calls: %d vs %d",
+			len(first), len(second))
+	}
+	if second[0] != original {
+		t.Fatalf("EmbeddedYAML: mutation leaked across calls: got 0x%02X, want 0x%02X",
+			second[0], original)
+	}
+	// Embedded baseline must still load successfully after an external
+	// mutation of a prior EmbeddedYAML() return.
+	if _, err := LoadCatalog(EmbeddedYAML()); err != nil {
+		t.Fatalf("LoadCatalog(embedded) after mutation: %v", err)
+	}
+}
+
 // TestLoadCatalog_EmbeddedBaselineLoads asserts that the embedded baseline
 // catalog passes the empty-commands guard — i.e. every declared service has
 // at least one command.

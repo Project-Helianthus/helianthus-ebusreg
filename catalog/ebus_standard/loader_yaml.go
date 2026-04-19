@@ -1,3 +1,6 @@
+//go:build !tinygo
+// +build !tinygo
+
 package ebus_standard_catalog
 
 import (

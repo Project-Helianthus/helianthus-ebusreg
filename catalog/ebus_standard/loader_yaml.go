@@ -175,29 +175,57 @@ func isKnownSafetyClass(s SafetyClass) bool {
 // identityKeyFingerprint returns a deterministic string covering every
 // field of the 14-tuple. Equal fingerprints mean duplicate identity keys.
 //
-// Slice/map fields MUST be serialized with an injective encoding: naive
-// %v formatting of []string renders both []string{"a b"} and
-// []string{"a","b"} as "[a b]", which would collapse two distinct
-// identities into one fingerprint and cause false-positive
-// ErrDuplicateIdentityKey (or, worse, hide real collisions). JSON
-// encoding is canonical, escapes embedded separators, and round-trips
-// losslessly for any []string, so it is used for every slice/map field
-// in the tuple (currently just TransportCapabilityRequirements).
+// The fingerprint MUST be injective for any combination of free-form
+// string field values. A previous implementation used a `|`-delimited
+// format string, which collapsed distinct identities whenever a
+// free-form field (e.g. selector_path, selector_decoder, service_variant)
+// contained delimiter-shaped substrings such as "|sv=". The current
+// implementation serializes a purpose-built struct via json.Marshal:
+// JSON escapes embedded quotes/backslashes, the struct's compile-time
+// field order makes the byte output deterministic, and the encoding is
+// lossless and injective for arbitrary string content (including
+// embedded `|`, `=`, quotes, and slice element boundaries).
 func identityKeyFingerprint(k IdentityKey) string {
-	tcrJSON, err := json.Marshal(k.TransportCapabilityRequirements)
-	if err != nil {
-		// json.Marshal of []string cannot fail in practice; fall back to
-		// a clearly non-injective sentinel so a future failure is
-		// visible rather than silently masked.
-		tcrJSON = []byte(fmt.Sprintf("<json-error:%v>", err))
+	// Struct (not map) so JSON field order is fixed at compile time.
+	fp := struct {
+		Namespace                       string
+		PB                              uint8
+		SB                              uint8
+		SelectorPath                    string
+		TelegramClass                   string
+		Direction                       string
+		RequestOrResponseRole           string
+		BroadcastOrAddressed            string
+		AnswerPolicy                    string
+		LengthPrefixMode                string
+		SelectorDecoder                 string
+		ServiceVariant                  string
+		TransportCapabilityRequirements []string
+		Version                         string
+	}{
+		Namespace:                       k.Namespace,
+		PB:                              k.PBValue(),
+		SB:                              k.SBValue(),
+		SelectorPath:                    k.SelectorPath,
+		TelegramClass:                   string(k.TelegramClass),
+		Direction:                       string(k.Direction),
+		RequestOrResponseRole:           string(k.RequestOrResponseRole),
+		BroadcastOrAddressed:            string(k.BroadcastOrAddressed),
+		AnswerPolicy:                    string(k.AnswerPolicy),
+		LengthPrefixMode:                string(k.LengthPrefixMode),
+		SelectorDecoder:                 k.SelectorDecoder,
+		ServiceVariant:                  k.ServiceVariant,
+		TransportCapabilityRequirements: k.TransportCapabilityRequirements,
+		Version:                         k.Version,
 	}
-	return fmt.Sprintf(
-		"ns=%s|pb=%02X|sb=%02X|sel=%s|tc=%s|dir=%s|rr=%s|ba=%s|ap=%s|lpm=%s|sd=%s|sv=%s|tcr=%s|ver=%s",
-		k.Namespace, k.PBValue(), k.SBValue(), k.SelectorPath, k.TelegramClass, k.Direction,
-		k.RequestOrResponseRole, k.BroadcastOrAddressed, k.AnswerPolicy,
-		k.LengthPrefixMode, k.SelectorDecoder, k.ServiceVariant,
-		string(tcrJSON), k.Version,
-	)
+	b, err := json.Marshal(fp)
+	if err != nil {
+		// json.Marshal of strings/[]string/uint8 cannot fail in practice;
+		// fall back to a clearly non-injective sentinel so a future
+		// failure is visible rather than silently masked.
+		return fmt.Sprintf("<json-error:%v>", err)
+	}
+	return string(b)
 }
 
 func detectDuplicateIdentityKeys(cat Catalog) error {
@@ -255,9 +283,39 @@ func detectAmbiguousLengthSelectors(cat Catalog) error {
 			if decoder == "none" {
 				selectorPath = ""
 			}
-			key := fmt.Sprintf("%s|%02X|%02X|%s|%s|%s|%s",
-				k.Namespace, k.PBValue(), k.SBValue(), decoder,
-				selectorPath, k.Direction, k.RequestOrResponseRole)
+			// Bucket key MUST be injective for any free-form field
+			// content. A `|`-delimited concat collapses distinct buckets
+			// when selector_decoder or selector_path contain
+			// delimiter-shaped substrings; serialize a struct via
+			// json.Marshal so embedded `|`/`=`/quotes are escaped and
+			// the encoding is lossless. Struct field order is fixed at
+			// compile time, so the resulting bytes are deterministic.
+			axes := struct {
+				Namespace             string
+				PB                    uint8
+				SB                    uint8
+				Decoder               string
+				SelectorPath          string
+				Direction             string
+				RequestOrResponseRole string
+			}{
+				Namespace:             k.Namespace,
+				PB:                    k.PBValue(),
+				SB:                    k.SBValue(),
+				Decoder:               decoder,
+				SelectorPath:          selectorPath,
+				Direction:             string(k.Direction),
+				RequestOrResponseRole: string(k.RequestOrResponseRole),
+			}
+			keyBytes, err := json.Marshal(axes)
+			if err != nil {
+				// json.Marshal of strings/uint8 cannot fail in practice;
+				// fall back to a sentinel that is unique-per-error so a
+				// future failure surfaces rather than silently merging
+				// distinct buckets.
+				keyBytes = []byte(fmt.Sprintf("<json-error:%v:%s>", err, cmd.ID))
+			}
+			key := string(keyBytes)
 			buckets[key] = append(buckets[key], bucket{cmd.ID, k.LengthPrefixMode})
 		}
 	}

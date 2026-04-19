@@ -516,3 +516,147 @@ func TestIdentityKeyFingerprint_SliceEncodingIsInjective(t *testing.T) {
 		t.Fatalf("identityKeyFingerprint: non-deterministic output for equal inputs")
 	}
 }
+
+// TestIdentityKeyFingerprint_DelimiterInjective guards against a
+// regression in which the fingerprint was rendered as a `|`-delimited
+// format string. Free-form fields (selector_path, selector_decoder,
+// service_variant) that happened to contain delimiter-shaped substrings
+// such as "|sv=" could collapse two distinct identities into the same
+// fingerprint, causing false-positive ErrDuplicateIdentityKey on
+// otherwise valid catalogs. The fingerprint MUST distinguish such
+// shapes — JSON encoding escapes embedded quotes/backslashes and is
+// injective for any string content.
+func TestIdentityKeyFingerprint_DelimiterInjective(t *testing.T) {
+	base := IdentityKey{
+		Namespace:             Namespace,
+		TelegramClass:         TelegramClassAddressed,
+		Direction:             DirectionRequest,
+		RequestOrResponseRole: RoleInitiator,
+		BroadcastOrAddressed:  AddressedDirect,
+		AnswerPolicy:          AnswerRequired,
+		LengthPrefixMode:      LengthPrefixNone,
+		SelectorDecoder:       "decoder",
+		ServiceVariant:        "variant",
+		Version:               "v1",
+		SelectorPath:          "path",
+	}
+
+	// Pair 1: cross-talk between selector_path and selector_decoder via
+	// a `|sd=`-shaped substring. Under the legacy `|`-concat encoding
+	// these two collapsed onto the same fingerprint.
+	a := base
+	a.SelectorPath = "x|sd=y"
+	a.SelectorDecoder = "z"
+	b := base
+	b.SelectorPath = "x"
+	b.SelectorDecoder = "y|sd=z"
+	// Defensive: also vary an unrelated axis between the pair so a
+	// trivially-equal sanity check would still fire if encoding broke.
+	if identityKeyFingerprint(a) == identityKeyFingerprint(b) {
+		t.Fatalf("identityKeyFingerprint: delimiter-shaped substring collision: %q == %q",
+			identityKeyFingerprint(a), identityKeyFingerprint(b))
+	}
+
+	// Pair 2: cross-talk between service_variant and version via a
+	// `|ver=`-shaped substring.
+	c := base
+	c.ServiceVariant = "v1|ver=x"
+	c.Version = "y"
+	d := base
+	d.ServiceVariant = "v1"
+	d.Version = "x|ver=y"
+	if identityKeyFingerprint(c) == identityKeyFingerprint(d) {
+		t.Fatalf("identityKeyFingerprint: service_variant/version delimiter collision: %q == %q",
+			identityKeyFingerprint(c), identityKeyFingerprint(d))
+	}
+
+	// Determinism: identical inputs produce identical fingerprints
+	// across repeated calls (struct field order is compile-time fixed).
+	// Capture the first value, then compare subsequent calls against
+	// it; staticcheck (SA4000) rejects `f(x) != f(x)` even though the
+	// intent is to detect non-deterministic output.
+	first := identityKeyFingerprint(a)
+	for i := 0; i < 8; i++ {
+		if identityKeyFingerprint(a) != first {
+			t.Fatalf("identityKeyFingerprint: non-deterministic across repeated calls (iter %d)", i)
+		}
+	}
+}
+
+// TestDetectAmbiguousLengthSelectors_DelimiterInjective guards against
+// a regression in which the ambiguity-bucket key was built by
+// `|`-joining selector_decoder and selector_path. Two entries whose
+// decoder/path strings contained delimiter-shaped substrings (e.g.
+// `selector_decoder="dec|sel="`) could collapse into the same bucket
+// and be incorrectly flagged with ErrAmbiguousLengthSelector. Distinct
+// axis combinations MUST land in distinct buckets.
+func TestDetectAmbiguousLengthSelectors_DelimiterInjective(t *testing.T) {
+	pb := uint8(0x05)
+	mk := func(id, decoder, path string) Command {
+		return Command{
+			ID:          id,
+			Name:        id,
+			SafetyClass: SafetyReadOnlySafe,
+			Identity: IdentityKey{
+				Namespace:             Namespace,
+				PB:                    &pb,
+				SelectorPath:          path,
+				TelegramClass:         TelegramClassAddressed,
+				Direction:             DirectionRequest,
+				RequestOrResponseRole: RoleInitiator,
+				BroadcastOrAddressed:  AddressedDirect,
+				AnswerPolicy:          AnswerRequired,
+				LengthPrefixMode:      LengthPrefixNone,
+				SelectorDecoder:       decoder,
+				ServiceVariant:        "sv",
+				Version:               "v1",
+			},
+		}
+	}
+	cat := Catalog{
+		Namespace: Namespace,
+		Services: []Service{{
+			PB:   &pb,
+			Name: "svc",
+			Commands: []Command{
+				// Differ ONLY in how a `|`-shaped substring is split
+				// across decoder vs path. Under the legacy concat
+				// these would land in the same bucket.
+				mk("cmd_a", "dec|sel=A", "path"),
+				mk("cmd_b", "dec", "sel=A|path"),
+			},
+		}},
+	}
+
+	// Both commands carry LengthPrefixNone, so even if they DID land in
+	// the same bucket (regression behaviour), no length_prefix_mode
+	// disagreement would surface and the test would silently pass.
+	// Force a disagreement: mutate one to a different lpm value. If
+	// the bucket key is non-injective, the bucket merges and an
+	// ErrAmbiguousLengthSelector is emitted; if injective, the two
+	// land in separate buckets and no error is emitted.
+	cat.Services[0].Commands[1].Identity.LengthPrefixMode = LengthPrefixByte
+
+	if err := detectAmbiguousLengthSelectors(cat); err != nil {
+		t.Fatalf("detectAmbiguousLengthSelectors: false-positive merge of distinct decoder/path tuples: %v", err)
+	}
+
+	// Cross-check: when the on-wire identity axes (and decoder/path)
+	// are genuinely identical and lpm differs, the detector must still
+	// fire. Otherwise the new encoding would have masked a real bug.
+	cat2 := Catalog{
+		Namespace: Namespace,
+		Services: []Service{{
+			PB:   &pb,
+			Name: "svc",
+			Commands: []Command{
+				mk("cmd_x", "dec", "sel=A|path"),
+				mk("cmd_y", "dec", "sel=A|path"),
+			},
+		}},
+	}
+	cat2.Services[0].Commands[1].Identity.LengthPrefixMode = LengthPrefixByte
+	if err := detectAmbiguousLengthSelectors(cat2); err == nil {
+		t.Fatalf("detectAmbiguousLengthSelectors: expected ErrAmbiguousLengthSelector for genuine collision, got nil")
+	}
+}

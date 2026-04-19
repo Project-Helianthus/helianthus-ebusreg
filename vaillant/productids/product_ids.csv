@@ -17,9 +17,9 @@ Saunier Duval,MiLink v2,SR920,0020252925,Gateway,
 Saunier Duval,MiLink v3,SR921,0020261008,Gateway,
 Saunier Duval,MiLink v3,SR921,0020282697,Gateway,
 Saunier Duval,MiLink Go,SR940f,0020292013,Gateway,
-Vaillant,atmoCOMPACT,,0010002315,Boiler,
-Vaillant,atmoCOMPACT,,0010002316,Boiler,
-Vaillant,atmoCOMPACT,,0010002317,Boiler,
+Vaillant,atmoCOMPACT,VSC 194-C 150 P,0010002315,Boiler,official Vaillant appliance-code sheet; confidence=high; source_url=https://kontakt.vaillant.de/documents/download/72918/
+Vaillant,atmoCOMPACT,VSC 194-C 150 E,0010002316,Boiler,official Vaillant appliance-code sheet; confidence=high; source_url=https://kontakt.vaillant.de/documents/download/72918/
+Vaillant,atmoCOMPACT,VSC 194-C 150 LL,0010002317,Boiler,official Vaillant appliance-code sheet; confidence=high; source_url=https://kontakt.vaillant.de/documents/download/72918/
 Vaillant,ecoTEC plus,ecoTEC plus 415,0010002460,Boiler,
 Vaillant,ecoTEC plus,ecoTEC plus 418,0010002461,Boiler,
 Vaillant,EUROBIG/SMALL,,0010002465,Boiler,
@@ -82,19 +82,19 @@ Vaillant,turboTEC,VUW INT 362/3-5,0010003977,Boiler,
 Vaillant,EUROBIG/SMALL,,0010003991,Boiler,
 Vaillant,EUROBIG/SMALL,,0010004015,Boiler,
 Vaillant,EUROBIG/SMALL,,0010004016,Boiler,
-Vaillant,ecoTEC/4 eGAS,,0010004110,Boiler,
-Vaillant,ecoTEC/4 eGAS,,0010004111,Boiler,
-Vaillant,ecoTEC/4 eGAS,,0010004112,Boiler,
-Vaillant,ecoTEC/4 eGAS,,0010004113,Boiler,
-Vaillant,ecoTEC/4 eGAS,,0010004114,Boiler,
-Vaillant,ecoTEC/4 eGAS,,0010004121,Boiler,
-Vaillant,ecoTEC/4 eGAS,,0010004122,Boiler,
-Vaillant,ecoTEC/4 eGAS,,0010004123,Boiler,
-Vaillant,ecoTEC/4 eGAS,,0010004124,Boiler,
-Vaillant,ecoTEC/4 eGAS,,0010004125,Boiler,
+Vaillant,ecoTEC/4 eGAS,VC AT 146/4-7,0010004110,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
+Vaillant,ecoTEC/4 eGAS,VC AT 206/4-7,0010004111,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
+Vaillant,ecoTEC/4 eGAS,VC AT 276/4-7,0010004112,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
+Vaillant,ecoTEC/4 eGAS,VC AT 356/4-7,0010004113,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
+Vaillant,ecoTEC/4 eGAS,VC AT 466/4-7,0010004114,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
+Vaillant,ecoTEC/4 eGAS,VC DE 146/4-7,0010004121,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
+Vaillant,ecoTEC/4 eGAS,VC DE 206/4-7,0010004122,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
+Vaillant,ecoTEC/4 eGAS,VC DE 276/4-7,0010004123,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
+Vaillant,ecoTEC/4 eGAS,VC DE 356/4-7,0010004124,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
+Vaillant,ecoTEC/4 eGAS,VC DE 466/4-7,0010004125,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
 Vaillant,ecoTEC exclusiv,VC 656/4-7,0010004126,Boiler,
 Vaillant,ecoTEC exclusiv,VC 656/4-7,0010004127,Boiler,
-Vaillant,,,0010004134,Boiler,
+Vaillant,ecoBLOCK exclusiv,VM IT 206/4-7,0010004134,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
 Vaillant,ecoTEC plus,VC DE 126/3-5,0010004276,Boiler,
 Vaillant,ecoTEC plus,VC DE 126/3-5,0010004277,Boiler,
 Vaillant,ecoTEC plus,VC DE 196/3-5,0010004279,Boiler,
@@ -393,7 +393,7 @@ Vaillant,ecoCompact (euro),,0010021891,Boiler,
 Vaillant,IsotwinCondens 30-B,,0010021901,Boiler,
 Vaillant,FM5 Functional Module,VR 71,0010021924,Control Centre,
 Vaillant,ecoCompact (euro),,0010021929,Boiler,
-Vaillant,,,0010021934,Boiler,
+Vaillant,ecoTEC plus,VCW 206/5-5 (LL-DE),0010021934,Boiler,official Vaillant product datasheet plus retailer part match; confidence=high; source_url=https://www.vaillant.de/documents/download/257631
 Vaillant,ecoCompact (euro),,0010021961,Boiler,
 Vaillant,ecoCompact (euro),,0010021962,Boiler,
 Vaillant,ecoCompact (euro),,0010021963,Boiler,
@@ -436,11 +436,11 @@ Vaillant,ecoTEC plus,VUW 40CS/1-5 (N-INT2),0010043969,Boiler,
 Vaillant,ecoTEC plus,VUI 32CS/1-5 (N-INT2),0010043970,Boiler,
 Vaillant,sensoCOMFORT,VRC 720/3,0010045478,Regulator,eBUS wired; weather compensation; TFT touch display 3.5 inch; up to 9 heating circuits; cascade of up to 7 generators; supports myVAILLANT app via VR 940f; newer /3 generation (2022+); previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: loebbeshop.de heizung-billiger.de
 Vaillant,,,0020017837,Unknown,
-Vaillant,,VRT 50,0020018266,Thermostat,
+Vaillant,calorMATIC 50,VRT 50,0020018266,Thermostat,official VRT 50 page plus market part match; confidence=medium; source_url=https://www.vaillant.hr/krajnji-korisnici/proizvodi/vrt-50-278.html
 Vaillant,calorMATIC 430f,VRC 430f,0020028521,Regulator,
 Vaillant,calorMATIC 430f,VRC 430f,0020028524,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020040079,Regulator,
-Vaillant,,,0020045492,Unknown,
+Vaillant,Outdoor Thermostat,VR 21,0020045492,Unknown,official Vaillant regulator matrix plus exact-part cross-reference; confidence=medium; source_url=https://www.vaillant.hu/downloads/07-szabalyzok/calormatic-n-315040.pdf
 Vaillant,calorMATIC 360,VRT 360,0020045552,Regulator,
 Vaillant,ecoTEC,,0020051714,Boiler,
 Vaillant,ecoTEC,,0020051715,Boiler,
@@ -469,7 +469,7 @@ Vaillant,calorMATIC 470f,VRC 470f,0020108135,Regulator,
 Vaillant,calorMATIC 470f,VRC 470f,0020108137,Regulator,
 Vaillant,calorMATIC 470f,VRC 470f,0020112594,Regulator,
 Vaillant,Radio Receiver,Radio Receiver,0020112595,Module,
-Vaillant,commDialog Plus,,0020116884,Gateway,
+Vaillant,commDialog Plus,comDIALOG plus,0020116884,Gateway,official Vaillant installation guide; confidence=high; source_url=https://kontakt.vaillant.de/documents/download/139613/
 Vaillant,Hydraulic module,VWZ AI VWL X/2 A (West),0020117049,Module,heat pump appliance interface / bridge between VRC 470 controller and aroTHERM VWL/2 A monobloc or split systems; 230V; eBUS; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: vaillant.co.uk manual 3027915
 Vaillant,calorMATIC 350,VRT 350,0020124472,Regulator,
 Vaillant,calorMATIC 450,VRT 450,0020124489,Regulator,

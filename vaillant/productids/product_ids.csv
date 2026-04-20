@@ -527,7 +527,7 @@ Vaillant,Internet communication module,VR920,0020252922,Gateway,
 Vaillant,Internet communication module,VR920,0020252923,Gateway,
 Vaillant,Internet communication module,VR920,0020252924,Gateway,
 Vaillant,Internet communication module,VR920,0020252926,Gateway,
-Saunier Duval,RED-3,RED-3 Zone Expansion Module,0020257508,Module,eBUS 2-zone mixer/solar expansion for MiPro/MiPro R controller; multibrand SKU (SD/Bulex/Protherm); compatible with all SD eBUS boilers and heat pumps; previously mismapped as Vaillant FM3 VR 70; CONFIDENCE: HIGH; src: cedeo.fr
+Saunier Duval,Zone Expansion Module,RED-3,0020257508,Control Centre,eBUS 2-zone mixer/solar expansion for MiPro/MiPro R controller; multibrand SKU (SD/Bulex/Protherm); compatible with all SD eBUS boilers and heat pumps; previously mismapped as Vaillant FM3 VR 70; CONFIDENCE: HIGH; src: cedeo.fr
 Vaillant,FM5 Functional Module,VR 71,0020260914,Control Centre,
 Vaillant,sensoHOME,VR 92,0020260925,Thermostat,
 Vaillant,sensoHOME,VR 92f,0020260940,Thermostat,
@@ -1083,7 +1083,7 @@ DemirDöküm,ADEMIX,ademiX P24/28-AS/1 (H-TR),0010038556,Boiler,TR market; premi
 DemirDöküm,NITROMIX,Nitromix P 24 NG (HEP),0010048330,Boiler,TR market; premix stainless-steel condensing; 24 kW combi; G20 NG (HEP=domestic hot water priority); eBUS via MiGO smart thermostat; CONFIDENCE: HIGH; src: demirdokum.com.tr manual 0020309469
 DemirDöküm,NITROMIX,Nitromix P 28 NG (HEP),0010048331,Boiler,TR market; premix stainless-steel condensing; 28 kW combi; G20 NG; eBUS via MiGO; CONFIDENCE: HIGH; src: demirdokum.com.tr manual 0020309469
 DemirDöküm,NITROMIX,Nitromix P 35 NG (HEP),0010048332,Boiler,TR market; premix stainless-steel condensing; 35 kW combi; G20 NG; eBUS via MiGO; CONFIDENCE: HIGH; src: demirdokum.com.tr manual 0020309469
-Saunier Duval,RED-5,RED-5 Zone Expansion Module,0020257510,Module,eBUS 3-zone mixer/solar expansion for MiPro/MiPro R; compatible SD eBUS boilers/heat pumps since 2010; multibrand SKU (SD/Bulex/Protherm); CONFIDENCE: HIGH; src: saunierduval.fr PDF 0020231862
+Saunier Duval,Zone Expansion Module,RED-5,0020257510,Control Centre,eBUS 3-zone mixer/solar expansion for MiPro/MiPro R; compatible SD eBUS boilers/heat pumps since 2010; multibrand SKU (SD/Bulex/Protherm); CONFIDENCE: HIGH; src: saunierduval.fr PDF 0020231862
 Saunier Duval,MiLink,MiLink V3 eBus 230V,0020261008,Gateway,eBUS; Wi-Fi/Ethernet internet gateway for MiPro/MiPro R; compatible SD eBUS boilers/HP since 2010 (not FIT range); CONFIDENCE: HIGH; src: cedeo.fr
 Protherm,MiGo,MiGo ekvitermicky eBUS regulator,0020197231,Gateway,eBUS; WiFi equitherm controller+gateway combo for 1 direct circuit + DHW; all Protherm eBUS boilers; CONFIDENCE: HIGH; src: kamody.cz
 Vaillant,myVAILLANT connect,VR 940f,8000015458,Gateway,eBUS + EEBUS; WLAN internet module for Vaillant eBUS appliances from 2006+; Plug and Play via CIM connector; EAN 4024074952016; CONFIDENCE: HIGH; src: heizung-billiger.de

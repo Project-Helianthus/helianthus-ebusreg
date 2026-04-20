@@ -45,14 +45,14 @@ Vaillant,ecoCOMPACT,VSC AT 126/2-C140,0010003860,Boiler,
 Vaillant,ecoCOMPACT2,VSC INT 126/2-C 140,0010003861,Boiler,user-provided correction
 Vaillant,ecoCOMPACT,VSC DE 196/2-C150,0010003862,Boiler,
 Vaillant,ecoCOMPACT,VSC DE 196/2-C150,0010003863,Boiler,
-Vaillant,ecoCOMPACT2,,0010003864,Boiler,
+Vaillant,ecoCOMPACT2,VSC 196/2-C 150 P,0010003864,Boiler,"https://www.vaillant.de/documents/download/72979 | https://www.scribd.com/document/653240390/Vaillant-AtmoTEC-Plus-Planungsinfo"
 Vaillant,ecoCOMPACT,VSC AT 196/2-C150,0010003865,Boiler,
 Vaillant,ecoCOMPACT2,VSC INT 196/2-C 150 H,0010003869,Boiler,user-provided correction
 Vaillant,ecoCOMPACT2,VSC INT 246/2-C 170 H,0010003872,Boiler,user-provided correction
 Vaillant,ecoCOMPACT2,VSC 246/2-C 210 E,0010003874,Boiler,user-provided correction
 Vaillant,ecoCOMPACT2,VSC 246/2-C 210 LL,0010003875,Boiler,user-provided correction
 Vaillant,ecoCOMPACT2,VSC 246/2-C 210 P,0010003876,Boiler,user-provided correction
-Vaillant,ecoCOMPACT2,,0010003877,Boiler,
+Vaillant,ecoCOMPACT2,VSC DK 246/2-C 210,0010003877,Boiler,"https://www.vaillant.se/downloads/handbok/0020040931-03-151659.pdf"
 Vaillant,ecoCOMPACT,VSC INT 266/4-5,0010003878,Boiler,gas condensing compact with integrated DHW tank; 26.5 kW; INT (international) variant; CONFIDENCE: HIGH (user provided); src: vaillant.com.ro PDF 0020183511_01
 Vaillant,ecoCOMPACT2,VSC INT 306/2-C 200 H,0010003881,Boiler,user-provided correction
 Vaillant,auroCOMPACT,VSC S 196/2-C 200,0010003882,Boiler,
@@ -81,7 +81,7 @@ Vaillant,turboTEC,VUW INT 322/3-5,0010003976,Boiler,
 Vaillant,turboTEC,VUW INT 362/3-5,0010003977,Boiler,
 Vaillant,EUROBIG/SMALL,,0010003991,Boiler,
 Vaillant,atmoTEC pro,VUW INT 240/3-3M H,0010004015,Boiler,user-provided correction
-Vaillant,EUROBIG/SMALL,,0010004016,Boiler,
+Vaillant,turboTEC/3,VUW INT 242/3-3M,0010004016,Boiler,"https://doninstal.ua/ | https://shop.termos.ua/ | https://static.proteplo-spb.ru/"
 Vaillant,ecoTEC/4 eGAS,VC AT 146/4-7,0010004110,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
 Vaillant,ecoTEC/4 eGAS,VC AT 206/4-7,0010004111,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
 Vaillant,ecoTEC/4 eGAS,VC AT 276/4-7,0010004112,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
@@ -114,7 +114,7 @@ Vaillant,ecoTEC plus,VC AT 196/3-5,0010004337,Boiler,
 Vaillant,ecoTEC plus,VC AT 246/3-5,0010004338,Boiler,
 Vaillant,ecoTEC plus,VCW AT 196/3-5,0010004339,Boiler,
 Vaillant,ecoTEC plus,VCW AT 246/3-5,0010004340,Boiler,
-Vaillant,,,0010005311,Boiler,
+Saunier Duval,Isotwin,Isotwin F 25 E H-MOD,0010005311,Boiler,"https://www.richardson.fr/ | https://www.anjou-connectique.com/ | https://www.anjou-connectique.com/"
 Vaillant,ecoCRAFT/3,,0010005400,Boiler,
 Vaillant,ecoCRAFT/3,,0010005401,Boiler,
 Vaillant,ecoCRAFT/3,,0010005402,Boiler,
@@ -184,7 +184,7 @@ Vaillant,TEC/4,,0010006138,Boiler,
 Vaillant,TEC/4,,0010006139,Boiler,
 Vaillant,TEC/4,,0010006140,Boiler,
 Vaillant,TEC/4,,0010006141,Boiler,
-Vaillant,icoVIT/7,,0010006341,Boiler,
+Vaillant,icoVIT/7,VKO 246-7,0010006341,Boiler,"https://www.vaillant.be/ | https://kontakt.vaillant.de/documents/download/71989/"
 Vaillant,aguaFLOW,VPM 20/25 W,0010007267,Module,
 Vaillant,aguaFLOW,VPM 30/35 W,0010007268,Module,
 Vaillant,ecoVIT pneumatic/4,,0010007508,Boiler,
@@ -456,7 +456,7 @@ Vaillant,geoTHERM,VWL /3 S,0020075230,Heat Pump,
 Vaillant,auroFLOW,VPM 60 S,0020079950,Module,
 Vaillant,aguaFLOW exclusive,VPM /2 W,0020080448,Module,
 Vaillant,auroMATIC,VRC 620,0020080463,Regulator,
-Vaillant,,,0020080465,Unknown,
+Vaillant,auroMATIC,auroMATIC 620,0020080465,Unknown,"https://www.jeanpaulguy.fr/"
 Vaillant,calorMATIC 630,VRC 630,0020080467,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020080468,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020080472,Regulator,

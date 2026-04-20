@@ -440,7 +440,7 @@ Vaillant,calorMATIC 50,VRT 50,0020018266,Thermostat,official VRT 50 page plus ma
 Vaillant,calorMATIC 430f,VRC 430f,0020028521,Regulator,
 Vaillant,calorMATIC 430f,VRC 430f,0020028524,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020040079,Regulator,
-Vaillant,Outdoor Thermostat,VR 21,0020045492,Unknown,official Vaillant regulator matrix plus exact-part cross-reference; confidence=medium; source_url=https://www.vaillant.hu/downloads/07-szabalyzok/calormatic-n-315040.pdf
+Vaillant,Outdoor Thermostat,VR 21,0020045492,Thermostat,official Vaillant regulator matrix plus exact-part cross-reference; confidence=medium; source_url=https://www.vaillant.hu/downloads/07-szabalyzok/calormatic-n-315040.pdf
 Vaillant,calorMATIC 360,VRT 360,0020045552,Regulator,
 Vaillant,ecoTEC,,0020051714,Boiler,
 Vaillant,ecoTEC,,0020051715,Boiler,
@@ -456,7 +456,7 @@ Vaillant,geoTHERM,VWL /3 S,0020075230,Heat Pump,
 Vaillant,auroFLOW,VPM 60 S,0020079950,Module,
 Vaillant,aguaFLOW exclusive,VPM /2 W,0020080448,Module,
 Vaillant,auroMATIC,VRC 620,0020080463,Regulator,
-Vaillant,auroMATIC,auroMATIC 620,0020080465,Unknown,"https://www.jeanpaulguy.fr/"
+Vaillant,auroMATIC,auroMATIC 620,0020080465,Regulator,"https://www.jeanpaulguy.fr/"
 Vaillant,calorMATIC 630,VRC 630,0020080467,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020080468,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020080472,Regulator,
@@ -1244,7 +1244,7 @@ Vaillant,recoVAIR,VAR 150/4 L SI,0010016050,Ventilation Unit,HRV central ventila
 Vaillant,recoVAIR,VAR 260/4 E,0010016354,Ventilation Unit,HRV central ventilation; VAR 260/4 E; eBUS (central /4) or via external bus coupler (/2 decentralized); SI/EU market; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,recoVAIR,VAR 360/4 E,0010016355,Ventilation Unit,HRV central ventilation; VAR 360/4 E; eBUS (central /4) or via external bus coupler (/2 decentralized); SI/EU market; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,VRT thermostat,VRT 51f,0010035748,Thermostat,eBUS room thermostat; VRT 51f; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,sensoHOME,VR 940f Wi-fi Gateway,0010038366,Thermostat,eBUS room thermostat / remote; VR 940f Wi-fi Gateway; CONFIDENCE: HIGH; src: tapro.si
+Vaillant,myVaillant Connect,VR 940f,0010038366,Gateway,eBUS Wi-Fi gateway; VR 940f; CONFIDENCE: HIGH (user-provided correction); src: tapro.si
 Vaillant,VRA 42,VRA 42,0010040289,Module,eBUS boiler adapter for legacy appliances; VRA 42; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,VRT thermostat,VRT 50/2,0010047221,Thermostat,eBUS room thermostat; VRT 50/2; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,auroMATIC,auroMATIC VRS 620/3,0020092441,Regulator,solar/system eBUS regulator; auroMATIC VRS 620/3; CONFIDENCE: HIGH; src: tapro.si

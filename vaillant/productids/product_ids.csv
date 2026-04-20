@@ -79,7 +79,7 @@ Vaillant,turboTEC,VUW INT 242/3-5,0010003974,Boiler,
 Vaillant,turboTEC,VUW INT 282/3-5,0010003975,Boiler,
 Vaillant,turboTEC,VUW INT 322/3-5,0010003976,Boiler,
 Vaillant,turboTEC,VUW INT 362/3-5,0010003977,Boiler,
-Vaillant,EUROBIG/SMALL,,0010003991,Boiler,
+Vaillant,turboTEC,VUW 242/3-3,0010003991,Boiler,source_url=https://zip-kotly.ru/displey-1/ | https://zip-kotly.ru/nasos-vaillant-tec-0020020023/ ; rationale=secondary spare-part cross-reference only ; confidence=low
 Vaillant,atmoTEC pro,VUW INT 240/3-3M H,0010004015,Boiler,user-provided correction
 Vaillant,turboTEC/3,VUW INT 242/3-3M,0010004016,Boiler,"https://doninstal.ua/ | https://shop.termos.ua/ | https://static.proteplo-spb.ru/"
 Vaillant,ecoTEC/4 eGAS,VC AT 146/4-7,0010004110,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf

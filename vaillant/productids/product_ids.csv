@@ -406,7 +406,7 @@ Vaillant,ecoTEC plus,VCW 20/26 CS/1-5 (E-DE),0010022010,Boiler,CS/1-5 combi; 20 
 Vaillant,uniTOWER,VIH QW 190/6 E,0010022078,Module,
 Vaillant,aroTHERM,VWL/5 split,0010023494,Heat Pump,
 Vaillant,aroTHERM,VWL 127/5 IS,0010023523,Heat Pump,wall-mounted hydraulic station; pairs with VWL 105/5 & 125/5 AS outdoor; R410A split; eBUS; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: heizung-billiger.de raleo.de
-Vaillant,VWZ MEH,VWZ MEH 97/6,0010023609,Module,Hydraulic station with modulating electric backup heater up to 9 kW for aroTHERM plus VWL .../6 A; 3-way DHW valve 10L expansion tank; eBUS via DIA-System; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: eibabo.com
+Vaillant,aroTHERM plus,VWZ MEH 97/6,0010023609,Heat Pump,Hydraulic station with modulating electric backup heater up to 9 kW for aroTHERM plus VWL .../6 A; 3-way DHW valve 10L expansion tank; eBUS via DIA-System; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: eibabo.com
 Vaillant,aroTHERM,VWZ MEH 97/6 MB3,0010023611,Heat Pump,Hydraulic station with modulating electric backup heater up to 9 kW for aroTHERM plus VWL .../6 A; 3-way DHW valve 10L expansion tank; eBUS via DIA-System; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: eibabo.com
 Protherm,Skat,12 KE/14,0010023648,Boiler,
 Vaillant,ecoTEC plus,VU 25CS/1-5 (N-INT2),0010024600,Boiler,
@@ -1302,7 +1302,7 @@ Vaillant,ecoVIT pneumatic/4,VKK FR 286/4 R1,0010027276,Boiler,floor-standing gas
 Vaillant,ecoVIT pneumatic/4,VKK FR 366/4 R1,0010027277,Boiler,floor-standing gas condensing; 36.4 kW; FR market R1 revision; /4 generation; eBUS; CONFIDENCE: HIGH (user provided); src: vaillant.be PDF 0020258613_02
 Vaillant,ecoVIT pneumatic/4,VKK FR 476/4 R1,0010027278,Boiler,floor-standing gas condensing; 48.2 kW; FR market R1 revision; /4 generation; eBUS; CONFIDENCE: HIGH (user provided); src: vaillant.be PDF 0020258613_02
 Vaillant,ecoVIT pneumatic/4,VKK FR 656/4 R1,0010027279,Boiler,floor-standing gas condensing; 65 kW; FR market R1 revision; /4 generation; eBUS; CONFIDENCE: HIGH (user provided); src: vaillant.be PDF 0020258613_02
-Vaillant,VWZ MEH,VWZ MEH 60,0020145030,Module,Inline electric backup heater 2/4/6 kW 400/230V; for aroTHERM VWL .../2 or /3 flexoTHERM geoTHERM; eBUS; CONFIDENCE: HIGH; src: eibabo.com
+Vaillant,aroTHERM plus,VWZ MEH 60,0020145030,Heat Pump,Inline electric backup heater 2/4/6 kW 400/230V; for aroTHERM VWL .../2 or /3 flexoTHERM geoTHERM; eBUS; CONFIDENCE: HIGH; src: eibabo.com
 Protherm,Lev,Lev 25 KKZ90,0010014608,Boiler,gas condensing floor-standing with 90L DHW tank; 25 kW; eBUS; Slovak market; CONFIDENCE: HIGH; src: protherm.sk
 Protherm,Lev Heliotwin,20 KKZ150,0010018362,Boiler,gas condensing floor-standing solar-ready 150L tank current ErP edition; 20 kW; eBUS; Slovak market; CONFIDENCE: HIGH; src: heureka.sk
 Saunier Duval,Semiatek Condens,28 AS/1 (H-HU),0010020409,Boiler,gas condensing wall-hung combi entry-level; ~28 kW DHW; HU market (H-HU G20); ErP; eBUS; CONFIDENCE: HIGH; src: mestershop.hu saunierduval.hu

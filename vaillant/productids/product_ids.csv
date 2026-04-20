@@ -405,9 +405,9 @@ Vaillant,ecoTEC plus,VC 20 CS/1-5 (E-DE),0010022008,Boiler,CS/1-5 generation; 19
 Vaillant,ecoTEC plus,VCW 20/26 CS/1-5 (E-DE),0010022010,Boiler,CS/1-5 combi; 20 kW heating / 26 kW DHW flow-through; gas E/LL/P; H2-ready 20%; ioniDetect; modulation 1:8; original launch SKU; CONFIDENCE: HIGH; src: heizung-billiger.de klimaworld.com
 Vaillant,uniTOWER,VIH QW 190/6 E,0010022078,Module,
 Vaillant,aroTHERM,VWL/5 split,0010023494,Heat Pump,
-Vaillant,Hydraulic module,VWL 127/5 IS wall hydraulic station,0010023523,Module,wall-mounted hydraulic station; pairs with VWL 105/5 & 125/5 AS outdoor; R410A split; eBUS; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: heizung-billiger.de raleo.de
+Vaillant,aroTHERM,VWL 127/5 IS,0010023523,Heat Pump,wall-mounted hydraulic station; pairs with VWL 105/5 & 125/5 AS outdoor; R410A split; eBUS; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: heizung-billiger.de raleo.de
 Vaillant,VWZ MEH,VWZ MEH 97/6,0010023609,Module,Hydraulic station with modulating electric backup heater up to 9 kW for aroTHERM plus VWL .../6 A; 3-way DHW valve 10L expansion tank; eBUS via DIA-System; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: eibabo.com
-Vaillant,Hydraulic module,VWZ MEH 97,0010023611,Module,
+Vaillant,aroTHERM,VWZ MEH 97/6 MB3,0010023611,Heat Pump,Hydraulic station with modulating electric backup heater up to 9 kW for aroTHERM plus VWL .../6 A; 3-way DHW valve 10L expansion tank; eBUS via DIA-System; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: eibabo.com
 Protherm,Skat,12 KE/14,0010023648,Boiler,
 Vaillant,ecoTEC plus,VU 25CS/1-5 (N-INT2),0010024600,Boiler,
 Vaillant,ecoTEC plus,VU 30CS/1-5 (N-INT2),0010024601,Boiler,
@@ -791,11 +791,11 @@ Vaillant,eloBLOCK,VE 18/14 EU I,0010023694,Boiler,electric wall heater; 18 kW; /
 Vaillant,eloBLOCK,VE 24/14 EU I,0010023696,Boiler,electric wall heater; 24 kW; /14 EU I generation; 400V 3-ph; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
 Vaillant,eloBLOCK,VE 28/14 EU I,0010023697,Boiler,electric wall heater; 28 kW; /14 EU I generation; 400V 3-ph; eBUS; CONFIDENCE: HIGH (per user provided enrichment)
 Vaillant,ecoPOWER,Systemregler ecoPOWER 1.0,0020085296,Control Centre,system regulator for ecoPOWER 1.0 (Honda Stirling mCHP 1 kW el / 2.5 kW th); eBUS; CONFIDENCE: HIGH (per user provided enrichment)
-Vaillant,calorMATIC 332,VRT 332,0020124465,Thermostat,eBUS room temperature regulator with clear-text display; wired; successor to VRT 330; compatible with Vaillant heat generators with eBUS interface (ecoTEC atmoTEC); CONFIDENCE: HIGH; src: heizung-billiger.de
-Vaillant,calorMATIC 370,VRT 370,0020108141,Thermostat,eBUS room temperature regulator with clear-text display; wired; successor to VRT 360; compatible with all Vaillant heat generators with eBUS interface; CONFIDENCE: HIGH; src: haustechnik-express.de
-Vaillant,calorMATIC 370f,VRT 370f,0020108148,Thermostat,Wireless (Funk) eBUS room temperature regulator; RF link to wall-mounted receiver unit; CONFIDENCE: HIGH; src: fort-lake-baltic.com
-Vaillant,calorMATIC 370f,VRT 370f,0020112592,Thermostat,Wireless Funk eBUS room temperature regulator (alternative SKU; controller-only); CONFIDENCE: HIGH; src: raleo.de
-Vaillant,calorMATIC 392,VRT 392,0020028505,Thermostat,eBUS room temperature regulator (digital modulating); wired; successor to VRT 390; CONFIDENCE: HIGH; src: ebay.com
+Vaillant,calorMATIC 332,VRT 332,0020124465,Regulator,eBUS room temperature regulator with clear-text display; wired; successor to VRT 330; compatible with Vaillant heat generators with eBUS interface (ecoTEC atmoTEC); CONFIDENCE: HIGH; src: heizung-billiger.de
+Vaillant,calorMATIC 370,VRT 370,0020108141,Regulator,eBUS room temperature regulator with clear-text display; wired; successor to VRT 360; compatible with all Vaillant heat generators with eBUS interface; CONFIDENCE: HIGH; src: haustechnik-express.de
+Vaillant,calorMATIC 370f,VRT 370f,0020108148,Regulator,Wireless (Funk) eBUS room temperature regulator; RF link to wall-mounted receiver unit; CONFIDENCE: HIGH; src: fort-lake-baltic.com
+Vaillant,calorMATIC 370f,VRT 370f,0020112592,Regulator,Wireless Funk eBUS room temperature regulator (alternative SKU; controller-only); CONFIDENCE: HIGH; src: raleo.de
+Vaillant,calorMATIC 392,VRT 392,0020028505,Regulator,eBUS room temperature regulator (digital modulating); wired; successor to VRT 390; CONFIDENCE: HIGH; src: ebay.com
 Vaillant,calorMATIC 392f,VRT 392f,0020028510,Regulator,Wireless Funk eBUS room temperature regulator with RF receiver; digital modulating; CONFIDENCE: HIGH; src: warmteservice.nl
 Vaillant,calorMATIC 470,VRC 470,0020108127,Regulator,Weather-compensated eBUS regulator (original 470/1 generation); wired; outdoor sensor VRC DCF/VRC 693; CONFIDENCE: HIGH; src: ebay.com
 Vaillant,calorMATIC 470/4,VRC 470/4,0020171280,Regulator,Weather-compensated eBUS regulator (470/4 generation with wall socket); supports cooling switchover with aroTHERM and geoTHERM; CONFIDENCE: HIGH; src: ebay.com
@@ -931,11 +931,11 @@ Bulex,ThemaFast Condens,ThemaFast Condens 25/31-CS/1 (N-BE) CLV,0010043889,Boile
 Bulex,ThemaFast Condens,ThemaFast Condens 25/31-CS/1 (P-BE),0010025114,Boiler,BE market Bulex; gas condensing combi; 25 kW; propane I3P; eBUS; CONFIDENCE: HIGH
 Bulex,ThemaFast Condens,ThemaFast Condens 30/35-CS/1 (N-BE),0010025078,Boiler,BE market Bulex; gas condensing combi; 30 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
 Bulex,ThemaFast Condens,ThemaFast Condens 30/35-CS/1 (N-BE) CLV,0010043890,Boiler,BE market Bulex; replaces 0010025078 for CLV; 29.8 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
-Bulex,ThemaPlus Condens,ThemaPlus Condens MA 20/26-CS/1 (N-BE),0010025079,Boiler,BE market Bulex; gas condensing combi MicroFast; 21.7 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
-Bulex,ThemaPlus Condens,ThemaPlus Condens MA 20/26-CS/1 (N-BE) CLV,0010043891,Boiler,BE market Bulex; replaces 0010025079 for CLV; 20 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
-Bulex,ThemaPlus Condens,ThemaPlus Condens MA 25/31-CS/1 (N-BE),0010025080,Boiler,BE market Bulex; gas condensing combi MicroFast; 27.3 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
-Bulex,ThemaPlus Condens,ThemaPlus Condens MA 25/31-CS/1 (N-BE) CLV,0010043892,Boiler,BE market Bulex; replaces 0010025080 for CLV; 25 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
-Bulex,ThemaPlus Condens,ThemaPlus Condens MA 30/35-CS/1 (N-BE),0010025081,Boiler,BE market Bulex; gas condensing combi MicroFast; 32.8 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaPlus Condens,MA 20/26-CS/1 (N-BE),0010025079,Boiler,BE market Bulex; gas condensing combi MicroFast; 21.7 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaPlus Condens,MA 20/26-CS/1 (N-BE) CLV,0010043891,Boiler,BE market Bulex; replaces 0010025079 for CLV; 20 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaPlus Condens,MA 25/31-CS/1 (N-BE),0010025080,Boiler,BE market Bulex; gas condensing combi MicroFast; 27.3 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaPlus Condens,MA 25/31-CS/1 (N-BE) CLV,0010043892,Boiler,BE market Bulex; replaces 0010025080 for CLV; 25 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
+Bulex,ThemaPlus Condens,MA 30/35-CS/1 (N-BE),0010025081,Boiler,BE market Bulex; gas condensing combi MicroFast; 32.8 kW; natural gas I2E+; eBUS; CONFIDENCE: HIGH
 Bulex,IsoTwin Condens,IsoTwin Condens F25/30-B (E-BE),0010021850,Boiler,BE market Bulex; gas condensing combi; 25 kW; natural gas I2E+; 2x21L DHW tank; eBUS+OpenTherm opt; CONFIDENCE: HIGH
 Bulex,IsoTwin Condens,IsoTwin Condens F30/35-B (E-BE),0010021851,Boiler,BE market Bulex; gas condensing combi; 30 kW; natural gas I2E+; 2x21L DHW tank; eBUS+OpenTherm opt; CONFIDENCE: HIGH
 Bulex,IsoTwin Condens,IsoTwin Condens T 25/31-CS/1 (N-BE),0010025203,Boiler,BE market Bulex; gas condensing combi; 25 kW + 42L tank; natural gas I2E+; eBUS+OpenTherm opt; CONFIDENCE: HIGH
@@ -959,8 +959,8 @@ Saunier Duval,MiPro R,MiPro R Connecté (SRC 710f + MiLink),0010023225,Regulator
 Bulex,MiPro,MiPro v5 wired,0020218374,Regulator,eBUS wired weather-compensated regulator; BE Bulex SKU (SD MiPro equivalent); external sensor included; multi-zone up to 3 circuits; CONFIDENCE: HIGH; src: bulex.be manual 0020257159
 Bulex,MiPro R,MiPro R wireless,0020231584,Regulator,eBUS wireless radio weather-compensated regulator; BE Bulex SKU (SD MiPro R equivalent); external sensor included; multi-zone; CONFIDENCE: HIGH; src: bulex.be manual 0020243677
 Bulex,MiPro Sense,SRC 720,0020260970,Regulator,eBUS wired weather-compensated regulator with touch panel room sensor; BE Bulex SKU; external sensor included; up to 3 heating circuits; CONFIDENCE: HIGH; src: blue.vanmarcke.com
-Saunier Duval,MiSet,MiSet SRT 380 (filaire),0020260997,Thermostat,eBUS wired modulating room thermostat; self-powered via eBUS; single zone; compatible with all SD eBUS boilers since 2010; CONFIDENCE: HIGH; src: technika-grzewcza-sklep.pl geoplanete.fr
-Bulex,MiSet,MiSet SRT 380,0020260994,Thermostat,eBUS wired modulating room thermostat (BE/NL Bulex variant); self-powered via eBUS; single zone; CONFIDENCE: HIGH; src: geoplanete.fr
+Saunier Duval,MiSet,MiSet SRT 380 (filaire),0020260997,Regulator,eBUS wired modulating room thermostat; self-powered via eBUS; single zone; compatible with all SD eBUS boilers since 2010; CONFIDENCE: HIGH; src: technika-grzewcza-sklep.pl geoplanete.fr
+Bulex,MiSet,MiSet SRT 380,0020260994,Regulator,eBUS wired modulating room thermostat (BE/NL Bulex variant); self-powered via eBUS; single zone; CONFIDENCE: HIGH; src: geoplanete.fr
 Saunier Duval,MiGo,MiGo Link SR 940f,0010037345,Gateway,Wi-Fi-to-eBUS bridge; 2-wire eBUS connection to boiler; pairs with MiGo Select or MiSet Radio; app control; HomeKit; CONFIDENCE: HIGH; src: grzanieplus.pl saunierduval.fr
 Saunier Duval,MiGo,MiGo (legacy Wi-Fi thermostat),0020197230,Gateway,Legacy MiGo combined thermostat + Wi-Fi; connects to boiler via eBUS 2-wire; compatible with SD eBUS boilers since 2010; superseded by MiGo Link; CONFIDENCE: MED; src: caldaiemurali.it lbge.be
 Saunier Duval,GeniaAir Max,GeniaAir Max 5,0010031693,Heat Pump,air-water monobloc R290 ~5 kW 230V SCOP A+++ 32dB@5m eBUS; MiPro/MiPro Sense compatible; aroTHERM plus equivalent; CONFIDENCE: HIGH; src: cedeo.fr
@@ -985,12 +985,12 @@ Saunier Duval,GeniaAir Split,GeniaAir Split HA 10-5 OS (400V),0010021152,Heat Pu
 Saunier Duval,GeniaAir Split,GeniaAir Split HA 12-5 OS,0010021153,Heat Pump,air-water split outdoor unit R410A 11.9 kW 230V Inverter eBUS; MiPro/MiPro Sense; CONFIDENCE: HIGH; src: cedeo.fr
 Saunier Duval,GeniaSet Split,GeniaSet Split HA 3/5 (indoor hydraulic unit),0010023171,Module,Split indoor hydraulic module (colonne hydraulique ECS); pairs with GeniaAir Split outdoor; eBUS internal to GeniaAir system; NOT a DHW heat pump (HRV analog to Vaillant uniTOWER); CONFIDENCE: HIGH; src: manomano.fr
 Saunier Duval,GeniaSet Split,GeniaSet Split HA 7-5 STB (indoor hydraulic with tank),0010023172,Module,Split indoor hydraulic module with integrated DHW tank (analog to Vaillant uniTOWER); pairs with GeniaAir Split outdoor; eBUS internal; CONFIDENCE: HIGH; src: cedeo.fr
-Saunier Duval,Exacontrol,E7R B,0020049691,Thermostat,eBUS via radio receiver; battery-powered wireless programmable room thermostat; pre-2012 generation; compatible with SD eBUS boilers; CONFIDENCE: HIGH; src: piecesxpress.com cedeo.fr
-Saunier Duval,Exacontrol,E7R B-S,0020085060,Thermostat,eBUS wired version (no radio receiver) of E7R B; pre-2012 generation; listed as obsolete; CONFIDENCE: HIGH; src: piecesxpress.com
-Saunier Duval,Exacontrol,E (E-TA modulant),0020017839,Thermostat,eBUS modulating non-programmable wired 230V room thermostat; legacy pre-E7 generation; compatible with SD eBUS boilers (older H2BUS models need translator 0020076951); CONFIDENCE: HIGH; src: cedeo.fr piecesxpress.com
-Saunier Duval,Exacontrol,Select SRT 50/2,0010041872,Thermostat,eBUS modulating wired programmable regulator (self-powered via eBUS); compatible with all SD eBUS boilers since 2010; newer generation replacing E7 C; optional MiGo Link gateway; note non-standard 0010 prefix; CONFIDENCE: HIGH; src: cedeo.fr suner.eu
-Bulex,Exacontrol,E7 C,0020118074,Thermostat,eBUS programmable wired thermostat self-powered from boiler card; Bulex (BE/NL) variant of SD E7 C; CONFIDENCE: HIGH; src: paulpromo.be eshop.dupontsanitair.be
-Bulex,Exacontrol,E7R C,0020118075,Thermostat,eBUS via radio receiver; Bulex variant of SD E7R C; battery-powered wireless programmable; CONFIDENCE: MED; src: sanionline.be lambrechtsprofessionals.eu
+Saunier Duval,Exacontrol,E7R B,0020049691,Regulator,eBUS via radio receiver; battery-powered wireless programmable room thermostat; pre-2012 generation; compatible with SD eBUS boilers; CONFIDENCE: HIGH; src: piecesxpress.com cedeo.fr
+Saunier Duval,Exacontrol,E7R B-S,0020085060,Regulator,eBUS wired version (no radio receiver) of E7R B; pre-2012 generation; listed as obsolete; CONFIDENCE: HIGH; src: piecesxpress.com
+Saunier Duval,Exacontrol,E (E-TA modulant),0020017839,Regulator,eBUS modulating non-programmable wired 230V room thermostat; legacy pre-E7 generation; compatible with SD eBUS boilers (older H2BUS models need translator 0020076951); CONFIDENCE: HIGH; src: cedeo.fr piecesxpress.com
+Saunier Duval,Exacontrol,Select SRT 50/2,0010041872,Regulator,eBUS modulating wired programmable regulator (self-powered via eBUS); compatible with all SD eBUS boilers since 2010; newer generation replacing E7 C; optional MiGo Link gateway; note non-standard 0010 prefix; CONFIDENCE: HIGH; src: cedeo.fr suner.eu
+Bulex,Exacontrol,E7 C,0020118074,Regulator,eBUS programmable wired thermostat self-powered from boiler card; Bulex (BE/NL) variant of SD E7 C; CONFIDENCE: HIGH; src: paulpromo.be eshop.dupontsanitair.be
+Bulex,Exacontrol,E7R C,0020118075,Regulator,eBUS via radio receiver; Bulex variant of SD E7R C; battery-powered wireless programmable; CONFIDENCE: MED; src: sanionline.be lambrechtsprofessionals.eu
 Vaillant,sensoCOMFORT RF,sensoCOMFORT RF,0010036820,Regulator,eBUS wireless (RF) variant of sensoCOMFORT; successor line to VRC 720; CONFIDENCE: HIGH (user provided); src: Vaillant UK sensoCOMFORT brochure device.report
 Vaillant,calorMATIC 392f,VRT 392f,0020028511,Regulator,Wireless Funk eBUS room temperature regulator with RF receiver; additional regional variant; CONFIDENCE: HIGH (user provided); src: Vaillant PL manual calormatic-392f-115367
 Vaillant,calorMATIC 392f,VRT 392f,0020028512,Regulator,Wireless Funk eBUS room temperature regulator with RF receiver; additional regional variant; CONFIDENCE: HIGH (user provided); src: Vaillant PL manual calormatic-392f-115367
@@ -1002,12 +1002,12 @@ Vaillant,calorMATIC 630/3,VRC 630/3,0020092438,Regulator,Weather-compensated eBU
 Vaillant,calorMATIC 630/3,VRC 630/3,0020092439,Regulator,Weather-compensated eBUS system regulator; /3 generation; GB market variant; CONFIDENCE: HIGH (user provided); src: professional.vaillant.co.uk VRC 630 manual 1175839
 Vaillant,VR 90,VR 90,0020040080,Thermostat,Remote room/zone control; up to 8 per calorMATIC 630/auroMATIC 620 system; legacy variant; eBUS 2-wire; CONFIDENCE: HIGH (user provided); src: vaillant.it PDF 0020040079
 Vaillant,VR 90,VR 90,0020045456,Thermostat,Remote room/zone control; alternative variant per Vaillant IT; eBUS 2-wire; CONFIDENCE: HIGH (user provided); src: vaillant.it PDF 0020040079
-Vaillant,auroMATIC,auroMATIC 620 / VRS 620/3,0020092428,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
-Vaillant,auroMATIC,auroMATIC 620 / VRS 620/3,0020092429,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
-Vaillant,auroMATIC,auroMATIC 620 / VRS 620/3,0020092431,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
-Vaillant,auroMATIC,auroMATIC 620 / VRS 620/3,0020092432,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
-Vaillant,auroMATIC,auroMATIC 620 / VRS 620/3,0020092433,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
-Vaillant,auroMATIC,auroMATIC 620 / VRS 620/3,0020092434,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
+Vaillant,auroMATIC,VRS 620/3,0020092428,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
+Vaillant,auroMATIC,VRS 620/3,0020092429,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
+Vaillant,auroMATIC,VRS 620/3,0020092431,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
+Vaillant,auroMATIC,VRS 620/3,0020092432,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
+Vaillant,auroMATIC,VRS 620/3,0020092433,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
+Vaillant,auroMATIC,VRS 620/3,0020092434,Regulator,Solar/system controller /3; eBUS; additional regional/variant SKU; CONFIDENCE: HIGH (user provided); src: vaillant.it auroMATIC VRS 620/3 manual 0020094401
 Protherm,Panther Condens,Panther Condens 12 KKO-A,0010017367,Boiler,gas condensing wall-hung; 12 kW heating-only (KKO); eBUS Thermolink-compatible; H-CZ market 2015-2020; CONFIDENCE: HIGH; src: akoupelnyatopeni.cz
 Protherm,Panther Condens,Panther Condens 25 KKO-A,0010017368,Boiler,gas condensing wall-hung; 25 kW heating-only (external DHW tank option); eBUS Thermolink; H-CZ market 2015-2020; CONFIDENCE: HIGH; src: heureka.cz
 Protherm,Panther Condens,Panther Condens 30 KKO-A,0010017369,Boiler,gas condensing wall-hung; 30 kW heating-only (external DHW tank option); eBUS Thermolink; H-CZ market 2015-2020; CONFIDENCE: HIGH; src: heureka.cz
@@ -1086,7 +1086,7 @@ DemirDöküm,NITROMIX,Nitromix P 35 NG (HEP),0010048332,Boiler,TR market; premix
 Saunier Duval,RED-5,RED-5 Zone Expansion Module,0020257510,Module,eBUS 3-zone mixer/solar expansion for MiPro/MiPro R; compatible SD eBUS boilers/heat pumps since 2010; multibrand SKU (SD/Bulex/Protherm); CONFIDENCE: HIGH; src: saunierduval.fr PDF 0020231862
 Saunier Duval,MiLink,MiLink V3 eBus 230V,0020261008,Gateway,eBUS; Wi-Fi/Ethernet internet gateway for MiPro/MiPro R; compatible SD eBUS boilers/HP since 2010 (not FIT range); CONFIDENCE: HIGH; src: cedeo.fr
 Protherm,MiGo,MiGo ekvitermicky eBUS regulator,0020197231,Gateway,eBUS; WiFi equitherm controller+gateway combo for 1 direct circuit + DHW; all Protherm eBUS boilers; CONFIDENCE: HIGH; src: kamody.cz
-Vaillant,VR 940f,myVAILLANT connect VR 940f standalone (DE/AT),8000015458,Gateway,eBUS + EEBUS; WLAN internet module for Vaillant eBUS appliances from 2006+; Plug and Play via CIM connector; EAN 4024074952016; CONFIDENCE: HIGH; src: heizung-billiger.de
+Vaillant,myVAILLANT connect,VR 940f,8000015458,Gateway,eBUS + EEBUS; WLAN internet module for Vaillant eBUS appliances from 2006+; Plug and Play via CIM connector; EAN 4024074952016; CONFIDENCE: HIGH; src: heizung-billiger.de
 Saunier Duval,Extension,Module d'extension eBUS (legacy),0020153782,Module,eBUS legacy SD extension module (pre-RED-3/5 era); official SD parts distribution; functional scope not fully documented publicly; CONFIDENCE: MED; src: piecesxpress.com
 Saunier Duval,H2BUS Translator,Unité de communication eBUS/H2BUS,0020076951,Module,eBUS bridge; translates eBUS to/from H2BUS so modulating eBUS thermostat works with pre-2010 Themaclassic/Themafast H2BUS boilers; CONFIDENCE: HIGH; src: piecesxpress.com
 Vaillant,ecoTEC pro,VUW 246/5-3 (H-GB) R6,0010021836,Boiler,/5-3 generation R6 (2017 onwards); combi; Erdgas H/G20; UK/IE H-GB; GC 47-044-88; 18.9-25 kW; ecoTEC pro 24; eBUS; stainless primary HX; successor to R4 SKU 0010018494; CONFIDENCE: HIGH; src: professional.vaillant.co.uk PDF 2055535
@@ -1247,16 +1247,16 @@ Vaillant,VRT thermostat,VRT 51f,0010035748,Thermostat,eBUS room thermostat; VRT 
 Vaillant,myVaillant Connect,VR 940f,0010038366,Gateway,eBUS Wi-Fi gateway; VR 940f; CONFIDENCE: HIGH (user-provided correction); src: tapro.si
 Vaillant,VRA 42,VRA 42,0010040289,Module,eBUS boiler adapter for legacy appliances; VRA 42; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,VRT thermostat,VRT 50/2,0010047221,Thermostat,eBUS room thermostat; VRT 50/2; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,auroMATIC,auroMATIC VRS 620/3,0020092441,Regulator,solar/system eBUS regulator; auroMATIC VRS 620/3; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,calorMATIC VRT,calorMATIC VRT 332,0020124470,Thermostat,eBUS regulator/thermostat; calorMATIC VRT 332; CONFIDENCE: HIGH; src: tapro.si
+Vaillant,auroMATIC,VRS 620/3,0020092441,Regulator,solar/system eBUS regulator; auroMATIC VRS 620/3; CONFIDENCE: HIGH; src: tapro.si
+Vaillant,calorMATIC VRT,VRT 332,0020124470,Thermostat,eBUS regulator/thermostat; calorMATIC VRT 332; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,multiMATIC,VR 91,0020171336,Thermostat,eBUS room thermostat / remote; VR 91; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,multiMATIC,VRC 700 AF,0020184838,Regulator,eBUS weather-compensated regulator; VRC 700 AF; SI/AT market (AF=Austria); CONFIDENCE: HIGH; src: tapro.si
 Vaillant,eRELAX,eRELAX,0020197225,Thermostat,eBUS room thermostat with internet connectivity; eRELAX; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,auroMATIC,auroMATIC VRS 570,0020203655,Regulator,solar/system eBUS regulator; auroMATIC VRS 570; CONFIDENCE: HIGH; src: tapro.si
+Vaillant,auroMATIC,VRS 570,0020203655,Regulator,solar/system eBUS regulator; auroMATIC VRS 570; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,Netatmo,Netatmo Vaillant,0020211875,Thermostat,Netatmo Vaillant thermostat with eBUS via gateway; Netatmo Vaillant; CONFIDENCE: MED; src: tapro.si
 Vaillant,multiMATIC,VRC 700 f/4 AF,0020231564,Regulator,eBUS weather-compensated regulator; VRC 700 f/4 AF; SI/AT market (AF=Austria); CONFIDENCE: HIGH; src: tapro.si
 Vaillant,multiMATIC,VR 91f,0020231567,Thermostat,eBUS room thermostat / remote; VR 91f; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,sensoCOMFORT RF,sensoCOMFORT VRC 720/3,0020260919,Regulator,eBUS weather-compensated regulator; sensoCOMFORT VRC 720/3; /3 generation; CONFIDENCE: HIGH; src: tapro.si
+Vaillant,sensoCOMFORT,VRC 720/3,0020260919,Regulator,eBUS weather-compensated regulator; sensoCOMFORT VRC 720/3; /3 generation; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,sensoCOMFORT RF,VRC 720f/3,0020260935,Regulator,eBUS weather-compensated regulator; VRC 720f/3; /3 generation; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,VRT 380,VRT 380,0020260951,Regulator,eBUS regulator with thermostat function (NOT weather-compensating - no outdoor sensor unit); VRT 380; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,VRT 380,VRT 380f,0020260961,Regulator,eBUS wireless regulator with thermostat function (NOT weather-compensating); VRT 380f; CONFIDENCE: HIGH; src: tapro.si
@@ -1275,8 +1275,8 @@ Vaillant,allSTOR plus,VPS 2000/3-5,0010015135,Module,heating buffer tank; VPS 20
 Vaillant,aguaFLOW exclusive,VPM 20/25/2 W,0010015136,Module,fresh water station; VPM 20/25/2 W; eBUS control; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,aguaFLOW exclusive,VPM 30/35/2 W,0010015137,Module,fresh water station; VPM 30/35/2 W; eBUS control; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,aguaFLOW exclusive,VPM 40/45/2 W,0010015138,Module,fresh water station; VPM 40/45/2 W; eBUS control; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,auroFLOW,exclusive VPM 20/2 S,0010015139,Module,solar station; exclusive VPM 20/2 S; eBUS; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,auroFLOW,exclusive VPM 60/2 S,0010015140,Module,solar station; exclusive VPM 60/2 S; eBUS; CONFIDENCE: HIGH; src: tapro.si
+Vaillant,auroFLOW exclusive,VPM 20/2 S,0010015139,Module,solar station; exclusive VPM 20/2 S; eBUS; CONFIDENCE: HIGH; src: tapro.si
+Vaillant,auroFLOW exclusive,VPM 60/2 S,0010015140,Module,solar station; exclusive VPM 60/2 S; eBUS; CONFIDENCE: HIGH; src: tapro.si
 Vaillant,uniSTOR,VPS R 100/1 M,0010021456,Module,DHW buffer/storage tank; VPS R 100/1 M; eBUS sensor; SI market; CONFIDENCE: MED; src: tapro.si
 Vaillant,uniSTOR,VPS R 200/1 B,0010021457,Module,DHW buffer/storage tank; VPS R 200/1 B; eBUS sensor; SI market; CONFIDENCE: MED; src: tapro.si
 Vaillant,eloBLOCK,VE 6 /14 EU II,0010023682,Boiler,electric wall heater; VE 6 /14 EU II; /14 EU II generation (SI variant of EU I); eBUS; integrated HE pump; CONFIDENCE: HIGH; src: tapro.si
@@ -1304,7 +1304,7 @@ Vaillant,ecoVIT pneumatic/4,VKK FR 476/4 R1,0010027278,Boiler,floor-standing gas
 Vaillant,ecoVIT pneumatic/4,VKK FR 656/4 R1,0010027279,Boiler,floor-standing gas condensing; 65 kW; FR market R1 revision; /4 generation; eBUS; CONFIDENCE: HIGH (user provided); src: vaillant.be PDF 0020258613_02
 Vaillant,VWZ MEH,VWZ MEH 60,0020145030,Module,Inline electric backup heater 2/4/6 kW 400/230V; for aroTHERM VWL .../2 or /3 flexoTHERM geoTHERM; eBUS; CONFIDENCE: HIGH; src: eibabo.com
 Protherm,Lev,Lev 25 KKZ90,0010014608,Boiler,gas condensing floor-standing with 90L DHW tank; 25 kW; eBUS; Slovak market; CONFIDENCE: HIGH; src: protherm.sk
-Protherm,Lev Heliotwin,Lev Heliotwin 20 KKZ150,0010018362,Boiler,gas condensing floor-standing solar-ready 150L tank current ErP edition; 20 kW; eBUS; Slovak market; CONFIDENCE: HIGH; src: heureka.sk
+Protherm,Lev Heliotwin,20 KKZ150,0010018362,Boiler,gas condensing floor-standing solar-ready 150L tank current ErP edition; 20 kW; eBUS; Slovak market; CONFIDENCE: HIGH; src: heureka.sk
 Saunier Duval,Semiatek Condens,Semiatek Condens 28 AS/1 (H-HU),0010020409,Boiler,gas condensing wall-hung combi entry-level; ~28 kW DHW; HU market (H-HU G20); ErP; eBUS; CONFIDENCE: HIGH; src: mestershop.hu saunierduval.hu
 Hermann Saunier Duval,Semiatek Condens,Semiatek Condens 24-AS/1 (H-IT),0010026091,Boiler,IT market Hermann SD entry combi; 24 kW; G20 natural gas (convertible G31); ErP A/A; stainless-steel primary exchanger; fan-push premix; eBUS; MiGo WiFi ready; CONFIDENCE: HIGH; src: desivero.com biscegliasrl.com elettronew.com
 Hermann Saunier Duval,Semiatek Condens,Semiatek Condens 28-AS/1 (H-IT),0010026092,Boiler,IT market Hermann SD entry combi; 28 kW; G20 (convertible G31); ErP A/A; eBUS; MiGo WiFi ready; CONFIDENCE: HIGH; src: desivero.com
@@ -1315,7 +1315,7 @@ Hermann Saunier Duval,Master Condens,Master Condens 35 T-CS/1 (H-IT),0010025216,
 Saunier Duval,ThemaPlus Condens,ThemaPlus Condens F30-A (H-FR),0010017388,Boiler,FR market premium combi; 30.6 kW DHW; MicroFast; ErP A/A; 109.2% efficiency; eBUS; CONFIDENCE: HIGH; src: cedeo.fr chauffage.fr
 Saunier Duval,ThemaPlus Condens,ThemaPlus Condens F35-A (H-FR),0010017418,Boiler,FR market premium combi; 35.7 kW DHW; MicroFast; ErP A/A; 109.2% efficiency; eBUS; CONFIDENCE: HIGH; src: cedeo.fr chauffage.fr
 Saunier Duval,ThemaPlus Condens,ThemaPlus Condens F25 GN (N-FR newer),0010021497,Boiler,FR market premium combi replacement (GN G20); 4.9-18.1 kW heating / 25.5 kW DHW; MicroFast + FlameFit; ErP A/A; eBUS; CONFIDENCE: HIGH; src: cedeo.fr geoplanete.fr
-Saunier Duval,ThemaPlus Condens,ThemaPlus Condens MA 26-CS/1 (N-FR),0010025107,Boiler,FR market current-gen premium combi; 26 kW; 12.3 l/min DHW; FlameFit auto combustion (G20/G31); MicroFast; ErP A/A; eBUS; CONFIDENCE: HIGH; src: thermocom.fr saunierduval.fr manual 0020292704
-Saunier Duval,ThemaPlus Condens,ThemaPlus Condens MA 31-CS/1 (N-FR),0010025109,Boiler,FR market current-gen premium combi; 31 kW; 14.8 l/min DHW; FlameFit; MicroFast; ErP A/A; eBUS; CONFIDENCE: HIGH; src: saunierduval.fr manual 0020292704
-Saunier Duval,ThemaPlus Condens,ThemaPlus Condens MA 36-CS/1 (N-FR),0010025111,Boiler,FR market current-gen premium combi; 36 kW; 17 l/min DHW; FlameFit; MicroFast; ErP A/A; eBUS; CONFIDENCE: HIGH; src: thermocom.fr saunierduval.fr manual 0020292704
+Saunier Duval,ThemaPlus Condens,MA 26-CS/1 (N-FR),0010025107,Boiler,FR market current-gen premium combi; 26 kW; 12.3 l/min DHW; FlameFit auto combustion (G20/G31); MicroFast; ErP A/A; eBUS; CONFIDENCE: HIGH; src: thermocom.fr saunierduval.fr manual 0020292704
+Saunier Duval,ThemaPlus Condens,MA 31-CS/1 (N-FR),0010025109,Boiler,FR market current-gen premium combi; 31 kW; 14.8 l/min DHW; FlameFit; MicroFast; ErP A/A; eBUS; CONFIDENCE: HIGH; src: saunierduval.fr manual 0020292704
+Saunier Duval,ThemaPlus Condens,MA 36-CS/1 (N-FR),0010025111,Boiler,FR market current-gen premium combi; 36 kW; 17 l/min DHW; FlameFit; MicroFast; ErP A/A; eBUS; CONFIDENCE: HIGH; src: thermocom.fr saunierduval.fr manual 0020292704
 Saunier Duval,SemiaFast Condens,SemiaFast Condens F30 (H-FR),0010016082,Boiler,FR market entry-level combi wall-hung with AquaFast (plate exchanger maintained at temperature); 25 kW; Al-Si exchanger; 108.5% efficiency; ErP A/A; eBUS (MiPro/MiLink); CONFIDENCE: HIGH; src: manomano.fr afdb.fr thermocom.fr

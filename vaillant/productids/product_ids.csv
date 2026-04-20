@@ -24,8 +24,8 @@ Vaillant,ecoTEC plus,415,0010002460,Boiler,
 Vaillant,ecoTEC plus,418,0010002461,Boiler,
 Vaillant,EUROBIG/SMALL,,0010002465,Boiler,
 Vaillant,ecoBLOCK plus,VMW IT 346/3-5 H,0010002498,Boiler,user-provided correction
-Vaillant,ecoTEC exclusive,ecoTEC exclusive 832,0010002668,Boiler,
-Vaillant,ecoTEC exclusive,ecoTEC exclusive 838,0010002669,Boiler,
+Vaillant,ecoTEC exclusive,832,0010002668,Boiler,
+Vaillant,ecoTEC exclusive,838,0010002669,Boiler,
 Vaillant,ecoTEC plus,428,0010002724,Boiler,
 Vaillant,ecoTEC plus,438,0010002725,Boiler,
 Vaillant,geoTHERM,VWS 61/2,0010002778,Heat Pump,
@@ -357,7 +357,7 @@ Vaillant,ecoFIT pure,VU 156/6-3,0010020396,Boiler,
 Vaillant,ecoFIT pure,VU 186/6-3,0010020397,Boiler,
 Vaillant,ecoFIT pure,VU 256/6-3,0010020398,Boiler,
 Vaillant,ecoFIT pure,VU 306/6-3,0010020399,Boiler,
-Saunier Duval,Semiatek Condens,Semiatek Condens 24 AS/1 (H-HU),0010020408,Boiler,gas condensing wall-hung combi entry-level; 6.5-24.7 kW heating / 24 kW DHW; HU market (H-HU G20); ErP; eBUS 2-wire; MiPro/MiGo/Exacontrol compatible; CONFIDENCE: HIGH; src: vizgazwebshop.hu netkazan.hu kazanwebshop.hu
+Saunier Duval,Semiatek Condens,24 AS/1 (H-HU),0010020408,Boiler,gas condensing wall-hung combi entry-level; 6.5-24.7 kW heating / 24 kW DHW; HU market (H-HU G20); ErP; eBUS 2-wire; MiPro/MiGo/Exacontrol compatible; CONFIDENCE: HIGH; src: vizgazwebshop.hu netkazan.hu kazanwebshop.hu
 Vaillant,aroTHERM,VWL 35/5 AS S2 (230 V),0010021109,Heat Pump,
 Vaillant,aroTHERM,VWL 55/5 AS S2 (230 V),0010021110,Heat Pump,
 Vaillant,aroTHERM,VWL 75/5 AS S2 (230 V),0010021111,Heat Pump,
@@ -1035,9 +1035,9 @@ Protherm,Tiger Condens,30/35 KKZ42,0010025223,Boiler,gas condensing; 5.4-32 kW h
 Protherm,Lynx Condens,Lynx Condens 25-A (RO),L0010015684,Boiler,gas condensing; ~25 kW; combi instant DHW; eBUS Thermolink B/P; RO market L-prefix; CONFIDENCE: HIGH; src: konnect-shop.ro protherm-romania.ro
 Protherm,Lynx Condens,Lynx Condens 30-A (RO),L0010015685,Boiler,gas condensing; 6.5-27 kW (30 kW DHW); combi instant DHW; eBUS Thermolink B/P; RO market L-prefix; CONFIDENCE: HIGH; src: konnect-shop.ro emag.ro
 Protherm,Lynx Condens,Lynx Condens 35-A (RO),L0010015686,Boiler,gas condensing; ~35 kW DHW; combi instant DHW; eBUS Thermolink B/P; RO market L-prefix; CONFIDENCE: HIGH; src: protherm-romania.ro
-Protherm,Puma Condens,Puma Condens 18/24 MKV-AS/1 (CZ),0010026140,Boiler,gas condensing wall-hung combi; 20 kW heating / 24 kW DHW flow; eBUS Thermolink/MiPro/MiGo; H-CZ market; CONFIDENCE: HIGH; src: heureka.cz aaatopeni.cz
-Protherm,Puma Condens,Puma Condens 18/24 MKV (SK),0010026142,Boiler,gas condensing wall-hung combi; 6.0-18.3/24 kW; eBUS Thermolink/MiPro; H-SK market; CONFIDENCE: HIGH; src: heureka.sk vodomat.sk
-Protherm,Puma Condens,Puma Condens 24/28 MKV-AS/1,0010026149,Boiler,gas condensing wall-hung combi flow DHW; 7.7-25.9 kW / 28 kW DHW; eBUS (supports solar/HP integration); Thermolink/MiPro/MiGo; CONFIDENCE: HIGH; src: instrumentarium.com.ua sivtermo.com.ua
+Protherm,Puma Condens,18/24 MKV-AS/1 (CZ),0010026140,Boiler,gas condensing wall-hung combi; 20 kW heating / 24 kW DHW flow; eBUS Thermolink/MiPro/MiGo; H-CZ market; CONFIDENCE: HIGH; src: heureka.cz aaatopeni.cz
+Protherm,Puma Condens,18/24 MKV (SK),0010026142,Boiler,gas condensing wall-hung combi; 6.0-18.3/24 kW; eBUS Thermolink/MiPro; H-SK market; CONFIDENCE: HIGH; src: heureka.sk vodomat.sk
+Protherm,Puma Condens,24/28 MKV-AS/1,0010026149,Boiler,gas condensing wall-hung combi flow DHW; 7.7-25.9 kW / 28 kW DHW; eBUS (supports solar/HP integration); Thermolink/MiPro/MiGo; CONFIDENCE: HIGH; src: instrumentarium.com.ua sivtermo.com.ua
 Protherm,Medvěd Condens,Medvěd Condens 18 KKS,0010013664,Boiler,gas condensing floor-standing cast/alu primary exchanger ~100 L; heating-only (external DHW tank optional via 3-way valve); 5.4-18 kW; eBUS Thermolink/MiPro; CONFIDENCE: HIGH; src: heureka.cz akoupelnyatopeni.cz
 Protherm,Medvěd Condens,Medvěd Condens 25 KKS,0010013665,Boiler,gas condensing floor-standing; heating-only (external DHW tank); 7.2-25 kW; eBUS Thermolink/MiPro; CONFIDENCE: HIGH; src: akoupelnyatopeni.cz gas.cz
 Protherm,Medvěd Condens,Medvěd Condens 35 KKS,0010013666,Boiler,gas condensing floor-standing; heating-only (external DHW tank); 10.1-35 kW; eBUS Thermolink/MiPro; CONFIDENCE: HIGH; src: dek.cz gas.cz
@@ -1305,9 +1305,9 @@ Vaillant,ecoVIT pneumatic/4,VKK FR 656/4 R1,0010027279,Boiler,floor-standing gas
 Vaillant,VWZ MEH,VWZ MEH 60,0020145030,Module,Inline electric backup heater 2/4/6 kW 400/230V; for aroTHERM VWL .../2 or /3 flexoTHERM geoTHERM; eBUS; CONFIDENCE: HIGH; src: eibabo.com
 Protherm,Lev,Lev 25 KKZ90,0010014608,Boiler,gas condensing floor-standing with 90L DHW tank; 25 kW; eBUS; Slovak market; CONFIDENCE: HIGH; src: protherm.sk
 Protherm,Lev Heliotwin,20 KKZ150,0010018362,Boiler,gas condensing floor-standing solar-ready 150L tank current ErP edition; 20 kW; eBUS; Slovak market; CONFIDENCE: HIGH; src: heureka.sk
-Saunier Duval,Semiatek Condens,Semiatek Condens 28 AS/1 (H-HU),0010020409,Boiler,gas condensing wall-hung combi entry-level; ~28 kW DHW; HU market (H-HU G20); ErP; eBUS; CONFIDENCE: HIGH; src: mestershop.hu saunierduval.hu
-Hermann Saunier Duval,Semiatek Condens,Semiatek Condens 24-AS/1 (H-IT),0010026091,Boiler,IT market Hermann SD entry combi; 24 kW; G20 natural gas (convertible G31); ErP A/A; stainless-steel primary exchanger; fan-push premix; eBUS; MiGo WiFi ready; CONFIDENCE: HIGH; src: desivero.com biscegliasrl.com elettronew.com
-Hermann Saunier Duval,Semiatek Condens,Semiatek Condens 28-AS/1 (H-IT),0010026092,Boiler,IT market Hermann SD entry combi; 28 kW; G20 (convertible G31); ErP A/A; eBUS; MiGo WiFi ready; CONFIDENCE: HIGH; src: desivero.com
+Saunier Duval,Semiatek Condens,28 AS/1 (H-HU),0010020409,Boiler,gas condensing wall-hung combi entry-level; ~28 kW DHW; HU market (H-HU G20); ErP; eBUS; CONFIDENCE: HIGH; src: mestershop.hu saunierduval.hu
+Hermann Saunier Duval,Semiatek Condens,24-AS/1 (H-IT),0010026091,Boiler,IT market Hermann SD entry combi; 24 kW; G20 natural gas (convertible G31); ErP A/A; stainless-steel primary exchanger; fan-push premix; eBUS; MiGo WiFi ready; CONFIDENCE: HIGH; src: desivero.com biscegliasrl.com elettronew.com
+Hermann Saunier Duval,Semiatek Condens,28-AS/1 (H-IT),0010026092,Boiler,IT market Hermann SD entry combi; 28 kW; G20 (convertible G31); ErP A/A; eBUS; MiGo WiFi ready; CONFIDENCE: HIGH; src: desivero.com
 Hermann Saunier Duval,Thematek Condens,Thematek Condens 24 AS/1 (H-IT),0010026147,Boiler,IT market Hermann SD combi; 18 kW heating / 25 kW DHW; G20 (convertible G31); ErP A/A; stainless primary exchanger; 270mm depth ultra-compact; touchscreen UI; eBUS; MiGo Select WiFi compatible; CONFIDENCE: HIGH; src: etaweb.eu desivero.com
 Hermann Saunier Duval,Master Condens,Master Condens 26 T-CS/1 (H-IT),0010025217,Boiler,IT market Hermann SD premium combi with integrated DHW (2x21L Aquaspeed PLUS); 3.5-21 kW heating + DHW; G20 set G31 regulable; FlameFit combustion (H2 20%); ErP A/A; eBUS; CONFIDENCE: HIGH; src: tecnomat.it shop.puntoluce.net
 Hermann Saunier Duval,Master Condens,Master Condens 31 T-CS/1 (H-IT),0010025215,Boiler,IT market Hermann SD premium combi with integrated DHW (2x21L); 3.5-25 kW heating 1:9; 42L storage; 21 l/min DHW; 108.3% efficiency; G20 set G31; eBUS; CONFIDENCE: HIGH; src: tecnomat.it climaconvenienza.it

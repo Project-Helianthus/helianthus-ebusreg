@@ -1317,7 +1317,7 @@ Protherm,Thermolink P,Thermolink P/2,0020118083,Regulator,eBUS wired weekly-prog
 Protherm,Thermolink RC,Thermolink RC/2,0020118084,Regulator,eBUS wireless; weekly program; successor of Thermolink RC; CONFIDENCE: HIGH; src: kamody.cz
 Vaillant,calorMATIC 332,VRT 332,0020124465,Regulator,eBUS room temperature regulator with clear-text display; wired; successor to VRT 330; compatible with Vaillant heat generators with eBUS interface (ecoTEC atmoTEC); CONFIDENCE: HIGH; src: heizung-billiger.de
 Vaillant,calorMATIC VRT,VRT 332,0020124470,Thermostat,eBUS regulator/thermostat; calorMATIC VRT 332; CONFIDENCE: HIGH; src: tapro.si
-Vaillant,calorMATIC 350,VRT 350,0020124472,Regulator,
+Vaillant,calorMATIC,VRT 350,0020124472,Regulator,manual-confirmed; doc: 0020131948_02; markets: DE/AT/CHde/BEde; src: Vaillant-Regelung-calorMATIC-350-Installationsanleitung.pdf
 Vaillant,calorMATIC 350,VRT 350,0020124475,Regulator,manual-confirmed; docs: 0020131957_02 / 0020135485_02; src: 0020131957_02.pdf
 Vaillant,calorMATIC 350f,VRT 350f,0020124482,Regulator,manual-confirmed; docs: 0020131978_02 / 0020131979_01; src: 0020131978_02.pdf
 Vaillant,calorMATIC 450,VRT 450,0020124489,Regulator,

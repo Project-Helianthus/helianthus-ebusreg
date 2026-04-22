@@ -186,21 +186,21 @@ Vaillant,TEC/4,VCW AT 174/4-5 H W20,0010006141,Boiler,manual-confirmed; src: htt
 Vaillant,icoVIT/7,VKO 246-7,0010006341,Boiler,https://www.vaillant.be/ | https://kontakt.vaillant.de/documents/download/71989/
 Vaillant,aguaFLOW,VPM 20/25 W,0010007267,Module,
 Vaillant,aguaFLOW,VPM 30/35 W,0010007268,Module,
-Vaillant,ecoVIT pneumatic/4,,0010007508,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007510,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007512,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007514,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007516,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007518,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007520,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007522,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007524,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007526,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007688,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007692,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007696,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007700,Boiler,
-Vaillant,ecoVIT pneumatic/4,,0010007704,Boiler,
+Vaillant,ecoVIT pneumatic/4,VKK 226/4 (-H) DE/AT,0010007508,Boiler,floor-standing gas condensing; 23.5 kW; DE/AT market (E/H natural gas II2ELL3P); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.de document 75833 (Fachhandwerker Installations- u. Wartungsanleitung ecoVIT exclusiv VKK 226/4-656/4)
+Vaillant,ecoVIT pneumatic/4,VKK INT 226/4,0010007510,Boiler,floor-standing gas condensing; 23.5 kW; INT/PL market (II2ELwLs3P / II2H3P natural gas); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.pl IO-0020077408 ecoVIT VKK (PL/HR)
+Vaillant,ecoVIT pneumatic/4,VKK 286/4 (-H) DE/AT,0010007512,Boiler,floor-standing gas condensing; 28.1 kW; DE/AT market (E/H natural gas); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.de document 75833
+Vaillant,ecoVIT pneumatic/4,VKK INT 286/4,0010007514,Boiler,floor-standing gas condensing; 28.1 kW; INT/PL market (II2ELwLs3P / II2H3P); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.pl IO-0020077408
+Vaillant,ecoVIT pneumatic/4,VKK 366/4 (-H) DE/AT,0010007516,Boiler,floor-standing gas condensing; 36.4 kW; DE/AT market (E/H natural gas); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.de document 75833
+Vaillant,ecoVIT pneumatic/4,VKK INT 366/4,0010007518,Boiler,floor-standing gas condensing; 36.4 kW; INT/PL market (II2ELwLs3P / II2H3P); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.pl IO-0020077408
+Vaillant,ecoVIT pneumatic/4,VKK 476/4 (-H) DE/AT,0010007520,Boiler,floor-standing gas condensing; 48.2 kW; DE/AT market (E/H natural gas); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.de document 75833
+Vaillant,ecoVIT pneumatic/4,VKK INT 476/4,0010007522,Boiler,floor-standing gas condensing; 48.2 kW; INT/PL market (II2ELwLs3P / II2H3P); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.pl IO-0020077408
+Vaillant,ecoVIT pneumatic/4,VKK 656/4 (-H) DE/AT,0010007524,Boiler,floor-standing gas condensing; 65 kW; DE/AT market (E/H natural gas); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.de document 75833
+Vaillant,ecoVIT pneumatic/4,VKK INT 656/4,0010007526,Boiler,floor-standing gas condensing; 65 kW; INT/PL market (II2ELwLs3P / II2H3P); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.pl IO-0020077408
+Vaillant,ecoVIT pneumatic/4,VKK 226/4 -L (LL),0010007688,Boiler,floor-standing gas condensing; 23.5 kW; DE market LL-gas factory config (low-Wobbe natural gas); /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.de document 75833
+Vaillant,ecoVIT pneumatic/4,VKK 286/4 -L (LL),0010007692,Boiler,floor-standing gas condensing; 28.1 kW; DE market LL-gas factory config; /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.de document 75833
+Vaillant,ecoVIT pneumatic/4,VKK 366/4 -L (LL),0010007696,Boiler,floor-standing gas condensing; 36.4 kW; DE market LL-gas factory config; /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.de document 75833
+Vaillant,ecoVIT pneumatic/4,VKK 476/4 -L (LL),0010007700,Boiler,floor-standing gas condensing; 48.2 kW; DE market LL-gas factory config; /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.de document 75833
+Vaillant,ecoVIT pneumatic/4,VKK 656/4 -L (LL),0010007704,Boiler,floor-standing gas condensing; 65 kW; DE market LL-gas factory config; /4 generation; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: vaillant.de document 75833
 Vaillant,Panther,25KOV v.19,0010008045,Boiler,
 Vaillant,Panther,25KOV v.19,0010008863,Boiler,
 Vaillant,geoTHERM,VWS 61/3,0010009068,Heat Pump,
@@ -234,23 +234,23 @@ Vaillant,ecoTEC plus,VCW DE 196/3-5 A (E),0010010392,Boiler,user-provided correc
 Vaillant,ecoTEC plus,VCW DE 196/3-5 A (LL),0010010393,Boiler,user-provided correction
 Vaillant,ecoTEC plus,VCW DE 196/3-5 A (P),0010010394,Boiler,user-provided correction
 Vaillant,ecoTEC plus,VCW AT 196/3-5 A,0010010400,Boiler,user-provided correction
-Vaillant,icoVIT two stage/7,,0010010674,Boiler,
-Vaillant,icoVIT two stage/7,,0010010676,Boiler,
-Vaillant,icoVIT two stage/7,,0010010678,Boiler,
+Vaillant,icoVIT two stage/7,VKO DACH 156/3-7,0010010674,Boiler,floor-standing oil condensing; 2-stage burner; 15.8 kW nominal (range 11.1/15.8 kW at 40/30 C); DE/AT/CH market; /3-7 series; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: intec-heizung.de (Vaillant icoVIT exclusiv VKO DACH 156/3-7 & 256/3-7 Fachhandwerker Installationsanleitung)
+Vaillant,icoVIT two stage/7,VKO DACH 256/3-7,0010010676,Boiler,floor-standing oil condensing; 2-stage burner; 25.3 kW nominal (range 16.9/25.3 kW at 40/30 C); DE/AT/CH market; /3-7 series; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: intec-heizung.de (Vaillant icoVIT exclusiv VKO DACH 156/3-7 & 256/3-7 Fachhandwerker Installationsanleitung)
+Vaillant,icoVIT two stage/7,VKO DACH 356/3-7,0010010678,Boiler,floor-standing oil condensing; 2-stage burner; 36.8 kW nominal (range 22.1/36.8 kW at 40/30 C); DE/AT/CH market; /3-7 series; eBUS; manual-confirmed; CONFIDENCE: HIGH; src: intec-heizung.de (Vaillant icoVIT exclusiv VKO DACH 356/3-7 Installations- und Wartungsanleitung) & vaillant.ch installationsanleitung-icovit-exclusiv-vko-35-1857703.pdf
 Vaillant,ecoTEC plus,VM 806/5-5,0010010759,Boiler,
 Vaillant,ecoTEC exclusive,VU OE 806/5-5,0010010764,Boiler,
 Vaillant,ecoTEC plus,VM 1006/5-5,0010010772,Boiler,
 Vaillant,ecoTEC exclusive,VU OE 1006/5-5,0010010777,Boiler,
 Vaillant,ecoTEC plus,VM 1206/5-5,0010010784,Boiler,
 Vaillant,ecoTEC exclusive,VU OE 1206/5-5,0010010789,Boiler,
-Vaillant,,,0010011630,Boiler,
+Vaillant,ecoTEC plus /5-5,VC BE 306/5-5 R4,0010011630,Boiler,manual-confirmed; src: https://www.vaillant.be/telechargements/documents/notice-installation/notice-installation-ecotec-plus-631453.pdf; BE heating-only 30 kW
 Vaillant,FM3 Functional Module,VR 70,0010011633,Control Centre,
-Vaillant,,,0010011640,Boiler,
-Vaillant,EcoTEC plus VHR,,0010011701,Boiler,
-Vaillant,EcoTEC plus VHR,,0010011702,Boiler,
-Vaillant,EcoTEC plus VHR,,0010011703,Boiler,
-Vaillant,EcoTEC plus VHR,,0010011704,Boiler,
-Vaillant,EcoTEC plus VHR,,0010011709,Boiler,
+Vaillant,ecoTEC plus /5-5,VC 146/5-5,0010011640,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/492972; DE heating-only wall-hung 14 kW
+Vaillant,ecoTEC plus VHR,VHR NL 20-24/5-5,0010011701,Boiler,manual-confirmed; src: https://www.vaillant.nl/producten-3/ecotec-plus-3/oud-2/installatiehandleiding-ecotec-plus-0020243842-02-1648469.pdf; NL combi 5.7-20.2 kW CH / 24.0 kW DHW /5-5
+Vaillant,ecoTEC plus VHR,VHR NL 25-30/5-5,0010011702,Boiler,manual-confirmed; src: https://www.vaillant.nl/producten-3/ecotec-plus-3/oud-2/installatiehandleiding-ecotec-plus-0020243842-02-1648469.pdf; NL combi 6.7-25.0 kW CH / 30.0 kW DHW /5-5
+Vaillant,ecoTEC plus VHR,VHR NL 30-34/5-5,0010011703,Boiler,manual-confirmed; src: https://www.vaillant.nl/producten-3/ecotec-plus-3/oud-2/installatiehandleiding-ecotec-plus-0020243842-02-1648469.pdf; NL combi 7.7-30.2 kW CH / 34.0 kW DHW /5-5
+Vaillant,ecoTEC plus VHR,VHR NL 35-38/5-5,0010011704,Boiler,manual-confirmed; src: https://www.vaillant.nl/producten-3/ecotec-plus-3/oud-2/installatiehandleiding-ecotec-plus-0020243842-02-1648469.pdf; NL combi 8.7-34.6 kW CH / 38.2 kW DHW /5-5
+Vaillant,ecoTEC plus VHR,VHR NL 34/5-5 L,0010011709,Boiler,manual-confirmed; src: https://www.vaillant.nl/producten-3/ecotec-plus-3/oud-2/installatiehandleiding-ecotec-plus-0020243842-02-1648469.pdf; NL solo 7.7-34.0 kW CH L shell /5-5
 Vaillant,ecoTEC plus,VU INT II 146/5-5,0010011737,Boiler,
 Vaillant,ecoTEC plus,VU INT II 206/5-5,0010011738,Boiler,
 Vaillant,ecoTEC plus,VU INT II 256/5-5,0010011739,Boiler,
@@ -273,7 +273,7 @@ Vaillant,ecoCompact (euro),VCC 306/4-5 150,0010014630,Boiler,manual-confirmed; s
 Vaillant,ecoCompact (euro),VSC D 306/4-5 190,0010014631,Boiler,manual-confirmed; src: https://ik.pl/pliki/VAILLANT/0010014631-manual.pdf; 30 kW BE VSC D with 190 L solar tank
 Vaillant,ecoCompact (euro),VSC 206/4-5 90,0010014632,Boiler,manual-confirmed; src: https://www.vaillant.be/telechargements/documents/fiche-technique/vai-27-ft-ecocompact-vcc-206-266-306-00-1217310.pdf; 20 kW BE VSC 90 L
 Vaillant,ecoCompact (euro),VCC 266/4-5 150,0010014633,Boiler,manual-confirmed; src: https://res.cloudinary.com/sanicomfort/image/upload/v1622465391/VAILLANT-ECOCOMPACT-GASVLOERKETEL-COMBI-CONDENSATIE-VCC-206-0010014633-vai_27_tf_ecocompact_vcc_206-266-306_00.pdf; 26 kW BE combi VCC 150 L
-Vaillant,,,0010014683,Boiler,
+Vaillant,,,0010014683,Boiler,UNRESOLVED Vaillant appliance PN; no public catalog hit across retailer aggregators
 Vaillant,ecoTEC exclusive /5-7,VC 156/5-7 (N-DE),0010014917,Boiler,manual-confirmed; src: https://kontakt.vaillant.de/documents/download/155649/; 15 kW DE H-gas wall-hung heat-only; Betriebsanleitung 0020189874_00
 Vaillant,turboTEC plus,VU 202/5-5,0010015325,Boiler,/5-5 generation; turbo (forced-draft) single-circuit; heating-only; Ukrainian market variant; eBUS; CONFIDENCE: HIGH; src: vaillant.ua PDF im-turbotec-pro-turbotec-plusvu-vuw-1152468 and BY PDF montazh-i-ekspluataciya-turbotec
 Vaillant,ecoCompact (euro),VSC 146/4-5 90 E,0010015596,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 3-14 kW DE E-gas 90 L
@@ -300,10 +300,10 @@ Vaillant,ecoTEC plus,415,0010015670,Boiler,
 Vaillant,ecoTEC plus,418,0010015671,Boiler,
 Vaillant,ecoTEC plus,424,0010015672,Boiler,
 Vaillant,ecoTEC plus,430,0010015673,Boiler,
-Vaillant,,,0010015908,Boiler,
+Vaillant,ecoTEC plus INT IV /5-5,VU INT IV 386/5-5 H,0010015908,Boiler,manual-confirmed; src: https://azbukatepla.by/wp-content/uploads/2015/10/Руководство-по-монтажу-и-техобслуживанию_ecoTEC_plus.pdf; RU/BY heating-only 38 kW H-gas; authorized-distributor mirror
 Saunier Duval,Thelia Condens,AS 18-A (H-PL),0010016097,Boiler,gas condensing wall-hung heating-only (system); 19.1 kW; PL market; eBUS; previously mismapped as Vaillant FM3 VR 70; CONFIDENCE: HIGH
-Vaillant,EcoTEC plus VHR,,0010016402,Boiler,
-Vaillant,EcoTEC plus VHR,,0010016403,Boiler,
+Vaillant,ecoTEC plus VHR,VHR NL 25/5-5 S,0010016402,Boiler,manual-confirmed; src: https://www.vaillant.nl/producten-3/ecotec-plus-3/oud-2/installatiehandleiding-ecotec-plus-0020243842-02-1648469.pdf; NL solo 6.7-25.0 kW CH /5-5 S
+Vaillant,ecoTEC plus VHR,VHR NL 35/5-5 S,0010016403,Boiler,manual-confirmed; src: https://www.vaillant.nl/producten-3/ecotec-plus-3/oud-2/installatiehandleiding-ecotec-plus-0020243842-02-1648469.pdf; NL solo 8.7-34.6 kW CH /5-5 S
 Vaillant,aroTHERM,VWL 55/2 A 230 V,0010016408,Heat Pump,
 Vaillant,aroTHERM,VWL 85/2 A 230 V,0010016409,Heat Pump,
 Vaillant,aroTHERM,VWL 115/2 A 230 V,0010016410,Heat Pump,
@@ -329,14 +329,14 @@ Vaillant,aroCOLLECT,VWL 11/4 SA,0010016715,Module,
 Vaillant,fluoCOLLECT,VWW 11/4 SI,0010016719,Module,
 Vaillant,fluoCOLLECT,VWW 19/4 SI,0010016720,Module,
 Saunier Duval,ThemaPlus Condens,F25-A (H-FR),0010017387,Boiler,FR market premium combi; 5-18.1 kW heating / 25.5 kW DHW; MicroFast 3.2L micro-accumulation; FlameFit; G20/G31; ErP A/A; eBUS (MiPro/MiLink); CONFIDENCE: HIGH; src: cedeo.fr richardson.fr easysav.com
-Vaillant,,,0010017390,Boiler,
-Vaillant,,,0010017826,Boiler,
+Vaillant,Thema Condens,Thema AS Condens F AS 12 A,0010017390,Boiler,manual-confirmed; src: https://www.saunierduval.fr/france/download/chaudiere-condensation/notices/saunier-duval-thema-as-condens-notice-installateur-2012-03-291154.pdf; Saunier Duval FR combi condensing 12 kW
+Vaillant,atmoTEC plus /4-5,VCW AT 174/4-5 A H,0010017826,Boiler,manual-confirmed; src: https://www.vaillant.at/erp/04-gwa/0010017826-vcw-at-174-4-5-a-h-1591938.pdf; AT combi atmospheric 17 kW H-gas
 Vaillant,ecoTEC plus,825,0010018353,Boiler,
 Vaillant,ecoTEC plus,832,0010018354,Boiler,
 Vaillant,ecoTEC plus,832 LPG,0010018355,Boiler,
 Vaillant,ecoTEC plus,838,0010018356,Boiler,
 Vaillant,ecoTEC plus,938,0010018357,Boiler,
-Vaillant,,,0010018461,Boiler,
+Vaillant,ecoTEC exclusive /5-7,VC 256/5-7,0010018461,Boiler,manual-confirmed; src: https://www.vaillant.pl/instrukcje-obs-ugi-2/kot-y-kondensacyjne-1/ecotecexclusive-vc-vcw-instrukcjaobsugi-849301.pdf; PL heating-only 25 kW
 Vaillant,ecoTEC pro,24,0010018494,Boiler,
 Vaillant,ecoTEC pro,28,0010018495,Boiler,
 Vaillant,ecoTEC pro,28 LPG,0010018496,Boiler,
@@ -389,7 +389,7 @@ Vaillant,ecoTEC plus /5-5,VU 146/5-5,0010021875,Boiler,manual-confirmed; src: ht
 Vaillant,ecoTEC plus /5-5,VC 206/5-5,0010021887,Boiler,manual-confirmed; src: https://www.vaillant.pl/karty-produktowe/ecotec-plus-1/vc-1/karta-produktu-0010021887-ecotec-plus-vc-206-5-5-981180.pdf; 21 kW PL H-gas wall-hung heat-only
 Vaillant,ecoTEC plus /5-5,VC 256/5-5,0010021888,Boiler,"manual-confirmed; src: https://kociolkowo.pl/vaillant-kociol-kondensacyjny-jednofunkcyjny-vc-ec,3,17905,22630; 27 kW PL H-gas wall-hung heat-only"
 Vaillant,ecoTEC plus /5-5,VCW 346/5-5,0010021891,Boiler,"manual-confirmed; src: https://kociolkowo.pl/vaillant-kociol-kondensacyjny-dwufunkcyjny-vcw-eco,3,17905,22778; 34 kW PL combi"
-Vaillant,IsotwinCondens 30-B,,0010021901,Boiler,
+Vaillant,Isotwin Condens,Isotwin Condens 30-B (H-PL),0010021901,Boiler,manual-confirmed; src: https://www.saunierduval.pl/instrukcje-instalacji-2/kot-y-kondensacyjne-4/ii-0020244955-00-isotwin-1026510.pdf; Saunier Duval PL H-PL 30 kW
 Vaillant,FM5 Functional Module,VR 71,0010021924,Control Centre,
 Vaillant,ecoTEC plus /5-5,VC 266/5-5 E,0010021929,Boiler,manual-confirmed; src: https://www.skybad.de/en/vaillant-vc-266-5-5-ecotec-plus-gas-wandheizgeraet-0010021929-vc-266-5-5-erdgas-e-mit-brennwerttechnik.html; 26 kW DE E-gas wall-hung heat-only
 Vaillant,ecoTEC plus,VCW 206/5-5 (LL-DE),0010021934,Boiler,official Vaillant product datasheet plus retailer part match; confidence=high; source_url=https://www.vaillant.de/documents/download/257631
@@ -424,7 +424,7 @@ Vaillant,sensoCOMFORT,VRC 720/2,0010036819,Regulator,
 Vaillant,ecoTEC exclusive,VU 20CS/1-7 (N-INT2),0010038488,Boiler,
 Vaillant,ecoTEC exclusive,VU 25CS/1-7 (N-INT2),0010038489,Boiler,
 Vaillant,ecoTEC plus,VC 15 CS/1-5 (E-DE),0010043897,Boiler,CS/1-5 refreshed SKU (2024); 15 kW heating-only; gas E/LL/P; H2-ready 20% + future 100% retrofit; ioniDetect; EAN 4024074920879; CONFIDENCE: HIGH; src: heima24.de
-Vaillant,,,0010043962,Boiler,
+Vaillant,ecoTEC plus /1-5,VU 20 CS/1-5 IoniDetect,0010043962,Boiler,manual-confirmed; src: https://www.vaillant.cz/media/neuer_ordner_3/neuer_ordner_4/ecotec_plus_peec/installation_instruction_14/0020282241_05.pdf; CZ compact heating-only 20 kW IoniDetect
 Vaillant,ecoTEC plus,VU 25CS/1-5 (N-INT2),0010043963,Boiler,
 Vaillant,ecoTEC plus,VU 30CS/1-5 (N-INT2),0010043964,Boiler,
 Vaillant,ecoTEC plus,VU 35CS/1-5 (N-INT2),0010043965,Boiler,
@@ -434,17 +434,17 @@ Vaillant,ecoTEC plus,VUW 36CS/1-5 (N-INT2),0010043968,Boiler,
 Vaillant,ecoTEC plus,VUW 40CS/1-5 (N-INT2),0010043969,Boiler,
 Vaillant,ecoTEC plus,VUI 32CS/1-5 (N-INT2),0010043970,Boiler,
 Vaillant,sensoCOMFORT,VRC 720/3,0010045478,Regulator,eBUS wired; weather compensation; TFT touch display 3.5 inch; up to 9 heating circuits; cascade of up to 7 generators; supports myVAILLANT app via VR 940f; newer /3 generation (2022+); previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: loebbeshop.de heizung-billiger.de
-Vaillant,,,0020017837,Unknown,
+Vaillant,,,0020017837,Spare,UNRESOLVED 0020-prefix spare; not indexed by loebbeshop/heizung-billiger/vaillant.de
 Vaillant,calorMATIC 50,VRT 50,0020018266,Thermostat,official VRT 50 page plus market part match; confidence=medium; source_url=https://www.vaillant.hr/krajnji-korisnici/proizvodi/vrt-50-278.html
 Vaillant,calorMATIC 430f,VRC 430f,0020028521,Regulator,
 Vaillant,calorMATIC 430f,VRC 430f,0020028524,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020040079,Regulator,
 Vaillant,Outdoor Thermostat,VR 21,0020045492,Thermostat,official Vaillant regulator matrix plus exact-part cross-reference; confidence=medium; source_url=https://www.vaillant.hu/downloads/07-szabalyzok/calormatic-n-315040.pdf
 Vaillant,calorMATIC 360,VRT 360,0020045552,Regulator,
-Vaillant,ecoTEC,,0020051714,Boiler,
-Vaillant,ecoTEC,,0020051715,Boiler,
-Vaillant,ecoTEC,,0020051716,Boiler,
-Vaillant,ecoTEC,,0020051717,Boiler,
+Vaillant,ecoTEC,,0020051714,Spare,UNRESOLVED 0020-prefix spare; not indexed by loebbeshop/raleo/ersatzteilprofi/vaillant.de; likely gas-conversion Umstellsatz or Wartungsset variant (sequential 714-717 block)
+Vaillant,ecoTEC,,0020051715,Spare,UNRESOLVED 0020-prefix spare; sequential 714-717 block
+Vaillant,ecoTEC,,0020051716,Spare,UNRESOLVED 0020-prefix spare; sequential 714-717 block
+Vaillant,ecoTEC,,0020051717,Spare,UNRESOLVED 0020-prefix spare; sequential 714-717 block
 Vaillant,calorMATIC 430f,VRC 430f,0020058640,Regulator,
 Vaillant,calorMATIC 430,VRC 430,0020060427,Regulator,
 Vaillant,auroFLOW,VPM 20 S,0020071488,Module,
@@ -461,7 +461,7 @@ Vaillant,calorMATIC 630,VRC 630,0020080468,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020080472,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020092435,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020092440,Regulator,
-Vaillant,,,0020101780,Unknown,
+Vaillant,,,0020101780,Spare,UNRESOLVED 0020-prefix spare/accessory; numbering era ~2013-2015; possibly aroTHERM/geoTHERM or recoVAIR accessory
 Vaillant,calorMATIC 470,VRT 470,0020108128,Regulator,
 Vaillant,calorMATIC 470,VRT 470,0020108132,Regulator,
 Vaillant,calorMATIC 470f,VRC 470f,0020108135,Regulator,
@@ -491,7 +491,7 @@ Vaillant,Internet communication module,VR900,0020197117,Gateway,
 Vaillant,Internet communication module,VR900,0020197118,Gateway,
 Vaillant,Internet communication module,VR900,0020197120,Gateway,
 Vaillant,Internet communication module,VR900,0020197148,Gateway,
-Vaillant,,,0020197207,Unknown,
+Vaillant,recoVAIR,B7V00 (VAR 260/4 or 360/4),0020197207,Ventilation,manual-confirmed; src: https://kontakt.vaillant.de/documents/download/276657/; recoVAIR MVHR unit eBUS ident; HA community scan confirmed
 Vaillant,eRELAX,eRELAX,0020197222,Thermostat,
 Vaillant,multiMATIC,VRC 700/4,0020218357,Regulator,
 Saunier Duval,MiPro,SRC 710,0020218373,Regulator,eBUS wired weather-compensated regulator; external sensor included; multi-zone up to 3 circuits (1 direct + 2 mixed via RED-3/RED-5); compatible with all SD eBUS boilers/heat pumps/solar since 2010; previously mismapped as Vaillant FM3 VR 70; CONFIDENCE: HIGH; src: elyotherm.fr grzanieplus.pl

@@ -44,14 +44,14 @@ Vaillant,ecoCOMPACT,VSC AT 126/2-C140,0010003860,Boiler,
 Vaillant,ecoCOMPACT2,VSC INT 126/2-C 140,0010003861,Boiler,user-provided correction
 Vaillant,ecoCOMPACT,VSC DE 196/2-C150,0010003862,Boiler,
 Vaillant,ecoCOMPACT,VSC DE 196/2-C150,0010003863,Boiler,
-Vaillant,ecoCOMPACT2,VSC 196/2-C 150 P,0010003864,Boiler,"https://www.vaillant.de/documents/download/72979 | https://www.scribd.com/document/653240390/Vaillant-AtmoTEC-Plus-Planungsinfo"
+Vaillant,ecoCOMPACT2,VSC 196/2-C 150 P,0010003864,Boiler,https://www.vaillant.de/documents/download/72979 | https://www.scribd.com/document/653240390/Vaillant-AtmoTEC-Plus-Planungsinfo
 Vaillant,ecoCOMPACT,VSC AT 196/2-C150,0010003865,Boiler,
 Vaillant,ecoCOMPACT2,VSC INT 196/2-C 150 H,0010003869,Boiler,user-provided correction
 Vaillant,ecoCOMPACT2,VSC INT 246/2-C 170 H,0010003872,Boiler,user-provided correction
 Vaillant,ecoCOMPACT2,VSC 246/2-C 210 E,0010003874,Boiler,user-provided correction
 Vaillant,ecoCOMPACT2,VSC 246/2-C 210 LL,0010003875,Boiler,user-provided correction
 Vaillant,ecoCOMPACT2,VSC 246/2-C 210 P,0010003876,Boiler,user-provided correction
-Vaillant,ecoCOMPACT2,VSC DK 246/2-C 210,0010003877,Boiler,"https://www.vaillant.se/downloads/handbok/0020040931-03-151659.pdf"
+Vaillant,ecoCOMPACT2,VSC DK 246/2-C 210,0010003877,Boiler,https://www.vaillant.se/downloads/handbok/0020040931-03-151659.pdf
 Vaillant,ecoCOMPACT,VSC INT 266/4-5,0010003878,Boiler,gas condensing compact with integrated DHW tank; 26.5 kW; INT (international) variant; CONFIDENCE: HIGH (user provided); src: vaillant.com.ro PDF 0020183511_01
 Vaillant,ecoCOMPACT2,VSC INT 306/2-C 200 H,0010003881,Boiler,user-provided correction
 Vaillant,auroCOMPACT,VSC S 196/2-C 200,0010003882,Boiler,
@@ -80,7 +80,7 @@ Vaillant,turboTEC,VUW INT 322/3-5,0010003976,Boiler,
 Vaillant,turboTEC,VUW INT 362/3-5,0010003977,Boiler,
 Vaillant,turboTEC,VUW 242/3-3,0010003991,Boiler,source_url=https://zip-kotly.ru/displey-1/ | https://zip-kotly.ru/nasos-vaillant-tec-0020020023/ ; rationale=secondary spare-part cross-reference only ; confidence=low
 Vaillant,atmoTEC pro,VUW INT 240/3-3M H,0010004015,Boiler,user-provided correction
-Vaillant,turboTEC/3,VUW INT 242/3-3M,0010004016,Boiler,"https://doninstal.ua/ | https://shop.termos.ua/ | https://static.proteplo-spb.ru/"
+Vaillant,turboTEC/3,VUW INT 242/3-3M,0010004016,Boiler,https://doninstal.ua/ | https://shop.termos.ua/ | https://static.proteplo-spb.ru/
 Vaillant,ecoTEC/4 eGAS,VC AT 146/4-7,0010004110,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
 Vaillant,ecoTEC/4 eGAS,VC AT 206/4-7,0010004111,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
 Vaillant,ecoTEC/4 eGAS,VC AT 276/4-7,0010004112,Boiler,Vaillant appliance-code sheet mirrored as PDF; confidence=medium; source_url=https://documents.unidomo.de/de/Installationsanleitung/Vaillant/Vaillant-75415-0020072070-00-Installationsanleitung.pdf
@@ -113,7 +113,7 @@ Vaillant,ecoTEC plus,VC AT 196/3-5,0010004337,Boiler,
 Vaillant,ecoTEC plus,VC AT 246/3-5,0010004338,Boiler,
 Vaillant,ecoTEC plus,VCW AT 196/3-5,0010004339,Boiler,
 Vaillant,ecoTEC plus,VCW AT 246/3-5,0010004340,Boiler,
-Saunier Duval,Isotwin,F 25 E H-MOD,0010005311,Boiler,"https://www.richardson.fr/ | https://www.anjou-connectique.com/ | https://www.anjou-connectique.com/"
+Saunier Duval,Isotwin,F 25 E H-MOD,0010005311,Boiler,https://www.richardson.fr/ | https://www.anjou-connectique.com/ | https://www.anjou-connectique.com/
 Vaillant,ecoCRAFT/3,VKK 806/3-E,0010005400,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
 Vaillant,ecoCRAFT/3,VKK 1206/3-E,0010005401,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
 Vaillant,ecoCRAFT/3,VKK 1606/3-E,0010005402,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
@@ -128,62 +128,62 @@ Vaillant,ecoTEC plus,VCI DE 196/3-5,0010005466,Boiler,
 Vaillant,ecoTEC plus,VCI DE 196/3-5,0010005467,Boiler,
 Vaillant,ecoTEC plus,VCI DE 246/3-5,0010005468,Boiler,
 Vaillant,ecoTEC plus,VCI DE 246/3-5,0010005469,Boiler,
-Vaillant,TEC/4,,0010006080,Boiler,
-Vaillant,TEC/4,,0010006081,Boiler,
-Vaillant,TEC/4,,0010006082,Boiler,
-Vaillant,TEC/4,,0010006083,Boiler,
-Vaillant,TEC/4,,0010006084,Boiler,
-Vaillant,TEC/4,,0010006085,Boiler,
-Vaillant,TEC/4,,0010006086,Boiler,
-Vaillant,TEC/4,,0010006087,Boiler,
-Vaillant,TEC/4,,0010006088,Boiler,
-Vaillant,TEC/4,,0010006089,Boiler,
-Vaillant,TEC/4,,0010006090,Boiler,
-Vaillant,TEC/4,,0010006091,Boiler,
-Vaillant,TEC/4,,0010006092,Boiler,
-Vaillant,TEC/4,,0010006093,Boiler,
-Vaillant,TEC/4,,0010006094,Boiler,
-Vaillant,TEC/4,,0010006095,Boiler,
-Vaillant,TEC/4,,0010006096,Boiler,
-Vaillant,TEC/4,,0010006097,Boiler,
-Vaillant,TEC/4,,0010006098,Boiler,
-Vaillant,TEC/4,,0010006099,Boiler,
-Vaillant,TEC/4,,0010006100,Boiler,
-Vaillant,TEC/4,,0010006101,Boiler,
-Vaillant,TEC/4,,0010006102,Boiler,
-Vaillant,TEC/4,,0010006103,Boiler,
-Vaillant,TEC/4,,0010006104,Boiler,
-Vaillant,TEC/4,,0010006105,Boiler,
-Vaillant,TEC/4,,0010006106,Boiler,
-Vaillant,TEC/4,,0010006107,Boiler,
-Vaillant,TEC/4,,0010006108,Boiler,
-Vaillant,TEC/4,,0010006109,Boiler,
-Vaillant,TEC/4,,0010006110,Boiler,
-Vaillant,TEC/4,,0010006111,Boiler,
-Vaillant,TEC/4,,0010006112,Boiler,
-Vaillant,TEC/4,,0010006113,Boiler,
-Vaillant,TEC/4,,0010006114,Boiler,
-Vaillant,TEC/4,,0010006115,Boiler,
-Vaillant,TEC/4,,0010006118,Boiler,
-Vaillant,TEC/4,,0010006119,Boiler,
-Vaillant,TEC/4,,0010006120,Boiler,
-Vaillant,TEC/4,,0010006121,Boiler,
-Vaillant,TEC/4,,0010006122,Boiler,
-Vaillant,TEC/4,,0010006123,Boiler,
-Vaillant,TEC/4,,0010006126,Boiler,
-Vaillant,TEC/4,,0010006127,Boiler,
-Vaillant,TEC/4,,0010006129,Boiler,
-Vaillant,TEC/4,,0010006130,Boiler,
-Vaillant,TEC/4,,0010006131,Boiler,
-Vaillant,TEC/4,,0010006134,Boiler,
-Vaillant,TEC/4,,0010006135,Boiler,
-Vaillant,TEC/4,,0010006136,Boiler,
-Vaillant,TEC/4,,0010006137,Boiler,
-Vaillant,TEC/4,,0010006138,Boiler,
-Vaillant,TEC/4,,0010006139,Boiler,
-Vaillant,TEC/4,,0010006140,Boiler,
-Vaillant,TEC/4,,0010006141,Boiler,
-Vaillant,icoVIT/7,VKO 246-7,0010006341,Boiler,"https://www.vaillant.be/ | https://kontakt.vaillant.de/documents/download/71989/"
+Vaillant,TEC/4,VC DE 254/4-7 P,0010006080,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv/plus DE heating-only 25kW LPG (G31)
+Vaillant,TEC/4,VC DE 254/4-7-HL 2LL,0010006081,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE heating-only 25kW L-gas (G25)
+Vaillant,TEC/4,VC DE 254/4-7-HL 2E/2H,0010006082,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE heating-only 25kW E/H-gas (G20)
+Vaillant,TEC/4,VC DE 204/4-7 P,0010006083,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv/plus DE heating-only 20kW LPG (G31)
+Vaillant,TEC/4,VC DE 204/4-7-HL 2LL,0010006084,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE heating-only 20kW L-gas (G25)
+Vaillant,TEC/4,VC DE 204/4-7-HL 2E/2H,0010006085,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE heating-only 20kW E/H-gas (G20)
+Vaillant,TEC/4,VC DE 104/4-7 P,0010006086,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv/plus DE heating-only 10kW LPG (G31)
+Vaillant,TEC/4,VC DE 104/4-7-HL 2LL,0010006087,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE heating-only 10kW L-gas (G25)
+Vaillant,TEC/4,VC DE 104/4-7-HL 2E/2H,0010006088,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE heating-only 10kW E/H-gas (G20)
+Vaillant,TEC/4,VCW DE 254/4-7 P,0010006089,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE combi 25kW LPG (G31)
+Vaillant,TEC/4,VCW DE 254/4-7-HL 2LL,0010006090,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE combi 25kW L-gas (G25)
+Vaillant,TEC/4,VCW DE 254/4-7-HL 2E/2H,0010006091,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE combi 25kW E/H-gas (G20)
+Vaillant,TEC/4,VCW DE 204/4-7 P,0010006092,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE combi 20kW LPG (G31)
+Vaillant,TEC/4,VCW DE 204/4-7-HL 2LL,0010006093,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE combi 20kW L-gas (G25)
+Vaillant,TEC/4,VCW DE 204/4-7-HL 2E,0010006094,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/f5/01/8a/Vaillant-atmoTEC-exclusiv-104-4-7-Installations-und-Wartungsanleitung.pdf; atmoTEC exclusiv DE combi 20kW E-gas (G20)
+Vaillant,TEC/4,VC DE 95/4-5 P,0010006095,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE heating-only 9kW LPG fan-assisted
+Vaillant,TEC/4,VC DE 95/4-5 LL,0010006096,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE heating-only 9kW L-gas
+Vaillant,TEC/4,VC DE 95/4-5 E,0010006097,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE heating-only 9kW E-gas
+Vaillant,TEC/4,VC DE 195/4-5 P,0010006098,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE heating-only 20kW LPG
+Vaillant,TEC/4,VC DE 195/4-5 LL,0010006099,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE heating-only 20kW L-gas
+Vaillant,TEC/4,VC DE 195/4-5 E,0010006100,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE heating-only 20kW E-gas
+Vaillant,TEC/4,VC DE 194/4-5 L,0010006101,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus DE heating-only 20kW L-gas atmospheric
+Vaillant,TEC/4,VC DE 194/4-5 H,0010006102,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus DE heating-only 20kW H-gas
+Vaillant,TEC/4,VC DE 245/4-5 P,0010006103,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE heating-only 24kW LPG
+Vaillant,TEC/4,VC DE 245/4-5 LL,0010006104,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE heating-only 24kW L-gas
+Vaillant,TEC/4,VC DE 245/4-5 E,0010006105,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE heating-only 24kW E-gas
+Vaillant,TEC/4,VCW DE 195/4-5 P,0010006106,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE combi 20kW LPG
+Vaillant,TEC/4,VCW DE 195/4-5 LL,0010006107,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE combi 20kW L-gas
+Vaillant,TEC/4,VCW DE 195/4-5 E,0010006108,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE combi 20kW E-gas
+Vaillant,TEC/4,VCW DE 194/4-5 L,0010006109,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus DE combi 20kW L-gas
+Vaillant,TEC/4,VCW DE 194/4-5 H,0010006110,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus DE combi 20kW H-gas
+Vaillant,TEC/4,VCW DE 245/4-5 P,0010006111,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE combi 24kW LPG
+Vaillant,TEC/4,VCW DE 245/4-5 LL,0010006112,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE combi 24kW L-gas
+Vaillant,TEC/4,VCW DE 245/4-5 E,0010006113,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/52/7e/3f/Vaillant-turboTEC-plus-VC_VCW-195-4-5-Installations-und-Wartungsanleitung.pdf; turboTEC plus DE combi 24kW E-gas
+Vaillant,TEC/4,VCW DE 244/4-5 L,0010006114,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus DE combi 24kW L-gas
+Vaillant,TEC/4,VCW DE 244/4-5 H,0010006115,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus DE combi 24kW H-gas
+Vaillant,TEC/4,VC AT 244/4-7 P,0010006118,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus AT heating-only 24kW LPG
+Vaillant,TEC/4,VC AT 244/4-7 H,0010006119,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; atmoTEC plus AT heating-only 24kW H-gas
+Vaillant,TEC/4,VC AT 95/4-5 H,0010006120,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; turboTEC plus AT heating-only 9kW H-gas
+Vaillant,TEC/4,VC AT 195/4-7 H,0010006121,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; turboTEC plus AT heating-only 20kW H-gas
+Vaillant,TEC/4,VC AT 194/4-7 P,0010006122,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus AT heating-only 20kW LPG
+Vaillant,TEC/4,VC AT 194/4-7 H,0010006123,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; atmoTEC plus AT heating-only 20kW H-gas
+Vaillant,TEC/4,VC AT 104/4-7 P,0010006126,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus AT heating-only 10kW LPG
+Vaillant,TEC/4,VC AT 104/4-7 H,0010006127,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; atmoTEC plus AT heating-only 10kW H-gas
+Vaillant,TEC/4,VCW AT 245/4-7 H,0010006129,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; turboTEC plus AT combi 24kW H-gas
+Vaillant,TEC/4,VCW AT 244/4-7 P,0010006130,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus AT combi 24kW LPG
+Vaillant,TEC/4,VCW AT 244/4-7 H,0010006131,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; atmoTEC plus AT combi 24kW H-gas
+Vaillant,TEC/4,VCW AT 194/4-7 P,0010006134,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus AT combi 20kW LPG
+Vaillant,TEC/4,VCW AT 194/4-7 H,0010006135,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; atmoTEC plus AT combi 20kW H-gas
+Vaillant,TEC/4,VC AT 175/4-5 H,0010006136,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; turboTEC plus AT heating-only 17kW H-gas
+Vaillant,TEC/4,VC AT 174/4-5 H,0010006137,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus AT heating-only 17kW H-gas
+Vaillant,TEC/4,VCW AT 224/4-5 H,0010006138,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; atmoTEC plus AT combi 22kW H-gas
+Vaillant,TEC/4,VCW AT 175/4-5 H,0010006139,Boiler,manual-confirmed; src: https://www.vaillant.at/downloads/bedienungsanleitungen/gasgeraete/heizwert/b-atmotec-turbotec-0020055067-01-240185.pdf; turboTEC plus AT combi 17kW H-gas
+Vaillant,TEC/4,VCW AT 174/4-5 H,0010006140,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus AT combi 17kW H-gas
+Vaillant,TEC/4,VCW AT 174/4-5 H W20,0010006141,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; atmoTEC plus AT combi 17kW H-gas W20 variant
+Vaillant,icoVIT/7,VKO 246-7,0010006341,Boiler,https://www.vaillant.be/ | https://kontakt.vaillant.de/documents/download/71989/
 Vaillant,aguaFLOW,VPM 20/25 W,0010007267,Module,
 Vaillant,aguaFLOW,VPM 30/35 W,0010007268,Module,
 Vaillant,ecoVIT pneumatic/4,,0010007508,Boiler,
@@ -268,33 +268,33 @@ Vaillant,allSTOR,VPM 40/45/2 W,0010014313,Module,
 Vaillant,auroFLOW,VPM 20/2 S,0010014314,Module,solar charging station 4-20 m2 flat / 4-14 m2 tube; plate heat exchanger 20 plates; eBUS interface; auroFLOW exclusive (successor to VPM 20 S 0020071488); previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: heima24.de
 Vaillant,aroTHERM,VWL 55/2 A 230 V,0010014566,Heat Pump,
 Vaillant,aroTHERM,VWL 155/2 A 400 V,0010014568,Heat Pump,
-Vaillant,ecoCompact (euro),,0010014629,Boiler,
-Vaillant,ecoCompact (euro),,0010014630,Boiler,
-Vaillant,ecoCompact (euro),,0010014631,Boiler,
-Vaillant,ecoCompact (euro),,0010014632,Boiler,
-Vaillant,ecoCompact (euro),,0010014633,Boiler,
+Vaillant,ecoCompact (euro),VCC 306/4-5 150,0010014629,Boiler,manual-confirmed; src: https://paulpromo.be/en/products/copie-de-set-raccordement-pour-vcc-vsc-d-0020170494; 30 kW BE combi VCC ErP A/A
+Vaillant,ecoCompact (euro),VCC 306/4-5 150,0010014630,Boiler,manual-confirmed; src: https://sanimag.be/chaudiere-sol/8203-vaillant-chaudiere-condensation-sol-avec-boiler-encastre-ecocompact-vcc-306-erp-cc-a-erp-ec-a.html; 30 kW BE combi VCC ErP A/A variant
+Vaillant,ecoCompact (euro),VSC D 306/4-5 190,0010014631,Boiler,manual-confirmed; src: https://ik.pl/pliki/VAILLANT/0010014631-manual.pdf; 30 kW BE VSC D with 190 L solar tank
+Vaillant,ecoCompact (euro),VSC 206/4-5 90,0010014632,Boiler,manual-confirmed; src: https://www.vaillant.be/telechargements/documents/fiche-technique/vai-27-ft-ecocompact-vcc-206-266-306-00-1217310.pdf; 20 kW BE VSC 90 L
+Vaillant,ecoCompact (euro),VCC 266/4-5 150,0010014633,Boiler,manual-confirmed; src: https://res.cloudinary.com/sanicomfort/image/upload/v1622465391/VAILLANT-ECOCOMPACT-GASVLOERKETEL-COMBI-CONDENSATIE-VCC-206-0010014633-vai_27_tf_ecocompact_vcc_206-266-306_00.pdf; 26 kW BE combi VCC 150 L
 Vaillant,,,0010014683,Boiler,
-Vaillant,ecoCompact (euro),,0010014917,Boiler,
+Vaillant,ecoTEC exclusive /5-7,VC 156/5-7 (N-DE),0010014917,Boiler,manual-confirmed; src: https://kontakt.vaillant.de/documents/download/155649/; 15 kW DE H-gas wall-hung heat-only; Betriebsanleitung 0020189874_00
 Vaillant,turboTEC plus,VU 202/5-5,0010015325,Boiler,/5-5 generation; turbo (forced-draft) single-circuit; heating-only; Ukrainian market variant; eBUS; CONFIDENCE: HIGH; src: vaillant.ua PDF im-turbotec-pro-turbotec-plusvu-vuw-1152468 and BY PDF montazh-i-ekspluataciya-turbotec
-Vaillant,ecoCompact (euro),,0010015596,Boiler,
-Vaillant,ecoCompact (euro),,0010015597,Boiler,
-Vaillant,ecoCompact (euro),,0010015598,Boiler,
-Vaillant,ecoCompact (euro),,0010015599,Boiler,
-Vaillant,ecoCompact (euro),,0010015600,Boiler,
-Vaillant,ecoCompact (euro),,0010015601,Boiler,
-Vaillant,ecoCompact (euro),,0010015602,Boiler,
-Vaillant,ecoCompact (euro),,0010015603,Boiler,
-Vaillant,ecoCompact (euro),,0010015604,Boiler,
-Vaillant,ecoCompact (euro),,0010015605,Boiler,
-Vaillant,ecoCompact (euro),,0010015606,Boiler,
-Vaillant,ecoCompact (euro),,0010015607,Boiler,
-Vaillant,ecoCompact (euro),,0010015608,Boiler,
-Vaillant,ecoCompact (euro),,0010015609,Boiler,
+Vaillant,ecoCompact (euro),VSC 146/4-5 90 E,0010015596,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 3-14 kW DE E-gas 90 L
+Vaillant,ecoCompact (euro),VSC 146/4-5 150 E,0010015597,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 3-14 kW DE E-gas 150 L
+Vaillant,ecoCompact (euro),VSC 146/4-5 150 LL,0010015598,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 3-14 kW DE L-gas 150 L
+Vaillant,ecoCompact (euro),VSC 146/4-5 200 E,0010015599,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 3-14 kW DE E-gas 200 L
+Vaillant,ecoCompact (euro),VSC 206/4-5 90 E,0010015600,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE E-gas 90 L
+Vaillant,ecoCompact (euro),VSC 206/4-5 90 LL,0010015601,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE L-gas 90 L
+Vaillant,ecoCompact (euro),VSC 206/4-5 150 E,0010015602,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE E-gas 150 L
+Vaillant,ecoCompact (euro),VSC 206/4-5 150 LL,0010015603,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE L-gas 150 L
+Vaillant,ecoCompact (euro),VCC 206/4-5 150 E/LL,0010015604,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE E/LL-gas 150 L coil Rohrwendel
+Vaillant,ecoCompact (euro),VSC 206/4-5 200 E,0010015605,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE E-gas 200 L
+Vaillant,ecoCompact (euro),VSC 266/4-5 150 E,0010015606,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 6-26 kW DE E-gas 150 L
+Vaillant,ecoCompact (euro),VCC 266/4-5 150 E,0010015607,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 6-26 kW DE E-gas 150 L coil Rohrwendel
+Vaillant,ecoCompact (euro),VSC 266/4-5 200 E/LL,0010015608,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 6-26 kW DE E/LL-gas 200 L
+Vaillant,ecoCompact (euro),VSC S 146/4-5 150 E,0010015609,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 3-14 kW DE E-gas 150 L solar auroCOMPACT
 Vaillant,ecoCompact (euro),,0010015610,Boiler,
-Vaillant,ecoCompact (euro),,0010015611,Boiler,
-Vaillant,ecoCompact (euro),,0010015612,Boiler,
-Vaillant,ecoCompact (euro),,0010015613,Boiler,
-Vaillant,ecoCompact (euro),,0010015614,Boiler,
+Vaillant,ecoCompact (euro),VSC S 146/4-5 190 E,0010015611,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 3-14 kW DE E-gas 190 L solar auroCOMPACT
+Vaillant,ecoCompact (euro),VSC S 206/4-5 150 E,0010015612,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE E-gas 150 L solar auroCOMPACT
+Vaillant,ecoCompact (euro),VSC S 206/4-5 150 LL,0010015613,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE L-gas 150 L solar auroCOMPACT
+Vaillant,ecoCompact (euro),VSC S 206/4-5 190 E,0010015614,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE E-gas 190 L solar auroCOMPACT
 Vaillant,ecoTEC plus,412,0010015669,Boiler,
 Vaillant,ecoTEC plus,415,0010015670,Boiler,
 Vaillant,ecoTEC plus,418,0010015671,Boiler,
@@ -349,7 +349,7 @@ Vaillant,ecoTEC plus,630,0010018536,Boiler,
 Vaillant,ecoTEC plus,630 LPG,0010018537,Boiler,
 Vaillant,ecoTEC plus,637,0010018538,Boiler,
 Vaillant,ecoCompact (euro),,0010019268,Boiler,
-Vaillant,ecoCompact (euro),,0010019276,Boiler,
+Vaillant,ecoTEC plus /5-5,VCW 206/5-5 E,0010019276,Boiler,manual-confirmed; src: https://www.grosshandel-hahn.de/shop/Heizung/Heizthermen_und_Heizkessel/Vaillant/VA_GasWandheizgeraet_ecoTEC_plus_VCW_20655_E_Brenntwert__pa38721.htm; 20 kW DE E-gas combi wall-hung
 Vaillant,FM5 Functional Module,VR 71,0010019412,Control Centre,
 Vaillant,ecoFIT pure,VU 126/6-3,0010020395,Boiler,
 Vaillant,ecoFIT pure,VU 156/6-3,0010020396,Boiler,
@@ -385,21 +385,21 @@ Vaillant,ecoTEC plus,VMW 246/5-5,0010021813,Boiler,
 Vaillant,ecoTEC plus,VMI 306/5-5,0010021814,Boiler,
 Vaillant,ecoTEC plus,VMI 346/5-5,0010021815,Boiler,
 Vaillant,ecoTEC plus,VCW 296/5-5,0010021843,Boiler,user-provided correction
-Vaillant,ecoCompact (euro),,0010021875,Boiler,
-Vaillant,ecoCompact (euro),,0010021887,Boiler,
-Vaillant,ecoCompact (euro),,0010021888,Boiler,
-Vaillant,ecoCompact (euro),,0010021891,Boiler,
+Vaillant,ecoTEC plus /5-5,VU 146/5-5,0010021875,Boiler,manual-confirmed; src: https://www.akoupelnyatopeni.cz/topeni-a-ohrev-vody/vaillant-kotel-vu-146-5-5-ecotec-plus-0010011737; 15 kW CZ/DE wall-hung condensing
+Vaillant,ecoTEC plus /5-5,VC 206/5-5,0010021887,Boiler,manual-confirmed; src: https://www.vaillant.pl/karty-produktowe/ecotec-plus-1/vc-1/karta-produktu-0010021887-ecotec-plus-vc-206-5-5-981180.pdf; 21 kW PL H-gas wall-hung heat-only
+Vaillant,ecoTEC plus /5-5,VC 256/5-5,0010021888,Boiler,"manual-confirmed; src: https://kociolkowo.pl/vaillant-kociol-kondensacyjny-jednofunkcyjny-vc-ec,3,17905,22630; 27 kW PL H-gas wall-hung heat-only"
+Vaillant,ecoTEC plus /5-5,VCW 346/5-5,0010021891,Boiler,"manual-confirmed; src: https://kociolkowo.pl/vaillant-kociol-kondensacyjny-dwufunkcyjny-vcw-eco,3,17905,22778; 34 kW PL combi"
 Vaillant,IsotwinCondens 30-B,,0010021901,Boiler,
 Vaillant,FM5 Functional Module,VR 71,0010021924,Control Centre,
-Vaillant,ecoCompact (euro),,0010021929,Boiler,
+Vaillant,ecoTEC plus /5-5,VC 266/5-5 E,0010021929,Boiler,manual-confirmed; src: https://www.skybad.de/en/vaillant-vc-266-5-5-ecotec-plus-gas-wandheizgeraet-0010021929-vc-266-5-5-erdgas-e-mit-brennwerttechnik.html; 26 kW DE E-gas wall-hung heat-only
 Vaillant,ecoTEC plus,VCW 206/5-5 (LL-DE),0010021934,Boiler,official Vaillant product datasheet plus retailer part match; confidence=high; source_url=https://www.vaillant.de/documents/download/257631
-Vaillant,ecoCompact (euro),,0010021961,Boiler,
-Vaillant,ecoCompact (euro),,0010021962,Boiler,
-Vaillant,ecoCompact (euro),,0010021963,Boiler,
-Vaillant,ecoCompact (euro),,0010021964,Boiler,
-Vaillant,ecoCompact (euro),,0010021965,Boiler,
-Vaillant,ecoCompact (euro),,0010021966,Boiler,
-Vaillant,ecoCompact (euro),,0010021967,Boiler,
+Vaillant,ecoTEC plus INT IV /5-5,VU INT IV 246/5-5 H,0010021961,Boiler,manual-confirmed; src: https://voltar.com.ua/ua/shop/vaillant-ecotec-plus-vu-int-iv-246-55-h-kotel-gazovyi-kondensatsionnyi.html; 24 kW UA/RU H-gas heat-only
+Vaillant,ecoTEC plus INT IV /5-5,VU INT IV 166/5-5 H,0010021962,Boiler,manual-confirmed; src: https://bt-service.ua/vaillant-ecotec-plus-vu-int-iv-166-5-5-h-0010021962.html; 16 kW UA/RU H-gas heat-only
+Vaillant,ecoTEC plus INT IV /5-5,VU INT IV 306/5-5 H,0010021963,Boiler,manual-confirmed; src: https://www.teplomatica.ru/kotly/kondensatsionnye-kotly/vaillant-kon/vaillant-nastennyj-gazovyj-kondensatsionnyj-kotjol-ecotec-plus-vu-int-iv-306-5-5.html; 30 kW UA/RU H-gas heat-only
+Vaillant,ecoTEC plus INT IV /5-5,VU INT IV 386/5-5 H,0010021964,Boiler,manual-confirmed; src: https://boiler-gas.ru/vaillant-0010021964; 38 kW UA/RU H-gas heat-only
+Vaillant,ecoTEC plus INT IV /5-5,VUW INT IV 246/5-5 H,0010021965,Boiler,manual-confirmed; src: https://www.teplodvor.ru/vaillant-ecotec-plus-vuw-int-iv-246-5-5-h.html; 24 kW UA/RU H-gas combi
+Vaillant,ecoTEC plus INT IV /5-5,VUW INT IV 306/5-5 H,0010021966,Boiler,manual-confirmed; src: https://www.teplodvor.ru/vaillant-ecotec-plus-vuw-int-iv-306-5-5-h.html; 30 kW UA/RU H-gas combi
+Vaillant,ecoTEC plus INT IV /5-5,VUW INT IV 346/5-5 H,0010021967,Boiler,manual-confirmed; src: https://www.teplodvor.ru/vaillant-ecotec-plus-vuw-int-iv-346-5-5-h.html; 34 kW UA/RU H-gas combi
 Vaillant,ecoTEC plus,VC 20 CS/1-5 (E-DE),0010022008,Boiler,CS/1-5 generation; 19.7 kW @ 80/60; heating-only; gas E/LL/P; H2-ready 20%; ioniDetect; modulation 1:8; original launch SKU; previously mismapped as FM5 VR 71 in CSV; CONFIDENCE: HIGH; src: klimaworld.com
 Vaillant,ecoTEC plus,VCW 20/26 CS/1-5 (E-DE),0010022010,Boiler,CS/1-5 combi; 20 kW heating / 26 kW DHW flow-through; gas E/LL/P; H2-ready 20%; ioniDetect; modulation 1:8; original launch SKU; CONFIDENCE: HIGH; src: heizung-billiger.de klimaworld.com
 Vaillant,uniTOWER,VIH QW 190/6 E,0010022078,Module,
@@ -455,7 +455,7 @@ Vaillant,geoTHERM,VWL /3 S,0020075230,Heat Pump,
 Vaillant,auroFLOW,VPM 60 S,0020079950,Module,
 Vaillant,aguaFLOW exclusive,VPM /2 W,0020080448,Module,
 Vaillant,auroMATIC,VRC 620,0020080463,Regulator,
-Vaillant,auroMATIC,auroMATIC 620,0020080465,Regulator,"https://www.jeanpaulguy.fr/"
+Vaillant,auroMATIC,auroMATIC 620,0020080465,Regulator,https://www.jeanpaulguy.fr/
 Vaillant,calorMATIC 630,VRC 630,0020080467,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020080468,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020080472,Regulator,

@@ -114,12 +114,12 @@ Vaillant,ecoTEC plus,VC AT 246/3-5,0010004338,Boiler,
 Vaillant,ecoTEC plus,VCW AT 196/3-5,0010004339,Boiler,
 Vaillant,ecoTEC plus,VCW AT 246/3-5,0010004340,Boiler,
 Saunier Duval,Isotwin,F 25 E H-MOD,0010005311,Boiler,"https://www.richardson.fr/ | https://www.anjou-connectique.com/ | https://www.anjou-connectique.com/"
-Vaillant,ecoCRAFT/3,,0010005400,Boiler,
-Vaillant,ecoCRAFT/3,,0010005401,Boiler,
-Vaillant,ecoCRAFT/3,,0010005402,Boiler,
-Vaillant,ecoCRAFT/3,,0010005403,Boiler,
-Vaillant,ecoCRAFT/3,,0010005404,Boiler,
-Vaillant,ecoCRAFT/3,,0010005405,Boiler,
+Vaillant,ecoCRAFT/3,VKK 806/3-E,0010005400,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
+Vaillant,ecoCRAFT/3,VKK 1206/3-E,0010005401,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
+Vaillant,ecoCRAFT/3,VKK 1606/3-E,0010005402,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
+Vaillant,ecoCRAFT/3,VKK 2006/3-E,0010005403,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
+Vaillant,ecoCRAFT/3,VKK 2406/3-E,0010005404,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
+Vaillant,ecoCRAFT/3,VKK 2806/3-E,0010005405,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
 Vaillant,ecoCRAFT/3,,0010005406,Boiler,
 Vaillant,ecoCRAFT/3,,0010005407,Boiler,
 Vaillant,ecoCRAFT/3,,0010005408,Boiler,
@@ -216,19 +216,19 @@ Vaillant,geoTHERM,VWW 81/3,0010009083,Heat Pump,
 Vaillant,geoTHERM,VWW 101/3,0010009084,Heat Pump,
 Vaillant,geoTHERM,VWW 141/3,0010009085,Heat Pump,
 Vaillant,geoTHERM,VWW 171/3,0010009086,Heat Pump,
-Vaillant,ecoCOMPACT2,VSC 126/3-5 140 E,0010009340,Boiler,user-provided correction
-Vaillant,ecoCOMPACT2,VSC 126/3-5 140 LL,0010009341,Boiler,user-provided correction
+Vaillant,ecoCOMPACT2,VSC 126/3-5 140 E,0010009340,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
+Vaillant,ecoCOMPACT2,VSC 126/3-5 140 LL,0010009341,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
 Vaillant,ecoCOMPACT2,,0010009342,Boiler,
-Vaillant,ecoCOMPACT2,VSC 196/3-5 150 E,0010009343,Boiler,user-provided correction
-Vaillant,ecoCOMPACT2,VSC 196/3-5 150 LL,0010009344,Boiler,user-provided correction
-Vaillant,ecoCOMPACT2,VSC 196/3-5 150 P,0010009345,Boiler,user-provided correction
+Vaillant,ecoCOMPACT2,VSC 196/3-5 150 E,0010009343,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
+Vaillant,ecoCOMPACT2,VSC 196/3-5 150 LL,0010009344,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
+Vaillant,ecoCOMPACT2,VSC 196/3-5 150 P,0010009345,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
 Vaillant,ecoCOMPACT2,,0010009346,Boiler,
-Vaillant,ecoCOMPACT2,VSC 246/3-5 210 E,0010009347,Boiler,user-provided correction
-Vaillant,ecoCOMPACT2,VSC 246/3-5 210 LL,0010009348,Boiler,user-provided correction
+Vaillant,ecoCOMPACT2,VSC 246/3-5 210 E,0010009347,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
+Vaillant,ecoCOMPACT2,VSC 246/3-5 210 LL,0010009348,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
 Vaillant,ecoCOMPACT2,,0010009349,Boiler,
 Vaillant,ecoCOMPACT2,,0010009350,Boiler,
-Vaillant,auroCOMPACT/2,,0010009351,Boiler,
-Vaillant,auroCOMPACT/2,,0010009352,Boiler,
+Vaillant,auroCOMPACT/2,VSC S 126/3-5 180,0010009351,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
+Vaillant,auroCOMPACT/2,VSC S 196/3-5 200,0010009352,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
 Vaillant,ECOBIG pneumatisch,,0010010384,Boiler,
 Vaillant,ecoTEC plus,VCW DE 196/3-5 A (E),0010010392,Boiler,user-provided correction
 Vaillant,ecoTEC plus,VCW DE 196/3-5 A (LL),0010010393,Boiler,user-provided correction

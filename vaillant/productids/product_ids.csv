@@ -21,7 +21,7 @@ Vaillant,atmoCOMPACT,VSC 194-C 150 E,0010002316,Boiler,official Vaillant applian
 Vaillant,atmoCOMPACT,VSC 194-C 150 LL,0010002317,Boiler,official Vaillant appliance-code sheet; confidence=high; source_url=https://kontakt.vaillant.de/documents/download/72918/
 Vaillant,ecoTEC plus,415,0010002460,Boiler,
 Vaillant,ecoTEC plus,418,0010002461,Boiler,
-Vaillant,EUROBIG/SMALL,,0010002465,Boiler,
+Vaillant,EUROBIG/SMALL,,0010002465,Boiler,UNRESOLVED; 0010002465 is an ebusd bai.0010002465.inc include anchor grouping PROD 0010003958-0010004016 (early-2000s atmo/ecoTEC wall-hung pre-ecoTEC-plus); john30 heuristic label 'EUROBIG/SMALL' not corroborated by any official Vaillant manual; src: https://github.com/john30/ebusd-configuration/blob/master/archived/de/vaillant/08.bai.csv
 Vaillant,ecoBLOCK plus,VMW IT 346/3-5 H,0010002498,Boiler,user-provided correction
 Vaillant,ecoTEC exclusive,832,0010002668,Boiler,
 Vaillant,ecoTEC exclusive,838,0010002669,Boiler,
@@ -120,10 +120,10 @@ Vaillant,ecoCRAFT/3,VKK 1606/3-E,0010005402,Boiler,manual-confirmed; src: https:
 Vaillant,ecoCRAFT/3,VKK 2006/3-E,0010005403,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
 Vaillant,ecoCRAFT/3,VKK 2406/3-E,0010005404,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
 Vaillant,ecoCRAFT/3,VKK 2806/3-E,0010005405,Boiler,manual-confirmed; src: https://www.vaillant.de/documents/download/74709
-Vaillant,ecoCRAFT/3,,0010005406,Boiler,
-Vaillant,ecoCRAFT/3,,0010005407,Boiler,
-Vaillant,ecoCRAFT/3,,0010005408,Boiler,
-Vaillant,ecoCRAFT/3,,0010005409,Boiler,
+Vaillant,ecoCRAFT/3,,0010005406,Boiler,UNRESOLVED; official ecoCRAFT pre-R1 Bedienungsanleitung 0020055743_02 (https://www.vaillant.de/documents/download/74711) maps only 0010005400-05 = VKK 806-2806/3-E; 5406-09 absent from DE/AT/CH/UK manuals; same BAI include as 5400-05 per john30 ebusd-configuration
+Vaillant,ecoCRAFT/3,,0010005407,Boiler,UNRESOLVED; same evidence as 5406; absent from official Vaillant/ÖVGW/UK manuals
+Vaillant,ecoCRAFT/3,,0010005408,Boiler,UNRESOLVED; same evidence as 5406
+Vaillant,ecoCRAFT/3,,0010005409,Boiler,UNRESOLVED; same evidence as 5406
 Vaillant,ecoTEC plus,VCI DE 196/3-5,0010005466,Boiler,
 Vaillant,ecoTEC plus,VCI DE 196/3-5,0010005467,Boiler,
 Vaillant,ecoTEC plus,VCI DE 246/3-5,0010005468,Boiler,
@@ -218,18 +218,18 @@ Vaillant,geoTHERM,VWW 141/3,0010009085,Heat Pump,
 Vaillant,geoTHERM,VWW 171/3,0010009086,Heat Pump,
 Vaillant,ecoCOMPACT2,VSC 126/3-5 140 E,0010009340,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
 Vaillant,ecoCOMPACT2,VSC 126/3-5 140 LL,0010009341,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
-Vaillant,ecoCOMPACT2,,0010009342,Boiler,
+Vaillant,ecoCOMPACT2,VSC AT 126/3-5 140 H (inferred),0010009342,Boiler,PARTIAL; Installations- und Wartungsanleitung 0020031571_07 (https://vaillant.de/documents/download/72986) lists 9340-9350 as family and separately documents VSC AT 126/3-5 140 H; 1:1 PN->variant mapping not published; sequential position between 9341 (126 LL) and 9343 (196 E) strongly suggests AT 126 H
 Vaillant,ecoCOMPACT2,VSC 196/3-5 150 E,0010009343,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
 Vaillant,ecoCOMPACT2,VSC 196/3-5 150 LL,0010009344,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
 Vaillant,ecoCOMPACT2,VSC 196/3-5 150 P,0010009345,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
-Vaillant,ecoCOMPACT2,,0010009346,Boiler,
+Vaillant,ecoCOMPACT2,VSC AT 196/3-5 150 H (inferred),0010009346,Boiler,PARTIAL; 0020031571_07 documents VSC AT 196/3-5 150; sequential position between 9345 (196 P) and 9347 (246 E) suggests AT 196 H; src: https://vaillant.de/documents/download/72986
 Vaillant,ecoCOMPACT2,VSC 246/3-5 210 E,0010009347,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
 Vaillant,ecoCOMPACT2,VSC 246/3-5 210 LL,0010009348,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
-Vaillant,ecoCOMPACT2,,0010009349,Boiler,
-Vaillant,ecoCOMPACT2,,0010009350,Boiler,
+Vaillant,ecoCOMPACT2,VSC 246/3-5 210 P or VSC AT 246/3-5 210 H (inferred),0010009349,Boiler,PARTIAL; 0020031571_07 documents both VSC 246/3-5 210 P (propane) and VSC AT 246/3-5 210 H; gap 9349/9350 must map to these two variants but source does not disambiguate; src: https://vaillant.de/documents/download/72986
+Vaillant,ecoCOMPACT2,VSC 246/3-5 210 P or VSC AT 246/3-5 210 H (inferred),0010009350,Boiler,PARTIAL; same as 9349; must be the other of P/AT-H for 246 size; src: https://vaillant.de/documents/download/72986
 Vaillant,auroCOMPACT/2,VSC S 126/3-5 180,0010009351,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
 Vaillant,auroCOMPACT/2,VSC S 196/3-5 200,0010009352,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/e1/e6/1a/Vaillant-auroCompact-3-5-ecoCompact-5-5-Produktvorstellung-Datenblatt.pdf
-Vaillant,ECOBIG pneumatisch,,0010010384,Boiler,
+Vaillant,ecoTEC exclusiv /4-7,VC /4-7 (sibling of 466-656/4-7-HL),0010010384,Boiler,"MED-confidence; john30 groups with 0010004126/127 (VC 656/4-7-HL 65 kW); 'pneumatisch' label refers to premix fan control, NOT commercial ECOBIG; ecoTEC exclusiv VC 35-65 kW wall-hung condensing family; exact sub-SKU unresolved; src: https://www.intec-heizung.de/media/pdf/6e/9e/97/Vaillant-ecoTec-exclusiv-VC-466-4-7-Bedienungsanleitung.pdf"
 Vaillant,ecoTEC plus,VCW DE 196/3-5 A (E),0010010392,Boiler,user-provided correction
 Vaillant,ecoTEC plus,VCW DE 196/3-5 A (LL),0010010393,Boiler,user-provided correction
 Vaillant,ecoTEC plus,VCW DE 196/3-5 A (P),0010010394,Boiler,user-provided correction
@@ -273,7 +273,7 @@ Vaillant,ecoCompact (euro),VCC 306/4-5 150,0010014630,Boiler,manual-confirmed; s
 Vaillant,ecoCompact (euro),VSC D 306/4-5 190,0010014631,Boiler,manual-confirmed; src: https://ik.pl/pliki/VAILLANT/0010014631-manual.pdf; 30 kW BE VSC D with 190 L solar tank
 Vaillant,ecoCompact (euro),VSC 206/4-5 90,0010014632,Boiler,manual-confirmed; src: https://www.vaillant.be/telechargements/documents/fiche-technique/vai-27-ft-ecocompact-vcc-206-266-306-00-1217310.pdf; 20 kW BE VSC 90 L
 Vaillant,ecoCompact (euro),VCC 266/4-5 150,0010014633,Boiler,manual-confirmed; src: https://res.cloudinary.com/sanicomfort/image/upload/v1622465391/VAILLANT-ECOCOMPACT-GASVLOERKETEL-COMBI-CONDENSATIE-VCC-206-0010014633-vai_27_tf_ecocompact_vcc_206-266-306_00.pdf; 26 kW BE combi VCC 150 L
-Vaillant,,,0010014683,Boiler,UNRESOLVED Vaillant appliance PN; no public catalog hit across retailer aggregators
+Vaillant,BAI00 ecoTEC,,0010014683,Boiler,LOW-confidence via john30 pn_name_map binding to BAI00 device (ecoTEC-family appliance; 0010 prefix = whole appliance); exact model unresolved; src: john30_pn_name_map.csv:28
 Vaillant,ecoTEC exclusive /5-7,VC 156/5-7 (N-DE),0010014917,Boiler,manual-confirmed; src: https://kontakt.vaillant.de/documents/download/155649/; 15 kW DE H-gas wall-hung heat-only; Betriebsanleitung 0020189874_00
 Vaillant,turboTEC plus,VU 202/5-5,0010015325,Boiler,/5-5 generation; turbo (forced-draft) single-circuit; heating-only; Ukrainian market variant; eBUS; CONFIDENCE: HIGH; src: vaillant.ua PDF im-turbotec-pro-turbotec-plusvu-vuw-1152468 and BY PDF montazh-i-ekspluataciya-turbotec
 Vaillant,ecoCompact (euro),VSC 146/4-5 90 E,0010015596,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 3-14 kW DE E-gas 90 L
@@ -290,7 +290,7 @@ Vaillant,ecoCompact (euro),VSC 266/4-5 150 E,0010015606,Boiler,manual-confirmed;
 Vaillant,ecoCompact (euro),VCC 266/4-5 150 E,0010015607,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 6-26 kW DE E-gas 150 L coil Rohrwendel
 Vaillant,ecoCompact (euro),VSC 266/4-5 200 E/LL,0010015608,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 6-26 kW DE E/LL-gas 200 L
 Vaillant,ecoCompact (euro),VSC S 146/4-5 150 E,0010015609,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 3-14 kW DE E-gas 150 L solar auroCOMPACT
-Vaillant,ecoCompact (euro),,0010015610,Boiler,
+Vaillant,ecoCompact (euro),VSC S 146/4-5 150 LL,0010015610,Boiler,manual-confirmed; src: https://heizung-billiger.de/211964-vaillant-aurocompact-vsc-s-146-4-5-150-kompaktgerat-brennwert-3-14-kw-ll-gas-vaillant-0010015610-4024074699744.html; 3-14 kW DE LL-gas 150 L solar auroCOMPACT; sibling of 15609 E-gas and 15611 190 L
 Vaillant,ecoCompact (euro),VSC S 146/4-5 190 E,0010015611,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 3-14 kW DE E-gas 190 L solar auroCOMPACT
 Vaillant,ecoCompact (euro),VSC S 206/4-5 150 E,0010015612,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE E-gas 150 L solar auroCOMPACT
 Vaillant,ecoCompact (euro),VSC S 206/4-5 150 LL,0010015613,Boiler,manual-confirmed; src: https://www.intec-heizung.de/media/pdf/5a/dd/54/Vaillant-atmoTEC-VC-VCW-194-4-5-Installations-und-Wartungsanleitung.pdf; 4-21 kW DE L-gas 150 L solar auroCOMPACT
@@ -348,7 +348,7 @@ Vaillant,ecoTEC plus,624,0010018535,Boiler,
 Vaillant,ecoTEC plus,630,0010018536,Boiler,
 Vaillant,ecoTEC plus,630 LPG,0010018537,Boiler,
 Vaillant,ecoTEC plus,637,0010018538,Boiler,
-Vaillant,ecoCompact (euro),,0010019268,Boiler,
+Vaillant,ecoTEC plus /5-5,VC (INT) 306/5-5 early-variant,0010019268,Boiler,MED-confidence; john30 issue #106 confirms BAI00 SW=0609 HW=5502 'ecoTEC plus not a compact'; loads bai.0010015600.inc (ecoTEC plus /5-5 family VC/VCW 146-356); 30 kW class; src: https://github.com/john30/ebusd-configuration/issues/106 ; manual: https://www.vaillant.pl/karty-produktowe/kotly-kondensacyjne/kp-ecotec-plus-vc-5-5-146-206-256-306-356-2006032.pdf
 Vaillant,ecoTEC plus /5-5,VCW 206/5-5 E,0010019276,Boiler,manual-confirmed; src: https://www.grosshandel-hahn.de/shop/Heizung/Heizthermen_und_Heizkessel/Vaillant/VA_GasWandheizgeraet_ecoTEC_plus_VCW_20655_E_Brenntwert__pa38721.htm; 20 kW DE E-gas combi wall-hung
 Vaillant,FM5 Functional Module,VR 71,0010019412,Control Centre,
 Vaillant,ecoFIT pure,VU 126/6-3,0010020395,Boiler,
@@ -434,17 +434,17 @@ Vaillant,ecoTEC plus,VUW 36CS/1-5 (N-INT2),0010043968,Boiler,
 Vaillant,ecoTEC plus,VUW 40CS/1-5 (N-INT2),0010043969,Boiler,
 Vaillant,ecoTEC plus,VUI 32CS/1-5 (N-INT2),0010043970,Boiler,
 Vaillant,sensoCOMFORT,VRC 720/3,0010045478,Regulator,eBUS wired; weather compensation; TFT touch display 3.5 inch; up to 9 heating circuits; cascade of up to 7 generators; supports myVAILLANT app via VR 940f; newer /3 generation (2022+); previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: loebbeshop.de heizung-billiger.de
-Vaillant,,,0020017837,Spare,UNRESOLVED 0020-prefix spare; not indexed by loebbeshop/heizung-billiger/vaillant.de
+Vaillant,Controller _E700,,0020017837,Controller,LOW-confidence via john30 pn_name_map binding to _E700 device (early VRC700-class room unit); src: john30_pn_name_map.csv:74
 Vaillant,calorMATIC 50,VRT 50,0020018266,Thermostat,official VRT 50 page plus market part match; confidence=medium; source_url=https://www.vaillant.hr/krajnji-korisnici/proizvodi/vrt-50-278.html
 Vaillant,calorMATIC 430f,VRC 430f,0020028521,Regulator,
 Vaillant,calorMATIC 430f,VRC 430f,0020028524,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020040079,Regulator,
 Vaillant,Outdoor Thermostat,VR 21,0020045492,Thermostat,official Vaillant regulator matrix plus exact-part cross-reference; confidence=medium; source_url=https://www.vaillant.hu/downloads/07-szabalyzok/calormatic-n-315040.pdf
 Vaillant,calorMATIC 360,VRT 360,0020045552,Regulator,
-Vaillant,ecoTEC,,0020051714,Spare,UNRESOLVED 0020-prefix spare; not indexed by loebbeshop/raleo/ersatzteilprofi/vaillant.de; likely gas-conversion Umstellsatz or Wartungsset variant (sequential 714-717 block)
-Vaillant,ecoTEC,,0020051715,Spare,UNRESOLVED 0020-prefix spare; sequential 714-717 block
-Vaillant,ecoTEC,,0020051716,Spare,UNRESOLVED 0020-prefix spare; sequential 714-717 block
-Vaillant,ecoTEC,,0020051717,Spare,UNRESOLVED 0020-prefix spare; sequential 714-717 block
+Vaillant,ecoTEC electronics,,0020051714,Spare,LOW-confidence via john30 scan-ID 308523/SW174 (4 HW revs 714/715/716/717); ecoTEC BMU/mainboard PCB variant; no Vaillant spare-parts catalog citation; src: helianthus-ebus-vaillant-productids/sources/john30_scanidproduct_products_meta.csv:238
+Vaillant,ecoTEC electronics,,0020051715,Spare,LOW-confidence via john30 scan-ID 308523/SW174 (sibling HW rev); src: john30_scanidproduct_products_meta.csv:239
+Vaillant,ecoTEC electronics,,0020051716,Spare,LOW-confidence via john30 scan-ID 308523/SW174 (sibling HW rev); src: john30_scanidproduct_products_meta.csv:240
+Vaillant,ecoTEC electronics,,0020051717,Spare,LOW-confidence via john30 scan-ID 308523/SW174 (sibling HW rev); src: john30_scanidproduct_products_meta.csv:241
 Vaillant,calorMATIC 430f,VRC 430f,0020058640,Regulator,
 Vaillant,calorMATIC 430,VRC 430,0020060427,Regulator,
 Vaillant,auroFLOW,VPM 20 S,0020071488,Module,
@@ -461,7 +461,7 @@ Vaillant,calorMATIC 630,VRC 630,0020080468,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020080472,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020092435,Regulator,
 Vaillant,calorMATIC 630,VRC 630,0020092440,Regulator,
-Vaillant,,,0020101780,Spare,UNRESOLVED 0020-prefix spare/accessory; numbering era ~2013-2015; possibly aroTHERM/geoTHERM or recoVAIR accessory
+Vaillant,Interface UIH00,,0020101780,Interface,LOW-confidence via john30 pn_name_map binding to UIH00 (user-interface/display head); ~2013-era; src: john30_pn_name_map.csv:93
 Vaillant,calorMATIC 470,VRT 470,0020108128,Regulator,
 Vaillant,calorMATIC 470,VRT 470,0020108132,Regulator,
 Vaillant,calorMATIC 470f,VRC 470f,0020108135,Regulator,

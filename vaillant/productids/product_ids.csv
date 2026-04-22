@@ -5,7 +5,6 @@ Saunier Duval,Thelia Condens,25-A (H-RO),0010016101,Boiler,
 Saunier Duval,Thelia Condens,30-A (H-RO),0010016102,Boiler,
 Saunier Duval,Thelia Condens,35-A (H-RO),0010016103,Boiler,
 Saunier Duval,Examaster,Examaster,0020110658,Module,
-Saunier Duval,MiLink Plus,,0020116884,Gateway,
 Saunier Duval,Exacontrol,E7 C,0020118071,Thermostat,
 Saunier Duval,Exacontrol,E7R C,0020118072,Thermostat,
 Saunier Duval,Exacontrol,E7 C,0020118080,Thermostat,
@@ -469,7 +468,7 @@ Vaillant,calorMATIC 470f,VRC 470f,0020108135,Regulator,
 Vaillant,calorMATIC 470f,VRC 470f,0020108137,Regulator,
 Vaillant,calorMATIC 470f,VRC 470f,0020112594,Regulator,
 Vaillant,Radio Receiver,Radio Receiver,0020112595,Module,
-Vaillant,commDialog Plus,comDIALOG plus,0020116884,Gateway,official Vaillant installation guide; confidence=high; source_url=https://kontakt.vaillant.de/documents/download/139613/
+Vaillant,commDialog Plus,comDIALOG plus,0020116884,Gateway,AKA: SD MiLink Plus; official Vaillant installation guide; confidence=high; source_url=https://kontakt.vaillant.de/documents/download/139613/
 Vaillant,Hydraulic module,VWZ AI VWL X/2 A (West),0020117049,Module,heat pump appliance interface / bridge between VRC 470 controller and aroTHERM VWL/2 A monobloc or split systems; 230V; eBUS; previously mismapped as FM5 VR 71; CONFIDENCE: HIGH; src: vaillant.co.uk manual 3027915
 Vaillant,calorMATIC 350,VRT 350,0020124472,Regulator,
 Vaillant,calorMATIC 450,VRT 450,0020124489,Regulator,

@@ -522,6 +522,36 @@ func TestDeviceRegistry_MergesSameSerialDifferentDeviceID(t *testing.T) {
 	}
 }
 
+func TestDeviceRegistry_UpdatesDeviceIDOnSerialSelfUpdate(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	registry.Register(DeviceInfo{
+		Address:         0x08,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "OLD30",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+		SerialNumber:    "SN-CORRECTED",
+	})
+	registry.Register(DeviceInfo{
+		Address:         0x08,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "DEV30",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+		SerialNumber:    "SN-CORRECTED",
+	})
+
+	entry, ok := registry.Lookup(0x08)
+	if !ok {
+		t.Fatalf("expected address 0x08 to exist")
+	}
+	if entry.DeviceID() != "DEV30" {
+		t.Fatalf("device id = %q; want DEV30", entry.DeviceID())
+	}
+}
+
 func TestDeviceRegistry_PreservesKnownIdentityOnSparseUpdate(t *testing.T) {
 	t.Parallel()
 

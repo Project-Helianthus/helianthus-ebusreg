@@ -91,7 +91,6 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 
 	existingByAddress := r.entries[info.Address]
 	if identityKey == "" && existingByAddress != nil {
-		physical = existingByAddress.physical
 		identityKey = existingByAddress.identityKey
 	}
 
@@ -131,7 +130,8 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	if storedInfo.Manufacturer == "" {
 		storedInfo.Manufacturer = entry.info.Manufacturer
 	}
-	if existingByIdentity != nil && entry.info.DeviceID != "" && storedInfo.DeviceID != entry.info.DeviceID {
+	preserveExistingDeviceID := existingByIdentity != nil && existingByIdentity != existingByAddress
+	if preserveExistingDeviceID && entry.info.DeviceID != "" && storedInfo.DeviceID != entry.info.DeviceID {
 		storedInfo.DeviceID = entry.info.DeviceID
 	} else if storedInfo.DeviceID == "" {
 		storedInfo.DeviceID = entry.info.DeviceID

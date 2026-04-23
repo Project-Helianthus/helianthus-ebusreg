@@ -522,6 +522,55 @@ func TestDeviceRegistry_MergesSameSerialDifferentDeviceID(t *testing.T) {
 	}
 }
 
+func TestDeviceRegistry_KeepsSerialAliasMergeOnSparseSecondaryUpdate(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	serial := "21-22-09-0020184848-0082-005409-N4"
+
+	registry.Register(DeviceInfo{
+		Address:         0x15,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "BASV2",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+		SerialNumber:    serial,
+	})
+	registry.Register(DeviceInfo{
+		Address:         0xEC,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "SOL00",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+		SerialNumber:    serial,
+	})
+	registry.Register(DeviceInfo{
+		Address:         0xEC,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "SOL00",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+	})
+
+	entry15, ok := registry.Lookup(0x15)
+	if !ok {
+		t.Fatalf("expected address 0x15 to exist")
+	}
+	entryEC, ok := registry.Lookup(0xEC)
+	if !ok {
+		t.Fatalf("expected address 0xEC to exist")
+	}
+	if entry15 != entryEC {
+		t.Fatalf("sparse secondary update must not split serial-merged aliases")
+	}
+	if entry15.SerialNumber() != serial {
+		t.Fatalf("serial = %q; want preserved serial", entry15.SerialNumber())
+	}
+	if !slices.Equal(entry15.Addresses(), []byte{0x15, 0xEC}) {
+		t.Fatalf("merged addresses = %v; want [21 236]", entry15.Addresses())
+	}
+}
+
 func TestDeviceRegistry_UpdatesDeviceIDOnSerialSelfUpdate(t *testing.T) {
 	t.Parallel()
 

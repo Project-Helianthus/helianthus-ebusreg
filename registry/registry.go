@@ -90,6 +90,10 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	matched := make([]PlaneProvider, 0, len(r.providers))
 
 	existingByAddress := r.entries[info.Address]
+	incomingHasStableIdentity := normalizeIdentityPart(info.SerialNumber) != "" || normalizeIdentityPart(info.MacAddress) != ""
+	if !incomingHasStableIdentity && existingByAddress != nil && len(existingByAddress.addresses) > 1 && existingByAddress.identityKey != "" {
+		identityKey = existingByAddress.identityKey
+	}
 	if identityKey == "" && existingByAddress != nil {
 		identityKey = existingByAddress.identityKey
 	}

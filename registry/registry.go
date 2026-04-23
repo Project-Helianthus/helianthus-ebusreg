@@ -90,8 +90,11 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	matched := make([]PlaneProvider, 0, len(r.providers))
 
 	existingByAddress := r.entries[info.Address]
+	incomingHasStableIdentity := normalizeIdentityPart(info.SerialNumber) != "" || normalizeIdentityPart(info.MacAddress) != ""
+	if !incomingHasStableIdentity && existingByAddress != nil && len(existingByAddress.addresses) > 1 && existingByAddress.identityKey != "" {
+		identityKey = existingByAddress.identityKey
+	}
 	if identityKey == "" && existingByAddress != nil {
-		physical = existingByAddress.physical
 		identityKey = existingByAddress.identityKey
 	}
 
@@ -131,7 +134,10 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	if storedInfo.Manufacturer == "" {
 		storedInfo.Manufacturer = entry.info.Manufacturer
 	}
-	if storedInfo.DeviceID == "" {
+	preserveExistingDeviceID := existingByIdentity != nil && existingByIdentity != existingByAddress
+	if preserveExistingDeviceID && entry.info.DeviceID != "" && storedInfo.DeviceID != entry.info.DeviceID {
+		storedInfo.DeviceID = entry.info.DeviceID
+	} else if storedInfo.DeviceID == "" {
 		storedInfo.DeviceID = entry.info.DeviceID
 	}
 	if storedInfo.SoftwareVersion == "" {
@@ -147,7 +153,9 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 		storedInfo.MacAddress = entry.info.MacAddress
 	}
 	storedInfo.Address = entry.primaryAddress
-	if info.SerialNumber == "" && info.MacAddress == "" && entry.identityKey != "" {
+	physical = canonicalPhysicalIdentity(storedInfo)
+	identityKey = physical.key()
+	if identityKey == "" && entry.identityKey != "" {
 		identityKey = entry.identityKey
 	}
 

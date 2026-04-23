@@ -446,6 +446,161 @@ func TestDeviceRegistry_SplitsAliasWhenConflictingSerialArrives(t *testing.T) {
 	}
 }
 
+func TestDeviceRegistry_MergesSameSerialDifferentDeviceID(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+
+	// Step 1-2: scan discovers two addresses with different DeviceIDs
+	registry.Register(DeviceInfo{
+		Address:         0x15,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "BASV2",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+	})
+	registry.Register(DeviceInfo{
+		Address:         0xEC,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "SOL00",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+	})
+
+	// Before enrichment: separate entries
+	entry15, _ := registry.Lookup(0x15)
+	entryEC, _ := registry.Lookup(0xEC)
+	if entry15 == entryEC {
+		t.Fatalf("expected separate entries before serial enrichment")
+	}
+
+	// Step 3-4: enrichment discovers same serial on both
+	registry.Register(DeviceInfo{
+		Address:         0x15,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "BASV2",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+		SerialNumber:    "21-22-09-0020184848-0082-005409-N4",
+	})
+	registry.Register(DeviceInfo{
+		Address:         0xEC,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "SOL00",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+		SerialNumber:    "21-22-09-0020184848-0082-005409-N4",
+	})
+
+	// After enrichment: merged into single entry
+	entry15, ok := registry.Lookup(0x15)
+	if !ok {
+		t.Fatalf("expected address 0x15 to exist")
+	}
+	entryEC, ok = registry.Lookup(0xEC)
+	if !ok {
+		t.Fatalf("expected address 0xEC to exist")
+	}
+	if entry15 != entryEC {
+		t.Fatalf("same serial number must merge entries regardless of DeviceID")
+	}
+	if entry15.DeviceID() != "BASV2" {
+		t.Fatalf("merged DeviceID = %q; want BASV2 (primary)", entry15.DeviceID())
+	}
+	if !slices.Equal(entry15.Addresses(), []byte{0x15, 0xEC}) {
+		t.Fatalf("merged addresses = %v; want [21 236]", entry15.Addresses())
+	}
+
+	// Iterate should return single canonical entry
+	var count int
+	registry.Iterate(func(entry DeviceEntry) bool {
+		count++
+		return true
+	})
+	if count != 1 {
+		t.Fatalf("iterate count = %d; want 1 (merged)", count)
+	}
+}
+
+func TestDeviceRegistry_KeepsSerialAliasMergeOnSparseSecondaryUpdate(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	serial := "21-22-09-0020184848-0082-005409-N4"
+
+	registry.Register(DeviceInfo{
+		Address:         0x15,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "BASV2",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+		SerialNumber:    serial,
+	})
+	registry.Register(DeviceInfo{
+		Address:         0xEC,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "SOL00",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+		SerialNumber:    serial,
+	})
+	registry.Register(DeviceInfo{
+		Address:         0xEC,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "SOL00",
+		SoftwareVersion: "0507",
+		HardwareVersion: "1704",
+	})
+
+	entry15, ok := registry.Lookup(0x15)
+	if !ok {
+		t.Fatalf("expected address 0x15 to exist")
+	}
+	entryEC, ok := registry.Lookup(0xEC)
+	if !ok {
+		t.Fatalf("expected address 0xEC to exist")
+	}
+	if entry15 != entryEC {
+		t.Fatalf("sparse secondary update must not split serial-merged aliases")
+	}
+	if entry15.SerialNumber() != serial {
+		t.Fatalf("serial = %q; want preserved serial", entry15.SerialNumber())
+	}
+	if !slices.Equal(entry15.Addresses(), []byte{0x15, 0xEC}) {
+		t.Fatalf("merged addresses = %v; want [21 236]", entry15.Addresses())
+	}
+}
+
+func TestDeviceRegistry_UpdatesDeviceIDOnSerialSelfUpdate(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	registry.Register(DeviceInfo{
+		Address:         0x08,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "OLD30",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+		SerialNumber:    "SN-CORRECTED",
+	})
+	registry.Register(DeviceInfo{
+		Address:         0x08,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "DEV30",
+		SoftwareVersion: "0514",
+		HardwareVersion: "1204",
+		SerialNumber:    "SN-CORRECTED",
+	})
+
+	entry, ok := registry.Lookup(0x08)
+	if !ok {
+		t.Fatalf("expected address 0x08 to exist")
+	}
+	if entry.DeviceID() != "DEV30" {
+		t.Fatalf("device id = %q; want DEV30", entry.DeviceID())
+	}
+}
+
 func TestDeviceRegistry_PreservesKnownIdentityOnSparseUpdate(t *testing.T) {
 	t.Parallel()
 

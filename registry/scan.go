@@ -23,6 +23,17 @@ const (
 
 var errScanResponsePayload = errors.New("scan: invalid response payload")
 
+// ErrScanDirectedEmptyTargets is returned by ScanDirected when it is
+// invoked with a nil or empty targets slice. ScanDirected requires an
+// explicit, bounded target list; the historical full-range fall-through
+// that Scan performs when targets is nil is deliberately not available
+// via this API.
+//
+// See AD10 in
+// helianthus-execution-plans/startup-admission-discovery-w17-26.locked/
+// 12-decision-matrix.md for the directed-scan contract.
+var ErrScanDirectedEmptyTargets = errors.New("scan: directed scan requires explicit non-empty targets")
+
 type ScanBus interface {
 	Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error)
 }
@@ -33,6 +44,34 @@ const scanCollisionMaxPasses = 3
 // frames/second; 100 ms per probe uses ~10 % of bus capacity for scanning
 // while leaving 90 % for semantic B524 polling traffic.
 const scanProbeDelay = 100 * time.Millisecond
+
+// ScanDirected performs a 07 04 identification scan over an explicit,
+// bounded set of targets. Unlike Scan, it refuses to fall through to
+// DefaultScanTargets: callers MUST supply a non-empty targets slice.
+// Nil or empty input returns ErrScanDirectedEmptyTargets and the bus is
+// not touched.
+//
+// Behaviour when targets is non-empty is identical to Scan. The same
+// target-capability rules apply (FrameTypeForTarget, initiator-capable
+// exclusion, SYN/ESC via FrameTypeUnknown), dedupe is consistent, and
+// the collision-retry loop is shared.
+//
+// This API is intended for startup admission on non-ebusd-tcp direct
+// transports where the gateway MUST probe only promoted suspects —
+// never the full 0x01..0xFD address range. Callers on the ebusd-tcp
+// sanctioned bounded-retry path should continue to use Scan directly
+// so that Scan(ctx, bus, registry, source, nil) retains its
+// fall-through semantics.
+//
+// See
+// helianthus-execution-plans/startup-admission-discovery-w17-26.locked/
+// 12-decision-matrix.md#ad10 for the directed-scan contract.
+func ScanDirected(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byte, targets []byte) ([]DeviceEntry, error) {
+	if len(targets) == 0 {
+		return nil, ErrScanDirectedEmptyTargets
+	}
+	return Scan(ctx, bus, registry, source, targets)
+}
 
 // Scan performs a 07 04 identification scan over the provided targets.
 func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byte, targets []byte) ([]DeviceEntry, error) {

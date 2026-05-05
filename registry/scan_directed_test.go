@@ -110,7 +110,7 @@ func TestScanNilTargetsStillFallsThroughToDefault(t *testing.T) {
 	if len(bus.calls) == 0 {
 		t.Fatalf("regression: Scan(nil) emitted zero frames — fall-through to DefaultScanTargets is broken")
 	}
-	// Spot check: at least one frame should target a known slave-range
+	// Spot check: at least one frame should target a known responder-range
 	// address that DefaultScanTargets includes (e.g. 0x08 BAI).
 	sentToBAI := false
 	for _, frame := range bus.calls {

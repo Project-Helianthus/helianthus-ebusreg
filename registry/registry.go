@@ -2,6 +2,7 @@ package registry
 
 import (
 	"sync"
+	"time"
 
 	"github.com/Project-Helianthus/helianthus-ebusreg/schema"
 )
@@ -57,11 +58,12 @@ type FrameTemplate interface {
 }
 
 type DeviceRegistry struct {
-	mu        sync.RWMutex
-	providers []PlaneProvider
-	entries   map[byte]*deviceEntry
-	identity  map[string]*deviceEntry
-	order     []*deviceEntry
+	mu           sync.RWMutex
+	providers    []PlaneProvider
+	entries      map[byte]*deviceEntry
+	addressTable [256]*AddressSlot
+	identity     map[string]*deviceEntry
+	order        []*deviceEntry
 }
 
 func NewDeviceRegistry(providers []PlaneProvider) *DeviceRegistry {
@@ -195,6 +197,8 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 		r.identity[identityKey] = entry
 	}
 	r.entries[info.Address] = entry
+	r.observeAddressSlotLocked(info.Address, entry, DiscoverySourceActiveConfirmed, VerificationStateIdentityConfirmed)
+	r.syncEntryFacesLocked(entry)
 
 	return entry
 }
@@ -280,14 +284,94 @@ func hasConflictingModelSignature(incoming DeviceInfo, existing DeviceInfo) bool
 	return incomingDeviceID != existingDeviceID || incomingSoftware != existingSoftware || incomingHardware != existingHardware
 }
 
+// Lookup returns the canonical *DeviceEntry for the given address, or
+// (nil, false) if no device occupies that slot. Preserved (signature
+// unchanged) so existing callers continue to compile.
 func (r *DeviceRegistry) Lookup(address byte) (DeviceEntry, bool) {
 	r.mu.RLock()
+	defer r.mu.RUnlock()
 	entry, ok := r.entries[address]
-	r.mu.RUnlock()
 	if !ok {
 		return nil, false
 	}
 	return entry, true
+}
+
+// LookupSlot returns the AddressSlot for the requested address (M1
+// address-table accessor), with the slot's own role/source/confidence
+// metadata. When the address is aliased to a multi-address device, the
+// returned slot.Device pointer is shared with the primary slot, but
+// slot.Addr/Role/DiscoverySource/VerificationState describe the
+// REQUESTED address — callers inspecting per-address metadata get the
+// per-slot view (Codex P2: return-the-requested-address-slot).
+func (r *DeviceRegistry) LookupSlot(address byte) (*AddressSlot, bool) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+
+	slot := r.addressTable[address]
+	if slot == nil {
+		return nil, false
+	}
+	return slot, true
+}
+
+func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+
+	slotA := r.ensureAddressSlotLocked(a)
+	slotB := r.ensureAddressSlotLocked(b)
+
+	switch {
+	case slotA.Device != nil:
+		canonical := slotA.Device
+		if secondary := slotB.Device; secondary != nil && secondary != canonical {
+			secondary.addresses = removeAddress(secondary.addresses, b)
+			if len(secondary.addresses) == 0 {
+				if secondary.identityKey != "" {
+					delete(r.identity, secondary.identityKey)
+				}
+				r.order = removeEntry(r.order, secondary)
+			} else {
+				if secondary.primaryAddress == b {
+					secondary.primaryAddress = secondary.addresses[0]
+					secondary.info.Address = secondary.primaryAddress
+				}
+				r.syncEntryFacesLocked(secondary)
+			}
+		}
+		slotB.Device = canonical
+		if !containsAddress(canonical.addresses, b) {
+			canonical.addresses = append(canonical.addresses, b)
+		}
+		r.entries[b] = canonical
+		r.syncEntryFacesLocked(canonical)
+	case slotB.Device != nil:
+		canonical := slotB.Device
+		if secondary := slotA.Device; secondary != nil && secondary != canonical {
+			secondary.addresses = removeAddress(secondary.addresses, a)
+			if len(secondary.addresses) == 0 {
+				if secondary.identityKey != "" {
+					delete(r.identity, secondary.identityKey)
+				}
+				r.order = removeEntry(r.order, secondary)
+			} else {
+				if secondary.primaryAddress == a {
+					secondary.primaryAddress = secondary.addresses[0]
+					secondary.info.Address = secondary.primaryAddress
+				}
+				r.syncEntryFacesLocked(secondary)
+			}
+		}
+		slotA.Device = canonical
+		if !containsAddress(canonical.addresses, a) {
+			canonical.addresses = append(canonical.addresses, a)
+		}
+		r.entries[a] = canonical
+		r.syncEntryFacesLocked(canonical)
+	}
+
+	return nil
 }
 
 func (r *DeviceRegistry) Iterate(fn func(DeviceEntry) bool) {
@@ -311,6 +395,9 @@ func (r *DeviceRegistry) detachAddressLocked(entry *deviceEntry, address byte) {
 		return
 	}
 	delete(r.entries, address)
+	if slot := r.addressTable[address]; slot != nil && slot.Device == entry {
+		r.addressTable[address] = nil
+	}
 	if !containsAddress(entry.addresses, address) {
 		return
 	}
@@ -327,6 +414,52 @@ func (r *DeviceRegistry) detachAddressLocked(entry *deviceEntry, address byte) {
 		entry.primaryAddress = entry.addresses[0]
 		entry.info.Address = entry.primaryAddress
 	}
+	r.syncEntryFacesLocked(entry)
+}
+
+func (r *DeviceRegistry) ensureAddressSlotLocked(address byte) *AddressSlot {
+	slot := r.addressTable[address]
+	if slot == nil {
+		slot = &AddressSlot{Addr: address}
+		r.addressTable[address] = slot
+	}
+	return slot
+}
+
+func (r *DeviceRegistry) observeAddressSlotLocked(address byte, entry *deviceEntry, source DiscoverySource, state VerificationState) {
+	now := time.Now()
+	slot := r.ensureAddressSlotLocked(address)
+	slot.Device = entry
+	if slot.DiscoverySource < source {
+		slot.DiscoverySource = source
+	}
+	if slot.VerificationState < state {
+		slot.VerificationState = state
+	}
+	if slot.FirstObservedAt.IsZero() {
+		slot.FirstObservedAt = now
+	}
+	slot.LastObservedAt = now
+}
+
+func (r *DeviceRegistry) syncEntryFacesLocked(entry *deviceEntry) {
+	if entry == nil {
+		return
+	}
+	faces := make([]BusFace, 0, len(entry.addresses))
+	for _, address := range entry.addresses {
+		slot := r.ensureAddressSlotLocked(address)
+		if slot.Device == nil {
+			slot.Device = entry
+		}
+		faces = append(faces, BusFace{
+			Addr:              address,
+			Role:              slot.Role,
+			DiscoverySource:   slot.DiscoverySource,
+			VerificationState: slot.VerificationState,
+		})
+	}
+	entry.Faces = faces
 }
 
 type deviceEntry struct {
@@ -339,6 +472,7 @@ type deviceEntry struct {
 	projections    []Projection
 	index          CanonicalIndex
 	indexErr       error
+	Faces          []BusFace
 }
 
 func (d *deviceEntry) Address() byte {

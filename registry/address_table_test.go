@@ -29,7 +29,7 @@ func TestAddressSlotLookupParity(t *testing.T) {
 
 	var slot *AddressSlot
 	var ok bool
-	slot, ok = registry.Lookup(0x08)
+	slot, ok = registry.LookupSlot(0x08)
 	if !ok {
 		t.Fatalf("Lookup(0x08) ok = false; want true")
 	}
@@ -37,7 +37,7 @@ func TestAddressSlotLookupParity(t *testing.T) {
 		t.Fatalf("Lookup(0x08) slot = nil; want AddressSlot")
 	}
 
-	unset, ok := registry.Lookup(0xAA)
+	unset, ok := registry.LookupSlot(0xAA)
 	if ok {
 		t.Fatalf("Lookup(0xAA) ok = true; want false")
 	}
@@ -85,12 +85,12 @@ func TestAddressSlotAliasing(t *testing.T) {
 
 	var masterSlot *AddressSlot
 	var ok bool
-	masterSlot, ok = registry.Lookup(0xF1)
+	masterSlot, ok = registry.LookupSlot(0xF1)
 	if !ok {
 		t.Fatalf("Lookup(0xF1) ok = false; want true")
 	}
 	var slaveSlot *AddressSlot
-	slaveSlot, ok = registry.Lookup(0xF6)
+	slaveSlot, ok = registry.LookupSlot(0xF6)
 	if !ok {
 		t.Fatalf("Lookup(0xF6) ok = false; want true")
 	}
@@ -102,11 +102,11 @@ func TestAddressSlotAliasing(t *testing.T) {
 		t.Fatalf("AliasAddresses(0xF1, 0xF6) error = %v", err)
 	}
 
-	masterSlot, ok = registry.Lookup(0xF1)
+	masterSlot, ok = registry.LookupSlot(0xF1)
 	if !ok {
 		t.Fatalf("Lookup(0xF1) after alias ok = false; want true")
 	}
-	slaveSlot, ok = registry.Lookup(0xF6)
+	slaveSlot, ok = registry.LookupSlot(0xF6)
 	if !ok {
 		t.Fatalf("Lookup(0xF6) after alias ok = false; want true")
 	}
@@ -134,7 +134,7 @@ func TestAddressSlotInternalFields(t *testing.T) {
 
 	var slot *AddressSlot
 	var ok bool
-	slot, ok = registry.Lookup(0x15)
+	slot, ok = registry.LookupSlot(0x15)
 	if !ok {
 		t.Fatalf("Lookup(0x15) ok = false; want true")
 	}

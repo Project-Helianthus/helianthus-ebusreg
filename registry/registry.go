@@ -284,7 +284,23 @@ func hasConflictingModelSignature(incoming DeviceInfo, existing DeviceInfo) bool
 	return incomingDeviceID != existingDeviceID || incomingSoftware != existingSoftware || incomingHardware != existingHardware
 }
 
-func (r *DeviceRegistry) Lookup(address byte) (*AddressSlot, bool) {
+// Lookup returns the canonical *DeviceEntry for the given address, or
+// (nil, false) if no device occupies that slot. Preserved (signature
+// unchanged) so existing callers continue to compile.
+func (r *DeviceRegistry) Lookup(address byte) (DeviceEntry, bool) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+	entry, ok := r.entries[address]
+	if !ok {
+		return nil, false
+	}
+	return entry, true
+}
+
+// LookupSlot returns the AddressSlot for the given address (M1 address-
+// table accessor), with role/source/confidence metadata that Lookup
+// does not expose.
+func (r *DeviceRegistry) LookupSlot(address byte) (*AddressSlot, bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 

@@ -297,9 +297,13 @@ func (r *DeviceRegistry) Lookup(address byte) (DeviceEntry, bool) {
 	return entry, true
 }
 
-// LookupSlot returns the AddressSlot for the given address (M1 address-
-// table accessor), with role/source/confidence metadata that Lookup
-// does not expose.
+// LookupSlot returns the AddressSlot for the requested address (M1
+// address-table accessor), with the slot's own role/source/confidence
+// metadata. When the address is aliased to a multi-address device, the
+// returned slot.Device pointer is shared with the primary slot, but
+// slot.Addr/Role/DiscoverySource/VerificationState describe the
+// REQUESTED address — callers inspecting per-address metadata get the
+// per-slot view (Codex P2: return-the-requested-address-slot).
 func (r *DeviceRegistry) LookupSlot(address byte) (*AddressSlot, bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
@@ -307,12 +311,6 @@ func (r *DeviceRegistry) LookupSlot(address byte) (*AddressSlot, bool) {
 	slot := r.addressTable[address]
 	if slot == nil {
 		return nil, false
-	}
-	if slot.Device != nil {
-		primary := slot.Device.Address()
-		if primarySlot := r.addressTable[primary]; primarySlot != nil && primarySlot.Device == slot.Device {
-			slot = primarySlot
-		}
 	}
 	return slot, true
 }

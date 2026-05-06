@@ -26,9 +26,9 @@ func LoadSeedTable(enabled bool) []StaticSeedEntry {
 			DeviceID:     "NETX3",
 			Source:       staticSeedSource,
 			Addresses: []SeedAddressEntry{
-				{Addr: 0xF1, Role: "master", Confidence: "candidate"},
-				{Addr: 0xF6, Role: "slave", Confidence: "candidate"},
-				{Addr: 0x04, Role: "slave", Confidence: "candidate"},
+				{Addr: 0xF1, Role: "initiator", Confidence: "candidate"},
+				{Addr: 0xF6, Role: "target", Confidence: "candidate"},
+				{Addr: 0x04, Role: "target", Confidence: "candidate"},
 			},
 		},
 		{
@@ -36,8 +36,8 @@ func LoadSeedTable(enabled bool) []StaticSeedEntry {
 			DeviceID:     "BASV2",
 			Source:       staticSeedSource,
 			Addresses: []SeedAddressEntry{
-				{Addr: 0x15, Role: "slave", Confidence: "candidate"},
-				{Addr: 0xEC, Role: "slave", Confidence: "candidate"},
+				{Addr: 0x15, Role: "target", Confidence: "candidate"},
+				{Addr: 0xEC, Role: "target", Confidence: "candidate"},
 			},
 		},
 	}

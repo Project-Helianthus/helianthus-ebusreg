@@ -14,9 +14,9 @@ func TestStaticSeedTable_NETX3_OwnsThreeAddresses(t *testing.T) {
 	entry := findStaticSeedEntry(t, productids.LoadSeedTable(true), "Vaillant", "NETX3")
 
 	assertSeedAddresses(t, entry.Addresses, []productids.SeedAddressEntry{
-		{Addr: 0xF1, Role: "master", Confidence: "candidate"},
-		{Addr: 0xF6, Role: "slave", Confidence: "candidate"},
-		{Addr: 0x04, Role: "slave", Confidence: "candidate"},
+		{Addr: 0xF1, Role: "initiator", Confidence: "candidate"},
+		{Addr: 0xF6, Role: "target", Confidence: "candidate"},
+		{Addr: 0x04, Role: "target", Confidence: "candidate"},
 	})
 }
 
@@ -24,8 +24,8 @@ func TestStaticSeedTable_BASV2_OwnsTwoAddresses(t *testing.T) {
 	entry := findStaticSeedEntry(t, productids.LoadSeedTable(true), "Vaillant", "BASV2")
 
 	assertSeedAddresses(t, entry.Addresses, []productids.SeedAddressEntry{
-		{Addr: 0x15, Role: "slave", Confidence: "candidate"},
-		{Addr: 0xEC, Role: "slave", Confidence: "candidate"},
+		{Addr: 0x15, Role: "target", Confidence: "candidate"},
+		{Addr: 0xEC, Role: "target", Confidence: "candidate"},
 	})
 }
 

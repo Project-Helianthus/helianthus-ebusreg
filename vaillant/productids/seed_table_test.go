@@ -1,6 +1,6 @@
 package productids_test
 
-// RED tests for cruise plan address-table-registry-w19-26 M0B/productids — references M5A LoadSeedTable that intentionally doesn't exist yet.
+// Tests verify the M5A LoadSeedTable + M5 NETX3/BASV2 seed entries; both implemented in this branch.
 
 import (
 	"testing"

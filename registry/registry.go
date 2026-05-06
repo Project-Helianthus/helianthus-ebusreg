@@ -310,19 +310,51 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 
 	switch {
 	case slotA.Device != nil:
-		slotB.Device = slotA.Device
-		if !containsAddress(slotA.Device.addresses, b) {
-			slotA.Device.addresses = append(slotA.Device.addresses, b)
+		canonical := slotA.Device
+		if secondary := slotB.Device; secondary != nil && secondary != canonical {
+			secondary.addresses = removeAddress(secondary.addresses, b)
+			if len(secondary.addresses) == 0 {
+				if secondary.identityKey != "" {
+					delete(r.identity, secondary.identityKey)
+				}
+				r.order = removeEntry(r.order, secondary)
+			} else {
+				if secondary.primaryAddress == b {
+					secondary.primaryAddress = secondary.addresses[0]
+					secondary.info.Address = secondary.primaryAddress
+				}
+				r.syncEntryFacesLocked(secondary)
+			}
 		}
-		r.entries[b] = slotA.Device
-		r.syncEntryFacesLocked(slotA.Device)
+		slotB.Device = canonical
+		if !containsAddress(canonical.addresses, b) {
+			canonical.addresses = append(canonical.addresses, b)
+		}
+		r.entries[b] = canonical
+		r.syncEntryFacesLocked(canonical)
 	case slotB.Device != nil:
-		slotA.Device = slotB.Device
-		if !containsAddress(slotB.Device.addresses, a) {
-			slotB.Device.addresses = append(slotB.Device.addresses, a)
+		canonical := slotB.Device
+		if secondary := slotA.Device; secondary != nil && secondary != canonical {
+			secondary.addresses = removeAddress(secondary.addresses, a)
+			if len(secondary.addresses) == 0 {
+				if secondary.identityKey != "" {
+					delete(r.identity, secondary.identityKey)
+				}
+				r.order = removeEntry(r.order, secondary)
+			} else {
+				if secondary.primaryAddress == a {
+					secondary.primaryAddress = secondary.addresses[0]
+					secondary.info.Address = secondary.primaryAddress
+				}
+				r.syncEntryFacesLocked(secondary)
+			}
 		}
-		r.entries[a] = slotB.Device
-		r.syncEntryFacesLocked(slotB.Device)
+		slotA.Device = canonical
+		if !containsAddress(canonical.addresses, a) {
+			canonical.addresses = append(canonical.addresses, a)
+		}
+		r.entries[a] = canonical
+		r.syncEntryFacesLocked(canonical)
 	}
 
 	return nil

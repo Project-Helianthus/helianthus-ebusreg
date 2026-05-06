@@ -68,24 +68,20 @@ func TestAddressSlotAliasing(t *testing.T) {
 	registry := NewDeviceRegistry(nil)
 	registry.Register(DeviceInfo{
 		Address:         0xF1,
-		Manufacturer:    "vaillant",
-		DeviceID:        "NETX3",
-		SerialNumber:    "NETX3",
+		Manufacturer:    "Vaillant",
+		DeviceID:        "NETX3-A",
+		SerialNumber:    "SN-A",
 		SoftwareVersion: "1.0",
 		HardwareVersion: "1.0",
 	})
 	registry.Register(DeviceInfo{
 		Address:         0xF6,
-		Manufacturer:    "vaillant",
-		DeviceID:        "NETX3",
-		SerialNumber:    "NETX3",
+		Manufacturer:    "Vaillant",
+		DeviceID:        "NETX3-B",
+		SerialNumber:    "SN-B",
 		SoftwareVersion: "1.0",
 		HardwareVersion: "1.0",
 	})
-
-	if err := registry.AliasAddresses(0xF1, 0xF6); err != nil {
-		t.Fatalf("AliasAddresses(0xF1, 0xF6) error = %v", err)
-	}
 
 	var masterSlot *AddressSlot
 	var ok bool
@@ -97,6 +93,22 @@ func TestAddressSlotAliasing(t *testing.T) {
 	slaveSlot, ok = registry.Lookup(0xF6)
 	if !ok {
 		t.Fatalf("Lookup(0xF6) ok = false; want true")
+	}
+	if masterSlot.Device == slaveSlot.Device {
+		t.Fatalf("pre-alias slots share Device = %p; want distinct devices", masterSlot.Device)
+	}
+
+	if err := registry.AliasAddresses(0xF1, 0xF6); err != nil {
+		t.Fatalf("AliasAddresses(0xF1, 0xF6) error = %v", err)
+	}
+
+	masterSlot, ok = registry.Lookup(0xF1)
+	if !ok {
+		t.Fatalf("Lookup(0xF1) after alias ok = false; want true")
+	}
+	slaveSlot, ok = registry.Lookup(0xF6)
+	if !ok {
+		t.Fatalf("Lookup(0xF6) after alias ok = false; want true")
 	}
 	if masterSlot.Device == nil {
 		t.Fatalf("Lookup(0xF1).Device = nil; want aliased device")

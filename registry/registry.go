@@ -426,6 +426,44 @@ func (r *DeviceRegistry) ensureAddressSlotLocked(address byte) *AddressSlot {
 	return slot
 }
 
+// MarkSlotPassiveObserved updates an AddressSlot for an address that was
+// passively observed by the gateway (e.g. by AddressTableInserter on
+// positive ACK following a complete request). Writes Role / Discovery
+// Source / VerificationState / FirstObservedAt / LastObservedAt under the
+// registry write lock so concurrent readers via LookupSlot / Lookup do
+// not see torn state.
+//
+// This API replaces direct *AddressSlot field mutation by the gateway
+// inserter, which was racy with other readers (Codex P2 follow-up from
+// PR #565). Idempotent: re-marking the same slot only advances
+// DiscoverySource / VerificationState monotonically (the slot retains
+// the higher of the existing and new value, matching
+// observeAddressSlotLocked's monotonic semantics).
+func (r *DeviceRegistry) MarkSlotPassiveObserved(address byte, role SlotRole, observedAt time.Time) {
+	if r == nil {
+		return
+	}
+	r.mu.Lock()
+	defer r.mu.Unlock()
+
+	slot := r.ensureAddressSlotLocked(address)
+	if slot.DiscoverySource < DiscoverySourcePassiveObserved {
+		slot.DiscoverySource = DiscoverySourcePassiveObserved
+	}
+	if slot.VerificationState < VerificationStateCorroborated {
+		slot.VerificationState = VerificationStateCorroborated
+	}
+	if role != SlotRoleUnknown && slot.Role == SlotRoleUnknown {
+		slot.Role = role
+	}
+	if slot.FirstObservedAt.IsZero() && !observedAt.IsZero() {
+		slot.FirstObservedAt = observedAt
+	}
+	if !observedAt.IsZero() {
+		slot.LastObservedAt = observedAt
+	}
+}
+
 func (r *DeviceRegistry) observeAddressSlotLocked(address byte, entry *deviceEntry, source DiscoverySource, state VerificationState) {
 	now := time.Now()
 	slot := r.ensureAddressSlotLocked(address)

@@ -86,17 +86,20 @@ func TestAddressByRole_FallsBackToAddressClassWhenRoleUnknown(t *testing.T) {
 	}
 }
 
-// TestPrimaryDisplayAddress_MatchesAddress asserts the new method is
-// equivalent to Address() for now (M-C6a is additive; M-C6c removes
-// Address). Same primary returned.
-func TestPrimaryDisplayAddress_MatchesAddress(t *testing.T) {
+// TestPrimaryDisplayAddress_ReturnsRegisteredAddress asserts the
+// display API returns the originally registered byte for an entry
+// with a single face. Phase C M-C6c: the legacy Address() method
+// has been removed; PrimaryDisplayAddress is the canonical display
+// path for log/UI surfaces and must continue to return a stable
+// representative byte.
+func TestPrimaryDisplayAddress_ReturnsRegisteredAddress(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
 	reg.Register(DeviceInfo{Address: 0x15, Manufacturer: "Vaillant", DeviceID: "BASV2"})
 	entry, _ := reg.Lookup(0x15)
 
-	if got, want := entry.PrimaryDisplayAddress(), entry.Address(); got != want {
-		t.Errorf("PrimaryDisplayAddress() = 0x%02X; want %02X (matches Address)", got, want)
+	if got := entry.PrimaryDisplayAddress(); got != 0x15 {
+		t.Errorf("PrimaryDisplayAddress() = 0x%02X; want 0x15", got)
 	}
 }

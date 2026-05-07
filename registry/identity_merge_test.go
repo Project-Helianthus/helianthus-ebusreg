@@ -36,9 +36,9 @@ func TestIdentityMerge_FourAddressesSameSerial(t *testing.T) {
 			t.Fatalf("Lookup(0x%02X) ok=false", addr)
 		}
 		if primary == 0 {
-			primary = entry.Address()
-		} else if entry.Address() != primary {
-			t.Fatalf("0x%02X primary=0x%02X; want 0x%02X (all same SerialNumber should alias)", addr, entry.Address(), primary)
+			primary = entry.PrimaryDisplayAddress()
+		} else if entry.PrimaryDisplayAddress() != primary {
+			t.Fatalf("0x%02X primary=0x%02X; want 0x%02X (all same SerialNumber should alias)", addr, entry.PrimaryDisplayAddress(), primary)
 		}
 	}
 
@@ -71,8 +71,8 @@ func TestIdentityMerge_DistinctSerialsStaySeparate(t *testing.T) {
 
 	bai, _ := reg.Lookup(0x08)
 	basv2, _ := reg.Lookup(0x15)
-	if bai.Address() == basv2.Address() {
-		t.Fatalf("distinct identities unexpectedly aliased: BAI primary=0x%02X, BASV2 primary=0x%02X", bai.Address(), basv2.Address())
+	if bai.PrimaryDisplayAddress() == basv2.PrimaryDisplayAddress() {
+		t.Fatalf("distinct identities unexpectedly aliased: BAI primary=0x%02X, BASV2 primary=0x%02X", bai.PrimaryDisplayAddress(), basv2.PrimaryDisplayAddress())
 	}
 }
 
@@ -89,15 +89,15 @@ func TestIdentityMerge_LateEnrichmentAliasesPriorEntry(t *testing.T) {
 	// Step 1: 0xF6 known via active scan with full identity.
 	reg.Register(DeviceInfo{Address: 0xF6, Manufacturer: "Vaillant", DeviceID: "NETX3", SerialNumber: "SN-NETX3"})
 	pre, _ := reg.Lookup(0xF6)
-	if pre.Address() != 0xF6 {
-		t.Fatalf("setup: 0xF6 primary = 0x%02X; want 0xF6", pre.Address())
+	if pre.PrimaryDisplayAddress() != 0xF6 {
+		t.Fatalf("setup: 0xF6 primary = 0x%02X; want 0xF6", pre.PrimaryDisplayAddress())
 	}
 
 	// Step 2: 0xF1 inserted passively via inserter (no identity yet).
 	reg.Register(DeviceInfo{Address: 0xF1})
 	mid, _ := reg.Lookup(0xF1)
-	if mid.Address() == 0xF6 {
-		t.Fatalf("0xF1 unexpectedly aliased to 0xF6 with no identity match: primary=0x%02X", mid.Address())
+	if mid.PrimaryDisplayAddress() == 0xF6 {
+		t.Fatalf("0xF1 unexpectedly aliased to 0xF6 with no identity match: primary=0x%02X", mid.PrimaryDisplayAddress())
 	}
 
 	// Step 3: enrichment learns 0xF1's identity (e.g. via probe) — same
@@ -106,9 +106,9 @@ func TestIdentityMerge_LateEnrichmentAliasesPriorEntry(t *testing.T) {
 
 	post0xF1, _ := reg.Lookup(0xF1)
 	post0xF6, _ := reg.Lookup(0xF6)
-	if post0xF1.Address() != post0xF6.Address() {
+	if post0xF1.PrimaryDisplayAddress() != post0xF6.PrimaryDisplayAddress() {
 		t.Fatalf("after late enrichment, 0xF1 primary=0x%02X 0xF6 primary=0x%02X; want same primary",
-			post0xF1.Address(), post0xF6.Address())
+			post0xF1.PrimaryDisplayAddress(), post0xF6.PrimaryDisplayAddress())
 	}
 
 	addrs := post0xF1.Addresses()

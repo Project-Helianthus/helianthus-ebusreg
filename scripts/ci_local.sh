@@ -5,7 +5,12 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
 echo "==> terminology gate"
-if grep -RInwi --exclude-dir=.git -E 'm[a]ster|s[l]ave' .; then
+# Phase C M-C6: AddressByRole(SlotRole) test documents the eBUS-spec
+# SlotRoleMaster/SlotRoleSlave enum values. Mirrors the exclusion in
+# .github/workflows/ci.yml so local CI matches GH Actions semantics.
+if git grep -nIwiE 'm[a]ster|s[l]ave' -- \
+    ':!vendor/' \
+    ':!registry/address_by_role_test.go'; then
   echo "Found legacy terminology."
   exit 1
 fi

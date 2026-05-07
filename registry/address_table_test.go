@@ -47,7 +47,7 @@ func TestAddressSlotLookupParity(t *testing.T) {
 
 	var iterated08 DeviceEntry
 	registry.Iterate(func(entry DeviceEntry) bool {
-		if entry.Address() == 0x08 {
+		if entry.PrimaryDisplayAddress() == 0x08 {
 			iterated08 = entry
 			return false
 		}

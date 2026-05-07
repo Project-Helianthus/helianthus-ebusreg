@@ -542,8 +542,8 @@ func TestScanReusesSerialAcrossAliasAddressesByIdentity(t *testing.T) {
 	if len(entries) != 1 {
 		t.Fatalf("expected 1 entry, got %d", len(entries))
 	}
-	if entries[0].Address() != 0x30 {
-		t.Fatalf("canonical address = %02x; want 30", entries[0].Address())
+	if entries[0].PrimaryDisplayAddress() != 0x30 {
+		t.Fatalf("canonical address = %02x; want 30", entries[0].PrimaryDisplayAddress())
 	}
 	if !slices.Equal(entries[0].Addresses(), []byte{0x30, 0x31, 0x20}) {
 		t.Fatalf("addresses = %v; want [48 49 32]", entries[0].Addresses())
@@ -553,8 +553,8 @@ func TestScanReusesSerialAcrossAliasAddressesByIdentity(t *testing.T) {
 	if !ok {
 		t.Fatalf("expected alias 0x31 to be registered")
 	}
-	if entry.Address() != 0x30 {
-		t.Fatalf("lookup canonical address = %02x; want 30", entry.Address())
+	if entry.PrimaryDisplayAddress() != 0x30 {
+		t.Fatalf("lookup canonical address = %02x; want 30", entry.PrimaryDisplayAddress())
 	}
 	if entry.SerialNumber() != "21-22-09-0020184848-0082-005409-N4" {
 		t.Fatalf("serial number = %q; want preserved value", entry.SerialNumber())
@@ -624,8 +624,8 @@ func TestScanDeduplicatesAliasAddressesIntoSingleEntry(t *testing.T) {
 	if len(entries) != 1 {
 		t.Fatalf("expected 1 canonical entry, got %d", len(entries))
 	}
-	if entries[0].Address() != 0x08 {
-		t.Fatalf("canonical address = %02x; want 08", entries[0].Address())
+	if entries[0].PrimaryDisplayAddress() != 0x08 {
+		t.Fatalf("canonical address = %02x; want 08", entries[0].PrimaryDisplayAddress())
 	}
 	if !slices.Equal(entries[0].Addresses(), []byte{0x08, 0x09}) {
 		t.Fatalf("addresses = %v; want [8 9]", entries[0].Addresses())
@@ -635,8 +635,8 @@ func TestScanDeduplicatesAliasAddressesIntoSingleEntry(t *testing.T) {
 	if !ok {
 		t.Fatalf("expected alias address 0x09 lookup")
 	}
-	if entry.Address() != 0x08 {
-		t.Fatalf("lookup canonical address = %02x; want 08", entry.Address())
+	if entry.PrimaryDisplayAddress() != 0x08 {
+		t.Fatalf("lookup canonical address = %02x; want 08", entry.PrimaryDisplayAddress())
 	}
 }
 
@@ -670,8 +670,8 @@ func TestScanRegistersQueriedAliasWhenResponseSourceRepeats(t *testing.T) {
 	if len(entries) != 1 {
 		t.Fatalf("expected 1 canonical entry, got %d", len(entries))
 	}
-	if entries[0].Address() != 0x15 {
-		t.Fatalf("canonical address = %02x; want 15", entries[0].Address())
+	if entries[0].PrimaryDisplayAddress() != 0x15 {
+		t.Fatalf("canonical address = %02x; want 15", entries[0].PrimaryDisplayAddress())
 	}
 	if !slices.Equal(entries[0].Addresses(), []byte{0x15, 0xEC}) {
 		t.Fatalf("addresses = %v; want [21 236]", entries[0].Addresses())
@@ -681,8 +681,8 @@ func TestScanRegistersQueriedAliasWhenResponseSourceRepeats(t *testing.T) {
 	if !ok {
 		t.Fatalf("expected alias address 0xEC lookup")
 	}
-	if entry.Address() != 0x15 {
-		t.Fatalf("lookup canonical address = %02x; want 15", entry.Address())
+	if entry.PrimaryDisplayAddress() != 0x15 {
+		t.Fatalf("lookup canonical address = %02x; want 15", entry.PrimaryDisplayAddress())
 	}
 }
 

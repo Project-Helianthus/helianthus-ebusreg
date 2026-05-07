@@ -57,18 +57,17 @@ type projectionTestEntry struct {
 	projections     []Projection
 }
 
-func (entry projectionTestEntry) Address() byte                       { return entry.address }
 func (entry projectionTestEntry) AddressByRole(SlotRole) (byte, bool) { return entry.address, true }
 func (entry projectionTestEntry) PrimaryDisplayAddress() byte         { return entry.address }
 func (entry projectionTestEntry) Addresses() []byte                   { return append([]byte(nil), entry.addresses...) }
-func (entry projectionTestEntry) Manufacturer() string      { return entry.manufacturer }
-func (entry projectionTestEntry) DeviceID() string          { return entry.deviceID }
-func (entry projectionTestEntry) SerialNumber() string      { return entry.serialNumber }
-func (entry projectionTestEntry) MacAddress() string        { return entry.macAddress }
-func (entry projectionTestEntry) SoftwareVersion() string   { return entry.softwareVersion }
-func (entry projectionTestEntry) HardwareVersion() string   { return entry.hardwareVersion }
-func (entry projectionTestEntry) Planes() []Plane           { return entry.planes }
-func (entry projectionTestEntry) Projections() []Projection { return entry.projections }
+func (entry projectionTestEntry) Manufacturer() string                { return entry.manufacturer }
+func (entry projectionTestEntry) DeviceID() string                    { return entry.deviceID }
+func (entry projectionTestEntry) SerialNumber() string                { return entry.serialNumber }
+func (entry projectionTestEntry) MacAddress() string                  { return entry.macAddress }
+func (entry projectionTestEntry) SoftwareVersion() string             { return entry.softwareVersion }
+func (entry projectionTestEntry) HardwareVersion() string             { return entry.hardwareVersion }
+func (entry projectionTestEntry) Planes() []Plane                     { return entry.planes }
+func (entry projectionTestEntry) Projections() []Projection           { return entry.projections }
 
 type projectionTestIterator struct {
 	entries []DeviceEntry

@@ -190,7 +190,7 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 				alias.Address = target
 				entry = registry.Register(alias)
 			}
-			canonicalAddress := entry.Address()
+			canonicalAddress := entry.PrimaryDisplayAddress()
 			if _, ok := registered[canonicalAddress]; !ok {
 				registered[canonicalAddress] = struct{}{}
 				entries = append(entries, entry)

@@ -19,22 +19,19 @@ type DeviceInfo struct {
 }
 
 type DeviceEntry interface {
-	// Address returns the canonical primary address.
-	//
-	// Deprecated (Phase C M-C6 — pending REMOVAL): the value returned
-	// for an aliased canonical pair (e.g. BAI 0x03↔0x08) is the first
-	// registered byte, which may be the initiator role byte when the
-	// caller's intent is to address the target role byte. Use
-	// AddressByRole(SlotRole) for routing-correct lookups (M2S writers
-	// pass SlotRoleSlave; M2M passes SlotRoleMaster — these enum
-	// values use eBUS-spec normative names) and
-	// PrimaryDisplayAddress() for log/UI display where any address is
-	// acceptable. After all callers migrate, Address() will be removed.
-	Address() byte
 	// AddressByRole returns the first BusFace address whose Role
 	// matches the requested SlotRole. Returns (0, false) when no face
 	// matches. Used by routing code to address the correct byte for
 	// the intended frame type (per AddressClass taxonomy).
+	//
+	// Phase C M-C6c: replaces the previous ambiguous Address() method,
+	// which conflated the "show me a representative byte" use case
+	// (now PrimaryDisplayAddress) with the "give me the routing-
+	// correct byte for this frame type" use case (this method). The
+	// removed method silently returned the initiator byte for an
+	// aliased canonical pair (e.g. BAI 0x03↔0x08), causing M2S writes
+	// to mis-route to the initiator side. AddressByRole forces
+	// callers to declare their intent.
 	AddressByRole(role SlotRole) (byte, bool)
 	// PrimaryDisplayAddress returns a representative address for log /
 	// UI display. May be initiator OR target for aliased pairs; do
@@ -541,20 +538,20 @@ type deviceEntry struct {
 	Faces          []BusFace
 }
 
-func (d *deviceEntry) Address() byte {
+// PrimaryDisplayAddress returns a representative address for log/UI
+// display. Returns the canonical primary if set, otherwise the
+// originally registered info.Address. Use this for log lines,
+// MCP/GraphQL device.address fields, UI labels — anywhere the value
+// is shown to humans rather than written to the wire. For wire
+// routing, use AddressByRole(SlotRole) which is class-aware.
+//
+// Phase C M-C6c: replaces deviceEntry.Address(), whose name conflated
+// display and routing semantics for aliased canonical pairs.
+func (d *deviceEntry) PrimaryDisplayAddress() byte {
 	if d.primaryAddress != 0 {
 		return d.primaryAddress
 	}
 	return d.info.Address
-}
-
-// PrimaryDisplayAddress returns the same value as Address but with
-// "display, not routing" semantics expressed in the name. Use this for
-// log lines, MCP/GraphQL device.address fields, UI labels — anywhere
-// the value is shown to humans rather than written to the wire. For
-// wire routing, use AddressByRole(SlotRole) which is class-aware.
-func (d *deviceEntry) PrimaryDisplayAddress() byte {
-	return d.Address()
 }
 
 // AddressByRole returns the first BusFace address whose Role matches.

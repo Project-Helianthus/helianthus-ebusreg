@@ -83,8 +83,8 @@ func ProjectDeviceEntry(entry DeviceEntry) (ServiceDeviceView, error) {
 	sortServicePlanes(projectedPlanes)
 
 	return ServiceDeviceView{
-		Address:         entry.Address(),
-		Addresses:       normalizeProjectedAddresses(entry.Address(), entry.Addresses()),
+		Address:         entry.PrimaryDisplayAddress(),
+		Addresses:       normalizeProjectedAddresses(entry.PrimaryDisplayAddress(), entry.Addresses()),
 		Manufacturer:    entry.Manufacturer(),
 		DeviceID:        entry.DeviceID(),
 		SerialNumber:    entry.SerialNumber(),

@@ -179,7 +179,7 @@ func TestDeviceRegistry_RegisterLookupIterate(t *testing.T) {
 
 	addresses := make([]byte, 0)
 	registry.Iterate(func(entry DeviceEntry) bool {
-		addresses = append(addresses, entry.Address())
+		addresses = append(addresses, entry.PrimaryDisplayAddress())
 		return true
 	})
 	if len(addresses) != 2 {
@@ -238,7 +238,7 @@ func TestDeviceRegistry_IterateStops(t *testing.T) {
 
 	addresses := make([]byte, 0)
 	registry.Iterate(func(entry DeviceEntry) bool {
-		addresses = append(addresses, entry.Address())
+		addresses = append(addresses, entry.PrimaryDisplayAddress())
 		return len(addresses) < 2
 	})
 
@@ -335,8 +335,8 @@ func TestDeviceRegistry_AliasAddressesShareCanonicalEntry(t *testing.T) {
 	if entry08 != entry09 {
 		t.Fatalf("expected aliases to resolve to the same device entry")
 	}
-	if entry08.Address() != 0x08 {
-		t.Fatalf("canonical address = %02x; want 08", entry08.Address())
+	if entry08.PrimaryDisplayAddress() != 0x08 {
+		t.Fatalf("canonical address = %02x; want 08", entry08.PrimaryDisplayAddress())
 	}
 	if !slices.Equal(entry08.Addresses(), []byte{0x08, 0x09}) {
 		t.Fatalf("addresses = %v; want [8 9]", entry08.Addresses())
@@ -344,7 +344,7 @@ func TestDeviceRegistry_AliasAddressesShareCanonicalEntry(t *testing.T) {
 
 	addresses := make([]byte, 0)
 	registry.Iterate(func(entry DeviceEntry) bool {
-		addresses = append(addresses, entry.Address())
+		addresses = append(addresses, entry.PrimaryDisplayAddress())
 		return true
 	})
 	if !slices.Equal(addresses, []byte{0x08}) {

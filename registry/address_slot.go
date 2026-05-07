@@ -46,20 +46,19 @@ type BusFace struct {
 	AccessProtocols   []string
 }
 
-func (s *AddressSlot) Address() byte {
+// PrimaryDisplayAddress returns the slot's display address —
+// the wrapped Device's PrimaryDisplayAddress when present, otherwise
+// the slot's own Addr. Phase C M-C6c: replaces the removed
+// AddressSlot.Address() method (which had identical semantics but
+// conflated display vs. routing intent).
+func (s *AddressSlot) PrimaryDisplayAddress() byte {
 	if s == nil {
 		return 0
 	}
 	if s.Device != nil {
-		return s.Device.Address()
+		return s.Device.PrimaryDisplayAddress()
 	}
 	return s.Addr
-}
-
-// PrimaryDisplayAddress mirrors AddressSlot.Address — slot-as-DeviceEntry
-// view forwards the existing primary semantic.
-func (s *AddressSlot) PrimaryDisplayAddress() byte {
-	return s.Address()
 }
 
 // AddressByRole forwards to the wrapped Device's AddressByRole; falls

@@ -4,6 +4,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
 	"github.com/Project-Helianthus/helianthus-ebusreg/schema"
 )
 
@@ -18,7 +19,27 @@ type DeviceInfo struct {
 }
 
 type DeviceEntry interface {
+	// Address returns the canonical primary address.
+	//
+	// Deprecated (Phase C M-C6 — pending REMOVAL): the value returned
+	// for an aliased canonical pair (e.g. BAI 0x03↔0x08) is the first
+	// registered byte, which may be the initiator role byte when the
+	// caller's intent is to address the target role byte. Use
+	// AddressByRole(SlotRole) for routing-correct lookups (M2S writers
+	// pass SlotRoleSlave; M2M passes SlotRoleMaster — these enum
+	// values use eBUS-spec normative names) and
+	// PrimaryDisplayAddress() for log/UI display where any address is
+	// acceptable. After all callers migrate, Address() will be removed.
 	Address() byte
+	// AddressByRole returns the first BusFace address whose Role
+	// matches the requested SlotRole. Returns (0, false) when no face
+	// matches. Used by routing code to address the correct byte for
+	// the intended frame type (per AddressClass taxonomy).
+	AddressByRole(role SlotRole) (byte, bool)
+	// PrimaryDisplayAddress returns a representative address for log /
+	// UI display. May be initiator OR target for aliased pairs; do
+	// NOT use for wire routing. For routing, use AddressByRole.
+	PrimaryDisplayAddress() byte
 	Addresses() []byte
 	Manufacturer() string
 	DeviceID() string
@@ -462,6 +483,13 @@ func (r *DeviceRegistry) MarkSlotPassiveObserved(address byte, role SlotRole, ob
 	if !observedAt.IsZero() {
 		slot.LastObservedAt = observedAt
 	}
+	// Phase C M-C6a: refresh entry.Faces so AddressByRole sees the
+	// updated SlotRole. Without this sync, MarkSlotPassiveObserved
+	// would leave Faces stale and AddressByRole(SlotRoleSlave) on a
+	// just-passively-observed slot would return (0, false).
+	if slot.Device != nil {
+		r.syncEntryFacesLocked(slot.Device)
+	}
 }
 
 func (r *DeviceRegistry) observeAddressSlotLocked(address byte, entry *deviceEntry, source DiscoverySource, state VerificationState) {
@@ -518,6 +546,57 @@ func (d *deviceEntry) Address() byte {
 		return d.primaryAddress
 	}
 	return d.info.Address
+}
+
+// PrimaryDisplayAddress returns the same value as Address but with
+// "display, not routing" semantics expressed in the name. Use this for
+// log lines, MCP/GraphQL device.address fields, UI labels — anywhere
+// the value is shown to humans rather than written to the wire. For
+// wire routing, use AddressByRole(SlotRole) which is class-aware.
+func (d *deviceEntry) PrimaryDisplayAddress() byte {
+	return d.Address()
+}
+
+// AddressByRole returns the first BusFace address whose Role matches.
+// Routing-correct alternative to Address: M2S writers pass
+// SlotRoleSlave to get the target byte; M2M arbitration logic passes
+// SlotRoleMaster for the initiator byte. Returns (0, false) when no
+// face matches the requested role.
+//
+// Decision references: Phase C AD30 (entry.Address ambiguity fix);
+// uses the existing BusFace.Role machinery populated by
+// syncEntryFacesLocked.
+func (d *deviceEntry) AddressByRole(role SlotRole) (byte, bool) {
+	if d == nil {
+		return 0, false
+	}
+	// Pass 1: explicit Role match (set via MarkSlotPassiveObserved or
+	// other role-aware paths).
+	for _, face := range d.Faces {
+		if face.Role == role {
+			return face.Addr, true
+		}
+	}
+	// Pass 2: SlotRoleUnknown fallback — active scan registers entries
+	// without populating Role (Codex P2 from PR #134). Infer the role
+	// from the address class so callers migrating from Address() to
+	// AddressByRole get a useful answer for actively-scanned devices.
+	for _, face := range d.Faces {
+		if face.Role != SlotRoleUnknown {
+			continue
+		}
+		switch protocol.AddressClassOf(face.Addr) {
+		case protocol.AddressClassMaster:
+			if role == SlotRoleMaster {
+				return face.Addr, true
+			}
+		case protocol.AddressClassSlave:
+			if role == SlotRoleSlave {
+				return face.Addr, true
+			}
+		}
+	}
+	return 0, false
 }
 
 func (d *deviceEntry) Addresses() []byte {

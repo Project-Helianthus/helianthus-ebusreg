@@ -57,8 +57,10 @@ type projectionTestEntry struct {
 	projections     []Projection
 }
 
-func (entry projectionTestEntry) Address() byte             { return entry.address }
-func (entry projectionTestEntry) Addresses() []byte         { return append([]byte(nil), entry.addresses...) }
+func (entry projectionTestEntry) Address() byte                       { return entry.address }
+func (entry projectionTestEntry) AddressByRole(SlotRole) (byte, bool) { return entry.address, true }
+func (entry projectionTestEntry) PrimaryDisplayAddress() byte         { return entry.address }
+func (entry projectionTestEntry) Addresses() []byte                   { return append([]byte(nil), entry.addresses...) }
 func (entry projectionTestEntry) Manufacturer() string      { return entry.manufacturer }
 func (entry projectionTestEntry) DeviceID() string          { return entry.deviceID }
 func (entry projectionTestEntry) SerialNumber() string      { return entry.serialNumber }

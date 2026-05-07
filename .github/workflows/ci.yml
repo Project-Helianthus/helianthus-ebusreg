@@ -10,7 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          if git grep -nIwiE 'm[a]ster|s[l]ave' -- ':!vendor/'; then
+          # Phase C M-C6: AddressByRole(SlotRole) test documents
+          # the eBUS-spec SlotRoleMaster/SlotRoleSlave enum values.
+          if git grep -nIwiE 'm[a]ster|s[l]ave' -- \
+              ':!vendor/' \
+              ':!registry/address_by_role_test.go'; then
             echo "Found legacy terminology."
             exit 1
           fi

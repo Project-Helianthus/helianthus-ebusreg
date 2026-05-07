@@ -56,6 +56,28 @@ func (s *AddressSlot) Address() byte {
 	return s.Addr
 }
 
+// PrimaryDisplayAddress mirrors AddressSlot.Address — slot-as-DeviceEntry
+// view forwards the existing primary semantic.
+func (s *AddressSlot) PrimaryDisplayAddress() byte {
+	return s.Address()
+}
+
+// AddressByRole forwards to the wrapped Device's AddressByRole; falls
+// back to s.Addr matching when Device is nil and the slot's own Role
+// matches the requested role.
+func (s *AddressSlot) AddressByRole(role SlotRole) (byte, bool) {
+	if s == nil {
+		return 0, false
+	}
+	if s.Device != nil {
+		return s.Device.AddressByRole(role)
+	}
+	if s.Role == role {
+		return s.Addr, true
+	}
+	return 0, false
+}
+
 func (s *AddressSlot) Addresses() []byte {
 	if s == nil || s.Device == nil {
 		return nil

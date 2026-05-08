@@ -344,18 +344,18 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	case slotA.Device != nil:
 		canonical := slotA.Device
 		if secondary := slotB.Device; secondary != nil && secondary != canonical {
-			// Post-Phase-C P0: promote secondary's identity onto
-			// canonical before discarding it. absorbIdentityLocked
-			// copies non-empty info/planes/projections/index from
-			// the secondary onto the canonical (only when canonical
-			// fields are empty) — does NOT touch identityKey.
-			r.absorbIdentityLocked(canonical, secondary)
 			secondary.addresses = removeAddress(secondary.addresses, b)
 			if len(secondary.addresses) == 0 {
-				// Secondary is fully removed: transfer its
-				// identityKey binding to canonical (when canonical
-				// has none) before deleting from r.identity. This
-				// is the BASV2 / NETX3 scenario.
+				// Secondary is fully removed: this is the BASV2 /
+				// NETX3 scenario where the identity-bearing entry
+				// becomes orphaned. Promote secondary's identity
+				// fields onto canonical (only when canonical's
+				// fields are empty) and transfer the r.identity
+				// binding. (Codex P2 round-2 finding 2026-05-08 on
+				// PR #136: absorb must NOT fire when secondary
+				// survives, otherwise canonical and the surviving
+				// secondary expose duplicate identity.)
+				r.absorbIdentityLocked(canonical, secondary)
 				if secondary.identityKey != "" {
 					if canonical.identityKey == "" {
 						canonical.identityKey = secondary.identityKey
@@ -369,10 +369,11 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 				// Secondary survives at remaining addresses (e.g.
 				// 0x15 + 0x16 with same identity, then alias 0x10
 				// to 0x15 → secondary still owns 0x16 with the
-				// original identity). DO NOT transfer identityKey
-				// — secondary keeps its identity row, canonical
-				// gets its own via Register's identity-merge path
-				// later. (Codex P2 finding 2026-05-08 on PR #136.)
+				// original identity). DO NOT absorb identity onto
+				// canonical and DO NOT transfer identityKey:
+				// secondary keeps its r.identity row + manufacturer
+				// fields, canonical gets identity via Register's
+				// identity-merge path on a future write.
 				if secondary.primaryAddress == b {
 					secondary.primaryAddress = secondary.addresses[0]
 					secondary.info.Address = secondary.primaryAddress
@@ -389,10 +390,10 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	case slotB.Device != nil:
 		canonical := slotB.Device
 		if secondary := slotA.Device; secondary != nil && secondary != canonical {
-			// Post-Phase-C P0: symmetric case. See slotA branch.
-			r.absorbIdentityLocked(canonical, secondary)
+			// Symmetric case. See slotA branch.
 			secondary.addresses = removeAddress(secondary.addresses, a)
 			if len(secondary.addresses) == 0 {
+				r.absorbIdentityLocked(canonical, secondary)
 				if secondary.identityKey != "" {
 					if canonical.identityKey == "" {
 						canonical.identityKey = secondary.identityKey

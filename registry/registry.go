@@ -379,7 +379,15 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 						// SerialNumber() was visible on the merged
 						// entry but lookupByIdentity-by-serial could
 						// not find it.)
+						//
+						// Track the alias key on canonical so
+						// detachAddressLocked can clean it up if the
+						// merged entry is later removed. Without
+						// this, the orphan key would resolve to a
+						// removed *deviceEntry until r.identity gets
+						// rebuilt. (Codex P2 round-4 finding.)
 						r.identity[secondary.identityKey] = canonical
+						canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
 					}
 				}
 				r.order = removeEntry(r.order, secondary)
@@ -435,7 +443,15 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 						// SerialNumber() was visible on the merged
 						// entry but lookupByIdentity-by-serial could
 						// not find it.)
+						//
+						// Track the alias key on canonical so
+						// detachAddressLocked can clean it up if the
+						// merged entry is later removed. Without
+						// this, the orphan key would resolve to a
+						// removed *deviceEntry until r.identity gets
+						// rebuilt. (Codex P2 round-4 finding.)
 						r.identity[secondary.identityKey] = canonical
+						canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
 					}
 				}
 				r.order = removeEntry(r.order, secondary)
@@ -456,6 +472,18 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	}
 
 	return nil
+}
+
+// appendUniqueString returns dst with s appended if not already
+// present. Used to track identity-key aliases on a deviceEntry
+// without duplication.
+func appendUniqueString(dst []string, s string) []string {
+	for _, existing := range dst {
+		if existing == s {
+			return dst
+		}
+	}
+	return append(dst, s)
 }
 
 // absorbIdentityLocked copies non-empty identity-bearing fields and
@@ -567,6 +595,21 @@ func (r *DeviceRegistry) detachAddressLocked(entry *deviceEntry, address byte) {
 		if entry.identityKey != "" {
 			delete(r.identity, entry.identityKey)
 		}
+		// P0 round-4 (Codex P2 follow-up 2026-05-08): also drop any
+		// identityKeyAliases that AliasAddresses re-pointed at this
+		// entry. Without this cleanup, orphan keys remain in
+		// r.identity resolving to a removed *deviceEntry and a
+		// later Register({key}) would attach to an entry no longer
+		// in r.order.
+		for _, alias := range entry.identityKeyAliases {
+			if alias == "" {
+				continue
+			}
+			if r.identity[alias] == entry {
+				delete(r.identity, alias)
+			}
+		}
+		entry.identityKeyAliases = nil
 		r.order = removeEntry(r.order, entry)
 		return
 	}
@@ -672,12 +715,22 @@ type deviceEntry struct {
 	addresses      []byte
 	physical       physicalIdentity
 	identityKey    string
-	info           DeviceInfo
-	planes         []Plane
-	projections    []Projection
-	index          CanonicalIndex
-	indexErr       error
-	Faces          []BusFace
+	// identityKeyAliases tracks ADDITIONAL r.identity keys that
+	// resolve to this entry beyond its own identityKey. Populated by
+	// AliasAddresses when canonical and removed-secondary had distinct
+	// identity keys (e.g. canonical=MAC-keyed, secondary=serial-keyed)
+	// and the secondary's key is re-pointed at canonical instead of
+	// being deleted. detachAddressLocked iterates this slice to clean
+	// up r.identity bindings when the merged entry is removed,
+	// preventing orphan keys from resolving to a removed *deviceEntry.
+	// (Codex P2 round-4 finding 2026-05-08 on PR #136.)
+	identityKeyAliases []string
+	info               DeviceInfo
+	planes             []Plane
+	projections        []Projection
+	index              CanonicalIndex
+	indexErr           error
+	Faces              []BusFace
 }
 
 // PrimaryDisplayAddress returns a representative address for log/UI

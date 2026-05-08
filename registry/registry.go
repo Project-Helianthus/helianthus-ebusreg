@@ -344,6 +344,20 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	case slotA.Device != nil:
 		canonical := slotA.Device
 		if secondary := slotB.Device; secondary != nil && secondary != canonical {
+			// Post-Phase-C P0: promote secondary's identity onto
+			// canonical before discarding it. Without this, when an
+			// identity-bearing entry is the secondary side of an
+			// alias merge (e.g. BASV2 actively scanned at 0x15 with
+			// full identity, then an empty passive entry created at
+			// 0x10 by the gateway's address_table_inserter triggers
+			// AliasAddresses(0x10, 0x15) — slotA=empty, slotB=BASV2),
+			// the secondary's manufacturer / deviceID / serialNumber
+			// would be lost as `delete(r.identity, secondary.identityKey)`
+			// and `removeEntry(r.order, secondary)` excise the
+			// identity-bearing entry. absorbIdentityLocked copies any
+			// non-empty info / planes / projections / index from the
+			// secondary onto the canonical and re-keys r.identity.
+			r.absorbIdentityLocked(canonical, secondary)
 			secondary.addresses = removeAddress(secondary.addresses, b)
 			if len(secondary.addresses) == 0 {
 				if secondary.identityKey != "" {
@@ -367,6 +381,8 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	case slotB.Device != nil:
 		canonical := slotB.Device
 		if secondary := slotA.Device; secondary != nil && secondary != canonical {
+			// Post-Phase-C P0: see comment above. Symmetric case.
+			r.absorbIdentityLocked(canonical, secondary)
 			secondary.addresses = removeAddress(secondary.addresses, a)
 			if len(secondary.addresses) == 0 {
 				if secondary.identityKey != "" {
@@ -390,6 +406,81 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	}
 
 	return nil
+}
+
+// absorbIdentityLocked copies non-empty identity-bearing fields and
+// derived state from src onto dst when dst's corresponding fields are
+// empty. Re-keys r.identity[dst.identityKey] = dst when a new
+// identityKey is adopted from src. Holds r.mu (caller's responsibility).
+//
+// Phase post-C P0: introduced to fix AliasAddresses identity loss
+// (see live observation on 2026-05-08: BASV2 0x10↔0x15 + NETX3
+// 0xF1↔0xF6 pairs aliased correctly but with manufacturer="" because
+// the identity-bearing target-face entry was the secondary in the
+// merge).
+//
+// Fields absorbed (only when dst's value is empty/zero AND src's value
+// is non-empty):
+//   - info.Manufacturer, info.DeviceID, info.SerialNumber, info.MacAddress
+//   - info.SoftwareVersion, info.HardwareVersion
+//   - physical (only if dst's physicalIdentity is zero)
+//   - identityKey (re-keyed in r.identity)
+//   - planes, projections, index, indexErr (only when dst has none)
+//
+// This function does NOT touch addresses or primaryAddress — those are
+// owned by the caller (AliasAddresses) since the merge's address-graph
+// semantics are independent of identity.
+func (r *DeviceRegistry) absorbIdentityLocked(dst, src *deviceEntry) {
+	if dst == nil || src == nil || dst == src {
+		return
+	}
+	if dst.info.Manufacturer == "" && src.info.Manufacturer != "" {
+		dst.info.Manufacturer = src.info.Manufacturer
+	}
+	if dst.info.DeviceID == "" && src.info.DeviceID != "" {
+		dst.info.DeviceID = src.info.DeviceID
+	}
+	if dst.info.SerialNumber == "" && src.info.SerialNumber != "" {
+		dst.info.SerialNumber = src.info.SerialNumber
+	}
+	if dst.info.MacAddress == "" && src.info.MacAddress != "" {
+		dst.info.MacAddress = src.info.MacAddress
+	}
+	if dst.info.SoftwareVersion == "" && src.info.SoftwareVersion != "" {
+		dst.info.SoftwareVersion = src.info.SoftwareVersion
+	}
+	if dst.info.HardwareVersion == "" && src.info.HardwareVersion != "" {
+		dst.info.HardwareVersion = src.info.HardwareVersion
+	}
+	// Adopt physicalIdentity + identityKey if dst has neither and src has both.
+	emptyPhysical := physicalIdentity{}
+	if dst.physical == emptyPhysical && src.physical != emptyPhysical {
+		dst.physical = src.physical
+	}
+	if dst.identityKey == "" && src.identityKey != "" {
+		// Re-key r.identity: src is about to be removed by
+		// AliasAddresses, so attach the key to dst and clear src's
+		// identityKey to prevent AliasAddresses' subsequent
+		// `delete(r.identity, secondary.identityKey)` from removing
+		// the freshly-attached binding.
+		dst.identityKey = src.identityKey
+		r.identity[dst.identityKey] = dst
+		src.identityKey = ""
+	}
+	// Adopt planes / projections / index if dst has none. These
+	// derive from info; absorbing them avoids re-running providers.
+	if len(dst.planes) == 0 && len(src.planes) > 0 {
+		dst.planes = src.planes
+	}
+	if len(dst.projections) == 0 && len(src.projections) > 0 {
+		dst.projections = src.projections
+	}
+	if dst.index.canonicalByID == nil && src.index.canonicalByID != nil {
+		dst.index = src.index
+	}
+	if dst.indexErr == nil && src.indexErr != nil {
+		dst.indexErr = src.indexErr
+	}
 }
 
 func (r *DeviceRegistry) Iterate(fn func(DeviceEntry) bool) {

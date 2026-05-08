@@ -1,6 +1,9 @@
 package registry
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 // TestAliasAddresses_PreservesSecondaryIdentity asserts that when
 // AliasAddresses(a, b) is called and slotA.Device is an empty
@@ -102,6 +105,59 @@ func TestAliasAddresses_PreservesSecondaryIdentity(t *testing.T) {
 	})
 	if count != 1 {
 		t.Errorf("registry entry count = %d; want 1 (merged BASV2)", count)
+	}
+}
+
+// TestAliasAddresses_PreservesDistinctIdentityKeys asserts that
+// when canonical and secondary entries have DIFFERENT identityKeys
+// (e.g. canonical has a MAC-derived key, secondary has a
+// serial-derived key), the merge re-points secondary's key at
+// canonical in r.identity rather than deleting it. After the alias,
+// both keys must resolve to the merged entry. (Codex P2 round-3
+// finding 2026-05-08 on PR #136.)
+func TestAliasAddresses_PreservesDistinctIdentityKeys(t *testing.T) {
+	t.Parallel()
+
+	reg := NewDeviceRegistry(nil)
+
+	// Canonical at 0x10: identity by MAC only (no serial).
+	reg.Register(DeviceInfo{
+		Address:      0x10,
+		Manufacturer: "Vaillant",
+		DeviceID:     "BASV2",
+		MacAddress:   "AA:BB:CC:DD:EE:01",
+	})
+	// Secondary at 0x15: identity by Serial only (no mac).
+	reg.Register(DeviceInfo{
+		Address:      0x15,
+		Manufacturer: "Vaillant",
+		DeviceID:     "BASV2",
+		SerialNumber: "SN-DISTINCT-001",
+	})
+
+	if err := reg.AliasAddresses(0x10, 0x15); err != nil {
+		t.Fatalf("AliasAddresses error = %v", err)
+	}
+
+	// Both lookup paths must resolve.
+	byMac, ok := reg.lookupByIdentity(DeviceInfo{Manufacturer: "Vaillant", DeviceID: "BASV2", MacAddress: "AA:BB:CC:DD:EE:01"})
+	if !ok {
+		t.Fatalf("lookupByIdentity by MAC = false; want resolvable")
+	}
+	bySerial, ok := reg.lookupByIdentity(DeviceInfo{Manufacturer: "Vaillant", DeviceID: "BASV2", SerialNumber: "SN-DISTINCT-001"})
+	if !ok {
+		t.Fatalf("lookupByIdentity by Serial = false; want resolvable")
+	}
+	// Both must point at the same entry.
+	if byMac.MacAddress() != "AA:BB:CC:DD:EE:01" {
+		t.Errorf("by-MAC resolution: mac=%q; want AA:BB:CC:DD:EE:01", byMac.MacAddress())
+	}
+	if bySerial.SerialNumber() != "SN-DISTINCT-001" {
+		t.Errorf("by-Serial resolution: serial=%q; want SN-DISTINCT-001", bySerial.SerialNumber())
+	}
+	// Same set of addresses (canonical + secondary's address).
+	if !reflect.DeepEqual(byMac.Addresses(), bySerial.Addresses()) {
+		t.Errorf("merge mismatch: byMac.Addresses=%v bySerial.Addresses=%v", byMac.Addresses(), bySerial.Addresses())
 	}
 }
 

@@ -357,11 +357,29 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 				// secondary expose duplicate identity.)
 				r.absorbIdentityLocked(canonical, secondary)
 				if secondary.identityKey != "" {
-					if canonical.identityKey == "" {
+					switch canonical.identityKey {
+					case "":
+						// Canonical had no key; adopt secondary's
+						// as canonical's primary key.
 						canonical.identityKey = secondary.identityKey
 						r.identity[canonical.identityKey] = canonical
-					} else {
-						delete(r.identity, secondary.identityKey)
+					case secondary.identityKey:
+						// Same key already bound; ensure the row
+						// points to canonical (defensive).
+						r.identity[canonical.identityKey] = canonical
+					default:
+						// Distinct keys (e.g. canonical has a MAC-
+						// derived key, secondary has a serial-derived
+						// key). Re-point secondary's key at canonical
+						// so future lookupByIdentity calls on EITHER
+						// key resolve to the merged entry. Do NOT
+						// delete — that would orphan the lookup path.
+						// (Codex P2 round-3 finding 2026-05-08 on
+						// PR #136: previously the delete here meant
+						// SerialNumber() was visible on the merged
+						// entry but lookupByIdentity-by-serial could
+						// not find it.)
+						r.identity[secondary.identityKey] = canonical
 					}
 				}
 				r.order = removeEntry(r.order, secondary)
@@ -395,11 +413,29 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 			if len(secondary.addresses) == 0 {
 				r.absorbIdentityLocked(canonical, secondary)
 				if secondary.identityKey != "" {
-					if canonical.identityKey == "" {
+					switch canonical.identityKey {
+					case "":
+						// Canonical had no key; adopt secondary's
+						// as canonical's primary key.
 						canonical.identityKey = secondary.identityKey
 						r.identity[canonical.identityKey] = canonical
-					} else {
-						delete(r.identity, secondary.identityKey)
+					case secondary.identityKey:
+						// Same key already bound; ensure the row
+						// points to canonical (defensive).
+						r.identity[canonical.identityKey] = canonical
+					default:
+						// Distinct keys (e.g. canonical has a MAC-
+						// derived key, secondary has a serial-derived
+						// key). Re-point secondary's key at canonical
+						// so future lookupByIdentity calls on EITHER
+						// key resolve to the merged entry. Do NOT
+						// delete — that would orphan the lookup path.
+						// (Codex P2 round-3 finding 2026-05-08 on
+						// PR #136: previously the delete here meant
+						// SerialNumber() was visible on the merged
+						// entry but lookupByIdentity-by-serial could
+						// not find it.)
+						r.identity[secondary.identityKey] = canonical
 					}
 				}
 				r.order = removeEntry(r.order, secondary)

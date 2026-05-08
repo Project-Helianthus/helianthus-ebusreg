@@ -345,26 +345,34 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 		canonical := slotA.Device
 		if secondary := slotB.Device; secondary != nil && secondary != canonical {
 			// Post-Phase-C P0: promote secondary's identity onto
-			// canonical before discarding it. Without this, when an
-			// identity-bearing entry is the secondary side of an
-			// alias merge (e.g. BASV2 actively scanned at 0x15 with
-			// full identity, then an empty passive entry created at
-			// 0x10 by the gateway's address_table_inserter triggers
-			// AliasAddresses(0x10, 0x15) — slotA=empty, slotB=BASV2),
-			// the secondary's manufacturer / deviceID / serialNumber
-			// would be lost as `delete(r.identity, secondary.identityKey)`
-			// and `removeEntry(r.order, secondary)` excise the
-			// identity-bearing entry. absorbIdentityLocked copies any
-			// non-empty info / planes / projections / index from the
-			// secondary onto the canonical and re-keys r.identity.
+			// canonical before discarding it. absorbIdentityLocked
+			// copies non-empty info/planes/projections/index from
+			// the secondary onto the canonical (only when canonical
+			// fields are empty) — does NOT touch identityKey.
 			r.absorbIdentityLocked(canonical, secondary)
 			secondary.addresses = removeAddress(secondary.addresses, b)
 			if len(secondary.addresses) == 0 {
+				// Secondary is fully removed: transfer its
+				// identityKey binding to canonical (when canonical
+				// has none) before deleting from r.identity. This
+				// is the BASV2 / NETX3 scenario.
 				if secondary.identityKey != "" {
-					delete(r.identity, secondary.identityKey)
+					if canonical.identityKey == "" {
+						canonical.identityKey = secondary.identityKey
+						r.identity[canonical.identityKey] = canonical
+					} else {
+						delete(r.identity, secondary.identityKey)
+					}
 				}
 				r.order = removeEntry(r.order, secondary)
 			} else {
+				// Secondary survives at remaining addresses (e.g.
+				// 0x15 + 0x16 with same identity, then alias 0x10
+				// to 0x15 → secondary still owns 0x16 with the
+				// original identity). DO NOT transfer identityKey
+				// — secondary keeps its identity row, canonical
+				// gets its own via Register's identity-merge path
+				// later. (Codex P2 finding 2026-05-08 on PR #136.)
 				if secondary.primaryAddress == b {
 					secondary.primaryAddress = secondary.addresses[0]
 					secondary.info.Address = secondary.primaryAddress
@@ -381,12 +389,17 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	case slotB.Device != nil:
 		canonical := slotB.Device
 		if secondary := slotA.Device; secondary != nil && secondary != canonical {
-			// Post-Phase-C P0: see comment above. Symmetric case.
+			// Post-Phase-C P0: symmetric case. See slotA branch.
 			r.absorbIdentityLocked(canonical, secondary)
 			secondary.addresses = removeAddress(secondary.addresses, a)
 			if len(secondary.addresses) == 0 {
 				if secondary.identityKey != "" {
-					delete(r.identity, secondary.identityKey)
+					if canonical.identityKey == "" {
+						canonical.identityKey = secondary.identityKey
+						r.identity[canonical.identityKey] = canonical
+					} else {
+						delete(r.identity, secondary.identityKey)
+					}
 				}
 				r.order = removeEntry(r.order, secondary)
 			} else {
@@ -457,16 +470,17 @@ func (r *DeviceRegistry) absorbIdentityLocked(dst, src *deviceEntry) {
 	if dst.physical == emptyPhysical && src.physical != emptyPhysical {
 		dst.physical = src.physical
 	}
-	if dst.identityKey == "" && src.identityKey != "" {
-		// Re-key r.identity: src is about to be removed by
-		// AliasAddresses, so attach the key to dst and clear src's
-		// identityKey to prevent AliasAddresses' subsequent
-		// `delete(r.identity, secondary.identityKey)` from removing
-		// the freshly-attached binding.
-		dst.identityKey = src.identityKey
-		r.identity[dst.identityKey] = dst
-		src.identityKey = ""
-	}
+	// NOTE: identityKey transfer is intentionally NOT done here.
+	// absorbIdentityLocked runs BEFORE AliasAddresses removes
+	// `b`/`a` from src.addresses, so we don't yet know whether src
+	// will survive (multiple addresses → survives at remaining face)
+	// or be fully removed (only the aliased address → removed). The
+	// caller (AliasAddresses) handles identityKey transfer in the
+	// "secondary fully removed" branch only — see the comment at
+	// the call site. This avoids the live-validation P2 finding
+	// where surviving multi-address secondaries lost their identity
+	// map binding because absorb prematurely moved identityKey.
+	//
 	// Adopt planes / projections / index if dst has none. These
 	// derive from info; absorbing them avoids re-running providers.
 	if len(dst.planes) == 0 && len(src.planes) > 0 {

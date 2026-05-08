@@ -10,7 +10,7 @@ import "testing"
 //
 // Regression scenario from live observation 2026-05-08: BASV2
 // actively scanned at 0x15 with full identity, then bus traffic
-// from BASV2 master 0x10 caused the inserter to call
+// from BASV2 initiator 0x10 caused the inserter to call
 // Register({Address: 0x10}) creating an empty entry, followed by
 // AliasAddresses(0x10, 0x15). Pre-fix, this destroyed BASV2's
 // identity row (delete(r.identity, key) + removeEntry(r.order,
@@ -134,6 +134,65 @@ func TestAliasAddresses_PreservesCanonicalIdentity(t *testing.T) {
 	if entry.Manufacturer() != "Vaillant" || entry.DeviceID() != "BAI00" || entry.SerialNumber() != "SN-BAI-001" {
 		t.Errorf("Lookup(0x03) lost identity: mfr=%q devID=%q serial=%q",
 			entry.Manufacturer(), entry.DeviceID(), entry.SerialNumber())
+	}
+}
+
+// TestAliasAddresses_PreservesSurvivingSecondaryIdentity asserts the
+// case where the secondary entry has MORE THAN the aliased address
+// (e.g. 0x15 + 0x16 share serial; aliasing empty 0x10 to 0x15
+// preserves the secondary at 0x16 with intact identity row in
+// r.identity). This is the Codex P2 follow-up on PR #136 (2026-05-08):
+// pre-fix, absorbIdentityLocked moved identityKey to canonical and
+// cleared secondary's, leaving the surviving-secondary entry without
+// an identity row → lookupByIdentity could not resolve to it.
+func TestAliasAddresses_PreservesSurvivingSecondaryIdentity(t *testing.T) {
+	t.Parallel()
+
+	reg := NewDeviceRegistry(nil)
+
+	// Register a multi-face entry: 0x15 + 0x16 share Serial.
+	reg.Register(DeviceInfo{
+		Address:      0x15,
+		Manufacturer: "Vaillant",
+		DeviceID:     "BASV2",
+		SerialNumber: "SN-MULTI-001",
+	})
+	reg.Register(DeviceInfo{
+		Address:      0x16,
+		Manufacturer: "Vaillant",
+		DeviceID:     "BASV2",
+		SerialNumber: "SN-MULTI-001",
+	})
+	// At this point: identity-merge collapsed 0x15 + 0x16 into one
+	// entry with addresses=[0x15, 0x16].
+
+	// Plant an empty entry at 0x10.
+	reg.Register(DeviceInfo{Address: 0x10})
+
+	// Alias 0x10 ↔ 0x15. Pre-fix this incorrectly stripped the
+	// (0x15, 0x16)-merged entry's identityKey because absorb fired
+	// before the addresses[]==nil check.
+	if err := reg.AliasAddresses(0x10, 0x15); err != nil {
+		t.Fatalf("AliasAddresses error = %v", err)
+	}
+
+	// Lookup by serial must still resolve. The entry it resolves to
+	// is implementation-specific (could be the merged-onto-canonical
+	// or the surviving-secondary), but identity must be intact.
+	by, ok := reg.lookupByIdentity(DeviceInfo{Manufacturer: "Vaillant", DeviceID: "BASV2", SerialNumber: "SN-MULTI-001"})
+	if !ok {
+		t.Fatalf("lookupByIdentity by SN-MULTI-001 = false; want resolvable")
+	}
+	if by.Manufacturer() != "Vaillant" || by.SerialNumber() != "SN-MULTI-001" {
+		t.Errorf("identity lost: mfr=%q serial=%q", by.Manufacturer(), by.SerialNumber())
+	}
+	// 0x16 must remain reachable via direct lookup with same identity.
+	entry16, ok := reg.Lookup(0x16)
+	if !ok {
+		t.Fatalf("Lookup(0x16) = false; want entry")
+	}
+	if entry16.SerialNumber() != "SN-MULTI-001" {
+		t.Errorf("0x16 lost SerialNumber: got %q; want SN-MULTI-001", entry16.SerialNumber())
 	}
 }
 

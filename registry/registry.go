@@ -201,7 +201,17 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	}
 
 	if entry.identityKey != "" && entry.identityKey != identityKey {
-		delete(r.identity, entry.identityKey)
+		// P0 round-6 (Codex P2 follow-up 2026-05-08): instead of
+		// deleting the old primary key, re-point it at this entry
+		// and track it as an alias. Without this, a Register call
+		// that promotes a serial-derived key to primary while the
+		// previous primary was MAC-derived would orphan the MAC
+		// lookup path even though the entry still has the MAC in
+		// info.MacAddress. Now `lookupByIdentity` by either key
+		// continues to resolve to the merged entry, and
+		// detachAddressLocked cleans up both via identityKeyAliases.
+		r.identity[entry.identityKey] = entry
+		entry.identityKeyAliases = appendUniqueString(entry.identityKeyAliases, entry.identityKey)
 	}
 	entry.info = storedInfo
 	entry.physical = physical

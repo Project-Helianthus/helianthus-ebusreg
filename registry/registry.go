@@ -201,7 +201,17 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	}
 
 	if entry.identityKey != "" && entry.identityKey != identityKey {
-		delete(r.identity, entry.identityKey)
+		// P0 round-6 (Codex P2 follow-up 2026-05-08): instead of
+		// deleting the old primary key, re-point it at this entry
+		// and track it as an alias. Without this, a Register call
+		// that promotes a serial-derived key to primary while the
+		// previous primary was MAC-derived would orphan the MAC
+		// lookup path even though the entry still has the MAC in
+		// info.MacAddress. Now `lookupByIdentity` by either key
+		// continues to resolve to the merged entry, and
+		// detachAddressLocked cleans up both via identityKeyAliases.
+		r.identity[entry.identityKey] = entry
+		entry.identityKeyAliases = appendUniqueString(entry.identityKeyAliases, entry.identityKey)
 	}
 	entry.info = storedInfo
 	entry.physical = physical
@@ -346,11 +356,60 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 		if secondary := slotB.Device; secondary != nil && secondary != canonical {
 			secondary.addresses = removeAddress(secondary.addresses, b)
 			if len(secondary.addresses) == 0 {
+				// Secondary is fully removed: this is the BASV2 /
+				// NETX3 scenario where the identity-bearing entry
+				// becomes orphaned. Promote secondary's identity
+				// fields onto canonical (only when canonical's
+				// fields are empty) and transfer the r.identity
+				// binding. (Codex P2 round-2 finding 2026-05-08 on
+				// PR #136: absorb must NOT fire when secondary
+				// survives, otherwise canonical and the surviving
+				// secondary expose duplicate identity.)
+				r.absorbIdentityLocked(canonical, secondary)
 				if secondary.identityKey != "" {
-					delete(r.identity, secondary.identityKey)
+					switch canonical.identityKey {
+					case "":
+						// Canonical had no key; adopt secondary's
+						// as canonical's primary key.
+						canonical.identityKey = secondary.identityKey
+						r.identity[canonical.identityKey] = canonical
+					case secondary.identityKey:
+						// Same key already bound; ensure the row
+						// points to canonical (defensive).
+						r.identity[canonical.identityKey] = canonical
+					default:
+						// Distinct keys (e.g. canonical has a MAC-
+						// derived key, secondary has a serial-derived
+						// key). Re-point secondary's key at canonical
+						// so future lookupByIdentity calls on EITHER
+						// key resolve to the merged entry. Do NOT
+						// delete — that would orphan the lookup path.
+						// (Codex P2 round-3 finding 2026-05-08 on
+						// PR #136: previously the delete here meant
+						// SerialNumber() was visible on the merged
+						// entry but lookupByIdentity-by-serial could
+						// not find it.)
+						//
+						// Track the alias key on canonical so
+						// detachAddressLocked can clean it up if the
+						// merged entry is later removed. Without
+						// this, the orphan key would resolve to a
+						// removed *deviceEntry until r.identity gets
+						// rebuilt. (Codex P2 round-4 finding.)
+						r.identity[secondary.identityKey] = canonical
+						canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
+					}
 				}
 				r.order = removeEntry(r.order, secondary)
 			} else {
+				// Secondary survives at remaining addresses (e.g.
+				// 0x15 + 0x16 with same identity, then alias 0x10
+				// to 0x15 → secondary still owns 0x16 with the
+				// original identity). DO NOT absorb identity onto
+				// canonical and DO NOT transfer identityKey:
+				// secondary keeps its r.identity row + manufacturer
+				// fields, canonical gets identity via Register's
+				// identity-merge path on a future write.
 				if secondary.primaryAddress == b {
 					secondary.primaryAddress = secondary.addresses[0]
 					secondary.info.Address = secondary.primaryAddress
@@ -367,10 +426,43 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	case slotB.Device != nil:
 		canonical := slotB.Device
 		if secondary := slotA.Device; secondary != nil && secondary != canonical {
+			// Symmetric case. See slotA branch.
 			secondary.addresses = removeAddress(secondary.addresses, a)
 			if len(secondary.addresses) == 0 {
+				r.absorbIdentityLocked(canonical, secondary)
 				if secondary.identityKey != "" {
-					delete(r.identity, secondary.identityKey)
+					switch canonical.identityKey {
+					case "":
+						// Canonical had no key; adopt secondary's
+						// as canonical's primary key.
+						canonical.identityKey = secondary.identityKey
+						r.identity[canonical.identityKey] = canonical
+					case secondary.identityKey:
+						// Same key already bound; ensure the row
+						// points to canonical (defensive).
+						r.identity[canonical.identityKey] = canonical
+					default:
+						// Distinct keys (e.g. canonical has a MAC-
+						// derived key, secondary has a serial-derived
+						// key). Re-point secondary's key at canonical
+						// so future lookupByIdentity calls on EITHER
+						// key resolve to the merged entry. Do NOT
+						// delete — that would orphan the lookup path.
+						// (Codex P2 round-3 finding 2026-05-08 on
+						// PR #136: previously the delete here meant
+						// SerialNumber() was visible on the merged
+						// entry but lookupByIdentity-by-serial could
+						// not find it.)
+						//
+						// Track the alias key on canonical so
+						// detachAddressLocked can clean it up if the
+						// merged entry is later removed. Without
+						// this, the orphan key would resolve to a
+						// removed *deviceEntry until r.identity gets
+						// rebuilt. (Codex P2 round-4 finding.)
+						r.identity[secondary.identityKey] = canonical
+						canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
+					}
 				}
 				r.order = removeEntry(r.order, secondary)
 			} else {
@@ -390,6 +482,94 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	}
 
 	return nil
+}
+
+// appendUniqueString returns dst with s appended if not already
+// present. Used to track identity-key aliases on a deviceEntry
+// without duplication.
+func appendUniqueString(dst []string, s string) []string {
+	for _, existing := range dst {
+		if existing == s {
+			return dst
+		}
+	}
+	return append(dst, s)
+}
+
+// absorbIdentityLocked copies non-empty identity-bearing fields and
+// derived state from src onto dst when dst's corresponding fields are
+// empty. Re-keys r.identity[dst.identityKey] = dst when a new
+// identityKey is adopted from src. Holds r.mu (caller's responsibility).
+//
+// Phase post-C P0: introduced to fix AliasAddresses identity loss
+// (see live observation on 2026-05-08: BASV2 0x10↔0x15 + NETX3
+// 0xF1↔0xF6 pairs aliased correctly but with manufacturer="" because
+// the identity-bearing target-face entry was the secondary in the
+// merge).
+//
+// Fields absorbed (only when dst's value is empty/zero AND src's value
+// is non-empty):
+//   - info.Manufacturer, info.DeviceID, info.SerialNumber, info.MacAddress
+//   - info.SoftwareVersion, info.HardwareVersion
+//   - physical (only if dst's physicalIdentity is zero)
+//   - identityKey (re-keyed in r.identity)
+//   - planes, projections, index, indexErr (only when dst has none)
+//
+// This function does NOT touch addresses or primaryAddress — those are
+// owned by the caller (AliasAddresses) since the merge's address-graph
+// semantics are independent of identity.
+func (r *DeviceRegistry) absorbIdentityLocked(dst, src *deviceEntry) {
+	if dst == nil || src == nil || dst == src {
+		return
+	}
+	if dst.info.Manufacturer == "" && src.info.Manufacturer != "" {
+		dst.info.Manufacturer = src.info.Manufacturer
+	}
+	if dst.info.DeviceID == "" && src.info.DeviceID != "" {
+		dst.info.DeviceID = src.info.DeviceID
+	}
+	if dst.info.SerialNumber == "" && src.info.SerialNumber != "" {
+		dst.info.SerialNumber = src.info.SerialNumber
+	}
+	if dst.info.MacAddress == "" && src.info.MacAddress != "" {
+		dst.info.MacAddress = src.info.MacAddress
+	}
+	if dst.info.SoftwareVersion == "" && src.info.SoftwareVersion != "" {
+		dst.info.SoftwareVersion = src.info.SoftwareVersion
+	}
+	if dst.info.HardwareVersion == "" && src.info.HardwareVersion != "" {
+		dst.info.HardwareVersion = src.info.HardwareVersion
+	}
+	// Adopt physicalIdentity + identityKey if dst has neither and src has both.
+	emptyPhysical := physicalIdentity{}
+	if dst.physical == emptyPhysical && src.physical != emptyPhysical {
+		dst.physical = src.physical
+	}
+	// NOTE: identityKey transfer is intentionally NOT done here.
+	// absorbIdentityLocked runs BEFORE AliasAddresses removes
+	// `b`/`a` from src.addresses, so we don't yet know whether src
+	// will survive (multiple addresses → survives at remaining face)
+	// or be fully removed (only the aliased address → removed). The
+	// caller (AliasAddresses) handles identityKey transfer in the
+	// "secondary fully removed" branch only — see the comment at
+	// the call site. This avoids the live-validation P2 finding
+	// where surviving multi-address secondaries lost their identity
+	// map binding because absorb prematurely moved identityKey.
+	//
+	// Adopt planes / projections / index if dst has none. These
+	// derive from info; absorbing them avoids re-running providers.
+	if len(dst.planes) == 0 && len(src.planes) > 0 {
+		dst.planes = src.planes
+	}
+	if len(dst.projections) == 0 && len(src.projections) > 0 {
+		dst.projections = src.projections
+	}
+	if dst.index.canonicalByID == nil && src.index.canonicalByID != nil {
+		dst.index = src.index
+	}
+	if dst.indexErr == nil && src.indexErr != nil {
+		dst.indexErr = src.indexErr
+	}
 }
 
 func (r *DeviceRegistry) Iterate(fn func(DeviceEntry) bool) {
@@ -425,6 +605,21 @@ func (r *DeviceRegistry) detachAddressLocked(entry *deviceEntry, address byte) {
 		if entry.identityKey != "" {
 			delete(r.identity, entry.identityKey)
 		}
+		// P0 round-4 (Codex P2 follow-up 2026-05-08): also drop any
+		// identityKeyAliases that AliasAddresses re-pointed at this
+		// entry. Without this cleanup, orphan keys remain in
+		// r.identity resolving to a removed *deviceEntry and a
+		// later Register({key}) would attach to an entry no longer
+		// in r.order.
+		for _, alias := range entry.identityKeyAliases {
+			if alias == "" {
+				continue
+			}
+			if r.identity[alias] == entry {
+				delete(r.identity, alias)
+			}
+		}
+		entry.identityKeyAliases = nil
 		r.order = removeEntry(r.order, entry)
 		return
 	}
@@ -530,12 +725,22 @@ type deviceEntry struct {
 	addresses      []byte
 	physical       physicalIdentity
 	identityKey    string
-	info           DeviceInfo
-	planes         []Plane
-	projections    []Projection
-	index          CanonicalIndex
-	indexErr       error
-	Faces          []BusFace
+	// identityKeyAliases tracks ADDITIONAL r.identity keys that
+	// resolve to this entry beyond its own identityKey. Populated by
+	// AliasAddresses when canonical and removed-secondary had distinct
+	// identity keys (e.g. canonical=MAC-keyed, secondary=serial-keyed)
+	// and the secondary's key is re-pointed at canonical instead of
+	// being deleted. detachAddressLocked iterates this slice to clean
+	// up r.identity bindings when the merged entry is removed,
+	// preventing orphan keys from resolving to a removed *deviceEntry.
+	// (Codex P2 round-4 finding 2026-05-08 on PR #136.)
+	identityKeyAliases []string
+	info               DeviceInfo
+	planes             []Plane
+	projections        []Projection
+	index              CanonicalIndex
+	indexErr           error
+	Faces              []BusFace
 }
 
 // PrimaryDisplayAddress returns a representative address for log/UI

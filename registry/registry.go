@@ -478,10 +478,13 @@ func (r *DeviceRegistry) LookupSlot(address byte) (*AddressSlot, bool) {
 // the underlying slot.
 //
 // Note: Device is reduced to a boolean (DeviceAttached) because
-// returning the *deviceEntry pointer would re-introduce the lock-free
-// read of identity fields downstream. Callers that need device
-// identity should use Lookup/Get APIs which return entry interfaces
-// taken under the same lock.
+// returning the *deviceEntry pointer would re-introduce lock-free
+// dereferencing of mutable identity fields downstream. Callers that
+// need the entry's identity fields can fetch the entry via Lookup,
+// but should be aware that the returned DeviceEntry interface still
+// reads through to the registry's internal entry struct — those
+// reads are not snapshot-isolated. A future entry-snapshot API may
+// be added if the same pattern proves desirable for identity reads.
 type AddressSlotSnapshot struct {
 	Addr              byte
 	Role              SlotRole

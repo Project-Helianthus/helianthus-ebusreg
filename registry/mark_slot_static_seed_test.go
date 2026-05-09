@@ -128,46 +128,101 @@ func TestMarkSlotStaticSeed_DoesNotAttachOrphanSlot(t *testing.T) {
 	}
 }
 
-// TestMarkSlotStaticSeed_UpgradesAttachedSlot covers the in-scope use
-// case: a slot already attached to a device entry (here via
-// RegisterStaticSeed for a different address that aliased into the
-// same entry) gets its discovery_source label upgraded by a
-// MarkSlotStaticSeed call. Faces is refreshed because slot.Device is
-// non-nil at call time.
-func TestMarkSlotStaticSeed_UpgradesAttachedSlot(t *testing.T) {
+// TestMarkSlotStaticSeed_RefreshesFacesOnAttachedSlot covers the
+// in-scope use case: a slot already attached to a device entry by a
+// prior RegisterStaticSeed call has its Role and LastObservedAt
+// updated by a subsequent MarkSlotStaticSeed call, AND the
+// Faces-refresh branch (slot.Device != nil → syncEntryFacesLocked)
+// actually runs — i.e. the device's BusFace list reflects the role.
+//
+// Test design: uses a slave-class address (0x15 BASV2 slave). When
+// the slot is initially seeded with SlotRoleUnknown, AddressByRole's
+// AddressClass fallback does NOT promote Slave role for slave-class
+// addresses to Master (the fallback only matches like-class). After
+// MarkSlotStaticSeed(0x15, SlotRoleSlave), the explicit Role=Slave
+// is set on the slot, syncEntryFacesLocked must propagate it, and
+// AddressByRole(SlotRoleSlave) on the attached entry must resolve to
+// 0x15. If the Faces-refresh branch were skipped, the entry's Faces
+// would still carry Role=Unknown and the lookup would only succeed
+// via the AddressClass fallback path — which IS what we expect for
+// slave-class+Slave so this still wouldn't distinguish. Use the
+// explicit Role-driven path instead by checking whether the new
+// LastObservedAt landed on the slot AND that AddressByRole works,
+// then explicitly assert that the Face entry's Role field equals
+// SlotRoleSlave (not Unknown), which can only happen if Faces was
+// refreshed.
+func TestMarkSlotStaticSeed_RefreshesFacesOnAttachedSlot(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
-	// Land slot 0xF1 attached to a device via Register (lands as
-	// ActiveConfirmed/IdentityConfirmed — but the discovery_source
-	// downgrade-guard means MarkSlotStaticSeed will NOT advance the
-	// label here). Use a fresh slot with passive-observed state
-	// instead so we can prove the upgrade path.
-	now := time.Now()
-	reg.MarkSlotPassiveObserved(0xF1, SlotRoleMaster, now)
-	pre, _ := reg.LookupSlot(0xF1)
-	if pre.DiscoverySource != DiscoverySourcePassiveObserved {
-		t.Fatalf("pre-condition: slot.DiscoverySource = %v; want PassiveObserved", pre.DiscoverySource)
-	}
-	// Attach a device pointer so syncEntryFacesLocked has something
-	// to refresh — the most realistic path is RegisterStaticSeed of
-	// THIS address (which would normally double-stamp; here we just
-	// want a Device on the slot so MarkSlotStaticSeed exercises the
-	// Faces-refresh branch).
-	reg.RegisterStaticSeed(DeviceInfo{
-		Address:      0xF1,
-		Manufacturer: "Vaillant",
-		DeviceID:     "NETX3",
-		SerialNumber: "SN-AB",
-	}, SlotRoleMaster, now)
+	earlier := time.Date(2026, 5, 1, 0, 0, 0, 0, time.UTC)
 
-	post, _ := reg.LookupSlot(0xF1)
-	if post.DiscoverySource != DiscoverySourceStaticSeed {
-		t.Errorf("after RegisterStaticSeed: slot.DiscoverySource = %v; want StaticSeed", post.DiscoverySource)
+	// Step 1: attach slot 0x15 to a device entry via RegisterStaticSeed
+	// with NO role hint (SlotRoleUnknown). The slot's Role stays
+	// Unknown; entry.Faces[0].Role is Unknown.
+	entry := reg.RegisterStaticSeed(DeviceInfo{
+		Address:      0x15,
+		Manufacturer: "Vaillant",
+		DeviceID:     "BASV2",
+		SerialNumber: "SN-15",
+	}, SlotRoleUnknown, earlier)
+	if entry == nil {
+		t.Fatalf("RegisterStaticSeed returned nil entry")
 	}
-	if post.Device == nil {
-		t.Errorf("after RegisterStaticSeed: slot.Device is nil; want non-nil (entry attached)")
+	preFace, ok := faceForAddress(entry, 0x15)
+	if !ok {
+		t.Fatalf("pre-condition: entry has no Face for 0x15")
 	}
+	if preFace.Role != SlotRoleUnknown {
+		t.Fatalf("pre-condition: Face[0x15].Role = %v; want SlotRoleUnknown", preFace.Role)
+	}
+
+	// Step 2: MarkSlotStaticSeed on the now-attached slot with an
+	// explicit role. Faces refresh must propagate the role into
+	// entry.Faces.
+	later := earlier.Add(24 * time.Hour)
+	reg.MarkSlotStaticSeed(0x15, SlotRoleSlave, later)
+
+	slot, ok := reg.LookupSlot(0x15)
+	if !ok || slot == nil {
+		t.Fatalf("LookupSlot(0x15) ok=%v slot=%v", ok, slot)
+	}
+	if slot.Role != SlotRoleSlave {
+		t.Errorf("after MarkSlotStaticSeed: slot.Role = %v; want SlotRoleSlave", slot.Role)
+	}
+	if !slot.LastObservedAt.Equal(later) {
+		t.Errorf("after MarkSlotStaticSeed: slot.LastObservedAt = %v; want %v", slot.LastObservedAt, later)
+	}
+
+	// Critical assertion: entry.Faces was refreshed by the
+	// slot.Device != nil branch — Face[0x15].Role is now Slave, NOT
+	// Unknown. Without Faces-refresh, the Face would still hold
+	// SlotRoleUnknown.
+	postFace, ok := faceForAddress(entry, 0x15)
+	if !ok {
+		t.Fatalf("after MarkSlotStaticSeed: entry has no Face for 0x15")
+	}
+	if postFace.Role != SlotRoleSlave {
+		t.Errorf("after MarkSlotStaticSeed: Face[0x15].Role = %v; want SlotRoleSlave (Faces must be refreshed)", postFace.Role)
+	}
+}
+
+// faceForAddress is a small test helper that returns the BusFace
+// matching the given address from a device entry. The DeviceEntry
+// public API does not expose Faces directly; we use the Faces()
+// accessor available on *deviceEntry here via the test package's
+// privileged access.
+func faceForAddress(entry DeviceEntry, addr byte) (BusFace, bool) {
+	d, ok := entry.(*deviceEntry)
+	if !ok {
+		return BusFace{}, false
+	}
+	for _, face := range d.Faces {
+		if face.Addr == addr {
+			return face, true
+		}
+	}
+	return BusFace{}, false
 }
 
 // TestMarkSlotStaticSeed_RaceFreeWriteAndRead mirrors the M6.1 hardening

@@ -462,6 +462,65 @@ func (r *DeviceRegistry) LookupSlot(address byte) (*AddressSlot, bool) {
 	return slot, true
 }
 
+// AddressSlotSnapshot is a value-typed copy of an AddressSlot's
+// observable fields. Snapshots are taken under r.mu.RLock so callers
+// can read the fields without holding any registry lock and without
+// risking torn reads from concurrent writers.
+//
+// P8.1 — addresses the lock-free read advisory raised by the GitHub
+// Codex bot on helianthus-ebusgateway PR #589: the gateway's
+// AddressTable previously dereferenced a live AddressSlot pointer
+// (returned by LookupSlot) outside the registry's RLock to read
+// DiscoverySource / VerificationState. AddressSlotSnapshot eliminates
+// that race surface — the value copy is immune to concurrent
+// mutations because the writer must acquire r.mu.Lock() (which blocks
+// behind the RLock taken in LookupSlotSnapshot below) before changing
+// the underlying slot.
+//
+// Note: Device is reduced to a boolean (DeviceAttached) because
+// returning the *deviceEntry pointer would re-introduce the lock-free
+// read of identity fields downstream. Callers that need device
+// identity should use Lookup/Get APIs which return entry interfaces
+// taken under the same lock.
+type AddressSlotSnapshot struct {
+	Addr              byte
+	Role              SlotRole
+	DiscoverySource   DiscoverySource
+	VerificationState VerificationState
+	FirstObservedAt   time.Time
+	LastObservedAt    time.Time
+	DeviceAttached    bool
+}
+
+// LookupSlotSnapshot returns a value-typed snapshot of the AddressSlot
+// at addr, taken under r.mu.RLock. Callers can read the snapshot
+// fields without any registry-lock concerns. Returns (zero, false)
+// when no slot exists for the address.
+//
+// P8.1 — the race-free counterpart to LookupSlot for callers that
+// only need the slot's observable fields (gateway address-table
+// projection, MCP/GraphQL surfaces). LookupSlot remains for callers
+// that need the live pointer (e.g. registry-internal mutation paths
+// holding the appropriate lock externally).
+func (r *DeviceRegistry) LookupSlotSnapshot(address byte) (AddressSlotSnapshot, bool) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+
+	slot := r.addressTable[address]
+	if slot == nil {
+		return AddressSlotSnapshot{}, false
+	}
+	return AddressSlotSnapshot{
+		Addr:              slot.Addr,
+		Role:              slot.Role,
+		DiscoverySource:   slot.DiscoverySource,
+		VerificationState: slot.VerificationState,
+		FirstObservedAt:   slot.FirstObservedAt,
+		LastObservedAt:    slot.LastObservedAt,
+		DeviceAttached:    slot.Device != nil,
+	}, true
+}
+
 func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	r.mu.Lock()
 	defer r.mu.Unlock()

@@ -288,11 +288,26 @@ func (r *DeviceRegistry) RegisterStaticSeed(info DeviceInfo, role SlotRole, seed
 // (lock discipline, monotonic upgrade semantics, idempotence) but
 // stamping DiscoverySourceStaticSeed / VerificationStateCandidate.
 //
-// Use cases:
-//   - Mark an additional face of a device whose primary address was
-//     RegisterStaticSeed'd (e.g. NETX3 broadcast face 0xFF or 0x04).
-//   - Pre-populate an address slot whose identity will later be filled
-//     in via Register / RegisterStaticSeed.
+// SCOPE: this API only mutates the AddressSlot. It does NOT attach
+// the slot to a device entry; if `slot.Device` is nil at call time
+// it stays nil, the address is NOT added to `r.entries`, and the
+// device's `addresses` / `Faces` lists are NOT updated. Therefore:
+//
+//   - To plant a NEW seeded address with identity attached, use
+//     RegisterStaticSeed (which composes registerLocked + this
+//     stamp). Each face that should appear in `Lookup` /
+//     `AddressByRole` needs its own RegisterStaticSeed call; the
+//     identity-merge in registerLocked joins them when DeviceInfo
+//     identity matches, or they can be aliased post-hoc via
+//     AliasAddresses.
+//
+//   - The use case for MarkSlotStaticSeed in isolation is updating
+//     an AddressSlot that was already attached to a device by some
+//     prior path (Register / RegisterStaticSeed / AliasAddresses)
+//     to upgrade its discovery_source / verification labels — for
+//     example, marking a slot newly populated by passive observation
+//     as "now also seeded from the static table" so the operator
+//     surface reflects that the addresses are pre-known.
 //
 // Idempotent. Re-calling on a slot already at higher
 // DiscoverySource (e.g. ActiveConfirmed) is a no-op for the discovery

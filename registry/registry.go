@@ -104,6 +104,30 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
+	entry := r.registerLocked(info)
+	r.observeAddressSlotLocked(info.Address, entry, DiscoverySourceActiveConfirmed, VerificationStateIdentityConfirmed)
+	r.syncEntryFacesLocked(entry)
+	return entry
+}
+
+// registerLocked performs the core identity-merge / planes / projections /
+// index work for an incoming DeviceInfo without stamping a discovery
+// label on the AddressSlot. It is the primitive shared by the
+// active-discovery path (Register, which stamps
+// DiscoverySourceActiveConfirmed / VerificationStateIdentityConfirmed)
+// and the static-seed path (RegisterStaticSeed, which stamps
+// DiscoverySourceStaticSeed / VerificationStateCandidate).
+//
+// Lock contract: the caller MUST hold r.mu. registerLocked does NOT
+// acquire the lock itself. This mirrors the file's existing *Locked
+// suffix convention (observeAddressSlotLocked, ensureAddressSlotLocked,
+// syncEntryFacesLocked, lookupCompatibleBySignatureLocked,
+// detachAddressLocked).
+//
+// Both callers are responsible for stamping the AddressSlot
+// (observeAddressSlotLocked) and refreshing entry.Faces
+// (syncEntryFacesLocked) after the call.
+func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 	physical := canonicalPhysicalIdentity(info)
 	identityKey := physical.key()
 	planes := make([]Plane, 0)
@@ -225,10 +249,98 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 		r.identity[identityKey] = entry
 	}
 	r.entries[info.Address] = entry
-	r.observeAddressSlotLocked(info.Address, entry, DiscoverySourceActiveConfirmed, VerificationStateIdentityConfirmed)
-	r.syncEntryFacesLocked(entry)
 
 	return entry
+}
+
+// RegisterStaticSeed plants identity for an address known from a
+// product taxonomy table BEFORE any wire traffic has been observed.
+// Mirrors Register's identity-merge behavior but stamps the AddressSlot
+// with DiscoverySourceStaticSeed / VerificationStateCandidate so the
+// observability surface (`/metrics`, MCP `bus.summary.get`,
+// address-table snapshots) correctly shows the slot's provenance as a
+// pre-known seed rather than active confirmation.
+//
+// On a clean cold boot a static-seeded slot subsequently observed
+// passively will: NOT advance DiscoverySource (PassiveObserved <
+// StaticSeed in the monotonic enum order), WILL advance
+// VerificationState from Candidate to Corroborated. An active
+// confirmation (e.g. directed scan) DOES advance DiscoverySource to
+// ActiveConfirmed (StaticSeed < ActiveConfirmed) AND VerificationState
+// to IdentityConfirmed.
+//
+// Single lock acquisition — composes registerLocked, then
+// MarkSlotStaticSeed-equivalent inline (we already hold r.mu so we
+// avoid a recursive acquire), then syncEntryFacesLocked.
+func (r *DeviceRegistry) RegisterStaticSeed(info DeviceInfo, role SlotRole, seededAt time.Time) DeviceEntry {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+
+	entry := r.registerLocked(info)
+
+	slot := r.ensureAddressSlotLocked(info.Address)
+	slot.Device = entry
+	if slot.DiscoverySource < DiscoverySourceStaticSeed {
+		slot.DiscoverySource = DiscoverySourceStaticSeed
+	}
+	if slot.VerificationState < VerificationStateCandidate {
+		slot.VerificationState = VerificationStateCandidate
+	}
+	if role != SlotRoleUnknown && slot.Role == SlotRoleUnknown {
+		slot.Role = role
+	}
+	if slot.FirstObservedAt.IsZero() && !seededAt.IsZero() {
+		slot.FirstObservedAt = seededAt
+	}
+	if !seededAt.IsZero() {
+		slot.LastObservedAt = seededAt
+	}
+
+	r.syncEntryFacesLocked(entry)
+	return entry
+}
+
+// MarkSlotStaticSeed updates an AddressSlot for an address known from
+// a product taxonomy seed table, mirroring MarkSlotPassiveObserved
+// (lock discipline, monotonic upgrade semantics, idempotence) but
+// stamping DiscoverySourceStaticSeed / VerificationStateCandidate.
+//
+// Use cases:
+//   - Mark an additional face of a device whose primary address was
+//     RegisterStaticSeed'd (e.g. NETX3 broadcast face 0xFF or 0x04).
+//   - Pre-populate an address slot whose identity will later be filled
+//     in via Register / RegisterStaticSeed.
+//
+// Idempotent. Re-calling on a slot already at higher
+// DiscoverySource (e.g. ActiveConfirmed) is a no-op for the discovery
+// label, though it may still upgrade VerificationState if the
+// existing state is below Candidate.
+func (r *DeviceRegistry) MarkSlotStaticSeed(address byte, role SlotRole, seededAt time.Time) {
+	if r == nil {
+		return
+	}
+	r.mu.Lock()
+	defer r.mu.Unlock()
+
+	slot := r.ensureAddressSlotLocked(address)
+	if slot.DiscoverySource < DiscoverySourceStaticSeed {
+		slot.DiscoverySource = DiscoverySourceStaticSeed
+	}
+	if slot.VerificationState < VerificationStateCandidate {
+		slot.VerificationState = VerificationStateCandidate
+	}
+	if role != SlotRoleUnknown && slot.Role == SlotRoleUnknown {
+		slot.Role = role
+	}
+	if slot.FirstObservedAt.IsZero() && !seededAt.IsZero() {
+		slot.FirstObservedAt = seededAt
+	}
+	if !seededAt.IsZero() {
+		slot.LastObservedAt = seededAt
+	}
+	if slot.Device != nil {
+		r.syncEntryFacesLocked(slot.Device)
+	}
 }
 
 func (r *DeviceRegistry) lookupByIdentity(info DeviceInfo) (DeviceEntry, bool) {

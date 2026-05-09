@@ -191,6 +191,58 @@ func TestRegisterPassiveObserved_RaceFreeWriteAndRead(t *testing.T) {
 	<-done
 }
 
+// TestRegisterPassiveObserved_IdentityMergePreservesPassiveLabels
+// covers Codex P8 review NIT FINDING_2: when two passively-observed
+// addresses share a stable identity (SerialNumber / MacAddress), the
+// underlying registerLocked merges them into a single device entry
+// with both addresses, AND both slots stay labelled at
+// PassiveObserved/Corroborated (NOT promoted to ActiveConfirmed).
+// Mirrors TestRegisterStaticSeed_PreservesAliasIdentity for the
+// passive-observed path.
+func TestRegisterPassiveObserved_IdentityMergePreservesPassiveLabels(t *testing.T) {
+	t.Parallel()
+
+	reg := NewDeviceRegistry(nil)
+	now := time.Now()
+	reg.RegisterPassiveObserved(DeviceInfo{
+		Address:      0xF1,
+		Manufacturer: "Vaillant",
+		DeviceID:     "NETX3",
+		SerialNumber: "SN-MERGE",
+	}, SlotRoleMaster, now)
+	reg.RegisterPassiveObserved(DeviceInfo{
+		Address:      0xF6,
+		Manufacturer: "Vaillant",
+		DeviceID:     "NETX3",
+		SerialNumber: "SN-MERGE",
+	}, SlotRoleSlave, now)
+
+	// Identity merge: both addresses must resolve to the same entry.
+	entry1, ok1 := reg.Lookup(0xF1)
+	entry2, ok2 := reg.Lookup(0xF6)
+	if !ok1 || !ok2 {
+		t.Fatalf("Lookup(0xF1)=%v Lookup(0xF6)=%v; both must resolve", ok1, ok2)
+	}
+	if entry1.SerialNumber() != "SN-MERGE" || entry2.SerialNumber() != "SN-MERGE" {
+		t.Errorf("merged entries SerialNumber should be SN-MERGE; got %q / %q", entry1.SerialNumber(), entry2.SerialNumber())
+	}
+
+	// Both slots stay at passive_observed/corroborated — the identity
+	// merge must NOT silently promote either slot to active_confirmed.
+	for _, addr := range []byte{0xF1, 0xF6} {
+		slot, ok := reg.LookupSlot(addr)
+		if !ok {
+			t.Fatalf("LookupSlot(0x%02X) ok=%v", addr, ok)
+		}
+		if slot.DiscoverySource != DiscoverySourcePassiveObserved {
+			t.Errorf("slot[0x%02X].DiscoverySource = %v; want PassiveObserved", addr, slot.DiscoverySource)
+		}
+		if slot.VerificationState != VerificationStateCorroborated {
+			t.Errorf("slot[0x%02X].VerificationState = %v; want Corroborated", addr, slot.VerificationState)
+		}
+	}
+}
+
 // TestMarkSlotPassiveObserved_StillStampsLabel proves the refactor
 // preserved MarkSlotPassiveObserved's existing behaviour — calls
 // against a pre-attached slot still mark PassiveObserved /

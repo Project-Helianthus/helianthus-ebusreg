@@ -275,12 +275,12 @@ func TestDeviceEntrySnapshot_AddressByRole_FacesPath(t *testing.T) {
 		t.Fatalf("LookupEntrySnapshot(0x10) ok=false")
 	}
 
-	masterAddr, masterOK := snap.AddressByRole(SlotRoleMaster)
-	if !masterOK {
-		t.Errorf("AddressByRole(SlotRoleMaster) ok=false; want true (entry has 0x10 master face)")
+	initiatorAddr, initiatorOK := snap.AddressByRole(SlotRoleMaster)
+	if !initiatorOK {
+		t.Errorf("AddressByRole(SlotRoleMaster) ok=false; want true (entry has 0x10 initiator-class face)")
 	}
-	if masterAddr != 0x10 {
-		t.Errorf("master address = 0x%02X; want 0x10", masterAddr)
+	if initiatorAddr != 0x10 {
+		t.Errorf("initiator address = 0x%02X; want 0x10", initiatorAddr)
 	}
 }
 

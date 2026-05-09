@@ -171,6 +171,74 @@ func TestIterateSnapshots_VisitsAllEntries(t *testing.T) {
 	}
 }
 
+// TestLookupEntrySnapshot_FacesAccessProtocolsDeepCopied verifies
+// that BusFace.AccessProtocols is deep-copied (Codex P9 pass 1
+// MINOR FINDING_1). Mutating snap.Faces[i].AccessProtocols must
+// NOT leak through to registry storage. The existing
+// syncEntryFacesLocked path doesn't currently populate
+// AccessProtocols, so this test injects a face directly via the
+// internal entry to exercise the deep-copy.
+func TestLookupEntrySnapshot_FacesAccessProtocolsDeepCopied(t *testing.T) {
+	t.Parallel()
+
+	reg := NewDeviceRegistry(nil)
+	reg.Register(DeviceInfo{Address: 0x10, SerialNumber: "SN-X"})
+
+	// Inject AccessProtocols directly under the registry's lock so
+	// we can verify the snapshot deep-copies the slice.
+	reg.mu.Lock()
+	entry := reg.entries[0x10]
+	if len(entry.Faces) == 0 {
+		entry.Faces = []BusFace{{Addr: 0x10, Role: SlotRoleMaster}}
+	}
+	entry.Faces[0].AccessProtocols = []string{"raw-write", "raw-read"}
+	reg.mu.Unlock()
+
+	snap, _ := reg.LookupEntrySnapshot(0x10)
+	if len(snap.Faces) == 0 || len(snap.Faces[0].AccessProtocols) != 2 {
+		t.Fatalf("snap.Faces[0].AccessProtocols = %v; want [raw-write raw-read]", snap.Faces)
+	}
+
+	// Mutate the snapshot's nested slice.
+	snap.Faces[0].AccessProtocols[0] = "MUTATED"
+
+	// Re-fetch — the registry must still have the original strings.
+	snap2, _ := reg.LookupEntrySnapshot(0x10)
+	if snap2.Faces[0].AccessProtocols[0] != "raw-write" {
+		t.Errorf("snap2.Faces[0].AccessProtocols[0] = %q; want raw-write (mutation leaked through)", snap2.Faces[0].AccessProtocols[0])
+	}
+}
+
+// TestIterateSnapshots_CallbackCanCallRegistry verifies the
+// IterateSnapshots callback runs OUTSIDE the registry lock — Codex
+// P9 pass 1 MINOR FINDING_2 fix. Calling LookupEntrySnapshot from
+// within the callback would deadlock if the lock were still held.
+func TestIterateSnapshots_CallbackCanCallRegistry(t *testing.T) {
+	t.Parallel()
+
+	reg := NewDeviceRegistry(nil)
+	reg.Register(DeviceInfo{Address: 0x10, Manufacturer: "M1"})
+	reg.Register(DeviceInfo{Address: 0x20, Manufacturer: "M2"})
+
+	calls := 0
+	reg.IterateSnapshots(func(snap DeviceEntrySnapshot) bool {
+		calls++
+		// Re-entrant call into the registry — this would deadlock
+		// if IterateSnapshots held r.mu during the callback.
+		nestedSnap, ok := reg.LookupEntrySnapshot(snap.PrimaryAddress)
+		if !ok {
+			t.Errorf("nested LookupEntrySnapshot(0x%02X) ok=false", snap.PrimaryAddress)
+		}
+		if nestedSnap.Manufacturer != snap.Manufacturer {
+			t.Errorf("nested.Manufacturer = %q; want %q", nestedSnap.Manufacturer, snap.Manufacturer)
+		}
+		return true
+	})
+	if calls != 2 {
+		t.Errorf("callback invocations = %d; want 2", calls)
+	}
+}
+
 // TestIterateSnapshots_StopOnFalse verifies the early-stop semantic.
 func TestIterateSnapshots_StopOnFalse(t *testing.T) {
 	t.Parallel()

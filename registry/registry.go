@@ -1179,26 +1179,31 @@ func (r *DeviceRegistry) LookupEntrySnapshot(address byte) (DeviceEntrySnapshot,
 }
 
 // IterateSnapshots visits each registered device entry as a
-// value-typed snapshot. The snapshot for each entry is taken under
-// r.mu.RLock and the callback is invoked with the lock STILL HELD —
-// callers can append the snapshot to a slice for later use, but
-// MUST NOT call any DeviceRegistry method from within the callback
-// (would deadlock on r.mu).
+// value-typed snapshot. Snapshots are built under r.mu.RLock; the
+// lock is released BEFORE the callback runs. Callers can therefore
+// safely call any DeviceRegistry method from within the callback
+// (no deadlock risk).
 //
-// Lock-held callbacks match the existing Iterate API contract; the
-// only difference is the value-typed snapshot vs the live pointer.
+// This matches the existing Iterate API's lock-then-snapshot-then-
+// unlock contract. The only behavioural difference vs Iterate is
+// the value-typed snapshot vs live entry pointer (Codex P9 review
+// pass 1 MINOR FINDING_2).
 //
-// P9 — Iterate remains for callers that need live entry pointers.
-// New consumers SHOULD prefer IterateSnapshots.
+// P9 — Iterate remains for callers that need live entry pointers
+// (or Planes / Projections, which the snapshot intentionally
+// omits). New consumers SHOULD prefer IterateSnapshots.
 func (r *DeviceRegistry) IterateSnapshots(fn func(DeviceEntrySnapshot) bool) {
 	r.mu.RLock()
-	defer r.mu.RUnlock()
-
+	snapshots := make([]DeviceEntrySnapshot, 0, len(r.order))
 	for _, entry := range r.order {
 		if entry == nil {
 			continue
 		}
-		snap := r.snapshotEntryLocked(entry)
+		snapshots = append(snapshots, r.snapshotEntryLocked(entry))
+	}
+	r.mu.RUnlock()
+
+	for _, snap := range snapshots {
 		if !fn(snap) {
 			return
 		}
@@ -1207,11 +1212,24 @@ func (r *DeviceRegistry) IterateSnapshots(fn func(DeviceEntrySnapshot) bool) {
 
 // snapshotEntryLocked builds a DeviceEntrySnapshot from a live
 // *deviceEntry. Caller MUST hold r.mu.RLock or r.mu.Lock.
+//
+// Each BusFace is deep-copied: the AccessProtocols slice is
+// copied per face, not aliased (Codex P9 review pass 1 MINOR
+// FINDING_1). This guarantees the snapshot is fully disconnected
+// from registry storage — consumer mutations of any nested slice
+// do NOT leak through.
 func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnapshot {
 	addresses := make([]byte, len(entry.addresses))
 	copy(addresses, entry.addresses)
 	faces := make([]BusFace, len(entry.Faces))
-	copy(faces, entry.Faces)
+	for i, src := range entry.Faces {
+		face := src
+		if len(src.AccessProtocols) > 0 {
+			face.AccessProtocols = make([]string, len(src.AccessProtocols))
+			copy(face.AccessProtocols, src.AccessProtocols)
+		}
+		faces[i] = face
+	}
 	primary := entry.primaryAddress
 	if primary == 0 {
 		primary = entry.info.Address

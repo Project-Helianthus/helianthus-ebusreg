@@ -1085,6 +1085,150 @@ func (d *deviceEntry) Projections() []Projection {
 	return d.projections
 }
 
+// DeviceEntrySnapshot is a value-typed copy of a DeviceEntry's
+// observable identity fields. Snapshots are taken under r.mu.RLock
+// so callers can read the fields without holding any registry lock
+// and without risking torn reads from concurrent writers
+// (Register / RegisterStaticSeed / RegisterPassiveObserved /
+// AliasAddresses / detachAddressLocked).
+//
+// P9 — addresses Codex post-P8.3 audit: the DeviceEntry interface
+// methods (Manufacturer / DeviceID / SerialNumber / etc.) read
+// `d.info.<Field>` lock-free. Concurrent Register replaces
+// `entry.info` with a new DeviceInfo struct (line 240
+// `entry.info = storedInfo`); a reader holding the *deviceEntry
+// pointer can observe a torn read of the string fields
+// (string is a 16-byte ptr+len header).
+//
+// DeviceEntrySnapshot copies all string and slice fields under
+// RLock; the snapshot is disconnected from registry storage and
+// safe to read concurrently. Slice copies (Addresses, Faces) prevent
+// callers from mutating registry state through the snapshot.
+//
+// SCOPE: Planes and Projections are intentionally omitted because
+// they're complex interface trees whose elements can transitively
+// expose registry-mutable state. Callers that need plane/projection
+// data should use Lookup (live-pointer API) and accept the lock-free
+// read tradeoff for those specific fields, OR a future
+// Plane/Projection-aware snapshot can be added.
+type DeviceEntrySnapshot struct {
+	PrimaryAddress  byte
+	Addresses       []byte
+	Faces           []BusFace
+	Manufacturer    string
+	DeviceID        string
+	SerialNumber    string
+	MacAddress      string
+	SoftwareVersion string
+	HardwareVersion string
+}
+
+// PrimaryDisplayAddress mirrors deviceEntry.PrimaryDisplayAddress for
+// callers that work with the value-typed snapshot.
+func (s DeviceEntrySnapshot) PrimaryDisplayAddress() byte {
+	return s.PrimaryAddress
+}
+
+// AddressByRole mirrors deviceEntry.AddressByRole using the snapshot's
+// Faces slice. Returns (0, false) when no face matches the requested
+// role (after the same role-class fallback rules used by the live
+// implementation).
+func (s DeviceEntrySnapshot) AddressByRole(role SlotRole) (byte, bool) {
+	for _, face := range s.Faces {
+		if face.Role == role {
+			return face.Addr, true
+		}
+	}
+	for _, face := range s.Faces {
+		if face.Role != SlotRoleUnknown {
+			continue
+		}
+		switch protocol.AddressClassOf(face.Addr) {
+		case protocol.AddressClassMaster:
+			if role == SlotRoleMaster {
+				return face.Addr, true
+			}
+		case protocol.AddressClassSlave:
+			if role == SlotRoleSlave {
+				return face.Addr, true
+			}
+		}
+	}
+	return 0, false
+}
+
+// LookupEntrySnapshot returns a value-typed snapshot of the
+// DeviceEntry registered for addr, taken under r.mu.RLock. The
+// race-free counterpart to Lookup for callers that only need the
+// entry's observable identity fields (gateway MCP / GraphQL /
+// observability projections). Returns (zero, false) when no entry
+// exists for the address.
+//
+// P9 — Lookup remains for callers that need the live entry pointer
+// (e.g. registry-internal mutation paths or callers that need
+// Planes/Projections).
+func (r *DeviceRegistry) LookupEntrySnapshot(address byte) (DeviceEntrySnapshot, bool) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+
+	entry := r.entries[address]
+	if entry == nil {
+		return DeviceEntrySnapshot{}, false
+	}
+	return r.snapshotEntryLocked(entry), true
+}
+
+// IterateSnapshots visits each registered device entry as a
+// value-typed snapshot. The snapshot for each entry is taken under
+// r.mu.RLock and the callback is invoked with the lock STILL HELD —
+// callers can append the snapshot to a slice for later use, but
+// MUST NOT call any DeviceRegistry method from within the callback
+// (would deadlock on r.mu).
+//
+// Lock-held callbacks match the existing Iterate API contract; the
+// only difference is the value-typed snapshot vs the live pointer.
+//
+// P9 — Iterate remains for callers that need live entry pointers.
+// New consumers SHOULD prefer IterateSnapshots.
+func (r *DeviceRegistry) IterateSnapshots(fn func(DeviceEntrySnapshot) bool) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+
+	for _, entry := range r.order {
+		if entry == nil {
+			continue
+		}
+		snap := r.snapshotEntryLocked(entry)
+		if !fn(snap) {
+			return
+		}
+	}
+}
+
+// snapshotEntryLocked builds a DeviceEntrySnapshot from a live
+// *deviceEntry. Caller MUST hold r.mu.RLock or r.mu.Lock.
+func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnapshot {
+	addresses := make([]byte, len(entry.addresses))
+	copy(addresses, entry.addresses)
+	faces := make([]BusFace, len(entry.Faces))
+	copy(faces, entry.Faces)
+	primary := entry.primaryAddress
+	if primary == 0 {
+		primary = entry.info.Address
+	}
+	return DeviceEntrySnapshot{
+		PrimaryAddress:  primary,
+		Addresses:       addresses,
+		Faces:           faces,
+		Manufacturer:    entry.info.Manufacturer,
+		DeviceID:        entry.info.DeviceID,
+		SerialNumber:    entry.info.SerialNumber,
+		MacAddress:      entry.info.MacAddress,
+		SoftwareVersion: entry.info.SoftwareVersion,
+		HardwareVersion: entry.info.HardwareVersion,
+	}
+}
+
 func CanonicalIndexForEntry(entry DeviceEntry) (CanonicalIndex, error) {
 	if entry == nil {
 		return CanonicalIndex{}, ErrProjectionInvalidNode

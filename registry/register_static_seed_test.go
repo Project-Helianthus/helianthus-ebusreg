@@ -113,35 +113,49 @@ func TestRegisterStaticSeed_DoesNotDowngradeActiveConfirmed(t *testing.T) {
 // identityKey) holds when seed registration is later followed by an
 // AliasAddresses call. The seed's DeviceID and Manufacturer must
 // survive the alias.
+//
+// Uses distinct SerialNumber values per face so each entry has a
+// non-empty identityKey — that's the precondition for AliasAddresses
+// to actually exercise the identityKeyAliases transfer path
+// (per Codex P3.5 review FINDING_1 — without serial/mac the
+// canonicalPhysicalIdentity yields no key and the alias path silently
+// no-ops).
 func TestRegisterStaticSeed_PreservesAliasIdentity(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
-	// Seed both NETX3 face addresses.
+	// Seed both NETX3 face addresses with distinct stable identity
+	// keys so AliasAddresses takes the identityKey-merge path.
 	reg.RegisterStaticSeed(DeviceInfo{
 		Address:      0xF1,
 		Manufacturer: "Vaillant",
 		DeviceID:     "NETX3",
+		SerialNumber: "SN-F1",
 	}, SlotRoleMaster, time.Now())
 	reg.RegisterStaticSeed(DeviceInfo{
 		Address:      0xF6,
 		Manufacturer: "Vaillant",
 		DeviceID:     "NETX3",
+		SerialNumber: "SN-F6",
 	}, SlotRoleSlave, time.Now())
 
 	if err := reg.AliasAddresses(0xF1, 0xF6); err != nil {
 		t.Fatalf("AliasAddresses(0xF1, 0xF6) error = %v", err)
 	}
 
-	entry, ok := reg.Lookup(0xF6)
-	if !ok || entry == nil {
-		t.Fatalf("Lookup(0xF6) after alias: ok=%v entry=%v", ok, entry)
-	}
-	if got, want := entry.DeviceID(), "NETX3"; got != want {
-		t.Errorf("aliased entry DeviceID = %q; want %q", got, want)
-	}
-	if got, want := entry.Manufacturer(), "Vaillant"; got != want {
-		t.Errorf("aliased entry Manufacturer = %q; want %q", got, want)
+	// Lookup via either alias must resolve to the merged entry with
+	// the seeded identity preserved.
+	for _, addr := range []byte{0xF1, 0xF6} {
+		entry, ok := reg.Lookup(addr)
+		if !ok || entry == nil {
+			t.Fatalf("Lookup(0x%02X) after alias: ok=%v entry=%v", addr, ok, entry)
+		}
+		if got, want := entry.DeviceID(), "NETX3"; got != want {
+			t.Errorf("aliased entry[0x%02X] DeviceID = %q; want %q", addr, got, want)
+		}
+		if got, want := entry.Manufacturer(), "Vaillant"; got != want {
+			t.Errorf("aliased entry[0x%02X] Manufacturer = %q; want %q", addr, got, want)
+		}
 	}
 
 	// Both slots still labelled static_seed/candidate.

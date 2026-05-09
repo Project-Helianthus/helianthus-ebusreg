@@ -269,33 +269,16 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 // ActiveConfirmed (StaticSeed < ActiveConfirmed) AND VerificationState
 // to IdentityConfirmed.
 //
-// Single lock acquisition — composes registerLocked, then
-// MarkSlotStaticSeed-equivalent inline (we already hold r.mu so we
-// avoid a recursive acquire), then syncEntryFacesLocked.
+// Single lock acquisition — composes registerLocked, then the
+// shared static-seed stamping primitive, then syncEntryFacesLocked.
 func (r *DeviceRegistry) RegisterStaticSeed(info DeviceInfo, role SlotRole, seededAt time.Time) DeviceEntry {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
 	entry := r.registerLocked(info)
-
 	slot := r.ensureAddressSlotLocked(info.Address)
 	slot.Device = entry
-	if slot.DiscoverySource < DiscoverySourceStaticSeed {
-		slot.DiscoverySource = DiscoverySourceStaticSeed
-	}
-	if slot.VerificationState < VerificationStateCandidate {
-		slot.VerificationState = VerificationStateCandidate
-	}
-	if role != SlotRoleUnknown && slot.Role == SlotRoleUnknown {
-		slot.Role = role
-	}
-	if slot.FirstObservedAt.IsZero() && !seededAt.IsZero() {
-		slot.FirstObservedAt = seededAt
-	}
-	if !seededAt.IsZero() {
-		slot.LastObservedAt = seededAt
-	}
-
+	r.markSlotStaticSeedLocked(slot, role, seededAt)
 	r.syncEntryFacesLocked(entry)
 	return entry
 }
@@ -323,6 +306,18 @@ func (r *DeviceRegistry) MarkSlotStaticSeed(address byte, role SlotRole, seededA
 	defer r.mu.Unlock()
 
 	slot := r.ensureAddressSlotLocked(address)
+	r.markSlotStaticSeedLocked(slot, role, seededAt)
+	if slot.Device != nil {
+		r.syncEntryFacesLocked(slot.Device)
+	}
+}
+
+// markSlotStaticSeedLocked is the shared slot-stamping primitive used
+// by both MarkSlotStaticSeed and RegisterStaticSeed. Caller MUST hold
+// r.mu and is responsible for any subsequent syncEntryFacesLocked
+// call. Centralising the stamping rules here prevents drift between
+// the two public entry points (Codex P3.5 review NIT FINDING_3).
+func (r *DeviceRegistry) markSlotStaticSeedLocked(slot *AddressSlot, role SlotRole, seededAt time.Time) {
 	if slot.DiscoverySource < DiscoverySourceStaticSeed {
 		slot.DiscoverySource = DiscoverySourceStaticSeed
 	}
@@ -337,9 +332,6 @@ func (r *DeviceRegistry) MarkSlotStaticSeed(address byte, role SlotRole, seededA
 	}
 	if !seededAt.IsZero() {
 		slot.LastObservedAt = seededAt
-	}
-	if slot.Device != nil {
-		r.syncEntryFacesLocked(slot.Device)
 	}
 }
 

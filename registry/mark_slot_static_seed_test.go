@@ -99,22 +99,45 @@ func TestMarkSlotStaticSeed_MonotonicUpgradeFromPassive(t *testing.T) {
 }
 
 // TestMarkSlotStaticSeed_RaceFreeWriteAndRead mirrors the M6.1 hardening
-// proof for MarkSlotPassiveObserved. The API must serialize via the
-// registry's RWMutex; concurrent writers and readers must not race.
+// proof for MarkSlotPassiveObserved AND extends it to the cross-API
+// case (Codex P3.5 review FINDING_2): concurrent passive-observed and
+// static-seed writers on the same slot must converge through the
+// registry's RWMutex without panic, deadlock, or torn DiscoverySource /
+// VerificationState / Role values.
+//
+// Readers exercise only the monotonically-converging fields (Role,
+// DiscoverySource, VerificationState). The shared-pointer pattern of
+// LookupSlot means LastObservedAt is technically read-after-write via
+// the slot pointer; the existing MarkSlotPassiveObserved race test
+// constrains its reader the same way for the same reason. Improving
+// LookupSlot to return a snapshot copy would close that pointer-share
+// surface but is wider than P3.5's scope.
 func TestMarkSlotStaticSeed_RaceFreeWriteAndRead(t *testing.T) {
 	reg := NewDeviceRegistry(nil)
-	const writers = 100
+	const writers = 50
+	const passiveWriters = 50
 	const readers = 100
 	const iterations = 100
 
 	var wg sync.WaitGroup
-	wg.Add(writers + readers)
+	wg.Add(writers + passiveWriters + readers)
 
 	for i := 0; i < writers; i++ {
 		go func() {
 			defer wg.Done()
 			for j := 0; j < iterations; j++ {
 				reg.MarkSlotStaticSeed(0xF1, SlotRoleMaster, time.Now())
+			}
+		}()
+	}
+	// Concurrent passive-observed writers exercise the cross-API
+	// serialization path. Both APIs hit r.mu, so neither set of
+	// mutations may interleave at the byte level.
+	for i := 0; i < passiveWriters; i++ {
+		go func() {
+			defer wg.Done()
+			for j := 0; j < iterations; j++ {
+				reg.MarkSlotPassiveObserved(0xF1, SlotRoleMaster, time.Now())
 			}
 		}()
 	}
@@ -137,7 +160,10 @@ func TestMarkSlotStaticSeed_RaceFreeWriteAndRead(t *testing.T) {
 	if !ok || slot == nil {
 		t.Fatalf("after race test: LookupSlot(0xF1) ok=%v slot=%v", ok, slot)
 	}
-	if slot.DiscoverySource != DiscoverySourceStaticSeed {
-		t.Errorf("after race test: slot.DiscoverySource = %v; want StaticSeed", slot.DiscoverySource)
+	// Final state: at least one StaticSeed write happened and the
+	// monotonic guard means DiscoverySource >= StaticSeed
+	// (PassiveObserved < StaticSeed).
+	if slot.DiscoverySource < DiscoverySourceStaticSeed {
+		t.Errorf("after race test: slot.DiscoverySource = %v; want >= StaticSeed", slot.DiscoverySource)
 	}
 }

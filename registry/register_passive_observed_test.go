@@ -226,6 +226,26 @@ func TestRegisterPassiveObserved_IdentityMergePreservesPassiveLabels(t *testing.
 	if entry1.SerialNumber() != "SN-MERGE" || entry2.SerialNumber() != "SN-MERGE" {
 		t.Errorf("merged entries SerialNumber should be SN-MERGE; got %q / %q", entry1.SerialNumber(), entry2.SerialNumber())
 	}
+	// Codex P8 pass 2 NIT — assert SAME entry (alias), not just two
+	// entries with the same serial. The merged entry's Addresses()
+	// must contain both 0xF1 and 0xF6.
+	addrs1 := entry1.Addresses()
+	addrs2 := entry2.Addresses()
+	gotF1, gotF6 := false, false
+	for _, a := range addrs1 {
+		if a == 0xF1 {
+			gotF1 = true
+		}
+		if a == 0xF6 {
+			gotF6 = true
+		}
+	}
+	if !gotF1 || !gotF6 {
+		t.Errorf("entry1.Addresses() = %v; want both 0xF1 and 0xF6 (single merged entry)", addrs1)
+	}
+	if len(addrs1) != len(addrs2) {
+		t.Errorf("entry1.Addresses() len=%d != entry2.Addresses() len=%d (different entries — merge failed)", len(addrs1), len(addrs2))
+	}
 
 	// Both slots stay at passive_observed/corroborated — the identity
 	// merge must NOT silently promote either slot to active_confirmed.

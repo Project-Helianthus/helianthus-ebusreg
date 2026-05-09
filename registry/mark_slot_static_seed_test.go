@@ -209,9 +209,9 @@ func TestMarkSlotStaticSeed_RefreshesFacesOnAttachedSlot(t *testing.T) {
 
 // faceForAddress is a small test helper that returns the BusFace
 // matching the given address from a device entry. The DeviceEntry
-// public API does not expose Faces directly; we use the Faces()
-// accessor available on *deviceEntry here via the test package's
-// privileged access.
+// public API does not expose Faces directly; we use the *deviceEntry
+// concrete type's exported Faces field via the test package's
+// same-package access.
 func faceForAddress(entry DeviceEntry, addr byte) (BusFace, bool) {
 	d, ok := entry.(*deviceEntry)
 	if !ok {

@@ -119,6 +119,38 @@ func TestIterateSnapshots_PlanesRaceFree(t *testing.T) {
 	}
 }
 
+// TestDeviceEntrySnapshot_ProjectionsDeepCopied verifies that mutating
+// the snapshot's nested Projection.Nodes[i].Path.Segments slice does
+// NOT affect the registry's state — Codex P9.x pass 1 finding.
+func TestDeviceEntrySnapshot_ProjectionsDeepCopied(t *testing.T) {
+	t.Parallel()
+
+	reg := NewDeviceRegistry([]PlaneProvider{stubPlaneProviderWithProjection{name: "stub"}})
+	reg.Register(DeviceInfo{Address: 0x10, Manufacturer: "Vaillant", DeviceID: "P"})
+
+	snap, ok := reg.LookupEntrySnapshot(0x10)
+	if !ok {
+		t.Fatalf("LookupEntrySnapshot(0x10) ok=false")
+	}
+	if len(snap.Projections) != 1 {
+		t.Fatalf("snap.Projections len = %d; want 1", len(snap.Projections))
+	}
+	if len(snap.Projections[0].Nodes) == 0 {
+		t.Fatalf("snap.Projections[0].Nodes is empty; want >=1")
+	}
+
+	// Mutate the snapshot's Path.Segments — must NOT leak into registry.
+	snap.Projections[0].Nodes[0].Path.Segments[0].Name = "MUTATED"
+
+	snap2, ok := reg.LookupEntrySnapshot(0x10)
+	if !ok {
+		t.Fatalf("LookupEntrySnapshot(0x10) #2 ok=false")
+	}
+	if got := snap2.Projections[0].Nodes[0].Path.Segments[0].Name; got == "MUTATED" {
+		t.Errorf("registry observed mutation through snapshot: Path.Segments[0].Name = %q (want unmodified)", got)
+	}
+}
+
 // stubPlaneProvider creates immutable single-method planes for tests.
 type stubPlaneProvider struct {
 	name string
@@ -128,6 +160,28 @@ func (p stubPlaneProvider) Name() string                    { return p.name }
 func (p stubPlaneProvider) Match(info DeviceInfo) bool      { return true }
 func (p stubPlaneProvider) CreatePlanes(info DeviceInfo) []Plane {
 	return []Plane{&stubPlane{name: p.name}}
+}
+
+// stubPlaneProviderWithProjection adds a projection so the snapshot
+// has Nodes/Edges/Segments to verify the deep-copy.
+type stubPlaneProviderWithProjection struct {
+	name string
+}
+
+func (p stubPlaneProviderWithProjection) Name() string               { return p.name }
+func (p stubPlaneProviderWithProjection) Match(info DeviceInfo) bool { return true }
+func (p stubPlaneProviderWithProjection) CreatePlanes(info DeviceInfo) []Plane {
+	return []Plane{&stubPlane{name: p.name}}
+}
+func (p stubPlaneProviderWithProjection) CreateProjections(info DeviceInfo, planes []Plane) []Projection {
+	return []Projection{{
+		Plane: ServicePlane,
+		Nodes: []Node{{
+			ID:            NodeID(ServicePlane + ":/seg"),
+			Path:          ProjectionPath{Plane: ServicePlane, Segments: []PathSegment{{Name: "seg"}}},
+			CanonicalPath: ProjectionPath{Plane: ServicePlane, Segments: []PathSegment{{Name: "seg"}}},
+		}},
+	}}
 }
 
 type stubPlane struct {

@@ -1237,6 +1237,20 @@ func (r *DeviceRegistry) IterateSnapshots(fn func(DeviceEntrySnapshot) bool) {
 // FINDING_1). This guarantees the snapshot is fully disconnected
 // from registry storage — consumer mutations of any nested slice
 // do NOT leak through.
+// deepCopyProjectionPathLocked returns a copy of `src` whose Segments
+// slice header points to a fresh backing array. Caller does NOT need
+// to hold any registry lock — operates on local copies only — but
+// snapshot construction holds RLock to ensure atomicity with the rest
+// of the snapshot. P9.x.
+func deepCopyProjectionPathLocked(src ProjectionPath) ProjectionPath {
+	out := ProjectionPath{Plane: src.Plane}
+	if len(src.Segments) > 0 {
+		out.Segments = make([]PathSegment, len(src.Segments))
+		copy(out.Segments, src.Segments)
+	}
+	return out
+}
+
 func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnapshot {
 	addresses := make([]byte, len(entry.addresses))
 	copy(addresses, entry.addresses)
@@ -1253,11 +1267,14 @@ func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnap
 	if primary == 0 {
 		primary = entry.info.Address
 	}
-	// P9.x — capture Planes + Projections slice headers under RLock.
-	// The interface elements are immutable after PlaneProvider.CreatePlanes /
-	// ProjectionProvider.CreateProjections; copying the slice header is
-	// sufficient to defend against a concurrent mergeEntries reassignment
-	// of entry.planes / entry.projections.
+	// P9.x — capture Planes + Projections under RLock. The Plane
+	// interface implementations are immutable after CreatePlanes
+	// returns (vaillant providers verified), so copying the slice
+	// header is sufficient there. Projections are concrete structs
+	// (Plane string, Nodes []Node, Edges []Edge) where each Node has
+	// a ProjectionPath.Segments []PathSegment slice; deep-copy those
+	// nested slices so callers cannot mutate registry-visible state
+	// through the snapshot (Codex P9.x review pass 1).
 	var planes []Plane
 	if len(entry.planes) > 0 {
 		planes = make([]Plane, len(entry.planes))
@@ -1266,7 +1283,24 @@ func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnap
 	var projections []Projection
 	if len(entry.projections) > 0 {
 		projections = make([]Projection, len(entry.projections))
-		copy(projections, entry.projections)
+		for i, src := range entry.projections {
+			proj := Projection{Plane: src.Plane}
+			if len(src.Nodes) > 0 {
+				proj.Nodes = make([]Node, len(src.Nodes))
+				for j, srcNode := range src.Nodes {
+					proj.Nodes[j] = Node{
+						ID:            srcNode.ID,
+						Path:          deepCopyProjectionPathLocked(srcNode.Path),
+						CanonicalPath: deepCopyProjectionPathLocked(srcNode.CanonicalPath),
+					}
+				}
+			}
+			if len(src.Edges) > 0 {
+				proj.Edges = make([]Edge, len(src.Edges))
+				copy(proj.Edges, src.Edges) // Edge has only string-typed fields
+			}
+			projections[i] = proj
+		}
 	}
 	return DeviceEntrySnapshot{
 		PrimaryAddress:  primary,

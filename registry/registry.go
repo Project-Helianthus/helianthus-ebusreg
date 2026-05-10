@@ -797,6 +797,19 @@ func (r *DeviceRegistry) absorbIdentityLocked(dst, src *deviceEntry) {
 	emptyPhysical := physicalIdentity{}
 	if dst.physical == emptyPhysical && src.physical != emptyPhysical {
 		dst.physical = src.physical
+	} else if dst.physical != emptyPhysical {
+		// P0 round-7 follow-up (Codex P2 on PR #143): when dst.physical
+		// is non-zero we don't replace it, but we just absorbed
+		// info.DeviceID / SoftwareVersion / HardwareVersion above from
+		// src. dst.physical is stale (was computed pre-absorb). A
+		// future bare sig-only Register goes through
+		// lookupCompatibleBySignatureLocked which compares
+		// candidate.physical.withFallbackModelSignature() — if dst.physical
+		// still lacks the absorbed sig fields, the candidate scan
+		// won't match and a duplicate device is created. Recompute
+		// dst.physical from the freshly-merged dst.info so the model
+		// signature reflects everything we've absorbed.
+		dst.physical = canonicalPhysicalIdentity(dst.info)
 	}
 	// NOTE: identityKey transfer is intentionally NOT done here.
 	// absorbIdentityLocked runs BEFORE AliasAddresses removes

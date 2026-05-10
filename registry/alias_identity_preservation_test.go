@@ -407,3 +407,72 @@ func TestRegister_FallbackSignatureNotPreservedAsAlias(t *testing.T) {
 		t.Errorf("entry at 0x12 inherited a serial from A or B (= %q); want empty (fresh entry)", entry12.SerialNumber())
 	}
 }
+
+// TestAbsorbIdentity_RecomputesPhysicalAfterModelSigAbsorb (P0 round-7
+// Codex P2 follow-up on PR #143). When a stable-key canonical (e.g.
+// MAC-only at boot) absorbs the model-signature fields (DeviceID +
+// SW + HW) from a sig-only secondary, the canonical's physicalIdentity
+// must be recomputed so withFallbackModelSignature reflects the new
+// fields. Without recompute, lookupCompatibleBySignatureLocked won't
+// find the merged device on a future bare sig-only Register and a
+// duplicate entry is created.
+func TestAbsorbIdentity_RecomputesPhysicalAfterModelSigAbsorb(t *testing.T) {
+	reg := NewDeviceRegistry(nil)
+
+	// Step 1: register canonical at 0x10 with MAC only.
+	reg.Register(DeviceInfo{
+		Address:      0x10,
+		Manufacturer: "Vaillant",
+		MacAddress:   "AA:BB:CC:11:22:33",
+	})
+
+	// Step 2: register secondary at 0x11 with sig only (no MAC).
+	reg.Register(DeviceInfo{
+		Address:         0x11,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "BAI00",
+		SoftwareVersion: "1201",
+		HardwareVersion: "7603",
+	})
+
+	// Step 3: alias 0x11 into canonical at 0x10. AliasAddresses calls
+	// absorbIdentityLocked which copies DeviceID/SW/HW from secondary
+	// into canonical.info. canonical.physical was {Manufacturer,
+	// MacAddress}; without the round-7 fix it stays stale and
+	// withFallbackModelSignature returns "" for it.
+	if err := reg.AliasAddresses(0x10, 0x11); err != nil {
+		t.Fatalf("AliasAddresses(0x10, 0x11) err=%v", err)
+	}
+
+	// Step 4: bare sig-only Register at 0x12. With the recompute fix,
+	// lookupCompatibleBySignatureLocked finds canonical via
+	// canonical.physical.withFallbackModelSignature() and routes 0x12
+	// to it. Pre-fix canonical.physical lacked DeviceID/SW/HW so the
+	// candidate scan returned no match and a duplicate entry was
+	// created at 0x12.
+	reg.Register(DeviceInfo{
+		Address:         0x12,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "BAI00",
+		SoftwareVersion: "1201",
+		HardwareVersion: "7603",
+	})
+
+	entry10, ok := reg.Lookup(0x10)
+	if !ok {
+		t.Fatalf("Lookup(0x10) = false; want merged canonical")
+	}
+	entry12, ok := reg.Lookup(0x12)
+	if !ok {
+		t.Fatalf("Lookup(0x12) = false; want routed via sig fingerprint to merged canonical")
+	}
+	if entry10 != entry12 {
+		t.Errorf("entry at 0x10 != entry at 0x12; bare sig-only Register failed to route via withFallbackModelSignature — canonical.physical was not recomputed after absorb")
+	}
+	if entry10.MacAddress() != "AA:BB:CC:11:22:33" {
+		t.Errorf("entry.MacAddress = %q; want AA:BB:CC:11:22:33", entry10.MacAddress())
+	}
+	if entry10.DeviceID() != "BAI00" {
+		t.Errorf("entry.DeviceID = %q; want BAI00", entry10.DeviceID())
+	}
+}

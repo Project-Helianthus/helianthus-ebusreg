@@ -1,6 +1,7 @@
 package registry
 
 import (
+	"strings"
 	"sync"
 	"time"
 
@@ -234,8 +235,28 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 		// info.MacAddress. Now `lookupByIdentity` by either key
 		// continues to resolve to the merged entry, and
 		// detachAddressLocked cleans up both via identityKeyAliases.
-		r.identity[entry.identityKey] = entry
-		entry.identityKeyAliases = appendUniqueString(entry.identityKeyAliases, entry.identityKey)
+		//
+		// P0 round-7 (Codex P2 follow-up 2026-05-10 on PR #136
+		// thread PRRT_kwDORGIkfM6ArzFY): only preserve STABLE keys
+		// (sn|... / mac|...) as aliases. Fallback signature keys
+		// (`sig|...`) are NOT stable identifiers — multiple units
+		// of the same model share the identical fallback signature.
+		// If the old primary was sig-derived (entry first seen
+		// without serial/MAC, then enriched with a stable serial),
+		// preserving the sig key as an alias would silently bypass
+		// `lookupCompatibleBySignatureLocked`'s ambiguity-refusal
+		// scan when a second device with the same fingerprint
+		// exists. A subsequent bare sig-only observation at a new
+		// address would resolve directly to this entry via
+		// r.identity instead of being routed through the ambiguity
+		// check, incorrectly merging into this entry. Drop sig keys
+		// rather than aliasing them.
+		if isStableIdentityKey(entry.identityKey) {
+			r.identity[entry.identityKey] = entry
+			entry.identityKeyAliases = appendUniqueString(entry.identityKeyAliases, entry.identityKey)
+		} else {
+			delete(r.identity, entry.identityKey)
+		}
 	}
 	entry.info = storedInfo
 	entry.physical = physical
@@ -577,8 +598,23 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 						// this, the orphan key would resolve to a
 						// removed *deviceEntry until r.identity gets
 						// rebuilt. (Codex P2 round-4 finding.)
-						r.identity[secondary.identityKey] = canonical
-						canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
+						//
+						// P0 round-7 (Codex P2 round-7 finding
+						// 2026-05-10 on PR #136 thread
+						// PRRT_kwDORGIkfM6ArzFY): only preserve
+						// STABLE keys (sn|... / mac|...) as aliases.
+						// `sig|...` fallback keys are NOT
+						// per-device — preserving one would let a
+						// later bare sig-only observation bypass
+						// `lookupCompatibleBySignatureLocked`'s
+						// ambiguity-refusal scan and silently merge
+						// into canonical.
+						if isStableIdentityKey(secondary.identityKey) {
+							r.identity[secondary.identityKey] = canonical
+							canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
+						} else {
+							delete(r.identity, secondary.identityKey)
+						}
 					}
 				}
 				r.order = removeEntry(r.order, secondary)
@@ -641,8 +677,23 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 						// this, the orphan key would resolve to a
 						// removed *deviceEntry until r.identity gets
 						// rebuilt. (Codex P2 round-4 finding.)
-						r.identity[secondary.identityKey] = canonical
-						canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
+						//
+						// P0 round-7 (Codex P2 round-7 finding
+						// 2026-05-10 on PR #136 thread
+						// PRRT_kwDORGIkfM6ArzFY): only preserve
+						// STABLE keys (sn|... / mac|...) as aliases.
+						// `sig|...` fallback keys are NOT
+						// per-device — preserving one would let a
+						// later bare sig-only observation bypass
+						// `lookupCompatibleBySignatureLocked`'s
+						// ambiguity-refusal scan and silently merge
+						// into canonical.
+						if isStableIdentityKey(secondary.identityKey) {
+							r.identity[secondary.identityKey] = canonical
+							canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
+						} else {
+							delete(r.identity, secondary.identityKey)
+						}
 					}
 				}
 				r.order = removeEntry(r.order, secondary)
@@ -675,6 +726,27 @@ func appendUniqueString(dst []string, s string) []string {
 		}
 	}
 	return append(dst, s)
+}
+
+// isStableIdentityKey reports whether key is a stable, per-device
+// identity key (serial- or MAC-derived) versus a fallback model
+// signature key (`sig|...`) shared by every unit of the same model.
+//
+// Only stable keys are safe to preserve in r.identity as identity
+// aliases when the entry's primary identityKey is rotated (e.g. on
+// late-enrichment from sig-only → serial). Preserving a `sig|...` key
+// would silently bypass `lookupCompatibleBySignatureLocked`'s
+// ambiguity-refusal scan when a second device with the same
+// fingerprint exists in the registry: a subsequent bare sig-only
+// observation at a new address would resolve directly to the first
+// entry via r.identity instead of being routed through the ambiguity
+// check. (Codex P2 round-7 finding 2026-05-08 on PR #136 thread
+// PRRT_kwDORGIkfM6ArzFY.)
+//
+// Mirrors the prefix taxonomy in physicalIdentity.key() /
+// withFallbackModelSignature() in registry/identity.go.
+func isStableIdentityKey(key string) bool {
+	return strings.HasPrefix(key, "sn|") || strings.HasPrefix(key, "mac|")
 }
 
 // absorbIdentityLocked copies non-empty identity-bearing fields and

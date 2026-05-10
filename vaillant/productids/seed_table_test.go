@@ -10,13 +10,21 @@ import (
 
 const staticSeedSource = "vaillant_static_seed_w19_26"
 
-func TestStaticSeedTable_NETX3_OwnsThreeAddresses(t *testing.T) {
+func TestStaticSeedTable_NETX3_OwnsFourAddresses(t *testing.T) {
+	// Operator observation 2026-05-10: NETX3 exposes four faces on the
+	// wire. The pair 0x04+0xFF (target / broadcast faces) must be
+	// seeded together so identity-merge collapses all four addresses
+	// into one DeviceEntry at boot — without 0xFF in the seed, passive
+	// observations of NETX3's 0xFF broadcasts land in a separate
+	// unidentified entry that never gets enriched (NETX3 does not
+	// respond to active identify probes on 0xFF).
 	entry := findStaticSeedEntry(t, productids.LoadSeedTable(true), "Vaillant", "NETX3")
 
 	assertSeedAddresses(t, entry.Addresses, []productids.SeedAddressEntry{
 		{Addr: 0xF1, Role: "initiator", Confidence: "candidate"},
 		{Addr: 0xF6, Role: "target", Confidence: "candidate"},
 		{Addr: 0x04, Role: "target", Confidence: "candidate"},
+		{Addr: 0xFF, Role: "target", Confidence: "candidate"},
 	})
 }
 

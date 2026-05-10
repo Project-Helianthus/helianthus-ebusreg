@@ -1105,12 +1105,25 @@ func (d *deviceEntry) Projections() []Projection {
 // safe to read concurrently. Slice copies (Addresses, Faces) prevent
 // callers from mutating registry state through the snapshot.
 //
-// SCOPE: Planes and Projections are intentionally omitted because
-// they're complex interface trees whose elements can transitively
-// expose registry-mutable state. Callers that need plane/projection
-// data should use Lookup (live-pointer API) and accept the lock-free
-// read tradeoff for those specific fields, OR a future
-// Plane/Projection-aware snapshot can be added.
+// SCOPE (P9.x): Planes and Projections were originally omitted on the
+// theory that their interface trees transitively exposed registry-
+// mutable state. In practice the *plane and *method implementations
+// (vaillant providers + similar) are constructed once in
+// PlaneProvider.CreatePlanes / ProjectionProvider.CreateProjections
+// and never mutated afterward; the only registry-side write to the
+// `entry.planes` / `entry.projections` slice headers happens during
+// the identity-merge path (mergeEntries dst.planes = src.planes /
+// dst.projections = src.projections). Capturing those slice headers
+// under RLock therefore produces a stable view: readers iterating
+// the snapshot's Planes / Projections see element references that
+// remain valid for the lifetime of the snapshot, with no risk of a
+// mid-iteration slice reassignment.
+//
+// P9.x adds Planes + Projections to DeviceEntrySnapshot so the
+// graphql.BuildSchema hot path can drop its live-pointer Iterate
+// usage. Callers that mutate the registry (registerLocked path) must
+// continue to use the live `*deviceEntry` pointer; the snapshot is
+// READ-ONLY by construction.
 type DeviceEntrySnapshot struct {
 	PrimaryAddress  byte
 	Addresses       []byte
@@ -1121,6 +1134,12 @@ type DeviceEntrySnapshot struct {
 	MacAddress      string
 	SoftwareVersion string
 	HardwareVersion string
+	// Planes + Projections — slice headers captured under RLock at
+	// snapshot time. The interface elements (Plane, Method, etc.) are
+	// immutable after PlaneProvider.CreatePlanes returns; safe to
+	// read after the lock has been released.
+	Planes      []Plane
+	Projections []Projection
 }
 
 // PrimaryDisplayAddress mirrors deviceEntry.PrimaryDisplayAddress for
@@ -1218,6 +1237,61 @@ func (r *DeviceRegistry) IterateSnapshots(fn func(DeviceEntrySnapshot) bool) {
 // FINDING_1). This guarantees the snapshot is fully disconnected
 // from registry storage — consumer mutations of any nested slice
 // do NOT leak through.
+// deepCopyProjectionPathLocked returns a copy of `src` whose Segments
+// slice header points to a fresh backing array. Caller does NOT need
+// to hold any registry lock — operates on local copies only — but
+// snapshot construction holds RLock to ensure atomicity with the rest
+// of the snapshot. P9.x.
+func deepCopyProjectionPathLocked(src ProjectionPath) ProjectionPath {
+	out := ProjectionPath{Plane: src.Plane}
+	if len(src.Segments) > 0 {
+		out.Segments = make([]PathSegment, len(src.Segments))
+		copy(out.Segments, src.Segments)
+	}
+	return out
+}
+
+// snapshotPlane wraps a registry-owned Plane so that Methods() returns
+// a snapshot-owned copy of the underlying methods slice. Without this
+// wrapper, the vaillant providers' plane.Methods() returns
+// plane.methods directly — a snapshot caller could write to the
+// returned slice and corrupt the live registry plane (Codex P9.x
+// review pass 2 GitHub-bot finding). The snapshot wrapper preserves
+// the Plane interface contract while shielding registry storage.
+//
+// The Method interface values in `methods` are shared with the
+// registry; vaillant Method implementations are immutable struct
+// values (verified in vaillant/system/system.go and analogous
+// providers), so sharing them is safe. Only the SLICE itself needs
+// to be snapshot-owned to prevent index-write corruption.
+type snapshotPlane struct {
+	name    string
+	methods []Method
+}
+
+// Name returns the wrapped plane's name, captured at snapshot time.
+func (p *snapshotPlane) Name() string { return p.name }
+
+// Methods returns a fresh copy of the snapshot-owned method slice on
+// every call. Callers therefore cannot mutate the slice another caller
+// holds (or the registry's underlying slice).
+func (p *snapshotPlane) Methods() []Method {
+	out := make([]Method, len(p.methods))
+	copy(out, p.methods)
+	return out
+}
+
+// snapshotPlaneFromLocked builds a snapshotPlane from a registry-owned
+// Plane. Caller MUST hold r.mu (read or write) so the underlying
+// plane's Methods() result is captured atomically with the rest of the
+// snapshot.
+func snapshotPlaneFromLocked(p Plane) *snapshotPlane {
+	src := p.Methods()
+	methods := make([]Method, len(src))
+	copy(methods, src)
+	return &snapshotPlane{name: p.Name(), methods: methods}
+}
+
 func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnapshot {
 	addresses := make([]byte, len(entry.addresses))
 	copy(addresses, entry.addresses)
@@ -1234,6 +1308,43 @@ func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnap
 	if primary == 0 {
 		primary = entry.info.Address
 	}
+	// P9.x — capture Planes + Projections under RLock. The Plane
+	// interface implementations are immutable after CreatePlanes
+	// returns (vaillant providers verified), so copying the slice
+	// header is sufficient there. Projections are concrete structs
+	// (Plane string, Nodes []Node, Edges []Edge) where each Node has
+	// a ProjectionPath.Segments []PathSegment slice; deep-copy those
+	// nested slices so callers cannot mutate registry-visible state
+	// through the snapshot (Codex P9.x review pass 1).
+	var planes []Plane
+	if len(entry.planes) > 0 {
+		planes = make([]Plane, len(entry.planes))
+		for i, src := range entry.planes {
+			planes[i] = snapshotPlaneFromLocked(src)
+		}
+	}
+	var projections []Projection
+	if len(entry.projections) > 0 {
+		projections = make([]Projection, len(entry.projections))
+		for i, src := range entry.projections {
+			proj := Projection{Plane: src.Plane}
+			if len(src.Nodes) > 0 {
+				proj.Nodes = make([]Node, len(src.Nodes))
+				for j, srcNode := range src.Nodes {
+					proj.Nodes[j] = Node{
+						ID:            srcNode.ID,
+						Path:          deepCopyProjectionPathLocked(srcNode.Path),
+						CanonicalPath: deepCopyProjectionPathLocked(srcNode.CanonicalPath),
+					}
+				}
+			}
+			if len(src.Edges) > 0 {
+				proj.Edges = make([]Edge, len(src.Edges))
+				copy(proj.Edges, src.Edges) // Edge has only string-typed fields
+			}
+			projections[i] = proj
+		}
+	}
 	return DeviceEntrySnapshot{
 		PrimaryAddress:  primary,
 		Addresses:       addresses,
@@ -1244,6 +1355,8 @@ func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnap
 		MacAddress:      entry.info.MacAddress,
 		SoftwareVersion: entry.info.SoftwareVersion,
 		HardwareVersion: entry.info.HardwareVersion,
+		Planes:          planes,
+		Projections:     projections,
 	}
 }
 

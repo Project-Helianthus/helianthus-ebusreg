@@ -1251,6 +1251,47 @@ func deepCopyProjectionPathLocked(src ProjectionPath) ProjectionPath {
 	return out
 }
 
+// snapshotPlane wraps a registry-owned Plane so that Methods() returns
+// a snapshot-owned copy of the underlying methods slice. Without this
+// wrapper, the vaillant providers' plane.Methods() returns
+// plane.methods directly — a snapshot caller could write to the
+// returned slice and corrupt the live registry plane (Codex P9.x
+// review pass 2 GitHub-bot finding). The snapshot wrapper preserves
+// the Plane interface contract while shielding registry storage.
+//
+// The Method interface values in `methods` are shared with the
+// registry; vaillant Method implementations are immutable struct
+// values (verified in vaillant/system/system.go and analogous
+// providers), so sharing them is safe. Only the SLICE itself needs
+// to be snapshot-owned to prevent index-write corruption.
+type snapshotPlane struct {
+	name    string
+	methods []Method
+}
+
+// Name returns the wrapped plane's name, captured at snapshot time.
+func (p *snapshotPlane) Name() string { return p.name }
+
+// Methods returns a fresh copy of the snapshot-owned method slice on
+// every call. Callers therefore cannot mutate the slice another caller
+// holds (or the registry's underlying slice).
+func (p *snapshotPlane) Methods() []Method {
+	out := make([]Method, len(p.methods))
+	copy(out, p.methods)
+	return out
+}
+
+// snapshotPlaneFromLocked builds a snapshotPlane from a registry-owned
+// Plane. Caller MUST hold r.mu (read or write) so the underlying
+// plane's Methods() result is captured atomically with the rest of the
+// snapshot.
+func snapshotPlaneFromLocked(p Plane) *snapshotPlane {
+	src := p.Methods()
+	methods := make([]Method, len(src))
+	copy(methods, src)
+	return &snapshotPlane{name: p.Name(), methods: methods}
+}
+
 func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnapshot {
 	addresses := make([]byte, len(entry.addresses))
 	copy(addresses, entry.addresses)
@@ -1278,7 +1319,9 @@ func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnap
 	var planes []Plane
 	if len(entry.planes) > 0 {
 		planes = make([]Plane, len(entry.planes))
-		copy(planes, entry.planes)
+		for i, src := range entry.planes {
+			planes[i] = snapshotPlaneFromLocked(src)
+		}
 	}
 	var projections []Projection
 	if len(entry.projections) > 0 {

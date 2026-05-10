@@ -119,6 +119,57 @@ func TestIterateSnapshots_PlanesRaceFree(t *testing.T) {
 	}
 }
 
+// TestDeviceEntrySnapshot_PlaneMethodsIsolated verifies that the
+// Method slice returned by snap.Planes[i].Methods() is snapshot-owned:
+// mutating it must NOT corrupt registry-visible state on a subsequent
+// LookupEntrySnapshot. Codex P9.x pass 2 GitHub-bot finding — vaillant
+// providers' Plane.Methods() returns the live methods slice directly,
+// so a snapshot caller writing to the result would leak into registry
+// storage without the snapshotPlane wrapper.
+func TestDeviceEntrySnapshot_PlaneMethodsIsolated(t *testing.T) {
+	t.Parallel()
+
+	reg := NewDeviceRegistry([]PlaneProvider{stubPlaneProvider{name: "stub"}})
+	reg.Register(DeviceInfo{Address: 0x10, Manufacturer: "Vaillant", DeviceID: "M"})
+
+	snap1, ok := reg.LookupEntrySnapshot(0x10)
+	if !ok {
+		t.Fatalf("LookupEntrySnapshot(0x10) ok=false")
+	}
+	if len(snap1.Planes) != 1 {
+		t.Fatalf("snap1.Planes len = %d; want 1", len(snap1.Planes))
+	}
+
+	// Mutate the slice returned by Methods() on the FIRST snapshot.
+	methods1 := snap1.Planes[0].Methods()
+	if len(methods1) == 0 {
+		t.Fatalf("snap1 Methods() empty; want >=1")
+	}
+	methods1[0] = nil // try to corrupt registry storage via snapshot
+
+	// A subsequent snapshot must observe the registry's original
+	// methods, not the nil we wrote.
+	snap2, _ := reg.LookupEntrySnapshot(0x10)
+	methods2 := snap2.Planes[0].Methods()
+	if len(methods2) == 0 {
+		t.Fatalf("snap2 Methods() empty; want >=1")
+	}
+	if methods2[0] == nil {
+		t.Errorf("snap2 Methods()[0] = nil — snapshot mutation leaked into registry")
+	}
+
+	// Two calls to the SAME snapshot's Methods() must return
+	// independent slices (no cross-mutation between callers).
+	methodsA := snap1.Planes[0].Methods()
+	methodsB := snap1.Planes[0].Methods()
+	if len(methodsA) > 0 && len(methodsB) > 0 {
+		methodsA[0] = nil
+		if methodsB[0] == nil {
+			t.Errorf("Methods() returned aliased slice — caller A's mutation visible to caller B")
+		}
+	}
+}
+
 // TestDeviceEntrySnapshot_ProjectionsDeepCopied verifies that mutating
 // the snapshot's nested Projection.Nodes[i].Path.Segments slice does
 // NOT affect the registry's state — Codex P9.x pass 1 finding.

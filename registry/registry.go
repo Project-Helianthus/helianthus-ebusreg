@@ -1105,12 +1105,25 @@ func (d *deviceEntry) Projections() []Projection {
 // safe to read concurrently. Slice copies (Addresses, Faces) prevent
 // callers from mutating registry state through the snapshot.
 //
-// SCOPE: Planes and Projections are intentionally omitted because
-// they're complex interface trees whose elements can transitively
-// expose registry-mutable state. Callers that need plane/projection
-// data should use Lookup (live-pointer API) and accept the lock-free
-// read tradeoff for those specific fields, OR a future
-// Plane/Projection-aware snapshot can be added.
+// SCOPE (P9.x): Planes and Projections were originally omitted on the
+// theory that their interface trees transitively exposed registry-
+// mutable state. In practice the *plane and *method implementations
+// (vaillant providers + similar) are constructed once in
+// PlaneProvider.CreatePlanes / ProjectionProvider.CreateProjections
+// and never mutated afterward; the only registry-side write to the
+// `entry.planes` / `entry.projections` slice headers happens during
+// the identity-merge path (mergeEntries dst.planes = src.planes /
+// dst.projections = src.projections). Capturing those slice headers
+// under RLock therefore produces a stable view: readers iterating
+// the snapshot's Planes / Projections see element references that
+// remain valid for the lifetime of the snapshot, with no risk of a
+// mid-iteration slice reassignment.
+//
+// P9.x adds Planes + Projections to DeviceEntrySnapshot so the
+// graphql.BuildSchema hot path can drop its live-pointer Iterate
+// usage. Callers that mutate the registry (registerLocked path) must
+// continue to use the live `*deviceEntry` pointer; the snapshot is
+// READ-ONLY by construction.
 type DeviceEntrySnapshot struct {
 	PrimaryAddress  byte
 	Addresses       []byte
@@ -1121,6 +1134,12 @@ type DeviceEntrySnapshot struct {
 	MacAddress      string
 	SoftwareVersion string
 	HardwareVersion string
+	// Planes + Projections — slice headers captured under RLock at
+	// snapshot time. The interface elements (Plane, Method, etc.) are
+	// immutable after PlaneProvider.CreatePlanes returns; safe to
+	// read after the lock has been released.
+	Planes      []Plane
+	Projections []Projection
 }
 
 // PrimaryDisplayAddress mirrors deviceEntry.PrimaryDisplayAddress for
@@ -1234,6 +1253,21 @@ func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnap
 	if primary == 0 {
 		primary = entry.info.Address
 	}
+	// P9.x — capture Planes + Projections slice headers under RLock.
+	// The interface elements are immutable after PlaneProvider.CreatePlanes /
+	// ProjectionProvider.CreateProjections; copying the slice header is
+	// sufficient to defend against a concurrent mergeEntries reassignment
+	// of entry.planes / entry.projections.
+	var planes []Plane
+	if len(entry.planes) > 0 {
+		planes = make([]Plane, len(entry.planes))
+		copy(planes, entry.planes)
+	}
+	var projections []Projection
+	if len(entry.projections) > 0 {
+		projections = make([]Projection, len(entry.projections))
+		copy(projections, entry.projections)
+	}
 	return DeviceEntrySnapshot{
 		PrimaryAddress:  primary,
 		Addresses:       addresses,
@@ -1244,6 +1278,8 @@ func (r *DeviceRegistry) snapshotEntryLocked(entry *deviceEntry) DeviceEntrySnap
 		MacAddress:      entry.info.MacAddress,
 		SoftwareVersion: entry.info.SoftwareVersion,
 		HardwareVersion: entry.info.HardwareVersion,
+		Planes:          planes,
+		Projections:     projections,
 	}
 }
 

@@ -207,8 +207,8 @@ type stubPlaneProvider struct {
 	name string
 }
 
-func (p stubPlaneProvider) Name() string                    { return p.name }
-func (p stubPlaneProvider) Match(info DeviceInfo) bool      { return true }
+func (p stubPlaneProvider) Name() string               { return p.name }
+func (p stubPlaneProvider) Match(info DeviceInfo) bool { return true }
 func (p stubPlaneProvider) CreatePlanes(info DeviceInfo) []Plane {
 	return []Plane{&stubPlane{name: p.name}}
 }
@@ -239,16 +239,16 @@ type stubPlane struct {
 	name string
 }
 
-func (p *stubPlane) Name() string             { return p.name }
-func (p *stubPlane) Methods() []Method        { return []Method{stubMethod{name: "noop"}} }
+func (p *stubPlane) Name() string      { return p.name }
+func (p *stubPlane) Methods() []Method { return []Method{stubMethod{name: "noop"}} }
 
 type stubMethod struct {
 	name string
 }
 
-func (m stubMethod) Name() string                   { return m.name }
-func (m stubMethod) ReadOnly() bool                 { return true }
-func (m stubMethod) Template() FrameTemplate        { return stubTemplate{} }
+func (m stubMethod) Name() string            { return m.name }
+func (m stubMethod) ReadOnly() bool          { return true }
+func (m stubMethod) Template() FrameTemplate { return stubTemplate{} }
 func (m stubMethod) ResponseSchema() schema.SchemaSelector {
 	return schema.SchemaSelector{}
 }

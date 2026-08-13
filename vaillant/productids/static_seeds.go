@@ -27,8 +27,8 @@ func LoadSeedTable(enabled bool) []StaticSeedEntry {
 			Source:       staticSeedSource,
 			Addresses: []SeedAddressEntry{
 				// NETX3 exposes four faces on the wire (operator
-				// observation 2026-05-10): 0xF1 (master / initiator),
-				// 0xF6 (slave / target companion of 0xF1), and the
+				// observation 2026-05-10): 0xF1 (initiator),
+				// 0xF6 (target companion of 0xF1), and the
 				// pair 0x04 / 0xFF (target / broadcast faces). The
 				// pair 0x04+0xFF must be seeded together so the
 				// registry's identity-merge collapses all four

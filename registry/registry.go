@@ -77,12 +77,13 @@ type FrameTemplate interface {
 }
 
 type DeviceRegistry struct {
-	mu           sync.RWMutex
-	providers    []PlaneProvider
-	entries      map[byte]*deviceEntry
-	addressTable [256]*AddressSlot
-	identity     map[string]*deviceEntry
-	order        []*deviceEntry
+	mu                    sync.RWMutex
+	observationGeneration uint64
+	providers             []PlaneProvider
+	entries               map[byte]*deviceEntry
+	addressTable          [256]*AddressSlot
+	identity              map[string]*deviceEntry
+	order                 []*deviceEntry
 }
 
 func NewDeviceRegistry(providers []PlaneProvider) *DeviceRegistry {
@@ -98,7 +99,30 @@ func NewDeviceRegistry(providers []PlaneProvider) *DeviceRegistry {
 func (r *DeviceRegistry) RegisterProvider(provider PlaneProvider) {
 	r.mu.Lock()
 	r.providers = append(r.providers, provider)
+	r.observationGeneration++
 	r.mu.Unlock()
+}
+
+// WithObservationGeneration executes fn while holding the registry read lock
+// and supplies the current monotonic observation generation. Public registry
+// mutations advance the generation under the corresponding write lock, so a
+// writer linearizes either before the callback begins or after it returns.
+//
+// fn must remain bounded and must not call another DeviceRegistry method: the
+// callback deliberately executes inside the read critical section so callers
+// can atomically compare a captured generation and commit derived state before
+// a relevant registry mutation can interleave.
+//
+// The method returns false without invoking fn when either receiver or callback
+// is nil.
+func (r *DeviceRegistry) WithObservationGeneration(fn func(uint64)) bool {
+	if r == nil || fn == nil {
+		return false
+	}
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+	fn(r.observationGeneration)
+	return true
 }
 
 func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
@@ -108,6 +132,7 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	entry := r.registerLocked(info)
 	r.observeAddressSlotLocked(info.Address, entry, DiscoverySourceActiveConfirmed, VerificationStateIdentityConfirmed)
 	r.syncEntryFacesLocked(entry)
+	r.observationGeneration++
 	return entry
 }
 
@@ -301,6 +326,7 @@ func (r *DeviceRegistry) RegisterStaticSeed(info DeviceInfo, role SlotRole, seed
 	slot.Device = entry
 	r.markSlotStaticSeedLocked(slot, role, seededAt)
 	r.syncEntryFacesLocked(entry)
+	r.observationGeneration++
 	return entry
 }
 
@@ -346,6 +372,7 @@ func (r *DeviceRegistry) MarkSlotStaticSeed(address byte, role SlotRole, seededA
 	if slot.Device != nil {
 		r.syncEntryFacesLocked(slot.Device)
 	}
+	r.observationGeneration++
 }
 
 // markSlotStaticSeedLocked is the shared slot-stamping primitive used
@@ -713,6 +740,7 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 		r.syncEntryFacesLocked(canonical)
 	}
 
+	r.observationGeneration++
 	return nil
 }
 
@@ -944,6 +972,7 @@ func (r *DeviceRegistry) MarkSlotPassiveObserved(address byte, role SlotRole, ob
 	if slot.Device != nil {
 		r.syncEntryFacesLocked(slot.Device)
 	}
+	r.observationGeneration++
 }
 
 // markSlotPassiveObservedLocked is the shared slot-stamping primitive
@@ -1006,6 +1035,7 @@ func (r *DeviceRegistry) RegisterPassiveObserved(info DeviceInfo, role SlotRole,
 	slot.Device = entry
 	r.markSlotPassiveObservedLocked(slot, role, observedAt)
 	r.syncEntryFacesLocked(entry)
+	r.observationGeneration++
 	return entry
 }
 

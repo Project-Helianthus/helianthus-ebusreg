@@ -63,35 +63,17 @@ func TestWithObservationGenerationSerializesConcurrentWriter(t *testing.T) {
 	reg := NewDeviceRegistry(nil)
 	reg.Register(DeviceInfo{Address: 0x10, Manufacturer: "Vaillant", DeviceID: "BASV2"})
 
-	writerStarted := make(chan struct{})
-	writerDone := make(chan struct{})
-	releaseRead := make(chan struct{})
-	callbackDone := make(chan struct{})
 	var insideGeneration uint64
-	go func() {
-		if !reg.WithObservationGeneration(func(current uint64) {
-			insideGeneration = current
-			close(writerStarted)
-			go func() {
-				reg.Register(DeviceInfo{Address: 0x26, Manufacturer: "Vaillant", DeviceID: "VR_71"})
-				close(writerDone)
-			}()
-			<-releaseRead
-		}) {
-			t.Error("WithObservationGeneration rejected a valid callback")
+	if !reg.WithObservationGeneration(func(current uint64) {
+		insideGeneration = current
+		if reg.mu.TryLock() {
+			reg.mu.Unlock()
+			t.Error("registry write lock acquired inside observation read critical section")
 		}
-		close(callbackDone)
-	}()
-
-	<-writerStarted
-	select {
-	case <-writerDone:
-		t.Fatal("registry writer completed inside observation read critical section")
-	case <-time.After(50 * time.Millisecond):
+	}) {
+		t.Fatal("WithObservationGeneration rejected a valid callback")
 	}
-	close(releaseRead)
-	<-callbackDone
-	<-writerDone
+	reg.Register(DeviceInfo{Address: 0x26, Manufacturer: "Vaillant", DeviceID: "VR_71"})
 
 	if after := readObservationGeneration(t, reg); after != insideGeneration+1 {
 		t.Fatalf("generation after serialized writer = %d; want %d", after, insideGeneration+1)

@@ -3,15 +3,25 @@ package pv
 import (
 	"fmt"
 	"net"
+	"regexp"
+	"sort"
 	"strings"
 	"sync"
 )
 
+type projectionKey struct {
+	sourceRef Digest
+	outputRef Digest
+}
+
 type assetState struct {
-	generation uint64
-	source     Provenance
-	facts      map[FactKey]Fact
-	origins    map[Digest]Provenance
+	generation  uint64
+	source      Provenance
+	facts       map[FactKey]Fact
+	origins     map[Digest]Provenance
+	requested   map[projectionKey]RequestedOutput
+	projections map[projectionKey]Projection
+	sourceTime  SourceTimeState
 }
 
 type Registry struct {
@@ -36,6 +46,12 @@ func (registry *Registry) Apply(update Update) (Snapshot, error) {
 	if err := registry.validateProvenance(update.Source); err != nil {
 		return Snapshot{}, err
 	}
+	if duplicateFactInputs(update.Facts) {
+		return Snapshot{}, ErrInvalidFact
+	}
+	if err := validateUpdateAccounting(update); err != nil {
+		return Snapshot{}, err
+	}
 	if update.Evaluated < 0 {
 		return Snapshot{}, ErrInvalidMonotonicTime
 	}
@@ -45,12 +61,13 @@ func (registry *Registry) Apply(update Update) (Snapshot, error) {
 
 	state := cloneAssetState(registry.assets[update.AssetRef])
 	if state == nil {
-		state = &assetState{facts: make(map[FactKey]Fact), origins: make(map[Digest]Provenance)}
+		state = &assetState{facts: make(map[FactKey]Fact), origins: make(map[Digest]Provenance), requested: make(map[projectionKey]RequestedOutput), projections: make(map[projectionKey]Projection)}
 	}
 	if err := evaluateRetainedFacts(state.facts, update.Evaluated); err != nil {
 		return Snapshot{}, err
 	}
 	state.source = update.Source
+	state.sourceTime = update.SourceTimeState
 	if existing, ok := state.origins[update.Source.SourceObservationRef]; ok && existing != update.Source {
 		return Snapshot{}, ErrSourceNotAdmitted
 	}
@@ -117,10 +134,31 @@ func (registry *Registry) Apply(update Update) (Snapshot, error) {
 	if err := evaluateRetainedFacts(state.facts, update.Evaluated); err != nil {
 		return Snapshot{}, err
 	}
+	capabilitySatisfied := registry.catalog.ThreePhaseTelemetrySatisfied(state.facts)
+	wantOutcome := CapabilityNotSatisfied
+	if capabilitySatisfied {
+		wantOutcome = CapabilitySatisfied
+	}
+	if update.Capability.ID != CapabilityThreePhaseTelemetryV1 || update.Capability.Outcome != wantOutcome {
+		return Snapshot{}, ErrInvalidCapability
+	}
+	mergeAccounting(state, update)
 	state.generation++
 	pruneOrigins(state)
 	registry.assets[update.AssetRef] = state
 	return registry.snapshotLocked(update.AssetRef, state, update.Evaluated), nil
+}
+
+func duplicateFactInputs(facts []FactInput) bool {
+	seen := make(map[FactKey]struct{}, len(facts))
+	for _, fact := range facts {
+		key := NewFactKey(fact.Candidate.ID, fact.Candidate.Dimensions)
+		if _, duplicate := seen[key]; duplicate {
+			return true
+		}
+		seen[key] = struct{}{}
+	}
+	return false
 }
 
 func (registry *Registry) Snapshot(assetRef string, evaluated MonotonicNanos) (Snapshot, error) {
@@ -147,14 +185,17 @@ func (registry *Registry) snapshotLocked(assetRef string, state *assetState, eva
 		origins[reference] = origin
 	}
 	return Snapshot{
-		ContractID:            ContractV1,
-		AssetRef:              assetRef,
-		Generation:            state.generation,
-		Evaluated:             evaluated,
-		Source:                state.source,
-		Facts:                 facts,
-		Origins:               origins,
-		ThreePhaseTelemetryV1: registry.catalog.ThreePhaseTelemetrySatisfied(facts),
+		ContractID:       ContractV1,
+		AssetRef:         assetRef,
+		Generation:       state.generation,
+		Evaluated:        evaluated,
+		Source:           state.source,
+		Facts:            facts,
+		Origins:          origins,
+		SourceTimeState:  state.sourceTime,
+		Capability:       Capability{ID: CapabilityThreePhaseTelemetryV1, Outcome: capabilityOutcome(registry.catalog.ThreePhaseTelemetrySatisfied(facts))},
+		RequestedOutputs: sortedRequested(state.requested),
+		ProjectionReport: sortedProjections(state.projections),
 	}
 }
 
@@ -162,7 +203,8 @@ func (registry *Registry) validateProvenance(provenance Provenance) error {
 	if provenance.Validity != SourceTerminalVerified || provenance.Protocol == "" || provenance.ProfileID == "" || provenance.ProfileVersion == "" {
 		return ErrSourceNotAdmitted
 	}
-	if endpointShaped(provenance.Protocol) || endpointShaped(provenance.ProfileID) || endpointShaped(provenance.ProfileVersion) {
+	if len(provenance.Protocol) > 128 || len(provenance.ProfileID) > 128 || len(provenance.ProfileVersion) > 64 ||
+		!sourceTokenPattern.MatchString(provenance.Protocol) || !sourceTokenPattern.MatchString(provenance.ProfileID) || !versionTokenPattern.MatchString(provenance.ProfileVersion) {
 		return ErrSourceNotAdmitted
 	}
 	parts := strings.Split(provenance.ProfileID, "@")
@@ -226,11 +268,23 @@ func cloneAssetState(source *assetState) *assetState {
 	for reference, origin := range source.origins {
 		origins[reference] = origin
 	}
+	requested := make(map[projectionKey]RequestedOutput, len(source.requested))
+	for key, value := range source.requested {
+		requested[key] = value
+	}
+	projections := make(map[projectionKey]Projection, len(source.projections))
+	for key, value := range source.projections {
+		value.Dimensions = cloneDimensions(value.Dimensions)
+		projections[key] = value
+	}
 	return &assetState{
-		generation: source.generation,
-		source:     source.source,
-		facts:      cloneFacts(source.facts),
-		origins:    origins,
+		generation:  source.generation,
+		source:      source.source,
+		facts:       cloneFacts(source.facts),
+		origins:     origins,
+		requested:   requested,
+		projections: projections,
+		sourceTime:  source.sourceTime,
 	}
 }
 
@@ -264,13 +318,139 @@ func cloneFactValue(value FactValue) FactValue {
 	return value
 }
 
+func cloneDimensions(value *Dimensions) *Dimensions {
+	if value == nil {
+		return nil
+	}
+	copy := *value
+	return &copy
+}
+
 func sameSourceIdentity(left, right Provenance) bool {
 	return left.SourceIdentity == right.SourceIdentity && left.SourceRegistryRef == right.SourceRegistryRef
 }
 
-func validAssetRef(value string) bool {
-	return len(value) > len("pv-asset-") && len(value) <= 128 && strings.HasPrefix(value, "pv-asset-") && !endpointShaped(value)
+func validateUpdateAccounting(update Update) error {
+	if update.SourceTimeState != SourceTimeUnavailable && update.SourceTimeState != SourceTimeValid && update.SourceTimeState != SourceTimeInvalid {
+		return ErrInvalidProjection
+	}
+	if len(update.Facts) == 0 || len(update.RequestedOutputs) == 0 || len(update.ProjectionReport) != len(update.RequestedOutputs) {
+		return ErrInvalidProjection
+	}
+	requested := make(map[projectionKey]struct{}, len(update.RequestedOutputs))
+	for _, output := range update.RequestedOutputs {
+		key := projectionKey{output.SourceRef, output.RequestedOutputRef}
+		if output.SourceRef.Validate() != nil || output.RequestedOutputRef.Validate() != nil {
+			return ErrInvalidProjection
+		}
+		if _, duplicate := requested[key]; duplicate {
+			return ErrInvalidProjection
+		}
+		requested[key] = struct{}{}
+	}
+	mappedFacts := make(map[FactKey]int, len(update.Facts))
+	seenProjection := make(map[projectionKey]struct{}, len(update.ProjectionReport))
+	for _, projection := range update.ProjectionReport {
+		key := projectionKey{projection.SourceRef, projection.RequestedOutputRef}
+		if _, ok := requested[key]; !ok || projection.SourceRef != update.Source.SourceObservationRef {
+			return ErrInvalidProjection
+		}
+		if _, duplicate := seenProjection[key]; duplicate {
+			return ErrInvalidProjection
+		}
+		seenProjection[key] = struct{}{}
+		switch projection.Outcome {
+		case ProjectionMapped:
+			if projection.FactID == "" || projection.Dimensions == nil {
+				return ErrInvalidProjection
+			}
+			mappedFacts[NewFactKey(projection.FactID, *projection.Dimensions)]++
+		case ProjectionWithheld, ProjectionUnrepresentable:
+			if projection.FactID != "" || projection.Dimensions != nil {
+				return ErrInvalidProjection
+			}
+		default:
+			return ErrInvalidProjection
+		}
+	}
+	for _, fact := range update.Facts {
+		if mappedFacts[NewFactKey(fact.Candidate.ID, fact.Candidate.Dimensions)] != 1 {
+			return ErrInvalidProjection
+		}
+	}
+	if len(mappedFacts) != len(update.Facts) {
+		return ErrInvalidProjection
+	}
+	return nil
 }
+
+func mergeAccounting(state *assetState, update Update) {
+	updatedFacts := make(map[FactKey]struct{}, len(update.Facts))
+	for _, fact := range update.Facts {
+		updatedFacts[NewFactKey(fact.Candidate.ID, fact.Candidate.Dimensions)] = struct{}{}
+	}
+	for key, projection := range state.projections {
+		remove := projection.Outcome != ProjectionMapped
+		if projection.Dimensions != nil {
+			_, remove = updatedFacts[NewFactKey(projection.FactID, *projection.Dimensions)]
+		}
+		if remove {
+			delete(state.projections, key)
+			delete(state.requested, key)
+		}
+	}
+	for _, output := range update.RequestedOutputs {
+		key := projectionKey{output.SourceRef, output.RequestedOutputRef}
+		state.requested[key] = output
+	}
+	for _, projection := range update.ProjectionReport {
+		key := projectionKey{projection.SourceRef, projection.RequestedOutputRef}
+		projection.Dimensions = cloneDimensions(projection.Dimensions)
+		state.projections[key] = projection
+	}
+}
+
+func capabilityOutcome(satisfied bool) CapabilityOutcome {
+	if satisfied {
+		return CapabilitySatisfied
+	}
+	return CapabilityNotSatisfied
+}
+
+func sortedRequested(values map[projectionKey]RequestedOutput) []RequestedOutput {
+	result := make([]RequestedOutput, 0, len(values))
+	for _, value := range values {
+		result = append(result, value)
+	}
+	sort.Slice(result, func(i, j int) bool {
+		if result[i].SourceRef == result[j].SourceRef {
+			return result[i].RequestedOutputRef < result[j].RequestedOutputRef
+		}
+		return result[i].SourceRef < result[j].SourceRef
+	})
+	return result
+}
+
+func sortedProjections(values map[projectionKey]Projection) []Projection {
+	result := make([]Projection, 0, len(values))
+	for _, value := range values {
+		value.Dimensions = cloneDimensions(value.Dimensions)
+		result = append(result, value)
+	}
+	sort.Slice(result, func(i, j int) bool {
+		if result[i].SourceRef == result[j].SourceRef {
+			return result[i].RequestedOutputRef < result[j].RequestedOutputRef
+		}
+		return result[i].SourceRef < result[j].SourceRef
+	})
+	return result
+}
+
+var assetRefPattern = regexp.MustCompile(`^pv-asset-[A-Za-z0-9_-]{1,96}$`)
+var sourceTokenPattern = regexp.MustCompile(`^[A-Za-z][A-Za-z0-9._@-]*$`)
+var versionTokenPattern = regexp.MustCompile(`^[0-9][0-9A-Za-z._-]*$`)
+
+func validAssetRef(value string) bool { return assetRefPattern.MatchString(value) }
 
 func endpointShaped(value string) bool {
 	if net.ParseIP(strings.Trim(value, "[]")) != nil || strings.Contains(value, "://") {

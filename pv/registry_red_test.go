@@ -2,6 +2,7 @@ package pv
 
 import (
 	"errors"
+	"strings"
 	"testing"
 )
 
@@ -23,7 +24,7 @@ func TestRegistryPartialMergePreservesFactOrigins(t *testing.T) {
 	registry := NewRegistry(staticResolver{identity: registryRef})
 
 	originOne := provenance(identity, registryRef, '1')
-	first, err := registry.Apply(Update{
+	first, err := registry.Apply(accountedUpdate(Update{
 		AssetRef:  "pv-asset-01",
 		Evaluated: 10,
 		Source:    originOne,
@@ -31,7 +32,7 @@ func TestRegistryPartialMergePreservesFactOrigins(t *testing.T) {
 			decimalInput(FactACActivePower, Dimensions{Scope: ScopeTotal}, UnitWatt, "7000", 0, PolicyTelemetryFastV1, 10),
 			decimalInput(FactEnergyActiveExportTotal, Dimensions{Scope: ScopeTotal}, UnitWattHour, "10000", 0, PolicyAccumulatorV1, 10),
 		},
-	})
+	}))
 	if err != nil {
 		t.Fatalf("first Apply: %v", err)
 	}
@@ -40,14 +41,14 @@ func TestRegistryPartialMergePreservesFactOrigins(t *testing.T) {
 	}
 
 	originTwo := provenance(identity, registryRef, '2')
-	second, err := registry.Apply(Update{
+	second, err := registry.Apply(accountedUpdate(Update{
 		AssetRef:  "pv-asset-01",
 		Evaluated: 40_000_000_010,
 		Source:    originTwo,
 		Facts: []FactInput{
 			decimalInput(FactACActivePower, Dimensions{Scope: ScopeTotal}, UnitWatt, "7100", 0, PolicyTelemetryFastV1, 40_000_000_010),
 		},
-	})
+	}))
 	if err != nil {
 		t.Fatalf("second Apply: %v", err)
 	}
@@ -65,6 +66,19 @@ func TestRegistryPartialMergePreservesFactOrigins(t *testing.T) {
 	if len(second.Origins) != 2 {
 		t.Fatalf("origins = %d, want 2", len(second.Origins))
 	}
+	if len(second.RequestedOutputs) != 2 || len(second.ProjectionReport) != 2 {
+		t.Fatalf("accounting requested=%d projections=%d, want 2/2", len(second.RequestedOutputs), len(second.ProjectionReport))
+	}
+	mappedOrigins := make(map[Digest]FactID)
+	for _, projection := range second.ProjectionReport {
+		if projection.Outcome != ProjectionMapped {
+			t.Fatalf("projection outcome = %s", projection.Outcome)
+		}
+		mappedOrigins[projection.SourceRef] = projection.FactID
+	}
+	if mappedOrigins[originOne.SourceObservationRef] != FactEnergyActiveExportTotal || mappedOrigins[originTwo.SourceObservationRef] != FactACActivePower {
+		t.Fatalf("mixed-origin accounting = %#v", mappedOrigins)
+	}
 	if energy.Freshness != FreshnessFresh {
 		t.Fatalf("energy freshness = %s", energy.Freshness)
 	}
@@ -75,14 +89,14 @@ func TestRegistryEvaluatesStaleExpiredAndRecoveryWithoutDeletion(t *testing.T) {
 	registryRef := Digest("sha256:2222222222222222222222222222222222222222222222222222222222222222")
 	registry := NewRegistry(staticResolver{identity: registryRef})
 	origin := provenance(identity, registryRef, '3')
-	_, err := registry.Apply(Update{
+	_, err := registry.Apply(accountedUpdate(Update{
 		AssetRef:  "pv-asset-02",
 		Evaluated: 0,
 		Source:    origin,
 		Facts: []FactInput{
 			decimalInput(FactACActivePower, Dimensions{Scope: ScopeTotal}, UnitWatt, "1", 0, PolicyTelemetryFastV1, 0),
 		},
-	})
+	}))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -106,14 +120,14 @@ func TestRegistryEvaluatesStaleExpiredAndRecoveryWithoutDeletion(t *testing.T) {
 	}
 
 	recoveredOrigin := provenance(identity, registryRef, '4')
-	recovered, err := registry.Apply(Update{
+	recovered, err := registry.Apply(accountedUpdate(Update{
 		AssetRef:  "pv-asset-02",
 		Evaluated: 300_000_000_001,
 		Source:    recoveredOrigin,
 		Facts: []FactInput{
 			decimalInput(FactACActivePower, Dimensions{Scope: ScopeTotal}, UnitWatt, "2", 0, PolicyTelemetryFastV1, 300_000_000_001),
 		},
-	})
+	}))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -144,13 +158,13 @@ func TestRegistryCounterContinuityBreaksAcrossSourceIdentityOrExpiry(t *testing.
 	refB := Digest("sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
 	registry := NewRegistry(staticResolver{identityA: refA, identityB: refB})
 
-	first, err := registry.Apply(Update{
+	first, err := registry.Apply(accountedUpdate(Update{
 		AssetRef: "pv-asset-counter-source",
 		Source:   provenance(identityA, refA, '1'),
 		Facts: []FactInput{
 			decimalInput(FactEnergyActiveExportTotal, Dimensions{Scope: ScopeTotal}, UnitWattHour, "100", 0, PolicyAccumulatorV1, 0),
 		},
-	})
+	}))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -158,14 +172,14 @@ func TestRegistryCounterContinuityBreaksAcrossSourceIdentityOrExpiry(t *testing.
 		t.Fatalf("first continuity = %#v", continuity)
 	}
 
-	second, err := registry.Apply(Update{
+	second, err := registry.Apply(accountedUpdate(Update{
 		AssetRef:  "pv-asset-counter-source",
 		Evaluated: 1,
 		Source:    provenance(identityB, refB, '2'),
 		Facts: []FactInput{
 			decimalInput(FactEnergyActiveExportTotal, Dimensions{Scope: ScopeTotal}, UnitWattHour, "101", 0, PolicyAccumulatorV1, 1),
 		},
-	})
+	}))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -174,14 +188,14 @@ func TestRegistryCounterContinuityBreaksAcrossSourceIdentityOrExpiry(t *testing.
 	}
 
 	policy, _ := PolicyByID(PolicyAccumulatorV1)
-	third, err := registry.Apply(Update{
+	third, err := registry.Apply(accountedUpdate(Update{
 		AssetRef:  "pv-asset-counter-source",
 		Evaluated: policy.RetainFor + 2,
 		Source:    provenance(identityB, refB, '3'),
 		Facts: []FactInput{
 			decimalInput(FactEnergyActiveExportTotal, Dimensions{Scope: ScopeTotal}, UnitWattHour, "102", 0, PolicyAccumulatorV1, policy.RetainFor+2),
 		},
-	})
+	}))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -196,11 +210,11 @@ func TestRegistryRejectsDuplicateFactsAtomicallyAndCopiesCallerValues(t *testing
 	registry := NewRegistry(staticResolver{identity: registryRef})
 	dimensions := Dimensions{Scope: ScopeTotal}
 	duplicate := decimalInput(FactACActivePower, dimensions, UnitWatt, "1", 0, PolicyTelemetryFastV1, 0)
-	if _, err := registry.Apply(Update{
+	if _, err := registry.Apply(accountedUpdate(Update{
 		AssetRef: "pv-asset-duplicate",
 		Source:   provenance(identity, registryRef, '4'),
 		Facts:    []FactInput{duplicate, duplicate},
-	}); !errors.Is(err, ErrInvalidFact) {
+	})); !errors.Is(err, ErrInvalidFact) {
 		t.Fatalf("duplicate error = %v, want ErrInvalidFact", err)
 	}
 	if _, err := registry.Snapshot("pv-asset-duplicate", 0); !errors.Is(err, ErrAssetNotFound) {
@@ -208,7 +222,7 @@ func TestRegistryRejectsDuplicateFactsAtomicallyAndCopiesCallerValues(t *testing
 	}
 
 	value := DecimalFactValue(MustDecimal("7", 0))
-	snapshot, err := registry.Apply(Update{
+	snapshot, err := registry.Apply(accountedUpdate(Update{
 		AssetRef: "pv-asset-copy",
 		Source:   provenance(identity, registryRef, '5'),
 		Facts: []FactInput{{
@@ -216,7 +230,7 @@ func TestRegistryRejectsDuplicateFactsAtomicallyAndCopiesCallerValues(t *testing
 			Quality:   QualityGood,
 			Policy:    PolicyTelemetryFastV1,
 		}},
-	})
+	}))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -313,6 +327,28 @@ func requiredThreePhaseFacts(t *testing.T) map[FactKey]Fact {
 
 func decimalInput(id FactID, dimensions Dimensions, unit Unit, coefficient string, scale int, policy PolicyID, receipt MonotonicNanos) FactInput {
 	return FactInput{Candidate: FactCandidate{ID: id, Dimensions: dimensions, Value: DecimalFactValue(MustDecimal(coefficient, scale)), Unit: unit}, Quality: QualityGood, Receipt: receipt, Policy: policy}
+}
+
+func accountedUpdate(update Update) Update {
+	update.SourceTimeState = SourceTimeUnavailable
+	update.Capability = Capability{ID: CapabilityThreePhaseTelemetryV1, Outcome: CapabilityNotSatisfied}
+	for index, fact := range update.Facts {
+		marker := string(rune('a' + index))
+		requested := RequestedOutput{
+			SourceRef:          update.Source.SourceObservationRef,
+			RequestedOutputRef: Digest("sha256:" + strings.Repeat(marker, 64)),
+		}
+		dimensions := fact.Candidate.Dimensions
+		update.RequestedOutputs = append(update.RequestedOutputs, requested)
+		update.ProjectionReport = append(update.ProjectionReport, Projection{
+			SourceRef:          requested.SourceRef,
+			RequestedOutputRef: requested.RequestedOutputRef,
+			FactID:             fact.Candidate.ID,
+			Dimensions:         &dimensions,
+			Outcome:            ProjectionMapped,
+		})
+	}
+	return update
 }
 
 func provenance(identity SourceIdentity, registryRef Digest, marker byte) Provenance {

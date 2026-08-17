@@ -17,6 +17,8 @@ var (
 	ErrInvalidCounter       = errors.New("pv: invalid counter evidence")
 	ErrSourceNotAdmitted    = errors.New("pv: source not admitted")
 	ErrAssetNotFound        = errors.New("pv: asset not found")
+	ErrInvalidProjection    = errors.New("pv: invalid projection accounting")
+	ErrInvalidCapability    = errors.New("pv: invalid capability outcome")
 )
 
 type FactID string
@@ -34,6 +36,9 @@ type Phase string
 type PhasePair string
 type Scope string
 type FactKey string
+type SourceTimeState string
+type CapabilityOutcome string
+type ProjectionOutcome string
 
 const (
 	ValueKindDecimal  ValueKind = "decimal"
@@ -83,6 +88,18 @@ const (
 	ScopeTotal Scope = "total"
 
 	SourceTerminalVerified = "terminal_verified"
+
+	SourceTimeUnavailable SourceTimeState = "UNAVAILABLE"
+	SourceTimeValid       SourceTimeState = "VALID"
+	SourceTimeInvalid     SourceTimeState = "INVALID"
+
+	CapabilityThreePhaseTelemetryV1                   = "helianthus.pv.inverter.three_phase.telemetry.v1"
+	CapabilitySatisfied             CapabilityOutcome = "SATISFIED"
+	CapabilityNotSatisfied          CapabilityOutcome = "NOT_SATISFIED"
+
+	ProjectionMapped          ProjectionOutcome = "MAPPED"
+	ProjectionWithheld        ProjectionOutcome = "WITHHELD"
+	ProjectionUnrepresentable ProjectionOutcome = "UNREPRESENTABLE"
 )
 
 var (
@@ -246,22 +263,47 @@ type Fact struct {
 	Continuity   *Continuity
 }
 
+type Capability struct {
+	ID      string
+	Outcome CapabilityOutcome
+}
+
+type RequestedOutput struct {
+	SourceRef          Digest
+	RequestedOutputRef Digest
+}
+
+type Projection struct {
+	SourceRef          Digest
+	RequestedOutputRef Digest
+	FactID             FactID
+	Dimensions         *Dimensions
+	Outcome            ProjectionOutcome
+}
+
 type Update struct {
-	AssetRef  string
-	Evaluated MonotonicNanos
-	Source    Provenance
-	Facts     []FactInput
+	AssetRef         string
+	Evaluated        MonotonicNanos
+	SourceTimeState  SourceTimeState
+	Source           Provenance
+	Facts            []FactInput
+	Capability       Capability
+	RequestedOutputs []RequestedOutput
+	ProjectionReport []Projection
 }
 
 type Snapshot struct {
-	ContractID            string
-	AssetRef              string
-	Generation            uint64
-	Evaluated             MonotonicNanos
-	Source                Provenance
-	Facts                 map[FactKey]Fact
-	Origins               map[Digest]Provenance
-	ThreePhaseTelemetryV1 bool
+	ContractID       string
+	AssetRef         string
+	Generation       uint64
+	Evaluated        MonotonicNanos
+	Source           Provenance
+	Facts            map[FactKey]Fact
+	Origins          map[Digest]Provenance
+	SourceTimeState  SourceTimeState
+	Capability       Capability
+	RequestedOutputs []RequestedOutput
+	ProjectionReport []Projection
 }
 
 func (digest Digest) Validate() error {

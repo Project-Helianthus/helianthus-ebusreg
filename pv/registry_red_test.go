@@ -227,6 +227,72 @@ func TestRegistryRejectsDuplicateFactsAtomicallyAndCopiesCallerValues(t *testing
 	}
 }
 
+func TestRegistryRequiresCompleteProjectionAccounting(t *testing.T) {
+	identity := SourceIdentity{Protocol: "test_source", ProfileID: "test.profile@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified}
+	registryRef := Digest("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	registry := NewRegistry(staticResolver{identity: registryRef})
+	source := provenance(identity, registryRef, '6')
+	requested := RequestedOutput{SourceRef: source.SourceObservationRef, RequestedOutputRef: Digest("sha256:7777777777777777777777777777777777777777777777777777777777777777")}
+	dimensions := Dimensions{Scope: ScopeTotal}
+	base := Update{
+		AssetRef:        "pv-asset-accounting",
+		SourceTimeState: SourceTimeUnavailable,
+		Source:          source,
+		Facts: []FactInput{
+			decimalInput(FactACActivePower, dimensions, UnitWatt, "1", 0, PolicyTelemetryFastV1, 0),
+		},
+		Capability:       Capability{ID: CapabilityThreePhaseTelemetryV1, Outcome: CapabilityNotSatisfied},
+		RequestedOutputs: []RequestedOutput{requested},
+		ProjectionReport: []Projection{{
+			SourceRef:          requested.SourceRef,
+			RequestedOutputRef: requested.RequestedOutputRef,
+			FactID:             FactACActivePower,
+			Dimensions:         &dimensions,
+			Outcome:            ProjectionMapped,
+		}},
+	}
+	if _, err := registry.Apply(base); err != nil {
+		t.Fatalf("complete accounting: %v", err)
+	}
+
+	missing := base
+	missing.AssetRef = "pv-asset-accounting-missing"
+	missing.ProjectionReport = nil
+	if _, err := registry.Apply(missing); !errors.Is(err, ErrInvalidProjection) {
+		t.Fatalf("missing projection error = %v", err)
+	}
+
+	mismatch := base
+	mismatch.AssetRef = "pv-asset-accounting-mismatch"
+	mismatch.Capability.Outcome = CapabilitySatisfied
+	if _, err := registry.Apply(mismatch); !errors.Is(err, ErrInvalidCapability) {
+		t.Fatalf("capability mismatch error = %v", err)
+	}
+}
+
+func TestRegistryRejectsSchemaInvalidIdentityTokens(t *testing.T) {
+	registryRef := Digest("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	for _, identity := range []SourceIdentity{
+		{Protocol: "/private/fixture", ProfileID: "test.profile@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified},
+		{Protocol: "test source", ProfileID: "test.profile@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified},
+		{Protocol: "test_source", ProfileID: "/private/fixture@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified},
+		{Protocol: "test_source", ProfileID: "test.profile@1.0.0", ProfileVersion: "v1", Validity: SourceTerminalVerified},
+	} {
+		registry := NewRegistry(staticResolver{identity: registryRef})
+		if _, err := registry.Apply(Update{AssetRef: "pv-asset-token", Source: provenance(identity, registryRef, '8')}); !errors.Is(err, ErrSourceNotAdmitted) {
+			t.Errorf("identity %#v error = %v", identity, err)
+		}
+	}
+
+	identity := SourceIdentity{Protocol: "test_source", ProfileID: "test.profile@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified}
+	registry := NewRegistry(staticResolver{identity: registryRef})
+	for _, asset := range []string{"pv-asset-../fixture", "pv-asset-space value", "pv-asset-a.b"} {
+		if _, err := registry.Apply(Update{AssetRef: asset, Source: provenance(identity, registryRef, '9')}); !errors.Is(err, ErrInvalidFact) {
+			t.Errorf("asset %q error = %v", asset, err)
+		}
+	}
+}
+
 func requiredThreePhaseFacts(t *testing.T) map[FactKey]Fact {
 	t.Helper()
 	facts := make(map[FactKey]Fact)

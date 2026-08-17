@@ -2,7 +2,6 @@ package pv
 
 import (
 	"fmt"
-	"net"
 	"regexp"
 	"sort"
 	"strings"
@@ -451,14 +450,6 @@ var sourceTokenPattern = regexp.MustCompile(`^[A-Za-z][A-Za-z0-9._@-]*$`)
 var versionTokenPattern = regexp.MustCompile(`^[0-9][0-9A-Za-z._-]*$`)
 
 func validAssetRef(value string) bool { return assetRefPattern.MatchString(value) }
-
-func endpointShaped(value string) bool {
-	if net.ParseIP(strings.Trim(value, "[]")) != nil || strings.Contains(value, "://") {
-		return true
-	}
-	_, _, err := net.SplitHostPort(value)
-	return err == nil
-}
 
 func (snapshot Snapshot) String() string {
 	return fmt.Sprintf("%s asset=%s generation=%d facts=%d", snapshot.ContractID, snapshot.AssetRef, snapshot.Generation, len(snapshot.Facts))

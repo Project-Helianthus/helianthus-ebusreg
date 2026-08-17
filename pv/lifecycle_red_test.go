@@ -2,6 +2,7 @@ package pv
 
 import (
 	"errors"
+	"math"
 	"testing"
 )
 
@@ -54,5 +55,13 @@ func TestFreshnessRejectsDifferentClockDomain(t *testing.T) {
 	policy, _ := PolicyByID(PolicyTelemetryFastV1)
 	if _, err := EvaluateTemporal(policy, 100, 99); !errors.Is(err, ErrInvalidMonotonicTime) {
 		t.Fatalf("error = %v, want ErrInvalidMonotonicTime", err)
+	}
+}
+
+func TestFreshnessRejectsDeadlineOverflow(t *testing.T) {
+	policy, _ := PolicyByID(PolicyTelemetryFastV1)
+	receipt := MonotonicNanos(math.MaxInt64) - policy.RetainFor + 1
+	if _, err := EvaluateTemporal(policy, receipt, receipt); !errors.Is(err, ErrInvalidMonotonicTime) {
+		t.Fatalf("overflow error = %v, want ErrInvalidMonotonicTime", err)
 	}
 }

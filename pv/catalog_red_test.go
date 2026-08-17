@@ -113,4 +113,13 @@ func TestThreePhaseCapabilityRequiresExactIdentities(t *testing.T) {
 	if catalog.ThreePhaseTelemetrySatisfied(facts) {
 		t.Fatal("capability satisfied without L3 current")
 	}
+
+	facts = requiredThreePhaseFacts(t)
+	key := NewFactKey(FactACCurrent, Dimensions{Phase: PhaseL3})
+	fact := facts[key]
+	fact.Availability = ""
+	facts[key] = fact
+	if catalog.ThreePhaseTelemetrySatisfied(facts) {
+		t.Fatal("capability satisfied with an invalid availability state")
+	}
 }

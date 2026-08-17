@@ -137,6 +137,96 @@ func TestRegistryFailsClosedOnUnresolvedOrMismatchedSource(t *testing.T) {
 	}
 }
 
+func TestRegistryCounterContinuityBreaksAcrossSourceIdentityOrExpiry(t *testing.T) {
+	identityA := SourceIdentity{Protocol: "test_source", ProfileID: "test.profile@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified}
+	identityB := SourceIdentity{Protocol: "other_source", ProfileID: "other.profile@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified}
+	refA := Digest("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	refB := Digest("sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
+	registry := NewRegistry(staticResolver{identityA: refA, identityB: refB})
+
+	first, err := registry.Apply(Update{
+		AssetRef: "pv-asset-counter-source",
+		Source:   provenance(identityA, refA, '1'),
+		Facts: []FactInput{
+			decimalInput(FactEnergyActiveExportTotal, Dimensions{Scope: ScopeTotal}, UnitWattHour, "100", 0, PolicyAccumulatorV1, 0),
+		},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if continuity := lookupFact(t, first, FactEnergyActiveExportTotal, Dimensions{Scope: ScopeTotal}).Continuity; continuity == nil || continuity.State != ContinuityBaseline {
+		t.Fatalf("first continuity = %#v", continuity)
+	}
+
+	second, err := registry.Apply(Update{
+		AssetRef:  "pv-asset-counter-source",
+		Evaluated: 1,
+		Source:    provenance(identityB, refB, '2'),
+		Facts: []FactInput{
+			decimalInput(FactEnergyActiveExportTotal, Dimensions{Scope: ScopeTotal}, UnitWattHour, "101", 0, PolicyAccumulatorV1, 1),
+		},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if continuity := lookupFact(t, second, FactEnergyActiveExportTotal, Dimensions{Scope: ScopeTotal}).Continuity; continuity == nil || continuity.State != ContinuityDiscontinuity || continuity.Delta != nil {
+		t.Fatalf("source-change continuity = %#v", continuity)
+	}
+
+	policy, _ := PolicyByID(PolicyAccumulatorV1)
+	third, err := registry.Apply(Update{
+		AssetRef:  "pv-asset-counter-source",
+		Evaluated: policy.RetainFor + 2,
+		Source:    provenance(identityB, refB, '3'),
+		Facts: []FactInput{
+			decimalInput(FactEnergyActiveExportTotal, Dimensions{Scope: ScopeTotal}, UnitWattHour, "102", 0, PolicyAccumulatorV1, policy.RetainFor+2),
+		},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if continuity := lookupFact(t, third, FactEnergyActiveExportTotal, Dimensions{Scope: ScopeTotal}).Continuity; continuity == nil || continuity.State != ContinuityDiscontinuity || continuity.Delta != nil {
+		t.Fatalf("post-expiry continuity = %#v", continuity)
+	}
+}
+
+func TestRegistryRejectsDuplicateFactsAtomicallyAndCopiesCallerValues(t *testing.T) {
+	identity := SourceIdentity{Protocol: "test_source", ProfileID: "test.profile@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified}
+	registryRef := Digest("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	registry := NewRegistry(staticResolver{identity: registryRef})
+	dimensions := Dimensions{Scope: ScopeTotal}
+	duplicate := decimalInput(FactACActivePower, dimensions, UnitWatt, "1", 0, PolicyTelemetryFastV1, 0)
+	if _, err := registry.Apply(Update{
+		AssetRef: "pv-asset-duplicate",
+		Source:   provenance(identity, registryRef, '4'),
+		Facts:    []FactInput{duplicate, duplicate},
+	}); !errors.Is(err, ErrInvalidFact) {
+		t.Fatalf("duplicate error = %v, want ErrInvalidFact", err)
+	}
+	if _, err := registry.Snapshot("pv-asset-duplicate", 0); !errors.Is(err, ErrAssetNotFound) {
+		t.Fatalf("duplicate update mutated registry: %v", err)
+	}
+
+	value := DecimalFactValue(MustDecimal("7", 0))
+	snapshot, err := registry.Apply(Update{
+		AssetRef: "pv-asset-copy",
+		Source:   provenance(identity, registryRef, '5'),
+		Facts: []FactInput{{
+			Candidate: FactCandidate{ID: FactACActivePower, Dimensions: dimensions, Value: value, Unit: UnitWatt},
+			Quality:   QualityGood,
+			Policy:    PolicyTelemetryFastV1,
+		}},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	value.Decimal.Coefficient = "999"
+	fact := lookupFact(t, snapshot, FactACActivePower, dimensions)
+	if fact.Value.Decimal.Coefficient != "7" {
+		t.Fatalf("registry retained caller alias: %#v", fact.Value.Decimal)
+	}
+}
+
 func requiredThreePhaseFacts(t *testing.T) map[FactKey]Fact {
 	t.Helper()
 	facts := make(map[FactKey]Fact)

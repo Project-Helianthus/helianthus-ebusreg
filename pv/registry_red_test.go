@@ -2,7 +2,7 @@ package pv
 
 import (
 	"errors"
-	"strings"
+	"fmt"
 	"testing"
 )
 
@@ -307,6 +307,57 @@ func TestRegistryRejectsSchemaInvalidIdentityTokens(t *testing.T) {
 	}
 }
 
+func TestRegistryAcceptsFinalProfileVersionDelimiter(t *testing.T) {
+	identity := SourceIdentity{Protocol: "test_source", ProfileID: "vendor@family@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified}
+	registryRef := Digest("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	registry := NewRegistry(staticResolver{identity: registryRef})
+	update := accountedUpdate(Update{
+		AssetRef: "pv-asset-final-delimiter",
+		Source:   provenance(identity, registryRef, 'a'),
+		Facts: []FactInput{
+			decimalInput(FactACActivePower, Dimensions{Scope: ScopeTotal}, UnitWatt, "1", 0, PolicyTelemetryFastV1, 0),
+		},
+	})
+	if _, err := registry.Apply(update); err != nil {
+		t.Fatalf("schema-valid profile ID rejected: %v", err)
+	}
+}
+
+func TestRegistryEnforcesEnvelopeCardinalityLimits(t *testing.T) {
+	identity := SourceIdentity{Protocol: "test_source", ProfileID: "test.profile@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified}
+	registryRef := Digest("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	inputs := make([]FactInput, 257)
+	for index := range inputs {
+		inputs[index] = decimalInput(FactDCCurrent, Dimensions{InputID: fmt.Sprintf("input-%03d", index)}, UnitAmpere, "1", 0, PolicyTelemetryFastV1, 0)
+	}
+	registry := NewRegistry(staticResolver{identity: registryRef})
+	allowed := accountedUpdate(Update{AssetRef: "pv-asset-limit-256", Source: provenance(identity, registryRef, 'b'), Facts: inputs[:256]})
+	if _, err := registry.Apply(allowed); err != nil {
+		t.Fatalf("256 facts rejected: %v", err)
+	}
+	rejected := accountedUpdate(Update{AssetRef: "pv-asset-limit-257", Source: provenance(identity, registryRef, 'c'), Facts: inputs})
+	if _, err := registry.Apply(rejected); !errors.Is(err, ErrInvalidProjection) {
+		t.Fatalf("257 facts error = %v", err)
+	}
+
+	overAccounting := accountedUpdate(Update{
+		AssetRef: "pv-asset-limit-513",
+		Source:   provenance(identity, registryRef, 'd'),
+		Facts: []FactInput{
+			decimalInput(FactACActivePower, Dimensions{Scope: ScopeTotal}, UnitWatt, "1", 0, PolicyTelemetryFastV1, 0),
+		},
+	})
+	for index := 1; index < 513; index++ {
+		ref := Digest(fmt.Sprintf("sha256:%064x", index+1000))
+		output := RequestedOutput{SourceRef: overAccounting.Source.SourceObservationRef, RequestedOutputRef: ref}
+		overAccounting.RequestedOutputs = append(overAccounting.RequestedOutputs, output)
+		overAccounting.ProjectionReport = append(overAccounting.ProjectionReport, Projection{SourceRef: output.SourceRef, RequestedOutputRef: output.RequestedOutputRef, Outcome: ProjectionWithheld})
+	}
+	if _, err := registry.Apply(overAccounting); !errors.Is(err, ErrInvalidProjection) {
+		t.Fatalf("513 accounting rows error = %v", err)
+	}
+}
+
 func requiredThreePhaseFacts(t *testing.T) map[FactKey]Fact {
 	t.Helper()
 	facts := make(map[FactKey]Fact)
@@ -333,10 +384,9 @@ func accountedUpdate(update Update) Update {
 	update.SourceTimeState = SourceTimeUnavailable
 	update.Capability = Capability{ID: CapabilityThreePhaseTelemetryV1, Outcome: CapabilityNotSatisfied}
 	for index, fact := range update.Facts {
-		marker := string(rune('a' + index))
 		requested := RequestedOutput{
 			SourceRef:          update.Source.SourceObservationRef,
-			RequestedOutputRef: Digest("sha256:" + strings.Repeat(marker, 64)),
+			RequestedOutputRef: Digest(fmt.Sprintf("sha256:%064x", index+1)),
 		}
 		dimensions := fact.Candidate.Dimensions
 		update.RequestedOutputs = append(update.RequestedOutputs, requested)

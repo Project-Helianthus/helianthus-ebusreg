@@ -142,8 +142,11 @@ func (registry *Registry) Apply(update Update) (Snapshot, error) {
 		return Snapshot{}, ErrInvalidCapability
 	}
 	mergeAccounting(state, update)
-	state.generation++
 	pruneOrigins(state)
+	if len(state.facts) > 256 || len(state.origins) > 256 || len(state.requested) > 512 || len(state.projections) > 512 {
+		return Snapshot{}, ErrInvalidProjection
+	}
+	state.generation++
 	registry.assets[update.AssetRef] = state
 	return registry.snapshotLocked(update.AssetRef, state, update.Evaluated), nil
 }
@@ -206,8 +209,8 @@ func (registry *Registry) validateProvenance(provenance Provenance) error {
 		!sourceTokenPattern.MatchString(provenance.Protocol) || !sourceTokenPattern.MatchString(provenance.ProfileID) || !versionTokenPattern.MatchString(provenance.ProfileVersion) {
 		return ErrSourceNotAdmitted
 	}
-	parts := strings.Split(provenance.ProfileID, "@")
-	if len(parts) != 2 || parts[0] == "" || parts[1] != provenance.ProfileVersion {
+	delimiter := strings.LastIndex(provenance.ProfileID, "@")
+	if delimiter <= 0 || provenance.ProfileID[delimiter+1:] != provenance.ProfileVersion {
 		return ErrSourceNotAdmitted
 	}
 	for _, digest := range []Digest{
@@ -333,7 +336,7 @@ func validateUpdateAccounting(update Update) error {
 	if update.SourceTimeState != SourceTimeUnavailable && update.SourceTimeState != SourceTimeValid && update.SourceTimeState != SourceTimeInvalid {
 		return ErrInvalidProjection
 	}
-	if len(update.Facts) == 0 || len(update.RequestedOutputs) == 0 || len(update.ProjectionReport) != len(update.RequestedOutputs) {
+	if len(update.Facts) == 0 || len(update.Facts) > 256 || len(update.RequestedOutputs) == 0 || len(update.RequestedOutputs) > 512 || len(update.ProjectionReport) > 512 || len(update.ProjectionReport) != len(update.RequestedOutputs) {
 		return ErrInvalidProjection
 	}
 	requested := make(map[projectionKey]struct{}, len(update.RequestedOutputs))

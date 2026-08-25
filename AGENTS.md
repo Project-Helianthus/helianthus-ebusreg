@@ -8,9 +8,9 @@ This repository is not the universal semantic layer. The planned `helianthus-sem
 
 Public references:
 
-- https://github.com/d3vi1/helianthus-docs-ebus/blob/main/architecture/overview.md
-- https://github.com/d3vi1/helianthus-docs-ebus/blob/main/architecture/decisions.md
-- https://github.com/d3vi1/helianthus-docs-ebus/blob/main/protocols/ebus-overview.md
+- https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/architecture/overview.md
+- https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/architecture/decisions.md
+- https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-overview.md
 
 ## Working rules
 
@@ -18,7 +18,7 @@ Public references:
 - Preserve field-level merge behavior: on partial failures, retain last-known-good values for unaffected fields; never replace useful state wholesale.
 - Run `./scripts/ci_local.sh` before pushing.
 - Review the exact PR HEAD in a fresh context. Fix valid P0-P2 findings and re-review the new HEAD; P3-P4 are triaged without blocking.
-- Use squash merge only after CI and fresh exact-HEAD review are clear. Do not merge or make follow-on changes unless the operator asks.
+- Use squash merge only after CI and fresh exact-HEAD review are clear. Verify remote `main` and stop at the requested boundary.
 - Stop for explicit action-time confirmation before credential handling, real installation writes, live-device mutation, or destructive/irreversible operations.
 
 ## Documentation

@@ -45,11 +45,11 @@ func (registry *Registry) Apply(update Update) (Snapshot, error) {
 	if err := registry.validateProvenance(update.Source); err != nil {
 		return Snapshot{}, err
 	}
-	if duplicateFactInputs(update.Facts) {
-		return Snapshot{}, ErrInvalidFact
-	}
 	if err := validateUpdateAccounting(update); err != nil {
 		return Snapshot{}, err
+	}
+	if duplicateFactInputs(update.Facts) {
+		return Snapshot{}, ErrInvalidFact
 	}
 	if update.Evaluated < 0 {
 		return Snapshot{}, ErrInvalidMonotonicTime
@@ -317,6 +317,7 @@ func cloneFactValue(value FactValue) FactValue {
 		value.Decimal = &decimal
 	}
 	value.Symbols = append([]string(nil), value.Symbols...)
+	sort.Strings(value.Symbols)
 	return value
 }
 

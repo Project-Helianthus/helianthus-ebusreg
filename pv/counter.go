@@ -26,6 +26,9 @@ func EvaluateCounter(previous *Decimal, current Decimal, evidence CounterEvidenc
 
 	switch evidence.Kind {
 	case CounterEventNone:
+		if !evidence.empty() {
+			return Continuity{State: ContinuityDiscontinuity}, ErrInvalidCounter
+		}
 		return Continuity{State: ContinuityDiscontinuity}, nil
 	case CounterEventReset:
 		if evidence.Modulus != nil || evidence.BoundaryVerified || evidence.EvidenceRef.Validate() != nil {

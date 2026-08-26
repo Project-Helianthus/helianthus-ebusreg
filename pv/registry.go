@@ -45,6 +45,9 @@ func (registry *Registry) Apply(update Update) (Snapshot, error) {
 	if err := registry.validateProvenance(update.Source); err != nil {
 		return Snapshot{}, err
 	}
+	if err := validateUpdateAccountingLimits(update); err != nil {
+		return Snapshot{}, err
+	}
 	if duplicateFactInputs(update.Facts) {
 		return Snapshot{}, ErrInvalidFact
 	}
@@ -317,6 +320,7 @@ func cloneFactValue(value FactValue) FactValue {
 		value.Decimal = &decimal
 	}
 	value.Symbols = append([]string(nil), value.Symbols...)
+	sort.Strings(value.Symbols)
 	return value
 }
 
@@ -333,11 +337,8 @@ func sameSourceIdentity(left, right Provenance) bool {
 }
 
 func validateUpdateAccounting(update Update) error {
-	if update.SourceTimeState != SourceTimeUnavailable && update.SourceTimeState != SourceTimeValid && update.SourceTimeState != SourceTimeInvalid {
-		return ErrInvalidProjection
-	}
-	if len(update.Facts) == 0 || len(update.Facts) > 256 || len(update.RequestedOutputs) == 0 || len(update.RequestedOutputs) > 512 || len(update.ProjectionReport) > 512 || len(update.ProjectionReport) != len(update.RequestedOutputs) {
-		return ErrInvalidProjection
+	if err := validateUpdateAccountingLimits(update); err != nil {
+		return err
 	}
 	requested := make(map[projectionKey]struct{}, len(update.RequestedOutputs))
 	for _, output := range update.RequestedOutputs {
@@ -381,6 +382,16 @@ func validateUpdateAccounting(update Update) error {
 		}
 	}
 	if len(mappedFacts) != len(update.Facts) {
+		return ErrInvalidProjection
+	}
+	return nil
+}
+
+func validateUpdateAccountingLimits(update Update) error {
+	if update.SourceTimeState != SourceTimeUnavailable && update.SourceTimeState != SourceTimeValid && update.SourceTimeState != SourceTimeInvalid {
+		return ErrInvalidProjection
+	}
+	if len(update.Facts) == 0 || len(update.Facts) > 256 || len(update.RequestedOutputs) == 0 || len(update.RequestedOutputs) > 512 || len(update.ProjectionReport) > 512 || len(update.ProjectionReport) != len(update.RequestedOutputs) {
 		return ErrInvalidProjection
 	}
 	return nil

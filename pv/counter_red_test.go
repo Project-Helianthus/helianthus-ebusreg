@@ -1,6 +1,7 @@
 package pv
 
 import (
+	"errors"
 	"testing"
 )
 
@@ -61,6 +62,21 @@ func TestCounterResetAndRolloverRequireExplicitEvidence(t *testing.T) {
 		result, err := EvaluateCounter(&prior, current, evidence)
 		if err == nil || result.State != ContinuityDiscontinuity || result.Delta != nil {
 			t.Errorf("evidence %#v result=%#v err=%v, want discontinuity error", evidence, result, err)
+		}
+	}
+}
+
+func TestCounterNoneRejectsAncillaryEvidence(t *testing.T) {
+	previous := MustDecimal("100", 0)
+	current := MustDecimal("10", 0)
+	for _, evidence := range []CounterEvidence{
+		{Kind: CounterEventNone, Modulus: ptrDecimal(MustDecimal("1000", 0))},
+		{Kind: CounterEventNone, BoundaryVerified: true},
+		{Kind: CounterEventNone, EvidenceRef: Digest("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")},
+	} {
+		result, err := EvaluateCounter(&previous, current, evidence)
+		if !errors.Is(err, ErrInvalidCounter) || result.State != ContinuityDiscontinuity || result.Delta != nil {
+			t.Errorf("evidence %#v result=%#v err=%v, want discontinuity invalid-counter", evidence, result, err)
 		}
 	}
 }

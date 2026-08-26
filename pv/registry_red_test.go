@@ -358,6 +358,49 @@ func TestRegistryEnforcesEnvelopeCardinalityLimits(t *testing.T) {
 	}
 }
 
+func TestRegistryRejectsOversizedFactsBeforeDuplicateAllocation(t *testing.T) {
+	identity := SourceIdentity{Protocol: "test_source", ProfileID: "test.profile@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified}
+	registryRef := Digest("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	inputs := make([]FactInput, 257)
+	for index := range inputs {
+		inputs[index] = decimalInput(FactDCCurrent, Dimensions{InputID: fmt.Sprintf("input-%03d", index)}, UnitAmpere, "1", 0, PolicyTelemetryFastV1, 0)
+	}
+	update := accountedUpdate(Update{AssetRef: "pv-asset-limit-before-allocation", Source: provenance(identity, registryRef, 'e'), Facts: inputs})
+	registry := NewRegistry(staticResolver{identity: registryRef})
+	allocations := testing.AllocsPerRun(10, func() {
+		if _, err := registry.Apply(update); !errors.Is(err, ErrInvalidProjection) {
+			t.Fatalf("oversized facts error = %v", err)
+		}
+	})
+	if allocations != 0 {
+		t.Fatalf("oversized facts allocated %.0f times before rejection; want 0", allocations)
+	}
+}
+
+func TestRegistryCanonicalizesBitfieldSymbolsBeforeSnapshot(t *testing.T) {
+	identity := SourceIdentity{Protocol: "test_source", ProfileID: "test.profile@1.0.0", ProfileVersion: "1.0.0", Validity: SourceTerminalVerified}
+	registryRef := Digest("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	registry := NewRegistry(staticResolver{identity: registryRef})
+	update := accountedUpdate(Update{
+		AssetRef: "pv-asset-canonical-symbols",
+		Source:   provenance(identity, registryRef, 'f'),
+		Facts: []FactInput{{
+			Candidate: FactCandidate{ID: FactEventFlags, Dimensions: Dimensions{Scope: ScopeTotal}, Value: BitfieldFactValue("INTERNAL_FAULT", "AC_DISCONNECT"), Unit: UnitOne},
+			Quality:   QualityGood,
+			Receipt:   0,
+			Policy:    PolicyStatusV1,
+		}},
+	})
+	snapshot, err := registry.Apply(update)
+	if err != nil {
+		t.Fatal(err)
+	}
+	got := lookupFact(t, snapshot, FactEventFlags, Dimensions{Scope: ScopeTotal}).Value.Symbols
+	if len(got) != 2 || got[0] != "AC_DISCONNECT" || got[1] != "INTERNAL_FAULT" {
+		t.Fatalf("snapshot symbols = %#v; want canonical order", got)
+	}
+}
+
 func requiredThreePhaseFacts(t *testing.T) map[FactKey]Fact {
 	t.Helper()
 	facts := make(map[FactKey]Fact)

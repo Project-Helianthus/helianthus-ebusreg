@@ -138,3 +138,44 @@ func TestIdentityEnrichmentKeepsCompanionWhenDestinationModelConflicts(t *testin
 		t.Fatal("sparse enrichment transferred a companion despite conflicting known model signatures")
 	}
 }
+
+func TestIdentityEnrichmentRejectsStableConflictWithSelectedDestination(t *testing.T) {
+	reg := NewDeviceRegistry(nil)
+	destinationInfo := DeviceInfo{Address: 0x04, Manufacturer: "Vaillant", SerialNumber: "SYNTHETIC-VR940F", MacAddress: "02:00:00:00:00:01"}
+	destination := reg.Register(destinationInfo)
+	source := reg.Register(DeviceInfo{Address: 0xf1})
+	if err := reg.AliasAddresses(0xf1, 0xf6); err != nil {
+		t.Fatal(err)
+	}
+
+	// Serial-key lookup alone selects the destination, but the incoming
+	// MAC contradicts it. Neither source address may move or corrupt it.
+	incoming := destinationInfo
+	incoming.Address = 0xf6
+	incoming.MacAddress = "02:00:00:00:00:02"
+	for attempt := 0; attempt < 2; attempt++ {
+		reg.Register(incoming)
+		for _, address := range []byte{0xf1, 0xf6} {
+			entry, _ := reg.Lookup(address)
+			if entry != source || entry == destination {
+				t.Fatalf("address %02x moved to a conflicting destination", address)
+			}
+		}
+		if destination.MacAddress() != destinationInfo.MacAddress || !slices.Equal(destination.Addresses(), []byte{0x04}) {
+			t.Fatal("conflicting enrichment changed the destination identity or addresses")
+		}
+		if indexed, ok := reg.lookupByIdentity(destinationInfo); !ok || indexed != destination {
+			t.Fatal("conflicting enrichment replaced the existing stable identity index")
+		}
+	}
+
+	// Rejection must not prevent later compatible evidence from merging
+	// the group through the same stable identity.
+	incoming.MacAddress = destinationInfo.MacAddress
+	reg.Register(incoming)
+	for _, address := range []byte{0x04, 0xf1, 0xf6} {
+		if entry, _ := reg.Lookup(address); entry != destination {
+			t.Fatalf("compatible enrichment did not join address %02x", address)
+		}
+	}
+}

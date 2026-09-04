@@ -76,7 +76,7 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 	if existingByAddress != nil && existingByAddress != entry {
 		if existingByIdentity != nil && isStableIdentityKey(identityKey) &&
 			compatibleAliasEnrichment(info, existingByAddress) &&
-			canMergeIdentity(entry.info, existingByAddress.info) {
+			compatibleAliasEnrichment(entry.info, existingByAddress) {
 			r.mergeRegisteredAliasesLocked(entry, existingByAddress)
 		} else {
 			r.detachAddressLocked(existingByAddress, info.Address)

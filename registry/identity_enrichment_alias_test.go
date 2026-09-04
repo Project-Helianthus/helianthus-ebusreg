@@ -120,3 +120,21 @@ func TestIdentityEnrichmentKeepsDistinctDevicesAfterSharedModelObservations(t *t
 		}
 	}
 }
+
+func TestIdentityEnrichmentKeepsCompanionWhenDestinationModelConflicts(t *testing.T) {
+	reg := NewDeviceRegistry(nil)
+	reg.Register(DeviceInfo{Address: 0x04, Manufacturer: "Vaillant", DeviceID: "NETX3", SoftwareVersion: "0129", HardwareVersion: "0404", SerialNumber: "SYNTHETIC-VR940F"})
+	reg.Register(DeviceInfo{Address: 0xf1, Manufacturer: "Vaillant", DeviceID: "OTHER", SoftwareVersion: "0100", HardwareVersion: "0200"})
+	if err := reg.AliasAddresses(0xf1, 0xf6); err != nil {
+		t.Fatal(err)
+	}
+
+	// A sparse identity update must still be checked against the complete
+	// model information already held by the destination entry.
+	reg.Register(DeviceInfo{Address: 0xf6, Manufacturer: "Vaillant", SerialNumber: "SYNTHETIC-VR940F"})
+	previous, _ := reg.Lookup(0xf1)
+	updated, _ := reg.Lookup(0xf6)
+	if previous == updated || previous.DeviceID() != "OTHER" || updated.DeviceID() != "NETX3" {
+		t.Fatal("sparse enrichment transferred a companion despite conflicting known model signatures")
+	}
+}

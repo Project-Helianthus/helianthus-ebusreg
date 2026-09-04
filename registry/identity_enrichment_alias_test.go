@@ -8,8 +8,12 @@ import (
 )
 
 func TestIdentityEnrichmentPreservesBothVR940fAliasPairs(t *testing.T) {
-	for _, first := range []byte{0x04, 0xf6} {
-		t.Run(fmt.Sprintf("first_%02x", first), func(t *testing.T) {
+	for _, scenario := range []struct {
+		first    byte
+		probeAll bool
+	}{{0x04, false}, {0xf6, false}, {0x04, true}, {0xf6, true}} {
+		t.Run(fmt.Sprintf("first_%02x_probe_all_%t", scenario.first, scenario.probeAll), func(t *testing.T) {
+			first := scenario.first
 			reg := NewDeviceRegistry(nil)
 			observedAt := time.Date(2026, 1, 1, 0, 0, 0, 0, time.UTC)
 			for _, address := range []byte{0xff, 0x04, 0xf1, 0xf6} {
@@ -25,8 +29,19 @@ func TestIdentityEnrichmentPreservesBothVR940fAliasPairs(t *testing.T) {
 			if first == second {
 				second = 0x04
 			}
+			if scenario.probeAll {
+				for _, address := range []byte{first, second} {
+					reg.Register(DeviceInfo{Address: address, Manufacturer: "Vaillant", DeviceID: "NETX3", SoftwareVersion: "0129", HardwareVersion: "0404"})
+				}
+			}
 			for _, address := range []byte{first, second} {
-				reg.Register(DeviceInfo{Address: address, Manufacturer: "Vaillant", DeviceID: "NETX3", SerialNumber: "SYNTHETIC-VR940F", SoftwareVersion: "0129", HardwareVersion: "0404"})
+				info := DeviceInfo{Address: address, Manufacturer: "Vaillant", DeviceID: "NETX3", SoftwareVersion: "0129", HardwareVersion: "0404"}
+				// A 0704 observation may arrive before B509 supplies a serial.
+				if !scenario.probeAll {
+					reg.Register(info)
+				}
+				info.SerialNumber = "SYNTHETIC-VR940F"
+				reg.Register(info)
 			}
 
 			canonical, _ := reg.Lookup(first)
@@ -75,5 +90,33 @@ func TestIdentityEnrichmentLeavesConflictingCompanionWithItsOriginalDevice(t *te
 	}
 	if !slices.Equal(original.Addresses(), []byte{0xf1}) {
 		t.Fatalf("original addresses = %x", original.Addresses())
+	}
+}
+
+func TestIdentityEnrichmentKeepsDistinctDevicesAfterSharedModelObservations(t *testing.T) {
+	reg := NewDeviceRegistry(nil)
+	for _, pair := range [][2]byte{{0x04, 0xff}, {0xf6, 0xf1}} {
+		reg.Register(DeviceInfo{Address: pair[0]})
+		if err := reg.AliasAddresses(pair[0], pair[1]); err != nil {
+			t.Fatal(err)
+		}
+	}
+	for _, address := range []byte{0x04, 0xf6} {
+		reg.Register(DeviceInfo{Address: address, Manufacturer: "Vaillant", DeviceID: "NETX3", SoftwareVersion: "0129", HardwareVersion: "0404"})
+	}
+	for index, address := range []byte{0x04, 0xf6} {
+		reg.Register(DeviceInfo{Address: address, Manufacturer: "Vaillant", DeviceID: "NETX3", SoftwareVersion: "0129", HardwareVersion: "0404", SerialNumber: fmt.Sprintf("SYNTHETIC-%d", index)})
+	}
+	first, _ := reg.Lookup(0x04)
+	second, _ := reg.Lookup(0xf6)
+	if first == second {
+		t.Fatal("same model observations merged distinct serials")
+	}
+	for _, pair := range [][2]byte{{0x04, 0xff}, {0xf6, 0xf1}} {
+		device, _ := reg.Lookup(pair[0])
+		companion, _ := reg.Lookup(pair[1])
+		if device != companion || len(device.Addresses()) != 2 {
+			t.Fatalf("pair %x lost its original grouping", pair)
+		}
 	}
 }

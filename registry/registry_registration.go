@@ -63,8 +63,24 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 		}
 	}
 
+	// A model signature cannot disband an already-evidenced alias group.
+	// Keep it together while a later serial/MAC observation establishes
+	// whether it belongs to another physical entry.
+	if existingByAddress != nil && len(existingByAddress.addresses) > 1 &&
+		entry != existingByAddress && !incomingHasStableIdentity &&
+		compatibleAliasEnrichment(info, existingByAddress) {
+		entry = existingByAddress
+		existingByIdentity = nil
+	}
+
 	if existingByAddress != nil && existingByAddress != entry {
-		r.detachAddressLocked(existingByAddress, info.Address)
+		if existingByIdentity != nil && isStableIdentityKey(identityKey) &&
+			compatibleAliasEnrichment(info, existingByAddress) &&
+			canMergeIdentity(entry.info, existingByAddress.info) {
+			r.mergeRegisteredAliasesLocked(entry, existingByAddress)
+		} else {
+			r.detachAddressLocked(existingByAddress, info.Address)
+		}
 	}
 
 	if entry == nil {
@@ -273,4 +289,40 @@ func (r *DeviceRegistry) markSlotStaticSeedLocked(slot *AddressSlot, role SlotRo
 	if !seededAt.IsZero() {
 		slot.LastObservedAt = seededAt
 	}
+}
+
+// mergeRegisteredAliasesLocked joins an already-evidenced address group after
+// a stable identity match. Moving just the enriched address would strand its
+// companion and discard the address slot's observation history. The caller
+// holds r.mu and has rejected conflicting identities and model signatures.
+func (r *DeviceRegistry) mergeRegisteredAliasesLocked(dst, src *deviceEntry) {
+	r.absorbIdentityLocked(dst, src)
+	for _, address := range src.addresses {
+		if !containsAddress(dst.addresses, address) {
+			dst.addresses = append(dst.addresses, address)
+		}
+		r.entries[address] = dst
+		r.ensureAddressSlotLocked(address).Device = dst
+	}
+	for _, key := range append(src.identityKeyAliases, src.identityKey) {
+		if key == "" || r.identity[key] != src {
+			continue
+		}
+		if isStableIdentityKey(key) {
+			r.identity[key] = dst
+			if key != dst.identityKey {
+				dst.identityKeyAliases = appendUniqueString(dst.identityKeyAliases, key)
+			}
+		} else {
+			delete(r.identity, key)
+		}
+	}
+	r.order = removeEntry(r.order, src)
+}
+
+func compatibleAliasEnrichment(info DeviceInfo, previous *deviceEntry) bool {
+	manufacturer := normalizeIdentityPart(info.Manufacturer)
+	return canMergeIdentity(info, previous.info) &&
+		!hasConflictingModelSignature(info, previous.info) &&
+		(manufacturer == "" || previous.physical.manufacturer == "" || manufacturer == previous.physical.manufacturer)
 }

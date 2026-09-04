@@ -49,6 +49,13 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 	if identityKey != "" {
 		existingByIdentity = r.identity[identityKey]
 	}
+	// A serial-key match can conceal a contradictory MAC (or vice versa
+	// through a retained identity alias). Keep an existing address group
+	// unchanged instead of applying ambiguous evidence to either device.
+	if existingByAddress != nil && existingByIdentity != nil &&
+		existingByIdentity != existingByAddress && !canMergeIdentity(info, existingByIdentity.info) {
+		return existingByAddress
+	}
 
 	entry := existingByIdentity
 	if entry == nil {

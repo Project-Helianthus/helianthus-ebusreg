@@ -13,7 +13,7 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	}
 	r.observeAddressSlotLocked(info.Address, entry, DiscoverySourceActiveConfirmed, state)
 	if state == VerificationStateIdentityConfirmed {
-		r.confirmEntryIdentitySlotsLocked(entry)
+		r.confirmTopologyIdentitySlotsLocked(info.Address, entry)
 	}
 	r.syncEntryFacesLocked(entry)
 	r.observationGeneration++
@@ -211,18 +211,38 @@ func (r *DeviceRegistry) RegisterStaticSeed(info DeviceInfo, role SlotRole, seed
 	return entry
 }
 
-// confirmEntryIdentitySlotsLocked promotes the explicitly grouped faces of an
-// entry after an active observation supplied a complete qualified identity.
-// It never promotes on partial or sentinel identity, so static-seed candidates
-// remain candidates until this evidence arrives.
-func (r *DeviceRegistry) confirmEntryIdentitySlotsLocked(entry *deviceEntry) {
+// confirmTopologyIdentitySlotsLocked promotes only faces joined to address by
+// explicit source-target or canonical-companion topology evidence. Qualified
+// identity membership alone is deliberately insufficient: it can join two
+// independently observed addresses, whose static or passive provenance must
+// remain per-face until each is observed in the current session.
+//
+// The caller has just stamped address as identity-confirmed and holds r.mu.
+// Traverse only topology edges whose endpoints still resolve to entry, so a
+// later identity split cannot let stale topology evidence promote another
+// device's face.
+func (r *DeviceRegistry) confirmTopologyIdentitySlotsLocked(address byte, entry *deviceEntry) {
 	if entry == nil {
 		return
 	}
-	for _, address := range entry.addresses {
-		slot := r.ensureAddressSlotLocked(address)
+	seen := map[byte]struct{}{address: {}}
+	pending := []byte{address}
+	for len(pending) > 0 {
+		current := pending[0]
+		pending = pending[1:]
+		if r.entries[current] != entry {
+			continue
+		}
+		slot := r.ensureAddressSlotLocked(current)
 		if slot.VerificationState < VerificationStateIdentityConfirmed {
 			slot.VerificationState = VerificationStateIdentityConfirmed
+		}
+		for companion := range r.topology[current] {
+			if _, ok := seen[companion]; ok || r.entries[companion] != entry {
+				continue
+			}
+			seen[companion] = struct{}{}
+			pending = append(pending, companion)
 		}
 	}
 }

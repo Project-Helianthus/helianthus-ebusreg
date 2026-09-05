@@ -200,8 +200,29 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 		r.syncEntryFacesLocked(canonical)
 	}
 
+	if r.entries[a] != nil && r.entries[a] == r.entries[b] {
+		r.recordTopologyAliasLocked(a, b)
+	}
 	r.observationGeneration++
 	return nil
+}
+
+// recordTopologyAliasLocked remembers explicit source-target or canonical-
+// companion evidence without conflating it with qualified identity joins.
+// AliasAddresses has already applied the relation; this method only records
+// it for later current-session confirmation propagation. Caller holds r.mu.
+func (r *DeviceRegistry) recordTopologyAliasLocked(a, b byte) {
+	if a == b {
+		return
+	}
+	if r.topology[a] == nil {
+		r.topology[a] = make(map[byte]struct{})
+	}
+	if r.topology[b] == nil {
+		r.topology[b] = make(map[byte]struct{})
+	}
+	r.topology[a][b] = struct{}{}
+	r.topology[b][a] = struct{}{}
 }
 
 // appendUniqueString returns dst with s appended if not already

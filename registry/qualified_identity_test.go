@@ -143,3 +143,71 @@ func TestQualifiedIdentity_StaticSeedPromotionRequiresQualifiedObservation(t *te
 		t.Fatalf("qualified observation state = %v; want IdentityConfirmed", confirmed.VerificationState)
 	}
 }
+
+func TestQualifiedIdentity_CurrentSessionConfirmationIsPerFace(t *testing.T) {
+	t.Parallel()
+
+	for _, scenario := range []struct {
+		name       string
+		register   func(*DeviceRegistry, DeviceInfo, time.Time)
+		address    byte
+		wantSource DiscoverySource
+		wantState  VerificationState
+	}{
+		{
+			name: "static face in exact triple group remains candidate",
+			register: func(registry *DeviceRegistry, info DeviceInfo, observedAt time.Time) {
+				registry.RegisterStaticSeed(info, SlotRoleSlave, observedAt)
+			},
+			address: 0x15, wantSource: DiscoverySourceStaticSeed, wantState: VerificationStateCandidate,
+		},
+		{
+			name: "passive face in exact triple group remains corroborated",
+			register: func(registry *DeviceRegistry, info DeviceInfo, observedAt time.Time) {
+				registry.RegisterPassiveObserved(info, SlotRoleMaster, observedAt)
+			},
+			address: 0x31, wantSource: DiscoverySourcePassiveObserved, wantState: VerificationStateCorroborated,
+		},
+	} {
+		t.Run(scenario.name, func(t *testing.T) {
+			registry := NewDeviceRegistry(nil)
+			observedAt := time.Unix(1, 0)
+			scenario.register(registry, qualifiedIdentity(scenario.address, "SN-PER-FACE"), observedAt)
+
+			// This is the only current-session active observation. An exact
+			// triple merge joins the entries but does not evidence the older face.
+			registry.Register(qualifiedIdentity(0xEC, "SN-PER-FACE"))
+
+			older, ok := registry.LookupSlotSnapshot(scenario.address)
+			if !ok || older.DiscoverySource != scenario.wantSource || older.VerificationState != scenario.wantState || !older.FirstObservedAt.Equal(observedAt) {
+				t.Fatalf("older face = %#v, present=%v; want source=%v state=%v original=%v", older, ok, scenario.wantSource, scenario.wantState, observedAt)
+			}
+			direct, ok := registry.LookupSlotSnapshot(0xEC)
+			if !ok || direct.DiscoverySource != DiscoverySourceActiveConfirmed || direct.VerificationState != VerificationStateIdentityConfirmed {
+				t.Fatalf("directly observed face = %#v, present=%v; want active-confirmed/identity-confirmed", direct, ok)
+			}
+		})
+	}
+}
+
+func TestQualifiedIdentity_ConfirmedTopologyMayPromoteCompanionFace(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	seededAt := time.Unix(1, 0)
+	registry.RegisterStaticSeed(DeviceInfo{Address: 0x15, Manufacturer: "Vaillant", DeviceID: "BASV2"}, SlotRoleSlave, seededAt)
+	registry.Register(DeviceInfo{Address: 0xEC, Manufacturer: "Vaillant", DeviceID: "BASV2"})
+	if err := registry.AliasAddresses(0xEC, 0x15); err != nil {
+		t.Fatal(err)
+	}
+
+	// AliasAddresses is the explicit source-target/canonical-companion
+	// topology relation. A later qualified active observation at 0xEC may
+	// therefore confirm that companion without using entry membership alone.
+	registry.Register(qualifiedIdentity(0xEC, "SN-TOPOLOGY"))
+
+	companion, ok := registry.LookupSlotSnapshot(0x15)
+	if !ok || companion.DiscoverySource != DiscoverySourceStaticSeed || companion.VerificationState != VerificationStateIdentityConfirmed || !companion.FirstObservedAt.Equal(seededAt) {
+		t.Fatalf("topology companion = %#v, present=%v; want preserved static provenance and identity confirmation", companion, ok)
+	}
+}

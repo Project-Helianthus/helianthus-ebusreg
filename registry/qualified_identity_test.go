@@ -227,6 +227,175 @@ func TestQualifiedIdentity_AdmitsOnlyNonConflictingIndexedCandidates(t *testing.
 	})
 }
 
+// TestQualifiedIdentity_AliasCannotRepublishRejectedIdentity keeps a
+// conflicting complete triple address-local even when an explicit alias later
+// removes an empty companion and rebuilds that group's identity binding.
+func TestQualifiedIdentity_AliasCannotRepublishRejectedIdentity(t *testing.T) {
+	for _, alias := range []struct {
+		name string
+		a    byte
+		b    byte
+	}{
+		{name: "disputed_then_empty", a: 0x11, b: 0x12},
+		{name: "empty_then_disputed", a: 0x12, b: 0x11},
+	} {
+		t.Run(alias.name, func(t *testing.T) {
+			registry := NewDeviceRegistry(nil)
+			incumbentInfo := DeviceInfo{
+				Address: 0x10, Manufacturer: "Vaillant", DeviceID: "BASV2",
+				SerialNumber: "SN-ALIAS-CONFLICT", MacAddress: "02:00:00:00:00:01",
+			}
+			incumbent := registry.Register(incumbentInfo)
+			disputedInfo := incumbentInfo
+			disputedInfo.Address = 0x11
+			disputedInfo.MacAddress = "02:00:00:00:00:02"
+			disputed := registry.Register(disputedInfo)
+			if disputed == incumbent {
+				t.Fatal("setup: conflicting qualified identity unexpectedly joined incumbent")
+			}
+
+			registry.Register(DeviceInfo{Address: 0x12})
+			if err := registry.AliasAddresses(alias.a, alias.b); err != nil {
+				t.Fatalf("AliasAddresses(%#02x, %#02x): %v", alias.a, alias.b, err)
+			}
+			if indexed, ok := registry.lookupByIdentity(incumbentInfo); !ok || indexed != incumbent {
+				t.Fatal("alias republished disputed entry as triple owner")
+			}
+			mergedDispute, ok := registry.Lookup(0x11)
+			mergedEmpty, emptyOK := registry.Lookup(0x12)
+			if !ok || !emptyOK || mergedDispute != mergedEmpty || mergedDispute.MacAddress() != disputedInfo.MacAddress {
+				t.Fatal("explicit topology grouping of disputed address was not preserved")
+			}
+			if alias.a == disputedInfo.Address && mergedDispute != disputed {
+				t.Fatal("disputed first argument did not remain canonical")
+			}
+			if internal, ok := mergedDispute.(*deviceEntry); !ok || internal.identityKey != "" {
+				t.Fatal("disputed alias group acquired cross-address identity authority")
+			}
+
+			compatible := incumbentInfo
+			compatible.Address = 0x13
+			if joined := registry.Register(compatible); joined != incumbent {
+				t.Fatal("compatible evidence did not join the original incumbent")
+			}
+		})
+	}
+}
+
+func TestQualifiedIdentity_CurrentIdentityPublicationLifecycle(t *testing.T) {
+	first := DeviceInfo{
+		Address: 0x10, Manufacturer: "Vaillant", DeviceID: "BASV2",
+		SerialNumber: "SN-PUBLISH", MacAddress: "02:00:00:00:00:01",
+	}
+
+	t.Run("no incumbent alias rebuild publishes absorbed identity", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		registry.Register(DeviceInfo{Address: 0x11})
+		secondary := registry.Register(first)
+		if err := registry.AliasAddresses(0x11, first.Address); err != nil {
+			t.Fatal(err)
+		}
+		canonical, ok := registry.Lookup(0x11)
+		if !ok || canonical == secondary {
+			t.Fatal("empty canonical did not absorb and replace the removed secondary")
+		}
+		if indexed, ok := registry.lookupByIdentity(first); !ok || indexed != canonical {
+			t.Fatal("no-incumbent alias rebuild did not publish the canonical identity")
+		}
+	})
+
+	t.Run("agreeing incumbent permits publication", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		registry.Register(first)
+		candidate := &deviceEntry{info: first, physical: canonicalPhysicalIdentity(first)}
+		identity := candidate.physical.key()
+		registry.mu.Lock()
+		registry.publishCurrentIdentityBindingLocked(candidate, identity)
+		registry.mu.Unlock()
+		if indexed, ok := registry.lookupByIdentity(first); !ok || indexed != candidate || candidate.identityKey != identity {
+			t.Fatal("compatible current owner prevented legitimate identity publication")
+		}
+	})
+
+	t.Run("detach then merge removes obsolete identity row", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		owner := registry.Register(first)
+		obsolete := first
+		obsolete.Address = 0x11
+		obsolete.SerialNumber = "SN-OBSOLETE"
+		registry.Register(obsolete)
+
+		moving := first
+		moving.Address = obsolete.Address
+		if joined := registry.Register(moving); joined != owner {
+			t.Fatal("compatible address did not merge with incumbent")
+		}
+		if _, ok := registry.lookupByIdentity(obsolete); ok {
+			t.Fatal("detached entry left a stale identity row")
+		}
+	})
+}
+
+func TestQualifiedIdentity_ConflictingCandidateCallerStamping(t *testing.T) {
+	first := DeviceInfo{
+		Address: 0x20, Manufacturer: "Vaillant", DeviceID: "BASV2",
+		SerialNumber: "SN-CALLER-CONFLICT", MacAddress: "02:00:00:00:00:11",
+	}
+
+	t.Run("existing conflict retains passive provenance", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		observedAt := time.Unix(10, 0)
+		registry.RegisterPassiveObserved(first, SlotRoleSlave, observedAt)
+		conflicting := first
+		conflicting.MacAddress = "02:00:00:00:00:12"
+		registry.RegisterStaticSeed(conflicting, SlotRoleMaster, time.Unix(20, 0))
+		slot, ok := registry.LookupSlotSnapshot(first.Address)
+		if !ok || slot.DiscoverySource != DiscoverySourcePassiveObserved || slot.VerificationState != VerificationStateCorroborated || !slot.LastObservedAt.Equal(observedAt) {
+			t.Fatalf("existing conflict restamped slot: %#v present=%v", slot, ok)
+		}
+	})
+
+	for _, caller := range []struct {
+		name       string
+		register   func(*DeviceRegistry, DeviceInfo)
+		wantSource DiscoverySource
+		wantState  VerificationState
+	}{
+		{
+			name: "active", register: func(registry *DeviceRegistry, info DeviceInfo) { registry.Register(info) },
+			wantSource: DiscoverySourceActiveConfirmed, wantState: VerificationStateIdentityConfirmed,
+		},
+		{
+			name: "passive", register: func(registry *DeviceRegistry, info DeviceInfo) {
+				registry.RegisterPassiveObserved(info, SlotRoleSlave, time.Unix(30, 0))
+			},
+			wantSource: DiscoverySourcePassiveObserved, wantState: VerificationStateCorroborated,
+		},
+		{
+			name: "static", register: func(registry *DeviceRegistry, info DeviceInfo) {
+				registry.RegisterStaticSeed(info, SlotRoleSlave, time.Unix(40, 0))
+			},
+			wantSource: DiscoverySourceStaticSeed, wantState: VerificationStateCandidate,
+		},
+	} {
+		t.Run(caller.name, func(t *testing.T) {
+			registry := NewDeviceRegistry(nil)
+			incumbent := registry.Register(first)
+			conflicting := first
+			conflicting.Address = 0x21
+			conflicting.MacAddress = "02:00:00:00:00:12"
+			caller.register(registry, conflicting)
+			slot, ok := registry.LookupSlotSnapshot(conflicting.Address)
+			if !ok || slot.DiscoverySource != caller.wantSource || slot.VerificationState != caller.wantState {
+				t.Fatalf("new conflict slot=%#v present=%v", slot, ok)
+			}
+			if indexed, ok := registry.lookupByIdentity(first); !ok || indexed != incumbent {
+				t.Fatal("new conflicting caller replaced incumbent identity binding")
+			}
+		})
+	}
+}
+
 func TestQualifiedIdentity_RetiresCorrectedTripleFromIndependentSelection(t *testing.T) {
 	t.Parallel()
 

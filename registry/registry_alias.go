@@ -53,6 +53,38 @@ func (r *DeviceRegistry) removeIdentityBindingsLocked(entry *deviceEntry) {
 	r.retainCurrentIdentityBindingLocked(entry, "")
 }
 
+// publishCurrentIdentityBindingLocked makes entry the cross-address authority
+// for its current qualified triple. A conflicting current owner remains the
+// authority: the proposed group is still useful for its explicitly attached
+// addresses, but cannot be republished by a later lifecycle operation.
+//
+// Caller holds r.mu and has already refreshed entry.info and entry.physical.
+// Keeping this check at the publication boundary makes registration and alias
+// rebuilds follow the same conflict policy.
+func (r *DeviceRegistry) publishCurrentIdentityBindingLocked(entry *deviceEntry, identity string) {
+	if entry == nil {
+		return
+	}
+
+	if identity != "" {
+		incumbent := r.currentIdentityEntryLocked(identity)
+		if incumbent != nil && incumbent != entry && !canMergeIdentity(entry.info, incumbent.info) {
+			// Do not leave an old key behind: entry's fields now describe the
+			// disputed current triple, so any identity row for it would be
+			// historical cross-address authority.
+			r.retainCurrentIdentityBindingLocked(entry, "")
+			entry.identityKey = ""
+			return
+		}
+	}
+
+	r.retainCurrentIdentityBindingLocked(entry, identity)
+	entry.identityKey = identity
+	if identity != "" {
+		r.identity[identity] = entry
+	}
+}
+
 func canMergeIdentity(incoming DeviceInfo, existing DeviceInfo) bool {
 	normalizedIncomingSerial := normalizeIdentityPart(incoming.SerialNumber)
 	normalizedExistingSerial := normalizeIdentityPart(existing.SerialNumber)
@@ -172,11 +204,7 @@ func (r *DeviceRegistry) mergeRemovedAliasEntryLocked(canonical, secondary *devi
 	r.removeIdentityBindingsLocked(secondary)
 
 	canonical.physical = canonicalPhysicalIdentity(canonical.info)
-	canonical.identityKey = canonical.physical.key()
-	r.retainCurrentIdentityBindingLocked(canonical, canonical.identityKey)
-	if canonical.identityKey != "" {
-		r.identity[canonical.identityKey] = canonical
-	}
+	r.publishCurrentIdentityBindingLocked(canonical, canonical.physical.key())
 	r.order = removeEntry(r.order, secondary)
 }
 

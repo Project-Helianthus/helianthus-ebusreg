@@ -184,21 +184,17 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) (*deviceEntry, bool) {
 		projections = nil
 	}
 
-	// A correction may rotate any qualified triple member. Retire every older
-	// binding before publishing the current triple so same-address LKG cannot
-	// become cross-address authority for an historical device.
-	r.retainCurrentIdentityBindingLocked(entry, identityKey)
 	entry.info = storedInfo
 	entry.physical = physical
-	entry.identityKey = identityKey
 	entry.planes = planes
 	entry.projections = projections
 	entry.index = index
 	entry.indexErr = projectionErr
 
-	if identityKey != "" {
-		r.identity[identityKey] = entry
-	}
+	// A correction may rotate any qualified triple member. The shared
+	// publisher retires older bindings and refuses to overwrite a conflicting
+	// current owner, so registration and alias rebuilds cannot drift.
+	r.publishCurrentIdentityBindingLocked(entry, identityKey)
 	r.entries[info.Address] = entry
 
 	return entry, false

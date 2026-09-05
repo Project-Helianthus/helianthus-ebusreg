@@ -126,6 +126,107 @@ func TestQualifiedIdentity_PreservesSameAddressEnrichment(t *testing.T) {
 	}
 }
 
+func TestQualifiedIdentity_AdmitsOnlyNonConflictingIndexedCandidates(t *testing.T) {
+	first := DeviceInfo{
+		Address: 0x10, Manufacturer: "Vaillant", DeviceID: "BASV2",
+		SerialNumber: "SN-CONFLICT", MacAddress: "02:00:00:00:00:01",
+	}
+
+	t.Run("new address with conflicting MAC remains disputed", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		original := registry.Register(first)
+		conflicting := first
+		conflicting.Address = 0x11
+		conflicting.MacAddress = "02:00:00:00:00:02"
+		disputed := registry.Register(conflicting)
+
+		if original == disputed {
+			t.Fatal("conflicting indexed candidate merged a new address")
+		}
+		if original.MacAddress() != first.MacAddress || disputed.MacAddress() != conflicting.MacAddress {
+			t.Fatalf("conflicting observation rewrote fields: original=%q disputed=%q", original.MacAddress(), disputed.MacAddress())
+		}
+		if indexed, ok := registry.lookupByIdentity(first); !ok || indexed != original {
+			t.Fatal("conflicting observation replaced the incumbent identity index")
+		}
+		if internal, ok := disputed.(*deviceEntry); !ok || internal.identityKey != "" {
+			t.Fatal("conflicting observation acquired cross-address identity authority")
+		}
+	})
+
+	t.Run("agreeing normalized MAC merges", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		original := registry.Register(first)
+		agreeing := first
+		agreeing.Address = 0x11
+		agreeing.Manufacturer = " vaillant "
+		agreeing.DeviceID = "basv2"
+		agreeing.SerialNumber = " sn-conflict "
+		agreeing.MacAddress = " 02:00:00:00:00:01 "
+		if joined := registry.Register(agreeing); joined != original {
+			t.Fatal("non-conflicting normalized identity did not merge")
+		}
+	})
+
+	t.Run("empty MAC remains non-conflicting", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		original := registry.Register(first)
+		withoutMAC := first
+		withoutMAC.Address = 0x11
+		withoutMAC.MacAddress = ""
+		if joined := registry.Register(withoutMAC); joined != original {
+			t.Fatal("empty MAC must remain non-conflicting")
+		}
+	})
+
+	t.Run("later corrected MAC joins without stale authority", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		original := registry.Register(first)
+		conflicting := first
+		conflicting.Address = 0x11
+		conflicting.MacAddress = "02:00:00:00:00:02"
+		disputed := registry.Register(conflicting)
+		if disputed == original {
+			t.Fatal("setup: conflicting identity unexpectedly merged")
+		}
+
+		corrected := first
+		corrected.Address = conflicting.Address
+		if joined := registry.Register(corrected); joined != original {
+			t.Fatal("corrected qualified identity did not join the indexed entry")
+		}
+		if current, ok := registry.Lookup(corrected.Address); !ok || current != original {
+			t.Fatal("corrected address did not resolve to the incumbent entry")
+		}
+		entries := 0
+		registry.Iterate(func(DeviceEntry) bool { entries++; return true })
+		if entries != 1 {
+			t.Fatalf("stale disputed entry survived corrected join: entries=%d", entries)
+		}
+	})
+
+	t.Run("same-address conflict preserves incumbent provenance", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		observedAt := time.Unix(1, 0)
+		original := registry.RegisterPassiveObserved(first, SlotRoleSlave, observedAt)
+		conflicting := first
+		conflicting.MacAddress = "02:00:00:00:00:02"
+		if retained := registry.Register(conflicting); retained != original {
+			t.Fatal("same-address conflict replaced the incumbent entry")
+		}
+		if original.MacAddress() != first.MacAddress {
+			t.Fatalf("same-address conflict rewrote incumbent MAC: %q", original.MacAddress())
+		}
+		if indexed, ok := registry.lookupByIdentity(first); !ok || indexed != original {
+			t.Fatal("same-address conflict replaced identity authority")
+		}
+		slot, ok := registry.LookupSlotSnapshot(first.Address)
+		if !ok || slot.DiscoverySource != DiscoverySourcePassiveObserved || slot.VerificationState != VerificationStateCorroborated || !slot.LastObservedAt.Equal(observedAt) {
+			t.Fatalf("same-address conflict changed provenance: %#v", slot)
+		}
+	})
+}
+
 func TestQualifiedIdentity_RetiresCorrectedTripleFromIndependentSelection(t *testing.T) {
 	t.Parallel()
 

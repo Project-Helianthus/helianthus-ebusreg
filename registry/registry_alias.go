@@ -67,6 +67,19 @@ func canMergeIdentity(incoming DeviceInfo, existing DeviceInfo) bool {
 	return true
 }
 
+// admitIdentityCandidate applies the conflict policy before an indexed
+// qualified-identity candidate can select an entry. A matching triple alone
+// is insufficient when any non-empty conflict-bearing identity field differs.
+// The boolean reports rejected, contradictory evidence separately from a
+// missing candidate so callers can retain a disputed new address without
+// publishing it as a replacement identity authority.
+func admitIdentityCandidate(incoming DeviceInfo, candidate *deviceEntry) (*deviceEntry, bool) {
+	if candidate == nil || canMergeIdentity(incoming, candidate.info) {
+		return candidate, false
+	}
+	return nil, true
+}
+
 func hasConflictingModelSignature(incoming DeviceInfo, existing DeviceInfo) bool {
 	incomingDeviceID := normalizeIdentityPart(incoming.DeviceID)
 	existingDeviceID := normalizeIdentityPart(existing.DeviceID)

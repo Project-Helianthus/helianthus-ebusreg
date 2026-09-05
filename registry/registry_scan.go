@@ -108,7 +108,10 @@ func (r *DeviceRegistry) RegisterPassiveObserved(info DeviceInfo, role SlotRole,
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
-	entry := r.registerLocked(info)
+	entry, retainedConflict := r.registerLocked(info)
+	if retainedConflict {
+		return entry
+	}
 	slot := r.ensureAddressSlotLocked(info.Address)
 	slot.Device = entry
 	r.markSlotPassiveObservedLocked(slot, role, observedAt)

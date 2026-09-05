@@ -6,7 +6,10 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
-	entry := r.registerLocked(info)
+	entry, retainedConflict := r.registerLocked(info)
+	if retainedConflict {
+		return entry
+	}
 	state := VerificationStateCandidate
 	if canonicalPhysicalIdentity(info).isQualified() {
 		state = VerificationStateIdentityConfirmed
@@ -58,7 +61,7 @@ func (r *DeviceRegistry) confirmScanIdentity(address byte) {
 // Both callers are responsible for stamping the AddressSlot
 // (observeAddressSlotLocked) and refreshing entry.Faces
 // (syncEntryFacesLocked) after the call.
-func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
+func (r *DeviceRegistry) registerLocked(info DeviceInfo) (*deviceEntry, bool) {
 	physical := canonicalPhysicalIdentity(info)
 	identityKey := physical.key()
 	planes := make([]Plane, 0)
@@ -74,15 +77,17 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 	}
 
 	existingByIdentity := (*deviceEntry)(nil)
+	identityCandidateConflict := false
 	if identityKey != "" {
-		existingByIdentity = r.currentIdentityEntryLocked(identityKey)
+		existingByIdentity, identityCandidateConflict = admitIdentityCandidate(
+			info, r.currentIdentityEntryLocked(identityKey),
+		)
 	}
-	// A serial-key match can conceal a contradictory MAC (or vice versa
-	// through a retained identity alias). Keep an existing address group
-	// unchanged instead of applying ambiguous evidence to either device.
-	if existingByAddress != nil && existingByIdentity != nil &&
-		existingByIdentity != existingByAddress && !canMergeIdentity(info, existingByIdentity.info) {
-		return existingByAddress
+	// Contradictory qualified evidence must not alter an address group already
+	// attached to the registry. In particular, do not re-stamp its provenance
+	// as if the rejected observation had confirmed it.
+	if identityCandidateConflict && existingByAddress != nil {
+		return existingByAddress, true
 	}
 
 	entry := existingByIdentity
@@ -149,7 +154,12 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 	storedInfo.Address = entry.primaryAddress
 	physical = canonicalPhysicalIdentity(storedInfo)
 	identityKey = physical.key()
-	if identityKey == "" && entry.identityKey != "" {
+	if identityCandidateConflict {
+		// Preserve the incumbent binding. The disputed observation remains
+		// address-local until a later non-conflicting observation can use the
+		// qualified identity candidate normally.
+		identityKey = ""
+	} else if identityKey == "" && entry.identityKey != "" {
 		identityKey = entry.identityKey
 	}
 
@@ -191,7 +201,7 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 	}
 	r.entries[info.Address] = entry
 
-	return entry
+	return entry, false
 }
 
 // RegisterStaticSeed plants identity for an address known from a
@@ -216,7 +226,10 @@ func (r *DeviceRegistry) RegisterStaticSeed(info DeviceInfo, role SlotRole, seed
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
-	entry := r.registerLocked(info)
+	entry, retainedConflict := r.registerLocked(info)
+	if retainedConflict {
+		return entry
+	}
 	slot := r.ensureAddressSlotLocked(info.Address)
 	slot.Device = entry
 	r.markSlotStaticSeedLocked(slot, role, seededAt)

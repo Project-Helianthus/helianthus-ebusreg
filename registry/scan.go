@@ -214,7 +214,34 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 		}
 	}
 
-	return entries, nil
+	return canonicalizeScanEntries(registry, entries), nil
+}
+
+// canonicalizeScanEntries resolves every retained observation against the
+// registry after the scan finishes. A later stable-identity observation can
+// merge an earlier source group into another entry; the earlier DeviceEntry
+// handle is then obsolete even though its addresses now resolve to the
+// destination. Keep first-observation order while returning each final
+// canonical entry once.
+func canonicalizeScanEntries(registry *DeviceRegistry, entries []DeviceEntry) []DeviceEntry {
+	canonical := make([]DeviceEntry, 0, len(entries))
+	seen := make(map[byte]struct{}, len(entries))
+	for _, entry := range entries {
+		if entry == nil {
+			continue
+		}
+		resolved, ok := registry.Lookup(entry.PrimaryDisplayAddress())
+		if !ok || resolved == nil {
+			continue
+		}
+		address := resolved.PrimaryDisplayAddress()
+		if _, ok := seen[address]; ok {
+			continue
+		}
+		seen[address] = struct{}{}
+		canonical = append(canonical, resolved)
+	}
+	return canonical
 }
 
 // DefaultScanTargets returns the default address range for scanning.

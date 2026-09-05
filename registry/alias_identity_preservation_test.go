@@ -292,26 +292,15 @@ func TestAliasAddresses_BothEmpty(t *testing.T) {
 	}
 }
 
-// TestRegister_FallbackSignatureNotPreservedAsAlias asserts that when
-// an entry is first registered with only a model signature (no serial /
-// MAC observed yet) and is later refreshed with a stable serial-derived
-// key, the OLD `sig|...` fallback key is NOT preserved as an identity
-// alias. Otherwise a second device with the same fingerprint that
-// becomes ambiguous-by-signature would silently merge into the first
-// entry on a subsequent bare sig-only observation, bypassing
-// `lookupCompatibleBySignatureLocked`'s ambiguity-refusal scan.
-//
-// (Codex P2 round-7 finding 2026-05-08 on PR #136 thread
-// PRRT_kwDORGIkfM6ArzFY: "Don't keep fallback signatures as identity
-// aliases".)
-func TestRegister_FallbackSignatureNotPreservedAsAlias(t *testing.T) {
+// TestRegister_PartialIdentityDoesNotMergeAcrossAddresses keeps model-only
+// observations out of the qualified identity index, even after one address
+// is later enriched with a complete triple.
+func TestRegister_PartialIdentityDoesNotMergeAcrossAddresses(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
 
-	// Step 1: register entry A at 0x10 with signature-only identity
-	// (no serial, no MAC). canonicalPhysicalIdentity.key() falls
-	// back to "sig|VAILLANT|BAI00|0204|0102".
+	// Step 1: register entry A with model evidence only.
 	reg.Register(DeviceInfo{
 		Address:         0x10,
 		Manufacturer:    "Vaillant",
@@ -320,8 +309,7 @@ func TestRegister_FallbackSignatureNotPreservedAsAlias(t *testing.T) {
 		HardwareVersion: "0102",
 	})
 
-	// Step 2: refresh entry A with a stable serial — promotes
-	// identityKey from "sig|..." to "sn|VAILLANT|SN-A-001".
+	// Step 2: refresh entry A with a complete triple.
 	reg.Register(DeviceInfo{
 		Address:         0x10,
 		Manufacturer:    "Vaillant",
@@ -331,10 +319,7 @@ func TestRegister_FallbackSignatureNotPreservedAsAlias(t *testing.T) {
 		HardwareVersion: "0102",
 	})
 
-	// Step 3: register entry B at 0x11 with the SAME signature but a
-	// DIFFERENT serial. Both entries now share the same fallback
-	// model signature, so `lookupCompatibleBySignatureLocked` would
-	// correctly refuse the ambiguous match.
+	// Step 3: register entry B with the same model but a different serial.
 	reg.Register(DeviceInfo{
 		Address:         0x11,
 		Manufacturer:    "Vaillant",
@@ -344,12 +329,8 @@ func TestRegister_FallbackSignatureNotPreservedAsAlias(t *testing.T) {
 		HardwareVersion: "0102",
 	})
 
-	// Step 4: a bare sig-only observation arrives at a NEW address
-	// 0x12. canonicalPhysicalIdentity.key() returns
-	// "sig|VAILLANT|BAI00|0204|0102". If the old sig key was
-	// preserved as an alias to A, registerLocked's
-	// `r.identity[identityKey]` lookup hits A directly, bypassing
-	// the ambiguity scan, and 0x12 is incorrectly merged into A.
+	// Step 4: a bare model-only observation at a new address cannot join
+	// either completed triple.
 	reg.Register(DeviceInfo{
 		Address:         0x12,
 		Manufacturer:    "Vaillant",
@@ -358,10 +339,7 @@ func TestRegister_FallbackSignatureNotPreservedAsAlias(t *testing.T) {
 		HardwareVersion: "0102",
 	})
 
-	// Expected: 0x12 is NOT merged into A. It must either be its
-	// own new entry (because the ambiguity scan refused both A and
-	// B) or remain unbound from any identity row. Critically, A's
-	// addresses must NOT include 0x12, and B's must not either.
+	// A's and B's address groups must remain separate from 0x12.
 	entryA, _ := reg.Lookup(0x10)
 	entryB, _ := reg.Lookup(0x11)
 
@@ -374,12 +352,12 @@ func TestRegister_FallbackSignatureNotPreservedAsAlias(t *testing.T) {
 
 	for _, a := range entryA.Addresses() {
 		if a == 0x12 {
-			t.Errorf("entry A (0x10, sn=SN-A-001) absorbed 0x12 via stale sig|... alias; want 0x12 NOT in entry A's address set")
+			t.Errorf("entry A (0x10, sn=SN-A-001) absorbed 0x12; want 0x12 NOT in entry A's address set")
 		}
 	}
 	for _, a := range entryB.Addresses() {
 		if a == 0x12 {
-			t.Errorf("entry B (0x11, sn=SN-B-001) absorbed 0x12 via stale sig|... alias; want 0x12 NOT in entry B's address set")
+			t.Errorf("entry B (0x11, sn=SN-B-001) absorbed 0x12; want 0x12 NOT in entry B's address set")
 		}
 	}
 
@@ -391,10 +369,7 @@ func TestRegister_FallbackSignatureNotPreservedAsAlias(t *testing.T) {
 		t.Errorf("entryB.SerialNumber() = %q; want \"SN-B-001\"", entryB.SerialNumber())
 	}
 
-	// The bare sig-only observation at 0x12 should resolve to its
-	// own entry (registerLocked falls through to creating a fresh
-	// entry when neither identity-by-key nor the ambiguity-checked
-	// signature lookup matches).
+	// The bare model-only observation at 0x12 resolves to its own entry.
 	entry12, ok := reg.Lookup(0x12)
 	if !ok {
 		t.Fatalf("Lookup(0x12) = false; want a fresh entry from bare sig-only Register")
@@ -426,11 +401,8 @@ func TestPartialModelObservationDoesNotMergeAcrossAddresses(t *testing.T) {
 		HardwareVersion: "7603",
 	})
 
-	// Step 3: alias 0x11 into canonical at 0x10. AliasAddresses calls
-	// absorbIdentityLocked which copies DeviceID/SW/HW from secondary
-	// into canonical.info. canonical.physical was {Manufacturer,
-	// MacAddress}; without the round-7 fix it stays stale and
-	// withFallbackModelSignature returns "" for it.
+	// Step 3: alias 0x11 into canonical at 0x10. AliasAddresses copies
+	// the partial model fields into the topology group.
 	if err := reg.AliasAddresses(0x10, 0x11); err != nil {
 		t.Fatalf("AliasAddresses(0x10, 0x11) err=%v", err)
 	}

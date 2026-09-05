@@ -1,6 +1,11 @@
 package registry
 
-import "strings"
+import (
+	"strconv"
+	"strings"
+)
+
+const stableIdentityKeyPrefix = "triple:"
 
 type physicalIdentity struct {
 	manufacturer    string
@@ -26,12 +31,15 @@ func (identity physicalIdentity) key() string {
 	if !identity.isQualified() {
 		return ""
 	}
-	return strings.Join([]string{
-		"triple",
-		identity.manufacturer,
-		identity.deviceID,
-		identity.serialNumber,
-	}, "|")
+	return stableIdentityKeyPrefix + encodeIdentityMember(identity.manufacturer) +
+		encodeIdentityMember(identity.deviceID) + encodeIdentityMember(identity.serialNumber)
+}
+
+// encodeIdentityMember preserves a normalized identity member exactly while
+// making each member boundary unambiguous. Internal punctuation is contract
+// data, not a separator, so delimiter concatenation cannot represent a triple.
+func encodeIdentityMember(member string) string {
+	return strconv.Itoa(len(member)) + ":" + member
 }
 
 // isQualified reports whether identity has the complete normalized triple
@@ -60,19 +68,6 @@ func isInvalidSerialSentinel(serial string) bool {
 		return true
 	}
 	return digits == "FFFFFFFF" || digits == "7FFFFFFF"
-}
-
-func (identity physicalIdentity) withFallbackModelSignature() string {
-	if identity.manufacturer == "" || identity.deviceID == "" || identity.softwareVersion == "" || identity.hardwareVersion == "" {
-		return ""
-	}
-	return strings.Join([]string{
-		"sig",
-		identity.manufacturer,
-		identity.deviceID,
-		identity.softwareVersion,
-		identity.hardwareVersion,
-	}, "|")
 }
 
 func normalizeIdentityPart(value string) string {

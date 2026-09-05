@@ -31,8 +31,7 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 // Lock contract: the caller MUST hold r.mu. registerLocked does NOT
 // acquire the lock itself. This mirrors the file's existing *Locked
 // suffix convention (observeAddressSlotLocked, ensureAddressSlotLocked,
-// syncEntryFacesLocked, lookupCompatibleBySignatureLocked,
-// detachAddressLocked).
+// syncEntryFacesLocked, detachAddressLocked).
 //
 // Both callers are responsible for stamping the AddressSlot
 // (observeAddressSlotLocked) and refreshing entry.Faces

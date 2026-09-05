@@ -72,6 +72,28 @@ func TestQualifiedIdentity_RequiresExactCompleteTriple(t *testing.T) {
 	}
 }
 
+func TestQualifiedIdentity_PreservesPunctuationAtMemberBoundaries(t *testing.T) {
+	t.Parallel()
+
+	t.Run("ambiguous delimiter layouts remain distinct", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		first := registry.Register(DeviceInfo{Address: 0x10, Manufacturer: "A|B", DeviceID: "C", SerialNumber: "D"})
+		second := registry.Register(DeviceInfo{Address: 0x11, Manufacturer: "A", DeviceID: "B", SerialNumber: "C|D"})
+		if first == second {
+			t.Fatal("distinct triples with preserved punctuation merged")
+		}
+	})
+
+	t.Run("punctuation in every member still supports normalized equality", func(t *testing.T) {
+		registry := NewDeviceRegistry(nil)
+		first := registry.Register(DeviceInfo{Address: 0x12, Manufacturer: " a|b, ", DeviceID: " c:d|e ", SerialNumber: " serial|1,2:3 "})
+		second := registry.Register(DeviceInfo{Address: 0x13, Manufacturer: "A|B,", DeviceID: "C:D|E", SerialNumber: "SERIAL|1,2:3"})
+		if first != second {
+			t.Fatal("normalized complete triple with punctuation did not merge")
+		}
+	})
+}
+
 func TestQualifiedIdentity_RejectsSentinelSerialTextualVariants(t *testing.T) {
 	t.Parallel()
 

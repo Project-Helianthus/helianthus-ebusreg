@@ -179,11 +179,6 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 					info.SerialNumber = serial
 				}
 			}
-			if info.SerialNumber == "" && info.Manufacturer == "Vaillant" {
-				if existing, ok := registry.lookupByIdentity(info); ok && shouldReuseSerial(info, existing) {
-					info.SerialNumber = existing.SerialNumber()
-				}
-			}
 			entry := registry.Register(info)
 			if address != target {
 				alias := info
@@ -417,25 +412,6 @@ func formatVaillantSerial(raw string) string {
 		candidate[20:26],
 		candidate[26:28],
 	)
-}
-
-func shouldReuseSerial(info DeviceInfo, existing DeviceEntry) bool {
-	if existing == nil || existing.SerialNumber() == "" {
-		return false
-	}
-	if !strings.EqualFold(existing.Manufacturer(), info.Manufacturer) {
-		return false
-	}
-	if info.DeviceID != "" && existing.DeviceID() != info.DeviceID {
-		return false
-	}
-	if info.SoftwareVersion != "" && existing.SoftwareVersion() != info.SoftwareVersion {
-		return false
-	}
-	if info.HardwareVersion != "" && existing.HardwareVersion() != info.HardwareVersion {
-		return false
-	}
-	return true
 }
 
 func shouldSkipScanError(err error) bool {

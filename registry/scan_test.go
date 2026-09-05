@@ -96,6 +96,21 @@ func (bus *serialAfterModelOnlyScanBus) Send(_ context.Context, frame protocol.F
 	return nil, ebuserrors.ErrNoSuchDevice
 }
 
+type independentModelOnlyResponseBus struct{}
+
+func (independentModelOnlyResponseBus) Send(_ context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	if frame.Primary == scanPrimary && frame.Secondary == scanSecondary && frame.Target == 0x20 {
+		return &protocol.Frame{
+			Source: 0xf1, Target: frame.Source, Primary: scanPrimary, Secondary: scanSecondary,
+			Data: []byte{0xB5, 'N', 'E', 'T', 'X', '3', 0x01, 0x29, 0x04, 0x04},
+		}, nil
+	}
+	if frame.Primary == vaillantPrimary && frame.Secondary == vaillantScanIDSecondary {
+		return nil, ebuserrors.ErrNoSuchDevice
+	}
+	return nil, ebuserrors.ErrNoSuchDevice
+}
+
 func TestScanRegistersDevices(t *testing.T) {
 	t.Parallel()
 
@@ -198,6 +213,34 @@ func TestScanReturnsFinalCanonicalEntriesAfterIdentityGroupMerge(t *testing.T) {
 				}
 			}
 		})
+	}
+}
+
+func TestScanModelOnlyResponseKeepsIndependentAddressSeparate(t *testing.T) {
+	t.Parallel()
+
+	registry := NewDeviceRegistry(nil)
+	known := registry.Register(DeviceInfo{
+		Address: 0x04, Manufacturer: "Vaillant", DeviceID: "NETX3",
+		SerialNumber: "KNOWN-UNRELATED-SERIAL", SoftwareVersion: "0129", HardwareVersion: "0404",
+	})
+
+	if _, err := Scan(context.Background(), independentModelOnlyResponseBus{}, registry, 0x71, []byte{0x20}); err != nil {
+		t.Fatal(err)
+	}
+	observed, ok := registry.Lookup(0xf1)
+	if !ok {
+		t.Fatal("source face was not registered")
+	}
+	if observed == known {
+		t.Fatal("model-only scan response inherited an existing serial and cross-address merged")
+	}
+	if observed.SerialNumber() != "" {
+		t.Fatalf("model-only scan response serial = %q; want empty", observed.SerialNumber())
+	}
+	target, ok := registry.Lookup(0x20)
+	if !ok || target != observed {
+		t.Fatal("response source and probed target were not retained as a topology alias")
 	}
 }
 
@@ -624,7 +667,7 @@ func TestScanPreservesKnownSerialWhenScanIDFails(t *testing.T) {
 	}
 }
 
-func TestScanReusesSerialAcrossAliasAddressesByIdentity(t *testing.T) {
+func TestScanModelOnlyResponseDoesNotInheritSerialAcrossAddresses(t *testing.T) {
 	t.Parallel()
 
 	registry := NewDeviceRegistry(nil)
@@ -645,22 +688,29 @@ func TestScanReusesSerialAcrossAliasAddressesByIdentity(t *testing.T) {
 	if len(entries) != 1 {
 		t.Fatalf("expected 1 entry, got %d", len(entries))
 	}
-	if entries[0].PrimaryDisplayAddress() != 0x30 {
-		t.Fatalf("canonical address = %02x; want 30", entries[0].PrimaryDisplayAddress())
+	if entries[0].PrimaryDisplayAddress() != 0x31 {
+		t.Fatalf("canonical address = %02x; want 31", entries[0].PrimaryDisplayAddress())
 	}
-	if !slices.Equal(entries[0].Addresses(), []byte{0x30, 0x31, 0x20}) {
-		t.Fatalf("addresses = %v; want [48 49 32]", entries[0].Addresses())
+	if !slices.Equal(entries[0].Addresses(), []byte{0x31, 0x20}) {
+		t.Fatalf("addresses = %v; want [49 32]", entries[0].Addresses())
 	}
 
 	entry, ok := registry.Lookup(0x31)
 	if !ok {
-		t.Fatalf("expected alias 0x31 to be registered")
+		t.Fatalf("expected source face 0x31 to be registered")
 	}
-	if entry.PrimaryDisplayAddress() != 0x30 {
-		t.Fatalf("lookup canonical address = %02x; want 30", entry.PrimaryDisplayAddress())
+	if entry != entries[0] {
+		t.Fatal("response source and probed target were not retained as an explicit topology alias")
 	}
-	if entry.SerialNumber() != "21-22-09-0020184848-0082-005409-N4" {
-		t.Fatalf("serial number = %q; want preserved value", entry.SerialNumber())
+	if entry.SerialNumber() != "" {
+		t.Fatalf("serial number = %q; want empty after absent ScanID", entry.SerialNumber())
+	}
+	known, ok := registry.Lookup(0x30)
+	if !ok || known == entry {
+		t.Fatal("unrelated same-model address merged into the response topology group")
+	}
+	if !slices.Equal(known.Addresses(), []byte{0x30}) {
+		t.Fatalf("unrelated known addresses = %v; want [48]", known.Addresses())
 	}
 }
 

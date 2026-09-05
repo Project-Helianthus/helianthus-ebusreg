@@ -5,53 +5,13 @@ import "strings"
 func (r *DeviceRegistry) lookupByIdentity(info DeviceInfo) (DeviceEntry, bool) {
 	identity := canonicalPhysicalIdentity(info).key()
 	if identity == "" {
-		return r.lookupBySignature(info)
+		return nil, false
 	}
 
 	r.mu.RLock()
 	entry, ok := r.identity[identity]
 	r.mu.RUnlock()
-	if !ok {
-		return r.lookupBySignature(info)
-	}
-	return entry, true
-}
-
-func (r *DeviceRegistry) lookupBySignature(info DeviceInfo) (DeviceEntry, bool) {
-	r.mu.RLock()
-	defer r.mu.RUnlock()
-	entry, ok := r.lookupCompatibleBySignatureLocked(info)
-	if !ok {
-		return nil, false
-	}
-	return entry, true
-}
-
-func (r *DeviceRegistry) lookupCompatibleBySignatureLocked(info DeviceInfo) (*deviceEntry, bool) {
-	signature := canonicalPhysicalIdentity(info).withFallbackModelSignature()
-	if signature == "" {
-		return nil, false
-	}
-	var match *deviceEntry
-	for _, candidate := range r.order {
-		if candidate == nil {
-			continue
-		}
-		if candidate.physical.withFallbackModelSignature() != signature {
-			continue
-		}
-		if !canMergeIdentity(info, candidate.info) {
-			continue
-		}
-		if match != nil && match != candidate {
-			return nil, false
-		}
-		match = candidate
-	}
-	if match == nil {
-		return nil, false
-	}
-	return match, true
+	return entry, ok
 }
 
 func canMergeIdentity(incoming DeviceInfo, existing DeviceInfo) bool {
@@ -140,16 +100,9 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 						// removed *deviceEntry until r.identity gets
 						// rebuilt. (Codex P2 round-4 finding.)
 						//
-						// P0 round-7 (Codex P2 round-7 finding
-						// 2026-05-10 on PR #136 thread
-						// PRRT_kwDORGIkfM6ArzFY): only preserve
-						// STABLE keys (sn|... / mac|...) as aliases.
-						// `sig|...` fallback keys are NOT
-						// per-device — preserving one would let a
-						// later bare sig-only observation bypass
-						// `lookupCompatibleBySignatureLocked`'s
-						// ambiguity-refusal scan and silently merge
-						// into canonical.
+						// Preserve only complete qualified-triple keys.
+						// Partial or model-only observations cannot be
+						// aliases for independently observed addresses.
 						if isStableIdentityKey(secondary.identityKey) {
 							r.identity[secondary.identityKey] = canonical
 							canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
@@ -219,16 +172,9 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 						// removed *deviceEntry until r.identity gets
 						// rebuilt. (Codex P2 round-4 finding.)
 						//
-						// P0 round-7 (Codex P2 round-7 finding
-						// 2026-05-10 on PR #136 thread
-						// PRRT_kwDORGIkfM6ArzFY): only preserve
-						// STABLE keys (sn|... / mac|...) as aliases.
-						// `sig|...` fallback keys are NOT
-						// per-device — preserving one would let a
-						// later bare sig-only observation bypass
-						// `lookupCompatibleBySignatureLocked`'s
-						// ambiguity-refusal scan and silently merge
-						// into canonical.
+						// Preserve only complete qualified-triple keys.
+						// Partial or model-only observations cannot be
+						// aliases for independently observed addresses.
 						if isStableIdentityKey(secondary.identityKey) {
 							r.identity[secondary.identityKey] = canonical
 							canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
@@ -271,24 +217,14 @@ func appendUniqueString(dst []string, s string) []string {
 }
 
 // isStableIdentityKey reports whether key is a stable, per-device
-// identity key (serial- or MAC-derived) versus a fallback model
-// signature key (`sig|...`) shared by every unit of the same model.
+// identity key: a complete, normalized manufacturer/device/serial triple.
 //
 // Only stable keys are safe to preserve in r.identity as identity
 // aliases when the entry's primary identityKey is rotated (e.g. on
-// late-enrichment from sig-only → serial). Preserving a `sig|...` key
-// would silently bypass `lookupCompatibleBySignatureLocked`'s
-// ambiguity-refusal scan when a second device with the same
-// fingerprint exists in the registry: a subsequent bare sig-only
-// observation at a new address would resolve directly to the first
-// entry via r.identity instead of being routed through the ambiguity
-// check. (Codex P2 round-7 finding 2026-05-08 on PR #136 thread
-// PRRT_kwDORGIkfM6ArzFY.)
-//
-// Mirrors the prefix taxonomy in physicalIdentity.key() /
-// withFallbackModelSignature() in registry/identity.go.
+// Partial identity and model evidence never enter r.identity, so they
+// cannot select or merge independently observed addresses.
 func isStableIdentityKey(key string) bool {
-	return strings.HasPrefix(key, "triple|")
+	return strings.HasPrefix(key, stableIdentityKeyPrefix)
 }
 
 // absorbIdentityLocked copies non-empty identity-bearing fields and
@@ -340,17 +276,8 @@ func (r *DeviceRegistry) absorbIdentityLocked(dst, src *deviceEntry) {
 	if dst.physical == emptyPhysical && src.physical != emptyPhysical {
 		dst.physical = src.physical
 	} else if dst.physical != emptyPhysical {
-		// P0 round-7 follow-up (Codex P2 on PR #143): when dst.physical
-		// is non-zero we don't replace it, but we just absorbed
-		// info.DeviceID / SoftwareVersion / HardwareVersion above from
-		// src. dst.physical is stale (was computed pre-absorb). A
-		// future bare sig-only Register goes through
-		// lookupCompatibleBySignatureLocked which compares
-		// candidate.physical.withFallbackModelSignature() — if dst.physical
-		// still lacks the absorbed sig fields, the candidate scan
-		// won't match and a duplicate device is created. Recompute
-		// dst.physical from the freshly-merged dst.info so the model
-		// signature reflects everything we've absorbed.
+		// We just absorbed fields into dst.info, so its cached normalized
+		// identity must reflect the same-address topology merge.
 		dst.physical = canonicalPhysicalIdentity(dst.info)
 	}
 	// NOTE: identityKey transfer is intentionally NOT done here.

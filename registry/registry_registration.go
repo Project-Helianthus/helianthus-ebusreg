@@ -20,6 +20,28 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	return entry
 }
 
+// confirmScanIdentity records a successful parsed directed 07/04 response as
+// current-session confirmation of its responding face. 07/04 has no serial,
+// so this deliberately does not alter Register's qualified-triple identity
+// gate or identity index. Existing topology may propagate only while every
+// traversed address still resolves to this entry.
+//
+// Scan calls this only after response validation, parsing, and optional serial
+// enrichment have succeeded or the optional read has become unavailable.
+func (r *DeviceRegistry) confirmScanIdentity(address byte) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+
+	entry := r.entries[address]
+	if entry == nil {
+		return
+	}
+	r.observeAddressSlotLocked(address, entry, DiscoverySourceActiveConfirmed, VerificationStateIdentityConfirmed)
+	r.confirmTopologyIdentitySlotsLocked(address, entry)
+	r.syncEntryFacesLocked(entry)
+	r.observationGeneration++
+}
+
 // registerLocked performs the core identity-merge / planes / projections /
 // index work for an incoming DeviceInfo without stamping a discovery
 // label on the AddressSlot. It is the primitive shared by the

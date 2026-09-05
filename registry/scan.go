@@ -152,11 +152,19 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 				}
 				return nil, err
 			}
+			if !isDirectedScanResponse(request, response) {
+				err := fmt.Errorf("scan target %02x invalid directed response: %w", target, errors.Join(errScanResponsePayload, ebuserrors.ErrInvalidPayload))
+				if shouldRetryScanError(err) {
+					retries = append(retries, target)
+					continue
+				}
+				if shouldSkipScanError(err) {
+					continue
+				}
+				return nil, err
+			}
 
 			address := response.Source
-			if address == 0 {
-				address = target
-			}
 
 			info, err := parseDeviceInfo(address, response.Data)
 			if err != nil {
@@ -193,6 +201,15 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 				}
 				entry, _ = registry.Lookup(address)
 			}
+			// A valid directed 07/04 response is current-session verification
+			// of its responding face even though it carries no serial. Keep this
+			// separate from Register's qualified-triple merge gate; after an
+			// explicit response-source/probed-target alias is recorded, the
+			// registry may carry confirmation only through that current topology.
+			registry.confirmScanIdentity(address)
+			if confirmed, ok := registry.Lookup(address); ok {
+				entry = confirmed
+			}
 			canonicalAddress := entry.PrimaryDisplayAddress()
 			if _, ok := registered[canonicalAddress]; !ok {
 				registered[canonicalAddress] = struct{}{}
@@ -218,6 +235,16 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 	}
 
 	return canonicalizeScanEntries(registry, entries), nil
+}
+
+// isDirectedScanResponse verifies the response context before a scan can
+// register or confirm a face. A response from a different direction, service,
+// or an unspecified source cannot be evidence for the current 07/04 probe.
+func isDirectedScanResponse(request protocol.Frame, response *protocol.Frame) bool {
+	return response != nil && response.Source != 0 &&
+		response.Target == request.Source &&
+		response.Primary == request.Primary &&
+		response.Secondary == request.Secondary
 }
 
 // canonicalizeScanEntries resolves every retained observation against the

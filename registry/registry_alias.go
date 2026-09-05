@@ -225,6 +225,22 @@ func (r *DeviceRegistry) recordTopologyAliasLocked(a, b byte) {
 	r.topology[b][a] = struct{}{}
 }
 
+// forgetTopologyAddressLocked invalidates every explicit topology relation
+// involving address. An identity conflict can detach one face from an alias
+// group and later rejoin it through the qualified-identity index alone; the
+// old relation is not current-session evidence for that new membership.
+//
+// Caller holds r.mu.
+func (r *DeviceRegistry) forgetTopologyAddressLocked(address byte) {
+	for companion := range r.topology[address] {
+		delete(r.topology[companion], address)
+		if len(r.topology[companion]) == 0 {
+			delete(r.topology, companion)
+		}
+	}
+	delete(r.topology, address)
+}
+
 // appendUniqueString returns dst with s appended if not already
 // present. Used to track identity-key aliases on a deviceEntry
 // without duplication.
@@ -356,6 +372,10 @@ func (r *DeviceRegistry) detachAddressLocked(entry *deviceEntry, address byte) {
 		return
 	}
 
+	// Leaving an address group invalidates any topology evidence attached to
+	// that face. A later qualified-identity rejoin has no topology semantics;
+	// only a newly observed AliasAddresses relation may restore propagation.
+	r.forgetTopologyAddressLocked(address)
 	entry.addresses = removeAddress(entry.addresses, address)
 	if len(entry.addresses) == 0 {
 		if entry.identityKey != "" {

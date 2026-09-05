@@ -211,3 +211,52 @@ func TestQualifiedIdentity_ConfirmedTopologyMayPromoteCompanionFace(t *testing.T
 		t.Fatalf("topology companion = %#v, present=%v; want preserved static provenance and identity confirmation", companion, ok)
 	}
 }
+
+func TestQualifiedIdentity_SplitRejoinInvalidatesPriorTopology(t *testing.T) {
+	const source, companion = byte(0x20), byte(0x21)
+	seededAt := time.Unix(1, 0)
+	registry := NewDeviceRegistry(nil)
+
+	registry.RegisterStaticSeed(qualifiedIdentity(source, "SN-TOPOLOGY-A"), SlotRoleSlave, seededAt)
+	registry.RegisterStaticSeed(qualifiedIdentity(companion, "SN-TOPOLOGY-A"), SlotRoleSlave, seededAt)
+	if err := registry.AliasAddresses(source, companion); err != nil {
+		t.Fatal(err)
+	}
+
+	// The conflicting same-address identity detaches companion and must retire
+	// its old topology evidence. Rejoining by the exact triple alone does not
+	// recreate that evidence.
+	registry.RegisterStaticSeed(qualifiedIdentity(companion, "SN-TOPOLOGY-B"), SlotRoleSlave, seededAt)
+	registry.RegisterStaticSeed(qualifiedIdentity(companion, "SN-TOPOLOGY-A"), SlotRoleSlave, seededAt)
+	registry.Register(qualifiedIdentity(source, "SN-TOPOLOGY-A"))
+
+	slot, ok := registry.LookupSlotSnapshot(companion)
+	if !ok || slot.DiscoverySource != DiscoverySourceStaticSeed || slot.VerificationState != VerificationStateCandidate || !slot.FirstObservedAt.Equal(seededAt) {
+		t.Fatalf("rejoined companion = %#v, present=%v; want retained static candidate", slot, ok)
+	}
+}
+
+func TestQualifiedIdentity_FreshTopologyAfterSplitRejoinMayPromoteCompanion(t *testing.T) {
+	const source, companion = byte(0x20), byte(0x21)
+	seededAt := time.Unix(1, 0)
+	registry := NewDeviceRegistry(nil)
+
+	registry.RegisterStaticSeed(qualifiedIdentity(source, "SN-TOPOLOGY-A"), SlotRoleSlave, seededAt)
+	registry.RegisterStaticSeed(qualifiedIdentity(companion, "SN-TOPOLOGY-A"), SlotRoleSlave, seededAt)
+	if err := registry.AliasAddresses(source, companion); err != nil {
+		t.Fatal(err)
+	}
+	registry.RegisterStaticSeed(qualifiedIdentity(companion, "SN-TOPOLOGY-B"), SlotRoleSlave, seededAt)
+	registry.RegisterStaticSeed(qualifiedIdentity(companion, "SN-TOPOLOGY-A"), SlotRoleSlave, seededAt)
+
+	// This is fresh explicit topology evidence, recorded after the split.
+	if err := registry.AliasAddresses(source, companion); err != nil {
+		t.Fatal(err)
+	}
+	registry.Register(qualifiedIdentity(source, "SN-TOPOLOGY-A"))
+
+	slot, ok := registry.LookupSlotSnapshot(companion)
+	if !ok || slot.DiscoverySource != DiscoverySourceStaticSeed || slot.VerificationState != VerificationStateIdentityConfirmed || !slot.FirstObservedAt.Equal(seededAt) {
+		t.Fatalf("fresh-topology companion = %#v, present=%v; want static identity-confirmed", slot, ok)
+	}
+}

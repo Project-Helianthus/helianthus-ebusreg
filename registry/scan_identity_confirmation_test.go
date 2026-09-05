@@ -45,6 +45,35 @@ func TestScanDirected0704ConfirmsStaticRespondingFaceWithoutReplacingTimestamp(t
 	}
 }
 
+func TestScanDirected0704RecordsFreshTopologyAfterIdentitySplit(t *testing.T) {
+	const source, target = byte(0x30), byte(0x20)
+	seededAt := time.Unix(1, 0)
+	registry := NewDeviceRegistry(nil)
+	info := func(address byte, serial string) DeviceInfo {
+		return DeviceInfo{Address: address, Manufacturer: "Vaillant", DeviceID: "DEV30", SerialNumber: serial}
+	}
+
+	registry.RegisterStaticSeed(info(source, "SN-SCAN-TOPOLOGY-A"), SlotRoleSlave, seededAt)
+	registry.RegisterStaticSeed(info(target, "SN-SCAN-TOPOLOGY-A"), SlotRoleSlave, seededAt)
+	if err := registry.AliasAddresses(source, target); err != nil {
+		t.Fatal(err)
+	}
+	registry.RegisterStaticSeed(info(target, "SN-SCAN-TOPOLOGY-B"), SlotRoleSlave, seededAt)
+	registry.RegisterStaticSeed(info(target, "SN-SCAN-TOPOLOGY-A"), SlotRoleSlave, seededAt)
+
+	// The valid directed response supplies a new source-target edge after the
+	// split, so it may confirm its target despite the retired old edge.
+	if _, err := Scan(context.Background(), &vaillantScanIDTimeoutBus{}, registry, 0x10, []byte{target}); err != nil {
+		t.Fatal(err)
+	}
+	if slot := requireIdentityConfirmed(t, registry, source); !slot.FirstObservedAt.Equal(seededAt) {
+		t.Fatalf("source first observation = %v; want retained seed timestamp %v", slot.FirstObservedAt, seededAt)
+	}
+	if slot := requireIdentityConfirmed(t, registry, target); !slot.FirstObservedAt.Equal(seededAt) {
+		t.Fatalf("target first observation = %v; want retained seed timestamp %v", slot.FirstObservedAt, seededAt)
+	}
+}
+
 func TestScanDirected0704ConfirmsOnlyCurrentTopologyAndNotExactTripleMembers(t *testing.T) {
 	registry := NewDeviceRegistry(nil)
 	seededAt := time.Unix(1, 0)

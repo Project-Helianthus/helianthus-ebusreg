@@ -6,11 +6,43 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
-	entry := r.registerLocked(info)
-	r.observeAddressSlotLocked(info.Address, entry, DiscoverySourceActiveConfirmed, VerificationStateIdentityConfirmed)
+	entry, retainedConflict := r.registerLocked(info)
+	if retainedConflict {
+		return entry
+	}
+	state := VerificationStateCandidate
+	if canonicalPhysicalIdentity(info).isQualified() {
+		state = VerificationStateIdentityConfirmed
+	}
+	r.observeAddressSlotLocked(info.Address, entry, DiscoverySourceActiveConfirmed, state)
+	if state == VerificationStateIdentityConfirmed {
+		r.confirmTopologyIdentitySlotsLocked(info.Address, entry)
+	}
 	r.syncEntryFacesLocked(entry)
 	r.observationGeneration++
 	return entry
+}
+
+// confirmScanIdentity records a successful parsed directed 07/04 response as
+// current-session confirmation of its responding face. 07/04 has no serial,
+// so this deliberately does not alter Register's qualified-triple identity
+// gate or identity index. Existing topology may propagate only while every
+// traversed address still resolves to this entry.
+//
+// Scan calls this only after response validation, parsing, and optional serial
+// enrichment have succeeded or the optional read has become unavailable.
+func (r *DeviceRegistry) confirmScanIdentity(address byte) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+
+	entry := r.entries[address]
+	if entry == nil {
+		return
+	}
+	r.observeAddressSlotLocked(address, entry, DiscoverySourceActiveConfirmed, VerificationStateIdentityConfirmed)
+	r.confirmTopologyIdentitySlotsLocked(address, entry)
+	r.syncEntryFacesLocked(entry)
+	r.observationGeneration++
 }
 
 // registerLocked performs the core identity-merge / planes / projections /
@@ -24,52 +56,46 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 // Lock contract: the caller MUST hold r.mu. registerLocked does NOT
 // acquire the lock itself. This mirrors the file's existing *Locked
 // suffix convention (observeAddressSlotLocked, ensureAddressSlotLocked,
-// syncEntryFacesLocked, lookupCompatibleBySignatureLocked,
-// detachAddressLocked).
+// syncEntryFacesLocked, detachAddressLocked).
 //
 // Both callers are responsible for stamping the AddressSlot
 // (observeAddressSlotLocked) and refreshing entry.Faces
 // (syncEntryFacesLocked) after the call.
-func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
-	physical := canonicalPhysicalIdentity(info)
-	identityKey := physical.key()
+func (r *DeviceRegistry) registerLocked(info DeviceInfo) (*deviceEntry, bool) {
+	incomingPhysical := canonicalPhysicalIdentity(info)
+	incomingIdentityKey := incomingPhysical.key()
 	planes := make([]Plane, 0)
 	matched := make([]PlaneProvider, 0, len(r.providers))
 
 	existingByAddress := r.entries[info.Address]
-	incomingHasStableIdentity := normalizeIdentityPart(info.SerialNumber) != "" || normalizeIdentityPart(info.MacAddress) != ""
-	if !incomingHasStableIdentity && existingByAddress != nil && len(existingByAddress.addresses) > 1 && existingByAddress.identityKey != "" {
-		identityKey = existingByAddress.identityKey
-	}
-	if identityKey == "" && existingByAddress != nil {
-		identityKey = existingByAddress.identityKey
-	}
+	incomingHasStableIdentity := incomingPhysical.isQualified()
 
 	existingByIdentity := (*deviceEntry)(nil)
-	if identityKey != "" {
-		existingByIdentity = r.identity[identityKey]
+	identityCandidateConflict := false
+	// Only a complete triple carried by this observation may select another
+	// address group. Stored same-address LKG is useful local state, but it is
+	// not incoming authority and must never be composed into a lookup key.
+	if incomingIdentityKey != "" {
+		existingByIdentity, identityCandidateConflict = admitIdentityCandidate(
+			info, r.currentIdentityEntryLocked(incomingIdentityKey),
+		)
 	}
-	// A serial-key match can conceal a contradictory MAC (or vice versa
-	// through a retained identity alias). Keep an existing address group
-	// unchanged instead of applying ambiguous evidence to either device.
-	if existingByAddress != nil && existingByIdentity != nil &&
-		existingByIdentity != existingByAddress && !canMergeIdentity(info, existingByIdentity.info) {
-		return existingByAddress
+	// Contradictory qualified evidence must not alter an address group already
+	// attached to the registry. In particular, do not re-stamp its provenance
+	// as if the rejected observation had confirmed it.
+	if identityCandidateConflict && existingByAddress != nil {
+		return existingByAddress, true
 	}
 
 	entry := existingByIdentity
 	if entry == nil {
 		entry = existingByAddress
 	}
-	if entry == existingByAddress && existingByIdentity == nil && existingByAddress != nil && (!canMergeIdentity(info, existingByAddress.info) || hasConflictingModelSignature(info, existingByAddress.info)) {
+	if entry == existingByAddress && existingByAddress != nil &&
+		(!canMergeIdentity(info, existingByAddress.info) ||
+			(!incomingPhysical.isQualified() && hasConflictingModelSignature(info, existingByAddress.info))) {
 		entry = nil
 	}
-	if entry == nil {
-		if fallback, ok := r.lookupCompatibleBySignatureLocked(info); ok {
-			entry = fallback
-		}
-	}
-
 	// A model signature cannot disband an already-evidenced alias group.
 	// Keep it together while a later serial/MAC observation establishes
 	// whether it belongs to another physical entry.
@@ -81,7 +107,7 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 	}
 
 	if existingByAddress != nil && existingByAddress != entry {
-		if existingByIdentity != nil && isStableIdentityKey(identityKey) &&
+		if existingByIdentity != nil && isStableIdentityKey(incomingIdentityKey) &&
 			compatibleAliasEnrichment(info, existingByAddress) &&
 			compatibleAliasEnrichment(entry.info, existingByAddress) {
 			r.mergeRegisteredAliasesLocked(entry, existingByAddress)
@@ -123,10 +149,19 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 		storedInfo.MacAddress = entry.info.MacAddress
 	}
 	storedInfo.Address = entry.primaryAddress
-	physical = canonicalPhysicalIdentity(storedInfo)
-	identityKey = physical.key()
-	if identityKey == "" && entry.identityKey != "" {
-		identityKey = entry.identityKey
+	physical := canonicalPhysicalIdentity(storedInfo)
+	authorityKey := incomingIdentityKey
+	if identityCandidateConflict {
+		// Preserve the incumbent binding. The disputed observation remains
+		// address-local until a later non-conflicting observation can use the
+		// qualified identity candidate normally.
+		authorityKey = ""
+	} else if authorityKey == "" && preservesCurrentIdentityAuthority(info, entry) {
+		// A wholly sparse refresh may retain an already-legitimate current
+		// binding. A partial model/manufacturer/serial change cannot: although
+		// LKG may keep the other fields in storedInfo, that composite was not
+		// observed and is not cross-address authority.
+		authorityKey = entry.identityKey
 	}
 
 	for _, provider := range r.providers {
@@ -150,53 +185,21 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 		projections = nil
 	}
 
-	if entry.identityKey != "" && entry.identityKey != identityKey {
-		// P0 round-6 (Codex P2 follow-up 2026-05-08): instead of
-		// deleting the old primary key, re-point it at this entry
-		// and track it as an alias. Without this, a Register call
-		// that promotes a serial-derived key to primary while the
-		// previous primary was MAC-derived would orphan the MAC
-		// lookup path even though the entry still has the MAC in
-		// info.MacAddress. Now `lookupByIdentity` by either key
-		// continues to resolve to the merged entry, and
-		// detachAddressLocked cleans up both via identityKeyAliases.
-		//
-		// P0 round-7 (Codex P2 follow-up 2026-05-10 on PR #136
-		// thread PRRT_kwDORGIkfM6ArzFY): only preserve STABLE keys
-		// (sn|... / mac|...) as aliases. Fallback signature keys
-		// (`sig|...`) are NOT stable identifiers — multiple units
-		// of the same model share the identical fallback signature.
-		// If the old primary was sig-derived (entry first seen
-		// without serial/MAC, then enriched with a stable serial),
-		// preserving the sig key as an alias would silently bypass
-		// `lookupCompatibleBySignatureLocked`'s ambiguity-refusal
-		// scan when a second device with the same fingerprint
-		// exists. A subsequent bare sig-only observation at a new
-		// address would resolve directly to this entry via
-		// r.identity instead of being routed through the ambiguity
-		// check, incorrectly merging into this entry. Drop sig keys
-		// rather than aliasing them.
-		if isStableIdentityKey(entry.identityKey) {
-			r.identity[entry.identityKey] = entry
-			entry.identityKeyAliases = appendUniqueString(entry.identityKeyAliases, entry.identityKey)
-		} else {
-			delete(r.identity, entry.identityKey)
-		}
-	}
 	entry.info = storedInfo
 	entry.physical = physical
-	entry.identityKey = identityKey
 	entry.planes = planes
 	entry.projections = projections
 	entry.index = index
 	entry.indexErr = projectionErr
 
-	if identityKey != "" {
-		r.identity[identityKey] = entry
-	}
+	// A complete current observation may rotate any triple member. The shared
+	// publisher retires older bindings and refuses to overwrite a conflicting
+	// current owner. Partial observations can preserve only an unchanged
+	// existing authority, never a retained-field composite.
+	r.publishCurrentIdentityBindingLocked(entry, authorityKey)
 	r.entries[info.Address] = entry
 
-	return entry
+	return entry, false
 }
 
 // RegisterStaticSeed plants identity for an address known from a
@@ -221,13 +224,52 @@ func (r *DeviceRegistry) RegisterStaticSeed(info DeviceInfo, role SlotRole, seed
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
-	entry := r.registerLocked(info)
+	entry, retainedConflict := r.registerLocked(info)
+	if retainedConflict {
+		return entry
+	}
 	slot := r.ensureAddressSlotLocked(info.Address)
 	slot.Device = entry
 	r.markSlotStaticSeedLocked(slot, role, seededAt)
 	r.syncEntryFacesLocked(entry)
 	r.observationGeneration++
 	return entry
+}
+
+// confirmTopologyIdentitySlotsLocked promotes only faces joined to address by
+// explicit source-target or canonical-companion topology evidence. Qualified
+// identity membership alone is deliberately insufficient: it can join two
+// independently observed addresses, whose static or passive provenance must
+// remain per-face until each is observed in the current session.
+//
+// The caller has just stamped address as identity-confirmed and holds r.mu.
+// Traverse only topology edges whose endpoints still resolve to entry, so a
+// later identity split cannot let stale topology evidence promote another
+// device's face.
+func (r *DeviceRegistry) confirmTopologyIdentitySlotsLocked(address byte, entry *deviceEntry) {
+	if entry == nil {
+		return
+	}
+	seen := map[byte]struct{}{address: {}}
+	pending := []byte{address}
+	for len(pending) > 0 {
+		current := pending[0]
+		pending = pending[1:]
+		if r.entries[current] != entry {
+			continue
+		}
+		slot := r.ensureAddressSlotLocked(current)
+		if slot.VerificationState < VerificationStateIdentityConfirmed {
+			slot.VerificationState = VerificationStateIdentityConfirmed
+		}
+		for companion := range r.topology[current] {
+			if _, ok := seen[companion]; ok || r.entries[companion] != entry {
+				continue
+			}
+			seen[companion] = struct{}{}
+			pending = append(pending, companion)
+		}
+	}
 }
 
 // MarkSlotStaticSeed updates an AddressSlot for an address known from
@@ -311,19 +353,9 @@ func (r *DeviceRegistry) mergeRegisteredAliasesLocked(dst, src *deviceEntry) {
 		r.entries[address] = dst
 		r.ensureAddressSlotLocked(address).Device = dst
 	}
-	for _, key := range append(src.identityKeyAliases, src.identityKey) {
-		if key == "" || r.identity[key] != src {
-			continue
-		}
-		if isStableIdentityKey(key) {
-			r.identity[key] = dst
-			if key != dst.identityKey {
-				dst.identityKeyAliases = appendUniqueString(dst.identityKeyAliases, key)
-			}
-		} else {
-			delete(r.identity, key)
-		}
-	}
+	// src may contain legacy retired or explicit-alias bindings. Its addresses
+	// have moved, but only dst's current triple remains selectable.
+	r.removeIdentityBindingsLocked(src)
 	r.order = removeEntry(r.order, src)
 }
 

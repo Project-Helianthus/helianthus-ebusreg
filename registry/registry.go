@@ -80,7 +80,12 @@ type DeviceRegistry struct {
 	entries               map[byte]*deviceEntry
 	addressTable          [256]*AddressSlot
 	identity              map[string]*deviceEntry
-	order                 []*deviceEntry
+	// topology records explicit source-target or canonical-companion
+	// relationships independently from qualified identity membership.
+	// A complete identity may join independent entries, but only these
+	// edges may carry current-session confirmation to another face.
+	topology map[byte]map[byte]struct{}
+	order    []*deviceEntry
 }
 
 func NewDeviceRegistry(providers []PlaneProvider) *DeviceRegistry {
@@ -90,6 +95,7 @@ func NewDeviceRegistry(providers []PlaneProvider) *DeviceRegistry {
 		providers: providerCopy,
 		entries:   make(map[byte]*deviceEntry),
 		identity:  make(map[string]*deviceEntry),
+		topology:  make(map[byte]map[byte]struct{}),
 	}
 }
 

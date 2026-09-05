@@ -129,19 +129,19 @@ func TestIdentityEnrichmentKeepsCompanionWhenDestinationModelConflicts(t *testin
 		t.Fatal(err)
 	}
 
-	// A sparse identity update must still be checked against the complete
-	// model information already held by the destination entry.
+	// A partial identity cannot cross-address merge, even when its serial
+	// matches another entry. Preserve the already-evidenced companion pair.
 	reg.Register(DeviceInfo{Address: 0xf6, Manufacturer: "Vaillant", SerialNumber: "SYNTHETIC-VR940F"})
 	previous, _ := reg.Lookup(0xf1)
 	updated, _ := reg.Lookup(0xf6)
-	if previous == updated || previous.DeviceID() != "OTHER" || updated.DeviceID() != "NETX3" {
-		t.Fatal("sparse enrichment transferred a companion despite conflicting known model signatures")
+	if previous != updated || previous.DeviceID() != "OTHER" {
+		t.Fatal("partial enrichment must retain the existing companion group")
 	}
 }
 
 func TestIdentityEnrichmentRejectsStableConflictWithSelectedDestination(t *testing.T) {
 	reg := NewDeviceRegistry(nil)
-	destinationInfo := DeviceInfo{Address: 0x04, Manufacturer: "Vaillant", SerialNumber: "SYNTHETIC-VR940F", MacAddress: "02:00:00:00:00:01"}
+	destinationInfo := DeviceInfo{Address: 0x04, Manufacturer: "Vaillant", DeviceID: "NETX3", SerialNumber: "SYNTHETIC-VR940F", MacAddress: "02:00:00:00:00:01"}
 	destination := reg.Register(destinationInfo)
 	source := reg.Register(DeviceInfo{Address: 0xf1})
 	if err := reg.AliasAddresses(0xf1, 0xf6); err != nil {

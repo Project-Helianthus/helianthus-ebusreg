@@ -108,9 +108,10 @@ func TestAliasAddresses_PreservesSecondaryIdentity(t *testing.T) {
 	}
 }
 
-// TestAliasAddresses_PreservesDistinctIdentityKeys asserts that explicit
-// aliasing retains both qualified identity keys as lookup aliases.
-func TestAliasAddresses_PreservesDistinctIdentityKeys(t *testing.T) {
+// TestAliasAddresses_PreservesTopologyWithoutRetainingDistinctIdentityKeys
+// asserts that explicit address aliasing still joins the faces, but only the
+// merged entry's current triple remains a selectable identity key.
+func TestAliasAddresses_PreservesTopologyWithoutRetainingDistinctIdentityKeys(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
@@ -135,25 +136,19 @@ func TestAliasAddresses_PreservesDistinctIdentityKeys(t *testing.T) {
 		t.Fatalf("AliasAddresses error = %v", err)
 	}
 
-	// Both qualified lookup paths must resolve.
+	// The canonical current triple remains resolvable.
 	byCanonical, ok := reg.lookupByIdentity(DeviceInfo{Manufacturer: "Vaillant", DeviceID: "BASV2", SerialNumber: "SN-CANONICAL-001"})
 	if !ok {
 		t.Fatalf("lookupByIdentity by canonical triple = false; want resolvable")
 	}
-	bySerial, ok := reg.lookupByIdentity(DeviceInfo{Manufacturer: "Vaillant", DeviceID: "BASV2", SerialNumber: "SN-DISTINCT-001"})
-	if !ok {
-		t.Fatalf("lookupByIdentity by Serial = false; want resolvable")
+	if _, ok := reg.lookupByIdentity(DeviceInfo{Manufacturer: "Vaillant", DeviceID: "BASV2", SerialNumber: "SN-DISTINCT-001"}); ok {
+		t.Fatal("distinct explicit-topology triple remained independently selectable")
 	}
-	// Both must point at the same entry.
 	if byCanonical.MacAddress() != "AA:BB:CC:DD:EE:01" {
 		t.Errorf("canonical resolution: mac=%q; want AA:BB:CC:DD:EE:01", byCanonical.MacAddress())
 	}
-	if bySerial != byCanonical {
-		t.Errorf("qualified alias resolution differs: canonical=%p serial=%p", byCanonical, bySerial)
-	}
-	// Same set of addresses (canonical + secondary's address).
-	if !reflect.DeepEqual(byCanonical.Addresses(), bySerial.Addresses()) {
-		t.Errorf("merge mismatch: canonical.Addresses=%v bySerial.Addresses=%v", byCanonical.Addresses(), bySerial.Addresses())
+	if !reflect.DeepEqual(byCanonical.Addresses(), []byte{0x10, 0x15}) {
+		t.Errorf("topology merge mismatch: canonical.Addresses=%v", byCanonical.Addresses())
 	}
 }
 

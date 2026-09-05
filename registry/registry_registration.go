@@ -75,7 +75,7 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 
 	existingByIdentity := (*deviceEntry)(nil)
 	if identityKey != "" {
-		existingByIdentity = r.identity[identityKey]
+		existingByIdentity = r.currentIdentityEntryLocked(identityKey)
 	}
 	// A serial-key match can conceal a contradictory MAC (or vice versa
 	// through a retained identity alias). Keep an existing address group
@@ -174,18 +174,10 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) *deviceEntry {
 		projections = nil
 	}
 
-	if entry.identityKey != "" && entry.identityKey != identityKey {
-		// Retain qualified identity aliases when a same-address correction
-		// rotates the canonical triple. Partial identity and model signatures
-		// never enter this map, so they cannot merge independently observed
-		// addresses.
-		if isStableIdentityKey(entry.identityKey) {
-			r.identity[entry.identityKey] = entry
-			entry.identityKeyAliases = appendUniqueString(entry.identityKeyAliases, entry.identityKey)
-		} else {
-			delete(r.identity, entry.identityKey)
-		}
-	}
+	// A correction may rotate any qualified triple member. Retire every older
+	// binding before publishing the current triple so same-address LKG cannot
+	// become cross-address authority for an historical device.
+	r.retainCurrentIdentityBindingLocked(entry, identityKey)
 	entry.info = storedInfo
 	entry.physical = physical
 	entry.identityKey = identityKey
@@ -350,19 +342,9 @@ func (r *DeviceRegistry) mergeRegisteredAliasesLocked(dst, src *deviceEntry) {
 		r.entries[address] = dst
 		r.ensureAddressSlotLocked(address).Device = dst
 	}
-	for _, key := range append(src.identityKeyAliases, src.identityKey) {
-		if key == "" || r.identity[key] != src {
-			continue
-		}
-		if isStableIdentityKey(key) {
-			r.identity[key] = dst
-			if key != dst.identityKey {
-				dst.identityKeyAliases = appendUniqueString(dst.identityKeyAliases, key)
-			}
-		} else {
-			delete(r.identity, key)
-		}
-	}
+	// src may contain legacy retired or explicit-alias bindings. Its addresses
+	// have moved, but only dst's current triple remains selectable.
+	r.removeIdentityBindingsLocked(src)
 	r.order = removeEntry(r.order, src)
 }
 

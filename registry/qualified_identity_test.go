@@ -126,6 +126,59 @@ func TestQualifiedIdentity_PreservesSameAddressEnrichment(t *testing.T) {
 	}
 }
 
+func TestQualifiedIdentity_RetiresCorrectedTripleFromIndependentSelection(t *testing.T) {
+	t.Parallel()
+
+	for _, correction := range []struct {
+		name   string
+		mutate func(*DeviceInfo)
+	}{
+		{name: "manufacturer", mutate: func(info *DeviceInfo) { info.Manufacturer = "Saunier Duval" }},
+		{name: "device ID", mutate: func(info *DeviceInfo) { info.DeviceID = "DEV30" }},
+		{name: "serial", mutate: func(info *DeviceInfo) { info.SerialNumber = "SN-CORRECTED" }},
+	} {
+		t.Run(correction.name, func(t *testing.T) {
+			registry := NewDeviceRegistry(nil)
+			old := DeviceInfo{Address: 0x10, Manufacturer: "Vaillant", DeviceID: "OLD30", SerialNumber: "SN-OLD"}
+			corrected := old
+			correction.mutate(&corrected)
+
+			registry.Register(old)
+			registry.Register(corrected)
+
+			// A sparse same-address observation retains the corrected LKG
+			// triple; it must not revive the retired one.
+			registry.Register(DeviceInfo{Address: corrected.Address, SoftwareVersion: "0204"})
+			current, ok := registry.Lookup(corrected.Address)
+			if !ok || canonicalPhysicalIdentity(DeviceInfo{
+				Manufacturer: current.Manufacturer(), DeviceID: current.DeviceID(), SerialNumber: current.SerialNumber(),
+			}).key() != canonicalPhysicalIdentity(corrected).key() {
+				t.Fatalf("sparse correction retention = (%q, %q, %q), present=%v; want current corrected triple", current.Manufacturer(), current.DeviceID(), current.SerialNumber(), ok)
+			}
+
+			if _, ok := registry.lookupByIdentity(old); ok {
+				t.Fatal("retired triple remained selectable before any independent observation")
+			}
+			if byCurrent, ok := registry.lookupByIdentity(corrected); !ok || byCurrent != current {
+				t.Fatal("current corrected triple was not selectable")
+			}
+
+			independentOld := old
+			independentOld.Address = 0x11
+			registry.Register(independentOld)
+			requireSeparateEntries(t, registry, corrected.Address, independentOld.Address)
+
+			independentCurrent := corrected
+			independentCurrent.Address = 0x12
+			registry.Register(independentCurrent)
+			merged, _ := registry.Lookup(independentCurrent.Address)
+			if merged != current {
+				t.Fatal("independent current triple did not merge with corrected entry")
+			}
+		})
+	}
+}
+
 func TestQualifiedIdentity_StaticSeedPromotionRequiresQualifiedObservation(t *testing.T) {
 	t.Parallel()
 

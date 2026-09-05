@@ -23,24 +23,43 @@ func canonicalPhysicalIdentity(info DeviceInfo) physicalIdentity {
 }
 
 func (identity physicalIdentity) key() string {
-	if identity.manufacturer == "" {
-		return identity.withFallbackModelSignature()
+	if !identity.isQualified() {
+		return ""
 	}
-	if identity.serialNumber != "" {
-		return strings.Join([]string{
-			"sn",
-			identity.manufacturer,
-			identity.serialNumber,
-		}, "|")
+	return strings.Join([]string{
+		"triple",
+		identity.manufacturer,
+		identity.deviceID,
+		identity.serialNumber,
+	}, "|")
+}
+
+// isQualified reports whether identity has the complete normalized triple
+// required to join independently observed eBUS addresses. The serial sentinel
+// check intentionally accepts only optional 0x prefix and leading-zero
+// spelling variations of the rejected hexadecimal values; it does not parse or
+// reinterpret ordinary product serial formats.
+func (identity physicalIdentity) isQualified() bool {
+	return identity.manufacturer != "" && identity.deviceID != "" &&
+		identity.serialNumber != "" && !isInvalidSerialSentinel(identity.serialNumber)
+}
+
+func isInvalidSerialSentinel(serial string) bool {
+	normalized := normalizeIdentityPart(serial)
+	digits := strings.TrimPrefix(normalized, "0X")
+	if digits == "" {
+		return false
 	}
-	if identity.macAddress != "" {
-		return strings.Join([]string{
-			"mac",
-			identity.manufacturer,
-			identity.macAddress,
-		}, "|")
+	for _, digit := range digits {
+		if (digit < '0' || digit > '9') && (digit < 'A' || digit > 'F') {
+			return false
+		}
 	}
-	return identity.withFallbackModelSignature()
+	digits = strings.TrimLeft(digits, "0")
+	if digits == "" {
+		return true
+	}
+	return digits == "FFFFFFFF" || digits == "7FFFFFFF"
 }
 
 func (identity physicalIdentity) withFallbackModelSignature() string {

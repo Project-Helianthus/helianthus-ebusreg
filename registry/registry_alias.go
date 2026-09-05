@@ -288,7 +288,7 @@ func appendUniqueString(dst []string, s string) []string {
 // Mirrors the prefix taxonomy in physicalIdentity.key() /
 // withFallbackModelSignature() in registry/identity.go.
 func isStableIdentityKey(key string) bool {
-	return strings.HasPrefix(key, "sn|") || strings.HasPrefix(key, "mac|")
+	return strings.HasPrefix(key, "triple|")
 }
 
 // absorbIdentityLocked copies non-empty identity-bearing fields and

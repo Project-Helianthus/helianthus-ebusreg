@@ -188,7 +188,15 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 			if address != target {
 				alias := info
 				alias.Address = target
-				entry = registry.Register(alias)
+				registry.Register(alias)
+				// The scan response's source address is direct address-topology
+				// evidence for the probed target. Keep that explicit relation even
+				// before an identity read yields a qualified triple; Register only
+				// performs cross-address merges after such a triple is complete.
+				if err := registry.AliasAddresses(address, target); err != nil {
+					return nil, fmt.Errorf("scan target %02x alias %02x: %w", target, address, err)
+				}
+				entry, _ = registry.Lookup(address)
 			}
 			canonicalAddress := entry.PrimaryDisplayAddress()
 			if _, ok := registered[canonicalAddress]; !ok {

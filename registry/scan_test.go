@@ -164,6 +164,7 @@ func TestScanReturnsFinalCanonicalEntriesAfterIdentityGroupMerge(t *testing.T) {
 			destination := registry.Register(DeviceInfo{
 				Address:      0x04,
 				Manufacturer: "Vaillant",
+				DeviceID:     "NETX3",
 				SerialNumber: "21-22-09-0020184848-0082-005409-N4",
 			})
 			bus := &serialAfterModelOnlyScanBus{}

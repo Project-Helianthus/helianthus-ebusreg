@@ -108,26 +108,22 @@ func TestAliasAddresses_PreservesSecondaryIdentity(t *testing.T) {
 	}
 }
 
-// TestAliasAddresses_PreservesDistinctIdentityKeys asserts that
-// when canonical and secondary entries have DIFFERENT identityKeys
-// (e.g. canonical has a MAC-derived key, secondary has a
-// serial-derived key), the merge re-points secondary's key at
-// canonical in r.identity rather than deleting it. After the alias,
-// both keys must resolve to the merged entry. (Codex P2 round-3
-// finding 2026-05-08 on PR #136.)
+// TestAliasAddresses_PreservesDistinctIdentityKeys asserts that explicit
+// aliasing retains both qualified identity keys as lookup aliases.
 func TestAliasAddresses_PreservesDistinctIdentityKeys(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
 
-	// Canonical at 0x10: identity by MAC only (no serial).
+	// Use two complete but distinct triples. Explicit AliasAddresses owns this
+	// topology decision; Register itself never joins these addresses.
 	reg.Register(DeviceInfo{
 		Address:      0x10,
 		Manufacturer: "Vaillant",
 		DeviceID:     "BASV2",
+		SerialNumber: "SN-CANONICAL-001",
 		MacAddress:   "AA:BB:CC:DD:EE:01",
 	})
-	// Secondary at 0x15: identity by Serial only (no mac).
 	reg.Register(DeviceInfo{
 		Address:      0x15,
 		Manufacturer: "Vaillant",
@@ -139,25 +135,25 @@ func TestAliasAddresses_PreservesDistinctIdentityKeys(t *testing.T) {
 		t.Fatalf("AliasAddresses error = %v", err)
 	}
 
-	// Both lookup paths must resolve.
-	byMac, ok := reg.lookupByIdentity(DeviceInfo{Manufacturer: "Vaillant", DeviceID: "BASV2", MacAddress: "AA:BB:CC:DD:EE:01"})
+	// Both qualified lookup paths must resolve.
+	byCanonical, ok := reg.lookupByIdentity(DeviceInfo{Manufacturer: "Vaillant", DeviceID: "BASV2", SerialNumber: "SN-CANONICAL-001"})
 	if !ok {
-		t.Fatalf("lookupByIdentity by MAC = false; want resolvable")
+		t.Fatalf("lookupByIdentity by canonical triple = false; want resolvable")
 	}
 	bySerial, ok := reg.lookupByIdentity(DeviceInfo{Manufacturer: "Vaillant", DeviceID: "BASV2", SerialNumber: "SN-DISTINCT-001"})
 	if !ok {
 		t.Fatalf("lookupByIdentity by Serial = false; want resolvable")
 	}
 	// Both must point at the same entry.
-	if byMac.MacAddress() != "AA:BB:CC:DD:EE:01" {
-		t.Errorf("by-MAC resolution: mac=%q; want AA:BB:CC:DD:EE:01", byMac.MacAddress())
+	if byCanonical.MacAddress() != "AA:BB:CC:DD:EE:01" {
+		t.Errorf("canonical resolution: mac=%q; want AA:BB:CC:DD:EE:01", byCanonical.MacAddress())
 	}
-	if bySerial.SerialNumber() != "SN-DISTINCT-001" {
-		t.Errorf("by-Serial resolution: serial=%q; want SN-DISTINCT-001", bySerial.SerialNumber())
+	if bySerial != byCanonical {
+		t.Errorf("qualified alias resolution differs: canonical=%p serial=%p", byCanonical, bySerial)
 	}
 	// Same set of addresses (canonical + secondary's address).
-	if !reflect.DeepEqual(byMac.Addresses(), bySerial.Addresses()) {
-		t.Errorf("merge mismatch: byMac.Addresses=%v bySerial.Addresses=%v", byMac.Addresses(), bySerial.Addresses())
+	if !reflect.DeepEqual(byCanonical.Addresses(), bySerial.Addresses()) {
+		t.Errorf("merge mismatch: canonical.Addresses=%v bySerial.Addresses=%v", byCanonical.Addresses(), bySerial.Addresses())
 	}
 }
 
@@ -408,15 +404,10 @@ func TestRegister_FallbackSignatureNotPreservedAsAlias(t *testing.T) {
 	}
 }
 
-// TestAbsorbIdentity_RecomputesPhysicalAfterModelSigAbsorb (P0 round-7
-// Codex P2 follow-up on PR #143). When a stable-key canonical (e.g.
-// MAC-only at boot) absorbs the model-signature fields (DeviceID +
-// SW + HW) from a sig-only secondary, the canonical's physicalIdentity
-// must be recomputed so withFallbackModelSignature reflects the new
-// fields. Without recompute, lookupCompatibleBySignatureLocked won't
-// find the merged device on a future bare sig-only Register and a
-// duplicate entry is created.
-func TestAbsorbIdentity_RecomputesPhysicalAfterModelSigAbsorb(t *testing.T) {
+// TestPartialModelObservationDoesNotMergeAcrossAddresses keeps the former
+// signature-only regression boundary: a partial model observation is not a
+// cross-address identity key after explicit alias enrichment.
+func TestPartialModelObservationDoesNotMergeAcrossAddresses(t *testing.T) {
 	reg := NewDeviceRegistry(nil)
 
 	// Step 1: register canonical at 0x10 with MAC only.
@@ -444,12 +435,7 @@ func TestAbsorbIdentity_RecomputesPhysicalAfterModelSigAbsorb(t *testing.T) {
 		t.Fatalf("AliasAddresses(0x10, 0x11) err=%v", err)
 	}
 
-	// Step 4: bare sig-only Register at 0x12. With the recompute fix,
-	// lookupCompatibleBySignatureLocked finds canonical via
-	// canonical.physical.withFallbackModelSignature() and routes 0x12
-	// to it. Pre-fix canonical.physical lacked DeviceID/SW/HW so the
-	// candidate scan returned no match and a duplicate entry was
-	// created at 0x12.
+	// Step 4: a bare model-only observation at a new address remains distinct.
 	reg.Register(DeviceInfo{
 		Address:         0x12,
 		Manufacturer:    "Vaillant",
@@ -464,10 +450,10 @@ func TestAbsorbIdentity_RecomputesPhysicalAfterModelSigAbsorb(t *testing.T) {
 	}
 	entry12, ok := reg.Lookup(0x12)
 	if !ok {
-		t.Fatalf("Lookup(0x12) = false; want routed via sig fingerprint to merged canonical")
+		t.Fatalf("Lookup(0x12) = false; want a distinct partial observation")
 	}
-	if entry10 != entry12 {
-		t.Errorf("entry at 0x10 != entry at 0x12; bare sig-only Register failed to route via withFallbackModelSignature — canonical.physical was not recomputed after absorb")
+	if entry10 == entry12 {
+		t.Error("bare model-only observation unexpectedly merged across addresses")
 	}
 	if entry10.MacAddress() != "AA:BB:CC:11:22:33" {
 		t.Errorf("entry.MacAddress = %q; want AA:BB:CC:11:22:33", entry10.MacAddress())

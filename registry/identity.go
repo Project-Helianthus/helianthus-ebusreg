@@ -70,6 +70,26 @@ func isInvalidSerialSentinel(serial string) bool {
 	return digits == "FFFFFFFF" || digits == "7FFFFFFF"
 }
 
+// preservesCurrentIdentityAuthority reports whether a partial same-address
+// observation can retain an entry's already-published identity. Every
+// supplied triple member must agree with the entry's current normalized
+// triple. In particular, a model-only change is not a sparse refresh: its
+// retained serial may remain in local state, but cannot keep or create a
+// cross-address identity authority for the composite.
+func preservesCurrentIdentityAuthority(incoming DeviceInfo, entry *deviceEntry) bool {
+	if entry == nil || entry.identityKey == "" || entry.physical.key() != entry.identityKey {
+		return false
+	}
+	incomingPhysical := canonicalPhysicalIdentity(incoming)
+	return identityPartAgreesOrMissing(incomingPhysical.manufacturer, entry.physical.manufacturer) &&
+		identityPartAgreesOrMissing(incomingPhysical.deviceID, entry.physical.deviceID) &&
+		identityPartAgreesOrMissing(incomingPhysical.serialNumber, entry.physical.serialNumber)
+}
+
+func identityPartAgreesOrMissing(incoming, current string) bool {
+	return incoming == "" || incoming == current
+}
+
 func normalizeIdentityPart(value string) string {
 	return strings.ToUpper(strings.TrimSpace(value))
 }

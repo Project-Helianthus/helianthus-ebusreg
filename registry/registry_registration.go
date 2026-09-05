@@ -62,25 +62,22 @@ func (r *DeviceRegistry) confirmScanIdentity(address byte) {
 // (observeAddressSlotLocked) and refreshing entry.Faces
 // (syncEntryFacesLocked) after the call.
 func (r *DeviceRegistry) registerLocked(info DeviceInfo) (*deviceEntry, bool) {
-	physical := canonicalPhysicalIdentity(info)
-	identityKey := physical.key()
+	incomingPhysical := canonicalPhysicalIdentity(info)
+	incomingIdentityKey := incomingPhysical.key()
 	planes := make([]Plane, 0)
 	matched := make([]PlaneProvider, 0, len(r.providers))
 
 	existingByAddress := r.entries[info.Address]
-	incomingHasStableIdentity := physical.isQualified()
-	if !incomingHasStableIdentity && existingByAddress != nil && len(existingByAddress.addresses) > 1 && existingByAddress.identityKey != "" {
-		identityKey = existingByAddress.identityKey
-	}
-	if identityKey == "" && existingByAddress != nil {
-		identityKey = existingByAddress.identityKey
-	}
+	incomingHasStableIdentity := incomingPhysical.isQualified()
 
 	existingByIdentity := (*deviceEntry)(nil)
 	identityCandidateConflict := false
-	if identityKey != "" {
+	// Only a complete triple carried by this observation may select another
+	// address group. Stored same-address LKG is useful local state, but it is
+	// not incoming authority and must never be composed into a lookup key.
+	if incomingIdentityKey != "" {
 		existingByIdentity, identityCandidateConflict = admitIdentityCandidate(
-			info, r.currentIdentityEntryLocked(identityKey),
+			info, r.currentIdentityEntryLocked(incomingIdentityKey),
 		)
 	}
 	// Contradictory qualified evidence must not alter an address group already
@@ -96,7 +93,7 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) (*deviceEntry, bool) {
 	}
 	if entry == existingByAddress && existingByAddress != nil &&
 		(!canMergeIdentity(info, existingByAddress.info) ||
-			(!physical.isQualified() && hasConflictingModelSignature(info, existingByAddress.info))) {
+			(!incomingPhysical.isQualified() && hasConflictingModelSignature(info, existingByAddress.info))) {
 		entry = nil
 	}
 	// A model signature cannot disband an already-evidenced alias group.
@@ -110,7 +107,7 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) (*deviceEntry, bool) {
 	}
 
 	if existingByAddress != nil && existingByAddress != entry {
-		if existingByIdentity != nil && isStableIdentityKey(identityKey) &&
+		if existingByIdentity != nil && isStableIdentityKey(incomingIdentityKey) &&
 			compatibleAliasEnrichment(info, existingByAddress) &&
 			compatibleAliasEnrichment(entry.info, existingByAddress) {
 			r.mergeRegisteredAliasesLocked(entry, existingByAddress)
@@ -152,15 +149,19 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) (*deviceEntry, bool) {
 		storedInfo.MacAddress = entry.info.MacAddress
 	}
 	storedInfo.Address = entry.primaryAddress
-	physical = canonicalPhysicalIdentity(storedInfo)
-	identityKey = physical.key()
+	physical := canonicalPhysicalIdentity(storedInfo)
+	authorityKey := incomingIdentityKey
 	if identityCandidateConflict {
 		// Preserve the incumbent binding. The disputed observation remains
 		// address-local until a later non-conflicting observation can use the
 		// qualified identity candidate normally.
-		identityKey = ""
-	} else if identityKey == "" && entry.identityKey != "" {
-		identityKey = entry.identityKey
+		authorityKey = ""
+	} else if authorityKey == "" && preservesCurrentIdentityAuthority(info, entry) {
+		// A wholly sparse refresh may retain an already-legitimate current
+		// binding. A partial model/manufacturer/serial change cannot: although
+		// LKG may keep the other fields in storedInfo, that composite was not
+		// observed and is not cross-address authority.
+		authorityKey = entry.identityKey
 	}
 
 	for _, provider := range r.providers {
@@ -191,10 +192,11 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) (*deviceEntry, bool) {
 	entry.index = index
 	entry.indexErr = projectionErr
 
-	// A correction may rotate any qualified triple member. The shared
+	// A complete current observation may rotate any triple member. The shared
 	// publisher retires older bindings and refuses to overwrite a conflicting
-	// current owner, so registration and alias rebuilds cannot drift.
-	r.publishCurrentIdentityBindingLocked(entry, identityKey)
+	// current owner. Partial observations can preserve only an unchanged
+	// existing authority, never a retained-field composite.
+	r.publishCurrentIdentityBindingLocked(entry, authorityKey)
 	r.entries[info.Address] = entry
 
 	return entry, false

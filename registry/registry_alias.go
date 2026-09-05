@@ -200,11 +200,21 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 // aliased, now-removed entry without retaining that entry's distinct triple as
 // a lookup or cross-address merge authority.
 func (r *DeviceRegistry) mergeRemovedAliasEntryLocked(canonical, secondary *deviceEntry) {
+	authorityKey := canonical.identityKey
+	if authorityKey == "" {
+		authorityKey = secondary.identityKey
+	}
 	r.absorbIdentityLocked(canonical, secondary)
 	r.removeIdentityBindingsLocked(secondary)
 
 	canonical.physical = canonicalPhysicalIdentity(canonical.info)
-	r.publishCurrentIdentityBindingLocked(canonical, canonical.physical.key())
+	// Alias rebuild may retain an already observed authority from the surviving
+	// entry, but must not publish a complete-looking triple made by absorbing
+	// local LKG from a partial observation.
+	if canonical.physical.key() != authorityKey {
+		authorityKey = ""
+	}
+	r.publishCurrentIdentityBindingLocked(canonical, authorityKey)
 	r.order = removeEntry(r.order, secondary)
 }
 

@@ -43,6 +43,59 @@ func (bus *collisionThenResponseBus) Send(ctx context.Context, frame protocol.Fr
 	return bus.response, nil
 }
 
+// serialAfterModelOnlyScanBus models a source address first seen through a
+// 0704 response without B509 serial data, then seen again with a serial that
+// resolves it to a previously registered physical device.
+type serialAfterModelOnlyScanBus struct {
+	calls            []protocol.Frame
+	scanObservations int
+}
+
+func (bus *serialAfterModelOnlyScanBus) Send(_ context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	bus.calls = append(bus.calls, frame)
+
+	switch {
+	case frame.Primary == scanPrimary && frame.Secondary == scanSecondary:
+		switch frame.Target {
+		case 0x20, 0x21:
+			bus.scanObservations++
+			return &protocol.Frame{
+				Source:    0xf1,
+				Target:    frame.Source,
+				Primary:   scanPrimary,
+				Secondary: scanSecondary,
+				Data:      []byte{0xB5, 'N', 'E', 'T', 'X', '3', 0x01, 0x29, 0x04, 0x04},
+			}, nil
+		}
+	case frame.Primary == vaillantPrimary && frame.Secondary == vaillantScanIDSecondary:
+		if frame.Target != 0xf1 {
+			return nil, ebuserrors.ErrNoSuchDevice
+		}
+		if bus.scanObservations == 1 {
+			return nil, context.DeadlineExceeded
+		}
+		chunks := map[byte][]byte{
+			0x24: {'2', '1', '2', '2', '0', '9', '0', '0'},
+			0x25: {'2', '0', '1', '8', '4', '8', '4', '8'},
+			0x26: {'0', '0', '8', '2', '0', '0', '5', '4'},
+			0x27: {'0', '9', 'N', '4', 0x00, 0x00, 0x00, 0x00},
+		}
+		chunk, ok := chunks[frame.Data[0]]
+		if !ok {
+			return nil, ebuserrors.ErrNoSuchDevice
+		}
+		return &protocol.Frame{
+			Source:    frame.Target,
+			Target:    frame.Source,
+			Primary:   vaillantPrimary,
+			Secondary: vaillantScanIDSecondary,
+			Data:      append([]byte{0x00}, chunk...),
+		}, nil
+	}
+
+	return nil, ebuserrors.ErrNoSuchDevice
+}
+
 func TestScanRegistersDevices(t *testing.T) {
 	t.Parallel()
 
@@ -95,6 +148,55 @@ func TestScanRegistersDevices(t *testing.T) {
 
 	if len(bus.calls) != 3 {
 		t.Fatalf("expected 3 scan calls, got %d", len(bus.calls))
+	}
+}
+
+func TestScanReturnsFinalCanonicalEntriesAfterIdentityGroupMerge(t *testing.T) {
+	for _, scan := range []struct {
+		name string
+		call func(context.Context, ScanBus, *DeviceRegistry, byte, []byte) ([]DeviceEntry, error)
+	}{
+		{name: "scan", call: Scan},
+		{name: "directed", call: ScanDirected},
+	} {
+		t.Run(scan.name, func(t *testing.T) {
+			registry := NewDeviceRegistry(nil)
+			destination := registry.Register(DeviceInfo{
+				Address:      0x04,
+				Manufacturer: "Vaillant",
+				SerialNumber: "21-22-09-0020184848-0082-005409-N4",
+			})
+			bus := &serialAfterModelOnlyScanBus{}
+
+			entries, err := scan.call(context.Background(), bus, registry, 0x71, []byte{0x20, 0x21})
+			if err != nil {
+				t.Fatalf("Scan error = %v", err)
+			}
+			if len(entries) != 1 {
+				t.Fatalf("entries = %d; want one final canonical entry", len(entries))
+			}
+			if entries[0] != destination || entries[0].PrimaryDisplayAddress() != 0x04 {
+				t.Fatalf("result = %#v; want canonical destination at 04", entries[0])
+			}
+			if got := entries[0].Addresses(); !slices.Equal(got, []byte{0x04, 0xf1, 0x20, 0x21}) {
+				t.Fatalf("addresses = %x; want 04 f1 20 21", got)
+			}
+			for _, address := range []byte{0x04, 0xf1, 0x20, 0x21} {
+				entry, ok := registry.Lookup(address)
+				if !ok || entry != destination {
+					t.Fatalf("lookup %02x = %#v, %t; want final canonical destination", address, entry, ok)
+				}
+				slot, ok := registry.LookupSlotSnapshot(address)
+				if !ok || !slot.DeviceAttached || slot.DiscoverySource != DiscoverySourceActiveConfirmed || slot.VerificationState != VerificationStateIdentityConfirmed {
+					t.Fatalf("slot %02x lost active discovery provenance: %#v, %t", address, slot, ok)
+				}
+			}
+			for _, frame := range bus.calls {
+				if frame.Source != 0x71 {
+					t.Fatalf("frame source = %02x; want unchanged caller source 71", frame.Source)
+				}
+			}
+		})
 	}
 }
 

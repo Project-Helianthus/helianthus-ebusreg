@@ -117,6 +117,7 @@ func (r *DeviceRegistry) RegisterPassiveObserved(info DeviceInfo, role SlotRole,
 	r.markSlotPassiveObservedLocked(slot, role, observedAt)
 	r.syncEntryFacesLocked(entry)
 	r.observationGeneration++
+	r.reconcileQualifiedIdentityWitnessesLocked()
 	return entry
 }
 

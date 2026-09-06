@@ -20,6 +20,8 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	}
 	r.syncEntryFacesLocked(entry)
 	r.observationGeneration++
+	r.reconcileQualifiedIdentityWitnessesLocked()
+	r.recordDirectQualifiedIdentityWitnessLocked(info, entry)
 	return entry
 }
 
@@ -237,6 +239,7 @@ func (r *DeviceRegistry) RegisterStaticSeed(info DeviceInfo, role SlotRole, seed
 	r.markSlotStaticSeedLocked(slot, role, seededAt)
 	r.syncEntryFacesLocked(entry)
 	r.observationGeneration++
+	r.reconcileQualifiedIdentityWitnessesLocked()
 	return entry
 }
 

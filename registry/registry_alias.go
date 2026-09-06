@@ -193,6 +193,7 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 		r.recordTopologyAliasLocked(a, b)
 	}
 	r.observationGeneration++
+	r.reconcileQualifiedIdentityWitnessesLocked()
 	return nil
 }
 

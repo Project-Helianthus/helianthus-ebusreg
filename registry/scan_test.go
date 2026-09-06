@@ -714,18 +714,19 @@ func TestScanModelOnlyResponseDoesNotInheritSerialAcrossAddresses(t *testing.T) 
 	}
 }
 
-func TestScanDoesNotReuseSerialForDifferentDeviceIdentity(t *testing.T) {
+func TestScanRetainsSameAddressLKGForDifferentDeviceIdentity(t *testing.T) {
 	t.Parallel()
 
 	registry := NewDeviceRegistry(nil)
-	registry.Register(DeviceInfo{
+	old := DeviceInfo{
 		Address:         0x30,
 		Manufacturer:    "Vaillant",
 		DeviceID:        "OLD30",
 		SerialNumber:    "21-22-09-0020184848-0082-005409-N4",
 		SoftwareVersion: "0514",
 		HardwareVersion: "1204",
-	})
+	}
+	registry.Register(old)
 	bus := &vaillantScanIDTimeoutBus{}
 
 	entries, err := Scan(context.Background(), bus, registry, 0x10, []byte{0x20})
@@ -742,8 +743,14 @@ func TestScanDoesNotReuseSerialForDifferentDeviceIdentity(t *testing.T) {
 	if entry.DeviceID() != "DEV30" {
 		t.Fatalf("device id = %q; want DEV30", entry.DeviceID())
 	}
-	if entry.SerialNumber() != "" {
-		t.Fatalf("serial number = %q; want empty for identity mismatch", entry.SerialNumber())
+	if entry.SerialNumber() != old.SerialNumber {
+		t.Fatalf("serial number = %q; want retained LKG %q", entry.SerialNumber(), old.SerialNumber)
+	}
+	if _, ok := registry.lookupByIdentity(old); ok {
+		t.Fatal("partial scan refresh retained obsolete cross-address authority")
+	}
+	if internal := entry.(*deviceEntry); internal.identityKey != "" {
+		t.Fatal("partial scan refresh published a retained-field composite")
 	}
 }
 

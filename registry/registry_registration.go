@@ -91,9 +91,13 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) (*deviceEntry, bool) {
 	if entry == nil {
 		entry = existingByAddress
 	}
-	if entry == existingByAddress && existingByAddress != nil &&
-		(!canMergeIdentity(info, existingByAddress.info) ||
-			(!incomingPhysical.isQualified() && hasConflictingModelSignature(info, existingByAddress.info))) {
+	// Incomplete observations refresh only their existing local address group.
+	// Even when a supplied triple member or model field disagrees, LKG may keep
+	// omitted values locally, while the authority path below clears any
+	// cross-address binding rather than composing a replacement identity. Only
+	// a complete incoming triple may detach this address for a new identity.
+	if entry == existingByAddress && existingByAddress != nil && incomingHasStableIdentity &&
+		!canMergeIdentity(info, existingByAddress.info) {
 		entry = nil
 	}
 	// A model signature cannot disband an already-evidenced alias group.

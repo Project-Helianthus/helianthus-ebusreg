@@ -43,11 +43,145 @@ func TestPartialObservationCannotCreateCrossAddressAuthority(t *testing.T) {
 	}
 }
 
+func TestPartialFullModelSignatureRetainsSameAddressLKG(t *testing.T) {
+	old := DeviceInfo{
+		Address:         0x20,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "OLD30",
+		SerialNumber:    "SN-OLD",
+		MacAddress:      "02:00:00:00:00:01",
+		SoftwareVersion: "0102",
+		HardwareVersion: "0304",
+	}
+	partial := old
+	partial.DeviceID = "NEW30"
+	partial.SoftwareVersion = "0506"
+	partial.HardwareVersion = "0708"
+	partial.SerialNumber = ""
+	partial.MacAddress = ""
+	seededAt := time.Unix(1, 0)
+
+	for _, caller := range []struct {
+		name       string
+		register   func(*DeviceRegistry, DeviceInfo) DeviceEntry
+		wantSource DiscoverySource
+		wantState  VerificationState
+	}{
+		{
+			name: "active", register: func(r *DeviceRegistry, info DeviceInfo) DeviceEntry { return r.Register(info) },
+			wantSource: DiscoverySourceActiveConfirmed, wantState: VerificationStateIdentityConfirmed,
+		},
+		{
+			name: "passive", register: func(r *DeviceRegistry, info DeviceInfo) DeviceEntry {
+				return r.RegisterPassiveObserved(info, SlotRoleSlave, seededAt)
+			},
+			wantSource: DiscoverySourcePassiveObserved, wantState: VerificationStateCorroborated,
+		},
+		{
+			name: "static", register: func(r *DeviceRegistry, info DeviceInfo) DeviceEntry {
+				return r.RegisterStaticSeed(info, SlotRoleSlave, seededAt)
+			},
+			wantSource: DiscoverySourceStaticSeed, wantState: VerificationStateCandidate,
+		},
+	} {
+		t.Run(caller.name, func(t *testing.T) {
+			r := NewDeviceRegistry(nil)
+			initial := caller.register(r, old)
+			current := caller.register(r, partial)
+			if current != initial {
+				t.Fatal("partial same-address model refresh replaced its local address group")
+			}
+			if current.DeviceID() != partial.DeviceID || current.SoftwareVersion() != partial.SoftwareVersion || current.HardwareVersion() != partial.HardwareVersion || current.SerialNumber() != old.SerialNumber || current.MacAddress() != old.MacAddress {
+				t.Fatalf("local LKG = (%q, %q, %q, %q, %q), want (%q, %q, %q, %q, %q)", current.DeviceID(), current.SoftwareVersion(), current.HardwareVersion(), current.SerialNumber(), current.MacAddress(), partial.DeviceID, partial.SoftwareVersion, partial.HardwareVersion, old.SerialNumber, old.MacAddress)
+			}
+			if _, ok := r.lookupByIdentity(old); ok {
+				t.Fatal("partial model refresh retained obsolete cross-address authority")
+			}
+			if internal := current.(*deviceEntry); internal.identityKey != "" {
+				t.Fatal("partial model refresh published a retained-field composite")
+			}
+			slot, ok := r.LookupSlotSnapshot(old.Address)
+			if !ok || slot.DiscoverySource != caller.wantSource || slot.VerificationState != caller.wantState {
+				t.Fatalf("slot provenance = %#v, present=%v", slot, ok)
+			}
+			if caller.name != "active" && !slot.FirstObservedAt.Equal(seededAt) {
+				t.Fatalf("first observation = %v; want retained %v", slot.FirstObservedAt, seededAt)
+			}
+
+			corrected := partial
+			corrected.SerialNumber = old.SerialNumber
+			corrected.MacAddress = old.MacAddress
+			if repaired := caller.register(r, corrected); repaired != current {
+				t.Fatal("complete same-address correction replaced retained local group")
+			}
+			if indexed, ok := r.lookupByIdentity(corrected); !ok || indexed != current {
+				t.Fatal("complete incoming triple did not establish current authority")
+			}
+			independent := corrected
+			independent.Address++
+			if joined := r.Register(independent); joined != current {
+				t.Fatal("complete compatible observation did not use corrected authority")
+			}
+		})
+	}
+}
+
+func TestPartialFullModelSignatureRetainsTopologyAndFaces(t *testing.T) {
+	const primary, companion = byte(0x24), byte(0x25)
+	seededAt := time.Unix(1, 0)
+	old := DeviceInfo{Address: primary, Manufacturer: "Vaillant", DeviceID: "OLD30", SerialNumber: "SN-OLD", MacAddress: "02:00:00:00:00:01"}
+	registry := NewDeviceRegistry(nil)
+	initial := registry.RegisterStaticSeed(old, SlotRoleSlave, seededAt)
+	companionInfo := old
+	companionInfo.Address = companion
+	if registry.RegisterStaticSeed(companionInfo, SlotRoleSlave, seededAt) != initial {
+		t.Fatal("setup: qualified companion did not join local group")
+	}
+	if err := registry.AliasAddresses(primary, companion); err != nil {
+		t.Fatal(err)
+	}
+
+	partial := old
+	partial.DeviceID = "NEW30"
+	partial.SoftwareVersion = "0506"
+	partial.HardwareVersion = "0708"
+	partial.SerialNumber = ""
+	partial.MacAddress = ""
+	if current := registry.RegisterStaticSeed(partial, SlotRoleSlave, seededAt); current != initial {
+		t.Fatal("partial model refresh detached the address from its topology group")
+	}
+	if current, ok := registry.Lookup(companion); !ok || current != initial {
+		t.Fatal("partial model refresh dropped the companion face")
+	}
+	registry.confirmScanIdentity(primary)
+	for _, face := range []struct {
+		address byte
+		source  DiscoverySource
+	}{
+		{address: primary, source: DiscoverySourceActiveConfirmed},
+		{address: companion, source: DiscoverySourceStaticSeed},
+	} {
+		slot, ok := registry.LookupSlotSnapshot(face.address)
+		if !ok || slot.DiscoverySource != face.source || slot.VerificationState != VerificationStateIdentityConfirmed || !slot.FirstObservedAt.Equal(seededAt) {
+			t.Fatalf("topology face %02x = %#v, present=%v; want retained seed history plus current confirmation", face.address, slot, ok)
+		}
+	}
+}
+
 type partialAuthorityScanBus struct{}
 
 func (partialAuthorityScanBus) Send(_ context.Context, frame protocol.Frame) (*protocol.Frame, error) {
 	if frame.Primary == scanPrimary && frame.Secondary == scanSecondary {
 		return &protocol.Frame{Source: frame.Target, Target: frame.Source, Primary: frame.Primary, Secondary: frame.Secondary, Data: []byte{0xB5, 'N', 'E', 'W', '3', '0', 0x01, 0x02, 0x03, 0x04}}, nil
+	}
+	return nil, errors.New("serial unavailable")
+}
+
+type partialFullModelSignatureScanBus struct{}
+
+func (partialFullModelSignatureScanBus) Send(_ context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	if frame.Primary == scanPrimary && frame.Secondary == scanSecondary {
+		return &protocol.Frame{Source: frame.Target, Target: frame.Source, Primary: frame.Primary, Secondary: frame.Secondary, Data: []byte{0xB5, 'N', 'E', 'W', '3', '0', 0x05, 0x06, 0x07, 0x08}}, nil
 	}
 	return nil, errors.New("serial unavailable")
 }
@@ -65,6 +199,46 @@ func TestDirected0704PartialObservationCannotCreateCrossAddressAuthority(t *test
 	independent.Address, independent.DeviceID = 0x21, "NEW30"
 	if joined := r.Register(independent); joined == local {
 		t.Fatal("directed 07/04 without B5/09 serial created cross-address authority")
+	}
+}
+
+func TestDirected0704PartialFullModelSignatureRetainsSameAddressLKG(t *testing.T) {
+	old := DeviceInfo{
+		Address:         0x20,
+		Manufacturer:    "Vaillant",
+		DeviceID:        "OLD30",
+		SerialNumber:    "SN-OLD",
+		MacAddress:      "02:00:00:00:00:01",
+		SoftwareVersion: "0102",
+		HardwareVersion: "0304",
+	}
+	registry := NewDeviceRegistry(nil)
+	seededAt := time.Unix(1, 0)
+	initial := registry.RegisterStaticSeed(old, SlotRoleSlave, seededAt)
+	if _, err := Scan(context.Background(), partialFullModelSignatureScanBus{}, registry, 0x10, []byte{old.Address}); err != nil {
+		t.Fatal(err)
+	}
+	current, ok := registry.Lookup(old.Address)
+	if !ok || current != initial {
+		t.Fatal("directed 07/04 partial model response replaced its local address group")
+	}
+	if current.DeviceID() != "NEW30" || current.SoftwareVersion() != "0506" || current.HardwareVersion() != "0708" || current.SerialNumber() != old.SerialNumber || current.MacAddress() != old.MacAddress {
+		t.Fatalf("scan local LKG = (%q, %q, %q, %q, %q)", current.DeviceID(), current.SoftwareVersion(), current.HardwareVersion(), current.SerialNumber(), current.MacAddress())
+	}
+	if _, ok := registry.lookupByIdentity(old); ok {
+		t.Fatal("directed partial model refresh retained obsolete cross-address authority")
+	}
+	slot, ok := registry.LookupSlotSnapshot(old.Address)
+	if !ok || slot.DiscoverySource != DiscoverySourceActiveConfirmed || slot.VerificationState != VerificationStateIdentityConfirmed || !slot.FirstObservedAt.Equal(seededAt) {
+		t.Fatalf("directed slot = %#v, present=%v; want retained seeded face with direct confirmation", slot, ok)
+	}
+	corrected := old
+	corrected.DeviceID = "NEW30"
+	if repaired := registry.Register(corrected); repaired != current {
+		t.Fatal("complete same-address correction replaced retained scan group")
+	}
+	if indexed, ok := registry.lookupByIdentity(corrected); !ok || indexed != current {
+		t.Fatal("complete post-scan triple did not establish current authority")
 	}
 }
 

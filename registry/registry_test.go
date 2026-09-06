@@ -323,6 +323,9 @@ func TestDeviceRegistry_AliasAddressesShareCanonicalEntry(t *testing.T) {
 		SoftwareVersion: "0704",
 		HardwareVersion: "7603",
 	})
+	if err := registry.AliasAddresses(0x08, 0x09); err != nil {
+		t.Fatalf("AliasAddresses: %v", err)
+	}
 
 	entry08, ok := registry.Lookup(0x08)
 	if !ok {
@@ -446,7 +449,7 @@ func TestDeviceRegistry_SplitsAliasWhenConflictingSerialArrives(t *testing.T) {
 	}
 }
 
-func TestDeviceRegistry_MergesSameSerialDifferentDeviceID(t *testing.T) {
+func TestDeviceRegistry_DoesNotMergeSameSerialDifferentDeviceID(t *testing.T) {
 	t.Parallel()
 
 	registry := NewDeviceRegistry(nil)
@@ -492,7 +495,8 @@ func TestDeviceRegistry_MergesSameSerialDifferentDeviceID(t *testing.T) {
 		SerialNumber:    "21-22-09-0020184848-0082-005409-N4",
 	})
 
-	// After enrichment: merged into single entry
+	// After enrichment: DeviceID remains part of the qualified identity, so
+	// the addresses stay separate despite equal manufacturer and serial.
 	entry15, ok := registry.Lookup(0x15)
 	if !ok {
 		t.Fatalf("expected address 0x15 to exist")
@@ -501,14 +505,14 @@ func TestDeviceRegistry_MergesSameSerialDifferentDeviceID(t *testing.T) {
 	if !ok {
 		t.Fatalf("expected address 0xEC to exist")
 	}
-	if entry15 != entryEC {
-		t.Fatalf("same serial number must merge entries regardless of DeviceID")
+	if entry15 == entryEC {
+		t.Fatalf("same serial number with different DeviceIDs must remain distinct")
 	}
-	if entry15.DeviceID() != "BASV2" {
-		t.Fatalf("merged DeviceID = %q; want BASV2 (primary)", entry15.DeviceID())
+	if entry15.DeviceID() != "BASV2" || entryEC.DeviceID() != "SOL00" {
+		t.Fatalf("device IDs = (%q, %q); want (BASV2, SOL00)", entry15.DeviceID(), entryEC.DeviceID())
 	}
-	if !slices.Equal(entry15.Addresses(), []byte{0x15, 0xEC}) {
-		t.Fatalf("merged addresses = %v; want [21 236]", entry15.Addresses())
+	if !slices.Equal(entry15.Addresses(), []byte{0x15}) || !slices.Equal(entryEC.Addresses(), []byte{0xEC}) {
+		t.Fatalf("addresses = (%v, %v); want separate entries", entry15.Addresses(), entryEC.Addresses())
 	}
 
 	// Iterate should return single canonical entry
@@ -517,12 +521,12 @@ func TestDeviceRegistry_MergesSameSerialDifferentDeviceID(t *testing.T) {
 		count++
 		return true
 	})
-	if count != 1 {
-		t.Fatalf("iterate count = %d; want 1 (merged)", count)
+	if count != 2 {
+		t.Fatalf("iterate count = %d; want 2 (distinct devices)", count)
 	}
 }
 
-func TestDeviceRegistry_KeepsSerialAliasMergeOnSparseSecondaryUpdate(t *testing.T) {
+func TestDeviceRegistry_KeepsQualifiedIdentityAliasMergeOnSparseSecondaryUpdate(t *testing.T) {
 	t.Parallel()
 
 	registry := NewDeviceRegistry(nil)
@@ -539,7 +543,7 @@ func TestDeviceRegistry_KeepsSerialAliasMergeOnSparseSecondaryUpdate(t *testing.
 	registry.Register(DeviceInfo{
 		Address:         0xEC,
 		Manufacturer:    "Vaillant",
-		DeviceID:        "SOL00",
+		DeviceID:        "BASV2",
 		SoftwareVersion: "0507",
 		HardwareVersion: "1704",
 		SerialNumber:    serial,
@@ -547,7 +551,7 @@ func TestDeviceRegistry_KeepsSerialAliasMergeOnSparseSecondaryUpdate(t *testing.
 	registry.Register(DeviceInfo{
 		Address:         0xEC,
 		Manufacturer:    "Vaillant",
-		DeviceID:        "SOL00",
+		DeviceID:        "BASV2",
 		SoftwareVersion: "0507",
 		HardwareVersion: "1704",
 	})

@@ -152,11 +152,19 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 				}
 				return nil, err
 			}
+			if !isDirectedScanResponse(request, response) {
+				err := fmt.Errorf("scan target %02x invalid directed response: %w", target, errors.Join(errScanResponsePayload, ebuserrors.ErrInvalidPayload))
+				if shouldRetryScanError(err) {
+					retries = append(retries, target)
+					continue
+				}
+				if shouldSkipScanError(err) {
+					continue
+				}
+				return nil, err
+			}
 
 			address := response.Source
-			if address == 0 {
-				address = target
-			}
 
 			info, err := parseDeviceInfo(address, response.Data)
 			if err != nil {
@@ -179,16 +187,28 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 					info.SerialNumber = serial
 				}
 			}
-			if info.SerialNumber == "" && info.Manufacturer == "Vaillant" {
-				if existing, ok := registry.lookupByIdentity(info); ok && shouldReuseSerial(info, existing) {
-					info.SerialNumber = existing.SerialNumber()
-				}
-			}
 			entry := registry.Register(info)
 			if address != target {
 				alias := info
 				alias.Address = target
-				entry = registry.Register(alias)
+				registry.Register(alias)
+				// The scan response's source address is direct address-topology
+				// evidence for the probed target. Keep that explicit relation even
+				// before an identity read yields a qualified triple; Register only
+				// performs cross-address merges after such a triple is complete.
+				if err := registry.AliasAddresses(address, target); err != nil {
+					return nil, fmt.Errorf("scan target %02x alias %02x: %w", target, address, err)
+				}
+				entry, _ = registry.Lookup(address)
+			}
+			// A valid directed 07/04 response is current-session verification
+			// of its responding face even though it carries no serial. Keep this
+			// separate from Register's qualified-triple merge gate; after an
+			// explicit response-source/probed-target alias is recorded, the
+			// registry may carry confirmation only through that current topology.
+			registry.confirmScanIdentity(address)
+			if confirmed, ok := registry.Lookup(address); ok {
+				entry = confirmed
 			}
 			canonicalAddress := entry.PrimaryDisplayAddress()
 			if _, ok := registered[canonicalAddress]; !ok {
@@ -215,6 +235,16 @@ func Scan(ctx context.Context, bus ScanBus, registry *DeviceRegistry, source byt
 	}
 
 	return canonicalizeScanEntries(registry, entries), nil
+}
+
+// isDirectedScanResponse verifies the response context before a scan can
+// register or confirm a face. A response from a different direction, service,
+// or an unspecified source cannot be evidence for the current 07/04 probe.
+func isDirectedScanResponse(request protocol.Frame, response *protocol.Frame) bool {
+	return response != nil && response.Source != 0 &&
+		response.Target == request.Source &&
+		response.Primary == request.Primary &&
+		response.Secondary == request.Secondary
 }
 
 // canonicalizeScanEntries resolves every retained observation against the
@@ -409,25 +439,6 @@ func formatVaillantSerial(raw string) string {
 		candidate[20:26],
 		candidate[26:28],
 	)
-}
-
-func shouldReuseSerial(info DeviceInfo, existing DeviceEntry) bool {
-	if existing == nil || existing.SerialNumber() == "" {
-		return false
-	}
-	if !strings.EqualFold(existing.Manufacturer(), info.Manufacturer) {
-		return false
-	}
-	if info.DeviceID != "" && existing.DeviceID() != info.DeviceID {
-		return false
-	}
-	if info.SoftwareVersion != "" && existing.SoftwareVersion() != info.SoftwareVersion {
-		return false
-	}
-	if info.HardwareVersion != "" && existing.HardwareVersion() != info.HardwareVersion {
-		return false
-	}
-	return true
 }
 
 func shouldSkipScanError(err error) bool {

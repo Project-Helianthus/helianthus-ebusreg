@@ -5,53 +5,84 @@ import "strings"
 func (r *DeviceRegistry) lookupByIdentity(info DeviceInfo) (DeviceEntry, bool) {
 	identity := canonicalPhysicalIdentity(info).key()
 	if identity == "" {
-		return r.lookupBySignature(info)
+		return nil, false
 	}
 
 	r.mu.RLock()
 	entry, ok := r.identity[identity]
+	ok = ok && isCurrentQualifiedIdentityKey(entry, identity)
 	r.mu.RUnlock()
-	if !ok {
-		return r.lookupBySignature(info)
-	}
-	return entry, true
+	return entry, ok
 }
 
-func (r *DeviceRegistry) lookupBySignature(info DeviceInfo) (DeviceEntry, bool) {
-	r.mu.RLock()
-	defer r.mu.RUnlock()
-	entry, ok := r.lookupCompatibleBySignatureLocked(info)
-	if !ok {
-		return nil, false
+// currentIdentityEntryLocked returns an index candidate only when its key is
+// the entry's current complete normalized triple. Qualified triples are exact
+// current identity claims, not historical evidence. Caller holds r.mu.
+func (r *DeviceRegistry) currentIdentityEntryLocked(identity string) *deviceEntry {
+	entry := r.identity[identity]
+	if !isCurrentQualifiedIdentityKey(entry, identity) {
+		if entry != nil && r.identity[identity] == entry {
+			delete(r.identity, identity)
+		}
+		return nil
 	}
-	return entry, true
+	return entry
 }
 
-func (r *DeviceRegistry) lookupCompatibleBySignatureLocked(info DeviceInfo) (*deviceEntry, bool) {
-	signature := canonicalPhysicalIdentity(info).withFallbackModelSignature()
-	if signature == "" {
-		return nil, false
+func isCurrentQualifiedIdentityKey(entry *deviceEntry, identity string) bool {
+	return entry != nil && isStableIdentityKey(identity) &&
+		entry.identityKey == identity && entry.physical.key() == identity
+}
+
+// retainCurrentIdentityBindingLocked removes every historical identity
+// binding for entry. Explicit address aliases stay in r.entries and topology,
+// but a distinct old triple cannot select this entry across addresses.
+func (r *DeviceRegistry) retainCurrentIdentityBindingLocked(entry *deviceEntry, identity string) {
+	if entry == nil {
+		return
 	}
-	var match *deviceEntry
-	for _, candidate := range r.order {
-		if candidate == nil {
-			continue
+	for key, indexed := range r.identity {
+		if indexed == entry && key != identity {
+			delete(r.identity, key)
 		}
-		if candidate.physical.withFallbackModelSignature() != signature {
-			continue
-		}
-		if !canMergeIdentity(info, candidate.info) {
-			continue
-		}
-		if match != nil && match != candidate {
-			return nil, false
-		}
-		match = candidate
 	}
-	if match == nil {
-		return nil, false
+	entry.identityKeyAliases = nil
+}
+
+func (r *DeviceRegistry) removeIdentityBindingsLocked(entry *deviceEntry) {
+	r.retainCurrentIdentityBindingLocked(entry, "")
+}
+
+// publishCurrentIdentityBindingLocked makes entry the cross-address authority
+// for its current qualified triple. A conflicting current owner remains the
+// authority: the proposed group is still useful for its explicitly attached
+// addresses, but cannot be republished by a later lifecycle operation.
+//
+// Caller holds r.mu and has already refreshed entry.info and entry.physical.
+// Keeping this check at the publication boundary makes registration and alias
+// rebuilds follow the same conflict policy.
+func (r *DeviceRegistry) publishCurrentIdentityBindingLocked(entry *deviceEntry, identity string) {
+	if entry == nil {
+		return
 	}
-	return match, true
+
+	if identity != "" {
+		incumbent := r.currentIdentityEntryLocked(identity)
+		if incumbent != nil && incumbent != entry && !canMergeIdentity(entry.info, incumbent.info) {
+			// Do not leave an old key behind: entry's fields now describe the
+			// disputed current triple, so any identity row for it would be
+			// historical cross-address authority.
+			r.retainCurrentIdentityBindingLocked(entry, "")
+			entry.identityKey = ""
+			return
+		}
+	}
+
+	r.retainCurrentIdentityBindingLocked(entry, identity)
+	entry.identityKey = identity
+	if identity != "" {
+		r.identity[identity] = entry
+	}
 }
 
 func canMergeIdentity(incoming DeviceInfo, existing DeviceInfo) bool {
@@ -66,6 +97,19 @@ func canMergeIdentity(incoming DeviceInfo, existing DeviceInfo) bool {
 		return false
 	}
 	return true
+}
+
+// admitIdentityCandidate applies the conflict policy before an indexed
+// qualified-identity candidate can select an entry. A matching triple alone
+// is insufficient when any non-empty conflict-bearing identity field differs.
+// The boolean reports rejected, contradictory evidence separately from a
+// missing candidate so callers can retain a disputed new address without
+// publishing it as a replacement identity authority.
+func admitIdentityCandidate(incoming DeviceInfo, candidate *deviceEntry) (*deviceEntry, bool) {
+	if candidate == nil || canMergeIdentity(incoming, candidate.info) {
+		return candidate, false
+	}
+	return nil, true
 }
 
 func hasConflictingModelSignature(incoming DeviceInfo, existing DeviceInfo) bool {
@@ -99,66 +143,7 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 		if secondary := slotB.Device; secondary != nil && secondary != canonical {
 			secondary.addresses = removeAddress(secondary.addresses, b)
 			if len(secondary.addresses) == 0 {
-				// Secondary is fully removed: this is the BASV2 /
-				// NETX3 scenario where the identity-bearing entry
-				// becomes orphaned. Promote secondary's identity
-				// fields onto canonical (only when canonical's
-				// fields are empty) and transfer the r.identity
-				// binding. (Codex P2 round-2 finding 2026-05-08 on
-				// PR #136: absorb must NOT fire when secondary
-				// survives, otherwise canonical and the surviving
-				// secondary expose duplicate identity.)
-				r.absorbIdentityLocked(canonical, secondary)
-				if secondary.identityKey != "" {
-					switch canonical.identityKey {
-					case "":
-						// Canonical had no key; adopt secondary's
-						// as canonical's primary key.
-						canonical.identityKey = secondary.identityKey
-						r.identity[canonical.identityKey] = canonical
-					case secondary.identityKey:
-						// Same key already bound; ensure the row
-						// points to canonical (defensive).
-						r.identity[canonical.identityKey] = canonical
-					default:
-						// Distinct keys (e.g. canonical has a MAC-
-						// derived key, secondary has a serial-derived
-						// key). Re-point secondary's key at canonical
-						// so future lookupByIdentity calls on EITHER
-						// key resolve to the merged entry. Do NOT
-						// delete — that would orphan the lookup path.
-						// (Codex P2 round-3 finding 2026-05-08 on
-						// PR #136: previously the delete here meant
-						// SerialNumber() was visible on the merged
-						// entry but lookupByIdentity-by-serial could
-						// not find it.)
-						//
-						// Track the alias key on canonical so
-						// detachAddressLocked can clean it up if the
-						// merged entry is later removed. Without
-						// this, the orphan key would resolve to a
-						// removed *deviceEntry until r.identity gets
-						// rebuilt. (Codex P2 round-4 finding.)
-						//
-						// P0 round-7 (Codex P2 round-7 finding
-						// 2026-05-10 on PR #136 thread
-						// PRRT_kwDORGIkfM6ArzFY): only preserve
-						// STABLE keys (sn|... / mac|...) as aliases.
-						// `sig|...` fallback keys are NOT
-						// per-device — preserving one would let a
-						// later bare sig-only observation bypass
-						// `lookupCompatibleBySignatureLocked`'s
-						// ambiguity-refusal scan and silently merge
-						// into canonical.
-						if isStableIdentityKey(secondary.identityKey) {
-							r.identity[secondary.identityKey] = canonical
-							canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
-						} else {
-							delete(r.identity, secondary.identityKey)
-						}
-					}
-				}
-				r.order = removeEntry(r.order, secondary)
+				r.mergeRemovedAliasEntryLocked(canonical, secondary)
 			} else {
 				// Secondary survives at remaining addresses (e.g.
 				// 0x15 + 0x16 with same identity, then alias 0x10
@@ -187,57 +172,7 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 			// Symmetric case. See slotA branch.
 			secondary.addresses = removeAddress(secondary.addresses, a)
 			if len(secondary.addresses) == 0 {
-				r.absorbIdentityLocked(canonical, secondary)
-				if secondary.identityKey != "" {
-					switch canonical.identityKey {
-					case "":
-						// Canonical had no key; adopt secondary's
-						// as canonical's primary key.
-						canonical.identityKey = secondary.identityKey
-						r.identity[canonical.identityKey] = canonical
-					case secondary.identityKey:
-						// Same key already bound; ensure the row
-						// points to canonical (defensive).
-						r.identity[canonical.identityKey] = canonical
-					default:
-						// Distinct keys (e.g. canonical has a MAC-
-						// derived key, secondary has a serial-derived
-						// key). Re-point secondary's key at canonical
-						// so future lookupByIdentity calls on EITHER
-						// key resolve to the merged entry. Do NOT
-						// delete — that would orphan the lookup path.
-						// (Codex P2 round-3 finding 2026-05-08 on
-						// PR #136: previously the delete here meant
-						// SerialNumber() was visible on the merged
-						// entry but lookupByIdentity-by-serial could
-						// not find it.)
-						//
-						// Track the alias key on canonical so
-						// detachAddressLocked can clean it up if the
-						// merged entry is later removed. Without
-						// this, the orphan key would resolve to a
-						// removed *deviceEntry until r.identity gets
-						// rebuilt. (Codex P2 round-4 finding.)
-						//
-						// P0 round-7 (Codex P2 round-7 finding
-						// 2026-05-10 on PR #136 thread
-						// PRRT_kwDORGIkfM6ArzFY): only preserve
-						// STABLE keys (sn|... / mac|...) as aliases.
-						// `sig|...` fallback keys are NOT
-						// per-device — preserving one would let a
-						// later bare sig-only observation bypass
-						// `lookupCompatibleBySignatureLocked`'s
-						// ambiguity-refusal scan and silently merge
-						// into canonical.
-						if isStableIdentityKey(secondary.identityKey) {
-							r.identity[secondary.identityKey] = canonical
-							canonical.identityKeyAliases = appendUniqueString(canonical.identityKeyAliases, secondary.identityKey)
-						} else {
-							delete(r.identity, secondary.identityKey)
-						}
-					}
-				}
-				r.order = removeEntry(r.order, secondary)
+				r.mergeRemovedAliasEntryLocked(canonical, secondary)
 			} else {
 				if secondary.primaryAddress == a {
 					secondary.primaryAddress = secondary.addresses[0]
@@ -254,47 +189,82 @@ func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 		r.syncEntryFacesLocked(canonical)
 	}
 
+	if r.entries[a] != nil && r.entries[a] == r.entries[b] {
+		r.recordTopologyAliasLocked(a, b)
+	}
 	r.observationGeneration++
 	return nil
 }
 
-// appendUniqueString returns dst with s appended if not already
-// present. Used to track identity-key aliases on a deviceEntry
-// without duplication.
-func appendUniqueString(dst []string, s string) []string {
-	for _, existing := range dst {
-		if existing == s {
-			return dst
+// mergeRemovedAliasEntryLocked retains useful fields from an explicitly
+// aliased, now-removed entry without retaining that entry's distinct triple as
+// a lookup or cross-address merge authority.
+func (r *DeviceRegistry) mergeRemovedAliasEntryLocked(canonical, secondary *deviceEntry) {
+	authorityKey := canonical.identityKey
+	if authorityKey == "" {
+		authorityKey = secondary.identityKey
+	}
+	r.absorbIdentityLocked(canonical, secondary)
+	r.removeIdentityBindingsLocked(secondary)
+
+	canonical.physical = canonicalPhysicalIdentity(canonical.info)
+	// Alias rebuild may retain an already observed authority from the surviving
+	// entry, but must not publish a complete-looking triple made by absorbing
+	// local LKG from a partial observation.
+	if canonical.physical.key() != authorityKey {
+		authorityKey = ""
+	}
+	r.publishCurrentIdentityBindingLocked(canonical, authorityKey)
+	r.order = removeEntry(r.order, secondary)
+}
+
+// recordTopologyAliasLocked remembers explicit source-target or canonical-
+// companion evidence without conflating it with qualified identity joins.
+// AliasAddresses has already applied the relation; this method only records
+// it for later current-session confirmation propagation. Caller holds r.mu.
+func (r *DeviceRegistry) recordTopologyAliasLocked(a, b byte) {
+	if a == b {
+		return
+	}
+	if r.topology[a] == nil {
+		r.topology[a] = make(map[byte]struct{})
+	}
+	if r.topology[b] == nil {
+		r.topology[b] = make(map[byte]struct{})
+	}
+	r.topology[a][b] = struct{}{}
+	r.topology[b][a] = struct{}{}
+}
+
+// forgetTopologyAddressLocked invalidates every explicit topology relation
+// involving address. An identity conflict can detach one face from an alias
+// group and later rejoin it through the qualified-identity index alone; the
+// old relation is not current-session evidence for that new membership.
+//
+// Caller holds r.mu.
+func (r *DeviceRegistry) forgetTopologyAddressLocked(address byte) {
+	for companion := range r.topology[address] {
+		delete(r.topology[companion], address)
+		if len(r.topology[companion]) == 0 {
+			delete(r.topology, companion)
 		}
 	}
-	return append(dst, s)
+	delete(r.topology, address)
 }
 
 // isStableIdentityKey reports whether key is a stable, per-device
-// identity key (serial- or MAC-derived) versus a fallback model
-// signature key (`sig|...`) shared by every unit of the same model.
+// identity key: a complete, normalized manufacturer/device/serial triple.
 //
-// Only stable keys are safe to preserve in r.identity as identity
-// aliases when the entry's primary identityKey is rotated (e.g. on
-// late-enrichment from sig-only → serial). Preserving a `sig|...` key
-// would silently bypass `lookupCompatibleBySignatureLocked`'s
-// ambiguity-refusal scan when a second device with the same
-// fingerprint exists in the registry: a subsequent bare sig-only
-// observation at a new address would resolve directly to the first
-// entry via r.identity instead of being routed through the ambiguity
-// check. (Codex P2 round-7 finding 2026-05-08 on PR #136 thread
-// PRRT_kwDORGIkfM6ArzFY.)
-//
-// Mirrors the prefix taxonomy in physicalIdentity.key() /
-// withFallbackModelSignature() in registry/identity.go.
+// Partial identity and model evidence never enter r.identity, so they cannot
+// select or merge independently observed addresses.
 func isStableIdentityKey(key string) bool {
-	return strings.HasPrefix(key, "sn|") || strings.HasPrefix(key, "mac|")
+	return strings.HasPrefix(key, stableIdentityKeyPrefix)
 }
 
 // absorbIdentityLocked copies non-empty identity-bearing fields and
 // derived state from src onto dst when dst's corresponding fields are
-// empty. Re-keys r.identity[dst.identityKey] = dst when a new
-// identityKey is adopted from src. Holds r.mu (caller's responsibility).
+// empty. Its caller rebuilds the current r.identity binding after deciding
+// whether the source entry survives. Holds r.mu (caller's responsibility).
 //
 // Phase post-C P0: introduced to fix AliasAddresses identity loss
 // (see live observation on 2026-05-08: BASV2 0x10↔0x15 + NETX3
@@ -307,7 +277,6 @@ func isStableIdentityKey(key string) bool {
 //   - info.Manufacturer, info.DeviceID, info.SerialNumber, info.MacAddress
 //   - info.SoftwareVersion, info.HardwareVersion
 //   - physical (only if dst's physicalIdentity is zero)
-//   - identityKey (re-keyed in r.identity)
 //   - planes, projections, index, indexErr (only when dst has none)
 //
 // This function does NOT touch addresses or primaryAddress — those are
@@ -340,17 +309,8 @@ func (r *DeviceRegistry) absorbIdentityLocked(dst, src *deviceEntry) {
 	if dst.physical == emptyPhysical && src.physical != emptyPhysical {
 		dst.physical = src.physical
 	} else if dst.physical != emptyPhysical {
-		// P0 round-7 follow-up (Codex P2 on PR #143): when dst.physical
-		// is non-zero we don't replace it, but we just absorbed
-		// info.DeviceID / SoftwareVersion / HardwareVersion above from
-		// src. dst.physical is stale (was computed pre-absorb). A
-		// future bare sig-only Register goes through
-		// lookupCompatibleBySignatureLocked which compares
-		// candidate.physical.withFallbackModelSignature() — if dst.physical
-		// still lacks the absorbed sig fields, the candidate scan
-		// won't match and a duplicate device is created. Recompute
-		// dst.physical from the freshly-merged dst.info so the model
-		// signature reflects everything we've absorbed.
+		// We just absorbed fields into dst.info, so its cached normalized
+		// identity must reflect the same-address topology merge.
 		dst.physical = canonicalPhysicalIdentity(dst.info)
 	}
 	// NOTE: identityKey transfer is intentionally NOT done here.
@@ -408,26 +368,13 @@ func (r *DeviceRegistry) detachAddressLocked(entry *deviceEntry, address byte) {
 		return
 	}
 
+	// Leaving an address group invalidates any topology evidence attached to
+	// that face. A later qualified-identity rejoin has no topology semantics;
+	// only a newly observed AliasAddresses relation may restore propagation.
+	r.forgetTopologyAddressLocked(address)
 	entry.addresses = removeAddress(entry.addresses, address)
 	if len(entry.addresses) == 0 {
-		if entry.identityKey != "" {
-			delete(r.identity, entry.identityKey)
-		}
-		// P0 round-4 (Codex P2 follow-up 2026-05-08): also drop any
-		// identityKeyAliases that AliasAddresses re-pointed at this
-		// entry. Without this cleanup, orphan keys remain in
-		// r.identity resolving to a removed *deviceEntry and a
-		// later Register({key}) would attach to an entry no longer
-		// in r.order.
-		for _, alias := range entry.identityKeyAliases {
-			if alias == "" {
-				continue
-			}
-			if r.identity[alias] == entry {
-				delete(r.identity, alias)
-			}
-		}
-		entry.identityKeyAliases = nil
+		r.removeIdentityBindingsLocked(entry)
 		r.order = removeEntry(r.order, entry)
 		return
 	}

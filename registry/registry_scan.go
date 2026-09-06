@@ -108,7 +108,10 @@ func (r *DeviceRegistry) RegisterPassiveObserved(info DeviceInfo, role SlotRole,
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
-	entry := r.registerLocked(info)
+	entry, retainedConflict := r.registerLocked(info)
+	if retainedConflict {
+		return entry
+	}
 	slot := r.ensureAddressSlotLocked(info.Address)
 	slot.Device = entry
 	r.markSlotPassiveObservedLocked(slot, role, observedAt)
@@ -158,15 +161,10 @@ type deviceEntry struct {
 	addresses      []byte
 	physical       physicalIdentity
 	identityKey    string
-	// identityKeyAliases tracks ADDITIONAL r.identity keys that
-	// resolve to this entry beyond its own identityKey. Populated by
-	// AliasAddresses when canonical and removed-secondary had distinct
-	// identity keys (e.g. canonical=MAC-keyed, secondary=serial-keyed)
-	// and the secondary's key is re-pointed at canonical instead of
-	// being deleted. detachAddressLocked iterates this slice to clean
-	// up r.identity bindings when the merged entry is removed,
-	// preventing orphan keys from resolving to a removed *deviceEntry.
-	// (Codex P2 round-4 finding 2026-05-08 on PR #136.)
+	// identityKeyAliases records legacy additional r.identity bindings so the
+	// shared cleanup path can retire them. New entries retain only their current
+	// qualified triple: explicit address aliases and LKG are not independent
+	// identity authority.
 	identityKeyAliases []string
 	info               DeviceInfo
 	planes             []Plane

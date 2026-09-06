@@ -10,6 +10,9 @@ const (
 	SlotRoleSlave
 )
 
+// DiscoverySource identifies how one address face first entered the registry.
+// Its numeric order is not a confidence order; once non-unknown it is
+// immutable for that face. VerificationState carries advancing confidence.
 type DiscoverySource int
 
 const (

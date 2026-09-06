@@ -10,10 +10,8 @@ import (
 // The gateway's address_table_inserter previously called Register
 // (which stamps DiscoverySourceActiveConfirmed /
 // VerificationStateIdentityConfirmed) followed by
-// MarkSlotPassiveObserved. The monotonic ladder
-// (PassiveObserved < ActiveConfirmed) made the second call a no-op,
-// so passively-observed slots were misreported as `active_confirmed`
-// in the observability surfaces.
+// MarkSlotPassiveObserved. That ordering recorded the wrong original source,
+// because discovery provenance is immutable once the face is admitted.
 //
 // RegisterPassiveObserved performs identity-merge AND the passive-
 // observation slot stamping atomically under one lock acquisition.
@@ -79,13 +77,9 @@ func TestRegisterPassiveObserved_AttachesEntryToSlot(t *testing.T) {
 	}
 }
 
-// TestRegisterPassiveObserved_DoesNotDowngradeActiveConfirmed asserts
-// that a passive-observed call on an already-active-confirmed slot
-// does NOT downgrade the discovery label. A directed scan that
-// happens before passive observation produces ActiveConfirmed; a
-// later passive observation should leave the slot at ActiveConfirmed
-// per the monotonic ladder.
-func TestRegisterPassiveObserved_DoesNotDowngradeActiveConfirmed(t *testing.T) {
+// TestRegisterPassiveObserved_RetainsExistingActiveSource asserts that a
+// passive registration preserves an earlier active admission source.
+func TestRegisterPassiveObserved_RetainsExistingActiveSource(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
@@ -113,12 +107,9 @@ func TestRegisterPassiveObserved_DoesNotDowngradeActiveConfirmed(t *testing.T) {
 	}
 }
 
-// TestRegisterPassiveObserved_FollowedByActiveScanUpgrades asserts the
-// reverse direction: a passive-observed slot subsequently active-
-// confirmed (via Register) DOES advance to ActiveConfirmed /
-// IdentityConfirmed. PassiveObserved < ActiveConfirmed in the
-// monotonic ladder, so the upgrade is allowed.
-func TestRegisterPassiveObserved_FollowedByActiveScanUpgrades(t *testing.T) {
+// TestRegisterPassiveObserved_FollowedByActiveScanConfirmsIdentity asserts
+// that active evidence advances verification while retaining passive origin.
+func TestRegisterPassiveObserved_FollowedByActiveScanConfirmsIdentity(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
@@ -138,20 +129,17 @@ func TestRegisterPassiveObserved_FollowedByActiveScanUpgrades(t *testing.T) {
 	})
 
 	post, _ := reg.LookupSlot(0x15)
-	if post.DiscoverySource != DiscoverySourceActiveConfirmed {
-		t.Errorf("slot.DiscoverySource after directed scan = %v; want ActiveConfirmed (upgrade allowed)", post.DiscoverySource)
+	if post.DiscoverySource != DiscoverySourcePassiveObserved {
+		t.Errorf("slot.DiscoverySource after directed scan = %v; want retained PassiveObserved", post.DiscoverySource)
 	}
 	if post.VerificationState != VerificationStateIdentityConfirmed {
 		t.Errorf("slot.VerificationState after directed scan = %v; want IdentityConfirmed", post.VerificationState)
 	}
 }
 
-// TestRegisterPassiveObserved_StaticSeedAfterPassiveUpgrades asserts
-// that a static-seed mark on a previously passive-observed slot
-// upgrades the discovery label (StaticSeed > PassiveObserved). Static
-// seeds outrank wire-only inference because pre-known taxonomy is
-// more reliable.
-func TestRegisterPassiveObserved_StaticSeedAfterPassiveUpgrades(t *testing.T) {
+// TestRegisterPassiveObserved_StaticSeedAfterPassiveRetainsSource asserts
+// that later taxonomy knowledge does not rewrite passive origin.
+func TestRegisterPassiveObserved_StaticSeedAfterPassiveRetainsSource(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
@@ -162,8 +150,8 @@ func TestRegisterPassiveObserved_StaticSeedAfterPassiveUpgrades(t *testing.T) {
 	reg.MarkSlotStaticSeed(0xF1, SlotRoleMaster, time.Now())
 
 	slot, _ := reg.LookupSlot(0xF1)
-	if slot.DiscoverySource != DiscoverySourceStaticSeed {
-		t.Errorf("slot.DiscoverySource = %v; want StaticSeed (upgrade from PassiveObserved)", slot.DiscoverySource)
+	if slot.DiscoverySource != DiscoverySourcePassiveObserved {
+		t.Errorf("slot.DiscoverySource = %v; want retained PassiveObserved", slot.DiscoverySource)
 	}
 }
 

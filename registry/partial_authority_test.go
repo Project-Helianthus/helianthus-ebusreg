@@ -158,7 +158,7 @@ func TestPartialFullModelSignatureRetainsTopologyAndFaces(t *testing.T) {
 		address byte
 		source  DiscoverySource
 	}{
-		{address: primary, source: DiscoverySourceActiveConfirmed},
+		{address: primary, source: DiscoverySourceStaticSeed},
 		{address: companion, source: DiscoverySourceStaticSeed},
 	} {
 		slot, ok := registry.LookupSlotSnapshot(face.address)
@@ -229,7 +229,7 @@ func TestDirected0704PartialFullModelSignatureRetainsSameAddressLKG(t *testing.T
 		t.Fatal("directed partial model refresh retained obsolete cross-address authority")
 	}
 	slot, ok := registry.LookupSlotSnapshot(old.Address)
-	if !ok || slot.DiscoverySource != DiscoverySourceActiveConfirmed || slot.VerificationState != VerificationStateIdentityConfirmed || !slot.FirstObservedAt.Equal(seededAt) {
+	if !ok || slot.DiscoverySource != DiscoverySourceStaticSeed || slot.VerificationState != VerificationStateIdentityConfirmed || !slot.FirstObservedAt.Equal(seededAt) {
 		t.Fatalf("directed slot = %#v, present=%v; want retained seeded face with direct confirmation", slot, ok)
 	}
 	corrected := old

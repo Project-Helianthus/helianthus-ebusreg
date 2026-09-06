@@ -21,19 +21,17 @@ func (r *DeviceRegistry) ensureAddressSlotLocked(address byte) *AddressSlot {
 // This API replaces direct *AddressSlot field mutation by the gateway
 // inserter, which was racy with other readers (Codex P2 follow-up from
 // PR #565). Idempotent: re-marking the same slot only advances
-// DiscoverySource / VerificationState monotonically (the slot retains
-// the higher of the existing and new value, matching
-// observeAddressSlotLocked's monotonic semantics).
+// VerificationState monotonically. DiscoverySource records the first
+// non-unknown native admission path and is retained thereafter.
 //
 // SCOPE: this API only mutates the AddressSlot. It does NOT attach
 // the slot to a device entry. To plant a NEW passively-observed
 // address with identity attached AND label it correctly in a single
 // critical section, use RegisterPassiveObserved (which composes
 // registerLocked + this primitive). Calling Register followed by
-// MarkSlotPassiveObserved produces a label-misorder because Register
-// stamps DiscoverySourceActiveConfirmed and the monotonic guard then
-// refuses to downgrade — that was the P8 bug fixed in
-// RegisterPassiveObserved.
+// MarkSlotPassiveObserved is not a substitute for the atomic admission API:
+// a preceding Register records an active origin, which subsequent passive
+// observation correctly retains.
 func (r *DeviceRegistry) MarkSlotPassiveObserved(address byte, role SlotRole, observedAt time.Time) {
 	if r == nil {
 		return
@@ -60,9 +58,7 @@ func (r *DeviceRegistry) MarkSlotPassiveObserved(address byte, role SlotRole, ob
 // prevents drift between the two public entry points (mirrors the
 // markSlotStaticSeedLocked design from P3.5).
 func (r *DeviceRegistry) markSlotPassiveObservedLocked(slot *AddressSlot, role SlotRole, observedAt time.Time) {
-	if slot.DiscoverySource < DiscoverySourcePassiveObserved {
-		slot.DiscoverySource = DiscoverySourcePassiveObserved
-	}
+	recordDiscoverySource(slot, DiscoverySourcePassiveObserved)
 	if slot.VerificationState < VerificationStateCorroborated {
 		slot.VerificationState = VerificationStateCorroborated
 	}
@@ -87,20 +83,15 @@ func (r *DeviceRegistry) markSlotPassiveObservedLocked(slot *AddressSlot, role S
 //
 // P8 fix: previously the gateway inserter called Register (which
 // stamps ActiveConfirmed/IdentityConfirmed) followed by
-// MarkSlotPassiveObserved. The monotonic ladder
-// (PassiveObserved < ActiveConfirmed) made the second call a no-op,
-// so passively-observed slots were misreported as `active_confirmed`.
+// MarkSlotPassiveObserved. That ordering recorded active discovery as the
+// original source, so passively observed slots were misreported as active.
 // RegisterPassiveObserved performs the identity-merge AND the
 // passive-label stamping atomically under a single lock acquisition,
 // avoiding the misorder.
 //
-// Subsequent label progression (after RegisterPassiveObserved):
-//   - An active confirmation (e.g. directed scan) DOES advance the
-//     DiscoverySource to ActiveConfirmed (PassiveObserved <
-//     ActiveConfirmed) AND VerificationState to IdentityConfirmed.
-//   - A static-seed mark on a passively-observed slot DOES advance
-//     DiscoverySource to StaticSeed (PassiveObserved < StaticSeed) —
-//     pre-known taxonomy outranks wire-only inference.
+// Later observations retain PassiveObserved as this face's original native
+// discovery source. They may advance VerificationState independently, so a
+// passively observed face can become IdentityConfirmed after active evidence.
 //
 // Single lock acquisition — composes registerLocked, then the shared
 // passive-observation primitive, then syncEntryFacesLocked.
@@ -125,9 +116,7 @@ func (r *DeviceRegistry) observeAddressSlotLocked(address byte, entry *deviceEnt
 	now := time.Now()
 	slot := r.ensureAddressSlotLocked(address)
 	slot.Device = entry
-	if slot.DiscoverySource < source {
-		slot.DiscoverySource = source
-	}
+	recordDiscoverySource(slot, source)
 	if slot.VerificationState < state {
 		slot.VerificationState = state
 	}
@@ -135,6 +124,16 @@ func (r *DeviceRegistry) observeAddressSlotLocked(address byte, entry *deviceEnt
 		slot.FirstObservedAt = now
 	}
 	slot.LastObservedAt = now
+}
+
+// recordDiscoverySource preserves the first non-unknown native admission
+// source for an address face. Verification confidence is tracked separately
+// by VerificationState and may advance after the original source is recorded.
+// Caller must hold r.mu.
+func recordDiscoverySource(slot *AddressSlot, source DiscoverySource) {
+	if slot != nil && slot.DiscoverySource == DiscoverySourceUnknown && source != DiscoverySourceUnknown {
+		slot.DiscoverySource = source
+	}
 }
 
 func (r *DeviceRegistry) syncEntryFacesLocked(entry *deviceEntry) {

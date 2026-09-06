@@ -37,10 +37,9 @@ func TestMarkSlotPassiveObserved_BasicWrite(t *testing.T) {
 	}
 }
 
-// TestMarkSlotPassiveObserved_MonotonicMetadata asserts that re-marking
-// a slot already at higher confidence (e.g. ActiveConfirmed) does NOT
-// downgrade it to PassiveObserved.
-func TestMarkSlotPassiveObserved_MonotonicMetadata(t *testing.T) {
+// TestMarkSlotPassiveObserved_RetainsExistingActiveSource asserts that later
+// passive traffic does not rewrite a face first admitted by active discovery.
+func TestMarkSlotPassiveObserved_RetainsExistingActiveSource(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
@@ -52,7 +51,7 @@ func TestMarkSlotPassiveObserved_MonotonicMetadata(t *testing.T) {
 		t.Fatalf("pre-condition: slot.DiscoverySource = %v; want ActiveConfirmed", pre.DiscoverySource)
 	}
 
-	// Now passively re-observe — must not downgrade.
+	// Later passive observation retains the original active source.
 	reg.MarkSlotPassiveObserved(0xF1, SlotRoleMaster, time.Now())
 	post, _ := reg.LookupSlot(0xF1)
 	if post.DiscoverySource != DiscoverySourceActiveConfirmed {

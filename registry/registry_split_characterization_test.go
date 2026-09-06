@@ -34,8 +34,8 @@ func TestRegistrySplitCharacterization(t *testing.T) {
 	}
 	reg.Register(DeviceInfo{Address: 0x26, Manufacturer: "Vaillant", DeviceID: "VR_71"})
 	after, ok := reg.LookupSlotSnapshot(0x26)
-	if !ok || before.DiscoverySource != DiscoverySourcePassiveObserved || after.DiscoverySource != DiscoverySourceActiveConfirmed {
-		t.Fatalf("slot observation order = (%v, %v, %t); want passive then active", before.DiscoverySource, after.DiscoverySource, ok)
+	if !ok || before.DiscoverySource != DiscoverySourcePassiveObserved || after.DiscoverySource != DiscoverySourcePassiveObserved || after.VerificationState != VerificationStateCorroborated {
+		t.Fatalf("slot observation result = (%#v, %#v, %t); want retained passive source and corroboration", before, after, ok)
 	}
 	if !after.DeviceAttached {
 		t.Fatal("active snapshot lost attached device")

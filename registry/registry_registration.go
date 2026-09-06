@@ -216,13 +216,9 @@ func (r *DeviceRegistry) registerLocked(info DeviceInfo) (*deviceEntry, bool) {
 // address-table snapshots) correctly shows the slot's provenance as a
 // pre-known seed rather than active confirmation.
 //
-// On a clean cold boot a static-seeded slot subsequently observed
-// passively will: NOT advance DiscoverySource (PassiveObserved <
-// StaticSeed in the monotonic enum order), WILL advance
-// VerificationState from Candidate to Corroborated. An active
-// confirmation (e.g. directed scan) DOES advance DiscoverySource to
-// ActiveConfirmed (StaticSeed < ActiveConfirmed) AND VerificationState
-// to IdentityConfirmed.
+// Later passive or active observation retains StaticSeed as this face's
+// original native source. VerificationState advances independently from
+// Candidate through Corroborated to IdentityConfirmed when evidence permits.
 //
 // Single lock acquisition — composes registerLocked, then the
 // shared static-seed stamping primitive, then syncEntryFacesLocked.
@@ -281,7 +277,7 @@ func (r *DeviceRegistry) confirmTopologyIdentitySlotsLocked(address byte, entry 
 
 // MarkSlotStaticSeed updates an AddressSlot for an address known from
 // a product taxonomy seed table, mirroring MarkSlotPassiveObserved
-// (lock discipline, monotonic upgrade semantics, idempotence) but
+// (lock discipline, independent verification progression, idempotence) but
 // stamping DiscoverySourceStaticSeed / VerificationStateCandidate.
 //
 // SCOPE: this API only mutates the AddressSlot. It does NOT attach
@@ -297,18 +293,13 @@ func (r *DeviceRegistry) confirmTopologyIdentitySlotsLocked(address byte, entry 
 //     identity matches, or they can be aliased post-hoc via
 //     AliasAddresses.
 //
-//   - The use case for MarkSlotStaticSeed in isolation is updating
-//     an AddressSlot that was already attached to a device by some
-//     prior path (Register / RegisterStaticSeed / AliasAddresses)
-//     to upgrade its discovery_source / verification labels — for
-//     example, marking a slot newly populated by passive observation
-//     as "now also seeded from the static table" so the operator
-//     surface reflects that the addresses are pre-known.
+//   - MarkSlotStaticSeed records static provenance only for a previously
+//     unknown slot. It never rewrites an existing native discovery source,
+//     even when later taxonomy knowledge is available.
 //
-// Idempotent. Re-calling on a slot already at higher
-// DiscoverySource (e.g. ActiveConfirmed) is a no-op for the discovery
-// label, though it may still upgrade VerificationState if the
-// existing state is below Candidate.
+// Idempotent. Re-calling on an established slot retains its discovery source
+// and may only advance VerificationState when the existing state is below
+// Candidate.
 func (r *DeviceRegistry) MarkSlotStaticSeed(address byte, role SlotRole, seededAt time.Time) {
 	if r == nil {
 		return
@@ -330,9 +321,7 @@ func (r *DeviceRegistry) MarkSlotStaticSeed(address byte, role SlotRole, seededA
 // call. Centralising the stamping rules here prevents drift between
 // the two public entry points (Codex P3.5 review NIT FINDING_3).
 func (r *DeviceRegistry) markSlotStaticSeedLocked(slot *AddressSlot, role SlotRole, seededAt time.Time) {
-	if slot.DiscoverySource < DiscoverySourceStaticSeed {
-		slot.DiscoverySource = DiscoverySourceStaticSeed
-	}
+	recordDiscoverySource(slot, DiscoverySourceStaticSeed)
 	if slot.VerificationState < VerificationStateCandidate {
 		slot.VerificationState = VerificationStateCandidate
 	}

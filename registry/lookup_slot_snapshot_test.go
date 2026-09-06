@@ -66,11 +66,9 @@ func TestLookupSlotSnapshot_AbsentSlotReturnsZero(t *testing.T) {
 	}
 }
 
-// TestLookupSlotSnapshot_ReflectsLaterUpgrade asserts that calling
-// LookupSlotSnapshot AFTER a registry upgrade returns the upgraded
-// labels — proves the snapshot is taken at call time, not at
-// insertion time.
-func TestLookupSlotSnapshot_ReflectsLaterUpgrade(t *testing.T) {
+// TestLookupSlotSnapshot_ReflectsLaterVerification asserts that a later
+// snapshot observes verification advancement while retaining native source.
+func TestLookupSlotSnapshot_ReflectsLaterVerification(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
@@ -89,8 +87,8 @@ func TestLookupSlotSnapshot_ReflectsLaterUpgrade(t *testing.T) {
 	})
 
 	post, _ := reg.LookupSlotSnapshot(0x15)
-	if post.DiscoverySource != DiscoverySourceActiveConfirmed {
-		t.Errorf("post.DiscoverySource = %v; want ActiveConfirmed (snapshot taken AFTER upgrade)", post.DiscoverySource)
+	if post.DiscoverySource != DiscoverySourcePassiveObserved {
+		t.Errorf("post.DiscoverySource = %v; want retained PassiveObserved", post.DiscoverySource)
 	}
 	if post.VerificationState != VerificationStateIdentityConfirmed {
 		t.Errorf("post.VerificationState = %v; want IdentityConfirmed", post.VerificationState)
@@ -134,8 +132,8 @@ func TestLookupSlotSnapshot_RaceFreeUnderConcurrentWrites(t *testing.T) {
 			reg.RegisterPassiveObserved(DeviceInfo{Address: addr}, SlotRoleMaster, time.Now())
 			atomic.AddUint64(&writes, 1)
 			if i%10 == 0 {
-				// Periodically promote to ActiveConfirmed and back —
-				// exercises the monotonic-ladder branches under load.
+				// Periodically add active confirmation to exercise independent
+				// verification advancement under load.
 				reg.Register(DeviceInfo{Address: addr, SerialNumber: "SN-RACE"})
 				atomic.AddUint64(&writes, 1)
 			}

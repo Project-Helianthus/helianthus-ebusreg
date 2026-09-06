@@ -14,8 +14,8 @@ const scanIdentitySerial = "21-22-09-0020184848-0082-005409-N4"
 func requireIdentityConfirmed(t *testing.T, registry *DeviceRegistry, address byte) AddressSlotSnapshot {
 	t.Helper()
 	slot, ok := registry.LookupSlotSnapshot(address)
-	if !ok || slot.DiscoverySource != DiscoverySourceActiveConfirmed || slot.VerificationState != VerificationStateIdentityConfirmed {
-		t.Fatalf("slot %02x = %#v, present=%v; want active-confirmed/identity-confirmed", address, slot, ok)
+	if !ok || slot.VerificationState != VerificationStateIdentityConfirmed {
+		t.Fatalf("slot %02x = %#v, present=%v; want identity-confirmed", address, slot, ok)
 	}
 	return slot
 }

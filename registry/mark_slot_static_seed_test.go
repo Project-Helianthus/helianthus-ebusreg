@@ -37,11 +37,9 @@ func TestMarkSlotStaticSeed_BasicWrite(t *testing.T) {
 	}
 }
 
-// TestMarkSlotStaticSeed_MonotonicNoDowngrade asserts that re-marking
-// a slot already at higher DiscoverySource (ActiveConfirmed) does NOT
-// downgrade it to StaticSeed. Same shape as
-// TestMarkSlotPassiveObserved_MonotonicMetadata.
-func TestMarkSlotStaticSeed_MonotonicNoDowngrade(t *testing.T) {
+// TestMarkSlotStaticSeed_RetainsExistingActiveSource asserts that a later
+// static-seed mark preserves the source first recorded by active discovery.
+func TestMarkSlotStaticSeed_RetainsExistingActiveSource(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
@@ -63,16 +61,9 @@ func TestMarkSlotStaticSeed_MonotonicNoDowngrade(t *testing.T) {
 	}
 }
 
-// TestMarkSlotStaticSeed_MonotonicUpgradeFromPassive asserts that the
-// passive→static-seed transition correctly upgrades DiscoverySource
-// from PassiveObserved to StaticSeed (per the enum order
-// Unknown < PassiveObserved < StaticSeed < ActiveConfirmed). Note:
-// this is the asymmetry codified in Codex Pass 4 of the P6+P3.5 plan
-// — static-seed pre-known taxonomy "outranks" passive-only inference,
-// so a passively-observed slot subsequently learned to be a static
-// seed advances; the reverse direction (ActiveConfirmed -> StaticSeed)
-// is rejected by MonotonicNoDowngrade above.
-func TestMarkSlotStaticSeed_MonotonicUpgradeFromPassive(t *testing.T) {
+// TestMarkSlotStaticSeed_RetainsPassiveOriginalSource asserts that later
+// taxonomy knowledge does not rewrite a face first observed passively.
+func TestMarkSlotStaticSeed_RetainsPassiveOriginalSource(t *testing.T) {
 	t.Parallel()
 
 	reg := NewDeviceRegistry(nil)
@@ -87,8 +78,8 @@ func TestMarkSlotStaticSeed_MonotonicUpgradeFromPassive(t *testing.T) {
 	reg.MarkSlotStaticSeed(0xF1, SlotRoleMaster, later)
 
 	post, _ := reg.LookupSlot(0xF1)
-	if post.DiscoverySource != DiscoverySourceStaticSeed {
-		t.Errorf("slot.DiscoverySource after passive->static-seed = %v; want StaticSeed (upgrade)", post.DiscoverySource)
+	if post.DiscoverySource != DiscoverySourcePassiveObserved {
+		t.Errorf("slot.DiscoverySource after passive->static-seed = %v; want retained PassiveObserved", post.DiscoverySource)
 	}
 	// VerificationState was Corroborated (from passive); StaticSeed
 	// brings Candidate which is < Corroborated, so the slot must
@@ -280,10 +271,9 @@ func TestMarkSlotStaticSeed_RaceFreeWriteAndRead(t *testing.T) {
 	if !ok || slot == nil {
 		t.Fatalf("after race test: LookupSlot(0xF1) ok=%v slot=%v", ok, slot)
 	}
-	// Final state: at least one StaticSeed write happened and the
-	// monotonic guard means DiscoverySource >= StaticSeed
-	// (PassiveObserved < StaticSeed).
-	if slot.DiscoverySource < DiscoverySourceStaticSeed {
-		t.Errorf("after race test: slot.DiscoverySource = %v; want >= StaticSeed", slot.DiscoverySource)
+	// The first writer establishes the immutable native source; later writers
+	// cannot rewrite it. Either concurrent admission path is valid here.
+	if slot.DiscoverySource != DiscoverySourceStaticSeed && slot.DiscoverySource != DiscoverySourcePassiveObserved {
+		t.Errorf("after race test: slot.DiscoverySource = %v; want initial StaticSeed or PassiveObserved", slot.DiscoverySource)
 	}
 }

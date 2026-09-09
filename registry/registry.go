@@ -74,14 +74,15 @@ type FrameTemplate interface {
 }
 
 type DeviceRegistry struct {
-	mu                    sync.RWMutex
-	observationGeneration uint64
-	proofGeneration       uint64
-	providers             []PlaneProvider
-	entries               map[byte]*deviceEntry
-	addressTable          [256]*AddressSlot
-	identity              map[string]*deviceEntry
-	qualifiedWitnesses    [256]qualifiedIdentityWitnessRecord
+	mu                           sync.RWMutex
+	observationGeneration        uint64
+	proofGeneration              uint64
+	providers                    []PlaneProvider
+	entries                      map[byte]*deviceEntry
+	addressTable                 [256]*AddressSlot
+	identity                     map[string]*deviceEntry
+	qualifiedWitnesses           [256]qualifiedIdentityWitnessRecord
+	qualifiedVaillantControllers [256]qualifiedVaillantControllerRecord
 	// topology records explicit source-target or canonical-companion
 	// relationships independently from qualified identity membership.
 	// A complete identity may join independent entries, but only these

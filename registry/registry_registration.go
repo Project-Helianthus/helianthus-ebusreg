@@ -8,6 +8,7 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 
 	entry, retainedConflict := r.registerLocked(info)
 	if retainedConflict {
+		r.retireQualifiedVaillantControllerLocked(info.Address)
 		return entry
 	}
 	state := VerificationStateCandidate
@@ -22,6 +23,7 @@ func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	r.observationGeneration++
 	r.reconcileQualifiedIdentityWitnessesLocked()
 	r.recordDirectQualifiedIdentityWitnessLocked(info, entry)
+	r.recordDirectQualifiedVaillantControllerLocked(info)
 	return entry
 }
 

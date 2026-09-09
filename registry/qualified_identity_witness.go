@@ -115,6 +115,7 @@ func (r *DeviceRegistry) reconcileQualifiedIdentityWitnessesLocked() {
 			r.qualifiedWitnesses[address] = qualifiedIdentityWitnessRecord{}
 		}
 	}
+	r.reconcileQualifiedVaillantControllersLocked()
 }
 
 // qualifiedIdentityWitnessCurrentLocked is the shared currentness rule for

@@ -92,7 +92,7 @@ func (r *DeviceRegistry) recordDirectQualifiedVaillantControllerLocked(info Devi
 
 func matchesQualifiedVaillantControllerTuple(info DeviceInfo) bool {
 	identity := canonicalPhysicalIdentity(info)
-	return isQualifiedWitnessAddress(info.Address) && identity.isQualified() &&
+	return info.Address == 0x15 && identity.isQualified() &&
 		identity.manufacturer == "VAILLANT" && identity.deviceID == "BASV2" &&
 		identity.softwareVersion == "0507" && identity.hardwareVersion == "1704"
 }

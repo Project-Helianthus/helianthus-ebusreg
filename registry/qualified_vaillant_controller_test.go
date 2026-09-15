@@ -45,6 +45,16 @@ func TestQualifiedVaillantController_ExactDirectTupleOnly(t *testing.T) {
 	}
 }
 
+func TestQualifiedVaillantController_RejectsTupleAwayFromEvidenceAddress(t *testing.T) {
+	for _, address := range []byte{0x10, 0x26} {
+		registry := NewDeviceRegistry(nil)
+		registry.Register(directQualifiedBASV2(address, "SN-WRONG-ADDRESS"))
+		if _, ok := registry.CurrentQualifiedVaillantController(address); ok {
+			t.Fatalf("BASV2 tuple at 0x%02X qualified; evidence is scoped to 0x15", address)
+		}
+	}
+}
+
 func TestQualifiedVaillantController_SparseAndLifecycleRetirement(t *testing.T) {
 	registry := NewDeviceRegistry(nil)
 	registry.Register(directQualifiedBASV2(0x15, "SN-1"))

@@ -118,11 +118,59 @@ func (c ControllerCapability) String() string {
 }
 
 func (c Catalog) ControllerCapability(partNumber string) ControllerCapability {
-	record, found := c.ByPartNumber[strings.TrimSpace(partNumber)]
+	partNumber = strings.TrimSpace(partNumber)
+	if partNumber == "" {
+		return ControllerUnknown
+	}
+
+	// All is the accepted catalog surface. ByPartNumber is deliberately
+	// narrower: it contains only metadata-complete records used for richer
+	// identity enrichment. Capability classification must not turn a published
+	// part number into Unknown merely because unrelated metadata is incomplete.
+	if len(c.All) != 0 {
+		found := false
+		capability := ControllerUnknown
+		for _, record := range c.All {
+			if strings.TrimSpace(record.PartNumber) != partNumber {
+				continue
+			}
+			found = true
+			role := strings.TrimSpace(record.Role)
+			if role == "" {
+				return ControllerUnknown
+			}
+			classified := controllerCapabilityForRole(role)
+			if capability == ControllerUnknown {
+				capability = classified
+				continue
+			}
+			if capability != classified {
+				// Conflicting duplicate catalog rows cannot authorize a positive or
+				// negative classification.
+				return ControllerUnknown
+			}
+		}
+		if !found {
+			return ControllerUnknown
+		}
+		return capability
+	}
+
+	// Preserve programmatic Catalog values created before All became the
+	// capability source. Loaded catalogs always take the path above.
+	record, found := c.ByPartNumber[partNumber]
 	if !found {
 		return ControllerUnknown
 	}
-	if strings.EqualFold(record.Role, "Regulator") {
+	if strings.TrimSpace(record.Role) == "" {
+		return ControllerUnknown
+	}
+	return controllerCapabilityForRole(record.Role)
+}
+
+func controllerCapabilityForRole(role string) ControllerCapability {
+	if strings.EqualFold(strings.TrimSpace(role), "Regulator") ||
+		strings.EqualFold(strings.TrimSpace(role), "Thermostat") {
 		return ControllerPresent
 	}
 	return ControllerNone

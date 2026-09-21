@@ -135,4 +135,73 @@ func TestControllerCapabilityRealCatalog(t *testing.T) {
 	if got := catalog.ControllerCapability("0010016292"); got != ControllerNone {
 		t.Fatalf("expected 0010016292 to be ControllerNone, got %v", got)
 	}
+	if got := catalog.ControllerCapability("0020118080"); got != ControllerPresent {
+		t.Fatalf("expected thermostat 0020118080 to be ControllerPresent, got %v", got)
+	}
+	if got := catalog.ControllerCapability("0010002465"); got != ControllerNone {
+		t.Fatalf("expected metadata-incomplete boiler 0010002465 to be ControllerNone, got %v", got)
+	}
+}
+
+func TestControllerCapabilityUsesFullCatalogForIncompleteMetadata(t *testing.T) {
+	catalog := Catalog{
+		All: []Record{{PartNumber: " PN_THERM ", Role: " Thermostat "}},
+		// The richer enrichment index intentionally excludes metadata-incomplete
+		// rows. Capability classification must still use the accepted catalog row.
+		ByPartNumber: map[string]Record{},
+	}
+
+	if got := catalog.ControllerCapability("PN_THERM"); got != ControllerPresent {
+		t.Fatalf("expected metadata-incomplete thermostat to be ControllerPresent, got %v", got)
+	}
+}
+
+func TestControllerCapabilityClosedRolePolicy(t *testing.T) {
+	tests := []struct {
+		name string
+		role string
+		want ControllerCapability
+	}{
+		{name: "regulator", role: "Regulator", want: ControllerPresent},
+		{name: "thermostat case insensitive", role: "tHeRmOsTaT", want: ControllerPresent},
+		{name: "known non-controller role", role: "Boiler", want: ControllerNone},
+		{name: "unqualified role", role: "Controller", want: ControllerNone},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			catalog := Catalog{All: []Record{{PartNumber: "PN", Role: tt.role}}}
+			if got := catalog.ControllerCapability("PN"); got != tt.want {
+				t.Fatalf("ControllerCapability() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestControllerCapabilityUnknownForUnpublishedOrRolelessRows(t *testing.T) {
+	catalog := Catalog{All: []Record{
+		{PartNumber: "PN_ROLELESS", Role: "   "},
+		{PartNumber: "PN_BOILER", Role: "Boiler"},
+	}}
+
+	if got := catalog.ControllerCapability("PN_MISSING"); got != ControllerUnknown {
+		t.Fatalf("unpublished part number = %v, want ControllerUnknown", got)
+	}
+	if got := catalog.ControllerCapability("PN_ROLELESS"); got != ControllerUnknown {
+		t.Fatalf("roleless catalog row = %v, want ControllerUnknown", got)
+	}
+	if got := catalog.ControllerCapability("   "); got != ControllerUnknown {
+		t.Fatalf("blank part number = %v, want ControllerUnknown", got)
+	}
+}
+
+func TestControllerCapabilityFailsClosedOnConflictingDuplicateRoles(t *testing.T) {
+	catalog := Catalog{All: []Record{
+		{PartNumber: "PN_DUP", Role: "Thermostat"},
+		{PartNumber: "PN_DUP", Role: "Boiler"},
+	}}
+
+	if got := catalog.ControllerCapability("PN_DUP"); got != ControllerUnknown {
+		t.Fatalf("conflicting duplicate roles = %v, want ControllerUnknown", got)
+	}
 }

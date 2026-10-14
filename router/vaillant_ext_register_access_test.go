@@ -119,7 +119,7 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 				Target:    0x10,
 				Primary:   0xB5,
 				Secondary: 0x24,
-				Data:      []byte{0x01, 0x01, 0x00, 0x04, 0x2A},
+				Data:      []byte{0x01, 0x01, 0x04, 0x00, 0x2A},
 			},
 		}
 		eventRouter := router.NewBusEventRouter(bus)
@@ -128,7 +128,7 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 			"source":   byte(0x10),
 			"group":    byte(0x01),
 			"instance": byte(0x01),
-			"addr":     uint16(0x0400),
+			"addr":     uint16(0x0004),
 		})
 		if err != nil {
 			t.Fatalf("Invoke error = %v", err)
@@ -147,11 +147,11 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 		if constraints["type"] != "f32_range" || constraints["min"] != float64(35) || constraints["max"] != float64(70) || constraints["step"] != float64(1) {
 			t.Fatalf("constraints map = %#v; want f32_range/min=35/max=70/step=1", constraints)
 		}
-		if got := values["constraint_record"]; !got.Valid || got.Value != uint16(0x0400) {
-			t.Fatalf("constraint_record = %+v; want 0x0400 valid", got)
+		if got := values["constraint_record"]; !got.Valid || got.Value != uint16(0x0004) {
+			t.Fatalf("constraint_record = %+v; want 0x0004 valid", got)
 		}
-		if got := values["constraint_record_hex"]; !got.Valid || got.Value != "0400" {
-			t.Fatalf("constraint_record_hex = %+v; want 0400 valid", got)
+		if got := values["constraint_record_hex"]; !got.Valid || got.Value != "0004" {
+			t.Fatalf("constraint_record_hex = %+v; want 0004 valid", got)
 		}
 		if got := values["constraint_type"]; !got.Valid || got.Value != "f32_range" {
 			t.Fatalf("constraint_type = %+v; want f32_range valid", got)
@@ -176,7 +176,7 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 				Target:    0x10,
 				Primary:   0xB5,
 				Secondary: 0x24,
-				Data:      []byte{0x01, 0x03, 0x00, 0x05, 0x2A},
+				Data:      []byte{0x01, 0x03, 0x05, 0x00, 0x2A},
 			},
 		}
 		eventRouter := router.NewBusEventRouter(bus)
@@ -185,18 +185,18 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 			"source":   byte(0x10),
 			"group":    byte(0x01),
 			"instance": byte(0x01),
-			"addr":     uint16(0x0400),
+			"addr":     uint16(0x0004),
 		})
 		if err != nil {
 			t.Fatalf("Invoke error = %v", err)
 		}
 
 		values := result.(map[string]types.Value)
-		if got := values["constraint_record"]; !got.Valid || got.Value != uint16(0x0500) {
-			t.Fatalf("constraint_record = %+v; want 0x0500 valid", got)
+		if got := values["constraint_record"]; !got.Valid || got.Value != uint16(0x0005) {
+			t.Fatalf("constraint_record = %+v; want 0x0005 valid", got)
 		}
-		if got := values["constraint_record_hex"]; !got.Valid || got.Value != "0500" {
-			t.Fatalf("constraint_record_hex = %+v; want 0500 valid", got)
+		if got := values["constraint_record_hex"]; !got.Valid || got.Value != "0005" {
+			t.Fatalf("constraint_record_hex = %+v; want 0005 valid", got)
 		}
 		if got := values["constraint_min"]; !got.Valid || got.Value != float64(5) {
 			t.Fatalf("constraint_min = %+v; want 5 valid", got)
@@ -215,7 +215,7 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 				Target:    0x10,
 				Primary:   0xB5,
 				Secondary: 0x24,
-				Data:      []byte{0x01, 0x7F, 0x00, 0x01, 0x2A},
+				Data:      []byte{0x01, 0x7F, 0x01, 0x00, 0x2A},
 			},
 		}
 		eventRouter := router.NewBusEventRouter(bus)
@@ -224,7 +224,7 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 			"source":   byte(0x10),
 			"group":    byte(0x01),
 			"instance": byte(0x01),
-			"addr":     uint16(0x0400),
+			"addr":     uint16(0x0004),
 		})
 		if err != nil {
 			t.Fatalf("Invoke error = %v", err)
@@ -236,6 +236,65 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 		}
 		if got, ok := values["constraint_record"]; ok {
 			t.Fatalf("constraint_record = %+v; want absent when echoed GG/RR has no mapping", got)
+		}
+	})
+
+	t.Run("bivalence register carries no unscoped constraint", func(t *testing.T) {
+		t.Parallel()
+
+		bus := &vaillantMockBus{
+			response: &protocol.Frame{
+				Source:    0x08,
+				Target:    0x10,
+				Primary:   0xB5,
+				Secondary: 0x24,
+				Data:      []byte{0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0xA0, 0x41},
+			},
+		}
+		eventRouter := router.NewBusEventRouter(bus)
+
+		result, err := eventRouter.Invoke(context.Background(), plane, "get_ext_register", map[string]any{
+			"source":   byte(0x10),
+			"group":    byte(0x00),
+			"instance": byte(0x00),
+			"addr":     uint16(0x0001),
+		})
+		if err != nil {
+			t.Fatalf("Invoke error = %v", err)
+		}
+		values := result.(map[string]types.Value)
+		if got, ok := values["constraints"]; ok {
+			t.Fatalf("constraints = %+v; DHW bivalence bounds are controller-profile scoped", got)
+		}
+	})
+
+	t.Run("remote opcode does not inherit local constraints", func(t *testing.T) {
+		t.Parallel()
+
+		bus := &vaillantMockBus{
+			response: &protocol.Frame{
+				Source:    0x08,
+				Target:    0x10,
+				Primary:   0xB5,
+				Secondary: 0x24,
+				Data:      []byte{0x01, 0x01, 0x04, 0x00, 0x2A},
+			},
+		}
+		eventRouter := router.NewBusEventRouter(bus)
+
+		result, err := eventRouter.Invoke(context.Background(), plane, "get_ext_register", map[string]any{
+			"source":   byte(0x10),
+			"opcode":   byte(0x06),
+			"group":    byte(0x01),
+			"instance": byte(0x01),
+			"addr":     uint16(0x0004),
+		})
+		if err != nil {
+			t.Fatalf("Invoke error = %v", err)
+		}
+		values := result.(map[string]types.Value)
+		if got, ok := values["constraints"]; ok {
+			t.Fatalf("constraints = %+v; want absent for OP06", got)
 		}
 	})
 

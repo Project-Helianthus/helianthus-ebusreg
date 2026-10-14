@@ -62,6 +62,50 @@ Normalization semantics are stable and test-backed:
 | no routable provider | `routable=true` |
 | explicit routable provider | provider value is preserved |
 
+## Passive B516 Energy Date Contract
+
+The Vaillant `system` plane decodes the two B516/`0x10` selector date bytes
+as one little-endian packed word: `day = word & 0x1F`,
+`month = (word >> 5) & 0x0F`, `year = 2000 + (word >> 9)`.
+These are absolute dates, independent of the registry's wall clock.
+
+| Projected field | Go value type | Validity |
+|---|---|---|
+| `year` | `uint16` | Valid daily, monthly, or yearly window (structural range 2000–2127) |
+| `month` | `uint8` | Valid daily or monthly window |
+| `day` | `uint8` | Valid daily window |
+
+Daily windows require a real Gregorian date, including leap-year validation.
+Monthly windows require month 1–12 and day zero; yearly windows require month
+and day zero. Malformed dates publish invalid `year`, `month`, and `day`
+values while retaining unrelated fields, raw bytes, and independently decoded
+response `wh`. Total observations (`period = "all"`) have invalid date fields:
+total request date bytes are ignored, and an echoed reply date is not the
+energy window. Unknown time bases also have invalid date fields.
+
+**Consumer API change:** `year` replaces `year_kind`; `year_kind` is no longer
+published. For example, `00 32` always identifies 2025 and `00 34` always
+identifies 2026. The gateway consumer must use the absolute year for dated
+energy merge keys. A consumer that needs current/previous labels must derive
+them from an explicit reference date. The corresponding gateway changes in
+`graphql/energy_merge.go` and `graphql/semantic_live.go` are a separate item;
+this registry change alone does not complete downstream integration.
+
+`payload` and `selector` retain copied wire bytes (`selector`: 8 request bytes
+or 7 response bytes). `selector_w`, `selector_v`, and `selector_q` remain
+`uint8` raw nibble diagnostics for compatibility; they do not encode relative
+years or separate month banks. Response `wh` decoding and rejection of
+non-zero return codes remain unchanged. Exact 8-byte requests with both
+index fields `0xFF` and exact 11-byte successful read replies remain the
+supported layouts; padded replies and other B516 subcommands are outside
+this decoder's scope.
+
+Evidence: [B516 energy statistics, sections 3–6.1](https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/fb174a4a54a7d3e425dbad702708ebe6ee118552/protocols/vaillant/ebus-vaillant-B516-energy.md),
+read from the canonical docs clone's `origin/main`. Section 6.1 records a total
+reply with `87 34` (2026-04-07) and 14165 Wh. Month-level hardware validation
+and the historical years a regulator actually answers remain open in that
+source; decoding the packed range does not prove device support.
+
 ## Shared Service Projections
 
 For MCP and GraphQL service-layer reuse, `registry` exposes projection helpers:

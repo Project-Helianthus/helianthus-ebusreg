@@ -1,7 +1,9 @@
 package system
 
 import (
+	"encoding/binary"
 	"fmt"
+	"time"
 
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
 	"github.com/Project-Helianthus/helianthus-ebusgo/types"
@@ -29,9 +31,9 @@ func (plane *plane) DecodeBroadcast(frame protocol.Frame) (map[string]types.Valu
 		"period_code":     {Value: selector.period, Valid: true},
 		"source_code":     {Value: selector.source, Valid: true},
 		"usage_code":      {Value: selector.usage, Valid: true},
-		"selector_w":      {Value: selector.w, Valid: true},
-		"selector_v":      {Value: selector.v, Valid: true},
-		"selector_q":      {Value: selector.q, Valid: true},
+		"selector_w":      {Value: uint8((selector.dateWord >> 4) & 0x0F), Valid: true},
+		"selector_v":      {Value: uint8(selector.dateWord & 0x0F), Valid: true},
+		"selector_q":      {Value: uint8((selector.dateWord >> 8) & 0x0F), Valid: true},
 		"selector_is_rsp": {Value: selector.isResponse, Valid: true},
 	}
 
@@ -51,22 +53,19 @@ func (plane *plane) DecodeBroadcast(frame protocol.Frame) (map[string]types.Valu
 		values["usage"] = types.Value{Valid: false}
 	}
 
-	if yearKind, ok := energyStatsYearKind(selector.period, selector.q); ok {
-		values["year_kind"] = types.Value{Value: yearKind, Valid: true}
-	} else {
-		values["year_kind"] = types.Value{Valid: false}
-	}
-
-	if month, ok := energyStatsMonth(selector.period, selector.w, selector.q); ok {
-		values["month"] = types.Value{Value: month, Valid: true}
-	} else {
-		values["month"] = types.Value{Valid: false}
-	}
-
-	if day, ok := energyStatsDay(selector.period, selector.w, selector.v); ok {
-		values["day"] = types.Value{Value: day, Valid: true}
-	} else {
-		values["day"] = types.Value{Valid: false}
+	// Dates identify absolute windows. Relative labels require a consumer's
+	// reference date and cannot be inferred from the selector alone.
+	values["year"] = types.Value{Valid: false}
+	values["month"] = types.Value{Valid: false}
+	values["day"] = types.Value{Valid: false}
+	if year, month, day, ok := energyStatsDate(selector.period, selector.dateWord); ok {
+		values["year"] = types.Value{Value: year, Valid: true}
+		if selector.period == 1 || selector.period == 2 {
+			values["month"] = types.Value{Value: month, Valid: true}
+		}
+		if selector.period == 1 {
+			values["day"] = types.Value{Value: day, Valid: true}
+		}
 	}
 
 	if selector.isResponse {
@@ -90,9 +89,7 @@ type energyStatsSelector struct {
 	period     uint8
 	source     uint8
 	usage      uint8
-	w          uint8
-	v          uint8
-	q          uint8
+	dateWord   uint16
 	isResponse bool
 }
 
@@ -105,38 +102,24 @@ func parseEnergyStatsSelector(payload []byte) (energyStatsSelector, bool) {
 		if payload[2] != 0xFF || payload[3] != 0xFF {
 			return energyStatsSelector{}, false
 		}
-		if payload[7]&0xF0 != 0x30 {
-			return energyStatsSelector{}, false
-		}
-
-		wv := payload[6]
 		return energyStatsSelector{
 			raw:        append([]byte(nil), payload...),
 			period:     payload[1] & 0x0F,
 			source:     payload[4] & 0x0F,
 			usage:      payload[5] & 0x0F,
-			w:          (wv >> 4) & 0x0F,
-			v:          wv & 0x0F,
-			q:          payload[7] & 0x0F,
+			dateWord:   binary.LittleEndian.Uint16(payload[6:8]),
 			isResponse: false,
 		}, true
 	case 11:
 		if payload[0] > 0x03 {
 			return energyStatsSelector{}, false
 		}
-		if payload[6]&0xF0 != 0x30 {
-			return energyStatsSelector{}, false
-		}
-
-		wv := payload[5]
 		return energyStatsSelector{
 			raw:        append([]byte(nil), payload[:7]...),
 			period:     payload[0] & 0x0F,
 			source:     payload[3] & 0x0F,
 			usage:      payload[4] & 0x0F,
-			w:          (wv >> 4) & 0x0F,
-			v:          wv & 0x0F,
-			q:          payload[6] & 0x0F,
+			dateWord:   binary.LittleEndian.Uint16(payload[5:7]),
 			isResponse: true,
 		}, true
 	default:
@@ -191,62 +174,33 @@ func energyStatsUsageName(code uint8) (string, bool) {
 	}
 }
 
-func energyStatsYearKind(period, q uint8) (string, bool) {
+// energyStatsDate validates the components used by the selected time base.
+// Total selectors have no date window, even when replies echo a calendar date.
+// An invalid date does not invalidate independently decoded energy fields.
+func energyStatsDate(period uint8, word uint16) (year uint16, month, day uint8, ok bool) {
+	year = 2000 + (word >> 9)
+	month = uint8((word >> 5) & 0x0F)
+	day = uint8(word & 0x1F)
+
 	switch period {
-	case 1, 2, 3:
-	default:
-		return "", false
-	}
-
-	switch q {
-	case 0, 1:
-		return "previous", true
-	case 2, 3:
-		return "current", true
-	default:
-		return "", false
-	}
-}
-
-func energyStatsMonth(period, w, q uint8) (uint8, bool) {
-	if period != 1 && period != 2 {
-		return 0, false
-	}
-
-	baseW := w
-	if period == 1 && baseW%2 == 1 {
-		baseW--
-	}
-
-	switch q {
-	case 0, 2:
-		month := baseW / 2
-		if month < 1 || month > 7 {
-			return 0, false
+	case 1:
+		if month < 1 || month > 12 || day < 1 {
+			return 0, 0, 0, false
 		}
-		return month, true
-	case 1, 3:
-		month := 8 + baseW/2
-		if month < 8 || month > 12 {
-			return 0, false
+		date := time.Date(int(year), time.Month(month), int(day), 0, 0, 0, 0, time.UTC)
+		if date.Month() != time.Month(month) || date.Day() != int(day) {
+			return 0, 0, 0, false
 		}
-		return month, true
+	case 2:
+		if month < 1 || month > 12 || day != 0 {
+			return 0, 0, 0, false
+		}
+	case 3:
+		if month != 0 || day != 0 {
+			return 0, 0, 0, false
+		}
 	default:
-		return 0, false
+		return 0, 0, 0, false
 	}
-}
-
-func energyStatsDay(period, w, v uint8) (uint8, bool) {
-	if period != 1 {
-		return 0, false
-	}
-
-	day := v
-	if w%2 == 1 {
-		day = 16 + v
-	}
-	if day < 1 || day > 31 {
-		return 0, false
-	}
-	return day, true
+	return year, month, day, true
 }

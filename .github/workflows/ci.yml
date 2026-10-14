@@ -4,11 +4,19 @@ on:
     branches: [main]
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   terminology:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, synology]
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          clean: true
       - run: |
           # Phase C M-C6: AddressByRole(SlotRole) test documents
           # the eBUS-spec SlotRoleMaster/SlotRoleSlave enum values.
@@ -20,39 +28,57 @@ jobs:
           fi
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, synology]
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
+          clean: true
           persist-credentials: false
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+      - name: Scope git config to this job
+        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - run: go vet ./...
       - run: go build ./...
+      - name: Remove job-scoped git config
+        if: always()
+        run: rm -f "$RUNNER_TEMP/gitconfig"
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, synology]
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
+          clean: true
           persist-credentials: false
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+      - name: Scope git config to this job
+        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - run: go test -race -count=1 ./...
+      - name: Remove job-scoped git config
+        if: always()
+        run: rm -f "$RUNNER_TEMP/gitconfig"
 
   tinygo:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, synology]
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
+          clean: true
           persist-credentials: false
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+      - name: Scope git config to this job
+        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - uses: acifani/setup-tinygo@v2
         with:
@@ -67,15 +93,25 @@ jobs:
             echo "tinygo build -target esp32 $pkg"
             tinygo build -target esp32 "$pkg"
           done
+      - name: Remove job-scoped git config
+        if: always()
+        run: rm -f "$RUNNER_TEMP/gitconfig"
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, synology]
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
+          clean: true
           persist-credentials: false
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+      - name: Scope git config to this job
+        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - uses: golangci/golangci-lint-action@v6
+      - name: Remove job-scoped git config
+        if: always()
+        run: rm -f "$RUNNER_TEMP/gitconfig"

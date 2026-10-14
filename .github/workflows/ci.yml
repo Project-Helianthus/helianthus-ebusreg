@@ -10,7 +10,8 @@ concurrency:
 
 jobs:
   terminology:
-    runs-on: [self-hosted, synology]
+    # fork pull requests never run on the persistent runners
+    runs-on: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) && 'ubuntu-latest' || 'synology' }}
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -28,9 +29,12 @@ jobs:
           fi
 
   build:
-    runs-on: [self-hosted, synology]
+    # fork pull requests never run on the persistent runners
+    runs-on: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) && 'ubuntu-latest' || 'synology' }}
     timeout-minutes: 30
     steps:
+      - name: Scope git config to this job
+        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
           clean: true
@@ -38,8 +42,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
-      - name: Scope git config to this job
-        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - run: go vet ./...
       - run: go build ./...
@@ -48,9 +50,12 @@ jobs:
         run: rm -f "$RUNNER_TEMP/gitconfig"
 
   test:
-    runs-on: [self-hosted, synology]
+    # fork pull requests never run on the persistent runners
+    runs-on: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) && 'ubuntu-latest' || 'synology' }}
     timeout-minutes: 30
     steps:
+      - name: Scope git config to this job
+        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
           clean: true
@@ -58,8 +63,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
-      - name: Scope git config to this job
-        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - run: go test -race -count=1 ./...
       - name: Remove job-scoped git config
@@ -67,9 +70,12 @@ jobs:
         run: rm -f "$RUNNER_TEMP/gitconfig"
 
   tinygo:
-    runs-on: [self-hosted, synology]
+    # fork pull requests never run on the persistent runners
+    runs-on: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) && 'ubuntu-latest' || 'synology' }}
     timeout-minutes: 30
     steps:
+      - name: Scope git config to this job
+        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
           clean: true
@@ -77,8 +83,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
-      - name: Scope git config to this job
-        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - uses: acifani/setup-tinygo@v2
         with:
@@ -98,9 +102,12 @@ jobs:
         run: rm -f "$RUNNER_TEMP/gitconfig"
 
   lint:
-    runs-on: [self-hosted, synology]
+    # fork pull requests never run on the persistent runners
+    runs-on: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) && 'ubuntu-latest' || 'synology' }}
     timeout-minutes: 30
     steps:
+      - name: Scope git config to this job
+        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
           clean: true
@@ -108,8 +115,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
-      - name: Scope git config to this job
-        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - uses: golangci/golangci-lint-action@v6
       - name: Remove job-scoped git config

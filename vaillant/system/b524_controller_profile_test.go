@@ -4,7 +4,6 @@ import "testing"
 
 var (
 	basv0Identity = B524ControllerIdentity{EID: "BASV0", SoftwareRaw: "0217", HardwareRaw: "8803", APIVersion: "1", Revision: "1"}
-	basv2Identity = B524ControllerIdentity{EID: "BASV2", SoftwareRaw: "0507", HardwareRaw: "1704"}
 )
 
 func TestLookupB524BoundDHWBivalenceIsProfileScoped(t *testing.T) {
@@ -19,14 +18,6 @@ func TestLookupB524BoundDHWBivalenceIsProfileScoped(t *testing.T) {
 	}
 	if !got.Bound.Qualified || got.Bound.Codec != "EXP" || !got.Bound.AccessFlagsKnown || got.Bound.AccessFlags != 0x03 {
 		t.Fatalf("BASV0 bound metadata = %+v; want qualified EXP flags 03", got.Bound)
-	}
-
-	got = LookupB524Bound(basv2Identity, B524OpcodeLocal, 0x00, 0x0001)
-	if got.Status != B524BoundFound || got.Bound.Min != -20 || got.Bound.Max != 50 || got.Bound.Step != 1 {
-		t.Fatalf("BASV2 result = %+v; want found -20..50 step 1", got)
-	}
-	if got.Bound.Qualified {
-		t.Fatalf("BASV2 bound must stay unqualified: the docs retain a statement, not a fixture record")
 	}
 }
 
@@ -45,6 +36,10 @@ func TestLookupB524BoundExplicitUnknowns(t *testing.T) {
 		{"other hardware", B524ControllerIdentity{EID: "BASV0", SoftwareRaw: "0217", HardwareRaw: "8804", APIVersion: "1", Revision: "1"}, 0x02, 0x00, 0x0001, B524BoundUnknownProfile},
 		{"other api version", B524ControllerIdentity{EID: "BASV0", SoftwareRaw: "0217", HardwareRaw: "8803", APIVersion: "2", Revision: "1"}, 0x02, 0x00, 0x0001, B524BoundUnknownProfile},
 		{"other revision", B524ControllerIdentity{EID: "BASV0", SoftwareRaw: "0217", HardwareRaw: "8803", APIVersion: "1", Revision: "2"}, 0x02, 0x00, 0x0001, B524BoundUnknownProfile},
+		{"BASV0 without API version or revision", B524ControllerIdentity{EID: "BASV0", SoftwareRaw: "0217", HardwareRaw: "8803"}, 0x02, 0x00, 0x0001, B524BoundUnknownProfile},
+		{"BASV0 without API version", B524ControllerIdentity{EID: "BASV0", SoftwareRaw: "0217", HardwareRaw: "8803", Revision: "1"}, 0x02, 0x00, 0x0001, B524BoundUnknownProfile},
+		{"BASV0 without revision", B524ControllerIdentity{EID: "BASV0", SoftwareRaw: "0217", HardwareRaw: "8803", APIVersion: "1"}, 0x02, 0x00, 0x0001, B524BoundUnknownProfile},
+		{"BASV2 identity has no seeded profile", B524ControllerIdentity{EID: "BASV2", SoftwareRaw: "0507", HardwareRaw: "1704"}, 0x02, 0x00, 0x0001, B524BoundUnknownProfile},
 		{"zero identity", B524ControllerIdentity{}, 0x02, 0x00, 0x0001, B524BoundUnknownProfile},
 		{"remote opcode", basv0Identity, 0x06, 0x00, 0x0001, B524BoundUnknownRegister},
 		{"byte-swapped register", basv0Identity, 0x02, 0x00, 0x0100, B524BoundUnknownRegister},

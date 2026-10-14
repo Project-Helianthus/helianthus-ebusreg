@@ -46,7 +46,6 @@ type B524ControllerProfile struct {
 
 const (
 	basv0DHWBivalenceEvidence = "helianthus-docs-ebus protocols/vaillant/fixtures/b524-basv0-description-profile-v1.json, record OP02/GG00/II00/RR0001 (observation basv0_sw0217_hw8803_api1)"
-	basv2DHWBivalenceEvidence = "helianthus-docs-ebus protocols/vaillant/ebus-vaillant-b524-basv0-profile-v1.md, section Observed local bound: BASV2 observation -20..50 step 1; statement only, no retained fixture record, API version and revision not recorded"
 )
 
 var b524ControllerProfiles = []B524ControllerProfile{
@@ -61,16 +60,11 @@ var b524ControllerProfiles = []B524ControllerProfile{
 			},
 		},
 	},
-	{
-		Identity: B524ControllerIdentity{EID: "BASV2", SoftwareRaw: "0507", HardwareRaw: "1704"},
-		Bounds: map[b524BoundSelector]B524RegisterBound{
-			// The earlier unscoped catalog value (-20..50) is this BASV2 observation.
-			{Opcode: B524OpcodeLocal, Group: 0x00, Register: 0x0001}: {
-				Codec: "EXP", Min: -20, Max: 50, Step: 1,
-				Qualified: false, Evidence: basv2DHWBivalenceEvidence,
-			},
-		},
-	},
+	// No BASV2 profile is seeded. The docs state a BASV2 observation of
+	// -20..50 step 1 for OP02/GG00/RR0001 (the former unscoped catalog value),
+	// but no published source binds that bound to a controller identity
+	// (software, hardware, API version, revision). An unmatched identity
+	// yields B524BoundUnknownProfile.
 }
 
 // B524BoundStatus is the outcome of LookupB524Bound.

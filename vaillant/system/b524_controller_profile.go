@@ -31,9 +31,12 @@ type B524RegisterBound struct {
 	Evidence string
 }
 
+// b524BoundSelector is the retained-record key: opcode, group, instance and
+// register. A bound observed for one instance is never reused for another.
 type b524BoundSelector struct {
 	Opcode   byte
 	Group    byte
+	Instance byte   // II byte as sent in the request
 	Register uint16 // little-endian register number (RRlo | RRhi<<8)
 }
 
@@ -53,7 +56,7 @@ var b524ControllerProfiles = []B524ControllerProfile{
 		Identity: B524ControllerIdentity{EID: "BASV0", SoftwareRaw: "0217", HardwareRaw: "8803", APIVersion: "1", Revision: "1"},
 		Bounds: map[b524BoundSelector]B524RegisterBound{
 			// system_dhw_bivalence_point: raw 0001000000A0C10000A0410000803F.
-			{Opcode: B524OpcodeLocal, Group: 0x00, Register: 0x0001}: {
+			{Opcode: B524OpcodeLocal, Group: 0x00, Instance: 0x00, Register: 0x0001}: {
 				Codec: "EXP", Min: -20, Max: 20, Step: 1,
 				AccessFlags: 0x03, AccessFlagsKnown: true,
 				Qualified: true, Evidence: basv0DHWBivalenceEvidence,
@@ -100,14 +103,17 @@ type B524BoundResult struct {
 }
 
 // LookupB524Bound returns the bound for (controller identity, opcode, group,
-// register). register is the little-endian register number (RRlo | RRhi<<8).
-func LookupB524Bound(identity B524ControllerIdentity, opcode, group byte, register uint16) B524BoundResult {
+// instance, register). instance is the II byte as sent in the request;
+// register is the little-endian register number (RRlo | RRhi<<8). The
+// retained evidence is instance-specific, so an instance without its own
+// record yields B524BoundUnknownRegister.
+func LookupB524Bound(identity B524ControllerIdentity, opcode, group, instance byte, register uint16) B524BoundResult {
 	for i := range b524ControllerProfiles {
 		profile := &b524ControllerProfiles[i]
 		if profile.Identity != identity {
 			continue
 		}
-		bound, ok := profile.Bounds[b524BoundSelector{Opcode: opcode, Group: group, Register: register}]
+		bound, ok := profile.Bounds[b524BoundSelector{Opcode: opcode, Group: group, Instance: instance, Register: register}]
 		if !ok {
 			return B524BoundResult{Status: B524BoundUnknownRegister}
 		}

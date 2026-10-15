@@ -165,6 +165,10 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 		if got := values["constraint_step"]; !got.Valid || got.Value != float64(1) {
 			t.Fatalf("constraint_step = %+v; want 1 valid", got)
 		}
+		if _, ok := values["constraints"]; !ok {
+			t.Fatal("constraints absent; want present")
+		}
+		assertConstraintQualification(t, values)
 	})
 
 	t.Run("echoed reply mapping overrides constraint record", func(t *testing.T) {
@@ -204,6 +208,7 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 		if got := values["constraint_max"]; !got.Valid || got.Value != float64(30) {
 			t.Fatalf("constraint_max = %+v; want 30 valid", got)
 		}
+		assertConstraintQualification(t, values)
 	})
 
 	t.Run("echoed reply without mapping clears request constraints", func(t *testing.T) {
@@ -237,6 +242,7 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 		if got, ok := values["constraint_record"]; ok {
 			t.Fatalf("constraint_record = %+v; want absent when echoed GG/RR has no mapping", got)
 		}
+		assertConstraintQualification(t, values)
 	})
 
 	t.Run("bivalence register carries no unscoped constraint", func(t *testing.T) {
@@ -266,6 +272,7 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 		if got, ok := values["constraints"]; ok {
 			t.Fatalf("constraints = %+v; DHW bivalence bounds are controller-profile scoped", got)
 		}
+		assertConstraintQualification(t, values)
 	})
 
 	t.Run("remote opcode does not inherit local constraints", func(t *testing.T) {
@@ -359,5 +366,72 @@ func TestVaillantSystem_SetExtRegister_SendsPayload(t *testing.T) {
 
 	if !bytes.Equal(bus.lastRequest.Data, []byte{0x02, 0x01, 0x00, 0x00, 0x00, 0x5C, 0xAA, 0xBB}) {
 		t.Fatalf("unexpected request data %v; want [02 01 00 00 00 5c aa bb]", bus.lastRequest.Data)
+	}
+}
+
+func assertConstraintQualification(t *testing.T, values map[string]types.Value) {
+	t.Helper()
+
+	_, hasConstraints := values["constraints"]
+	qualified, hasQualified := values["constraint_qualified"]
+	scope, hasScope := values["constraint_scope"]
+	if !hasConstraints {
+		if hasQualified || hasScope {
+			t.Fatalf("qualification markers present without constraints: qualified=%+v scope=%+v", qualified, scope)
+		}
+		return
+	}
+	if !hasQualified || !qualified.Valid || qualified.Value != false {
+		t.Fatalf("constraint_qualified = %+v; want valid false", qualified)
+	}
+	if !hasScope || !scope.Valid || scope.Value != "unscoped_catalog" {
+		t.Fatalf("constraint_scope = %+v; want valid \"unscoped_catalog\"", scope)
+	}
+}
+
+func TestVaillantSystem_GetExtRegister_ConstraintQualificationMarkers(t *testing.T) {
+	t.Parallel()
+
+	planes := system.NewProvider().CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", Address: 0x08})
+	plane := planes[0].(router.Plane)
+
+	cases := []struct {
+		name            string
+		data            []byte
+		group           byte
+		addr            uint16
+		wantConstraints bool
+	}{
+		{"1-byte zero reply, mapped request", []byte{0x00}, 0x01, 0x0004, true},
+		{"1-byte zero reply, unmapped request", []byte{0x00}, 0x00, 0x5C00, false},
+		{"3-byte reply, mapped request", []byte{0x01, 0x01, 0x04}, 0x01, 0x0004, true},
+		{"4-byte reply, resolved reply addr", []byte{0x01, 0x03, 0x05, 0x00}, 0x01, 0x0004, true},
+		{"4-byte reply, unresolved reply addr", []byte{0x01, 0x7F, 0x01, 0x00}, 0x01, 0x0004, false},
+		{"value reply, resolved reply addr", []byte{0x01, 0x01, 0x04, 0x00, 0x2A}, 0x01, 0x0004, true},
+		{"value reply, unresolved reply addr", []byte{0x01, 0x7F, 0x01, 0x00, 0x2A}, 0x01, 0x0004, false},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
+			bus := &vaillantMockBus{
+				response: &protocol.Frame{Source: 0x08, Target: 0x10, Primary: 0xB5, Secondary: 0x24, Data: tc.data},
+			}
+			eventRouter := router.NewBusEventRouter(bus)
+			result, err := eventRouter.Invoke(context.Background(), plane, "get_ext_register", map[string]any{
+				"source":   byte(0x10),
+				"group":    tc.group,
+				"instance": byte(0x01),
+				"addr":     tc.addr,
+			})
+			if err != nil {
+				t.Fatalf("Invoke error = %v", err)
+			}
+			values := result.(map[string]types.Value)
+			if _, ok := values["constraints"]; ok != tc.wantConstraints {
+				t.Fatalf("constraints present = %v; want %v", ok, tc.wantConstraints)
+			}
+			assertConstraintQualification(t, values)
+		})
 	}
 }

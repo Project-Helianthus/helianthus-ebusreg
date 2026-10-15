@@ -30,7 +30,10 @@ func (constraint b524Constraint) mapValue() map[string]any {
 // Every entry is an observation from one controller family and must not be
 // treated as a universal bound; controller-scoped bounds live in
 // b524_controller_profile.go. Entries for OP06 (remote) are not carried: no
-// evidence ties these ranges to the remote namespace.
+// evidence ties these ranges to the remote namespace. get_ext_register emits
+// these entries with constraint_qualified=false and
+// constraint_scope="unscoped_catalog": consumers must not treat them as
+// profile-scoped, universal, or write-validation authority.
 var b524StaticConstraintsCatalog = map[b524ConstraintSelector]b524Constraint{
 	// OP02/GG00/RR0001 (system_dhw_bivalence_point) is deliberately absent: its
 	// maximum is controller-profile scoped (BASV0 SW0217/HW8803/API1 = 20, the

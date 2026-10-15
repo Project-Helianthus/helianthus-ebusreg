@@ -119,6 +119,10 @@ func (template extRegisterWriteTemplate) Build(params map[string]any) ([]byte, e
 	return payload, nil
 }
 
+// b524ConstraintScopeUnscopedCatalog is the constraint_scope value for bounds
+// taken from b524StaticConstraintsCatalog.
+const b524ConstraintScopeUnscopedCatalog = "unscoped_catalog"
+
 func decodeExtRegisterResponse(cmd byte, opcode byte, group, instance byte, addr uint16, payload []byte) map[string]types.Value {
 	values := map[string]types.Value{
 		"optype":   {Value: cmd, Valid: true},
@@ -173,11 +177,21 @@ func decodeExtRegisterResponse(cmd byte, opcode byte, group, instance byte, addr
 	return values
 }
 
+// addB524ConstraintValues emits the static-catalog bound when one exists. The
+// catalog is controller-unscoped (see b524StaticConstraintsCatalog), so every
+// emission is marked unqualified: constraint_qualified is always false and
+// constraint_scope is always "unscoped_catalog". The bound is a historical
+// observation, not a profile-scoped or universal bound and not authority for
+// validating writes. Profile-scoped bounds come from LookupB524Bound. The
+// markers are present exactly when constraints is present; all other keys are
+// unchanged.
 func addB524ConstraintValues(values map[string]types.Value, constraint b524Constraint, hasConstraint bool, constraintRecord uint16) {
 	if !hasConstraint {
 		return
 	}
 	values["constraints"] = types.Value{Value: constraint.mapValue(), Valid: true}
+	values["constraint_qualified"] = types.Value{Value: false, Valid: true}
+	values["constraint_scope"] = types.Value{Value: b524ConstraintScopeUnscopedCatalog, Valid: true}
 	values["constraint_record"] = types.Value{Value: constraintRecord, Valid: true}
 	values["constraint_record_hex"] = types.Value{Value: fmt.Sprintf("%04X", constraintRecord), Valid: true}
 	values["constraint_type"] = types.Value{Value: constraint.Type, Valid: true}

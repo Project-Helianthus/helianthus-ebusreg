@@ -32,10 +32,10 @@ var B524DiscoveryProfiles = []B524GroupProfile{
 	// Dual-namespace groups: local (OP=0x02) config + remote (OP=0x06) live data
 	{Group: 0x08, Opcode: B524OpcodeLocal, InstanceMax: 0x00, RegisterMax: 0x0007},  // Buffer/Solar Cylinder 2 (singleton)
 	{Group: 0x08, Opcode: B524OpcodeRemote, InstanceMax: 0x0A, RegisterMax: 0x0004}, // Buffer/Solar Cylinder 2 (remote)
-	{Group: 0x09, Opcode: B524OpcodeLocal, InstanceMax: 0x0A, RegisterMax: 0x000F},  // Room Sensors (local config)
-	{Group: 0x09, Opcode: B524OpcodeRemote, InstanceMax: 0x0A, RegisterMax: 0x002F}, // Room Sensors (remote live)
-	{Group: 0x0A, Opcode: B524OpcodeLocal, InstanceMax: 0x0A, RegisterMax: 0x004D},  // Room State (local config)
-	{Group: 0x0A, Opcode: B524OpcodeRemote, InstanceMax: 0x0A, RegisterMax: 0x003F}, // Room State (remote live)
+	{Group: 0x09, Opcode: B524OpcodeLocal, InstanceMax: 0x0A, RegisterMax: 0x000F},  // Ventilation (local selector set; presence Unknown)
+	{Group: 0x09, Opcode: B524OpcodeRemote, InstanceMax: 0x0A, RegisterMax: 0x002F}, // Remote Control Regulators VRC7xx/VRT38x (remote device slots)
+	{Group: 0x0A, Opcode: B524OpcodeLocal, InstanceMax: 0x0A, RegisterMax: 0x004D},  // Local selector set (physical role Unknown)
+	{Group: 0x0A, Opcode: B524OpcodeRemote, InstanceMax: 0x0A, RegisterMax: 0x003F}, // Remote Control Thermostats VR9x (remote device slots)
 
 	// Remote-only groups
 	{Group: 0x0C, Opcode: B524OpcodeRemote, InstanceMax: 0x0A, RegisterMax: 0x003F}, // Unrecognized

@@ -1,16 +1,16 @@
-package system_test
+package system
 
 import (
 	"bytes"
 	"errors"
 	"fmt"
+	"reflect"
 	"testing"
 
 	ebuserrors "github.com/Project-Helianthus/helianthus-ebusgo/errors"
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
 	"github.com/Project-Helianthus/helianthus-ebusgo/types"
 	"github.com/Project-Helianthus/helianthus-ebusreg/registry"
-	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/system"
 )
 
 type k08RequestPlane interface {
@@ -21,7 +21,7 @@ type k08RequestPlane interface {
 func k08RegisteredRead(t *testing.T) (k08RequestPlane, registry.Method) {
 	t.Helper()
 	r := registry.NewDeviceRegistry(nil)
-	r.RegisterProvider(system.NewProvider())
+	r.RegisterProvider(NewProvider())
 	r.Register(registry.DeviceInfo{Manufacturer: "Vaillant", Address: 0x15})
 	entry, ok := r.Lookup(0x15)
 	if !ok {
@@ -53,27 +53,22 @@ func TestK08DiscoveryFullKeysThroughRegistration(t *testing.T) {
 	t.Parallel()
 	plane, method := k08RegisteredRead(t)
 	type key struct{ opcode, group byte }
-	profiles := make(map[key]system.B524GroupProfile)
-	for _, profile := range system.B524DiscoveryProfiles {
+	profiles := make(map[key]B524GroupProfile)
+	for _, profile := range B524DiscoveryProfiles {
 		k := key{profile.Opcode, profile.Group}
 		if _, exists := profiles[k]; exists {
 			t.Fatalf("duplicate full discovery key OP%02X/GG%02X", k.opcode, k.group)
 		}
-		if k.opcode != system.B524OpcodeLocal && k.opcode != system.B524OpcodeRemote {
+		if k.opcode != B524OpcodeLocal && k.opcode != B524OpcodeRemote {
 			t.Fatalf("unsupported discovery opcode %02X", k.opcode)
 		}
 		profiles[k] = profile
 	}
-	// These are exploration endpoints, not qualified bounds or write authority.
-	cases := []system.B524GroupProfile{
-		{Group: 0x08, Opcode: system.B524OpcodeLocal, InstanceMax: 0x00, RegisterMax: 0x0007},
-		{Group: 0x08, Opcode: system.B524OpcodeRemote, InstanceMax: 0x0A, RegisterMax: 0x0004},
-		{Group: 0x09, Opcode: system.B524OpcodeLocal, InstanceMax: 0x0A, RegisterMax: 0x000F},
-		{Group: 0x09, Opcode: system.B524OpcodeRemote, InstanceMax: 0x0A, RegisterMax: 0x002F},
-		{Group: 0x0A, Opcode: system.B524OpcodeLocal, InstanceMax: 0x0A, RegisterMax: 0x004D},
-		{Group: 0x0A, Opcode: system.B524OpcodeRemote, InstanceMax: 0x0A, RegisterMax: 0x003F},
+	if len(profiles) == 0 {
+		t.Fatal("no discovery profiles exercised")
 	}
-	for _, want := range cases {
+	// Exploration endpoints come from the profile source, not a second table.
+	for _, want := range B524DiscoveryProfiles {
 		t.Run(fmt.Sprintf("OP%02X/GG%02X", want.Opcode, want.Group), func(t *testing.T) {
 			got, ok := profiles[key{want.Opcode, want.Group}]
 			if !ok || got != want {
@@ -92,9 +87,35 @@ func TestK08DiscoveryFullKeysThroughRegistration(t *testing.T) {
 			}
 		})
 	}
+	if len(b524ControllerProfiles) == 0 {
+		t.Fatal("no controller profiles exercised")
+	}
+	for i, profile := range b524ControllerProfiles {
+		if len(profile.Bounds) == 0 {
+			t.Fatalf("profile %d has no bounds to exercise", i)
+		}
+		for selector, bound := range profile.Bounds {
+			for _, opcode := range []byte{B524OpcodeLocal, B524OpcodeRemote} {
+				t.Run(fmt.Sprintf("profile_%d/OP%02X/GG%02X/II%02X/RR%04X", i, opcode, selector.Group, selector.Instance, selector.Register), func(t *testing.T) {
+					key := selector
+					key.Opcode = opcode
+					want, exists := profile.Bounds[key]
+					got := LookupB524Bound(profile.Identity, opcode, key.Group, key.Instance, key.Register)
+					if exists {
+						if got.Status != B524BoundFound || got.Bound != want {
+							t.Fatalf("bound = %+v; want found %+v", got, want)
+						}
+					} else if got.Status != B524BoundUnknownRegister || got.Bound != (B524RegisterBound{}) {
+						t.Fatalf("bound = %+v; want unknown_register with zero bound (matched profile has %+v for OP%02X)", got, bound, selector.Opcode)
+					}
+				})
+			}
+		}
+	}
+
 	// Identical GG/II/RR and reply bytes must still retain distinct opcode identity.
 	for _, group := range []byte{0x08, 0x09, 0x0A} {
-		for _, opcode := range []byte{system.B524OpcodeLocal, system.B524OpcodeRemote} {
+		for _, opcode := range []byte{B524OpcodeLocal, B524OpcodeRemote} {
 			params := map[string]any{"source": byte(0x31), "opcode": opcode, "group": group, "instance": byte(0), "addr": uint16(1)}
 			request, err := plane.BuildRequest(method, params)
 			if err != nil {
@@ -111,6 +132,26 @@ func TestK08DiscoveryFullKeysThroughRegistration(t *testing.T) {
 			if !ok {
 				t.Fatalf("decoded type = %T", decoded)
 			}
+			constraint, present := b524StaticConstraintsCatalog[b524ConstraintSelector{Opcode: opcode, Group: group, Register: 1}]
+			if opcode == B524OpcodeLocal && !present {
+				t.Fatalf("missing positive catalog control for GG%02X/RR0001", group)
+			}
+			if opcode == B524OpcodeRemote && present {
+				t.Fatalf("remote opcode unexpectedly has catalog bounds for GG%02X/RR0001", group)
+			}
+			for name, want := range map[string]any{
+				"constraints": constraint.mapValue(), "constraint_qualified": false,
+				"constraint_scope":  b524ConstraintScopeUnscopedCatalog,
+				"constraint_record": uint16(1), "constraint_record_hex": "0001",
+				"constraint_type": constraint.Type, "constraint_min": constraint.Min,
+				"constraint_max": constraint.Max, "constraint_step": constraint.Step,
+			} {
+				got, exists := values[name]
+				if exists != present || (present && (!got.Valid || !reflect.DeepEqual(got.Value, want))) {
+					t.Errorf("OP%02X/GG%02X %s = %+v, present %v; want %+v, present %v", opcode, group, name, got, exists, want, present)
+				}
+			}
+
 			for name, want := range map[string]any{"opcode": opcode, "group": group, "instance": byte(0), "addr": uint16(1)} {
 				if got := values[name]; !got.Valid || got.Value != want {
 					t.Fatalf("%s = %+v; want valid %v", name, got, want)

@@ -19,8 +19,8 @@ func TestK09DecodedEvidenceOwnsBytes(t *testing.T) {
 		payload     []byte
 		selectorLen int
 	}{
-		{"request", []byte{0x10, 0x00, 0xFF, 0xFF, 0x04, 0x03, 0x00, 0x30}, 8},
-		{"response", []byte{0x00, 0x00, 0xFF, 0x04, 0x03, 0x00, 0x30, 0x00, 0x00, 0x80, 0x3F}, 7},
+		{"request", []byte{0x10, 0x03, 0xFF, 0xFF, 0x04, 0x03, 0x00, 0x30}, 8},
+		{"response", []byte{0x03, 0x00, 0xFF, 0x04, 0x03, 0x00, 0x30, 0x00, 0x00, 0x80, 0x3F}, 7},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			// Each returned slice is tested as the mutator, with a fresh decode pair.
@@ -44,6 +44,9 @@ func TestK09DecodedEvidenceOwnsBytes(t *testing.T) {
 						if got := values["selector_is_rsp"]; !got.Valid || got.Value != (tc.selectorLen == 7) {
 							t.Errorf("selector_is_rsp = %+v", got)
 						}
+						if got, exists := values["year"]; !exists || !got.Valid || got.Value != uint16(2024) {
+							t.Errorf("year = %+v; want emitted year 2024 valid", got)
+						}
 						if tc.selectorLen == 7 {
 							if got := values["wh"]; !got.Valid || got.Value != float32(1) {
 								t.Errorf("wh = %+v; want 1 valid", got)
@@ -52,6 +55,8 @@ func TestK09DecodedEvidenceOwnsBytes(t *testing.T) {
 							t.Error("request invented energy")
 						}
 					}
+					assertEvidence(first)
+					assertEvidence(second)
 					for i := range caller {
 						caller[i] ^= 0xFF
 					}
@@ -97,10 +102,10 @@ func TestK09UnknownSelectorsPreserveEvidence(t *testing.T) {
 	} {
 		for _, response := range []bool{false, true} {
 			t.Run(fmt.Sprintf("%s/response=%v", tc.name, response), func(t *testing.T) {
-				payload := []byte{0x10, 0x00, 0xFF, 0xFF, 0x04, 0x03, 0x00, 0x30}
+				payload := []byte{0x10, 0x03, 0xFF, 0xFF, 0x04, 0x03, 0x00, 0x30}
 				offset, selectorLen := tc.requestOffset, 8
 				if response {
-					payload = []byte{0x00, 0x00, 0xFF, 0x04, 0x03, 0x00, 0x30, 0x00, 0x00, 0x80, 0x3F}
+					payload = []byte{0x03, 0x00, 0xFF, 0x04, 0x03, 0x00, 0x30, 0x00, 0x00, 0x80, 0x3F}
 					offset, selectorLen = tc.responseOffset, 7
 				}
 				payload[offset] = 0x0E
@@ -120,10 +125,16 @@ func TestK09UnknownSelectorsPreserveEvidence(t *testing.T) {
 				if got := values[tc.field+"_code"]; !got.Valid || got.Value != uint8(0x0E) {
 					t.Errorf("raw code = %+v; want 14 valid", got)
 				}
-				for _, field := range []string{"year", "month", "day", "year_kind"} {
-					if got := values[field]; got.Valid || got.Value != nil {
+				if got, exists := values["year"]; !exists || got.Valid != (tc.field != "period") || (tc.field != "period" && got.Value != uint16(2024)) || (tc.field == "period" && got.Value != nil) {
+					t.Errorf("year = %+v; want valid 2024 for known yearly period, invalid for unknown period", got)
+				}
+				for _, field := range []string{"month", "day"} {
+					if got, exists := values[field]; !exists || got.Valid || got.Value != nil {
 						t.Errorf("%s invented calendar identity: %+v", field, got)
 					}
+				}
+				if _, exists := values["year_kind"]; exists {
+					t.Error("year_kind invented relative calendar identity")
 				}
 				if response {
 					// Unknown labels do not erase independently decoded native energy.

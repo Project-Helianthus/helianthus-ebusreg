@@ -103,7 +103,7 @@ func TestAb73FreshNestedCopies(ab73T *ab73testing.T) {
 
 func TestAb73RolesAndHeader(ab73T *ab73testing.T) {
 	ab73Codes := []int{1, 15, 16, 21, 22, 23, 48, 55, 112, 119, 240, 247, 253, 254}
-	ab73Labels := []string{"remote-eight", "outdoor-sensor", "master-control", "base-station", "base-outdoor-sensor", "remote-four", "remote-one", "remote-five", "remote-two", "remote-six", "remote-three", "remote-seven", "diagnosis-tool", "range-extender"}
+	ab73Labels := []string{"remote-eight", "outdoor-sensor", "primary-control", "base-station", "base-outdoor-sensor", "remote-four", "remote-one", "remote-five", "remote-two", "remote-six", "remote-three", "remote-seven", "diagnosis-tool", "range-extender"}
 	for ab73I, ab73Name := range []string{"sender-role", "receiver-role"} {
 		ab73E := ab73Get(ab73T, 0, "Unknown", ab73Name)
 		if *ab73E.Ab73Position != 7+ab73I || *ab73E.Ab73Width != 1 || *ab73E.Ab73Default != 1 || len(ab73E.Ab73Mappings) != 14 {

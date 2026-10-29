@@ -2462,7 +2462,7 @@
       "mappings": {
         "1": "remote-eight",
         "15": "outdoor-sensor",
-        "16": "master-control",
+        "16": "primary-control",
         "21": "base-station",
         "22": "base-outdoor-sensor",
         "23": "remote-four",
@@ -2503,7 +2503,7 @@
       "mappings": {
         "1": "remote-eight",
         "15": "outdoor-sensor",
-        "16": "master-control",
+        "16": "primary-control",
         "21": "base-station",
         "22": "base-outdoor-sensor",
         "23": "remote-four",

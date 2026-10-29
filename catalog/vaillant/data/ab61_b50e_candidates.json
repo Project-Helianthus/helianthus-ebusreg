@@ -1,0 +1,32 @@
+{
+  "metadata_presence": "Proven",
+  "physical_qualification": "Unknown",
+  "limitations": [
+    "Finite rule-table candidate declarations; the broader family catalog remains incomplete.",
+    "Candidate metadata presence establishes neither routable invocation nor physical support.",
+    "Physical prefix adaptation, native recording, other rule fields and checksum/stuffing semantics remain Unknown.",
+    "Rule-table declarations are separate from active rule execution; no runtime adoption or qualification is implied.",
+    "Echo presence establishes neither physical deletion nor persistence.",
+    "Positions are unknown; widths describe candidate field carriers only, not complete frames."
+  ],
+  "entries": [
+    {
+      "key": {"family": "vaillant", "variant": "B50E", "primary": 181, "secondary": 14, "operation": null, "direction": null, "field": "rule_comparison"},
+      "position": null,
+      "width_bits": 8,
+      "grade": "Hypothesis",
+      "comparison": {"mode_mask": 7, "stop_override_fifo_mask": 128, "unresolved_mask": 120},
+      "clear_index": null,
+      "raw_fallback": "Preserve the full comparison byte, including unresolved bits 3..6. Scalar modes 0..7 and the bit 7 stop-override-FIFO candidate are independent across all modes."
+    },
+    {
+      "key": {"family": "vaillant", "variant": "B50E", "primary": 181, "secondary": 14, "operation": 1, "direction": "response", "field": "clear_rule_positive_index"},
+      "position": null,
+      "width_bits": 16,
+      "grade": "Hypothesis",
+      "comparison": null,
+      "clear_index": {"byte_order": "little_endian", "unsigned": true, "all_rules_candidate": 65535, "meaning": "All rules cleared is a candidate only within this OP01 positive echo form."},
+      "raw_fallback": "Preserve the full echo. A one-byte echo remains incomplete/raw. FFFF in any other operation has no clear meaning from this declaration."
+    }
+  ]
+}

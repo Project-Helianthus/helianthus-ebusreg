@@ -1,0 +1,99 @@
+{
+  "metadata_presence": "Proven",
+  "physical_support": "Unknown",
+  "endpoint_support": "Unknown",
+  "correlation": "Unknown",
+  "reply_adaptation": "Unknown",
+  "cache_freshness": "Unknown",
+  "target_eligibility": "Unknown",
+  "applied_limits": "Unknown",
+  "ordering_constraint": null,
+  "limitations": [
+    "Finite candidate declarations; the broader family catalog remains incomplete.",
+    "Native units remain Unknown; local W metadata does not qualify a wire unit.",
+    "FFFF has no established sentinel; independent minimum and maximum permit minimum greater than maximum.",
+    "The maximum-only local slot index domain 0..8 is not an installed count.",
+    "No routing, invocation, polling, capability predicate, cache writer, publication or physical qualification.",
+    "Pre-1.0 declarations may change."
+  ],
+  "entries": [
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B531",
+        "primary": 181,
+        "secondary": 49,
+        "operation": 2,
+        "direction": null,
+        "field": "minimum"
+      },
+      "position": null,
+      "width_bits": 16,
+      "raw_domain": [
+        0,
+        65535
+      ],
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "native_unit": null,
+      "native_unit_grade": "Unknown",
+      "sentinel": null,
+      "grade": "Hypothesis",
+      "local_projection": {
+        "multiplier": 10,
+        "width_bits": 32,
+        "domain": [
+          0,
+          655350
+        ],
+        "unit": "W",
+        "grade": "Hypothesis",
+        "conversion": "raw * 10"
+      },
+      "maximum_table": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B531",
+        "primary": 181,
+        "secondary": 49,
+        "operation": 2,
+        "direction": null,
+        "field": "maximum"
+      },
+      "position": null,
+      "width_bits": 16,
+      "raw_domain": [
+        0,
+        65535
+      ],
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "native_unit": null,
+      "native_unit_grade": "Unknown",
+      "sentinel": null,
+      "grade": "Hypothesis",
+      "local_projection": {
+        "multiplier": 10,
+        "width_bits": 32,
+        "domain": [
+          0,
+          655350
+        ],
+        "unit": "W",
+        "grade": "Hypothesis",
+        "conversion": "raw * 10"
+      },
+      "maximum_table": {
+        "source_field": "maximum",
+        "index_domain": [
+          0,
+          8
+        ],
+        "installed_count": null,
+        "grade": "Hypothesis"
+      }
+    }
+  ]
+}

@@ -75,7 +75,7 @@ func ab33Expected(ab33T *ab33testing.T) map[string]any {
 				ab33ExpectedField("appliance_flags", 4, 0, `{}`, `{"0":{"label":"floor-standing","default":false},"1":{"label":"condensing","default":false},"2":{"label":"fan-assisted","default":false},"3":{"label":"open-vented","default":false},"4":{"label":"high-modulation-range","default":false},"5":{"label":"water-heater","default":false},"6":{"label":"step-modulation","default":false},"7":{"label":"ECS","default":false}}`, `[]`, `[0,255]`),
 				ab33ExpectedField("fuel_flags", 5, 0, `{}`, `{"0":{"label":"gas","default":false},"1":{"label":"oil","default":false},"2":{"label":"ABC","default":false}}`, `[3,4,5,6,7]`, `[0,255]`),
 				ab33ExpectedField("tank_flags", 6, 0, `{}`, `{"0":{"label":"layer-tank","default":false},"1":{"label":"warm-start","default":false},"2":{"label":"external-tank","default":false},"3":{"label":"combination","default":false}}`, `[4,5,6,7]`, `[0,255]`),
-				ab33ExpectedField("feature_flags", 7, 0, `{}`, `{"0":{"label":"solar-compact","default":false},"1":{"label":"basic-solar","default":false},"2":{"label":"AAPS","default":false},"3":{"label":"advanced-power","default":false},"4":{"label":"partial-load","default":false},"5":{"label":"parameter-master","default":false}}`, `[6,7]`, `[0,255]`),
+				ab33ExpectedField("feature_flags", 7, 0, `{}`, `{"0":{"label":"solar-compact","default":false},"1":{"label":"basic-solar","default":false},"2":{"label":"AAPS","default":false},"3":{"label":"advanced-power","default":false},"4":{"label":"partial-load","default":false},"5":{"label":"parameter-primary","default":false}}`, `[6,7]`, `[0,255]`),
 				ab33ExpectedField("pump_mode", 8, 0, `{"0":false,"1":true}`, `{}`, `[]`, `[0,255]`),
 				ab33ExpectedField("opaque_9", 9, 0, `{}`, `{}`, `[]`, `[0,255]`),
 				ab33ExpectedField("opaque_10", 10, 0, `{}`, `{}`, `[]`, `[0,255]`),
@@ -222,7 +222,7 @@ func TestAb33InformationWalkingBitsAndRaw(ab33T *ab33testing.T) {
 		{"floor-standing", "condensing", "fan-assisted", "open-vented", "high-modulation-range", "water-heater", "step-modulation", "ECS"},
 		{"gas", "oil", "ABC"},
 		{"layer-tank", "warm-start", "external-tank", "combination"},
-		{"solar-compact", "basic-solar", "AAPS", "advanced-power", "partial-load", "parameter-master"},
+		{"solar-compact", "basic-solar", "AAPS", "advanced-power", "partial-load", "parameter-primary"},
 	} {
 		ab33Field := ab33FieldsValue[ab33Index+1].(map[string]any)
 		ab33Bits := ab33Field["bits"].(map[string]any)

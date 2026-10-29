@@ -514,7 +514,7 @@
               "default": false
             },
             "5": {
-              "label": "parameter-master",
+              "label": "parameter-primary",
               "default": false
             }
           },

@@ -1,0 +1,264 @@
+{
+  "ab03Windows": [
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 2,
+      "ab03Group": 2,
+      "ab03Instances": {
+        "ab03Minimum": 0,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 37,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 2,
+      "ab03Group": 2,
+      "ab03Instances": {
+        "ab03Minimum": 9,
+        "ab03Maximum": 9
+      },
+      "ab03RegisterCeiling": 37,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": true
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 2,
+      "ab03Group": 3,
+      "ab03Instances": {
+        "ab03Minimum": 0,
+        "ab03Maximum": 10
+      },
+      "ab03RegisterCeiling": 46,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 2,
+      "ab03Group": 4,
+      "ab03Instances": {
+        "ab03Minimum": 0,
+        "ab03Maximum": 1
+      },
+      "ab03RegisterCeiling": 11,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 2,
+      "ab03Group": 5,
+      "ab03Instances": {
+        "ab03Minimum": 0,
+        "ab03Maximum": 1
+      },
+      "ab03RegisterCeiling": 4,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 1,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 47,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 2,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 47,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 3,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 47,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 5,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 47,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 6,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 47,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 7,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 47,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 8,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 47,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 11,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 47,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 12,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 47,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 9,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 53,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 10,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 53,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 14,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 51,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 15,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": 51,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 4,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": null,
+      "ab03AvailabilityOnly": false,
+      "ab03PredicateRegister": null,
+      "ab03Virtual": false
+    },
+    {
+      "ab03Family": "720",
+      "ab03Opcode": 6,
+      "ab03Group": 13,
+      "ab03Instances": {
+        "ab03Minimum": 1,
+        "ab03Maximum": 8
+      },
+      "ab03RegisterCeiling": null,
+      "ab03AvailabilityOnly": true,
+      "ab03PredicateRegister": 1,
+      "ab03Virtual": false
+    }
+  ]
+}

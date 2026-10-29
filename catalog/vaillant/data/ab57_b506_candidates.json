@@ -1,0 +1,486 @@
+{
+  "metadata_presence": "Proven",
+  "physical_qualification": "Unknown",
+  "limitations": [
+    "Finite declarations only; the broader family catalog remains incomplete.",
+    "Candidate semantics are Hypothesis; native and physical qualification remain Unknown.",
+    "No routing, invocation admission, executor, updater, radio operation or active request.",
+    "Preserve original raw bytes, including reserved bits; no automatic variant choice.",
+    "Opaque zero length is representable; empty-request acceptance and opaque length bounds remain Unknown.",
+    "No stability guarantee before 1.0."
+  ],
+  "entries": [
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "production-test",
+        "primary": 181,
+        "secondary": 6,
+        "operation": 17,
+        "direction": null,
+        "field": "parameter"
+      },
+      "grade": "Hypothesis",
+      "parameters": [
+        {
+          "selector": 0,
+          "representation": "opaque-through-end",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": null,
+            "ab05_codec": "opaque-through-end",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 1,
+          "representation": "opaque-through-end",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": null,
+            "ab05_codec": "opaque-through-end",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 2,
+          "representation": "opaque-through-end",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": null,
+            "ab05_codec": "opaque-through-end",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 4,
+          "representation": "opaque-through-end",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": null,
+            "ab05_codec": "opaque-through-end",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 5,
+          "representation": "opaque-through-end",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": null,
+            "ab05_codec": "opaque-through-end",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 3,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 6,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 7,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 8,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 9,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 32,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 33,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 34,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 35,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 36,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 37,
+          "representation": "raw-byte",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "raw-byte",
+            "ab05_enum": null,
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        },
+        {
+          "selector": 10,
+          "representation": "boolean",
+          "minimum_bytes": null,
+          "maximum_bytes": null,
+          "metadata": {
+            "ab05_name": "parameter",
+            "ab05_position": null,
+            "ab05_width": 1,
+            "ab05_codec": "boolean",
+            "ab05_enum": {
+              "0": "no",
+              "1": "yes"
+            },
+            "ab05_grade": "Hypothesis",
+            "ab05_raw_fallback": null
+          }
+        }
+      ],
+      "output_mask": null,
+      "reserved_mask": null,
+      "checksum_values": null,
+      "checksum_interpretation": "Unknown",
+      "checksum_width": null,
+      "algorithm": "Unknown",
+      "completion": "Unknown",
+      "checksum_data": "Unknown"
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "backlight-only",
+        "primary": 181,
+        "secondary": 6,
+        "operation": 2,
+        "direction": null,
+        "field": "outputs"
+      },
+      "grade": "Hypothesis",
+      "parameters": null,
+      "output_mask": 1,
+      "reserved_mask": 254,
+      "checksum_values": null,
+      "checksum_interpretation": "Unknown",
+      "checksum_width": null,
+      "algorithm": "Unknown",
+      "completion": "Unknown",
+      "checksum_data": "Unknown"
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "three-output",
+        "primary": 181,
+        "secondary": 6,
+        "operation": 2,
+        "direction": null,
+        "field": "outputs"
+      },
+      "grade": "Hypothesis",
+      "parameters": null,
+      "output_mask": 7,
+      "reserved_mask": 248,
+      "checksum_values": null,
+      "checksum_interpretation": "Unknown",
+      "checksum_width": null,
+      "algorithm": "Unknown",
+      "completion": "Unknown",
+      "checksum_data": "Unknown"
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "eeprom-checksum",
+        "primary": 181,
+        "secondary": 6,
+        "operation": null,
+        "direction": null,
+        "field": "checksum_type"
+      },
+      "grade": "Hypothesis",
+      "parameters": null,
+      "output_mask": null,
+      "reserved_mask": null,
+      "checksum_values": {
+        "0": "query-supported-types",
+        "1": "scalar-type",
+        "2": "scalar-type",
+        "3": "scalar-type",
+        "4": "scalar-type",
+        "5": "scalar-type",
+        "6": "scalar-type",
+        "7": "scalar-type",
+        "8": "scalar-type",
+        "9": "scalar-type",
+        "10": "scalar-type",
+        "11": "scalar-type",
+        "12": "scalar-type",
+        "13": "scalar-type",
+        "14": "scalar-type",
+        "15": "scalar-type",
+        "16": "scalar-type",
+        "17": "scalar-type",
+        "18": "scalar-type",
+        "19": "scalar-type",
+        "20": "scalar-type",
+        "21": "scalar-type",
+        "22": "scalar-type",
+        "23": "scalar-type",
+        "24": "scalar-type",
+        "25": "scalar-type",
+        "26": "scalar-type",
+        "27": "scalar-type",
+        "28": "scalar-type",
+        "29": "scalar-type",
+        "30": "scalar-type",
+        "31": "scalar-type",
+        "32": "scalar-type",
+        "33": "scalar-type",
+        "34": "scalar-type",
+        "35": "scalar-type",
+        "36": "scalar-type",
+        "37": "scalar-type",
+        "38": "scalar-type",
+        "39": "scalar-type",
+        "40": "scalar-type",
+        "41": "scalar-type",
+        "42": "scalar-type",
+        "43": "scalar-type",
+        "44": "scalar-type",
+        "45": "scalar-type",
+        "46": "scalar-type",
+        "47": "scalar-type",
+        "48": "scalar-type",
+        "49": "scalar-type",
+        "50": "scalar-type",
+        "51": "scalar-type",
+        "52": "scalar-type",
+        "53": "scalar-type",
+        "54": "scalar-type",
+        "55": "scalar-type",
+        "56": "scalar-type",
+        "57": "scalar-type",
+        "58": "scalar-type",
+        "59": "scalar-type",
+        "60": "scalar-type",
+        "61": "scalar-type",
+        "62": "scalar-type",
+        "63": "scalar-type",
+        "64": "scalar-type",
+        "65": "scalar-type",
+        "66": "scalar-type",
+        "67": "scalar-type",
+        "68": "scalar-type",
+        "69": "scalar-type",
+        "70": "scalar-type",
+        "71": "scalar-type",
+        "72": "scalar-type",
+        "73": "scalar-type",
+        "74": "scalar-type",
+        "75": "scalar-type",
+        "76": "scalar-type",
+        "77": "scalar-type",
+        "78": "scalar-type",
+        "79": "scalar-type",
+        "80": "scalar-type",
+        "81": "scalar-type",
+        "82": "scalar-type",
+        "83": "scalar-type",
+        "84": "scalar-type",
+        "85": "scalar-type",
+        "86": "scalar-type",
+        "87": "scalar-type",
+        "88": "scalar-type",
+        "89": "scalar-type",
+        "90": "scalar-type",
+        "91": "scalar-type",
+        "92": "scalar-type",
+        "93": "scalar-type",
+        "94": "scalar-type",
+        "95": "scalar-type",
+        "96": "scalar-type",
+        "97": "scalar-type",
+        "98": "scalar-type",
+        "99": "scalar-type",
+        "100": "scalar-type",
+        "101": "scalar-type",
+        "102": "scalar-type",
+        "103": "scalar-type",
+        "104": "scalar-type",
+        "105": "scalar-type",
+        "106": "scalar-type",
+        "107": "scalar-type",
+        "108": "scalar-type",
+        "109": "scalar-type",
+        "110": "scalar-type",
+        "111": "scalar-type",
+        "112": "scalar-type",
+        "113": "scalar-type",
+        "114": "scalar-type",
+        "115": "scalar-type",
+        "116": "scalar-type",
+        "117": "scalar-type",
+        "118": "scalar-type",
+        "119": "scalar-type",
+        "120": "scalar-type",
+        "121": "scalar-type",
+        "122": "scalar-type",
+        "123": "scalar-type",
+        "124": "scalar-type",
+        "125": "scalar-type",
+        "126": "scalar-type",
+        "127": "scalar-type"
+      },
+      "checksum_interpretation": "scalar, not flags",
+      "checksum_width": null,
+      "algorithm": "Unknown",
+      "completion": "Unknown",
+      "checksum_data": "Unknown"
+    }
+  ]
+}

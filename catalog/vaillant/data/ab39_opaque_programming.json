@@ -686,7 +686,7 @@
       "reserved_regions": null,
       "fields": [
         {
-          "name": "slave-address",
+          "name": "responder-address",
           "logical_position": 3,
           "width_bytes": 1,
           "extent": null,

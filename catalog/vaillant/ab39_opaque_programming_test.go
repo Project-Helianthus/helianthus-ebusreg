@@ -94,7 +94,7 @@ func TestAb39CatalogContract(ab39T *testing.T) {
 					case "data":
 						ab39Fields = append(ab39Fields, ab39ExpectedField(ab39T, "data", float64(3)))
 					case "address-data":
-						ab39Fields = append(ab39Fields, ab39ExpectedField(ab39T, "slave-address", float64(3)), ab39ExpectedField(ab39T, "data", float64(4)))
+						ab39Fields = append(ab39Fields, ab39ExpectedField(ab39T, "responder-address", float64(3)), ab39ExpectedField(ab39T, "data", float64(4)))
 					}
 				}
 				if ab39Alternative == "positive" {
@@ -186,7 +186,7 @@ func TestAb39SyntheticRawDomains(ab39T *testing.T) {
 			}
 		}
 	}
-	if !reflect.DeepEqual(ab39Seen, map[string]int{"data": 9, "CRC": 7, "slave-address": 1}) {
+	if !reflect.DeepEqual(ab39Seen, map[string]int{"data": 9, "CRC": 7, "responder-address": 1}) {
 		ab39T.Fatalf("ab39 synthetic checks did not cover all declared fields: %v", ab39Seen)
 	}
 }

@@ -1,0 +1,36 @@
+[
+  {
+    "key": {"family": "testing", "variant": "partial", "primary": 15, "secondary": null, "operation": null, "direction": "request", "field": "declaration"},
+    "metadata_grade": "Proven",
+    "grade": "Hypothesis",
+    "body": "Unknown",
+    "offset": null,
+    "width": null,
+    "physical_nn": null,
+    "ack": "Unknown",
+    "support": "Unknown",
+    "effects": "Unknown",
+    "executable": false,
+    "sendable": false,
+    "raw": [15],
+    "positive": {"prefix": "PeBUS", "typed_data_present": false, "grade": "Hypothesis"},
+    "limits": ["Logical declaration only; no physical reply length is established.", "Absent secondary is distinct from 00 and standard services 0F01/0F02/0F03.", "The broader testing-family catalog remains incomplete; physical qualification and runtime adoption remain open before 1.0."]
+  },
+  {
+    "key": {"family": "testing", "variant": "partial", "primary": 15, "secondary": null, "operation": null, "direction": "response", "field": "opaque_reply"},
+    "metadata_grade": "Proven",
+    "grade": "Unknown",
+    "body": "Unknown",
+    "offset": null,
+    "width": null,
+    "physical_nn": null,
+    "ack": "Unknown",
+    "support": "Unknown",
+    "effects": "Unknown",
+    "executable": false,
+    "sendable": false,
+    "raw": [170],
+    "positive": null,
+    "limits": ["Synthetic opaque reply example only; AA remains raw and Unknown, without physical qualification."]
+  }
+]

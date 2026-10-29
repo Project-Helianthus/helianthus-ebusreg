@@ -58,26 +58,26 @@ func TestAb59FiniteContract(ab59T *ab59testing.T) {
 			Ab59Mappings: ab59Mappings, Ab59OtherFeedback: ab59Other, Ab59State: ab59State, Ab59Grade: Ab05Hypothesis,
 		})
 	}
-	ab59Add(7, "selector", "selector", ab59Pointer("request"), ab59Pointer(8), "unsigned", "not_applicable", "raw", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
-	ab59Add(7, "positive-u16", "value", ab59Pointer("response"), ab59Pointer(16), "unsigned", "little_endian", "raw", nil, nil, ab59Pointer(int64(0)), nil, nil, map[string]string{}, nil, "positive-candidate")
-	ab59Add(7, "positive-u32", "value", ab59Pointer("response"), ab59Pointer(32), "unsigned", "little_endian", "raw", nil, nil, ab59Pointer(int64(0)), nil, nil, map[string]string{}, nil, "positive-candidate")
-	ab59Add(32, "status-query", "address", ab59Pointer("request"), nil, "Unknown", "Unknown", "Unknown", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
-	ab59Add(33, "raw-quantities", "address", nil, nil, "Unknown", "Unknown", "Unknown", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
+	ab59Add(0x07, "selector", "selector", ab59Pointer("request"), ab59Pointer(8), "unsigned", "not_applicable", "raw", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
+	ab59Add(0x07, "positive-u16", "value", ab59Pointer("response"), ab59Pointer(16), "unsigned", "little_endian", "raw", nil, nil, ab59Pointer(int64(0)), nil, nil, map[string]string{}, nil, "positive-candidate")
+	ab59Add(0x07, "positive-u32", "value", ab59Pointer("response"), ab59Pointer(32), "unsigned", "little_endian", "raw", nil, nil, ab59Pointer(int64(0)), nil, nil, map[string]string{}, nil, "positive-candidate")
+	ab59Add(0x32, "status-query", "address", ab59Pointer("request"), nil, "Unknown", "Unknown", "Unknown", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
+	ab59Add(0x33, "raw-quantities", "address", nil, nil, "Unknown", "Unknown", "Unknown", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
 	for _, ab59Field := range []string{"minimum", "maximum", "default", "step", "factor"} {
-		ab59Add(33, "raw-quantities", ab59Field, nil, ab59Pointer(16), "signed", "little_endian", "raw", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
+		ab59Add(0x33, "raw-quantities", ab59Field, nil, ab59Pointer(16), "signed", "little_endian", "raw", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
 	}
-	ab59Add(39, "raw-u16", "value", nil, ab59Pointer(16), "unsigned", "Unknown", "raw", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
-	ab59Add(41, "raw-0f-f0", "value", nil, ab59Pointer(8), "unsigned", "not_applicable", "raw", nil, nil, nil, nil, nil, map[string]string{"15": "raw 0F", "240": "raw F0"}, nil, "raw")
-	ab59Add(44, "default-domain-conflict", "value", nil, ab59Pointer(8), "unsigned", "not_applicable", "Unknown", nil, ab59Pointer("minutes"), ab59Pointer(int64(0)), ab59Pointer(int64(1)), ab59Pointer(int64(255)), map[string]string{}, nil, "raw")
-	ab59Add(59, "quantities", "temperature", nil, ab59Pointer(16), "signed", "little_endian", "divide", ab59Pointer(16), ab59Pointer("degrees Celsius"), nil, nil, nil, map[string]string{}, nil, "raw")
-	ab59Add(59, "quantities", "flow", nil, ab59Pointer(16), "unsigned", "little_endian", "divide", ab59Pointer(100), ab59Pointer("litres per minute"), nil, nil, nil, map[string]string{}, nil, "raw")
-	ab59Add(59, "quantities", "volume", nil, ab59Pointer(16), "unsigned", "little_endian", "divide", ab59Pointer(10), ab59Pointer("litres"), nil, nil, nil, map[string]string{}, nil, "raw")
+	ab59Add(0x39, "raw-u16", "value", nil, ab59Pointer(16), "unsigned", "Unknown", "raw", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
+	ab59Add(0x41, "raw-0f-f0", "value", nil, ab59Pointer(8), "unsigned", "not_applicable", "raw", nil, nil, nil, nil, nil, map[string]string{"15": "raw 0F", "240": "raw F0"}, nil, "raw")
+	ab59Add(0x44, "default-domain-conflict", "value", nil, ab59Pointer(8), "unsigned", "not_applicable", "Unknown", nil, ab59Pointer("minutes"), ab59Pointer(int64(0)), ab59Pointer(int64(1)), ab59Pointer(int64(255)), map[string]string{}, nil, "raw")
+	ab59Add(0x59, "quantities", "temperature", nil, ab59Pointer(16), "signed", "little_endian", "divide", ab59Pointer(16), ab59Pointer("degrees Celsius"), nil, nil, nil, map[string]string{}, nil, "raw")
+	ab59Add(0x59, "quantities", "flow", nil, ab59Pointer(16), "unsigned", "little_endian", "divide", ab59Pointer(100), ab59Pointer("litres per minute"), nil, nil, nil, map[string]string{}, nil, "raw")
+	ab59Add(0x59, "quantities", "volume", nil, ab59Pointer(16), "unsigned", "little_endian", "divide", ab59Pointer(10), ab59Pointer("litres"), nil, nil, nil, map[string]string{}, nil, "raw")
 	for _, ab59Field := range []string{"minimum_volume", "maximum_volume"} {
-		ab59Add(59, "quantities", ab59Field, nil, nil, "Unknown", "Unknown", "raw", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
+		ab59Add(0x59, "quantities", ab59Field, nil, nil, "Unknown", "Unknown", "raw", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")
 	}
-	ab59Add(6, "prefix-only-positive", "prefix", ab59Pointer("response"), nil, "Unknown", "Unknown", "Unknown", nil, nil, nil, nil, nil, map[string]string{}, nil, "prefix-only-positive")
-	ab59Add(6, "positive-with-feedback", "feedback", ab59Pointer("response"), ab59Pointer(8), "unsigned", "not_applicable", "raw", nil, nil, nil, nil, nil, map[string]string{"1": "accepted"}, ab59Pointer("rejected"), "explicit-feedback")
-	ab59Add(6, "negative-without-extra-discriminator", "prefix", ab59Pointer("response"), nil, "Unknown", "Unknown", "Unknown", nil, nil, nil, nil, nil, map[string]string{}, nil, "ambiguous-negative")
+	ab59Add(0x06, "prefix-only-positive", "prefix", ab59Pointer("response"), nil, "Unknown", "Unknown", "Unknown", nil, nil, nil, nil, nil, map[string]string{}, nil, "prefix-only-positive")
+	ab59Add(0x06, "positive-with-feedback", "feedback", ab59Pointer("response"), ab59Pointer(8), "unsigned", "not_applicable", "raw", nil, nil, nil, nil, nil, map[string]string{"1": "accepted"}, ab59Pointer("rejected"), "explicit-feedback")
+	ab59Add(0x06, "negative-without-extra-discriminator", "prefix", ab59Pointer("response"), nil, "Unknown", "Unknown", "Unknown", nil, nil, nil, nil, nil, map[string]string{}, nil, "ambiguous-negative")
 	if len(ab59Catalog.Ab59Entries) != 21 {
 		ab59T.Fatalf("ab59 expected 21 finite entries, got %d", len(ab59Catalog.Ab59Entries))
 	}
@@ -248,14 +248,14 @@ func TestAb59SyntheticQuantities(ab59T *ab59testing.T) {
 		Ab59Want     float64
 		Ab59Complete bool
 	}{
-		{ab59Key(7, "positive-u16", "value", ab59Pointer("response")), []byte{0x34, 0x12}, 4660, true},
-		{ab59Key(7, "positive-u32", "value", ab59Pointer("response")), []byte{0x78, 0x56, 0x34, 0x12}, 305419896, true},
-		{ab59Key(7, "positive-u16", "value", ab59Pointer("response")), []byte{0x78, 0x56, 0x34, 0x12}, 0, false},
-		{ab59Key(7, "positive-u32", "value", ab59Pointer("response")), []byte{0x34, 0x12}, 0, false},
-		{ab59Key(59, "quantities", "temperature", nil), []byte{0xf0, 0xff}, -1, true},
-		{ab59Key(59, "quantities", "flow", nil), []byte{0x64, 0}, 1, true},
-		{ab59Key(59, "quantities", "flow", nil), []byte{0xff, 0xff}, 655.35, true},
-		{ab59Key(59, "quantities", "volume", nil), []byte{0x0a, 0}, 1, true},
+		{ab59Key(0x07, "positive-u16", "value", ab59Pointer("response")), []byte{0x34, 0x12}, 4660, true},
+		{ab59Key(0x07, "positive-u32", "value", ab59Pointer("response")), []byte{0x78, 0x56, 0x34, 0x12}, 305419896, true},
+		{ab59Key(0x07, "positive-u16", "value", ab59Pointer("response")), []byte{0x78, 0x56, 0x34, 0x12}, 0, false},
+		{ab59Key(0x07, "positive-u32", "value", ab59Pointer("response")), []byte{0x34, 0x12}, 0, false},
+		{ab59Key(0x59, "quantities", "temperature", nil), []byte{0xf0, 0xff}, -1, true},
+		{ab59Key(0x59, "quantities", "flow", nil), []byte{0x64, 0}, 1, true},
+		{ab59Key(0x59, "quantities", "flow", nil), []byte{0xff, 0xff}, 655.35, true},
+		{ab59Key(0x59, "quantities", "volume", nil), []byte{0x0a, 0}, 1, true},
 	}
 	for ab59Index, ab59Case := range ab59Cases {
 		ab59T.Run(ab59fmt.Sprintf("ab59_sample_%d", ab59Index), func(ab59T *ab59testing.T) {
@@ -270,7 +270,7 @@ func TestAb59SyntheticQuantities(ab59T *ab59testing.T) {
 		for ab59Index, ab59Field := range []string{"minimum", "maximum", "default", "step", "factor"} {
 			ab59Raw := make([]byte, 2)
 			ab59binary.LittleEndian.PutUint16(ab59Raw, uint16(ab59Words[ab59Index]))
-			ab59Entry := ab59Lookup(ab59T, ab59Key(33, "raw-quantities", ab59Field, nil))
+			ab59Entry := ab59Lookup(ab59T, ab59Key(0x33, "raw-quantities", ab59Field, nil))
 			ab59Value, ab59Complete := ab59Interpret(ab59Entry, ab59Raw)
 			if !ab59Complete || ab59Value != float64(ab59Words[ab59Index]) || ab59Entry.Ab59Divisor != nil {
 				ab59T.Fatalf("ab59 OP33 case %d field %s lost independent raw quantity", ab59CaseIndex, ab59Field)
@@ -278,12 +278,12 @@ func TestAb59SyntheticQuantities(ab59T *ab59testing.T) {
 		}
 	}
 	ab59Raw39 := []byte{0xff, 0xff}
-	ab59Entry39 := ab59Lookup(ab59T, ab59Key(39, "raw-u16", "value", nil))
+	ab59Entry39 := ab59Lookup(ab59T, ab59Key(0x39, "raw-u16", "value", nil))
 	if ab59binary.LittleEndian.Uint16(ab59Raw39) != 65535 || ab59Entry39.Ab59Conversion != "raw" || ab59Entry39.Ab59Divisor != nil {
 		ab59T.Fatal("ab59 OP39 complemented")
 	}
 	for _, ab59Field := range []string{"minimum_volume", "maximum_volume"} {
-		ab59Entry := ab59Lookup(ab59T, ab59Key(59, "quantities", ab59Field, nil))
+		ab59Entry := ab59Lookup(ab59T, ab59Key(0x59, "quantities", ab59Field, nil))
 		ab59Raw := []byte{0x0a, 0}
 		ab59Before := ab59bytes.Clone(ab59Raw)
 		_, ab59Complete := ab59Interpret(ab59Entry, ab59Raw)
@@ -294,7 +294,7 @@ func TestAb59SyntheticQuantities(ab59T *ab59testing.T) {
 }
 
 func TestAb59FeedbackAlternatives(ab59T *ab59testing.T) {
-	ab59Feedback := ab59Lookup(ab59T, ab59Key(6, "positive-with-feedback", "feedback", ab59Pointer("response")))
+	ab59Feedback := ab59Lookup(ab59T, ab59Key(0x06, "positive-with-feedback", "feedback", ab59Pointer("response")))
 	for ab59Index, ab59Raw := range []byte{0, 1, 2, 255} {
 		ab59Got, ab59Found := ab59Feedback.Ab59Mappings[ab59fmt.Sprint(ab59Raw)]
 		if !ab59Found && ab59Feedback.Ab59OtherFeedback != nil {
@@ -305,7 +305,7 @@ func TestAb59FeedbackAlternatives(ab59T *ab59testing.T) {
 		}
 	}
 	for ab59Index, ab59Variant := range []string{"prefix-only-positive", "negative-without-extra-discriminator"} {
-		ab59Entry := ab59Lookup(ab59T, ab59Key(6, ab59Variant, "prefix", ab59Pointer("response")))
+		ab59Entry := ab59Lookup(ab59T, ab59Key(0x06, ab59Variant, "prefix", ab59Pointer("response")))
 		if ab59Entry.Ab59State != []string{"prefix-only-positive", "ambiguous-negative"}[ab59Index] || len(ab59Entry.Ab59Mappings) != 0 || ab59Entry.Ab59OtherFeedback != nil || ab59Entry.Ab59WidthBits != nil {
 			ab59T.Fatal("ab59 apparent prefix classified as feedback")
 		}

@@ -101,7 +101,7 @@
         "variant": "status-query",
         "primary": 181,
         "secondary": 9,
-        "operation": 32,
+        "operation": 50,
         "direction": "request",
         "field": "address"
       },
@@ -130,7 +130,7 @@
         "variant": "raw-quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 33,
+        "operation": 51,
         "direction": null,
         "field": "address"
       },
@@ -158,7 +158,7 @@
         "variant": "raw-quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 33,
+        "operation": 51,
         "direction": null,
         "field": "minimum"
       },
@@ -187,7 +187,7 @@
         "variant": "raw-quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 33,
+        "operation": 51,
         "direction": null,
         "field": "maximum"
       },
@@ -216,7 +216,7 @@
         "variant": "raw-quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 33,
+        "operation": 51,
         "direction": null,
         "field": "default"
       },
@@ -245,7 +245,7 @@
         "variant": "raw-quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 33,
+        "operation": 51,
         "direction": null,
         "field": "step"
       },
@@ -274,7 +274,7 @@
         "variant": "raw-quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 33,
+        "operation": 51,
         "direction": null,
         "field": "factor"
       },
@@ -303,7 +303,7 @@
         "variant": "raw-u16",
         "primary": 181,
         "secondary": 9,
-        "operation": 39,
+        "operation": 57,
         "direction": null,
         "field": "value"
       },
@@ -331,7 +331,7 @@
         "variant": "raw-0f-f0",
         "primary": 181,
         "secondary": 9,
-        "operation": 41,
+        "operation": 65,
         "direction": null,
         "field": "value"
       },
@@ -362,7 +362,7 @@
         "variant": "default-domain-conflict",
         "primary": 181,
         "secondary": 9,
-        "operation": 44,
+        "operation": 68,
         "direction": null,
         "field": "value"
       },
@@ -391,7 +391,7 @@
         "variant": "quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 59,
+        "operation": 89,
         "direction": null,
         "field": "temperature"
       },
@@ -417,7 +417,7 @@
         "variant": "quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 59,
+        "operation": 89,
         "direction": null,
         "field": "flow"
       },
@@ -443,7 +443,7 @@
         "variant": "quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 59,
+        "operation": 89,
         "direction": null,
         "field": "volume"
       },
@@ -469,7 +469,7 @@
         "variant": "quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 59,
+        "operation": 89,
         "direction": null,
         "field": "minimum_volume"
       },
@@ -497,7 +497,7 @@
         "variant": "quantities",
         "primary": 181,
         "secondary": 9,
-        "operation": 59,
+        "operation": 89,
         "direction": null,
         "field": "maximum_volume"
       },

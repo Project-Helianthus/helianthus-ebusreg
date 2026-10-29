@@ -358,7 +358,7 @@
         "secondary": 9,
         "operation": 81,
         "direction": "Unknown",
-        "field": "master",
+        "field": "initiator",
         "opcode": null,
         "group": null,
         "instance": null,

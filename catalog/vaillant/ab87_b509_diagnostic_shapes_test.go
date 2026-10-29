@@ -43,7 +43,7 @@ func TestAb87ProductionContract(ab87T *ab87Testing.T) {
 		ab87Expected(0x35, "request", "data", nil, "Unknown", "Unknown", "raw_bytes", nil, nil, "Unknown"),
 		ab87Expected(0x35, "response", "write_status", nil, "Unknown", "Unknown", "status_domain", ab87Bound(0), ab87Bound(6), "Unknown"),
 		ab87Expected(0x51, "Unknown", "component", nil, "Unknown", "Unknown", "identity", ab87Bound(0), ab87Bound(7), "Hypothesis"),
-		ab87Expected(0x51, "Unknown", "master", ab87Int(8), "unsigned", "not_applicable", "identity", ab87Bound(0), ab87Bound(255), "Hypothesis"),
+		ab87Expected(0x51, "Unknown", "initiator", ab87Int(8), "unsigned", "not_applicable", "identity", ab87Bound(0), ab87Bound(255), "Hypothesis"),
 		ab87Expected(0x51, "Unknown", "identity", ab87Int(40), "not_applicable", "not_applicable", "ASCII_exact", nil, nil, "Hypothesis"),
 		ab87Expected(0x51, "Unknown", "software_component_1", nil, "Unknown", "Unknown", "decimal_scalar", nil, nil, "Unknown"),
 		ab87Expected(0x51, "Unknown", "software_component_2", nil, "Unknown", "Unknown", "decimal_scalar", nil, nil, "Unknown"),

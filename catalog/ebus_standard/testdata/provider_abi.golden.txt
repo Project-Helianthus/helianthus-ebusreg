@@ -38,6 +38,8 @@ ebus_standard_catalog func (IdentityKey) IsComplete() bool
 ebus_standard_catalog func (IdentityKey) PBValue() uint8
 ebus_standard_catalog func (IdentityKey) SBValue() uint8
 ebus_standard_catalog func (Service) PBValue() uint8
+ebus_standard_catalog func Ab81Candidates() []Ab81Candidate
+ebus_standard_catalog func Ab81Lookup(ab81Key Ab81Key) (Ab81Candidate, bool)
 ebus_standard_catalog func CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord
 ebus_standard_catalog func ComputeContentSHA256(data []byte) string
 ebus_standard_catalog func EmbeddedYAML() []byte
@@ -45,6 +47,9 @@ ebus_standard_catalog func LoadCatalog(data []byte) (Catalog, error)
 ebus_standard_catalog func MustEmbeddedCatalog() Catalog
 ebus_standard_catalog func NewProvider(cat Catalog, enabled bool) (*Provider, error)
 ebus_standard_catalog func NewProviderFromEnv(cat Catalog) (*Provider, error)
+ebus_standard_catalog type Ab81Candidate struct { Ab81Key Ab81Key `json:"key"` Ab81MetadataGrade string `json:"metadata_grade"` Ab81Grade string `json:"grade"` Ab81Body string `json:"body"` Ab81Offset *int `json:"offset"` Ab81Width *int `json:"width"` Ab81PhysicalNN *int `json:"physical_nn"` Ab81ACK string `json:"ack"` Ab81Support string `json:"support"` Ab81Effects string `json:"effects"` Ab81Executable bool `json:"executable"` Ab81Sendable bool `json:"sendable"` Ab81Raw []byte `json:"raw"` Ab81Positive *Ab81Positive `json:"positive"` Ab81Limits []string `json:"limits"` }
+ebus_standard_catalog type Ab81Key struct { Ab81Family string `json:"family"` Ab81Variant string `json:"variant"` Ab81Primary byte `json:"primary"` Ab81Secondary *byte `json:"secondary"` Ab81Operation *byte `json:"operation"` Ab81Direction string `json:"direction"` Ab81Field string `json:"field"` }
+ebus_standard_catalog type Ab81Positive struct { Ab81Prefix string `json:"prefix"` Ab81TypedDataPresent *bool `json:"typed_data_present"` Ab81Grade string `json:"grade"` }
 ebus_standard_catalog type AnswerPolicy string
 ebus_standard_catalog type BroadcastOrAddressed string
 ebus_standard_catalog type CallerContext int

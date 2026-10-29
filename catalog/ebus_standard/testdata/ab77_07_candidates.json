@@ -1,0 +1,172 @@
+{
+  "presence_grade": "Proven",
+  "unknown_grade": "Unknown",
+  "scope": "Finite candidate metadata only; not routable invocation, family selection or physical support. Broader family catalog incomplete.",
+  "unknown": [
+    "native variable lengths",
+    "physical extra bytes",
+    "family override predicates",
+    "complete seven-service schemas",
+    "installed support"
+  ],
+  "entries": [
+    {
+      "key": {
+        "family": "standard",
+        "variant": "identification",
+        "primary": 7,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "identifier"
+      },
+      "grade": "Hypothesis",
+      "logical_position": null,
+      "width": null,
+      "direct_reply_required": null,
+      "control": null,
+      "local_parser": {
+        "minimum_declared_count": 10,
+        "maximum_declared_count": null,
+        "minimum_available_count": 10,
+        "identifier_offset": 1,
+        "identifier_width": 5,
+        "first_identifier_nonzero": true,
+        "character_zero_allowed": true,
+        "character_minimum": 32,
+        "character_maximum": 126,
+        "numeric_offsets": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "low_nibble_maximum": 9,
+        "high_nibble_maximum": null,
+        "decimal_multiplier": 10,
+        "major_offset": 6,
+        "minor_offset": 7,
+        "product_offsets": [
+          8,
+          9
+        ],
+        "product_multiplier": 100,
+        "consumes_byte_zero": false,
+        "grade": "Hypothesis",
+        "scope": "partial local parser only; not physical BCD qualification"
+      }
+    },
+    {
+      "key": {
+        "family": "standard",
+        "variant": "identification",
+        "primary": 7,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "major"
+      },
+      "grade": "Hypothesis",
+      "logical_position": null,
+      "width": null,
+      "direct_reply_required": null,
+      "control": null,
+      "local_parser": null
+    },
+    {
+      "key": {
+        "family": "standard",
+        "variant": "identification",
+        "primary": 7,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "minor"
+      },
+      "grade": "Hypothesis",
+      "logical_position": null,
+      "width": null,
+      "direct_reply_required": null,
+      "control": null,
+      "local_parser": null
+    },
+    {
+      "key": {
+        "family": "standard",
+        "variant": "identification",
+        "primary": 7,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "product_number"
+      },
+      "grade": "Hypothesis",
+      "logical_position": null,
+      "width": null,
+      "direct_reply_required": null,
+      "control": null,
+      "local_parser": null
+    },
+    {
+      "key": {
+        "family": "standard",
+        "variant": "identification",
+        "primary": 7,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "version_control"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 8,
+      "width": null,
+      "direct_reply_required": null,
+      "control": {
+        "not_okay_minimum": 0,
+        "not_okay_maximum": 98,
+        "default": "not_okay",
+        "okay_values": null
+      },
+      "local_parser": null
+    },
+    {
+      "key": {
+        "family": "standard",
+        "variant": "identification",
+        "primary": 7,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "revision_control"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 9,
+      "width": null,
+      "direct_reply_required": null,
+      "control": {
+        "not_okay_minimum": 0,
+        "not_okay_maximum": 98,
+        "default": "not_okay",
+        "okay_values": null
+      },
+      "local_parser": null
+    },
+    {
+      "key": {
+        "family": "standard",
+        "variant": "existence_inquiry",
+        "primary": 7,
+        "secondary": 254,
+        "operation": null,
+        "direction": "request",
+        "field": "existence_inquiry"
+      },
+      "grade": "Hypothesis",
+      "logical_position": null,
+      "width": null,
+      "direct_reply_required": false,
+      "control": null,
+      "local_parser": null
+    }
+  ]
+}

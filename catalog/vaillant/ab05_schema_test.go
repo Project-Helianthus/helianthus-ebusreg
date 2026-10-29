@@ -127,6 +127,10 @@ func TestAb05ContradictoryExtents(ab05T *testing.T) {
 			ab05Record.Ab05Fields[0].Ab05Position = ab05Int(3)
 			ab05Record.Ab05Fields[0].Ab05Width = nil
 		}},
+		{"ab05_position_at_body_end", func(ab05Record *Ab05Record) {
+			ab05Record.Ab05Fields[0].Ab05Position = ab05Int(2)
+			ab05Record.Ab05Fields[0].Ab05Width = nil
+		}},
 		{"ab05_width_without_position", func(ab05Record *Ab05Record) {
 			ab05Record.Ab05Fields[0].Ab05Position = nil
 			ab05Record.Ab05Fields[0].Ab05Width = ab05Int(3)
@@ -176,5 +180,91 @@ func TestAb05QueryIsolation(ab05T *testing.T) {
 	ab05Got, ab05Found, ab05Error := Ab05Query(ab05Records, ab05Missing)
 	if ab05Error != nil || ab05Found || !reflect.DeepEqual(ab05Got, Ab05Record{}) {
 		ab05T.Fatal("ab05 missing key admitted")
+	}
+}
+
+func TestAb05JSONNumericKeyPresence(ab05T *testing.T) {
+	ab05Base := map[string]any{
+		"ab05_family": "ab05_synthetic", "ab05_variant": "ab05_primary",
+		"ab05_direction": "request", "ab05_alternative": "ab05_candidate",
+		"ab05_opcode": 0, "ab05_group": 0, "ab05_instance": 0, "ab05_register": 0,
+	}
+	ab05Decode := func(ab05T *testing.T, ab05Key map[string]any) (Ab05Record, error) {
+		ab05T.Helper()
+		ab05Data, ab05Error := json.Marshal(map[string]any{"ab05_key": ab05Key})
+		if ab05Error != nil {
+			ab05T.Fatal(ab05Error)
+		}
+		var ab05Record Ab05Record
+		ab05Error = json.Unmarshal(ab05Data, &ab05Record)
+		return ab05Record, ab05Error
+	}
+	ab05Zero, ab05Error := ab05Decode(ab05T, ab05Base)
+	if ab05Error != nil {
+		ab05T.Fatal(ab05Error)
+	}
+	ab05Want := Ab05Key{Ab05Family: "ab05_synthetic", Ab05Variant: "ab05_primary", Ab05Direction: "request", Ab05Alternative: "ab05_candidate"}
+	ab05Got, ab05Found, ab05Error := Ab05Query([]Ab05Record{ab05Zero}, ab05Want)
+	if ab05Error != nil || !ab05Found || ab05Got.Ab05Key != ab05Want {
+		ab05T.Fatalf("ab05 explicit zero selectors rejected: %#v %v %v", ab05Got, ab05Found, ab05Error)
+	}
+	for _, ab05Name := range []string{"ab05_opcode", "ab05_group", "ab05_instance", "ab05_register"} {
+		for _, ab05Mode := range []string{"absent", "null", "misspelled"} {
+			ab05T.Run(ab05Name+"/"+ab05Mode, func(ab05T *testing.T) {
+				ab05Key := make(map[string]any, len(ab05Base))
+				for ab05Name, ab05Value := range ab05Base {
+					ab05Key[ab05Name] = ab05Value
+				}
+				delete(ab05Key, ab05Name)
+				switch ab05Mode {
+				case "null":
+					ab05Key[ab05Name] = nil
+				case "misspelled":
+					ab05Key[ab05Name+"_typo"] = 0
+				}
+				if _, ab05Error := ab05Decode(ab05T, ab05Key); ab05Error == nil {
+					ab05T.Fatal("ab05 missing numeric selector accepted")
+				}
+			})
+		}
+	}
+	ab05Base["ab05_unknown"] = 0
+	if _, ab05Error := ab05Decode(ab05T, ab05Base); ab05Error == nil {
+		ab05T.Fatal("ab05 unknown key property accepted")
+	}
+}
+
+func TestAb05InvalidStringKeys(ab05T *testing.T) {
+	ab05Cases := []struct {
+		ab05Name   string
+		ab05Change func(*Ab05Key)
+	}{
+		{"ab05_family", func(ab05Key *Ab05Key) { ab05Key.Ab05Family = "" }},
+		{"ab05_variant", func(ab05Key *Ab05Key) { ab05Key.Ab05Variant = "" }},
+		{"ab05_direction", func(ab05Key *Ab05Key) { ab05Key.Ab05Direction = "" }},
+		{"ab05_alternative", func(ab05Key *Ab05Key) { ab05Key.Ab05Alternative = "" }},
+		{"ab05_invalid_direction", func(ab05Key *Ab05Key) { ab05Key.Ab05Direction = "ab05_invalid" }},
+	}
+	for _, ab05Case := range ab05Cases {
+		ab05T.Run(ab05Case.ab05Name, func(ab05T *testing.T) {
+			ab05Record := ab05Fixture(ab05T)[0]
+			ab05Case.ab05Change(&ab05Record.Ab05Key)
+			if _, ab05Found, ab05Error := Ab05Query([]Ab05Record{ab05Record}, ab05Record.Ab05Key); ab05Error == nil || ab05Found {
+				ab05T.Fatal("ab05 invalid string dimension accepted")
+			}
+		})
+	}
+}
+
+func TestAb05QueryEmptyBytes(ab05T *testing.T) {
+	for _, ab05Bytes := range [][]byte{nil, {}} {
+		ab05Record := ab05Fixture(ab05T)[0]
+		ab05Record.Ab05RawFallback = ab05Bytes
+		ab05Record.Ab05Fields[0].Ab05RawFallback = ab05Bytes
+		ab05Record.Ab05Fields[0].Ab05Sentinel = ab05Bytes
+		ab05Got, ab05Found, ab05Error := Ab05Query([]Ab05Record{ab05Record}, ab05Record.Ab05Key)
+		if ab05Error != nil || !ab05Found || !reflect.DeepEqual(ab05Got, ab05Record) {
+			ab05T.Fatalf("ab05 empty byte presence lost: %#v %v", ab05Got, ab05Error)
+		}
 	}
 }

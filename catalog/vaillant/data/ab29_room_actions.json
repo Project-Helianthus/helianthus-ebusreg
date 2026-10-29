@@ -212,7 +212,7 @@
           "width_bytes": 1,
           "raw_domain": [
             0,
-            9
+            255
           ],
           "signedness": "unsigned",
           "byte_order": "not applicable",
@@ -242,7 +242,7 @@
           "width_bytes": 1,
           "raw_domain": [
             0,
-            9
+            255
           ],
           "signedness": "unsigned",
           "byte_order": "not applicable",
@@ -272,7 +272,7 @@
           "width_bytes": 1,
           "raw_domain": [
             0,
-            9
+            255
           ],
           "signedness": "unsigned",
           "byte_order": "not applicable",
@@ -302,7 +302,7 @@
           "width_bytes": 1,
           "raw_domain": [
             0,
-            9
+            255
           ],
           "signedness": "unsigned",
           "byte_order": "not applicable",

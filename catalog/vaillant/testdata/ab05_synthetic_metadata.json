@@ -1,0 +1,24 @@
+[
+  {
+    "ab05_key": {"ab05_family":"alpha","ab05_variant":"ab05_primary","ab05_direction":"response","ab05_opcode":2,"ab05_group":3,"ab05_instance":1,"ab05_register":34,"ab05_alternative":"ab05_signed"},
+    "ab05_body_width":2,"ab05_grade":"Proven","ab05_raw_fallback":[254,255],
+    "ab05_fields":[
+      {"ab05_name":"ab05_signed","ab05_position":0,"ab05_width":2,"ab05_codec":"ab05_signed16","ab05_unit":"ab05_unit","ab05_enum":{"0":"ab05_zero"},"ab05_sentinel":[255,127],"ab05_grade":"Proven","ab05_raw_fallback":[254,255]},
+      {"ab05_name":"ab05_overlap","ab05_position":0,"ab05_width":1,"ab05_codec":"ab05_unsigned8","ab05_grade":"Hypothesis","ab05_raw_fallback":[254]}
+    ]
+  },
+  {
+    "ab05_key": {"ab05_family":"alpha","ab05_variant":"ab05_primary","ab05_direction":"response","ab05_opcode":2,"ab05_group":3,"ab05_instance":1,"ab05_register":34,"ab05_alternative":"ab05_candidate"},
+    "ab05_body_width":1,"ab05_grade":"Hypothesis","ab05_raw_fallback":[254],
+    "ab05_fields":[{"ab05_name":"ab05_candidate","ab05_position":0,"ab05_width":1,"ab05_codec":"ab05_unsigned8","ab05_grade":"Hypothesis","ab05_raw_fallback":[254]}]
+  },
+  {
+    "ab05_key": {"ab05_family":"beta","ab05_variant":"ab05_primary","ab05_direction":"request","ab05_opcode":6,"ab05_group":3,"ab05_instance":1,"ab05_register":34,"ab05_alternative":"ab05_header"},
+    "ab05_raw_fallback":[171,205]
+  },
+  {
+    "ab05_key": {"ab05_family":"beta","ab05_variant":"ab05_primary","ab05_direction":"response","ab05_opcode":6,"ab05_group":3,"ab05_instance":1,"ab05_register":34,"ab05_alternative":"ab05_opaque"},
+    "ab05_grade":"Unknown","ab05_raw_fallback":[171,205],
+    "ab05_fields":[{"ab05_name":"ab05_opaque","ab05_codec":"ab05_unrecognized","ab05_raw_fallback":[171,205]}]
+  }
+]

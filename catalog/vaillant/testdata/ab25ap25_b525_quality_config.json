@@ -1,0 +1,6 @@
+[
+ {"id":"ab25ap25_rssi_ff","byte":255,"number":-1},
+ {"id":"ab25ap25_rssi_80","byte":128,"number":-128},
+ {"id":"ab25ap25_rssi_7f","byte":127,"number":127},
+ {"id":"ab25ap25_rssi_zero","byte":0,"number":0}
+]

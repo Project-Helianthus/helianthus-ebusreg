@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ab05ap05_step_one",
+    "prior": 10,
+    "value": 11,
+    "changed": false
+  },
+  {
+    "id": "ab05ap05_step_two",
+    "prior": 10,
+    "value": 12,
+    "changed": true
+  },
+  {
+    "id": "ab05ap05_wrap_delta",
+    "prior": 12,
+    "value": 10,
+    "changed": true
+  },
+  {
+    "id": "ab05ap05_sentinel",
+    "prior": 4294967295,
+    "value": 0,
+    "changed": true
+  },
+  {
+    "id": "ab05ap05_wrap_one",
+    "prior": 12,
+    "value": 11,
+    "changed": true
+  },
+  {
+    "id": "ab05ap05_zero",
+    "prior": 0,
+    "value": 0,
+    "changed": false
+  },
+  {
+    "id": "ab05ap05_equal",
+    "prior": 10,
+    "value": 10,
+    "changed": false
+  },
+  {
+    "id": "ab05ap05_all_bits",
+    "prior": 0,
+    "value": 4294967295,
+    "changed": true
+  }
+]

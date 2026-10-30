@@ -23,6 +23,9 @@ func TestAb96Facts(ab96Test *ab96testing.T) {
 		ab96Test.Fatalf("finite entries: %d %v", len(ab96Entries), ab96Error)
 	}
 	for _, ab96Entry := range ab96Entries {
+		if ab96Entry.Ab96NativeContract != "" {
+			ab96Test.Fatal("native contract must remain absent until companion publication")
+		}
 		if ab96Entry.Ab96Grade != "Hypothesis" || ab96Entry.Ab96MetadataPresence != "Proven" || ab96Entry.Ab96PhysicalQualification != "Unknown" || ab96Entry.Ab96Position != nil || ab96Entry.Ab96Padding != nil || ab96Entry.Ab96Key.Ab96Direction != nil || ab96Entry.Ab96RawPreservation != "Retain raw values and partial last-known-good fields independently." {
 			ab96Test.Fatalf("qualification/unknown/raw boundary: %+v", ab96Entry)
 		}

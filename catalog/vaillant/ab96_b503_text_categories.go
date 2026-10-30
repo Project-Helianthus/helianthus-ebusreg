@@ -43,7 +43,8 @@ type Ab96Entry struct {
 	Ab96PhysicalQualification string            `json:"physical_qualification"`
 	Ab96RawPreservation       string            `json:"raw_preservation"`
 	Ab96Unknown               []string          `json:"unknown"`
-	Ab96NativeContract        string            `json:"native_contract"`
+	// Ab96NativeContract is empty until the companion contract is published.
+	Ab96NativeContract string `json:"native_contract"`
 }
 
 func Ab96Entries() ([]Ab96Entry, error) {
@@ -63,7 +64,7 @@ func Ab96Entries() ([]Ab96Entry, error) {
 		if ab96Entry.Ab96Key.Ab96Family == "" || ab96Entry.Ab96Key.Ab96Variant == "" || ab96Entry.Ab96Key.Ab96Field == "" ||
 			(ab96Entry.Ab96Grade != "Hypothesis" && ab96Entry.Ab96Grade != "Proven" && ab96Entry.Ab96Grade != "Unknown") ||
 			ab96Entry.Ab96MetadataPresence != "Proven" || ab96Entry.Ab96PhysicalQualification != "Unknown" ||
-			ab96Entry.Ab96NativeContract == "" || ab96Entry.Ab96RawPreservation == "" || len(ab96Entry.Ab96Unknown) == 0 {
+			ab96Entry.Ab96RawPreservation == "" || len(ab96Entry.Ab96Unknown) == 0 {
 			return nil, ab96fmt.Errorf("ab96: invalid embedded entry %d", ab96Index)
 		}
 		if (ab96Entry.Ab96WidthCharacters != nil && *ab96Entry.Ab96WidthCharacters <= 0) ||

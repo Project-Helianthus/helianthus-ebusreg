@@ -21,9 +21,12 @@ jobs:
       - run: |
           # Phase C M-C6: AddressByRole(SlotRole) test documents
           # the eBUS-spec SlotRoleMaster/SlotRoleSlave enum values.
+          # Preserve the exact quoted B513 feature label; still check other terms on its line.
           if git grep -nIwiE 'm[a]ster|s[l]ave' -- \
               ':!vendor/' \
-              ':!registry/address_by_role_test.go'; then
+              ':!registry/address_by_role_test.go' | \
+              sed 's/"parameter-master"/"parameter-role"/g' | \
+              grep -wiE 'm[a]ster|s[l]ave'; then
             echo "Found legacy terminology."
             exit 1
           fi

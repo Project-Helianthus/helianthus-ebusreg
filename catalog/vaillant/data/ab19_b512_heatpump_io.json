@@ -1,0 +1,1691 @@
+[
+  {
+    "id": "ab19_0f_request_outputs",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 15,
+      "direction": "request",
+      "field": "ab19_outputs",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 3,
+    "width_bits": 8,
+    "encoding": "bits",
+    "bits": [
+      {
+        "bit": 0,
+        "label": "output one",
+        "status": "candidate"
+      },
+      {
+        "bit": 1,
+        "label": "output two",
+        "status": "candidate"
+      },
+      {
+        "bit": 2,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 3,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 4,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 5,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 6,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 7,
+        "label": "reserved",
+        "status": "reserved"
+      }
+    ]
+  },
+  {
+    "id": "ab19_0f_request_valve",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 15,
+      "direction": "request",
+      "field": "ab19_valve",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 4,
+    "width_bits": 8,
+    "encoding": "u8",
+    "values": {
+      "0": "off",
+      "1": "CH",
+      "2": "DHW"
+    }
+  },
+  {
+    "id": "ab19_0f_positive_temperature_one",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 15,
+      "direction": "positive",
+      "field": "ab19_temperature_one",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 3,
+    "width_bits": 16,
+    "encoding": "signed-le16",
+    "scale": 0.0625,
+    "unit": "degrees Celsius",
+    "replacement": {
+      "raw_word": 32768,
+      "selection": "before_scaling",
+      "meaning": "replacement",
+      "unavailable_assertion": false
+    }
+  },
+  {
+    "id": "ab19_0f_positive_temperature_two",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 15,
+      "direction": "positive",
+      "field": "ab19_temperature_two",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 6,
+    "width_bits": 16,
+    "encoding": "signed-le16",
+    "scale": 0.0625,
+    "unit": "degrees Celsius",
+    "replacement": {
+      "raw_word": 32768,
+      "selection": "before_scaling",
+      "meaning": "replacement",
+      "unavailable_assertion": false
+    }
+  },
+  {
+    "id": "ab19_0f_positive_input",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 15,
+      "direction": "positive",
+      "field": "ab19_input",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 5,
+    "width_bits": 8,
+    "encoding": "u8",
+    "values": {
+      "0": "multipurpose",
+      "1": "utility contact"
+    }
+  },
+  {
+    "id": "ab19_0f_positive_pressure",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 15,
+      "direction": "positive",
+      "field": "ab19_pressure",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 8,
+    "width_bits": 8,
+    "encoding": "u8",
+    "scale": 0.1,
+    "unit": "bar",
+    "domain": [
+      0,
+      25.5
+    ],
+    "default": 255.0,
+    "default_conflict": true,
+    "raw_domain": [
+      0,
+      255
+    ]
+  },
+  {
+    "id": "ab19_0f_positive_backup",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 15,
+      "direction": "positive",
+      "field": "ab19_backup",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 9,
+    "width_bits": 8,
+    "encoding": "u8",
+    "values": {
+      "0": "off",
+      "1": "step one",
+      "2": "step two",
+      "3": "step three"
+    },
+    "replacement": {
+      "raw_word": 255,
+      "selection": "before_scaling",
+      "meaning": "replacement",
+      "unavailable_assertion": false
+    }
+  },
+  {
+    "id": "ab19_10_request_actuators_one",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "request",
+      "field": "ab19_actuators_one",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 3,
+    "width_bits": 8,
+    "encoding": "bits",
+    "bits": [
+      {
+        "bit": 0,
+        "label": "cooling valve",
+        "status": "candidate"
+      },
+      {
+        "bit": 1,
+        "label": "passive mixer one",
+        "status": "candidate"
+      },
+      {
+        "bit": 2,
+        "label": "passive mixer two",
+        "status": "candidate"
+      },
+      {
+        "bit": 3,
+        "label": "cooling active",
+        "status": "candidate"
+      },
+      {
+        "bit": 4,
+        "label": "well pump",
+        "status": "candidate"
+      },
+      {
+        "bit": 5,
+        "label": "backup safety",
+        "status": "candidate"
+      },
+      {
+        "bit": 6,
+        "label": "backup one",
+        "status": "candidate"
+      },
+      {
+        "bit": 7,
+        "label": "backup two",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "id": "ab19_10_request_actuators_two",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "request",
+      "field": "ab19_actuators_two",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 4,
+    "width_bits": 8,
+    "encoding": "bits",
+    "bits": [
+      {
+        "bit": 0,
+        "label": "backup three",
+        "status": "candidate"
+      },
+      {
+        "bit": 1,
+        "label": "external valve",
+        "status": "candidate"
+      },
+      {
+        "bit": 2,
+        "label": "external backup",
+        "status": "candidate"
+      },
+      {
+        "bit": 3,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 4,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 5,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 6,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 7,
+        "label": "reserved",
+        "status": "reserved"
+      }
+    ]
+  },
+  {
+    "id": "ab19_10_request_inverse_actuator",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "request",
+      "field": "ab19_inverse_actuator",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 5,
+    "width_bits": 16,
+    "encoding": "opaque-16",
+    "algorithm": "Unknown"
+  },
+  {
+    "id": "ab19_10_positive_status",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "positive",
+      "field": "ab19_status",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 3,
+    "width_bits": 8,
+    "encoding": "bits",
+    "bits": [
+      {
+        "bit": 0,
+        "label": "anode channel one",
+        "status": "candidate"
+      },
+      {
+        "bit": 1,
+        "label": "anode channel two",
+        "status": "candidate"
+      },
+      {
+        "bit": 2,
+        "label": "smart-grid",
+        "status": "candidate"
+      },
+      {
+        "bit": 3,
+        "label": "well",
+        "status": "candidate"
+      },
+      {
+        "bit": 4,
+        "label": "safety limiter",
+        "status": "candidate"
+      },
+      {
+        "bit": 5,
+        "label": "safety",
+        "status": "candidate"
+      },
+      {
+        "bit": 6,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 7,
+        "label": "reserved",
+        "status": "reserved"
+      }
+    ]
+  },
+  {
+    "id": "ab19_10_positive_single_phase",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "positive",
+      "field": "ab19_single_phase",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 4,
+    "width_bits": 8,
+    "encoding": "u8",
+    "unit": "percent",
+    "relations": [
+      {
+        "raw": 50,
+        "comparison": "approximately",
+        "meaning": "powered"
+      },
+      {
+        "raw": 0,
+        "comparison": "exact",
+        "meaning": "absent"
+      }
+    ],
+    "tolerance": "Unknown"
+  },
+  {
+    "id": "ab19_10_positive_three_phase",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "positive",
+      "field": "ab19_three_phase",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 5,
+    "width_bits": 8,
+    "encoding": "u8",
+    "unit": "percent",
+    "values": {
+      "100": "powered",
+      "0": "all phases absent",
+      "33": "one phase absent",
+      "66": "two phases absent"
+    }
+  },
+  {
+    "id": "ab19_10_positive_adc_1",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "positive",
+      "field": "ab19_adc_1",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 6,
+    "width_bits": 16,
+    "encoding": "raw-le16"
+  },
+  {
+    "id": "ab19_10_positive_adc_2",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "positive",
+      "field": "ab19_adc_2",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 8,
+    "width_bits": 16,
+    "encoding": "raw-le16"
+  },
+  {
+    "id": "ab19_10_positive_adc_3",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "positive",
+      "field": "ab19_adc_3",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 10,
+    "width_bits": 16,
+    "encoding": "raw-le16"
+  },
+  {
+    "id": "ab19_10_positive_adc_4",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "positive",
+      "field": "ab19_adc_4",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 12,
+    "width_bits": 16,
+    "encoding": "raw-le16"
+  },
+  {
+    "id": "ab19_10_positive_adc_5",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "positive",
+      "field": "ab19_adc_5",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 14,
+    "width_bits": 16,
+    "encoding": "raw-le16"
+  },
+  {
+    "id": "ab19_10_positive_adc_6",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "positive",
+      "field": "ab19_adc_6",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 16,
+    "width_bits": 16,
+    "encoding": "raw-le16"
+  },
+  {
+    "id": "ab19_10_positive_board",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 16,
+      "direction": "positive",
+      "field": "ab19_board",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 18,
+    "width_bits": 8,
+    "encoding": "u8",
+    "values": {
+      "0": "opaque",
+      "1": "opaque",
+      "2": "opaque",
+      "3": "opaque",
+      "11": "opaque",
+      "12": "opaque"
+    },
+    "unmapped": "retain_raw"
+  },
+  {
+    "id": "ab19_11_request_temperature_1",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 17,
+      "direction": "request",
+      "field": "ab19_temperature_1",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 3,
+    "width_bits": 16,
+    "encoding": "signed-le16",
+    "scale": 0.0625,
+    "unit": "degrees Celsius"
+  },
+  {
+    "id": "ab19_11_request_temperature_2",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 17,
+      "direction": "request",
+      "field": "ab19_temperature_2",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 5,
+    "width_bits": 16,
+    "encoding": "signed-le16",
+    "scale": 0.0625,
+    "unit": "degrees Celsius"
+  },
+  {
+    "id": "ab19_11_request_temperature_3",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 17,
+      "direction": "request",
+      "field": "ab19_temperature_3",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 7,
+    "width_bits": 16,
+    "encoding": "signed-le16",
+    "scale": 0.0625,
+    "unit": "degrees Celsius"
+  },
+  {
+    "id": "ab19_11_request_pressure",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 17,
+      "direction": "request",
+      "field": "ab19_pressure",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 9,
+    "width_bits": 8,
+    "encoding": "u8",
+    "scale": 0.1,
+    "unit": "bar"
+  },
+  {
+    "id": "ab19_11_request_flow",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 17,
+      "direction": "request",
+      "field": "ab19_flow",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 10,
+    "width_bits": 8,
+    "encoding": "signed8",
+    "scale": 10,
+    "unit": "l/h"
+  },
+  {
+    "id": "ab19_11_request_pump_status",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 17,
+      "direction": "request",
+      "field": "ab19_pump_status",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 11,
+    "width_bits": 8,
+    "encoding": "raw-u8"
+  },
+  {
+    "id": "ab19_11_request_compressor",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 17,
+      "direction": "request",
+      "field": "ab19_compressor",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 12,
+    "width_bits": 8,
+    "encoding": "bits",
+    "bits": [
+      {
+        "bit": 0,
+        "label": "compressor-off",
+        "status": "candidate"
+      },
+      {
+        "bit": 1,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 2,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 3,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 4,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 5,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 6,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 7,
+        "label": "unmodeled",
+        "status": "unmodeled"
+      }
+    ]
+  },
+  {
+    "id": "ab19_11_positive_status",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 17,
+      "direction": "positive",
+      "field": "ab19_status",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 3,
+    "width_bits": 8,
+    "encoding": "bits",
+    "bits": [
+      {
+        "bit": 0,
+        "label": "compressor-off",
+        "status": "candidate"
+      },
+      {
+        "bit": 1,
+        "label": "pump-relay",
+        "status": "candidate"
+      },
+      {
+        "bit": 2,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 3,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 4,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 5,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 6,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 7,
+        "label": "reserved",
+        "status": "reserved"
+      }
+    ],
+    "declared_positive": {
+      "primary": 181,
+      "secondary": 18,
+      "operation": 12,
+      "selector_conflict": true,
+      "decoder_selection": false,
+      "acceptance": false
+    }
+  },
+  {
+    "id": "ab19_11_positive_setpoint",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 17,
+      "direction": "positive",
+      "field": "ab19_setpoint",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 4,
+    "width_bits": 8,
+    "encoding": "u8",
+    "domain": [
+      0,
+      100
+    ],
+    "unit": "percent",
+    "declared_positive": {
+      "primary": 181,
+      "secondary": 18,
+      "operation": 12,
+      "selector_conflict": true,
+      "decoder_selection": false,
+      "acceptance": false
+    }
+  },
+  {
+    "id": "ab19_12_request_emergency",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 18,
+      "direction": "request",
+      "field": "ab19_emergency",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 3,
+    "width_bits": 8,
+    "encoding": "bits",
+    "bits": [
+      {
+        "bit": 0,
+        "label": "emergency",
+        "status": "candidate"
+      },
+      {
+        "bit": 1,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 2,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 3,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 4,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 5,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 6,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 7,
+        "label": "unmodeled",
+        "status": "unmodeled"
+      }
+    ]
+  },
+  {
+    "id": "ab19_12_request_switch",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 18,
+      "direction": "request",
+      "field": "ab19_switch",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 4,
+    "width_bits": 8,
+    "encoding": "raw-u8"
+  },
+  {
+    "id": "ab19_12_request_co2_1",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 18,
+      "direction": "request",
+      "field": "ab19_co2_1",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 5,
+    "width_bits": 16,
+    "encoding": "raw-le16",
+    "domain": [
+      0,
+      65535
+    ],
+    "unit": "ppm"
+  },
+  {
+    "id": "ab19_12_request_co2_2",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 18,
+      "direction": "request",
+      "field": "ab19_co2_2",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 7,
+    "width_bits": 16,
+    "encoding": "raw-le16",
+    "domain": [
+      0,
+      65535
+    ],
+    "unit": "ppm"
+  },
+  {
+    "id": "ab19_12_positive_led",
+    "key": {
+      "family": "vaillant",
+      "variant": "B512-heatpump-io",
+      "primary": 181,
+      "secondary": 18,
+      "operation": 18,
+      "direction": "positive",
+      "field": "ab19_led",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "physical_reply_form": "Unknown",
+      "qualification": "Unknown"
+    },
+    "raw": {
+      "retained": true,
+      "short": "retain_raw",
+      "extra": "retain_raw",
+      "physical_reply_selection": false
+    },
+    "position": 3,
+    "width_bits": 8,
+    "encoding": "bits",
+    "bits": [
+      {
+        "bit": 0,
+        "label": "LED",
+        "status": "candidate"
+      },
+      {
+        "bit": 1,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 2,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 3,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 4,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 5,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 6,
+        "label": "reserved",
+        "status": "reserved"
+      },
+      {
+        "bit": 7,
+        "label": "unmodeled",
+        "status": "unmodeled"
+      }
+    ],
+    "declared_positive": {
+      "primary": 181,
+      "secondary": 18,
+      "operation": 12,
+      "selector_conflict": true,
+      "decoder_selection": false,
+      "acceptance": false
+    }
+  }
+]

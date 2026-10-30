@@ -1632,7 +1632,7 @@
       "secondary": 26,
       "operation": 8,
       "direction": "request",
-      "field": "slave-written"
+      "field": "responder-written"
     },
     "grade": "Hypothesis",
     "metadata_presence": "Proven",
@@ -1664,7 +1664,7 @@
       "secondary": 26,
       "operation": 8,
       "direction": "request",
-      "field": "master-to-write"
+      "field": "initiator-to-write"
     },
     "grade": "Hypothesis",
     "metadata_presence": "Proven",
@@ -1717,12 +1717,12 @@
       "invocation"
     ],
     "interpretations": [
-      "Named default master-spare conflicts with raw default 0. Keep 0 and 3..255 unmapped.",
+      "Named default initiator-spare conflicts with raw default 0. Keep 0 and 3..255 unmapped.",
       "Cross-device ownership does not establish identity or persistence."
     ],
     "values": {
-      "1": "master-spare",
-      "2": "slave-spare"
+      "1": "initiator-spare",
+      "2": "responder-spare"
     }
   },
   {
@@ -1733,7 +1733,7 @@
       "secondary": 26,
       "operation": 8,
       "direction": "request",
-      "field": "slave-version"
+      "field": "responder-version"
     },
     "grade": "Hypothesis",
     "metadata_presence": "Proven",
@@ -1765,7 +1765,7 @@
       "secondary": 26,
       "operation": 8,
       "direction": "request",
-      "field": "master-version"
+      "field": "initiator-version"
     },
     "grade": "Hypothesis",
     "metadata_presence": "Proven",
@@ -1797,7 +1797,7 @@
       "secondary": 26,
       "operation": 8,
       "direction": "positive",
-      "field": "master-written"
+      "field": "initiator-written"
     },
     "grade": "Hypothesis",
     "metadata_presence": "Proven",
@@ -1830,7 +1830,7 @@
       "secondary": 26,
       "operation": 8,
       "direction": "positive",
-      "field": "slave-to-write"
+      "field": "responder-to-write"
     },
     "grade": "Hypothesis",
     "metadata_presence": "Proven",
@@ -1863,7 +1863,7 @@
       "secondary": 26,
       "operation": 8,
       "direction": "positive",
-      "field": "slave-version"
+      "field": "responder-version"
     },
     "grade": "Hypothesis",
     "metadata_presence": "Proven",
@@ -1895,7 +1895,7 @@
       "secondary": 26,
       "operation": 8,
       "direction": "positive",
-      "field": "master-version"
+      "field": "initiator-version"
     },
     "grade": "Hypothesis",
     "metadata_presence": "Proven",

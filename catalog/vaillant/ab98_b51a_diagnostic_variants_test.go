@@ -336,13 +336,13 @@ func TestAb98ReplicationAndVersionDirections(ab98T *ab98testing.T) {
 	ab98Equal(ab98T, ab98Get(ab98T, 7, "request", "flags").Ab98Unknown, []string{"replication algorithms", "physical length", "qualification", "invocation"})
 	ab98Configuration := ab98Get(ab98T, 8, "request", "configuration")
 	ab98Equal(ab98T, ab98Configuration.Ab98Default, ab98Pointer(uint64(0)))
-	ab98Equal(ab98T, ab98Configuration.Ab98Values, map[uint64]string{1: "master-spare", 2: "slave-spare"})
+	ab98Equal(ab98T, ab98Configuration.Ab98Values, map[uint64]string{1: "initiator-spare", 2: "responder-spare"})
 	for _, ab98Case := range []struct {
 		ab98Direction, ab98Field string
 		ab98Position, ab98Width  uint16
 	}{
-		{"request", "slave-written", 4, 16}, {"request", "master-to-write", 6, 16}, {"request", "configuration", 8, 8}, {"request", "slave-version", 9, 8}, {"request", "master-version", 10, 8},
-		{"positive", "master-written", 4, 0}, {"positive", "slave-to-write", 6, 0}, {"positive", "slave-version", 8, 8}, {"positive", "master-version", 9, 8},
+		{"request", "responder-written", 4, 16}, {"request", "initiator-to-write", 6, 16}, {"request", "configuration", 8, 8}, {"request", "responder-version", 9, 8}, {"request", "initiator-version", 10, 8},
+		{"positive", "initiator-written", 4, 0}, {"positive", "responder-to-write", 6, 0}, {"positive", "responder-version", 8, 8}, {"positive", "initiator-version", 9, 8},
 	} {
 		ab98Entry := ab98Get(ab98T, 8, ab98Case.ab98Direction, ab98Case.ab98Field)
 		ab98Equal(ab98T, ab98Entry.Ab98Position, ab98Pointer(ab98Case.ab98Position))
@@ -361,10 +361,10 @@ func TestAb98ReplicationAndVersionDirections(ab98T *ab98testing.T) {
 	}
 	ab98Request := []byte{0, 0, 0, 0, 0, 0, 0, 0, 2, 41, 53}
 	ab98Positive := []byte{0, 0, 0, 0, 0, 0, 0, 0, 67, 79}
-	ab98Equal(ab98T, ab98Request[*ab98Get(ab98T, 8, "request", "slave-version").Ab98Position], byte(41))
-	ab98Equal(ab98T, ab98Request[*ab98Get(ab98T, 8, "request", "master-version").Ab98Position], byte(53))
-	ab98Equal(ab98T, ab98Positive[*ab98Get(ab98T, 8, "positive", "slave-version").Ab98Position], byte(67))
-	ab98Equal(ab98T, ab98Positive[*ab98Get(ab98T, 8, "positive", "master-version").Ab98Position], byte(79))
+	ab98Equal(ab98T, ab98Request[*ab98Get(ab98T, 8, "request", "responder-version").Ab98Position], byte(41))
+	ab98Equal(ab98T, ab98Request[*ab98Get(ab98T, 8, "request", "initiator-version").Ab98Position], byte(53))
+	ab98Equal(ab98T, ab98Positive[*ab98Get(ab98T, 8, "positive", "responder-version").Ab98Position], byte(67))
+	ab98Equal(ab98T, ab98Positive[*ab98Get(ab98T, 8, "positive", "initiator-version").Ab98Position], byte(79))
 }
 
 func TestAb98IndependentStorage(ab98T *ab98testing.T) {

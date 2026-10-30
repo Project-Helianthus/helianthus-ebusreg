@@ -1,0 +1,1125 @@
+{
+  "representation_grade": "Proven",
+  "physical_qualification": "Unknown",
+  "limitations": [
+    "Finite supplemental declarations; broader B514 family incomplete",
+    "Logical positions include prefixes and are not physical offsets",
+    "Native adaptation, cessation enforcement and peer effects are Unknown",
+    "Candidate cessation after fifteen minutes or mode zero is not established enforcement",
+    "Metadata does not establish callable support, freshness, persistence or execution permission",
+    "Pressure words remain raw; no pressure unit conversion is qualified",
+    "Specific OP06 variants are separate unnamed alternatives; no additional variant identity is supplied",
+    "Named 09 supplies only B5 request/F5 positive at logical zero; no encoded 09 or body is supplied"
+  ],
+  "fields": [
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 181,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 1
+        },
+        "direction": "request",
+        "field": "mode",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": 4,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {
+        "0": "off",
+        "1": "on"
+      },
+      "ranges": [
+        {
+          "minimum": 2,
+          "maximum": 255,
+          "meaning": "off"
+        }
+      ],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 1
+        },
+        "direction": "positive",
+        "field": "answer",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": 5,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {
+        "0": "normal",
+        "1": "actors-deactivated"
+      },
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 1
+        },
+        "direction": "positive",
+        "field": "feedback",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": 5,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {
+        "1": "accepted"
+      },
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "generic",
+        "primary": 181,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 6
+        },
+        "direction": "request",
+        "field": "command",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {
+        "0": "query",
+        "1": "start"
+      },
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "generic",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 6
+        },
+        "direction": "positive",
+        "field": "feedback",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {
+        "1": "in-progress",
+        "255": "unsupported"
+      },
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "specific-a",
+        "primary": 181,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 6
+        },
+        "direction": "request",
+        "field": "command",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {
+        "0": "query",
+        "1": "start"
+      },
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "specific-a",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 6
+        },
+        "direction": "positive",
+        "field": "feedback",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {
+        "1": "not-successful"
+      },
+      "ranges": [
+        {
+          "minimum": 3,
+          "maximum": 255,
+          "meaning": "invalid"
+        }
+      ],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "specific-b",
+        "primary": 181,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 6
+        },
+        "direction": "request",
+        "field": "command",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {
+        "0": "query",
+        "1": "start"
+      },
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "specific-b",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 6
+        },
+        "direction": "positive",
+        "field": "feedback",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {
+        "1": "not-successful"
+      },
+      "ranges": [
+        {
+          "minimum": 3,
+          "maximum": 255,
+          "meaning": "invalid"
+        }
+      ],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 181,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 7
+        },
+        "direction": "request",
+        "field": "command",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": 0,
+      "bounds": null,
+      "enumeration": {
+        "0": "query",
+        "1": "start-liquefied-gas",
+        "2": "start-natural-gas",
+        "3": "abort"
+      },
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 7
+        },
+        "direction": "positive",
+        "field": "feedback",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width": null,
+      "logical_extent": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": 0,
+      "bounds": null,
+      "enumeration": {
+        "0": "idle",
+        "1": "progress",
+        "2": "passed",
+        "3": "warning",
+        "4": "combustion-error",
+        "5": "gas-type-error",
+        "6": "aborted",
+        "255": "unsupported"
+      },
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 181,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 8
+        },
+        "direction": "request",
+        "field": "command",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 3,
+      "width": 1,
+      "logical_extent": 6,
+      "signedness": "unsigned",
+      "byte_order": "not applicable",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 181,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 8
+        },
+        "direction": "request",
+        "field": "pressure",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 4,
+      "width": 2,
+      "logical_extent": 6,
+      "signedness": "unsigned",
+      "byte_order": "little-endian",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 8
+        },
+        "direction": "positive",
+        "field": "feedback",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 3,
+      "width": 1,
+      "logical_extent": 13,
+      "signedness": "unsigned",
+      "byte_order": "not applicable",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 8
+        },
+        "direction": "positive",
+        "field": "pressure",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 4,
+      "width": 2,
+      "logical_extent": 13,
+      "signedness": "unsigned",
+      "byte_order": "little-endian",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 8
+        },
+        "direction": "positive",
+        "field": "minimum",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 6,
+      "width": 2,
+      "logical_extent": 13,
+      "signedness": "unsigned",
+      "byte_order": "little-endian",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 8
+        },
+        "direction": "positive",
+        "field": "maximum",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 8,
+      "width": 2,
+      "logical_extent": 13,
+      "signedness": "unsigned",
+      "byte_order": "little-endian",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 8
+        },
+        "direction": "positive",
+        "field": "step",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 10,
+      "width": 1,
+      "logical_extent": 13,
+      "signedness": "unsigned",
+      "byte_order": "not applicable",
+      "conversion": null,
+      "unit": "mbar",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": 1,
+      "conflict": "constant 1 mbar conflicts with default zero; unresolved",
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "menu",
+        "primary": 245,
+        "secondary": {
+          "present": true,
+          "value": 20
+        },
+        "operation": {
+          "present": true,
+          "value": 8
+        },
+        "direction": "positive",
+        "field": "flow",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 11,
+      "width": 2,
+      "logical_extent": 13,
+      "signedness": "unsigned",
+      "byte_order": "little-endian",
+      "conversion": {
+        "factor": 0.01,
+        "offset": 0
+      },
+      "unit": "l/min",
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": null,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "named-09",
+        "primary": 181,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "request",
+        "field": "prefix",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 0,
+      "width": 1,
+      "logical_extent": null,
+      "signedness": "unsigned",
+      "byte_order": "not applicable",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": 181,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    },
+    {
+      "key": {
+        "family": "B514",
+        "variant": "named-09",
+        "primary": 245,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "positive",
+        "field": "prefix",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 0,
+      "width": 1,
+      "logical_extent": null,
+      "signedness": "unsigned",
+      "byte_order": "not applicable",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "ranges": [],
+      "replacement": null,
+      "reserved": [],
+      "constant": 245,
+      "conflict": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives"
+    }
+  ]
+}

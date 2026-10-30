@@ -228,6 +228,28 @@ func TestAb25Ap25Invalid(ab25ap25T *testing.T) {
 	}
 }
 
+func TestAb25Ap25UTF8(ab25ap25T *testing.T) {
+	for _, ab25ap25Location := range []string{"context", "arguments"} {
+		ab25ap25T.Run(ab25ap25Location, func(ab25ap25T *testing.T) {
+			ab25ap25Template := `{"context":{},"fields":{},"arguments":{"opaque":"%s"}}`
+			if ab25ap25Location == "context" {
+				ab25ap25Template = `{"context":{"opaque":"%s"},"fields":{}}`
+			}
+			for _, ab25ap25Text := range []string{"\xff", "\xc3", "\xc0\xaf", "\xed\xa0\x80"} {
+				ab25ap25InputBytes := fmt.Sprintf(ab25ap25Template, ab25ap25Text)
+				ab25ap25Output, ab25ap25Error := Ab25Ap25Evaluate([]byte(ab25ap25InputBytes))
+				if ab25ap25Error == nil || ab25ap25Output != nil {
+					ab25ap25T.Fatalf("invalid UTF-8 admitted: %q", ab25ap25InputBytes)
+				}
+			}
+			ab25ap25InputObject := ab25ap25Input(3, "positive", "quality", map[string]any{"rssi": []int{0}, "quality": []int{0}})
+			ab25ap25InputObject["arguments"] = map[string]any{}
+			ab25ap25InputObject[ab25ap25Location].(map[string]any)["opaque"] = "é 世界 \ufffd"
+			ab25ap25Evaluate(ab25ap25T, ab25ap25InputObject)
+		})
+	}
+}
+
 func TestAb25Ap25Ownership(ab25ap25T *testing.T) {
 	ab25ap25InputBytes := json.RawMessage(`{"context":{"primary":181,"secondary":37,"operation":24,"direction":"request","view":"configuration","opaque":{"a":[0]}},"fields":{"configuration":[0],"data":[0,170,255]},"arguments":{"opaque":{"a":[false]}}}`)
 	ab25ap25Saved := append(json.RawMessage(nil), ab25ap25InputBytes...)

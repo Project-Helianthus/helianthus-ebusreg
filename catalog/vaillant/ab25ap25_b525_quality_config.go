@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"math/big"
+	"unicode/utf8"
 )
 
 func ab25ap25Read(ab25ap25Decoder *json.Decoder) (any, error) {
@@ -72,6 +73,9 @@ func ab25ap25Byte(ab25ap25Value any) (int, bool) {
 }
 
 func Ab25Ap25Evaluate(ab25ap25Input json.RawMessage) (json.RawMessage, error) {
+	if !utf8.Valid(ab25ap25Input) {
+		return nil, fmt.Errorf("input must be valid UTF-8")
+	}
 	ab25ap25Decoder := json.NewDecoder(bytes.NewReader(ab25ap25Input))
 	ab25ap25Decoder.UseNumber()
 	ab25ap25Value, ab25ap25Error := ab25ap25Read(ab25ap25Decoder)

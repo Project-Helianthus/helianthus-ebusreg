@@ -1,0 +1,318 @@
+[
+  {
+    "ab21_id": "ab21-b519-OP03-initiator-to-target-mode-policy",
+    "key": {
+      "family": "vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 25,
+      "operation": 3,
+      "direction": "initiator-to-target",
+      "field": "reply-policy",
+      "alternative": "mode-policy",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "ab21_grade": "Hypothesis",
+    "ab21_metadata_presence": "Proven",
+    "ab21_native_contract": "protocols/vaillant/ebus-vaillant-B519.md",
+    "ab21_reply_policy": "target-response",
+    "ab21_reply_recipient": "none",
+    "ab21_initiator_relation": "none",
+    "ab21_data": {
+      "ab21_minimum_length": 0,
+      "ab21_peer_capacity": "Unknown",
+      "ab21_block_number_in_data": false,
+      "ab21_representation": "opaque-bytes"
+    },
+    "ab21_crc_query_operation": null,
+    "ab21_raw_form": {
+      "ab21_service": [
+        181,
+        25,
+        3
+      ],
+      "ab21_preserve_raw": true,
+      "ab21_unresolved_bytes": "retained"
+    },
+    "ab21_unknown": {
+      "ab21_routing": "Unknown",
+      "ab21_actual_acknowledgement": "Unknown",
+      "ab21_storage_effects": "Unknown",
+      "ab21_native_support": "Unknown",
+      "ab21_physical_effects": "Unknown",
+      "ab21_persistence": "Unknown",
+      "ab21_delivery": "Unknown",
+      "ab21_qualification": "Unknown"
+    }
+  },
+  {
+    "ab21_id": "ab21-b519-OP03-initiator-to-initiator-mode-policy",
+    "key": {
+      "family": "vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 25,
+      "operation": 3,
+      "direction": "initiator-to-initiator",
+      "field": "reply-policy",
+      "alternative": "mode-policy",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "ab21_grade": "Hypothesis",
+    "ab21_metadata_presence": "Proven",
+    "ab21_native_contract": "protocols/vaillant/ebus-vaillant-B519.md",
+    "ab21_reply_policy": "service-toward-initial-sender",
+    "ab21_reply_recipient": "initial-sender",
+    "ab21_initiator_relation": "initiator-associated-with-receiving-target",
+    "ab21_data": {
+      "ab21_minimum_length": 0,
+      "ab21_peer_capacity": "Unknown",
+      "ab21_block_number_in_data": false,
+      "ab21_representation": "opaque-bytes"
+    },
+    "ab21_crc_query_operation": null,
+    "ab21_raw_form": {
+      "ab21_service": [
+        181,
+        25,
+        3
+      ],
+      "ab21_preserve_raw": true,
+      "ab21_unresolved_bytes": "retained"
+    },
+    "ab21_unknown": {
+      "ab21_routing": "Unknown",
+      "ab21_actual_acknowledgement": "Unknown",
+      "ab21_storage_effects": "Unknown",
+      "ab21_native_support": "Unknown",
+      "ab21_physical_effects": "Unknown",
+      "ab21_persistence": "Unknown",
+      "ab21_delivery": "Unknown",
+      "ab21_qualification": "Unknown"
+    }
+  },
+  {
+    "ab21_id": "ab21-b519-OP03-broadcast-mode-policy",
+    "key": {
+      "family": "vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 25,
+      "operation": 3,
+      "direction": "broadcast",
+      "field": "reply-policy",
+      "alternative": "mode-policy",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "ab21_grade": "Hypothesis",
+    "ab21_metadata_presence": "Proven",
+    "ab21_native_contract": "protocols/vaillant/ebus-vaillant-B519.md",
+    "ab21_reply_policy": "retained-CRC-for-OP02",
+    "ab21_reply_recipient": "none",
+    "ab21_initiator_relation": "initiator-associated-with-receiving-target",
+    "ab21_data": {
+      "ab21_minimum_length": 0,
+      "ab21_peer_capacity": "Unknown",
+      "ab21_block_number_in_data": false,
+      "ab21_representation": "opaque-bytes"
+    },
+    "ab21_crc_query_operation": 2,
+    "ab21_raw_form": {
+      "ab21_service": [
+        181,
+        25,
+        3
+      ],
+      "ab21_preserve_raw": true,
+      "ab21_unresolved_bytes": "retained"
+    },
+    "ab21_unknown": {
+      "ab21_routing": "Unknown",
+      "ab21_actual_acknowledgement": "Unknown",
+      "ab21_storage_effects": "Unknown",
+      "ab21_native_support": "Unknown",
+      "ab21_physical_effects": "Unknown",
+      "ab21_persistence": "Unknown",
+      "ab21_delivery": "Unknown",
+      "ab21_qualification": "Unknown"
+    }
+  },
+  {
+    "ab21_id": "ab21-b519-OP01-initiator-to-initiator-ACK-only",
+    "key": {
+      "family": "vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 25,
+      "operation": 1,
+      "direction": "initiator-to-initiator",
+      "field": "reply-policy",
+      "alternative": "ACK-only",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "ab21_grade": "Hypothesis",
+    "ab21_metadata_presence": "Proven",
+    "ab21_native_contract": "protocols/vaillant/ebus-vaillant-B519.md",
+    "ab21_reply_policy": "ACK-only",
+    "ab21_reply_recipient": "none",
+    "ab21_initiator_relation": "initiator-associated-with-receiving-target",
+    "ab21_data": null,
+    "ab21_crc_query_operation": null,
+    "ab21_raw_form": {
+      "ab21_service": [
+        181,
+        25,
+        1
+      ],
+      "ab21_preserve_raw": true,
+      "ab21_unresolved_bytes": "retained"
+    },
+    "ab21_unknown": {
+      "ab21_routing": "Unknown",
+      "ab21_actual_acknowledgement": "Unknown",
+      "ab21_storage_effects": "Unknown",
+      "ab21_native_support": "Unknown",
+      "ab21_physical_effects": "Unknown",
+      "ab21_persistence": "Unknown",
+      "ab21_delivery": "Unknown",
+      "ab21_qualification": "Unknown"
+    }
+  },
+  {
+    "ab21_id": "ab21-b519-OP01-initiator-to-initiator-CRC-positive",
+    "key": {
+      "family": "vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 25,
+      "operation": 1,
+      "direction": "initiator-to-initiator",
+      "field": "reply-policy",
+      "alternative": "CRC-positive",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "ab21_grade": "Hypothesis",
+    "ab21_metadata_presence": "Proven",
+    "ab21_native_contract": "protocols/vaillant/ebus-vaillant-B519.md",
+    "ab21_reply_policy": "CRC-positive",
+    "ab21_reply_recipient": "none",
+    "ab21_initiator_relation": "initiator-associated-with-receiving-target",
+    "ab21_data": null,
+    "ab21_crc_query_operation": null,
+    "ab21_raw_form": {
+      "ab21_service": [
+        181,
+        25,
+        1
+      ],
+      "ab21_preserve_raw": true,
+      "ab21_unresolved_bytes": "retained"
+    },
+    "ab21_unknown": {
+      "ab21_routing": "Unknown",
+      "ab21_actual_acknowledgement": "Unknown",
+      "ab21_storage_effects": "Unknown",
+      "ab21_native_support": "Unknown",
+      "ab21_physical_effects": "Unknown",
+      "ab21_persistence": "Unknown",
+      "ab21_delivery": "Unknown",
+      "ab21_qualification": "Unknown"
+    }
+  },
+  {
+    "ab21_id": "ab21-b519-OP01-broadcast-ACK-only",
+    "key": {
+      "family": "vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 25,
+      "operation": 1,
+      "direction": "broadcast",
+      "field": "reply-policy",
+      "alternative": "ACK-only",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "ab21_grade": "Hypothesis",
+    "ab21_metadata_presence": "Proven",
+    "ab21_native_contract": "protocols/vaillant/ebus-vaillant-B519.md",
+    "ab21_reply_policy": "ACK-only",
+    "ab21_reply_recipient": "none",
+    "ab21_initiator_relation": "initiator-associated-with-receiving-target",
+    "ab21_data": null,
+    "ab21_crc_query_operation": null,
+    "ab21_raw_form": {
+      "ab21_service": [
+        181,
+        25,
+        1
+      ],
+      "ab21_preserve_raw": true,
+      "ab21_unresolved_bytes": "retained"
+    },
+    "ab21_unknown": {
+      "ab21_routing": "Unknown",
+      "ab21_actual_acknowledgement": "Unknown",
+      "ab21_storage_effects": "Unknown",
+      "ab21_native_support": "Unknown",
+      "ab21_physical_effects": "Unknown",
+      "ab21_persistence": "Unknown",
+      "ab21_delivery": "Unknown",
+      "ab21_qualification": "Unknown"
+    }
+  },
+  {
+    "ab21_id": "ab21-b519-OP01-broadcast-CRC-positive",
+    "key": {
+      "family": "vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 25,
+      "operation": 1,
+      "direction": "broadcast",
+      "field": "reply-policy",
+      "alternative": "CRC-positive",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "ab21_grade": "Hypothesis",
+    "ab21_metadata_presence": "Proven",
+    "ab21_native_contract": "protocols/vaillant/ebus-vaillant-B519.md",
+    "ab21_reply_policy": "CRC-positive",
+    "ab21_reply_recipient": "none",
+    "ab21_initiator_relation": "initiator-associated-with-receiving-target",
+    "ab21_data": null,
+    "ab21_crc_query_operation": null,
+    "ab21_raw_form": {
+      "ab21_service": [
+        181,
+        25,
+        1
+      ],
+      "ab21_preserve_raw": true,
+      "ab21_unresolved_bytes": "retained"
+    },
+    "ab21_unknown": {
+      "ab21_routing": "Unknown",
+      "ab21_actual_acknowledgement": "Unknown",
+      "ab21_storage_effects": "Unknown",
+      "ab21_native_support": "Unknown",
+      "ab21_physical_effects": "Unknown",
+      "ab21_persistence": "Unknown",
+      "ab21_delivery": "Unknown",
+      "ab21_qualification": "Unknown"
+    }
+  }
+]

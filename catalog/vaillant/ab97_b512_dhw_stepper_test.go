@@ -4,6 +4,7 @@ import (
 	ab97json "encoding/json"
 	ab97reflect "reflect"
 	ab97strconv "strconv"
+	ab97sync "sync"
 	ab97testing "testing"
 )
 
@@ -266,7 +267,10 @@ func TestAb97IndependentStorage(ab97T *ab97testing.T) {
 }
 func TestAb97MalformedData(ab97T *ab97testing.T) {
 	ab97Original := ab97Data
-	defer func() { ab97Data = ab97Original }()
+	defer func() {
+		ab97Data = ab97Original
+		ab97Catalog = ab97sync.OnceValues(ab97LoadEntries)
+	}()
 	ab97Rows, ab97Err := Ab97Entries()
 	if ab97Err != nil {
 		ab97T.Fatal(ab97Err)
@@ -292,6 +296,7 @@ func TestAb97MalformedData(ab97T *ab97testing.T) {
 	}
 	for ab97Index, ab97Invalid := range ab97Cases {
 		ab97Data = ab97Invalid
+		ab97Catalog = ab97sync.OnceValues(ab97LoadEntries)
 		if ab97Entries, ab97Err := Ab97Entries(); ab97Err == nil || ab97Entries != nil {
 			ab97T.Fatalf("invalid catalog %d accepted", ab97Index)
 		}
@@ -303,7 +308,10 @@ func TestAb97MalformedData(ab97T *ab97testing.T) {
 
 func TestAb97B524Identity(ab97T *ab97testing.T) {
 	ab97Original := ab97Data
-	defer func() { ab97Data = ab97Original }()
+	defer func() {
+		ab97Data = ab97Original
+		ab97Catalog = ab97sync.OnceValues(ab97LoadEntries)
+	}()
 	ab97Rows, ab97Err := Ab97Entries()
 	if ab97Err != nil {
 		ab97T.Fatal(ab97Err)
@@ -314,6 +322,7 @@ func TestAb97B524Identity(ab97T *ab97testing.T) {
 	ab97Row := ab97Rows[0]
 	ab97Row.Ab97Key = ab97Base
 	ab97Data, ab97Err = ab97json.Marshal([]Ab97Entry{ab97Row})
+	ab97Catalog = ab97sync.OnceValues(ab97LoadEntries)
 	if ab97Err != nil {
 		ab97T.Fatal(ab97Err)
 	}
@@ -356,5 +365,36 @@ func TestAb97B524Identity(ab97T *ab97testing.T) {
 	ab97Again, ab97Found, ab97Err := Ab97Lookup(ab97Base)
 	if ab97Err != nil || !ab97Found || !ab97reflect.DeepEqual(ab97Again, ab97Row) {
 		ab97T.Fatal("synthetic B524 axes alias storage")
+	}
+}
+
+func TestAb97ConcurrentLookup(ab97T *ab97testing.T) {
+	// Exercise concurrent initialization as well as independent returned storage.
+	ab97Catalog = ab97sync.OnceValues(ab97LoadEntries)
+	for ab97Index := 0; ab97Index < 16; ab97Index++ {
+		ab97T.Run(ab97strconv.Itoa(ab97Index), func(ab97T *ab97testing.T) {
+			ab97T.Parallel()
+			for ab97Read := 0; ab97Read < 10; ab97Read++ {
+				ab97Entry := ab97Require(ab97T, 3, "positive", "status")
+				if ab97Entry.Ab97Values["0"] != "okay" {
+					ab97T.Fatal("concurrent mutation escaped")
+				}
+				ab97Mutate(ab97reflect.ValueOf(&ab97Entry).Elem())
+			}
+		})
+	}
+}
+
+func BenchmarkAb97Lookup(ab97B *ab97testing.B) {
+	ab97Key := ab97Key(ab97Byte(3), "positive", "status")
+	if _, ab97Found, ab97Err := Ab97Lookup(ab97Key); ab97Err != nil || !ab97Found {
+		ab97B.Fatalf("lookup: %v %v", ab97Found, ab97Err)
+	}
+	ab97B.ReportAllocs()
+	ab97B.ResetTimer()
+	for ab97Index := 0; ab97Index < ab97B.N; ab97Index++ {
+		if _, ab97Found, ab97Err := Ab97Lookup(ab97Key); ab97Err != nil || !ab97Found {
+			ab97B.Fatalf("lookup: %v %v", ab97Found, ab97Err)
+		}
 	}
 }

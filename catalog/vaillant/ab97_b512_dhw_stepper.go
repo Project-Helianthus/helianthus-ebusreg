@@ -6,7 +6,10 @@ import (
 	ab97json "encoding/json"
 	ab97fmt "fmt"
 	ab97io "io"
+	ab97maps "maps"
 	ab97reflect "reflect"
+	ab97slices "slices"
+	ab97sync "sync"
 )
 
 //go:embed data/ab97_b512_dhw_stepper.json
@@ -50,7 +53,22 @@ type Ab97Entry struct {
 	Ab97NativeContract  string            `json:"native_contract"`
 }
 
+// The embedded catalog is validated once and never exposed to callers.
+var ab97Catalog = ab97sync.OnceValues(ab97LoadEntries)
+
 func Ab97Entries() ([]Ab97Entry, error) {
+	ab97Entries, ab97Err := ab97Catalog()
+	if ab97Err != nil {
+		return nil, ab97Err
+	}
+	ab97Result := make([]Ab97Entry, len(ab97Entries))
+	for ab97Index, ab97Entry := range ab97Entries {
+		ab97Result[ab97Index] = ab97CloneEntry(ab97Entry)
+	}
+	return ab97Result, nil
+}
+
+func ab97LoadEntries() ([]Ab97Entry, error) {
 	ab97Decoder := ab97json.NewDecoder(ab97bytes.NewReader(ab97Data))
 	ab97Decoder.DisallowUnknownFields()
 	var ab97Entries []Ab97Entry
@@ -84,14 +102,46 @@ func Ab97Entries() ([]Ab97Entry, error) {
 }
 
 func Ab97Lookup(ab97Key Ab97Key) (Ab97Entry, bool, error) {
-	ab97Entries, ab97Err := Ab97Entries()
+	ab97Entries, ab97Err := ab97Catalog()
 	if ab97Err != nil {
 		return Ab97Entry{}, false, ab97Err
 	}
 	for _, ab97Entry := range ab97Entries {
 		if ab97reflect.DeepEqual(ab97Key, ab97Entry.Ab97Key) {
-			return ab97Entry, true, nil
+			return ab97CloneEntry(ab97Entry), true, nil
 		}
 	}
 	return Ab97Entry{}, false, nil
+}
+
+func ab97ClonePointer[T any](ab97Value *T) *T {
+	if ab97Value == nil {
+		return nil
+	}
+	ab97Copy := *ab97Value
+	return &ab97Copy
+}
+
+func ab97CloneEntry(ab97Entry Ab97Entry) Ab97Entry {
+	ab97Entry.Ab97Key.Ab97Secondary = ab97ClonePointer(ab97Entry.Ab97Key.Ab97Secondary)
+	ab97Entry.Ab97Key.Ab97Operation = ab97ClonePointer(ab97Entry.Ab97Key.Ab97Operation)
+	ab97Entry.Ab97Key.Ab97Group = ab97ClonePointer(ab97Entry.Ab97Key.Ab97Group)
+	ab97Entry.Ab97Key.Ab97RequestedInstance = ab97ClonePointer(ab97Entry.Ab97Key.Ab97RequestedInstance)
+	ab97Entry.Ab97Key.Ab97Register = ab97ClonePointer(ab97Entry.Ab97Key.Ab97Register)
+	ab97Entry.Ab97Key.Ab97CommandRole = ab97ClonePointer(ab97Entry.Ab97Key.Ab97CommandRole)
+	ab97Entry.Ab97CoordinateBasis = ab97ClonePointer(ab97Entry.Ab97CoordinateBasis)
+	ab97Entry.Ab97Position = ab97ClonePointer(ab97Entry.Ab97Position)
+	ab97Entry.Ab97WidthBits = ab97ClonePointer(ab97Entry.Ab97WidthBits)
+	ab97Entry.Ab97Bit = ab97ClonePointer(ab97Entry.Ab97Bit)
+	ab97Entry.Ab97Divisor = ab97ClonePointer(ab97Entry.Ab97Divisor)
+	ab97Entry.Ab97Unit = ab97ClonePointer(ab97Entry.Ab97Unit)
+	ab97Entry.Ab97FormalUnit = ab97ClonePointer(ab97Entry.Ab97FormalUnit)
+	ab97Entry.Ab97BooleanDefault = ab97ClonePointer(ab97Entry.Ab97BooleanDefault)
+	ab97Entry.Ab97Default = ab97ClonePointer(ab97Entry.Ab97Default)
+	ab97Entry.Ab97Label = ab97ClonePointer(ab97Entry.Ab97Label)
+	ab97Entry.Ab97Signed = ab97ClonePointer(ab97Entry.Ab97Signed)
+	ab97Entry.Ab97ByteOrder = ab97ClonePointer(ab97Entry.Ab97ByteOrder)
+	ab97Entry.Ab97Values = ab97maps.Clone(ab97Entry.Ab97Values)
+	ab97Entry.Ab97Unknown = ab97slices.Clone(ab97Entry.Ab97Unknown)
+	return ab97Entry
 }

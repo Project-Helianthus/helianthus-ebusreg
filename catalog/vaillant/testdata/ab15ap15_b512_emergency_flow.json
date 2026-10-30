@@ -1,0 +1,6 @@
+[
+ {"id":"ab15ap15_flow_request","input":{"context":{"primary":181,"secondary":18,"operation":17,"direction":"request","view":"flow-io","family":"synthetic-family","variant":"synthetic-variant"},"fields":{"temperature1":[16,0],"temperature2":[240,255],"temperature3":[0,128],"pressure":[255],"flow":[255],"pump_status":[255],"flags":[129]}},"numbers":{"temperature1":1,"temperature2":-1,"temperature3":-2048,"pressure":25.5,"flow":-10,"pump_status":255}},
+ {"id":"ab15ap15_flow_positive","input":{"context":{"primary":181,"secondary":18,"operation":17,"direction":"positive","view":"flow-io"},"fields":{"flags":[129],"setpoint":[101]}},"numbers":{"setpoint":101}},
+ {"id":"ab15ap15_emergency_request","input":{"context":{"primary":181,"secondary":18,"operation":18,"direction":"request","view":"emergency-io"},"fields":{"flags":[128],"switch":[255],"co2_1":[255,255],"co2_2":[1,0]}},"numbers":{"switch":255,"co2_1":65535,"co2_2":1}},
+ {"id":"ab15ap15_emergency_positive","input":{"context":{"primary":181,"secondary":18,"operation":18,"direction":"positive","view":"emergency-io"},"fields":{"flags":[128]}},"numbers":{}}
+]

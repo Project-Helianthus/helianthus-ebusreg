@@ -72,9 +72,48 @@ func ab23ao23Integer(ab23ao23Value any) (int64, bool) {
 	return ab23ao23Int, ab23ao23Err == nil
 }
 
+// Check escapes before decoding, which otherwise replaces unpaired surrogates.
+// The JSON decoder remains responsible for the rest of the syntax validation.
+func ab23ao23ValidSurrogates(input []byte) bool {
+	for i := 0; i < len(input); i++ {
+		if input[i] != '\\' {
+			continue
+		}
+		i++
+		if i >= len(input) || input[i] != 'u' {
+			continue // Skip escaped backslashes and other non-Unicode escapes.
+		}
+		if i+4 >= len(input) {
+			return false
+		}
+		code, err := strconv.ParseUint(string(input[i+1:i+5]), 16, 16)
+		if err != nil {
+			return false
+		}
+		i += 4
+		if code >= 0xdc00 && code <= 0xdfff {
+			return false
+		}
+		if code >= 0xd800 && code <= 0xdbff {
+			if i+6 >= len(input) || input[i+1] != '\\' || input[i+2] != 'u' {
+				return false
+			}
+			low, err := strconv.ParseUint(string(input[i+3:i+7]), 16, 16)
+			if err != nil || low < 0xdc00 || low > 0xdfff {
+				return false
+			}
+			i += 6
+		}
+	}
+	return true
+}
+
 func Ab23Ao23Interpret(ab23ao23Input json.RawMessage) (json.RawMessage, error) {
 	if !utf8.Valid(ab23ao23Input) {
 		return nil, fmt.Errorf("input must be UTF-8 JSON")
+	}
+	if !ab23ao23ValidSurrogates(ab23ao23Input) {
+		return nil, fmt.Errorf("input must contain valid Unicode escapes with paired surrogates")
 	}
 	ab23ao23Decoder := json.NewDecoder(bytes.NewReader(ab23ao23Input))
 	ab23ao23Decoder.UseNumber()

@@ -405,6 +405,53 @@ func TestAb23Ao23InvalidJSON(ab23ao23T *testing.T) {
 	}
 }
 
+func TestAb23Ao23UnicodeEscapes(t *testing.T) {
+	for _, input := range []string{
+		`{"context":{"family":"\ud800"},"fields":{}}`,
+		`{"context":{"family":"\udfff"},"fields":{}}`,
+		`{"context":{"family":"\ud800\u0041"},"fields":{}}`,
+		`{"context":{"family":"\ud800\ud800"},"fields":{}}`,
+		`{"context":{"family":"\udc00\ud800"},"fields":{}}`,
+		`{"context":{"family":"\ud800x\udc00"},"fields":{}}`,
+		`{"context":{"family":"\ud800\\udc00"},"fields":{}}`,
+		`{"context":{"family":{"\ud800":[]}},"fields":{}}`,
+		`{"context":{"family":["\udc00"]},"fields":{}}`,
+		`{"context":{},"fields":{"\ud800":[]}}`,
+	} {
+		t.Run(input, func(t *testing.T) {
+			output, err := Ab23Ao23Interpret(json.RawMessage(input))
+			if err == nil || output != nil {
+				t.Fatalf("unpaired surrogate accepted: %s, %v", output, err)
+			}
+		})
+	}
+	for _, tc := range []struct{ encoded, want string }{
+		{`"\ud800\udc00"`, "\U00010000"},
+		{`"\uDBFF\uDFFF"`, "\U0010ffff"},
+		{`"\ud83d\ude00"`, "\U0001f600"},
+		{`"\\ud800"`, `\ud800`},
+		{`"\\\ud800\udc00"`, "\\\U00010000"},
+		{`"\ufffd"`, "\ufffd"},
+		{`"�"`, "\ufffd"},
+		{`"\"\u0041\\"`, "\"A\\"},
+	} {
+		t.Run(tc.encoded, func(t *testing.T) {
+			input := json.RawMessage(`{"context":{"family":` + tc.encoded + `},"fields":{}}`)
+			output, err := Ab23Ao23Interpret(input)
+			if err != nil {
+				t.Fatal(err)
+			}
+			var decoded struct{ Context struct{ Family string } }
+			if err := json.Unmarshal(output, &decoded); err != nil {
+				t.Fatal(err)
+			}
+			if decoded.Context.Family != tc.want {
+				t.Fatalf("got %q; want %q", decoded.Context.Family, tc.want)
+			}
+		})
+	}
+}
+
 func TestAb23Ao23Isolation(ab23ao23T *testing.T) {
 	ab23ao23Input := ab23ao23Input("positive", []int{0, 0, 0, 255, 3, 0, 12, 255, 255, 0, 0, 16, 0, 171, 232, 3, 94, 1})
 	ab23ao23Input["arguments"] = map[string]any{}

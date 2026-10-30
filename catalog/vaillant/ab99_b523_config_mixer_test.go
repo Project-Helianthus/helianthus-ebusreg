@@ -64,7 +64,7 @@ func TestAb99ExactAxes(ab99T *ab99testing.T) {
 		})
 	}
 }
-func TestAb99B524Axes(ab99T *ab99testing.T) {
+func TestAb99OptionalAxes(ab99T *ab99testing.T) {
 	ab99Saved := ab99Data
 	ab99T.Cleanup(func() { ab99Data = ab99Saved })
 	ab99Entries, ab99Error := Ab99Entries()
@@ -72,7 +72,6 @@ func TestAb99B524Axes(ab99T *ab99testing.T) {
 		ab99T.Fatal(ab99Error)
 	}
 	ab99Control := ab99Entries[0]
-	ab99Control.Ab99Key.Ab99Secondary = ab99Pointer(uint8(0x24))
 	ab99Control.Ab99Key.Ab99Group = ab99Pointer(uint8(1))
 	ab99Control.Ab99Key.Ab99RequestedInstance = ab99Pointer(uint8(2))
 	ab99Control.Ab99Key.Ab99Register = ab99Pointer(uint16(3))
@@ -293,7 +292,6 @@ func TestAb99AbsentZero(ab99T *ab99testing.T) {
 		ab99T.Fatal(ab99Error)
 	}
 	ab99Control := ab99Entries[0]
-	ab99Control.Ab99Key.Ab99Secondary = ab99Pointer(uint8(0))
 	ab99Control.Ab99Key.Ab99Group = ab99Pointer(uint8(0))
 	ab99Control.Ab99Key.Ab99RequestedInstance = ab99Pointer(uint8(0))
 	ab99Control.Ab99Key.Ab99Register = ab99Pointer(uint16(0))
@@ -303,7 +301,6 @@ func TestAb99AbsentZero(ab99T *ab99testing.T) {
 		ab99T.Fatal(ab99Error)
 	}
 	ab99Changes := map[string]func(*Ab99Key){
-		"ab99_secondary": func(ab99Key *Ab99Key) { ab99Key.Ab99Secondary = nil },
 		"ab99_operation": func(ab99Key *Ab99Key) { ab99Key.Ab99Operation = nil },
 		"ab99_group":     func(ab99Key *Ab99Key) { ab99Key.Ab99Group = nil },
 		"ab99_instance":  func(ab99Key *Ab99Key) { ab99Key.Ab99RequestedInstance = nil },
@@ -319,5 +316,43 @@ func TestAb99AbsentZero(ab99T *ab99testing.T) {
 				ab99T.Fatal("absent axis conflated with explicit zero")
 			}
 		})
+	}
+}
+
+func TestAb99RequiredCoordinates(ab99T *ab99testing.T) {
+	ab99Saved := ab99Data
+	ab99T.Cleanup(func() { ab99Data = ab99Saved })
+	for _, ab99Axis := range []string{"primary", "secondary", "operation"} {
+		for _, ab99Form := range []string{"missing", "null", "wrong"} {
+			if ab99Axis == "operation" && ab99Form == "wrong" {
+				continue
+			}
+			ab99T.Run(ab99Axis+"/"+ab99Form, func(ab99T *ab99testing.T) {
+				var ab99Entries []map[string]any
+				if ab99Error := ab99json.Unmarshal(ab99Saved, &ab99Entries); ab99Error != nil {
+					ab99T.Fatal(ab99Error)
+				}
+				ab99Key := ab99Entries[0]["key"].(map[string]any)
+				switch ab99Form {
+				case "missing":
+					delete(ab99Key, ab99Axis)
+				case "null":
+					ab99Key[ab99Axis] = nil
+				case "wrong":
+					ab99Key[ab99Axis] = 0
+				}
+				var ab99Error error
+				ab99Data, ab99Error = ab99json.Marshal(ab99Entries)
+				if ab99Error != nil {
+					ab99T.Fatal(ab99Error)
+				}
+				if ab99Got, ab99Error := Ab99Entries(); ab99Error == nil || ab99Got != nil {
+					ab99T.Fatal("invalid coordinates exposed")
+				}
+				if ab99Got, ab99OK, ab99Error := Ab99Lookup(Ab99Key{}); ab99Error == nil || ab99OK || !ab99reflect.DeepEqual(ab99Got, Ab99Entry{}) {
+					ab99T.Fatal("invalid coordinates hidden as miss")
+				}
+			})
+		}
 	}
 }

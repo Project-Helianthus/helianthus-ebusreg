@@ -93,6 +93,9 @@ func Ab99Entries() ([]Ab99Entry, error) {
 		return nil, ab99fmt.Errorf("ab99: empty catalog")
 	}
 	for ab99Index, ab99Entry := range ab99Entries {
+		if ab99Entry.Ab99Key.Ab99Primary != 0xb5 || ab99Entry.Ab99Key.Ab99Secondary == nil || *ab99Entry.Ab99Key.Ab99Secondary != 0x23 || ab99Entry.Ab99Key.Ab99Operation == nil {
+			return nil, ab99fmt.Errorf("ab99: invalid key coordinates in entry %d", ab99Index)
+		}
 		if ab99Entry.Ab99Key.Ab99Family == "" || ab99Entry.Ab99Key.Ab99Variant == "" || ab99Entry.Ab99Key.Ab99Direction == "" || ab99Entry.Ab99Key.Ab99Field == "" || ab99Entry.Ab99Grade != "Hypothesis" || !ab99Entry.Ab99PreserveRaw || ab99Entry.Ab99PhysicalAdaptation != "Unknown" || ab99Entry.Ab99Support != "Unknown" || ab99Entry.Ab99ExecutedMovement != "Unknown" || ab99Entry.Ab99SelectedInterpretation != "Unknown" || ab99Entry.Ab99UnknownMetadata != "Unknown" {
 			return nil, ab99fmt.Errorf("ab99: invalid entry %d", ab99Index)
 		}

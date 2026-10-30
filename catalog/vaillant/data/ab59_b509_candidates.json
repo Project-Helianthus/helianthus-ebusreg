@@ -1,0 +1,610 @@
+{
+  "metadata_presence": "Proven",
+  "wire_adaptation": "Unknown",
+  "installed_support": "Unknown",
+  "invocation": "Unknown",
+  "limitations": [
+    "Finite candidate declarations only; the broader family catalog remains incomplete.",
+    "Candidate semantics are Hypothesis; metadata presence does not establish routable invocation or physical support.",
+    "Unprovided coordinates, directions and widths remain null; null keys never wildcard-match.",
+    "Raw carriers must be preserved; these declarations do not adapt wire data or select alternatives.",
+    "Generic OP0D/0E access and identity scanning are outside these entries."
+  ],
+  "entries": [
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "selector",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 7,
+        "direction": "request",
+        "field": "selector"
+      },
+      "position": null,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Request-selector identity cannot choose the reply width."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "positive-u16",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 7,
+        "direction": "response",
+        "field": "value"
+      },
+      "position": null,
+      "width_bits": 16,
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": 0,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "positive-candidate",
+      "grade": "Hypothesis",
+      "notes": [
+        "A different width remains incomplete/raw; selector identity cannot choose this alternative."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "positive-u32",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 7,
+        "direction": "response",
+        "field": "value"
+      },
+      "position": null,
+      "width_bits": 32,
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": 0,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "positive-candidate",
+      "grade": "Hypothesis",
+      "notes": [
+        "A different width remains incomplete/raw; selector identity cannot choose this alternative."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "status-query",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 50,
+        "direction": "request",
+        "field": "address"
+      },
+      "position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Queries status for an address; does not toggle an address.",
+        "Address width is Unknown."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "raw-quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 51,
+        "direction": null,
+        "field": "address"
+      },
+      "position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Address width is Unknown."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "raw-quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 51,
+        "direction": null,
+        "field": "minimum"
+      },
+      "position": null,
+      "width_bits": 16,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Conversion algorithm and minimum<=maximum enforcement are Unknown.",
+        "Factor is a separate raw quantity, not a converter."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "raw-quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 51,
+        "direction": null,
+        "field": "maximum"
+      },
+      "position": null,
+      "width_bits": 16,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Conversion algorithm and minimum<=maximum enforcement are Unknown.",
+        "Factor is a separate raw quantity, not a converter."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "raw-quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 51,
+        "direction": null,
+        "field": "default"
+      },
+      "position": null,
+      "width_bits": 16,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Conversion algorithm and minimum<=maximum enforcement are Unknown.",
+        "Factor is a separate raw quantity, not a converter."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "raw-quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 51,
+        "direction": null,
+        "field": "step"
+      },
+      "position": null,
+      "width_bits": 16,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Conversion algorithm and minimum<=maximum enforcement are Unknown.",
+        "Factor is a separate raw quantity, not a converter."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "raw-quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 51,
+        "direction": null,
+        "field": "factor"
+      },
+      "position": null,
+      "width_bits": 16,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Conversion algorithm and minimum<=maximum enforcement are Unknown.",
+        "Factor is a separate raw quantity, not a converter."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "raw-u16",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 57,
+        "direction": null,
+        "field": "value"
+      },
+      "position": null,
+      "width_bits": 16,
+      "signedness": "unsigned",
+      "byte_order": "Unknown",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Complement algorithm is Unknown."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "raw-0f-f0",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 65,
+        "direction": null,
+        "field": "value"
+      },
+      "position": null,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {
+        "15": "raw 0F",
+        "240": "raw F0"
+      },
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Other values have no established labels."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "default-domain-conflict",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 68,
+        "direction": null,
+        "field": "value"
+      },
+      "position": null,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "Unknown",
+      "divisor": null,
+      "unit": "minutes",
+      "default": 0,
+      "lower": 1,
+      "upper": 255,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Default zero conflicts with domain 1..255.",
+        "Minute interpretation is Hypothesis."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 89,
+        "direction": null,
+        "field": "temperature"
+      },
+      "position": null,
+      "width_bits": 16,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 16,
+      "unit": "degrees Celsius",
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 89,
+        "direction": null,
+        "field": "flow"
+      },
+      "position": null,
+      "width_bits": 16,
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 100,
+      "unit": "litres per minute",
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 89,
+        "direction": null,
+        "field": "volume"
+      },
+      "position": null,
+      "width_bits": 16,
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 10,
+      "unit": "litres",
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 89,
+        "direction": null,
+        "field": "minimum_volume"
+      },
+      "position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Width, signedness and byte order are Unknown; retain raw minimum/maximum volume without division."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "quantities",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 89,
+        "direction": null,
+        "field": "maximum_volume"
+      },
+      "position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "raw",
+      "grade": "Hypothesis",
+      "notes": [
+        "Width, signedness and byte order are Unknown; retain raw minimum/maximum volume without division."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "prefix-only-positive",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 6,
+        "direction": "response",
+        "field": "prefix"
+      },
+      "position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "prefix-only-positive",
+      "grade": "Hypothesis",
+      "notes": [
+        "Shared apparent prefix does not select an alternative or establish successful reset."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "positive-with-feedback",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 6,
+        "direction": "response",
+        "field": "feedback"
+      },
+      "position": null,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "raw",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {
+        "1": "accepted"
+      },
+      "other_feedback": "rejected",
+      "state": "explicit-feedback",
+      "grade": "Hypothesis",
+      "notes": [
+        "Feedback is interpreted only in this explicitly selected alternative.",
+        "Accepted feedback does not establish successful reset."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "negative-without-extra-discriminator",
+        "primary": 181,
+        "secondary": 9,
+        "operation": 6,
+        "direction": "response",
+        "field": "prefix"
+      },
+      "position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "lower": null,
+      "upper": null,
+      "mappings": {},
+      "other_feedback": null,
+      "state": "ambiguous-negative",
+      "grade": "Hypothesis",
+      "notes": [
+        "No extra discriminator is established; apparent prefix does not establish physical NACK."
+      ]
+    }
+  ]
+}

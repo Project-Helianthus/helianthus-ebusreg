@@ -1,0 +1,1582 @@
+[
+  {
+    "id": "ab17ap17_count_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "count": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "count": [
+          0
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            120,
+            86,
+            52,
+            18
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 305419896,
+          "calculation": "Proven"
+        },
+        "count": {
+          "raw": [
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 0,
+          "calculation": "Proven"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_count_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "count": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "count": [
+          255
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            120,
+            86,
+            52,
+            18
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 305419896,
+          "calculation": "Proven"
+        },
+        "count": {
+          "raw": [
+            255
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 255,
+          "calculation": "Proven"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_address_zero",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "count": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "count": [
+          1
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 0,
+          "calculation": "Proven"
+        },
+        "count": {
+          "raw": [
+            1
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 1,
+          "calculation": "Proven"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_address_low",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "count": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "count": [
+          1
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 1,
+          "calculation": "Proven"
+        },
+        "count": {
+          "raw": [
+            1
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 1,
+          "calculation": "Proven"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_address_second",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "count": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "count": [
+          1
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 256,
+          "calculation": "Proven"
+        },
+        "count": {
+          "raw": [
+            1
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 1,
+          "calculation": "Proven"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_address_third",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "count": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "count": [
+          1
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 65536,
+          "calculation": "Proven"
+        },
+        "count": {
+          "raw": [
+            1
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 1,
+          "calculation": "Proven"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_address_high",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "count": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "count": [
+          1
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 16777216,
+          "calculation": "Proven"
+        },
+        "count": {
+          "raw": [
+            1
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 1,
+          "calculation": "Proven"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_address_max",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "count": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "count": [
+          1
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 4294967295,
+          "calculation": "Proven"
+        },
+        "count": {
+          "raw": [
+            1
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 1,
+          "calculation": "Proven"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_positive_empty",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "response",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "data": []
+      },
+      "arguments": {
+        "requested_address": 0,
+        "opaque": {
+          "enabled": false,
+          "unknown": null
+        }
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "response",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "data": []
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            120,
+            86,
+            52,
+            18
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 305419896,
+          "calculation": "Proven"
+        },
+        "data": {
+          "raw": [],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "length": 0,
+          "unmodeled": true
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown",
+      "arguments": {
+        "requested_address": 0,
+        "opaque": {
+          "enabled": false,
+          "unknown": null
+        }
+      }
+    }
+  },
+  {
+    "id": "ab17ap17_put_empty",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "request",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "data": []
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "request",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "data": []
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 0,
+          "calculation": "Proven"
+        },
+        "data": {
+          "raw": [],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "length": 0,
+          "unmodeled": true
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_positive_single",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "response",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "data": [
+          255
+        ]
+      },
+      "arguments": {
+        "requested_address": 0,
+        "opaque": {
+          "enabled": false,
+          "unknown": null
+        }
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "response",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "data": [
+          255
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            120,
+            86,
+            52,
+            18
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 305419896,
+          "calculation": "Proven"
+        },
+        "data": {
+          "raw": [
+            255
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "length": 1,
+          "unmodeled": true
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown",
+      "arguments": {
+        "requested_address": 0,
+        "opaque": {
+          "enabled": false,
+          "unknown": null
+        }
+      }
+    }
+  },
+  {
+    "id": "ab17ap17_put_single",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "request",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "data": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "request",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "data": [
+          255
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 0,
+          "calculation": "Proven"
+        },
+        "data": {
+          "raw": [
+            255
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "length": 1,
+          "unmodeled": true
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_positive_eleven",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "response",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "data": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "arguments": {
+        "requested_address": 0,
+        "opaque": {
+          "enabled": false,
+          "unknown": null
+        }
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "response",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "data": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            120,
+            86,
+            52,
+            18
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 305419896,
+          "calculation": "Proven"
+        },
+        "data": {
+          "raw": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "length": 11,
+          "unmodeled": true
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown",
+      "arguments": {
+        "requested_address": 0,
+        "opaque": {
+          "enabled": false,
+          "unknown": null
+        }
+      }
+    }
+  },
+  {
+    "id": "ab17ap17_put_eleven",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "request",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "data": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "request",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "data": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 0,
+          "calculation": "Proven"
+        },
+        "data": {
+          "raw": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "length": 11,
+          "unmodeled": true
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_missing_data",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "response",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "response",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          120,
+          86,
+          52,
+          18
+        ]
+      },
+      "state": "partial",
+      "fields": {
+        "address": {
+          "raw": [
+            120,
+            86,
+            52,
+            18
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 305419896,
+          "calculation": "Proven"
+        },
+        "data": {
+          "state": "incomplete",
+          "grade": "Hypothesis"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_status_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "response",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "response",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "status": [
+          0
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "status": {
+          "raw": [
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 0,
+          "calculation": "Proven",
+          "candidate_domain": true
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_status_6",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "response",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          6
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "response",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "status": [
+          6
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "status": {
+          "raw": [
+            6
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 6,
+          "calculation": "Proven",
+          "candidate_domain": true
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_status_7",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "response",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          7
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "response",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "status": [
+          7
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "status": {
+          "raw": [
+            7
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 7,
+          "calculation": "Proven",
+          "candidate_domain": false
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_status_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "response",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "response",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "status": [
+          255
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "status": {
+          "raw": [
+            255
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 255,
+          "calculation": "Proven",
+          "candidate_domain": false
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_independent_count",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "count": [
+          255
+        ],
+        "data": [
+          9
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 52,
+        "direction": "request",
+        "view": "diagnostic-get",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "count": [
+          255
+        ],
+        "data": [
+          9
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 0,
+          "calculation": "Proven"
+        },
+        "count": {
+          "raw": [
+            255
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 255,
+          "calculation": "Proven"
+        },
+        "data": {
+          "raw": [
+            9
+          ],
+          "state": "Unknown"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  },
+  {
+    "id": "ab17ap17_put_unmapped_count",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "request",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "data": [],
+        "count": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "context": {
+        "primary": 181,
+        "secondary": 9,
+        "operation": 53,
+        "direction": "request",
+        "view": "diagnostic-put",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "raw": {
+        "address": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "data": [],
+        "count": [
+          255
+        ]
+      },
+      "state": "complete",
+      "fields": {
+        "address": {
+          "raw": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "number": 0,
+          "calculation": "Proven"
+        },
+        "data": {
+          "raw": [],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "length": 0,
+          "unmodeled": true
+        },
+        "count": {
+          "raw": [
+            255
+          ],
+          "state": "Unknown"
+        }
+      },
+      "physical": "Unknown",
+      "qualified": false,
+      "grade": "Hypothesis",
+      "correlation": "Unknown"
+    }
+  }
+]

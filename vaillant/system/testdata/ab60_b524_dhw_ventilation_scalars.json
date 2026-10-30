@@ -1,0 +1,122 @@
+[
+  {
+    "ab60_label": "ab60_controller-720_01_0004",
+    "ab60_family": "controller-720",
+    "ab60_group": 1,
+    "ab60_register": 4,
+    "ab60_codec": "float32_le",
+    "ab60_unit": "°C",
+    "ab60_examples": [
+      {
+        "ab60_label": "ab60_positive",
+        "ab60_hex": "0000c03f",
+        "ab60_expected": 1.5
+      },
+      {
+        "ab60_label": "ab60_negative",
+        "ab60_hex": "000080bf",
+        "ab60_expected": -1
+      }
+    ]
+  },
+  {
+    "ab60_label": "ab60_controller-720_01_0005",
+    "ab60_family": "controller-720",
+    "ab60_group": 1,
+    "ab60_register": 5,
+    "ab60_codec": "float32_le",
+    "ab60_unit": "°C",
+    "ab60_examples": [
+      {
+        "ab60_label": "ab60_positive",
+        "ab60_hex": "0000c03f",
+        "ab60_expected": 1.5
+      },
+      {
+        "ab60_label": "ab60_negative",
+        "ab60_hex": "000080bf",
+        "ab60_expected": -1
+      }
+    ]
+  },
+  {
+    "ab60_label": "ab60_controller-720_09_000D",
+    "ab60_family": "controller-720",
+    "ab60_group": 9,
+    "ab60_register": 13,
+    "ab60_codec": "uint16_le",
+    "ab60_unit": "Unknown",
+    "ab60_examples": [
+      {
+        "ab60_label": "ab60_positive",
+        "ab60_hex": "3412",
+        "ab60_expected": 4660
+      },
+      {
+        "ab60_label": "ab60_maximum",
+        "ab60_hex": "ffff",
+        "ab60_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab60_label": "ab60_controller-720_09_000E",
+    "ab60_family": "controller-720",
+    "ab60_group": 9,
+    "ab60_register": 14,
+    "ab60_codec": "uint16_le",
+    "ab60_unit": "Unknown",
+    "ab60_examples": [
+      {
+        "ab60_label": "ab60_positive",
+        "ab60_hex": "3412",
+        "ab60_expected": 4660
+      },
+      {
+        "ab60_label": "ab60_maximum",
+        "ab60_hex": "ffff",
+        "ab60_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab60_label": "ab60_controller-700_01_0004",
+    "ab60_family": "controller-700",
+    "ab60_group": 1,
+    "ab60_register": 4,
+    "ab60_codec": "float32_le",
+    "ab60_unit": "°C",
+    "ab60_examples": [
+      {
+        "ab60_label": "ab60_positive",
+        "ab60_hex": "0000c03f",
+        "ab60_expected": 1.5
+      },
+      {
+        "ab60_label": "ab60_negative",
+        "ab60_hex": "000080bf",
+        "ab60_expected": -1
+      }
+    ]
+  },
+  {
+    "ab60_label": "ab60_controller-700_01_0005",
+    "ab60_family": "controller-700",
+    "ab60_group": 1,
+    "ab60_register": 5,
+    "ab60_codec": "float32_le",
+    "ab60_unit": "°C",
+    "ab60_examples": [
+      {
+        "ab60_label": "ab60_positive",
+        "ab60_hex": "0000c03f",
+        "ab60_expected": 1.5
+      },
+      {
+        "ab60_label": "ab60_negative",
+        "ab60_hex": "000080bf",
+        "ab60_expected": -1
+      }
+    ]
+  }
+]

@@ -1,0 +1,1922 @@
+[
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "request",
+      "field": "sequence"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 3,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Three-position logical prefix included in coordinates."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "positive",
+      "field": "sequence"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 3,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Three-position logical prefix included in coordinates."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 4,
+      "direction": "request",
+      "field": "sequence"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 3,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Three-position logical prefix included in coordinates."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 4,
+      "direction": "positive",
+      "field": "sequence"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 3,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Three-position logical prefix included in coordinates."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 5,
+      "direction": "request",
+      "field": "sequence"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 3,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Three-position logical prefix included in coordinates."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 5,
+      "direction": "positive",
+      "field": "sequence"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 3,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Three-position logical prefix included in coordinates."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 7,
+      "direction": "request",
+      "field": "sequence"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 3,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Three-position logical prefix included in coordinates."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 7,
+      "direction": "positive",
+      "field": "sequence"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 3,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Three-position logical prefix included in coordinates."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "request",
+      "field": "sequence"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 3,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Three-position logical prefix included in coordinates."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "positive",
+      "field": "sequence"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 3,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Three-position logical prefix included in coordinates."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "request",
+      "field": "flags"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 4,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "bits": [
+      {
+        "bit": 0,
+        "labels": [
+          "power-on/start"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 1,
+        "labels": [
+          "change"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 2,
+        "labels": [
+          "CRC-support"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 3,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      },
+      {
+        "bit": 4,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      },
+      {
+        "bit": 5,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      },
+      {
+        "bit": 6,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      },
+      {
+        "bit": 7,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      }
+    ],
+    "exclusive": false
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "request",
+      "field": "DSN"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 5,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": null,
+    "default": null,
+    "unknown": [
+      "width",
+      "byte order",
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "conditions": []
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "request",
+      "field": "start"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 7,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": null,
+    "default": null,
+    "unknown": [
+      "width",
+      "byte order",
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "conditions": []
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "request",
+      "field": "offset"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 9,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": null,
+    "default": null,
+    "unknown": [
+      "width",
+      "byte order",
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "conditions": []
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "positive",
+      "field": "DSN"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 5,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": null,
+    "default": null,
+    "unknown": [
+      "width",
+      "byte order",
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "conditions": [
+      {
+        "field": "flags",
+        "bit": 3,
+        "set": true
+      }
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "positive",
+      "field": "start"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 7,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": null,
+    "default": null,
+    "unknown": [
+      "width",
+      "byte order",
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "conditions": [
+      {
+        "field": "flags",
+        "bit": 3,
+        "set": true
+      }
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "positive",
+      "field": "offset"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 9,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": null,
+    "default": null,
+    "unknown": [
+      "width",
+      "byte order",
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "conditions": [
+      {
+        "field": "flags",
+        "bit": 3,
+        "set": true
+      }
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "request",
+      "field": "CRC"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 10,
+    "width_bits": 16,
+    "byte_order": "little-endian",
+    "domain": [
+      0,
+      65535
+    ],
+    "default": null,
+    "unknown": [
+      "replacement number",
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Mirror candidate. Unsupported CRC-support flag is 0."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "positive",
+      "field": "flags"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 4,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "bits": [
+      {
+        "bit": 0,
+        "labels": [
+          "valid"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 1,
+        "labels": [
+          "invalid"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 2,
+        "labels": [
+          "blocked"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 3,
+        "labels": [
+          "change"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 4,
+        "labels": [
+          "denied"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 5,
+        "labels": [
+          "invalid-range"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 6,
+        "labels": [
+          "not-user-adjustable"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 7,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      }
+    ],
+    "exclusive": false
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 1,
+      "direction": "positive",
+      "field": "family-code"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 10,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": null,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 4,
+      "direction": "request",
+      "field": "level"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 4,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 4,
+      "direction": "positive",
+      "field": "enable-bits"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 4,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "count": 13,
+    "logical_footprint": 17,
+    "tail": [
+      0,
+      13,
+      0
+    ],
+    "values": {
+      "0": "disabled",
+      "1": "enabled"
+    },
+    "interpretations": [
+      "13 bytes carry 104 independent enable bits. Each bit defaults disabled. Logical footprint and tail metadata do not establish physical length."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 5,
+      "direction": "request",
+      "field": "level"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 4,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": null,
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation",
+      "width",
+      "domain"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 5,
+      "direction": "request",
+      "field": "point"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 5,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": [
+      0,
+      99
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation",
+      "width"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 5,
+      "direction": "positive",
+      "field": "flags"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 4,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "bits": [
+      {
+        "bit": 0,
+        "labels": [
+          "disabled; following data omitted"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 1,
+        "labels": [
+          "writable"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 2,
+        "labels": [
+          "enum-vs-range"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 3,
+        "labels": [
+          "additional-four-byte/no-range",
+          "read-only over writable"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 4,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      },
+      {
+        "bit": 5,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      },
+      {
+        "bit": 6,
+        "labels": [
+          "text alternative 6"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 7,
+        "labels": [
+          "text alternative 7"
+        ],
+        "reserved": false,
+        "default": false
+      }
+    ],
+    "exclusive": false
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 5,
+      "direction": "positive",
+      "field": "following-data"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": null,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": null,
+    "default": null,
+    "unknown": [
+      "alternative selection",
+      "step enforcement",
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "conditions": [
+      {
+        "field": "flags",
+        "bit": 0,
+        "set": false
+      }
+    ],
+    "alternatives": [
+      {
+        "label": "range",
+        "conditions": [
+          {
+            "field": "flags",
+            "bit": 0,
+            "set": false
+          }
+        ],
+        "fields": [
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "display-type"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 5,
+            "width_bits": null,
+            "byte_order": null,
+            "domain": null,
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation",
+              "width",
+              "domain"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "value"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 6,
+            "width_bits": 16,
+            "byte_order": "little-endian",
+            "domain": [
+              0,
+              65535
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "minimum"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 8,
+            "width_bits": null,
+            "byte_order": null,
+            "domain": null,
+            "default": 0,
+            "unknown": [
+              "width",
+              "byte order",
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "maximum"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 10,
+            "width_bits": null,
+            "byte_order": null,
+            "domain": null,
+            "default": 0,
+            "unknown": [
+              "width",
+              "byte order",
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "step"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 12,
+            "width_bits": 8,
+            "byte_order": null,
+            "domain": [
+              0,
+              255
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          }
+        ],
+        "interpretations": [
+          "Candidate min+n*step with n*step<=max; enforcement Unknown."
+        ]
+      },
+      {
+        "label": "enum",
+        "conditions": [
+          {
+            "field": "flags",
+            "bit": 0,
+            "set": false
+          }
+        ],
+        "fields": [
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "enum-alternative-1"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 6,
+            "width_bits": 8,
+            "byte_order": null,
+            "domain": [
+              0,
+              255
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "enum-alternative-2"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 7,
+            "width_bits": 8,
+            "byte_order": null,
+            "domain": [
+              0,
+              255
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "enum-alternative-3"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 8,
+            "width_bits": 8,
+            "byte_order": null,
+            "domain": [
+              0,
+              255
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "enum-alternative-4"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 9,
+            "width_bits": 8,
+            "byte_order": null,
+            "domain": [
+              0,
+              255
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "enum-alternative-5"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 10,
+            "width_bits": 8,
+            "byte_order": null,
+            "domain": [
+              0,
+              255
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "enum-alternative-6"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 11,
+            "width_bits": 8,
+            "byte_order": null,
+            "domain": [
+              0,
+              255
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          }
+        ],
+        "interpretations": [
+          "Six independent alternatives; repeat last when fewer. No separate current-value field."
+        ]
+      },
+      {
+        "label": "four-byte",
+        "conditions": [
+          {
+            "field": "flags",
+            "bit": 0,
+            "set": false
+          },
+          {
+            "field": "flags",
+            "bit": 3,
+            "set": true
+          }
+        ],
+        "fields": [
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "additional-value"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 6,
+            "width_bits": 32,
+            "byte_order": "little-endian",
+            "domain": [
+              0,
+              4294967295
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "reserved-10"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 10,
+            "width_bits": 8,
+            "byte_order": null,
+            "domain": [
+              0,
+              255
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "reserved-11"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 11,
+            "width_bits": 8,
+            "byte_order": null,
+            "domain": [
+              0,
+              255
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          },
+          {
+            "key": {
+              "family": "vaillant",
+              "variant": "B51A",
+              "primary": 181,
+              "secondary": 26,
+              "operation": 5,
+              "direction": "positive",
+              "field": "reserved-12"
+            },
+            "grade": "Hypothesis",
+            "metadata_presence": "Proven",
+            "physical_qualification": "Unknown",
+            "invocation": "Unknown",
+            "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+            "position": 12,
+            "width_bits": 8,
+            "byte_order": null,
+            "domain": [
+              0,
+              255
+            ],
+            "default": 0,
+            "unknown": [
+              "physical length",
+              "qualification",
+              "invocation"
+            ]
+          }
+        ],
+        "interpretations": [
+          "Additional four-byte/no-range conflicts with read-only interpretation of bit 3."
+        ]
+      }
+    ],
+    "interpretations": [
+      "Disabled omits all following data. Range, enum and four-byte declarations retained without choosing by length or adapting bit 3."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 7,
+      "direction": "request",
+      "field": "flags"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 4,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "replication algorithms",
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "bits": [
+      {
+        "bit": 0,
+        "labels": [
+          "normal-replication"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 1,
+        "labels": [
+          "inverted-replication"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 2,
+        "labels": [
+          "refresh"
+        ],
+        "reserved": false,
+        "default": false
+      },
+      {
+        "bit": 3,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      },
+      {
+        "bit": 4,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      },
+      {
+        "bit": 5,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      },
+      {
+        "bit": 6,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      },
+      {
+        "bit": 7,
+        "labels": [],
+        "reserved": true,
+        "default": false
+      }
+    ],
+    "exclusive": false
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 7,
+      "direction": "positive",
+      "field": "replication-status"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 4,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "truth for 2..255",
+      "replication algorithms",
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "values": {
+      "0": "false",
+      "1": "true"
+    },
+    "interpretations": [
+      "Whole byte 0 false / 1 true.",
+      "Nonzero-truth competes with unlabeled 2..255; raw 02 remains unresolved."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "request",
+      "field": "slave-written"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 4,
+    "width_bits": 16,
+    "byte_order": "little-endian",
+    "domain": [
+      0,
+      65535
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Cross-device ownership does not establish identity or persistence."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "request",
+      "field": "master-to-write"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 6,
+    "width_bits": 16,
+    "byte_order": "little-endian",
+    "domain": [
+      0,
+      65535
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Cross-device ownership does not establish identity or persistence."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "request",
+      "field": "configuration"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 8,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Named default master-spare conflicts with raw default 0. Keep 0 and 3..255 unmapped.",
+      "Cross-device ownership does not establish identity or persistence."
+    ],
+    "values": {
+      "1": "master-spare",
+      "2": "slave-spare"
+    }
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "request",
+      "field": "slave-version"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 9,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Cross-device ownership does not establish identity or persistence."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "request",
+      "field": "master-version"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 10,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Cross-device ownership does not establish identity or persistence."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "positive",
+      "field": "master-written"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 4,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": null,
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation",
+      "width",
+      "byte order",
+      "domain bounds"
+    ],
+    "interpretations": [
+      "Cross-device ownership does not establish identity or persistence.",
+      "Full domain declared; width and numeric bounds Unknown."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "positive",
+      "field": "slave-to-write"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 6,
+    "width_bits": null,
+    "byte_order": null,
+    "domain": null,
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation",
+      "width",
+      "byte order",
+      "domain bounds"
+    ],
+    "interpretations": [
+      "Cross-device ownership does not establish identity or persistence.",
+      "Full domain declared; width and numeric bounds Unknown."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "positive",
+      "field": "slave-version"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 8,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Cross-device ownership does not establish identity or persistence."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B51A",
+      "primary": 181,
+      "secondary": 26,
+      "operation": 8,
+      "direction": "positive",
+      "field": "master-version"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "invocation": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "position": 9,
+    "width_bits": 8,
+    "byte_order": null,
+    "domain": [
+      0,
+      255
+    ],
+    "default": 0,
+    "unknown": [
+      "physical length",
+      "qualification",
+      "invocation"
+    ],
+    "interpretations": [
+      "Cross-device ownership does not establish identity or persistence."
+    ]
+  }
+]

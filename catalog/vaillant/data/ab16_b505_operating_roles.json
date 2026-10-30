@@ -1,0 +1,1640 @@
+[
+  {
+    "id": "ab16_5A_unchanged_setpoint",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 90,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "unchanged_setpoint",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "room_day_night",
+    "ab16Relations": {
+      "ab16Replacement": true,
+      "ab16ReplacementRaw": "Unknown",
+      "ab16ReplacementAction": "retain_prior_token",
+      "ab16NumericBranch": "numeric_candidate_without_scale",
+      "ab16BranchOrder": "replacement_before_numeric"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_3D_unchanged_setpoint",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 61,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "unchanged_setpoint",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "room_day_night",
+    "ab16Relations": {
+      "ab16Replacement": true,
+      "ab16ReplacementRaw": "Unknown",
+      "ab16ReplacementAction": "retain_prior_token",
+      "ab16NumericBranch": "numeric_candidate_without_scale",
+      "ab16BranchOrder": "replacement_before_numeric"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_47_heating_night",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 71,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "heating_night",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "inverter_indoor_circuit",
+    "ab16Relations": {
+      "ab16Mode": "heating",
+      "ab16Period": "night",
+      "ab16Quantity": "room_setpoint"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_47_cooling_night",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 71,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "cooling_night",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "inverter_indoor_circuit",
+    "ab16Relations": {
+      "ab16Mode": "cooling",
+      "ab16Period": "night",
+      "ab16Quantity": "room_setpoint"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_48_heating_holiday",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 72,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "heating_holiday",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "inverter_indoor_circuit",
+    "ab16Relations": {
+      "ab16Mode": "heating",
+      "ab16Period": "holiday",
+      "ab16Quantity": "room_setpoint"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_48_cooling_holiday",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 72,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "cooling_holiday",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "inverter_indoor_circuit",
+    "ab16Relations": {
+      "ab16Mode": "cooling",
+      "ab16Period": "holiday",
+      "ab16Quantity": "room_setpoint"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_41_frost_protection",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 65,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "frost_protection",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar",
+    "ab16Relations": {
+      "ab16ReplacementAction": "off",
+      "ab16ReplacementRaw": "Unknown"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_40_minimum_temperature",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 64,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "minimum_temperature",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "second_solar_circuit_or_solid_fuel_boiler",
+    "ab16Relations": {},
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_10_maximum_preheat_time",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 16,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "maximum_preheat_time",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "heating",
+    "ab16Relations": {
+      "ab16Action": "advance_before_first_period"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_3F_maximum_preheat_time",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 63,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "maximum_preheat_time",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "heating",
+    "ab16Relations": {
+      "ab16Action": "advance_before_first_period"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_15_early_cutoff",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 21,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "early_cutoff",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "heating",
+    "ab16Relations": {
+      "ab16Action": "stop_demand_before_reduction_period"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_2B_early_cutoff",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 43,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "early_cutoff",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "heating",
+    "ab16Relations": {
+      "ab16Action": "stop_demand_before_reduction_period"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_3C_uncorrected_room_temperature",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 60,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "uncorrected_room_temperature",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "room",
+    "ab16Relations": {
+      "ab16SelfHeating": true,
+      "ab16UserCorrection": false
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_3C_corrected_room_temperature",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 60,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "corrected_room_temperature",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "room",
+    "ab16Relations": {
+      "ab16SelfHeating": true,
+      "ab16UserCorrection": true
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_1B_switch_on_cutoff_difference",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 27,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "switch_on_cutoff_difference",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar_tank_one",
+    "ab16Relations": {
+      "ab16Tank": "one"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_1E_switch_on_cutoff_difference",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 30,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "switch_on_cutoff_difference",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar_tank_two",
+    "ab16Relations": {
+      "ab16Tank": "two"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_38_switch_on_cutoff_difference",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 56,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "switch_on_cutoff_difference",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar_tank_three",
+    "ab16Relations": {
+      "ab16Tank": "three"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_1A_maximum_loading_temperature",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 26,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "maximum_loading_temperature",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar_tank_one",
+    "ab16Relations": {
+      "ab16Tank": "one"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_1D_maximum_loading_temperature",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 29,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "maximum_loading_temperature",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar_tank_two",
+    "ab16Relations": {
+      "ab16Tank": "two"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_37_maximum_loading_temperature",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 55,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "maximum_loading_temperature",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar_tank_three",
+    "ab16Relations": {
+      "ab16Tank": "three"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_31_ordinary_dhw",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 49,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "ordinary_dhw",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "dhw",
+    "ab16Relations": {
+      "ab16EnabledValue": 1,
+      "ab16EnabledEligibility": "ordinary_dhw",
+      "ab16BlockedEligibility": "frost_only"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_19_charging_enable",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 25,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "charging_enable",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "dhw_tank_charging",
+    "ab16Relations": {
+      "ab16EnabledValue": 1
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_27_charging_enable",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 39,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "charging_enable",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "dhw_tank_charging",
+    "ab16Relations": {
+      "ab16EnabledValue": 1
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_18_charging_disable",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 24,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "charging_disable",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "circuit_charging",
+    "ab16Relations": {
+      "ab16DisabledValue": 1,
+      "ab16Action": "suppress_without_parallel",
+      "ab16ExceptionRole": "mixer"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_27_charging_disable",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 39,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "charging_disable",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "circuit_charging",
+    "ab16Relations": {
+      "ab16DisabledValue": 1,
+      "ab16Action": "suppress_without_parallel",
+      "ab16ExceptionRole": "mixer"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_14_parallel_charging",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 20,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "parallel_charging",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "mixer",
+    "ab16Relations": {
+      "ab16ExceptionRole": "mixer"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_27_tank_flow_temperature",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 39,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "tank_flow_temperature",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "dhw_flow",
+    "ab16Relations": {},
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_2F_external_storage_sensor_temperature",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 47,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "external_storage_sensor_temperature",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "external_storage_sensor",
+    "ab16Relations": {},
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_1C_outside_correction",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 28,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "outside_correction",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "outside",
+    "ab16Relations": {},
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_26_hydraulic_schema",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 38,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "hydraulic_schema",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar_controller",
+    "ab16Relations": {},
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_23_duty_control",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 35,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "duty_control",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "collector_pumps",
+    "ab16Relations": {},
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_21_flow",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 33,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "flow",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "collector_water",
+    "ab16Relations": {},
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_22_reset",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 34,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "reset",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar",
+    "ab16Relations": {
+      "ab16RequestValue": 1,
+      "ab16Intent": "clear_solar_pump_hours",
+      "ab16Accepted": "Unknown",
+      "ab16Persistent": "Unknown"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_20_reset",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 32,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "reset",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar",
+    "ab16Relations": {
+      "ab16RequestValue": 1,
+      "ab16Intent": "clear_yield",
+      "ab16Accepted": "Unknown",
+      "ab16Persistent": "Unknown"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_17_flow_excess",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 23,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "flow_excess",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "flow_demand",
+    "ab16Relations": {
+      "ab16Action": "add_to_demanded_flow",
+      "ab16Encoding": "Unknown"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_0F_maximum_flow",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 15,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "maximum_flow",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "flow_demand",
+    "ab16Relations": {
+      "ab16Action": "maximum"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_0E_minimum_flow",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 14,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "minimum_flow",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "flow_demand",
+    "ab16Relations": {
+      "ab16Zero": "off",
+      "ab16Nonzero": "minimum_candidate"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_12_overrun",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 18,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "overrun",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "charging",
+    "ab16Relations": {
+      "ab16Action": "retain_pump_after_charging",
+      "ab16Boiler": "inhibited"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_11_recharge_delay",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 17,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "recharge_delay",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "solar_charging",
+    "ab16Relations": {
+      "ab16Action": "limit_recharge_delay"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_0D_pump_idle",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 13,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "pump_idle",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "pump",
+    "ab16Relations": {
+      "ab16Action": "energy_saving_interval_after_flow_exceeds_desired"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_0C_outside_cutoff",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 12,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "outside_cutoff",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "heating",
+    "ab16Relations": {
+      "ab16Action": "select_summer_heating_operation"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_01_day_setpoint_heating",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 1,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "day_setpoint_heating",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "room",
+    "ab16Relations": {
+      "ab16CircuitClass": "heating"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_01_day_setpoint_fixed_value",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 1,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "day_setpoint_fixed_value",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "flow",
+    "ab16Relations": {
+      "ab16CircuitClass": "fixed_value"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_01_day_setpoint_dhw",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 1,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "day_setpoint_dhw",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "tank",
+    "ab16Relations": {
+      "ab16CircuitClass": "dhw"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_0A_reduction_heating",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 10,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "reduction_heating",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "room",
+    "ab16Relations": {
+      "ab16CircuitClass": "heating"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_0A_reduction_fixed_value",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 10,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "reduction_fixed_value",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "fixed_flow",
+    "ab16Relations": {
+      "ab16CircuitClass": "fixed_value"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_09_first_period_start",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 9,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "first_period_start",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "programming",
+    "ab16Relations": {
+      "ab16ProgrammingMode": 0,
+      "ab16OtherModes": "ignored"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_07_saving",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 7,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "saving",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "heating",
+    "ab16Relations": {
+      "ab16Zero": "off"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  },
+  {
+    "id": "ab16_03_drying_day",
+    "identity": {
+      "Ab16Family": "B505",
+      "Ab16Variant": "operating_roles",
+      "Ab16Primary": 181,
+      "Ab16Secondary": 5,
+      "Ab16Operation": 3,
+      "Ab16Direction": "Unknown",
+      "Ab16Field": "drying_day",
+      "Ab16Alternative": "none",
+      "Ab16Group": null,
+      "Ab16InstanceScope": "dynamic",
+      "Ab16Register": null
+    },
+    "ab16Role": "drying",
+    "ab16Relations": {
+      "ab16Zero": "disabled"
+    },
+    "grade": "Hypothesis",
+    "ab16Unknown": {
+      "encoding": "Unknown",
+      "offset": "Unknown",
+      "duration": "Unknown",
+      "formula": "Unknown",
+      "enforcement": "Unknown",
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "raw_fallback": "retain native bytes and last-known-good unaffected fields; no automatic admission"
+  }
+]

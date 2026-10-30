@@ -1,0 +1,1142 @@
+[
+  {
+    "id": "ab32-controller-700-clock-date",
+    "key": {
+      "family": "controller-700",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "clock-date",
+      "alternative": "none",
+      "group": 0,
+      "instance_scope": "00",
+      "register": 52
+    },
+    "grade": "Hypothesis",
+    "kind": "date",
+    "components": [
+      {
+        "name": "day",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 31,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "month",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 12,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "year",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 0,
+        "named_maximum": 99,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-700-clock-time",
+    "key": {
+      "family": "controller-700",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "clock-time",
+      "alternative": "none",
+      "group": 0,
+      "instance_scope": "00",
+      "register": 53
+    },
+    "grade": "Hypothesis",
+    "kind": "time",
+    "components": [
+      {
+        "name": "hour",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "minute",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "second",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-700-system-holiday-start",
+    "key": {
+      "family": "controller-700",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "system-holiday-start",
+      "alternative": "none",
+      "group": 0,
+      "instance_scope": "00",
+      "register": 113
+    },
+    "grade": "Hypothesis",
+    "kind": "date",
+    "components": [
+      {
+        "name": "day",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 31,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "month",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 12,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "year",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 0,
+        "named_maximum": 99,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-700-system-holiday-end",
+    "key": {
+      "family": "controller-700",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "system-holiday-end",
+      "alternative": "none",
+      "group": 0,
+      "instance_scope": "00",
+      "register": 114
+    },
+    "grade": "Hypothesis",
+    "kind": "date",
+    "components": [
+      {
+        "name": "day",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 31,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "month",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 12,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "year",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 0,
+        "named_maximum": 99,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-700-zone-holiday-start",
+    "key": {
+      "family": "controller-700",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "zone-holiday-start",
+      "alternative": "none",
+      "group": 3,
+      "instance_scope": "dynamic",
+      "register": 3
+    },
+    "grade": "Hypothesis",
+    "kind": "date",
+    "components": [
+      {
+        "name": "day",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 31,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "month",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 12,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "year",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 0,
+        "named_maximum": 99,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-700-zone-holiday-end",
+    "key": {
+      "family": "controller-700",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "zone-holiday-end",
+      "alternative": "none",
+      "group": 3,
+      "instance_scope": "dynamic",
+      "register": 4
+    },
+    "grade": "Hypothesis",
+    "kind": "date",
+    "components": [
+      {
+        "name": "day",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 31,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "month",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 12,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "year",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 0,
+        "named_maximum": 99,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-720-clock-date",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "clock-date",
+      "alternative": "none",
+      "group": 0,
+      "instance_scope": "00",
+      "register": 52
+    },
+    "grade": "Hypothesis",
+    "kind": "date",
+    "components": [
+      {
+        "name": "day",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 31,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "month",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 12,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "year",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 0,
+        "named_maximum": 99,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-720-clock-time",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "clock-time",
+      "alternative": "none",
+      "group": 0,
+      "instance_scope": "00",
+      "register": 53
+    },
+    "grade": "Hypothesis",
+    "kind": "time",
+    "components": [
+      {
+        "name": "hour",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "minute",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "second",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-720-system-holiday-start",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "system-holiday-start",
+      "alternative": "none",
+      "group": 0,
+      "instance_scope": "00",
+      "register": 218
+    },
+    "grade": "Hypothesis",
+    "kind": "date",
+    "components": [
+      {
+        "name": "day",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 31,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "month",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 12,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "year",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 0,
+        "named_maximum": 99,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-720-system-holiday-end",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "system-holiday-end",
+      "alternative": "none",
+      "group": 0,
+      "instance_scope": "00",
+      "register": 219
+    },
+    "grade": "Hypothesis",
+    "kind": "date",
+    "components": [
+      {
+        "name": "day",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 31,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "month",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 12,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "year",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 0,
+        "named_maximum": 99,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-720-zone-holiday-start",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "zone-holiday-start",
+      "alternative": "none",
+      "group": 3,
+      "instance_scope": "dynamic",
+      "register": 3
+    },
+    "grade": "Hypothesis",
+    "kind": "date",
+    "components": [
+      {
+        "name": "day",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 31,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "month",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 12,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "year",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 0,
+        "named_maximum": 99,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-720-zone-holiday-end",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "zone-holiday-end",
+      "alternative": "none",
+      "group": 3,
+      "instance_scope": "dynamic",
+      "register": 4
+    },
+    "grade": "Hypothesis",
+    "kind": "date",
+    "components": [
+      {
+        "name": "day",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 31,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "month",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 1,
+        "named_maximum": 12,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "year",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": 0,
+        "named_maximum": 99,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-720-zone-time-001e",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "zone-time-001e",
+      "alternative": "none",
+      "group": 3,
+      "instance_scope": "dynamic",
+      "register": 30
+    },
+    "grade": "Hypothesis",
+    "kind": "time",
+    "components": [
+      {
+        "name": "hour",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "minute",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "second",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-720-zone-time-0020",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "zone-time-0020",
+      "alternative": "none",
+      "group": 3,
+      "instance_scope": "dynamic",
+      "register": 32
+    },
+    "grade": "Hypothesis",
+    "kind": "time",
+    "components": [
+      {
+        "name": "hour",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "minute",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "second",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  },
+  {
+    "id": "ab32-controller-720-zone-time-0021",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "zone-time-0021",
+      "alternative": "none",
+      "group": 3,
+      "instance_scope": "dynamic",
+      "register": 33
+    },
+    "grade": "Hypothesis",
+    "kind": "time",
+    "components": [
+      {
+        "name": "hour",
+        "position": 0,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "minute",
+        "position": 1,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      },
+      {
+        "name": "second",
+        "position": 2,
+        "encoding": "u8",
+        "scale": 1,
+        "offset": 0,
+        "named_minimum": null,
+        "named_maximum": null,
+        "raw_form": "individual byte"
+      }
+    ],
+    "relations": {
+      "selector_context": "whole exact key",
+      "paired_selector": null,
+      "component_order": "declared order",
+      "failure_scope": "individual component",
+      "retain_unaffected": true,
+      "retain_raw": true,
+      "missing_component": "explicit missing cell",
+      "complete_timestamp": false,
+      "freshness_inferred": false,
+      "constraint_admission": false
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "century": "Unknown",
+      "timezone": "Unknown",
+      "joint_date_validity": "Unknown",
+      "zone_name_selectors": "Unknown",
+      "string_encoding": "Unknown",
+      "string_width": "Unknown",
+      "string_termination": "Unknown"
+    },
+    "raw_form": "ordered component bytes with independent missing or failed cells"
+  }
+]

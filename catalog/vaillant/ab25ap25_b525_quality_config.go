@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"math/big"
+	"strconv"
 	"unicode/utf8"
 )
 
@@ -72,9 +73,48 @@ func ab25ap25Byte(ab25ap25Value any) (int, bool) {
 	return int(ab25ap25Integer), true
 }
 
+// ab25ap25ValidateEscapes rejects surrogate escapes that encoding/json would
+// silently replace, while leaving escaped backslashes and valid pairs intact.
+func ab25ap25ValidateEscapes(ab25ap25Input []byte) error {
+	for ab25ap25Index := 0; ab25ap25Index < len(ab25ap25Input); ab25ap25Index++ {
+		if ab25ap25Input[ab25ap25Index] != '\\' {
+			continue
+		}
+		ab25ap25Index++
+		if ab25ap25Index >= len(ab25ap25Input) || ab25ap25Input[ab25ap25Index] != 'u' {
+			continue
+		}
+		if len(ab25ap25Input)-ab25ap25Index < 5 {
+			return fmt.Errorf("invalid Unicode escape")
+		}
+		ab25ap25Code, ab25ap25Error := strconv.ParseUint(string(ab25ap25Input[ab25ap25Index+1:ab25ap25Index+5]), 16, 16)
+		if ab25ap25Error != nil {
+			return fmt.Errorf("invalid Unicode escape")
+		}
+		ab25ap25Index += 4
+		if ab25ap25Code >= 0xdc00 && ab25ap25Code <= 0xdfff {
+			return fmt.Errorf("unpaired low surrogate escape")
+		}
+		if ab25ap25Code >= 0xd800 && ab25ap25Code <= 0xdbff {
+			if len(ab25ap25Input)-ab25ap25Index < 7 || ab25ap25Input[ab25ap25Index+1] != '\\' || ab25ap25Input[ab25ap25Index+2] != 'u' {
+				return fmt.Errorf("unpaired high surrogate escape")
+			}
+			ab25ap25Low, ab25ap25Error := strconv.ParseUint(string(ab25ap25Input[ab25ap25Index+3:ab25ap25Index+7]), 16, 16)
+			if ab25ap25Error != nil || ab25ap25Low < 0xdc00 || ab25ap25Low > 0xdfff {
+				return fmt.Errorf("unpaired high surrogate escape")
+			}
+			ab25ap25Index += 6
+		}
+	}
+	return nil
+}
+
 func Ab25Ap25Evaluate(ab25ap25Input json.RawMessage) (json.RawMessage, error) {
 	if !utf8.Valid(ab25ap25Input) {
 		return nil, fmt.Errorf("input must be valid UTF-8")
+	}
+	if ab25ap25Error := ab25ap25ValidateEscapes(ab25ap25Input); ab25ap25Error != nil {
+		return nil, ab25ap25Error
 	}
 	ab25ap25Decoder := json.NewDecoder(bytes.NewReader(ab25ap25Input))
 	ab25ap25Decoder.UseNumber()

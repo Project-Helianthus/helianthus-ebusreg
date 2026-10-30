@@ -250,6 +250,50 @@ func TestAb25Ap25UTF8(ab25ap25T *testing.T) {
 	}
 }
 
+func TestAb25Ap25SurrogateEscapes(ab25ap25T *testing.T) {
+	for _, ab25ap25Template := range []string{
+		`{"context":{},"fields":{},"arguments":{"opaque":"%s"}}`,
+		`{"context":{"opaque":"%s"},"fields":{}}`,
+		`{"context":{},"fields":{},"arguments":{"%s":null}}`,
+		`{"context":{},"fields":{},"arguments":{"nested":[{"opaque":"%s"}]}}`,
+	} {
+		for _, ab25ap25Text := range []string{
+			`\ud800`, `\udbff`, `\udc00`, `\udfff`,
+			`\ud800x`, `\ud800\u0041`, `\ud800\ud800`,
+			`\udc00\ud800`, `\ud800\\udc00`, `\ud800\udc00\udfff`,
+		} {
+			ab25ap25InputBytes := fmt.Sprintf(ab25ap25Template, ab25ap25Text)
+			ab25ap25Output, ab25ap25Error := Ab25Ap25Evaluate([]byte(ab25ap25InputBytes))
+			if ab25ap25Error == nil || ab25ap25Output != nil {
+				ab25ap25T.Errorf("invalid surrogate escape admitted: %s", ab25ap25InputBytes)
+			}
+		}
+		for _, ab25ap25Text := range []string{
+			`\ud800\udc00`, `\uDBFF\uDFFF`, `\uD83D\uDE00`,
+			`\ufffd`, `�`, `\\ud800`, `\\\ud800\udc00`, `\"\ud800\udc00`,
+		} {
+			ab25ap25InputBytes := fmt.Sprintf(ab25ap25Template, ab25ap25Text)
+			ab25ap25Output, ab25ap25Error := Ab25Ap25Evaluate([]byte(ab25ap25InputBytes))
+			if ab25ap25Error != nil {
+				ab25ap25T.Errorf("valid Unicode rejected: %s: %v", ab25ap25InputBytes, ab25ap25Error)
+				continue
+			}
+			var ab25ap25Before, ab25ap25After map[string]any
+			if ab25ap25Error := json.Unmarshal([]byte(ab25ap25InputBytes), &ab25ap25Before); ab25ap25Error != nil {
+				ab25ap25T.Fatal(ab25ap25Error)
+			}
+			if ab25ap25Error := json.Unmarshal(ab25ap25Output, &ab25ap25After); ab25ap25Error != nil {
+				ab25ap25T.Fatal(ab25ap25Error)
+			}
+			for _, ab25ap25Key := range []string{"context", "arguments"} {
+				if !reflect.DeepEqual(ab25ap25Before[ab25ap25Key], ab25ap25After[ab25ap25Key]) {
+					ab25ap25T.Errorf("%s changed for %s", ab25ap25Key, ab25ap25InputBytes)
+				}
+			}
+		}
+	}
+}
+
 func TestAb25Ap25Ownership(ab25ap25T *testing.T) {
 	ab25ap25InputBytes := json.RawMessage(`{"context":{"primary":181,"secondary":37,"operation":24,"direction":"request","view":"configuration","opaque":{"a":[0]}},"fields":{"configuration":[0],"data":[0,170,255]},"arguments":{"opaque":{"a":[false]}}}`)
 	ab25ap25Saved := append(json.RawMessage(nil), ab25ap25InputBytes...)

@@ -1,0 +1,524 @@
+[
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B50F",
+      "primary": 181,
+      "secondary": 15,
+      "operation": 2,
+      "direction": "request",
+      "field": "status_container_1",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "position": null,
+    "width_bits": 8,
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "coordinate_grade": "Unknown",
+    "allocated_mask": 127,
+    "reserved_mask": 128,
+    "bits": [
+      {
+        "bit": 0,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 1,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 2,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 3,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 4,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 5,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 6,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 7,
+        "label": null,
+        "category": null,
+        "reserved": true
+      }
+    ],
+    "raw_fallback": "Preserve the complete independent raw byte, including reserved bits; no physical status inference.",
+    "unknown": [
+      "absolute byte position",
+      "physical qualification",
+      "individual allocated flag names"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B50F",
+      "primary": 181,
+      "secondary": 15,
+      "operation": 2,
+      "direction": "request",
+      "field": "status_container_2",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "position": null,
+    "width_bits": 8,
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "coordinate_grade": "Unknown",
+    "allocated_mask": 127,
+    "reserved_mask": 128,
+    "bits": [
+      {
+        "bit": 0,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 1,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 2,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 3,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 4,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 5,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 6,
+        "label": null,
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 7,
+        "label": null,
+        "category": null,
+        "reserved": true
+      }
+    ],
+    "raw_fallback": "Preserve the complete independent raw byte, including reserved bits; no physical status inference.",
+    "unknown": [
+      "absolute byte position",
+      "physical qualification",
+      "individual allocated flag names"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B50F",
+      "primary": 181,
+      "secondary": 15,
+      "operation": 2,
+      "direction": "request",
+      "field": "status_container_3",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "position": null,
+    "width_bits": 8,
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "coordinate_grade": "Unknown",
+    "allocated_mask": 127,
+    "reserved_mask": 128,
+    "bits": [
+      {
+        "bit": 0,
+        "label": null,
+        "category": "temperature_limit",
+        "reserved": false
+      },
+      {
+        "bit": 1,
+        "label": null,
+        "category": "temperature_limit",
+        "reserved": false
+      },
+      {
+        "bit": 2,
+        "label": null,
+        "category": "temperature_limit",
+        "reserved": false
+      },
+      {
+        "bit": 3,
+        "label": null,
+        "category": "temperature_limit",
+        "reserved": false
+      },
+      {
+        "bit": 4,
+        "label": null,
+        "category": "temperature_limit",
+        "reserved": false
+      },
+      {
+        "bit": 5,
+        "label": null,
+        "category": "temperature_limit",
+        "reserved": false
+      },
+      {
+        "bit": 6,
+        "label": null,
+        "category": "temperature_limit",
+        "reserved": false
+      },
+      {
+        "bit": 7,
+        "label": null,
+        "category": null,
+        "reserved": true
+      }
+    ],
+    "raw_fallback": "Preserve the complete independent raw byte, including reserved bits; no physical status inference.",
+    "unknown": [
+      "absolute byte position",
+      "physical qualification",
+      "individual allocated flag names"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B50F",
+      "primary": 181,
+      "secondary": 15,
+      "operation": 2,
+      "direction": "request",
+      "field": "status_container_4",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "position": null,
+    "width_bits": 8,
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "coordinate_grade": "Unknown",
+    "allocated_mask": 255,
+    "reserved_mask": 0,
+    "bits": [
+      {
+        "bit": 0,
+        "label": null,
+        "category": "plausibility/channel",
+        "reserved": false
+      },
+      {
+        "bit": 1,
+        "label": null,
+        "category": "plausibility/channel",
+        "reserved": false
+      },
+      {
+        "bit": 2,
+        "label": null,
+        "category": "plausibility/channel",
+        "reserved": false
+      },
+      {
+        "bit": 3,
+        "label": null,
+        "category": "plausibility/channel",
+        "reserved": false
+      },
+      {
+        "bit": 4,
+        "label": null,
+        "category": "plausibility/channel",
+        "reserved": false
+      },
+      {
+        "bit": 5,
+        "label": null,
+        "category": "plausibility/channel",
+        "reserved": false
+      },
+      {
+        "bit": 6,
+        "label": null,
+        "category": "plausibility/channel",
+        "reserved": false
+      },
+      {
+        "bit": 7,
+        "label": null,
+        "category": "plausibility/channel",
+        "reserved": false
+      }
+    ],
+    "raw_fallback": "Preserve the complete independent raw byte, including reserved bits; no physical status inference.",
+    "unknown": [
+      "absolute byte position",
+      "physical qualification",
+      "individual allocated flag names"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B50F",
+      "primary": 181,
+      "secondary": 15,
+      "operation": 2,
+      "direction": "request",
+      "field": "status_container_5",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "position": null,
+    "width_bits": 8,
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "coordinate_grade": "Unknown",
+    "allocated_mask": 15,
+    "reserved_mask": 240,
+    "bits": [
+      {
+        "bit": 0,
+        "label": "valve_1_open",
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 1,
+        "label": "valve_1_error",
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 2,
+        "label": "valve_2_open",
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 3,
+        "label": "valve_2_error",
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 4,
+        "label": null,
+        "category": null,
+        "reserved": true
+      },
+      {
+        "bit": 5,
+        "label": null,
+        "category": null,
+        "reserved": true
+      },
+      {
+        "bit": 6,
+        "label": null,
+        "category": null,
+        "reserved": true
+      },
+      {
+        "bit": 7,
+        "label": null,
+        "category": null,
+        "reserved": true
+      }
+    ],
+    "raw_fallback": "Preserve the complete independent raw byte, including reserved bits; no physical status inference.",
+    "unknown": [
+      "absolute byte position",
+      "physical qualification"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B50F",
+      "primary": 181,
+      "secondary": 15,
+      "operation": 2,
+      "direction": "request",
+      "field": "status_container_6",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "position": null,
+    "width_bits": 8,
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "coordinate_grade": "Unknown",
+    "allocated_mask": 7,
+    "reserved_mask": 248,
+    "bits": [
+      {
+        "bit": 0,
+        "label": "valve_open",
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 1,
+        "label": "error",
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 2,
+        "label": "air_check",
+        "category": null,
+        "reserved": false
+      },
+      {
+        "bit": 3,
+        "label": null,
+        "category": null,
+        "reserved": true
+      },
+      {
+        "bit": 4,
+        "label": null,
+        "category": null,
+        "reserved": true
+      },
+      {
+        "bit": 5,
+        "label": null,
+        "category": null,
+        "reserved": true
+      },
+      {
+        "bit": 6,
+        "label": null,
+        "category": null,
+        "reserved": true
+      },
+      {
+        "bit": 7,
+        "label": null,
+        "category": null,
+        "reserved": true
+      }
+    ],
+    "raw_fallback": "Preserve the complete independent raw byte, including reserved bits; no physical status inference.",
+    "unknown": [
+      "absolute byte position",
+      "physical qualification"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B50F",
+      "primary": 181,
+      "secondary": 15,
+      "operation": 2,
+      "direction": "request",
+      "field": "burner_status",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "position": null,
+    "width_bits": 8,
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "coordinate_grade": "Unknown",
+    "allocated_mask": null,
+    "reserved_mask": null,
+    "bits": [],
+    "raw_fallback": "Preserve the complete independent raw byte, including reserved bits; no physical status inference.",
+    "unknown": [
+      "absolute byte position",
+      "physical qualification"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B50F",
+      "primary": 181,
+      "secondary": 15,
+      "operation": 2,
+      "direction": "request",
+      "field": "gas_pump_status",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "position": null,
+    "width_bits": 8,
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "coordinate_grade": "Unknown",
+    "allocated_mask": null,
+    "reserved_mask": null,
+    "bits": [],
+    "raw_fallback": "Preserve the complete independent raw byte, including reserved bits; no physical status inference.",
+    "unknown": [
+      "absolute byte position",
+      "physical qualification"
+    ]
+  }
+]

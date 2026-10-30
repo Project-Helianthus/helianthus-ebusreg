@@ -1,0 +1,1118 @@
+[
+  {
+    "Ab03An03Name": "ab03an03-controller-700-1-3-u16-le-0",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 1,
+    "Ab03An03RR": 3,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "off"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-1-3-u16-le-1",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 1,
+    "Ab03An03RR": 3,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "automatic"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-1-3-u16-le-2",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 1,
+    "Ab03An03RR": 3,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      2,
+      0
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "day"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-1-u16-le-0",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 1,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "off"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-1-u16-le-1",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 1,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "automatic"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-1-u16-le-2",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 1,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      2,
+      0
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "day"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-6-u16-le-0",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 6,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "off"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-6-u16-le-1",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 6,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "automatic"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-6-u16-le-2",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 6,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      2,
+      0
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "day"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-6-u16-le-3",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 6,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      3,
+      0
+    ],
+    "Ab03An03Integer": 3,
+    "Ab03An03Label": "setback"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-2-2-u16-le-0",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "deactivated"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-2-2-u16-le-1",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "heating"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-2-2-u16-le-2",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      2,
+      0
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "fixed-flow"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-2-2-u16-le-3",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      3,
+      0
+    ],
+    "Ab03An03Integer": 3,
+    "Ab03An03Label": "DHW"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-2-2-u16-le-4",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      4,
+      0
+    ],
+    "Ab03An03Integer": 4,
+    "Ab03An03Label": "return-flow"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-2-2-u16-le-5",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      5,
+      0
+    ],
+    "Ab03An03Integer": 5,
+    "Ab03An03Label": "pool"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-19-u16-le-0",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "none"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-19-u16-le-1",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "central"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-19-u16-le-2",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      2,
+      0
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "remote-circuit-one"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-19-u16-le-3",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      3,
+      0
+    ],
+    "Ab03An03Integer": 3,
+    "Ab03An03Label": "remote-circuit-two"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-19-u16-le-4",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      4,
+      0
+    ],
+    "Ab03An03Integer": 4,
+    "Ab03An03Label": "remote-circuit-three"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-19-u16-le-5",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      5,
+      0
+    ],
+    "Ab03An03Integer": 5,
+    "Ab03An03Label": "remote-circuit-four"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-19-u16-le-6",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      6,
+      0
+    ],
+    "Ab03An03Integer": 6,
+    "Ab03An03Label": "remote-circuit-five"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-19-u16-le-7",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      7,
+      0
+    ],
+    "Ab03An03Integer": 7,
+    "Ab03An03Label": "remote-circuit-six"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-19-u16-le-8",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      8,
+      0
+    ],
+    "Ab03An03Integer": 8,
+    "Ab03An03Label": "remote-circuit-seven"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-19-u16-le-9",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      9,
+      0
+    ],
+    "Ab03An03Integer": 9,
+    "Ab03An03Label": "remote-circuit-eight"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u8-0",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "no-quick-mode"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u8-1",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      1
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "ventilation-boost"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u8-3",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      3
+    ],
+    "Ab03An03Integer": 3,
+    "Ab03An03Label": "party"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u8-4",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      4
+    ],
+    "Ab03An03Integer": 4,
+    "Ab03An03Label": "quick-veto"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u8-5",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      5
+    ],
+    "Ab03An03Integer": 5,
+    "Ab03An03Label": "one-day-holiday"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u8-6",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      6
+    ],
+    "Ab03An03Integer": 6,
+    "Ab03An03Label": "one-day-bank-holiday"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u8-7",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      7
+    ],
+    "Ab03An03Integer": 7,
+    "Ab03An03Label": "holiday"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u8-8",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      8
+    ],
+    "Ab03An03Integer": 8,
+    "Ab03An03Label": "bank-holiday"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u8-10",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      10
+    ],
+    "Ab03An03Integer": 10,
+    "Ab03An03Label": "system-off"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u16-le-0",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "no-quick-mode"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u16-le-1",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "ventilation-boost"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u16-le-3",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      3,
+      0
+    ],
+    "Ab03An03Integer": 3,
+    "Ab03An03Label": "party"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u16-le-4",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      4,
+      0
+    ],
+    "Ab03An03Integer": 4,
+    "Ab03An03Label": "quick-veto"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u16-le-5",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      5,
+      0
+    ],
+    "Ab03An03Integer": 5,
+    "Ab03An03Label": "one-day-holiday"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u16-le-6",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      6,
+      0
+    ],
+    "Ab03An03Integer": 6,
+    "Ab03An03Label": "one-day-bank-holiday"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u16-le-7",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      7,
+      0
+    ],
+    "Ab03An03Integer": 7,
+    "Ab03An03Label": "holiday"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u16-le-8",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      8,
+      0
+    ],
+    "Ab03An03Integer": 8,
+    "Ab03An03Label": "bank-holiday"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-27-u16-le-10",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      10,
+      0
+    ],
+    "Ab03An03Integer": 10,
+    "Ab03An03Label": "system-off"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-28-signed8--1",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      255
+    ],
+    "Ab03An03Integer": -1,
+    "Ab03An03Label": "unbound"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-28-signed8-0",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "control-circuit-one"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-28-signed8-1",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      1
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "control-circuit-two"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-700-3-28-signed8-2",
+    "Ab03An03Family": "controller-700",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      2
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "control-circuit-three"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-1-3-u16-le-0",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 1,
+    "Ab03An03RR": 3,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "off"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-1-3-u16-le-1",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 1,
+    "Ab03An03RR": 3,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "time-controlled"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-1-3-u16-le-2",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 1,
+    "Ab03An03RR": 3,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      2,
+      0
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "manual"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-1-u16-le-0",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 1,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "off"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-1-u16-le-1",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 1,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "time-controlled"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-1-u16-le-2",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 1,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      2,
+      0
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "manual"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-6-u16-le-0",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 6,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "off"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-6-u16-le-1",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 6,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "time-controlled"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-6-u16-le-2",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 6,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      2,
+      0
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "manual"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-2-2-u16-le-0",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "deactivated"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-2-2-u16-le-1",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "heating"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-2-2-u16-le-2",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      2,
+      0
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "fixed-flow"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-2-2-u16-le-3",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      3,
+      0
+    ],
+    "Ab03An03Integer": 3,
+    "Ab03An03Label": "DHW"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-2-2-u16-le-4",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 2,
+    "Ab03An03RR": 2,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      4,
+      0
+    ],
+    "Ab03An03Integer": 4,
+    "Ab03An03Label": "return-flow"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-19-u16-le-0",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "none"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-19-u16-le-1",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "central"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-19-u16-le-2",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      2,
+      0
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "remote-circuit-one"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-19-u16-le-3",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      3,
+      0
+    ],
+    "Ab03An03Integer": 3,
+    "Ab03An03Label": "remote-circuit-two"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-19-u16-le-4",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      4,
+      0
+    ],
+    "Ab03An03Integer": 4,
+    "Ab03An03Label": "remote-circuit-three"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-19-u16-le-5",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 19,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      5,
+      0
+    ],
+    "Ab03An03Integer": 5,
+    "Ab03An03Label": "remote-circuit-four"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-27-u8-0",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "no-special-function"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-27-u8-1",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      1
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "ventilation-boost"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-27-u8-4",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      4
+    ],
+    "Ab03An03Integer": 4,
+    "Ab03An03Label": "quick-veto"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-27-u8-7",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      7
+    ],
+    "Ab03An03Integer": 7,
+    "Ab03An03Label": "holiday"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-27-u8-10",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u8",
+    "Ab03An03Raw": [
+      10
+    ],
+    "Ab03An03Integer": 10,
+    "Ab03An03Label": "system-off"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-27-u16-le-0",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      0,
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "no-special-function"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-27-u16-le-1",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      1,
+      0
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "ventilation-boost"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-27-u16-le-4",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      4,
+      0
+    ],
+    "Ab03An03Integer": 4,
+    "Ab03An03Label": "quick-veto"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-27-u16-le-7",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      7,
+      0
+    ],
+    "Ab03An03Integer": 7,
+    "Ab03An03Label": "holiday"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-27-u16-le-10",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 27,
+    "Ab03An03Width": "u16-le",
+    "Ab03An03Raw": [
+      10,
+      0
+    ],
+    "Ab03An03Integer": 10,
+    "Ab03An03Label": "system-off"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-28-signed8--1",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      255
+    ],
+    "Ab03An03Integer": -1,
+    "Ab03An03Label": "unbound"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-28-signed8-0",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      0
+    ],
+    "Ab03An03Integer": 0,
+    "Ab03An03Label": "control-circuit-one"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-28-signed8-1",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      1
+    ],
+    "Ab03An03Integer": 1,
+    "Ab03An03Label": "control-circuit-two"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-28-signed8-2",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      2
+    ],
+    "Ab03An03Integer": 2,
+    "Ab03An03Label": "control-circuit-three"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-28-signed8-3",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      3
+    ],
+    "Ab03An03Integer": 3,
+    "Ab03An03Label": "control-circuit-four"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-28-signed8-4",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      4
+    ],
+    "Ab03An03Integer": 4,
+    "Ab03An03Label": "control-circuit-five"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-28-signed8-5",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      5
+    ],
+    "Ab03An03Integer": 5,
+    "Ab03An03Label": "control-circuit-six"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-28-signed8-6",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      6
+    ],
+    "Ab03An03Integer": 6,
+    "Ab03An03Label": "control-circuit-seven"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-28-signed8-7",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      7
+    ],
+    "Ab03An03Integer": 7,
+    "Ab03An03Label": "control-circuit-eight"
+  },
+  {
+    "Ab03An03Name": "ab03an03-controller-720-3-28-signed8-8",
+    "Ab03An03Family": "controller-720",
+    "Ab03An03GG": 3,
+    "Ab03An03RR": 28,
+    "Ab03An03Width": "signed8",
+    "Ab03An03Raw": [
+      8
+    ],
+    "Ab03An03Integer": 8,
+    "Ab03An03Label": "control-circuit-nine"
+  }
+]

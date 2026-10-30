@@ -1,0 +1,22 @@
+[
+  {
+    "id": "ab13ap13_valve_request",
+    "input": {"context":{"primary":181,"secondary":18,"operation":15,"direction":"request","view":"valve-io","family":"synthetic-family","variant":"synthetic-a"},"fields":{"output":[3],"valve":[2]}},
+    "expected": {"output":{"state":"Hypothesis","flags":{"output1":true,"output2":true},"reserved":0},"valve":{"state":"Hypothesis","label":"DHW"}}
+  },
+  {
+    "id": "ab13ap13_valve_positive",
+    "input": {"context":{"primary":181,"secondary":18,"operation":15,"direction":"positive","view":"valve-io","family":"synthetic-family","variant":"synthetic-a"},"fields":{"temperature1":[0,128],"temperature2":[240,255],"input":[1],"pressure":[255],"backup":[255]}},
+    "expected": {"temperature1":{"state":"Hypothesis","label":"replacement"},"temperature2":{"state":"Hypothesis","number":-1,"calculation":"Proven"},"input":{"state":"Hypothesis","label":"utility-contact"},"pressure":{"state":"Hypothesis","number":25.5,"calculation":"Proven","candidate_domain":true,"alternatives":[{"state":"Hypothesis","label":"candidate-default","number":255,"candidate_domain":false,"conflict":true}]},"backup":{"state":"Hypothesis","label":"replacement"}}
+  },
+  {
+    "id": "ab13ap13_board_request",
+    "input": {"context":{"primary":181,"secondary":18,"operation":16,"direction":"request","view":"board-io","family":"synthetic-family","variant":"synthetic-a"},"fields":{"actuator1":[0],"actuator2":[0],"inverse":[18,52]}},
+    "expected": {"actuator1":{"state":"Hypothesis","reserved":0},"actuator2":{"state":"Hypothesis","reserved":0},"inverse":{"state":"Unknown","raw":[18,52],"unmodeled":{"order":"Unknown","algorithm":"Unknown"}}}
+  },
+  {
+    "id": "ab13ap13_board_positive",
+    "input": {"context":{"primary":181,"secondary":18,"operation":16,"direction":"positive","view":"board-io","family":"synthetic-family","variant":"synthetic-a"},"fields":{"status":[0],"phase1":[50],"phase2":[33],"adc0":[255,255],"adc1":[1,2],"adc2":[2,3],"adc3":[3,4],"adc4":[4,5],"adc5":[5,6],"board":[12]}},
+    "expected": {"status":{"state":"Hypothesis","reserved":0},"phase1":{"state":"Hypothesis","number":50},"phase2":{"state":"Hypothesis","number":33},"adc0":{"state":"Hypothesis","number":65535,"calculation":"Proven"},"adc1":{"number":513},"adc2":{"number":770},"adc3":{"number":1027},"adc4":{"number":1284},"adc5":{"number":1541},"board":{"state":"Hypothesis","label":"opaque-code-12"}}
+  }
+]

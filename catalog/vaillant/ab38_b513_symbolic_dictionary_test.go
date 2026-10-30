@@ -1,0 +1,1557 @@
+package vaillant
+
+import (
+	ab38bytes "bytes"
+	ab38json "encoding/json"
+	ab38fmt "fmt"
+	ab38reflect "reflect"
+	ab38strconv "strconv"
+	ab38strings "strings"
+	ab38testing "testing"
+)
+
+const ab38ExpectedTable = `0000|AccessoryRelaisOne
+0001|AccessoryRelaisTwo
+0002|ActivateSpecialTestFunction
+0003|ActorsUnderRemoteControl
+0004|ActoStorModuleDetected
+0005|actoStorOperatingMode
+0006|actoStorOperatingModeState
+0007|actostorstate
+0008|ACTOstorVersion
+0009|ActualASICTemperature
+000A|ActualuCTemperature
+000B|AdaptiveCentralheating
+000C|AdaptiveHeatingCurve
+000D|ADCBottomRoomTemperatureValue
+000E|ADCTopRoomTemperatureValue
+000F|AdditionalFillTime
+0010|AddressEncoder
+0011|AdvancedCentralHeatingPartloadInKw
+0012|AdvancedFrostProtection
+0013|AdvancedPowerValues
+0014|AI_CompactStatus
+0015|AirControlOk
+0016|AirPressure
+0017|AirPressureSwitchFanSpeed
+0018|AirPressureSwitchFanSpeed_HMR
+0019|AirVentilationCirciutName
+001A|AiState
+001B|AnalogCodingResistorInput
+001C|AnalogCodingResistorInput2
+001D|AnalogDigitalConverterOk
+001E|AnalogValueAsicEight
+001F|AnalogValueAsicFive
+0020|AnalogValueAsicFour
+0021|AnalogValueAsicNine
+0022|AnalogValueAsicOne
+0023|AnalogValueAsicSeven
+0024|AnalogValueAsicSix
+0025|AnalogValueAsicThree
+0026|AnalogValueAsicTwo
+0027|AnalogValueUcEight
+0028|AnalogValueUcEleven
+0029|AnalogValueUcFifteen
+002A|AnalogValueUcFive
+002B|AnalogValueUcFour
+002C|AnalogValueUcFourteen
+002D|AnalogValueUcNine
+002E|AnalogValueUcNull
+002F|AnalogValueUcOne
+0030|AnalogValueUcSeven
+0031|AnalogValueUcSix
+0032|AnalogValueUcTen
+0033|AnalogValueUcThirteen
+0034|AnalogValueUcThree
+0035|AnalogValueUcTwelve
+0036|AnalogValueUcTwo
+0037|AnodeTester
+0038|AntiCondensingValue
+0039|ApplianceIdentifier
+003A|ASIDetected
+003B|AssertCounter
+003C|AssertFailureAddress
+003D|AssertFileName
+003E|AssertLineNumber
+003F|AussentemperaturUnkorrigiert
+0040|AutomaticFillingLoop
+0041|AverageIgnitionTime
+0042|AverageOfStackSize
+0043|AverageRunTimeReserve
+0044|B50418actDesFlowTemp
+0045|B50426DHWSetPointAdjustable
+0046|B50426DisplayedDHWSetpoint
+0047|B50426DisplayedRoomSetpoint
+0048|B50426HK1SetPointAdjustable
+0049|B50532_Received_FlowOffset
+004A|B50532_Received_RoomTempOffset
+004B|B51000CHDisableMonitor
+004C|B51000M14
+004D|B51102DhwSetpOnBmuActive
+004E|B51204_SetpointExtCHPump
+004F|BacklightIsOn
+0050|Backlightselfheatcorrection
+0051|BaseDisplay
+0052|BatteryOffset
+0053|BkDetected
+0054|BKMK1Version
+0055|BlockCentralHeatingFlowSetpointApplianceInterface
+0056|BlockDomesticHotWaterSetpointApplianceInterface
+0057|BlockParameterManagement
+0058|BMU_CH_enabled
+0059|BMU_COPInfoAvailable
+005A|BMU_FlowTempB51101
+005B|BMU_has_Error
+005C|BMU_OperatingStatus
+005D|BMU_TestActive
+005E|BMUB51000M12bits
+005F|BMUB51000M7OpMode
+0060|BMUB51000M8CHSetp
+0061|BMUB51000M9DHWSetp
+0062|BMUFlowTemperatureOrVF1
+0063|BMUon0x18detected
+0064|BoilerBlockTemperatureSensor
+0065|BoilerFamily
+0066|BoilerPreShutdownTimeMaximum
+0067|BoilerSequenceChangeTime
+0068|BoilerTyp
+0069|BoilerTypTwo
+006A|BurnerOffStandby
+006B|Button1Presscounter
+006C|Button2Presscounter
+006D|ButtonRemoteControl
+006E|CalculatedKickStopTime
+006F|CascadeAddress
+0070|CentralHeatingBurnerBlockingTimePotentiometer
+0071|CentralHeatingCounter
+0072|CentralHeatingEnable
+0073|CentralHeatingFlowSetpoint
+0074|CentralHeatingFlowSetpointApplianceInterface
+0075|CentralHeatingFlowSetpointButton
+0076|CentralHeatingFlowSetpointEeprom
+0077|CentralHeatingFlowSetPointHysteresisOff
+0078|CentralHeatingFlowSetPointHysteresisOn
+0079|CentralHeatingFlowSetpointPotentiometer
+007A|CentralHeatingOperatingHours
+007B|CentralHeatingPartialLoadCondition
+007C|CentralHeatingPartload
+007D|CentralHeatingPartloadInKw
+007E|CentralHeatingPumpCounter
+007F|CentralHeatingPumpMinPwmSwitch
+0080|CentralHeatingReturnRegulation
+0081|CentralHeatingSwitch
+0082|CentralHeatingUnderHundredCounter
+0083|CentralHeatingWaterPump
+0084|CentralHeatingWaterPumpMode
+0085|CentralHeatingWaterPumpPwm
+0086|CentralHeatingWaterPumpPwmApplicationInterface
+0087|CentralHeatingWaterPumpSecondStage
+0088|CentralHeatingWaterPumpSecondStageMode
+0089|CentralHeatingWaterPumpType
+008A|ChDemandTemperatureStandAlone
+008B|ChimneySweeperAutoDetectionLenght
+008C|ChimneySweeperLenght
+008D|ChimneySweepModeIsActive
+008E|CI_Has_Low_Batt
+008F|CircuitDiaState
+0090|CircuitPeriods
+0091|CircuitsControlStates
+0092|CircuitsStates
+0093|CirculationPumpIsActive
+0094|ClockSwitchSummerWinterDone
+0095|CoConcentration
+0096|CoConcentrationApplicationInterface
+0097|CoCorrectionFactor
+0098|CoCorrectionFactorOffset
+0099|CodingResistorOne
+009A|CodingResistorTwo
+009B|CodingResistorVariante
+009C|Col1Temp_For_620
+009D|CoLastError
+009E|CollectiveSolarValve
+009F|CollectiveSolarValveFillingLoopMode
+00A0|CollectorKickPumpForce
+00A1|CollectorKickPumpTime
+00A2|CollectorTemperatureSensor
+00A3|CommunicationStatusInternalShiftLoadTank
+00A4|CondensatCollectorHC1
+00A5|CondensatCollectorHC2
+00A6|CondensingBoilerInstalled
+00A7|configS1
+00A8|configS2
+00A9|ConfigurableMixerCirciutType
+00AA|ConfigurationMixerPortLoadingOrCirculationPump
+00AB|ConfigurationSwitch
+00AC|ConnectorEight
+00AD|ConnectorSeven
+00AE|ContinuousHeatingStartSetpoint
+00AF|ControlIsPluggedInBoiler
+00B0|ControllerHWType
+00B1|ControllerTemperature
+00B2|ControlPWM1
+00B3|ControlPWM2
+00B4|ControlPWM3
+00B5|CoolingAllowedHC1
+00B6|CoolingAllowedHC2
+00B7|CoolingDay
+00B8|COP_BMU_HC1
+00B9|COP_BMU_HC2
+00BA|COP_HMU_HC1
+00BB|COP_HMU_HC2
+00BC|CoPtcActualTemperature
+00BD|CoPtcActualTemperatureApplicationInterface
+00BE|CoPtcMeasureTemperature
+00BF|CoR0
+00C0|CoR0ApplicationInterface
+00C1|CoRsens
+00C2|CoRsensApplicationInterface
+00C3|CountFrostProtectionDuringFilling
+00C4|CountFrostProtectionDuringStandby
+00C5|CountHighTempReturnVessel
+00C6|CountNumberOfFillings
+00C7|CountPostFilling
+00C8|CountRunAfterFilling
+00C9|CountryVariant
+00CA|CountryZone
+00CB|CountStopAfterFilling
+00CC|CrcParameterValues
+00CD|CurrentASCStateforASI
+00CE|CurrentFailureList
+00CF|CurrentFlow
+00D0|CurrentFlow_ml_per_min
+00D1|CurrentFlowSetpointIntegralValue
+00D2|CurrentInTw
+00D3|CurrentOpMode
+00D4|CurrentPartload
+00D5|CurrentSolarSetpoint
+00D6|CurrentSpecialFunction
+00D7|CurrentState
+00D8|CurrentSystemMode
+00D9|CylinderHasError
+00DA|CylinderHeatingCirciutAvailable
+00DB|CylinderLimpHomeMode
+00DC|CylinderPreditiveMaintenance
+00DD|CylinderPumpControlPIDValueD
+00DE|CylinderPumpControlPIDValueI
+00DF|CylinderPumpControlPIDValueP
+00E0|CylinderPumpFlowError
+00E1|CylinderPumpRunTimeHours
+00E2|CylinderPumpRunTimeMinutes
+00E3|CylinderPumpSymbolBlinking
+00E4|CylinderStateMessage
+00E5|CylinderTemperatureSensorSP1
+00E6|CylinderTemperatureSensorSP2
+00E7|CylinderTemperatureSensorSP2Error
+00E8|CylinderTemperatureSensorSP3
+00E9|CylinderTemperatureSensorTD1
+00EA|CylinderTemperatureSensorTD4
+00EB|Date
+00EC|DateTimeSetAfterProdInit
+00ED|DaysCountIfRTCIsValid
+00EE|DCF is Valid
+00EF|DCF State
+00F0|DCFData
+00F1|DCFDataUC
+00F2|DCFIsValid
+00F3|DcfPortPin
+00F4|DCFState
+00F5|DcfTimeDate
+00F6|DeactivationsInternalFireControlSystem
+00F7|DeactivationsTemperatureLimiter
+00F8|DebugAverageRunTime
+00F9|DebugMaximumFreeStackBytes
+00FA|DebugMaximumRunTime
+00FB|DebugMinimumRunTime
+00FC|DefaultSettingEeprom
+00FD|DesiredActualFlowTemperature
+00FE|DesiredDegreeBoiler
+00FF|DesiredDegreeBoiler_1
+0100|DesiredDegreeBoiler_2
+0101|DesiredDegreeBoiler_3
+0102|DesiredDegreeBoiler_4
+0103|DesiredDegreeBoiler_5
+0104|DesiredDegreeBoiler_6
+0105|DesiredDegreeBoiler_7
+0106|DesiredDegreeBoiler_8
+0107|DesiredDeviceHC1
+0108|DesiredDeviceHC2
+0109|DesiredFlowTempBoiler
+010A|DesiredFlowTempBoiler_1
+010B|DesiredFlowTempBoiler_2
+010C|DesiredFlowTempBoiler_3
+010D|DesiredFlowTempBoiler_4
+010E|DesiredFlowTempBoiler_5
+010F|DesiredFlowTempBoiler_6
+0110|DesiredFlowTempBoiler_7
+0111|DesiredFlowTempBoiler_8
+0112|DesiredFlowTemperature
+0113|DesiredStateBoiler
+0114|DesiredStateBoiler_1
+0115|DesiredStateBoiler_2
+0116|DesiredStateBoiler_3
+0117|DesiredStateBoiler_4
+0118|DesiredStateBoiler_5
+0119|DesiredStateBoiler_6
+011A|DesiredStateBoiler_7
+011B|DesiredStateBoiler_8
+011C|DeviceOperationMode
+011D|DeviceOperationModeIsBlocked
+011E|DeviceSpecificNumber
+011F|DeviceSpecificNumberApplicationInterface
+0120|DeviceSpecificNumberOffset
+0121|DeviceSpecificNumberOffsetApplicationInterface
+0122|DeviceSpecificNumberReplication
+0123|DeviceSpecificNumberStart
+0124|DeviceSpecificNumberStartApplicationInterface
+0125|DeviceSpecificPartNumber
+0126|DHW_Demand
+0127|DHW_OPModeForVR68Actostor
+0128|DhwDemandTemperatureStandAlone
+0129|DhwLegioProtectionMaxTimer
+012A|DhwLegioTempOkTimer
+012B|DHWLoadingInBMUActive
+012C|DHWLoadingIsActive
+012D|DisableAirVentSHA
+012E|DisableAutomaticAirVentFunction
+012F|DisplayCtrlAnswerNotOK
+0130|DisplayCtrlAnswerOK
+0131|DisplayDriverCoding
+0132|DisplayedMessages
+0133|DisplayedMessagesMenu
+0134|DisplayedRoomSetpoint
+0135|DisplayedRoomTemperature
+0136|DisplayLowWater
+0137|DisplayMode
+0138|DomesticHotWaterActivation
+0139|DomesticHotWaterCirciutName
+013A|DomesticHotWaterCirculationPump
+013B|DomesticHotWaterCirculationPumpOneTime
+013C|DomesticHotWaterCirculationPumpRemoteSwitch
+013D|DomesticHotWaterDemand
+013E|DomesticHotWaterDemandIsFullFilled
+013F|DomesticHotWaterDemandTapping
+0140|DomesticHotWaterDisplayedSetpoint
+0141|DomesticHotWaterFlow
+0142|DomesticHotWaterFlowSetpoint
+0143|DomesticHotWaterFlowSetPointButton
+0144|DomesticHotWaterFlowSetpointOffset
+0145|DomesticHotWaterImpellorSwitch
+0146|DomesticHotWaterInletTemperatureSensor
+0147|DomesticHotWaterLaggingTime
+0148|DomesticHotWaterLoadingDelay
+0149|DomesticHotWaterLoadingEnabled
+014A|DomesticHotWaterLoadingPumpOverrunTime
+014B|DomesticHotWaterManualSetpoint
+014C|DomesticHotWaterOperatingHours
+014D|DomesticHotWaterOperationMode
+014E|DomesticHotWaterOutletTemperatureSensor
+014F|DomesticHotWaterPartialLoadCondition
+0150|DomesticHotWaterPartloadInKw
+0151|DomesticHotWaterPumpFlowNumber
+0152|DomesticHotWaterPumpFlowSummary
+0153|DomesticHotWaterQuickTappingEnable
+0154|DomesticHotWaterQuickVetoIsActive
+0155|DomesticHotWaterQuickVetoSetpoint
+0156|DomesticHotWaterRequest
+0157|DomesticHotWatersCounter
+0158|DomesticHotWaterSetParallelLoading
+0159|DomesticHotWaterSetpoint
+015A|DomesticHotWaterSetpointApplianceInterface
+015B|DomesticHotWaterSetpointB51101
+015C|DomesticHotWaterSetpointPotentiometer
+015D|DomesticHotWaterShiftLoadTankShiftPump
+015E|DomesticHotWatersHysteresis
+015F|DomesticHotWaterSwitch
+0160|DomesticHotWaterSwitches
+0161|DomesticHotWaterTankLoadingRelease
+0162|DomesticHotWaterTankLoadOffset
+0163|DomesticHotWaterTankLoadPump
+0164|DomesticHotWaterTankPartLoad
+0165|DomesticHotWaterTankTemperature
+0166|DomesticHotWaterTappingSensor
+0167|DomesticHotWaterTappingSetpoint
+0168|DomesticHotWaterTimerInput
+0169|DomesticHotWaterTypes
+016A|DomesticHotWaterUnderHundredCounter
+016B|DomesticHotWaterWarmstartRelease
+016C|dTStart
+016D|dummy194
+016E|dummy195
+016F|dummy196
+0170|dummy197
+0171|dummy198
+0172|dummy199
+0173|dummy200
+0174|EarnedEnergyLastYearApril
+0175|EarnedEnergyLastYearAugust
+0176|EarnedEnergyLastYearDecember
+0177|EarnedEnergyLastYearFebruary
+0178|EarnedEnergyLastYearJanuary
+0179|EarnedEnergyLastYearJuly
+017A|EarnedEnergyLastYearJune
+017B|EarnedEnergyLastYearMarch
+017C|EarnedEnergyLastYearMay
+017D|EarnedEnergyLastYearNovember
+017E|EarnedEnergyLastYearOctober
+017F|EarnedEnergyLastYearSeptember
+0180|EarnedEnergyThisYearApril
+0181|EarnedEnergyThisYearAugust
+0182|EarnedEnergyThisYearDecember
+0183|EarnedEnergyThisYearFebruary
+0184|EarnedEnergyThisYearJanuary
+0185|EarnedEnergyThisYearJuly
+0186|EarnedEnergyThisYearJune
+0187|EarnedEnergyThisYearMarch
+0188|EarnedEnergyThisYearMay
+0189|EarnedEnergyThisYearNovember
+018A|EarnedEnergyThisYearOctober
+018B|EarnedEnergyThisYearSeptember
+018C|EbusCentralHeatingRelease
+018D|EbusHardwareCircuitTest
+018E|ebusPhyBootloaderVersion
+018F|ebusPhyFirmwareVersion
+0190|ebusPhySPN
+0191|EbusSourceOn
+0192|EbusVoltage
+0193|EepromCopyCodingResistor
+0194|EEPROMFailureCounter
+0195|EepromStatus
+0196|EEpromUpdateIsActive
+0197|EEpromWriteProtected
+0198|ElectricityRateHighTariff
+0199|ElectricityRateLowTariff
+019A|ElectricRate
+019B|ElectronicControlUnitInitialisationSequence
+019C|ElgaInitialZero
+019D|ElgaMassFlowSensor
+019E|ElgaMassFlowSensorHeater
+019F|ElgaMaximumCoCounter
+01A0|ElgaPartLoadChoke
+01A1|EmergencyList
+01A2|EmStateCooling
+01A3|EMVCodingResistorErrorTolerance
+01A4|EMVFlowErrorTolerance
+01A5|EMVFlowSensor1Freq
+01A6|EMVFlowSensor2Frequence
+01A7|EMVPwmInputErrorTolerance
+01A8|EMVTempErrorTolerance
+01A9|EnergyDemandNotReachedDelay
+01AA|EnergyDemandNotReachedTimer
+01AB|EnergyManagerMode
+01AC|EnerManCoolingIsActive
+01AD|EnermanMaxFlowSetpoint
+01AE|EraseEeprom
+01AF|ErrorActive
+01B0|ErrorHistory
+01B1|ErrorsInHistoryCnt
+01B2|ExhaustCurve
+01B3|ExhaustWayBlockCounter
+01B4|ExhaustWayInTemperatureSensor
+01B5|ExhaustWayOutTemperatureSensor
+01B6|ExternalCentralHeatingFlowSetpoint
+01B7|ExternalCentralHeatingSetpoint
+01B8|ExternalCentralHeatingWaterPump
+01B9|ExternalCurrentASCState
+01BA|ExternalCylinderIsFull
+01BB|ExternalCylinderTemperatureSensorSP2
+01BC|ExternalCylinderTemperatureSetpoint
+01BD|ExternalDateTimeSetting
+01BE|ExternalDomesticHotWaterRequest
+01BF|ExternalDomesticHotWaterSetpoint
+01C0|ExternalDomesticHotWaterTankModulConnection
+01C1|ExternalFaultMessage
+01C2|ExternalFlowTemperatureSensor
+01C3|ExternalFuelValve
+01C4|ExternalVoltageConnected
+01C5|FactorySettingCentralHeatingFlowSetPointHysteresisOff
+01C6|FactorySettingCentralHeatingFlowSetPointHysteresisOn
+01C7|FactorySettingDomesticHotWaterPartloadInKw
+01C8|FactorySettingFluePipeFactor
+01C9|FactorySettingMinimumCentralHeatingPumpPwmSwitch
+01CA|FactorySettingsAccessoryRelaisOne
+01CB|FactorySettingsAccessoryRelaisTwo
+01CC|FactorySettingsAntiCondensingValue
+01CD|FactorySettingsCentralHeatingCurve
+01CE|FactorySettingsCentralHeatingPartload
+01CF|FactorySettingsCentralHeatingPartloadInKw
+01D0|FactorySettingsCentralHeatingPumpSecondStageMode
+01D1|FactorySettingsCentralHeatingPumpTargetSpeed
+01D2|FactorySettingsCentralHeatingReturnRegulation
+01D3|FactorySettingsCentralheatingSetpointApplianceInterface
+01D4|FactorySettingsCentralHeatingWaterPumpMode
+01D5|FactorySettingsCentralHeatingWaterPumpPostrunTime
+01D6|FactorySettingsCentralHeatingWaterPumpPwmPower
+01D7|FactorySettingsCentralHeatingWaterPumpType
+01D8|FactorySettingsDomesticHotWaterPumpTankPostrunTime
+01D9|FactorySettingsDomesticHotWaterSetpointApplicationInterface
+01DA|FactorySettingsDomesticHotWaterTankPartload
+01DB|FactorySettingsDomesticHotWaterWarmstartDemand
+01DC|FactorySettingsDomesticHotWaterWarmstartOffset
+01DD|FactorySettingsElgaPartLoadChoke
+01DE|FactorySettingsExhaustWayCurve
+01DF|FactorySettingsGasType
+01E0|FactorySettingsHoursTillService
+01E1|FactorySettingsLanguageVariant
+01E2|FactorySettingsLeginellaDesiredInternalShiftLoadTank
+01E3|FactorySettingsLeginellaProtectionInternalShiftLoadTank
+01E4|FactorySettingsMaximumCentralHeatingFlowSetpoint
+01E5|FactorySettingsMaximumDomesticHotWaterSetpoint
+01E6|FactorySettingsMaximumDomesticHotWaterTankFlowSetpoint
+01E7|FactorySettingsMaximumDomesticHotWaterTankLoadTime
+01E8|FactorySettingsMaximumFanSpeedOffset
+01E9|FactorySettingsMaximumFuelValveOffset
+01EA|FactorySettingsMaximumSetpointCentralHeatingBurnerBlockingTime
+01EB|FactorySettingsMaximumSetpointDomesticHotWaterBurnerBlockingTime
+01EC|FactorySettingsMaximumStepperMotorFuelValveOffset
+01ED|FactorySettingsMinimumAdvancedPartloadInKw
+01EE|FactorySettingsMinimumFanSpeedOffset
+01EF|FactorySettingsMinimumFuelValveOffset
+01F0|FactorySettingsMinimumStepperMotorFuelValveOffset
+01F1|FactorySettingsNightTemperatureOffset
+01F2|FactorySettingsOptionRelais
+01F3|FactorySettingsOutsideTemperatureCorrection
+01F4|FactorySettingsRoomTemperatureSetpoint
+01F5|FactorySettingsServiceMode
+01F6|FactorySettingsSolarPostHeat
+01F7|FactorySettingsSpecialAdjustment
+01F8|FactorySettingsStartOffset
+01F9|FactorySettingStepperMotorFuelValveCoCorrectionFactorOffset
+01FA|FactorySettingStepperMotorFuelValveCorrectionFactorHighOffset
+01FB|FactorySettingStepperMotorFuelValveCorrectionFactorLowOffset
+01FC|FactorySettingsThreeWayValveMidPosition
+01FD|FactoryTestIsAktiv
+01FE|FailureRateOf_i2c1_Communication
+01FF|FailureRateOf_i2c2_Communication
+0200|FailureRateOfPeBusCommunication
+0201|Fan
+0202|FanCounter
+0203|FanFault
+0204|FanOperationgHours
+0205|FanPwmSummary
+0206|FanPwmTest
+0207|FanSpeedRpm
+0208|FanTargetSpeed
+0209|FaultFlagInternalFireControlSystem
+020A|FaultList
+020B|FaultStateAsic
+020C|FillingLoopMode
+020D|FillingPressureSwitchOffLimit
+020E|FillingTime
+020F|FireControlSystemFault
+0210|Flame
+0211|FlameSensingAsic
+0212|FlideCounter
+0213|FlideEepromMode
+0214|FlideRelease
+0215|FloorHeatingContact
+0216|FlowSensor
+0217|FlowSensorFrequency
+0218|FlowTemperatureSensor
+0219|FlowTemperatureSensor2
+021A|FlowTemperatureSensorVF1
+021B|FlowTemperatureSensorVF2
+021C|FlowTemperatureVF1
+021D|FlueGasValve
+021E|FlueGasValveOpen
+021F|FluePipeFactor
+0220|ForceAirVent
+0221|ForceOff
+0222|FrostProtectDelayMonitor
+0223|FrostProtectDelayTime
+0224|FrostProtectionDelayTime
+0225|FrostProtectionEnabled
+0226|FrostProtectionLimit
+0227|FrostProtectionRequiredMonitor
+0228|FrostProtectionState
+0229|FrostThermostat
+022A|FuelType
+022B|FuelValve
+022C|FuelValve_HMR
+022D|FuelValveDrivertestResult
+022E|FuelValveFeedbackAsic
+022F|FuelValveFeedbackUc
+0230|FuelValveMicroController
+0231|FuelvalveOk
+0232|FuelValveThreeUc
+0233|FunctionFlags
+0234|GainFailureCounter
+0235|GasRate
+0236|GasValveFrequency
+0237|GlobalSystemCooling_Days
+0238|GlobalSystemMode
+0239|gsmRevision1
+023A|gsmRevision2
+023B|gsmRevision3
+023C|gsmSerialNo1
+023D|gsmSerialNo2
+023E|gsmSerialNo3
+023F|gsmSimID1
+0240|gsmSimID2
+0241|gsmSimID3
+0242|HardwareFailureCounter
+0243|HC1_DayTemperatureCooling
+0244|HC1_HeatingCurveOffset
+0245|HC1_HeatingLimitTemperatureDay
+0246|HC1_HeatingLimitTemperatureNight
+0247|HC1CoolingFlowSetpoint
+0248|HC2_AutoModeStatus
+0249|HC2_RoomTempSwitchOn
+024A|HC2_SFModeDisplayed
+024B|HC2RoomSetpoint
+024C|HC2RoomTemp
+024D|HeatDemandLimitedByOutsideTemperature
+024E|HeatDemandOffset
+024F|HeatExchangerAverageValue
+0250|HeatingCircuit10Name
+0251|HeatingCircuit11Name
+0252|HeatingCircuit12Name
+0253|HeatingCircuit13Name
+0254|HeatingCircuit14Name
+0255|HeatingCircuit15Name
+0256|HeatingCircuit16Name
+0257|HeatingCircuit17Name
+0258|HeatingCircuit18Name
+0259|HeatingCircuit1BankHolidayEndDate
+025A|HeatingCircuit1BankHolidayStartDate
+025B|HeatingCircuit1CircuitDisabled
+025C|HeatingCircuit1ConnectedToVR81
+025D|HeatingCircuit1EarlyCutOffIsActive
+025E|HeatingCircuit1HolidayEndDate
+025F|HeatingCircuit1HolidayStartDate
+0260|HeatingCircuit1Name
+0261|HeatingCircuit1PreheatingfOrContinuousHeatingIsActive
+0262|HeatingCircuit1SpecialFunctionMode
+0263|HeatingCircuit2BankHolidayEndDate
+0264|HeatingCircuit2BankHolidayPeriodIsActive
+0265|HeatingCircuit2BankHolidayStartDate
+0266|HeatingCircuit2ConnectedToVR81
+0267|HeatingCircuit2DisplayedCurrentSetpoint
+0268|HeatingCircuit2FlowSetpoint
+0269|HeatingCircuit2HolidayEndDate
+026A|HeatingCircuit2HolidayPeriodIsActive
+026B|HeatingCircuit2HolidayStartDate
+026C|HeatingCircuit2Name
+026D|HeatingCircuit2OperationMode
+026E|HeatingCircuit2PumpState
+026F|HeatingCircuit2SpecialFunctionMode
+0270|HeatingCircuit2Type
+0271|HeatingCircuit3Name
+0272|HeatingCircuit3PumpState
+0273|HeatingCircuit4Name
+0274|HeatingCircuit5Name
+0275|HeatingCircuit6Name
+0276|HeatingCircuit7Name
+0277|HeatingCircuit8Name
+0278|HeatingCircuit9Name
+0279|HeatingCircuitAutoOffMode
+027A|HeatingCircuitDayTemperatureSetpoint
+027B|HeatingCircuitDeamand
+027C|HeatingCircuitDeamandIsFullFilled
+027D|HeatingCircuitDesiredTemperature
+027E|HeatingCircuitDisplayedCurrentSetpoint
+027F|HeatingCircuitDisplayedRoomSetpoint
+0280|HeatingCircuitFloorPavementDryingDay
+0281|HeatingCircuitFloorPavementDryingFlowSetpoint
+0282|HeatingCircuitFloorPavementDryingStartTime
+0283|HeatingCircuitFlowSetpoint
+0284|HeatingCircuitFlowSetpointExcessOffset
+0285|HeatingCircuitFlowTemperatureIncrease
+0286|HeatingCircuitHeatingCurve
+0287|HeatingCircuitHolidayPeriodIsActive
+0288|HeatingCircuitHolidaySetpoint
+0289|HeatingCircuitIsInParty
+028A|HeatingCircuitLineMatchingAdaption
+028B|HeatingCircuitManualSetpoint
+028C|HeatingCircuitMaximumFlowSetpoint
+028D|HeatingCircuitMinimalFlowSetpoint
+028E|HeatingCircuitNightSetpoint
+028F|HeatingCircuitNightTemperatureSetpoint
+0290|HeatingCircuitOperationMode
+0291|HeatingCircuitPumpBlockingTime
+0292|HeatingCircuitPumpState
+0293|HeatingCircuitQuickVetoIsActive
+0294|HeatingCircuitQuickVetoSetpoint
+0295|HeatingCircuitRoomTemperatureControlMode
+0296|HeatingCircuitSummerOffset
+0297|HeatingCircuitTwoStepAnalogControl
+0298|HeatingCircuitType
+0299|HeatingCurve
+029A|HMU_FlowTempB51101
+029B|HMU_FlowTempOrVF_1
+029C|HMU_has_Error
+029D|HMU_OperatingStatus
+029E|HMUB51000M12bits
+029F|HMUB51000M14bits
+02A0|HMUB51000M7OpMode
+02A1|HMUB51000M8CHSetp
+02A2|HMUCoolingSetpoint
+02A3|HMUCoolingTestModeActive
+02A4|HMUon0x08detected
+02A5|HMUorBMUFlowTemperature
+02A6|HMUSupportsCooling
+02A7|HolidayPeriod
+02A8|HomeScreenAffectsHeatingCircuit
+02A9|HoodTemperatureSensor
+02AA|HoursTillService
+02AB|HPCompressorIsRunning
+02AC|HRUDetected
+02AD|HybridManagerSelectedDevice
+02AE|HybridSystem_Detected
+02AF|HydraulicForBoilerAndHpParallel
+02B0|HydraulicMap
+02B1|HydraulicMapNumber
+02B2|HydraulicSwitchIsInstalled
+02B3|IdentifierFanFlued
+02B4|IgnitionPowerAdjustedApplicationInterface
+02B5|Ignitor
+02B6|IgnitorControl
+02B7|Incrementalcounts
+02B8|Incrementalgeber1Value
+02B9|Incrementalgeber2Value
+02BA|infoGsmErrorCodes
+02BB|infoGsmRSSI
+02BC|infoGsmSIMstatus
+02BD|infoNetDNS1
+02BE|infoNetDNS2
+02BF|infoNetDNS3
+02C0|infoNetDNS4
+02C1|infoNetGateway1
+02C2|infoNetGateway2
+02C3|infoNetGateway3
+02C4|infoNetGateway4
+02C5|infoNetIPaddress1
+02C6|infoNetIPaddress2
+02C7|infoNetIPaddress3
+02C8|infoNetIPaddress4
+02C9|InitialisationEeprom
+02CA|InstallerAssistantMode
+02CB|InstallerContactName
+02CC|InstallerPhoneNumber
+02CD|InstallerPhoneNumber2
+02CE|InternalASICFailureHistory
+02CF|IonisationCurrent
+02D0|IsInSavingsFunction
+02D3|LanguageVariant
+02D4|LastTransitionPreselectHC1
+02D5|LastTransitionPreselectHC2
+02D6|LCDContrastValue
+02D7|LCDCtrlEMCResetCounter
+02D8|LeftKeyPress
+02D9|LeginellaDesiredInternalShiftLoadTank
+02DA|LegionellaProtectionIsActive
+02DB|LegionellaProtectionPumpState
+02DC|LegionellaProtectionStartDay
+02DD|LegionellaProtectionStartTime
+02DE|LimpHomeModeBuffer
+02DF|LimpHomeModeHistoryList
+02E0|LPRelayStateforVR68
+02E1|MaintenanceDate
+02E2|MaintenanceList
+02E3|ManagmentUnitBlocked
+02E4|ManagmentUnitStopped
+02E5|ManufactoryFlags
+02E6|MatlabB520active
+02E7|max_component
+02E8|MaximumASICTemperature
+02E9|MaximumCentralHeatingFlowSetpoint
+02EA|MaximumCentralHeatingFlowTemperature
+02EB|MaximumCentralHeatingReturnTemperature
+02EC|MaximumCentralHeatingWaterFlow
+02ED|MaximumCollectorPower
+02EE|MaximumCollectorTemperatur
+02EF|MaximumDifferenceFlowReturnTemperature
+02F0|MaximumDomestcHotWaterTankFlowSetpoint
+02F1|MaximumDomesticHotWaterCylinderSetpoint
+02F2|MaximumDomesticHotWaterCylinderTemperature
+02F3|MaximumDomesticHotWaterFlow
+02F4|MaximumDomesticHotWaterTappingTemperature
+02F5|MaximumDomesticHotWaterTemperature
+02F6|MaximumEarlyCutOffTime
+02F7|MaximumeBUSFifoDiffCounter
+02F8|MaximumExternalFlowTemperatureDifference
+02F9|MaximumFanSpeedDuringOperation
+02FA|MaximumFanSpeedOffset
+02FB|MaximumFuelValveOffset
+02FC|MaximumFuelValveStepOffset
+02FD|MaximumIgnitionTime
+02FE|MaximumOfNeededStack
+02FF|MaximumPossibleFlow
+0300|MaximumPossibleTemperature
+0301|MaximumPreheatingTime
+0302|MaximumPrimaryCircuitWaterFlowRate
+0303|MaximumPumpBlockingTime
+0304|MaximumRunTimeReserve
+0305|MaximumSecondaryHeatExchangerDifferenceTemperature
+0306|MaximumSecondaryHeatExchangerFlowTemperature
+0307|MaximumSetpointBurnerBlockingTime
+0308|MaximumStackeBUSTask
+0309|MaximumStackLifeCheckTask
+030A|MaximumStackMainTask
+030B|MaximumTankLoadTime
+030C|MaximumThresholdWaterPressure
+030D|MaximumuCTemperature
+030E|MeasuredFluePipeFactor
+030F|MenuCurrentParameterTextId
+0310|MenuCurrentPid
+0311|MenuCurrentScreenNo
+0312|MenuCurrentValue
+0313|MenuSlaveAddrOfComponent
+0314|MenuSymbolicAddressFromCurrentValue
+0315|MicroAccumulator
+0316|MicroAccumulatorCounter
+0317|MicroAccumulatorOperatingHours
+0318|MinimumAdvancedPartloadInKw
+0319|MinimumExternalCentralHeatingSetpoint
+031A|MinimumFanSpeedDuringOperation
+031B|MinimumFanSpeedOffset
+031C|MinimumFuelValveOffset
+031D|MinimumFuelValveStepOffset
+031E|MinimumIgnitionTime
+031F|MinimumPossibleFlow
+0320|MinimumPossibleTemperature
+0321|MinimumRunTimeReserve
+0322|MinimumThresholdWaterPressure
+0323|Mixer2DutyCycle
+0324|MixerDutyCycle
+0325|MixerModuleDetected
+0326|ModulationSetpoint
+0327|ModulationValue
+0328|Monitor_ADC_TempRaw
+0329|MonitorEEpromInconsistencyNumber
+032A|MonitorMatlab_T1
+032B|MonitorMatlab_T2
+032C|MonitorMatlabState
+032D|MonitorMatlabStateHybridManager
+032E|MonitorMatlabStatePreselectHC1
+032F|MonitorMatlabStatePreselectHC2
+0330|MSS_PendulumPauseIsActive_B50434
+0331|MultiFunctionRelais
+0332|MultiFunctionRelaisTwo
+0333|Net_ID
+0334|netDataValid
+0335|netDHCP
+0336|netDNS1
+0337|netDNS2
+0338|netDNS3
+0339|netDNS4
+033A|netGateway1
+033B|netGateway2
+033C|netGateway3
+033D|netGateway4
+033E|netIP1
+033F|netIP2
+0340|netIP3
+0341|netIP4
+0342|netMask1
+0343|netMask2
+0344|netMask3
+0345|netMask4
+0346|NightDayFunction
+0347|NightDayStatus
+0348|NightTemperatureOffset
+0349|NoFilling
+034A|NoiseDetectionCounter
+034B|NoiseReductionAvailable
+034C|NumberOfBoiler
+034D|NumberOfCollectors
+034E|NumberOfDsnChanges
+034F|OffsetCoolingRelease
+0350|Old620HasCHRequest
+0351|Old620HasDHWRequest
+0352|OperatingHours
+0353|OperatingMode
+0354|OptimumFillingTime
+0355|OptionRelais
+0356|OutdoorTemperatureSensorConnectedToDevice
+0357|OutputTesting
+0358|OutsideTemperatureCorrection
+0359|OutsideTemperatureSensor
+035A|OutsideTempVisible
+035B|OverflowCounter
+035C|ParameterCopyFive
+035D|ParameterCopyFour
+035E|ParameterCopyOne
+035F|ParameterCopyThree
+0360|ParameterCopyTwo
+0361|ParameterFailureCounter
+0362|ParameterMirror
+0363|ParameterReplication
+0366|PartNumber
+0367|PassiveCommunication
+0369|PhoneNumber
+036A|PhoneNumber2
+036B|PhoneNumber4
+036C|PhoneNumber6
+036D|PM_BytesWritten
+036E|PM_VersionWritten
+036F|pollingEnabled
+0370|PoolLoadingIsPossible
+0371|PowerOnCounter
+0372|PowerOnCounter
+0373|PowerValve
+0374|PredictiveAirPressureSwitchCounter
+0375|PredictiveAirPressureSwitchSummary
+0376|PredictiveEnergyCounterCentralHeatingOne
+0377|PredictiveEnergyCounterCentralHeatingThree
+0378|PredictiveEnergyCounterCentralHeatingTwo
+0379|PredictiveEnergyCounterDomesticHotWaterOne
+037A|PredictiveEnergyCounterDomesticHotWaterThree
+037B|PredictiveEnergyCounterDomesticHotWaterTwo
+037C|PredictiveEnergyStatisticsCentralHeatingOne
+037D|PredictiveEnergySummaryCentralHeatingOne
+037E|PredictiveEnergySummaryCentralHeatingThree
+037F|PredictiveEnergySummaryCentralHeatingTwo
+0380|PredictiveEnergySummaryDomesticHotWaterOne
+0381|PredictiveEnergySummaryDomesticHotWaterThree
+0382|PredictiveEnergySummaryDomesticHotWaterTwo
+0383|PredictiveVortexFlowTemperatureSensor
+0384|PreditiveMaintenanceBuffer
+0385|PreHeatingTimer
+0386|PressureBrine
+0387|PreventiveFillingLoopCounter
+0388|PrimaryCircuitFlowSwitch
+0389|PrimaryCircuitWaterFlowRate
+038A|ProductionByte
+038B|ProductionInitRequired
+038C|proxyDataValid
+038D|proxyIP1
+038E|proxyIP2
+038F|proxyIP3
+0390|proxyIP4
+0399|proxyPort
+039A|PumpOperatingHours
+039B|PWMCompareRegisterChannel1
+039C|PWMCompareRegisterChannel2
+039D|PWMCompareRegisterChannel3
+039E|PWMPump1Value
+039F|PWMPump2ReturnSignal
+03A0|PWMPump2Value
+03A1|PWMPump3
+03A2|PWMPump3ReturnSignal
+03A3|PWMPumpEnableToCheck
+03A4|PWMPumpReturnSignal
+03A5|ReadOutVR68CPState
+03A6|ReadOutVR68LPState
+03A7|ReduceModulationBlocktime
+03A8|RelaisFive
+03A9|RelaisFour
+03AA|RelaisOne
+03AB|RelaisSix
+03AC|RelaisThree
+03AD|RelaisTwo
+03AE|ReleaseInternalFireControlSystemUc
+03AF|RemaningBurnerBlockingTime
+03B0|RemoteControlDetected
+03B1|RemoteControlMode
+03B2|RemoteControlValues
+03B3|RemoteControlVR61Mixer
+03B4|RemoteResetCounter
+03B5|ResetButton
+03B6|ResetButtonCounter
+03B7|ResetCIStatisticData
+03B8|ResetErrorHistory
+03B9|ResetSolarRuntimes
+03BA|RestrictorCheckResult
+03BB|ReturnTemperatureSensor
+03BC|ReturnTemperatureSensor2
+03BD|Rf_ChannelSettings
+03BE|RF_Quality_CI
+03BF|RF_Quality_OT_DCF
+03C0|RightKeyPress
+03C1|RoomTemperatureBottomRawValue
+03C2|RoomTemperatureCorrection
+03C3|RoomTemperatureSelfHeatingOffset
+03C4|RoomTemperatureSetpoint
+03C5|RoomTemperatureTopRawValue
+03C6|RoomTemperatureValue
+03C7|RoomThermostatAc
+03C8|RoomThermostatDc
+03C9|RoomThermostatStandby
+03CA|RTCLowVoltageCounter
+03CB|RtcSynchronisationValue
+03CC|SafetyLimitedSwitch
+03CD|SafetyLimitedSwitchCounter
+03CE|SafetyLimiterSwitchRawPA3
+03CF|SafetyTemperatureLimiterWithNtc
+03D0|SavingFunctionIsActivatedUntilx30Minutes
+03D1|Selftest230VFeedbackReserved
+03D2|SelftestAnalogReserved
+03D3|SelfTestRelaisActivation
+03D4|SeparationShift
+03D5|SequenceOfBoiler
+03D6|SerialNumber
+03D7|SerialNumberEight
+03D8|SerialNumberEightteen
+03D9|SerialNumberFour
+03DA|SerialNumberFourteen
+03DB|SerialNumberNull
+03DC|SerialNumberSix
+03DD|SerialNumberSixteen
+03DE|SerialNumberTen
+03DF|SerialNumberTewntyEight
+03E0|SerialNumberTewntyFour
+03E1|SerialNumberTewntySix
+03E2|SerialNumberTewntyTwo
+03E3|SerialNumberThirty
+03E4|SerialNumberThirtyFour
+03E5|SerialNumberThirtyTwo
+03E6|SerialNumberTwelf
+03E7|SerialNumberTwenty
+03E8|SerialNumberTwo
+03E9|ServiceMode
+03EA|Set_LCD_BIAS_1_8
+03EB|SetDisplayDefaultValues
+03EC|SetFactoryValues
+03ED|ShortSafetyTimeCodingResistor
+03EE|ShortSafetyTimeEeprom
+03EF|SolarBackTemperatureSensor
+03F0|SolarCircuitProtectionHysteresis
+03F1|SolarDelayTime
+03F2|SolarFlowControlStrategy
+03F3|SolarFlowRate
+03F4|SolarModuleDetected
+03F5|SolarModuleVersion
+03F6|SolarOffset
+03F7|SolarPostHeat
+03F8|SolarPowerAverageCalculationLast5s
+03F9|SolarPowerAverageFlowLast10s
+03FA|SolarPump
+03FB|SolarPump2RunTimeHours
+03FC|SolarPump2RunTimeMinutes
+03FD|SolarPumpControlPIDValueD
+03FE|SolarPumpControlPIDValueI
+03FF|SolarPumpControlPIDValueP
+0400|SolarPumpCurrentPerformance
+0401|SolarPumpError
+0402|SolarPumpError2
+0403|SolarPumpError3
+0404|SolarPumpFillingPerformance
+0405|SolarPumpFillingTimeOnly
+0406|SolarPumpFlow
+0407|SolarPumpFlow2
+0408|SolarPumpFlow3
+0409|SolarPumpPower
+040A|SolarPumpProtectionTemperature
+040B|SolarPumpRelay
+040C|SolarPumpRelay2
+040D|SolarPumpRelay3
+040E|SolarPumpRunTimeHours
+040F|SolarPumpRunTimeMinutes
+0410|SolarStationHasError
+0411|SolarYieldKwh
+0412|SolarYieldOld
+0413|SolarYieldsCurrentDay
+0414|SolarYieldsCurrentPower
+0415|SolarYieldsLastDay
+0416|SolarYieldsLastYearApril
+0417|SolarYieldsLastYearAugust
+0418|SolarYieldsLastYearDecember
+0419|SolarYieldsLastYearFebruary
+041A|SolarYieldsLastYearJanuary
+041B|SolarYieldsLastYearJuly
+041C|SolarYieldsLastYearJune
+041D|SolarYieldsLastYearMarch
+041E|SolarYieldsLastYearMay
+041F|SolarYieldsLastYearNovember
+0420|SolarYieldsLastYearOctober
+0421|SolarYieldsLastYearSeptember
+0422|SolarYieldsPerformance
+0423|SolarYieldsReset
+0424|SolarYieldsThisMonth
+0425|SolarYieldsThisYear
+0426|SolarYieldsThisYearApril
+0427|SolarYieldsThisYearAugust
+0428|SolarYieldsThisYearDecember
+0429|SolarYieldsThisYearFebruary
+042A|SolarYieldsThisYearJanuary
+042B|SolarYieldsThisYearJuly
+042C|SolarYieldsThisYearJune
+042D|SolarYieldsThisYearMarch
+042E|SolarYieldsThisYearMay
+042F|SolarYieldsThisYearNovember
+0430|SolarYieldsThisYearOctober
+0431|SolarYieldsThisYearSeptember
+0432|SolarYieldsTotal
+0433|SolarYieldsTotal_GWH
+0434|SolarYieldsTotal_MWH
+0435|SolarYieldsWH
+0436|SourceRegeneration
+0437|SourceType
+0438|SP1
+0439|SP2
+043A|SpecialAdjustment
+043B|SR_RestartCounter
+043C|StartAttemptsCounterFour
+043D|StartAttemptsCounterOne
+043E|StartAttemptsCounterThree
+043F|StartAttemptsCounterTwo
+0440|StartDsnValidation
+0441|StarteEepromAktualisierungStat
+0442|StartEEpromUpdate
+0443|StartEEpromUpdateExtern
+0444|StartOffset
+0445|StartParameterManagement
+0446|StateEM
+0447|StateFor620
+0448|StateMixerPortLoadingOrCirculationPump
+0449|StateNumber
+044A|StateRelay1
+044B|StateRelay2
+044C|StateRelay3
+044D|StateRelay4
+044E|StateRelay5
+044F|StateRelay6
+0450|StateRelayLed
+0451|StateTemperatureLimiterSwitch
+0452|Status15MinBusTimeout
+0453|statusEbusConnect
+0454|statusGSM
+0455|StatusInfoFive
+0456|StatusInfoFour
+0457|StatusInfoOne
+0458|StatusInfoSix
+0459|StatusInfoThree
+045A|StatusInfoTwo
+045B|statusInstMode
+045C|statusLAN
+045D|StatusList
+045E|StatusMonthOfInstallation
+045F|StatusOperatingHours
+0460|statusPHY
+0461|StatusPowerOn
+0462|StatusRestarts
+0463|StatusRTOSErrorcode
+0464|StatusRTOSErrorCounter
+0465|statusS1
+0466|statusS2
+0467|statusSDCard
+0468|statusServerConnect
+0469|StatusYearOfInstallation
+046A|StepperMotorCurrentPosition
+046B|StepperMotorFuelValveActualPosition
+046C|StepperMotorFuelValveCorrectionFactorHigh
+046D|StepperMotorFuelValveCorrectionFactorLow
+046E|SummerWinterTimeMode
+046F|SyncPoolHasChanged
+0470|SyphonSwitch
+0471|SystemDesiredFlowTemp
+0472|SystemIsInCooling
+0473|SystemLastAktuell
+0474|SystemLastMax
+0475|SystemLastMin
+0476|CylinderTemperatureSensorBottom
+0477|TankLoadBurnerBlockingTime
+0478|TankLoadPumpCounter
+0479|TankLoadPumpOperatingHours
+047A|TankSetpoint
+047B|TargetFanSpeedOutput
+047C|TaskCurrentOverflowAverage
+047D|TaskMaximumOverflowAverage
+047E|TeachIn_Counter
+047F|TeachInActive
+0480|TeleswitchOperatingMode
+0481|TeleswitchOperatingState
+0482|TemperatureDifferenceBlocking
+0483|TemperatureDifferenceFailure
+0484|TemperatureGradientFailure
+0485|TemperatureLimiterFault
+0486|TemperatureLimiterStatus
+0487|TemperatureSensorRawDataT1
+0488|TemperatureSensorRawDataT2
+0489|TemperatureSensorRawDataT3
+048A|TemperatureSensorRawDataT4
+048B|TemperatureSensorRawDataUcT1
+048C|TemperatureSensorRawDataUcT2
+048D|TemperatureSensorRawDataUcT3
+048E|TemperatureSensorRawDataUcT4
+048F|TemperatureSensorRawDataUcT5
+0490|TemperatureSensorRawDataUcT6
+0491|TemperatureSensorRawDataUcT7
+0492|TemperatureSensorT1
+0493|TemperatureSensorT2
+0494|TemperatureSensorT3
+0495|TemperatureSensorT4
+0496|TemperatureSensorT5
+0497|TemperatureSensorT6
+0498|TemperaturSensorErrorT1
+0499|TemperaturSensorErrorT2
+049A|TemperaturSensorErrorT3
+049B|TemperaturSensorErrorT4
+049C|TemperaturSensorErrorT5
+049D|TemperaturSensorErrorT6
+049E|TempFailDetectTime
+049F|TempIncrease
+04A0|TestByte
+04A1|TestingB51000M10DHWFlowSetMon
+04A2|TestingB51000M12DisableBitsMon
+04A3|TestingB51000M14Monitor
+04A4|TestingB51000M7OpModeMonitor
+04A5|TestingB51000M8HeatFlowSetMonitor
+04A6|TestingB51000SetpointLoadingPump
+04A7|TestingBMUB51101BoilerFlowTemp
+04A8|TestingBMUB51101DHWState
+04A9|TestingBMUB51101ErrorStatus
+04AA|TestingCPLPLast24Started
+04AB|TestingHK1PumpLast24Started
+04AC|TestingPumpEnergySaveCalculatedTimeMonitor
+04AD|TestingPumpEnergySaveStateMonitor
+04AE|TestingStateOfRoomCon
+04AF|TestMode
+04B0|TestPwmReserved
+04B1|ThermalFeedback
+04B2|ThreeWayValve5IsMoving
+04B3|ThreeWayValve5SetPosition
+04B4|ThreeWayValveCentralHeating
+04B5|ThreeWayValveCoilCurrentMeasure
+04B6|ThreeWayValveCounter
+04B7|ThreeWayValveDomesticHotWater
+04B8|ThreeWayValveLoadingPumpState
+04B9|ThreeWayValveMidPosition
+04BA|ThreeWayValveMidPositioning
+04BB|ThreeWayValveSetPosition
+04BC|Time
+04BD|TimerInputCentralHeating
+04BE|TimeWindows
+04BF|TmaxHP
+04C0|ToolBoxCentralHeatingWaterPump
+04C1|ToolBoxCentralHeatingWaterPumpPwmPower
+04C2|ToolBoxDomesticHotWaterCirculationPump
+04C3|ToolBoxDomesticHotWaterTankLoadPump
+04C4|ToolBoxExternalCentralHeatingWaterPump
+04C5|ToolBoxFanTargetSpeed
+04C6|ToolBoxSolarPump
+04C7|ToolBoxTestBurner
+04C8|ToolBoxThreeWayValveSetpoint
+04C9|UnrespondedactoSTORCnt
+04CA|UnrespondedB51101Cnt
+04CB|UnrespondedBKMK1Cnt
+04CC|UnrespondedrecovAIRCnt
+04CD|UnrespondedSolarCnt
+04CE|updateAgentProcedureErrorCode
+04CF|updateAgentProcedureStatus
+04D0|USART_ORE_Cnt
+04D1|userAddress1
+04D2|userAddress2
+04D3|userAddress3
+04D4|userAddress4
+04D5|userCountry1
+04D6|userCountry2
+04D7|userCountry3
+04D8|userCountry4
+04D9|userDataValid
+04DA|userName1
+04DB|userName2
+04DC|userName3
+04DD|userName4
+04DE|UV4_For_MSS
+04DF|Variant
+04E0|VariantCoding
+04E1|VF1connectedToDevice
+04E2|VirtualErrorBlock
+04E3|VMS_ControlFactor_Res10
+04E4|VMSIsDetected
+04E5|VolatileLockoutInternalFireControlSystemFuelvalve
+04E6|VolatileLockoutSafetyTemperatureLimiter
+04E7|Voltage_OT
+04E8|VortexFlowCheckEnabled
+04E9|VortexFlowCheckFault
+04EA|VortexFlowCheckFaultCounter
+04EB|VortexSensorFault
+04EC|VortexSensorFaultCounter
+04ED|VortexWaterFlowSensor
+04EE|VR81HasSensorError
+04EF|VR81ModulIsDetected
+04F0|VR81Version
+04F1|WarmStartDemand
+04F2|WarmStartOffsetTemperature
+04F3|WaterFillingValve
+04F4|WaterPressureBranchControlOff
+04F5|WaterPressureMeasureCounter
+04F6|WaterPressureSensor
+04F7|WaterPressureVariantSummary
+04F8|WaterPumpPostrunTimeCentralHeating
+04F9|WaterPumpPostrunTimeTankLoading
+04FA|Weekday
+FFFF|All Addresses`
+
+func ab38Decode(ab38T *ab38testing.T, ab38Raw []byte) map[string]any {
+	ab38T.Helper()
+	var ab38Result map[string]any
+	if ab38Err := ab38json.Unmarshal(ab38Raw, &ab38Result); ab38Err != nil {
+		ab38T.Fatal(ab38Err)
+	}
+	return ab38Result
+}
+
+func ab38Encode(ab38T *ab38testing.T, ab38Value any) []byte {
+	ab38T.Helper()
+	ab38Raw, ab38Err := ab38json.Marshal(ab38Value)
+	if ab38Err != nil {
+		ab38T.Fatal(ab38Err)
+	}
+	return ab38Raw
+}
+
+func ab38Key(ab38Address uint16, ab38Bus string) Ab38Key {
+	ab38Secondary, ab38Operation := uint8(0x13), uint8(4)
+	return Ab38Key{Ab38Family: "vaillant", Ab38Variant: "unqualified", Ab38Primary: 0xb5,
+		Ab38Secondary: &ab38Secondary, Ab38Operation: &ab38Operation, Ab38Direction: "unqualified",
+		Ab38Field: "symbolic-address", Ab38Alternative: "none", Ab38InstanceScope: "none",
+		Ab38DictionaryNamespace: "b513-generic-candidate", Ab38DictionaryClass: "symbolic-address",
+		Ab38RawAddress: &ab38Address, Ab38BusFamily: ab38Bus}
+}
+
+func ab38ExpectedRow(ab38T *ab38testing.T, ab38Address uint16, ab38Label string) map[string]any {
+	ab38T.Helper()
+	return ab38Decode(ab38T, []byte(ab38fmt.Sprintf(`{
+ "family":"vaillant", "variant":"unqualified", "primary":181, "secondary":19, "operation":4,
+ "direction":"unqualified", "field":"symbolic-address", "alternative":"none", "group":null,
+ "instance_scope":"none", "register":null, "dictionary_namespace":"b513-generic-candidate",
+ "dictionary_class":"symbolic-address", "raw_address":%d, "native_label":%q, "raw_form":%q,
+ "bus_families":["eBUS","PeBUS"], "grade":"Hypothesis", "physical_qualification":"Unknown",
+ "value_codec":null, "executable_capability":false, "address_width_bits":16, "value_width_bits":null,
+ "unknown":["physical-equivalence","variant-applicability","direction-applicability","value-codec","value-width","presence","freshness"],
+ "unknown_address":"preserve-raw/Unknown;not-unsupported", "label_meaning":"opaque-dictionary-label;not-product-support",
+ "native_contract":"https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md"
+ }`, ab38Address, ab38Label, ab38fmt.Sprintf("%04X|%s", ab38Address, ab38Label))))
+}
+
+func TestAb38FiniteContract(ab38T *ab38testing.T) {
+	ab38Raw, ab38Err := Ab38Entries()
+	if ab38Err != nil {
+		ab38T.Fatal(ab38Err)
+	}
+	var ab38Rows []ab38json.RawMessage
+	if ab38Err = ab38json.Unmarshal(ab38Raw, &ab38Rows); ab38Err != nil {
+		ab38T.Fatal(ab38Err)
+	}
+	ab38Lines := ab38strings.Split(ab38ExpectedTable, "\n")
+	if len(ab38Rows) != 1263 || len(ab38Lines) != 1263 {
+		ab38T.Fatalf("ab38 row counts: %d / %d", len(ab38Rows), len(ab38Lines))
+	}
+	ab38Seen := map[uint16]bool{}
+	for ab38Index, ab38Line := range ab38Lines {
+		ab38Parts := ab38strings.SplitN(ab38Line, "|", 2)
+		ab38Number, ab38Err := ab38strconv.ParseUint(ab38Parts[0], 16, 16)
+		if ab38Err != nil {
+			ab38T.Fatal(ab38Err)
+		}
+		ab38Address := uint16(ab38Number)
+		if ab38Seen[ab38Address] {
+			ab38T.Fatalf("ab38 duplicate expected address %04X", ab38Address)
+		}
+		ab38Seen[ab38Address] = true
+		ab38Got := ab38Decode(ab38T, ab38Rows[ab38Index])
+		if !ab38reflect.DeepEqual(ab38Got, ab38ExpectedRow(ab38T, ab38Address, ab38Parts[1])) {
+			ab38T.Fatalf("ab38 exact row differs at %04X: %#v", ab38Address, ab38Got)
+		}
+	}
+	if len(ab38Seen) != 1263 {
+		ab38T.Fatal("ab38 numeric keys are not unique")
+	}
+}
+
+func TestAb38LookupExactRows(ab38T *ab38testing.T) {
+	for _, ab38Case := range []struct {
+		ab38Address uint16
+		ab38Label   string
+	}{
+		{0, "AccessoryRelaisOne"}, {1, "AccessoryRelaisTwo"}, {0x371, "PowerOnCounter"}, {0x372, "PowerOnCounter"}, {0xffff, "All Addresses"},
+	} {
+		for _, ab38Bus := range []string{"eBUS", "PeBUS"} {
+			ab38Raw, ab38Found, ab38Err := Ab38Lookup(ab38Key(ab38Case.ab38Address, ab38Bus))
+			if ab38Err != nil || !ab38Found {
+				ab38T.Fatalf("ab38 %04X/%s lookup: %v %v", ab38Case.ab38Address, ab38Bus, ab38Found, ab38Err)
+			}
+			if !ab38reflect.DeepEqual(ab38Decode(ab38T, ab38Raw), ab38ExpectedRow(ab38T, ab38Case.ab38Address, ab38Case.ab38Label)) {
+				ab38T.Fatalf("ab38 lookup lost full exact row %s", ab38Raw)
+			}
+		}
+	}
+}
+
+func TestAb38GapsAndNonApplicableAxes(ab38T *ab38testing.T) {
+	ab38Known := map[uint16]bool{}
+	for _, ab38Line := range ab38strings.Split(ab38ExpectedTable, "\n") {
+		ab38Number, ab38Err := ab38strconv.ParseUint(ab38strings.SplitN(ab38Line, "|", 2)[0], 16, 16)
+		if ab38Err != nil {
+			ab38T.Fatal(ab38Err)
+		}
+		ab38Known[uint16(ab38Number)] = true
+	}
+	for _, ab38Address := range []uint16{0x02d1, 0x02d2, 0x0364, 0x0365, 0x0368, 0x0391, 0x0398, 0x04fb, 0xfffe} {
+		if ab38Known[ab38Address] {
+			ab38T.Fatalf("ab38 gap fixture is present: %04X", ab38Address)
+		}
+		for _, ab38Bus := range []string{"eBUS", "PeBUS"} {
+			ab38Raw, ab38Found, ab38Err := Ab38Lookup(ab38Key(ab38Address, ab38Bus))
+			if ab38Err != nil || ab38Found || ab38Raw != nil {
+				ab38T.Fatalf("ab38 gap acquired wildcard/nearest match %04X", ab38Address)
+			}
+		}
+	}
+	for _, ab38Case := range []struct {
+		ab38Name   string
+		ab38Change func(*Ab38Key)
+	}{
+		{"ab38_family", func(ab38K *Ab38Key) { ab38K.Ab38Family = "other-family" }},
+		{"ab38_variant", func(ab38K *Ab38Key) { ab38K.Ab38Variant = "concrete-family-variant" }},
+		{"ab38_primary", func(ab38K *Ab38Key) { ab38K.Ab38Primary = 0 }},
+		{"ab38_secondary_absent", func(ab38K *Ab38Key) { ab38K.Ab38Secondary = nil }},
+		{"ab38_secondary_zero", func(ab38K *Ab38Key) { ab38K.Ab38Secondary = new(uint8) }},
+		{"ab38_operation_absent", func(ab38K *Ab38Key) { ab38K.Ab38Operation = nil }},
+		{"ab38_operation_zero", func(ab38K *Ab38Key) { ab38K.Ab38Operation = new(uint8) }},
+		{"ab38_direction", func(ab38K *Ab38Key) { ab38K.Ab38Direction = "request" }},
+		{"ab38_field", func(ab38K *Ab38Key) { ab38K.Ab38Field = "value" }},
+		{"ab38_alternative", func(ab38K *Ab38Key) { ab38K.Ab38Alternative = "positive" }},
+		{"ab38_group_zero", func(ab38K *Ab38Key) { ab38K.Ab38Group = new(uint8) }},
+		{"ab38_instance_scope", func(ab38K *Ab38Key) { ab38K.Ab38InstanceScope = "all" }},
+		{"ab38_register_zero", func(ab38K *Ab38Key) { ab38K.Ab38Register = new(uint16) }},
+		{"ab38_namespace", func(ab38K *Ab38Key) { ab38K.Ab38DictionaryNamespace = "other-dictionary" }},
+		{"ab38_class", func(ab38K *Ab38Key) { ab38K.Ab38DictionaryClass = "other-class" }},
+		{"ab38_address_absent", func(ab38K *Ab38Key) { ab38K.Ab38RawAddress = nil }},
+		{"ab38_bus", func(ab38K *Ab38Key) { ab38K.Ab38BusFamily = "other-bus" }},
+		{"ab38_bus_none", func(ab38K *Ab38Key) { ab38K.Ab38BusFamily = "none" }},
+		{"ab38_alternative_empty", func(ab38K *Ab38Key) { ab38K.Ab38Alternative = "" }},
+		{"ab38_instance_empty", func(ab38K *Ab38Key) { ab38K.Ab38InstanceScope = "" }},
+	} {
+		ab38T.Run(ab38Case.ab38Name, func(ab38T *ab38testing.T) {
+			ab38K := ab38Key(0, "eBUS")
+			ab38Case.ab38Change(&ab38K)
+			ab38Raw, ab38Found, ab38Err := Ab38Lookup(ab38K)
+			if ab38Err != nil || ab38Found || ab38Raw != nil {
+				ab38T.Fatalf("ab38 changed axis matched: %v %v %s", ab38Found, ab38Err, ab38Raw)
+			}
+		})
+	}
+}
+
+func TestAb38IndependentStorage(ab38T *ab38testing.T) {
+	ab38First, ab38Err := Ab38Entries()
+	if ab38Err != nil {
+		ab38T.Fatal(ab38Err)
+	}
+	ab38Expected := ab38bytes.Clone(ab38First)
+	ab38Second, ab38Err := Ab38Entries()
+	if ab38Err != nil {
+		ab38T.Fatal(ab38Err)
+	}
+	for ab38Index := range ab38First {
+		ab38First[ab38Index] ^= 0xff
+	}
+	ab38Later, ab38Err := Ab38Entries()
+	if ab38Err != nil || !ab38bytes.Equal(ab38Second, ab38Expected) || !ab38bytes.Equal(ab38Later, ab38Expected) {
+		ab38T.Fatal("ab38 entries share storage")
+	}
+	ab38First, ab38Found, ab38Err := Ab38Lookup(ab38Key(0, "eBUS"))
+	if ab38Err != nil || !ab38Found {
+		ab38T.Fatal("ab38 missing copy control")
+	}
+	ab38Expected = ab38bytes.Clone(ab38First)
+	ab38Second, ab38Found, ab38Err = Ab38Lookup(ab38Key(0, "PeBUS"))
+	if ab38Err != nil || !ab38Found {
+		ab38T.Fatal("ab38 missing second bus copy control")
+	}
+	for ab38Index := range ab38First {
+		ab38First[ab38Index] ^= 0xff
+	}
+	ab38Later, ab38Found, ab38Err = Ab38Lookup(ab38Key(0, "eBUS"))
+	if ab38Err != nil || !ab38Found || !ab38bytes.Equal(ab38Second, ab38Expected) || !ab38bytes.Equal(ab38Later, ab38Expected) {
+		ab38T.Fatal("ab38 lookup shares storage")
+	}
+	ab38Source := ab38Encode(ab38T, []any{ab38ExpectedRow(ab38T, 0, "AccessoryRelaisOne")})
+	ab38Rows, ab38Index, ab38Err := ab38Validate(ab38Source)
+	if ab38Err != nil {
+		ab38T.Fatal(ab38Err)
+	}
+	ab38Saved := ab38bytes.Clone(ab38Rows[0])
+	for ab38Offset := range ab38Source {
+		ab38Source[ab38Offset] ^= 0xff
+	}
+	if !ab38bytes.Equal(ab38Rows[0], ab38Saved) {
+		ab38T.Fatal("ab38 validator retains source storage")
+	}
+	for ab38Offset := range ab38Rows[0] {
+		ab38Rows[0][ab38Offset] ^= 0xff
+	}
+	for _, ab38Raw := range ab38Index {
+		if !ab38bytes.Equal(ab38Raw, ab38Saved) {
+			ab38T.Fatal("ab38 index shares row storage")
+		}
+	}
+}
+
+func ab38Install(ab38T *ab38testing.T, ab38Source []byte) {
+	ab38T.Helper()
+	ab38Previous := ab38Data
+	ab38Data = ab38Source
+	ab38T.Cleanup(func() { ab38Data = ab38Previous })
+}
+
+func TestAb38MalformedAndDuplicates(ab38T *ab38testing.T) {
+	ab38Good := ab38ExpectedRow(ab38T, 0, "AccessoryRelaisOne")
+	for _, ab38Case := range []struct {
+		ab38Name   string
+		ab38Source []byte
+	}{
+		{"ab38_syntax", []byte("[{")}, {"ab38_empty", []byte("[]")}, {"ab38_null", []byte("null")}, {"ab38_object", []byte("{}")},
+		{"ab38_null_row", []byte("[null]")}, {"ab38_incomplete", []byte("[{}]")},
+		{"ab38_duplicate_member", ab38bytes.Replace(ab38Encode(ab38T, []any{ab38Good}), []byte(`"raw_address":0`), []byte(`"raw_address":1,"raw_address":0`), 1)}, {"ab38_trailing", []byte("[] []")}, {"ab38_duplicate", ab38Encode(ab38T, []any{ab38Good, ab38Good})},
+	} {
+		ab38T.Run(ab38Case.ab38Name, func(ab38T *ab38testing.T) {
+			ab38Install(ab38T, ab38Case.ab38Source)
+			if ab38Raw, ab38Err := Ab38Entries(); ab38Err == nil || ab38Raw != nil {
+				ab38T.Fatal("ab38 invalid entries succeeded")
+			}
+			if ab38Raw, ab38Found, ab38Err := Ab38Lookup(ab38Key(0, "eBUS")); ab38Err == nil || ab38Found || ab38Raw != nil {
+				ab38T.Fatal("ab38 invalid lookup succeeded")
+			}
+		})
+	}
+	for _, ab38Case := range []struct {
+		ab38Name  string
+		ab38Value any
+	}{
+		{"raw_address", nil}, {"raw_address", ""}, {"raw_address", 65536}, {"raw_address", -1},
+		{"grade", "Proven"}, {"grade", "Unknown"}, {"physical_qualification", "Proven"},
+		{"value_codec", "temperature"}, {"value_width_bits", 16}, {"address_width_bits", 8}, {"address_width_bits", 32},
+		{"executable_capability", true}, {"bus_families", []string{"eBUS"}}, {"bus_families", []string{"PeBUS"}},
+		{"bus_families", []string{"eBUS", "eBUS"}}, {"native_label", "changed"}, {"raw_form", "changed"},
+		{"unexpected", true},
+	} {
+		ab38T.Run("ab38_invalid_"+ab38Case.ab38Name+ab38fmt.Sprint(ab38Case.ab38Value), func(ab38T *ab38testing.T) {
+			ab38Bad := ab38ExpectedRow(ab38T, 0, "AccessoryRelaisOne")
+			ab38Bad[ab38Case.ab38Name] = ab38Case.ab38Value
+			ab38Install(ab38T, ab38Encode(ab38T, []any{ab38Bad}))
+			if ab38Raw, ab38Err := Ab38Entries(); ab38Err == nil || ab38Raw != nil {
+				ab38T.Fatal("ab38 invalid metadata succeeded")
+			}
+			if ab38Raw, ab38Found, ab38Err := Ab38Lookup(ab38Key(0, "eBUS")); ab38Err == nil || ab38Found || ab38Raw != nil {
+				ab38T.Fatal("ab38 invalid metadata lookup succeeded")
+			}
+		})
+	}
+}
+
+func TestAb38OptionalIdentityControls(ab38T *ab38testing.T) {
+	for _, ab38Axis := range []string{"secondary", "operation", "group", "register"} {
+		ab38T.Run("ab38_"+ab38Axis, func(ab38T *ab38testing.T) {
+			ab38Absent := ab38ExpectedRow(ab38T, 0, "AccessoryRelaisOne")
+			ab38Absent[ab38Axis] = nil
+			ab38Zero := ab38ExpectedRow(ab38T, 0, "AccessoryRelaisOne")
+			ab38Zero[ab38Axis] = float64(0)
+			ab38Install(ab38T, ab38Encode(ab38T, []any{ab38Absent, ab38Zero}))
+			for _, ab38Want := range []map[string]any{ab38Absent, ab38Zero} {
+				var ab38K Ab38Key
+				if ab38Err := ab38json.Unmarshal(ab38Encode(ab38T, ab38Want), &ab38K); ab38Err != nil {
+					ab38T.Fatal(ab38Err)
+				}
+				ab38K.Ab38BusFamily = "eBUS"
+				ab38Raw, ab38Found, ab38Err := Ab38Lookup(ab38K)
+				if ab38Err != nil || !ab38Found || !ab38reflect.DeepEqual(ab38Decode(ab38T, ab38Raw), ab38Want) {
+					ab38T.Fatalf("ab38 absent/zero identity collapsed: %s %v", ab38Raw, ab38Err)
+				}
+			}
+		})
+	}
+}

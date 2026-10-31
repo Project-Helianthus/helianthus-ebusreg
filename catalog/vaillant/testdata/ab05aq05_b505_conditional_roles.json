@@ -1,0 +1,435 @@
+[
+  {
+    "id": "ab05aq05_replacement_true",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 90,
+        "direction": "request",
+        "view": "unchanged",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "opaque": []
+      },
+      "arguments": {
+        "replacement": true,
+        "previous": 17,
+        "requested": 23
+      }
+    },
+    "key": "unchanged",
+    "expected": {
+      "number": 17,
+      "label": "unchanged",
+      "replacement_code": "Unknown",
+      "raw": 23
+    }
+  },
+  {
+    "id": "ab05aq05_replacement_false",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 90,
+        "direction": "request",
+        "view": "unchanged",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "opaque": []
+      },
+      "arguments": {
+        "replacement": false,
+        "previous": 17,
+        "requested": 23
+      }
+    },
+    "key": "unchanged",
+    "expected": {
+      "number": 23,
+      "label": "numeric-candidate",
+      "replacement_code": "Unknown",
+      "raw": 23
+    }
+  },
+  {
+    "id": "ab05aq05_enabled_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 49,
+        "direction": "request",
+        "view": "dhw-enable",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "enabled": [
+          0
+        ]
+      },
+      "arguments": {}
+    },
+    "key": "enabled",
+    "expected": {
+      "label": "frost-only-eligible",
+      "raw": [
+        0
+      ]
+    }
+  },
+  {
+    "id": "ab05aq05_enabled_1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 49,
+        "direction": "request",
+        "view": "dhw-enable",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "enabled": [
+          1
+        ]
+      },
+      "arguments": {}
+    },
+    "key": "enabled",
+    "expected": {
+      "label": "ordinary-DHW-eligible",
+      "raw": [
+        1
+      ]
+    }
+  },
+  {
+    "id": "ab05aq05_enabled_2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 49,
+        "direction": "request",
+        "view": "dhw-enable",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "enabled": [
+          2
+        ]
+      },
+      "arguments": {}
+    },
+    "key": "enabled",
+    "expected": {
+      "label": "unmapped",
+      "raw": [
+        2
+      ]
+    }
+  },
+  {
+    "id": "ab05aq05_mixer_true",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 24,
+        "direction": "request",
+        "view": "parallel-charge",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "disable": [
+          1
+        ]
+      },
+      "arguments": {
+        "role": "mixer",
+        "parallel": true
+      }
+    },
+    "key": "disable",
+    "expected": {
+      "label": "mixer-parallel-exception",
+      "raw": [
+        1
+      ]
+    }
+  },
+  {
+    "id": "ab05aq05_heating_true",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 24,
+        "direction": "request",
+        "view": "parallel-charge",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "disable": [
+          1
+        ]
+      },
+      "arguments": {
+        "role": "heating",
+        "parallel": true
+      }
+    },
+    "key": "disable",
+    "expected": {
+      "label": "exemption-unknown",
+      "raw": [
+        1
+      ]
+    }
+  },
+  {
+    "id": "ab05aq05_mixer_false",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 24,
+        "direction": "request",
+        "view": "parallel-charge",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "disable": [
+          1
+        ]
+      },
+      "arguments": {
+        "role": "mixer",
+        "parallel": false
+      }
+    },
+    "key": "disable",
+    "expected": {
+      "label": "heating-suppressed",
+      "raw": [
+        1
+      ]
+    }
+  },
+  {
+    "id": "ab05aq05_heating_false",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 24,
+        "direction": "request",
+        "view": "parallel-charge",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "disable": [
+          1
+        ]
+      },
+      "arguments": {
+        "role": "heating",
+        "parallel": false
+      }
+    },
+    "key": "disable",
+    "expected": {
+      "label": "heating-suppressed",
+      "raw": [
+        1
+      ]
+    }
+  },
+  {
+    "id": "ab05aq05_dhw_true",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 24,
+        "direction": "request",
+        "view": "parallel-charge",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "disable": [
+          1
+        ]
+      },
+      "arguments": {
+        "role": "dhw",
+        "parallel": true
+      }
+    },
+    "key": "disable",
+    "expected": {
+      "label": "not-applicable",
+      "raw": [
+        1
+      ]
+    }
+  },
+  {
+    "id": "ab05aq05_disable_zero",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 39,
+        "direction": "request",
+        "view": "parallel-charge",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "disable": [
+          0
+        ]
+      },
+      "arguments": {
+        "role": "mixer",
+        "parallel": true
+      }
+    },
+    "key": "disable",
+    "expected": {
+      "label": "suppression-not-requested"
+    }
+  },
+  {
+    "id": "ab05aq05_disable_unmapped",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 24,
+        "direction": "request",
+        "view": "parallel-charge",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "disable": [
+          2
+        ]
+      },
+      "arguments": {
+        "role": "mixer",
+        "parallel": false
+      }
+    },
+    "key": "disable",
+    "expected": {
+      "label": "unmapped"
+    }
+  },
+  {
+    "id": "ab05aq05_sum",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 23,
+        "direction": "request",
+        "view": "flow-excess",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {},
+      "arguments": {
+        "demand": 40,
+        "excess": 5
+      }
+    },
+    "key": "flow-excess",
+    "expected": {
+      "number": 45,
+      "calculation": "Proven"
+    }
+  },
+  {
+    "id": "ab05aq05_program_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 9,
+        "direction": "request",
+        "view": "programmed-start",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "start": [
+          0,
+          17,
+          255
+        ]
+      },
+      "arguments": {
+        "program_mode": 0
+      }
+    },
+    "key": "start",
+    "expected": {
+      "label": "applicable",
+      "raw": [
+        0,
+        17,
+        255
+      ]
+    }
+  },
+  {
+    "id": "ab05aq05_program_1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 9,
+        "direction": "request",
+        "view": "programmed-start",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "start": [
+          0,
+          17,
+          255
+        ]
+      },
+      "arguments": {
+        "program_mode": 1
+      }
+    },
+    "key": "start",
+    "expected": {
+      "label": "ignored",
+      "raw": [
+        0,
+        17,
+        255
+      ]
+    }
+  }
+]

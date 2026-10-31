@@ -1,0 +1,1218 @@
+{
+  "representation": "Proven",
+  "physical_support": "Unknown",
+  "acknowledgement": "Unknown",
+  "complete": false,
+  "coordinates": "logical positions; not wire offsets",
+  "limitations": [
+    "Finite supplemental declarations; broader family incomplete.",
+    "Hypothesis semantics from the supplied native contract; no physical qualification.",
+    "No invocation, packet completeness, freshness, persistence or execution authority.",
+    "Unprovided layouts, defaults, bounds and replacement semantics remain Unknown."
+  ],
+  "operations": [
+    {
+      "operation": 11,
+      "request_arguments": true,
+      "grade": "Hypothesis"
+    },
+    {
+      "operation": 12,
+      "request_arguments": true,
+      "grade": "Hypothesis"
+    },
+    {
+      "operation": 13,
+      "request_arguments": false,
+      "grade": "Hypothesis"
+    },
+    {
+      "operation": 14,
+      "request_arguments": false,
+      "grade": "Hypothesis"
+    }
+  ],
+  "fields": [
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 11
+        },
+        "direction": "request",
+        "field": "target_fan_1",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 3,
+      "width_bytes": 2,
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": "rpm",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 11
+        },
+        "direction": "request",
+        "field": "target_fan_2",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 5,
+      "width_bytes": 2,
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": "rpm",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 11
+        },
+        "direction": "positive",
+        "field": "actual_fan_1",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 3,
+      "width_bytes": 2,
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": "rpm",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 11
+        },
+        "direction": "positive",
+        "field": "actual_fan_2",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 5,
+      "width_bytes": 2,
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": "rpm",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 11
+        },
+        "direction": "request",
+        "field": "relay",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 7,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {
+        "0": {
+          "0": "15V",
+          "1": "tray-heater relay"
+        },
+        "1": {
+          "0": "15V",
+          "1": "tray-heater relay"
+        }
+      },
+      "reserved_bits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 11
+        },
+        "direction": "positive",
+        "field": "status",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 7,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": null,
+      "enumeration": {
+        "0": "idle",
+        "1": "running",
+        "255": "fault"
+      },
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 11
+        },
+        "direction": "positive",
+        "field": "temperature_1",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 8,
+      "width_bytes": 2,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 16,
+      "unit": "degrees Celsius",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 11
+        },
+        "direction": "positive",
+        "field": "temperature_2",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 10,
+      "width_bytes": 2,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 16,
+      "unit": "degrees Celsius",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 11
+        },
+        "direction": "positive",
+        "field": "temperature_3",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 12,
+      "width_bytes": 2,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 16,
+      "unit": "degrees Celsius",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 12
+        },
+        "direction": "request",
+        "field": "pulse",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 3,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 12
+        },
+        "direction": "request",
+        "field": "P",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 4,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 12
+        },
+        "direction": "request",
+        "field": "I",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 5,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 12
+        },
+        "direction": "request",
+        "field": "D",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 6,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 12
+        },
+        "direction": "request",
+        "field": "minimum_pwm",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 7,
+      "width_bytes": 2,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 256,
+      "unit": "percent",
+      "default": 1,
+      "bounds": [
+        -128,
+        127.99609375
+      ],
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 12
+        },
+        "direction": "request",
+        "field": "maximum_pwm",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 9,
+      "width_bytes": 2,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 256,
+      "unit": "percent",
+      "default": 1,
+      "bounds": [
+        -128,
+        127.99609375
+      ],
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 12
+        },
+        "direction": "request",
+        "field": "fan_count",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 11,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 12
+        },
+        "direction": "positive",
+        "field": "feedback",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 3,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {
+        "1": "accepted"
+      },
+      "otherwise": "rejected",
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": "rejected"
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 13
+        },
+        "direction": "positive",
+        "field": "digital",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 3,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": null,
+      "enumeration": {
+        "0": "false",
+        "1": "true"
+      },
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 13
+        },
+        "direction": "positive",
+        "field": "temperature_1",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 4,
+      "width_bytes": 2,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 16,
+      "unit": "degrees Celsius",
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 13
+        },
+        "direction": "positive",
+        "field": "temperature_2",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 6,
+      "width_bytes": 2,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 16,
+      "unit": "degrees Celsius",
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 14
+        },
+        "direction": "positive",
+        "field": "temperature",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 3,
+      "width_bytes": 2,
+      "signedness": "signed",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 16,
+      "unit": "degrees Celsius",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 14
+        },
+        "direction": "positive",
+        "field": "humidity",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 5,
+      "width_bytes": 2,
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "conversion": "divide",
+      "divisor": 16,
+      "unit": "percent",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "B512",
+        "primary": 46354,
+        "secondary": {
+          "present": false,
+          "value": 0
+        },
+        "operation": {
+          "present": true,
+          "value": 14
+        },
+        "direction": "positive",
+        "field": "air_quality",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 7,
+      "width_bytes": 2,
+      "signedness": "unsigned",
+      "byte_order": "little_endian",
+      "conversion": "identity",
+      "divisor": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": null,
+      "enumeration": {},
+      "otherwise": null,
+      "bits": {},
+      "reserved_bits": [],
+      "replacement": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original field bytes including unlabeled and reserved values",
+      "default_label": null
+    }
+  ]
+}

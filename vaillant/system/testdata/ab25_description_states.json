@@ -1,0 +1,7 @@
+[
+ {"family":"alpha","state":"selector_qualified","raw":[17,34],"width":2},
+ {"family":"beta","state":"length_inferred","raw":[51],"codec":"ab25_opaque","width":1},
+ {"family":"alpha","state":"undecoded","raw":[255,0,19]},
+ {"family":"beta","raw":[0]},
+ {"family":"alpha","state":"ab25_invalid","raw":[]}
+]

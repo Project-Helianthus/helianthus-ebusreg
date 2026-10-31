@@ -156,12 +156,32 @@ func TestLookupSlotSnapshot_RaceFreeUnderConcurrentWrites(t *testing.T) {
 		runtimeYield()
 	}
 
-	// Reader phase: drive enough iterations that the writer overlaps
-	// with reads. Track the writes counter to confirm overlap actually
-	// happened (vs. the writer completing before reads start).
+	// Reader phase: perform at least readIters snapshot reads, and keep
+	// reading until the writer's counter has advanced past its value at
+	// the start of the phase, so overlap is observed rather than assumed.
+	// The deadline bounds the wait when the writer never advances.
 	startWrites := atomic.LoadUint64(&writes)
 	const readIters = 500
-	for i := 0; i < readIters; i++ {
+	overlapDeadline := time.Now().Add(5 * time.Second)
+	advanced := false
+	for i := 0; ; i++ {
+		if advanced {
+			break
+		}
+		if i >= readIters {
+			// Once progress is seen, take one more snapshot read after
+			// the writer's mutation, then exit on the next iteration.
+			if atomic.LoadUint64(&writes) > startWrites {
+				advanced = true
+			} else {
+				if time.Now().After(overlapDeadline) {
+					close(stop)
+					wg.Wait()
+					t.Fatalf("writer did not advance beyond %d writes within 5s after %d snapshot reads; race window not exercised", startWrites, i)
+				}
+				runtimeYield()
+			}
+		}
 		snap, ok := reg.LookupSlotSnapshot(addr)
 		if !ok {
 			t.Fatalf("LookupSlotSnapshot(0x10) ok=false at iter %d", i)
@@ -175,10 +195,6 @@ func TestLookupSlotSnapshot_RaceFreeUnderConcurrentWrites(t *testing.T) {
 		_ = snap.FirstObservedAt
 		_ = snap.LastObservedAt
 		_ = snap.DeviceAttached
-	}
-	endWrites := atomic.LoadUint64(&writes)
-	if endWrites <= startWrites {
-		t.Errorf("writer produced %d additional writes during reader phase; want > 0 (race window not exercised)", endWrites-startWrites)
 	}
 
 	close(stop)

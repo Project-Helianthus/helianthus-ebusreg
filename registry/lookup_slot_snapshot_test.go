@@ -163,17 +163,24 @@ func TestLookupSlotSnapshot_RaceFreeUnderConcurrentWrites(t *testing.T) {
 	startWrites := atomic.LoadUint64(&writes)
 	const readIters = 500
 	overlapDeadline := time.Now().Add(5 * time.Second)
+	advanced := false
 	for i := 0; ; i++ {
+		if advanced {
+			break
+		}
 		if i >= readIters {
+			// Once progress is seen, take one more snapshot read after
+			// the writer's mutation, then exit on the next iteration.
 			if atomic.LoadUint64(&writes) > startWrites {
-				break
+				advanced = true
+			} else {
+				if time.Now().After(overlapDeadline) {
+					close(stop)
+					wg.Wait()
+					t.Fatalf("writer did not advance beyond %d writes within 5s after %d snapshot reads; race window not exercised", startWrites, i)
+				}
+				runtimeYield()
 			}
-			if time.Now().After(overlapDeadline) {
-				close(stop)
-				wg.Wait()
-				t.Fatalf("writer did not advance beyond %d writes within 5s after %d snapshot reads; race window not exercised", startWrites, i)
-			}
-			runtimeYield()
 		}
 		snap, ok := reg.LookupSlotSnapshot(addr)
 		if !ok {

@@ -1,0 +1,9 @@
+[
+ {"ab42ID":"ab42one","ab42Identifier":0,"ab42Raw":[0,0,128,63],"ab42Value":1,"ab42Capacity":true,"ab42Meaning":"supported circuit capacity"},
+ {"ab42ID":"ab42zone","ab42Identifier":1,"ab42Raw":[0,0,128,63],"ab42Value":1,"ab42Capacity":true,"ab42Meaning":"supported zone capacity"},
+ {"ab42ID":"ab42fraction","ab42Identifier":0,"ab42Raw":[0,0,192,63],"ab42Value":1.5,"ab42Meaning":"supported circuit capacity"},
+ {"ab42ID":"ab42negative","ab42Identifier":1,"ab42Raw":[0,0,128,191],"ab42Value":-1,"ab42Meaning":"supported zone capacity"},
+ {"ab42ID":"ab42zero","ab42Identifier":0,"ab42Raw":[0,0,0,0],"ab42Value":0,"ab42Capacity":true,"ab42Meaning":"supported circuit capacity"},
+ {"ab42ID":"ab42unknown","ab42Identifier":65535,"ab42Raw":[0,0,128,63],"ab42Value":1,"ab42Meaning":"Unknown"},
+ {"ab42ID":"ab42heatpump","ab42Identifier":13,"ab42Raw":[0,0,128,63],"ab42Value":1,"ab42HeatPumpCount":true,"ab42Meaning":"heat-pump count"}
+]

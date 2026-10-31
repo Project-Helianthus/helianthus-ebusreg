@@ -107,8 +107,8 @@ func TestVaillantSystem_ReadTimer_ResponseDecode(t *testing.T) {
 		if got := values["value"]; !got.Valid || !bytes.Equal(got.Value.([]byte), timerData) {
 			t.Fatalf("value = %+v; want %v valid", got, timerData)
 		}
-		if got := values["slot_count"]; !got.Valid || got.Value != 7 {
-			t.Fatalf("slot_count = %+v; want 7 valid", got)
+		if got := values["slot_count"]; !got.Valid || got.Value != 3 {
+			t.Fatalf("slot_count = %+v; want 3 valid", got)
 		}
 	})
 
@@ -329,5 +329,44 @@ func TestVaillantSystem_ReadRaw_RejectsOversizedPayload(t *testing.T) {
 	})
 	if err == nil {
 		t.Fatal("expected error for oversized payload; got nil")
+	}
+}
+
+func TestAb07TimerRequestedIdentity(ab07T *testing.T) {
+	for _, ab07Identity := range [][4]byte{
+		{0, 0, 1, 0},
+		{1, 0, 1, 0},
+		{0, 7, 1, 0},
+		{0, 0, 2, 0},
+		{0, 0, 1, 6},
+	} {
+		ab07Planes := system.NewProvider().CreatePlanes(registry.DeviceInfo{Manufacturer: "Vaillant", Address: 0x15})
+		ab07Bus := &vaillantMockBus{response: &protocol.Frame{
+			Source: 0x15, Target: 0x71, Primary: 0xB5, Secondary: 0x24,
+			Data: []byte{0xA5, 6, 12, 0x90, 0x90, 0x8F, 0x90},
+		}}
+		ab07Result, ab07Err := router.NewBusEventRouter(ab07Bus).Invoke(context.Background(), ab07Planes[0].(router.Plane), "read_timer", map[string]any{
+			"source": byte(0x71), "sel1": ab07Identity[0], "sel2": ab07Identity[1], "sel3": ab07Identity[2], "weekday": ab07Identity[3],
+		})
+		if ab07Err != nil {
+			ab07T.Fatalf("identity %v: Invoke error = %v", ab07Identity, ab07Err)
+		}
+		ab07WantRequest := append([]byte{3}, ab07Identity[:]...)
+		if !bytes.Equal(ab07Bus.lastRequest.Data, ab07WantRequest) {
+			ab07T.Fatalf("identity %v: request = %v", ab07Identity, ab07Bus.lastRequest.Data)
+		}
+		ab07Values := ab07Result.(map[string]types.Value)
+		for ab07Index, ab07Key := range []string{"sel1", "sel2", "sel3", "weekday"} {
+			if ab07Got := ab07Values[ab07Key]; !ab07Got.Valid || ab07Got.Value != ab07Identity[ab07Index] {
+				ab07T.Fatalf("identity %v: %s = %+v", ab07Identity, ab07Key, ab07Got)
+			}
+		}
+		if ab07Got := ab07Values["slot_count"]; !ab07Got.Valid || ab07Got.Value != 3 {
+			ab07T.Fatalf("slot_count = %+v", ab07Got)
+		}
+		ab07Slots, ab07OK := ab07Values["ab07_slots"].Value.([]system.Ab07TimerSlot)
+		if !ab07Values["ab07_slots"].Valid || !ab07OK || len(ab07Slots) != 3 || ab07Slots[0].Ab07RawPair != [2]byte{6, 12} || !ab07Slots[1].Ab07Unused || ab07Slots[2].Ab07RawPair != [2]byte{0x8F, 0x90} {
+			ab07T.Fatalf("routed slots = %+v", ab07Values["ab07_slots"])
+		}
 	}
 }

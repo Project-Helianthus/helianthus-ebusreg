@@ -1,0 +1,1519 @@
+[
+  {
+    "Ab09An09Name": "ab09an09_control",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_temperature_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "0080",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -2048,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_flow_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "ffff",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      655.35,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_volume_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "ffff",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      6553.5,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_minimumvolume_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "010203",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_maximumvolume_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "ffff"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_temperature_absent",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      null,
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_absent",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      null,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_temperature_empty",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_malformed",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      null,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_temperature_short",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "01",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_malformed",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      null,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_temperature_long",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "010203",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_malformed",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      null,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_flow_absent",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      null,
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_absent",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      null,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_flow_empty",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_malformed",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      null,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_flow_short",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "01",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_malformed",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      null,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_flow_long",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "010203",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_malformed",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      null,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_volume_absent",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      null,
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_absent",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_volume_empty",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_malformed",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_volume_short",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "01",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_malformed",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_volume_long",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "010203",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_malformed",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_minimumvolume_absent",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      null,
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_absent",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_minimumvolume_empty",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_minimumvolume_short",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "01",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_minimumvolume_long",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "010203",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_maximumvolume_absent",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      null
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_absent"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_maximumvolume_empty",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      ""
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_maximumvolume_short",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_maximumvolume_long",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "010203"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_identity_family_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_other_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_selection_family_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_other_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_identity_variant_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_other_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_selection_variant_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_other_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_identity_operation_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 88,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_selection_operation_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 88,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_identity_direction_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_request"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_selection_direction_only",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_request"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_both_family_34",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_both_variant_35",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_both_operation_36",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 88,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 88,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_both_direction_37",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": ""
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": ""
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_both_direction_38",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_unknown"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_unknown"
+    },
+    "Ab09An09Selected": false,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected",
+      "ab09an09_unselected"
+    ],
+    "Ab09An09Values": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_explicit_request",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_request"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_synthetic_family",
+      "Ab09An09Variant": "ab09an09_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_request"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  },
+  {
+    "Ab09An09Name": "ab09an09_explicit_other_family_variant",
+    "Ab09An09Identity": {
+      "Ab09An09Family": "ab09an09_other_synthetic_family",
+      "Ab09An09Variant": "ab09an09_other_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selection": {
+      "Ab09An09Family": "ab09an09_other_synthetic_family",
+      "Ab09An09Variant": "ab09an09_other_synthetic_variant",
+      "Ab09An09Operation": 89,
+      "Ab09An09Direction": "ab09an09_response"
+    },
+    "Ab09An09Selected": true,
+    "Ab09An09Raw": [
+      "f0ff",
+      "6400",
+      "0a00",
+      "ffff",
+      "01"
+    ],
+    "Ab09An09States": [
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_candidate",
+      "ab09an09_opaque",
+      "ab09an09_opaque"
+    ],
+    "Ab09An09Values": [
+      -1,
+      1,
+      1,
+      null,
+      null
+    ]
+  }
+]

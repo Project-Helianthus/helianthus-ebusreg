@@ -153,8 +153,17 @@ func TestAb19Ap19StatusAndFlags(ab19ap19T *ab19ap19testing.T) {
 			if ab19ap19Bit >= len(ab19ap19Names) {
 				ab19ap19Reserved = ab19ap19Number
 			}
-			if ab19ap19Result["reserved"] != float64(ab19ap19Reserved) {
+			ab19ap19Key := "reserved"
+			if ab19ap19Index == 0 {
+				ab19ap19Key = "unresolved"
+			}
+			if ab19ap19Result[ab19ap19Key] != float64(ab19ap19Reserved) {
 				ab19ap19T.Fatal(ab19ap19Result)
+			}
+			if ab19ap19Index == 0 {
+				if _, ab19ap19Has := ab19ap19Result["reserved"]; ab19ap19Has {
+					ab19ap19T.Fatal(ab19ap19Result)
+				}
 			}
 		}
 	}

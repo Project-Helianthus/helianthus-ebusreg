@@ -188,7 +188,12 @@ func Ab19Ap19Evaluate(ab19ap19Input ab19ap19json.RawMessage) (ab19ap19json.RawMe
 				ab19ap19Flags[ab19ap19Name] = ab19ap19Number&(1<<ab19ap19Bit) != 0
 			}
 			ab19ap19Result["flags"] = ab19ap19Flags
-			ab19ap19Result["reserved"] = ab19ap19Number & (255 << len(ab19ap19Names))
+			ab19ap19Rest := ab19ap19Number & (255 << len(ab19ap19Names))
+			if ab19ap19Operation == 3 {
+				ab19ap19Result["reserved"] = ab19ap19Rest
+			} else {
+				ab19ap19Result["unresolved"] = ab19ap19Rest
+			}
 		}
 	}
 	return ab19ap19json.Marshal(ab19ap19Output)

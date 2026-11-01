@@ -1,0 +1,182 @@
+[
+  {
+    "id": "ab27ao27_op03_synthetic",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": "positive",
+        "view": "status-zero-valid"
+      },
+      "fields": {
+        "logical_object": [
+          201,
+          33,
+          7,
+          0,
+          128,
+          16,
+          0,
+          240,
+          255,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          255,
+          228,
+          249
+        ]
+      }
+    },
+    "expected": {
+      "S1": {
+        "raw": 32768,
+        "label": "replacement"
+      },
+      "S2": {
+        "number": 1
+      },
+      "S3": {
+        "number": -1
+      },
+      "PWM": {
+        "number": 127.5
+      },
+      "statusS1": {
+        "label": "valid-value"
+      },
+      "statusS2": {
+        "label": "open-circuit"
+      },
+      "statusS3": {
+        "label": "closed-circuit"
+      },
+      "statusS4": {
+        "label": "high-level"
+      },
+      "status_reserved": {
+        "reserved": 240
+      }
+    }
+  },
+  {
+    "id": "ab27ao27_op06_synthetic",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": "positive",
+        "view": "status-zero-valid"
+      },
+      "fields": {
+        "logical_object": [
+          7,
+          0,
+          201,
+          16,
+          0,
+          240,
+          255,
+          0,
+          128,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          16,
+          0,
+          57,
+          228
+        ]
+      }
+    },
+    "expected": {
+      "S1": {
+        "number": 1
+      },
+      "S2": {
+        "number": -1
+      },
+      "S3": {
+        "raw": 32768,
+        "label": "replacement"
+      },
+      "S7": {
+        "number": 1
+      },
+      "statusS7": {
+        "label": "closed-circuit"
+      },
+      "status_reserved": {
+        "reserved": 192
+      }
+    }
+  },
+  {
+    "id": "ab27ao27_op07_synthetic",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": "positive",
+        "view": "status-zero-valid"
+      },
+      "fields": {
+        "logical_object": [
+          33,
+          201,
+          0,
+          16,
+          0,
+          240,
+          255,
+          0,
+          128,
+          0,
+          0,
+          77,
+          16,
+          0,
+          240,
+          255,
+          228,
+          249,
+          90
+        ]
+      }
+    },
+    "expected": {
+      "S8": {
+        "number": 1
+      },
+      "S9": {
+        "number": -1
+      },
+      "S10": {
+        "raw": 32768,
+        "label": "replacement"
+      },
+      "S12": {
+        "number": 1
+      },
+      "S13": {
+        "number": -1
+      },
+      "opaque11": {
+        "raw": 77,
+        "state": "Unknown"
+      },
+      "status_reserved": {
+        "reserved": 240
+      }
+    }
+  }
+]

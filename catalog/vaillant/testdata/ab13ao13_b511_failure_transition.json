@@ -1,0 +1,11 @@
+[
+  {
+    "id": "ab13ao13_refresh_bit_zero",
+    "input": {
+      "context": {"primary":181,"secondary":17,"operation":1,"direction":"local","view":"refresh","family":"synthetic-family","variant":"synthetic-variant"},
+      "fields": {"registration":[1],"prior_failure":[1],"local_body":[11,22,33,44,55,66,77,88,2,255]},
+      "arguments": {"index":2,"selector":3,"local_selector":4,"count":1,"parsed":true}
+    },
+    "failure": false
+  }
+]

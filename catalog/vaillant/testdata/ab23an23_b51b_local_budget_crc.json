@@ -1,0 +1,376 @@
+{
+  "ab23an23Budgets": [
+    {
+      "ab23an23Label": "ab23an23_grouped_1024_0",
+      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "ab23an23Length": 0,
+      "ab23an23Chunks": [],
+      "ab23an23Consumed": 0,
+      "ab23an23Unplanned": 0
+    },
+    {
+      "ab23an23Label": "ab23an23_grouped_1024_1",
+      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "ab23an23Length": 1,
+      "ab23an23Chunks": [
+        1
+      ],
+      "ab23an23Consumed": 1,
+      "ab23an23Unplanned": 0
+    },
+    {
+      "ab23an23Label": "ab23an23_grouped_1024_824",
+      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "ab23an23Length": 824,
+      "ab23an23Chunks": [
+        206,
+        206,
+        206,
+        206
+      ],
+      "ab23an23Consumed": 824,
+      "ab23an23Unplanned": 0
+    },
+    {
+      "ab23an23Label": "ab23an23_grouped_1024_825",
+      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "ab23an23Length": 825,
+      "ab23an23Chunks": [
+        206,
+        206,
+        206,
+        206,
+        1
+      ],
+      "ab23an23Consumed": 825,
+      "ab23an23Unplanned": 0
+    },
+    {
+      "ab23an23Label": "ab23an23_grouped_1024_1024",
+      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "ab23an23Length": 1024,
+      "ab23an23Chunks": [
+        206,
+        206,
+        206,
+        206,
+        200
+      ],
+      "ab23an23Consumed": 1024,
+      "ab23an23Unplanned": 0
+    },
+    {
+      "ab23an23Label": "ab23an23_grouped_1024_1025",
+      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "ab23an23Length": 1025,
+      "ab23an23Chunks": [
+        206,
+        206,
+        206,
+        206,
+        200
+      ],
+      "ab23an23Consumed": 1024,
+      "ab23an23Unplanned": 1
+    },
+    {
+      "ab23an23Label": "ab23an23_grouped_1024_2048",
+      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "ab23an23Length": 2048,
+      "ab23an23Chunks": [
+        206,
+        206,
+        206,
+        206,
+        200
+      ],
+      "ab23an23Consumed": 1024,
+      "ab23an23Unplanned": 1024
+    },
+    {
+      "ab23an23Label": "ab23an23_single_205_0",
+      "ab23an23Procedure": "ab23an23_single_205",
+      "ab23an23Length": 0,
+      "ab23an23Chunks": [],
+      "ab23an23Consumed": 0,
+      "ab23an23Unplanned": 0
+    },
+    {
+      "ab23an23Label": "ab23an23_single_205_205",
+      "ab23an23Procedure": "ab23an23_single_205",
+      "ab23an23Length": 205,
+      "ab23an23Chunks": [
+        205
+      ],
+      "ab23an23Consumed": 205,
+      "ab23an23Unplanned": 0
+    },
+    {
+      "ab23an23Label": "ab23an23_single_205_206",
+      "ab23an23Procedure": "ab23an23_single_205",
+      "ab23an23Length": 206,
+      "ab23an23Chunks": [
+        205
+      ],
+      "ab23an23Consumed": 205,
+      "ab23an23Unplanned": 1
+    },
+    {
+      "ab23an23Label": "ab23an23_single_205_1025",
+      "ab23an23Procedure": "ab23an23_single_205",
+      "ab23an23Length": 1025,
+      "ab23an23Chunks": [
+        205
+      ],
+      "ab23an23Consumed": 205,
+      "ab23an23Unplanned": 820
+    }
+  ],
+  "ab23an23CRCs": [
+    {
+      "ab23an23Label": "ab23an23_digits",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 10673
+    },
+    {
+      "ab23an23Label": "ab23an23_empty",
+      "ab23an23Bytes": [],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 65535
+    },
+    {
+      "ab23an23Label": "ab23an23_zero_initial",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "ab23an23Initial": 0,
+      "ab23an23Expected": 12739
+    },
+    {
+      "ab23an23Label": "ab23an23_other_initial",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "ab23an23Initial": 4660,
+      "ab23an23Expected": 60907
+    },
+    {
+      "ab23an23Label": "ab23an23_start_shift",
+      "ab23an23Bytes": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 8156
+    },
+    {
+      "ab23an23Label": "ab23an23_shorter",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 41259
+    },
+    {
+      "ab23an23Label": "ab23an23_extra",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        48
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 12824
+    },
+    {
+      "ab23an23Label": "ab23an23_byte_0",
+      "ab23an23Bytes": [
+        48,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 49810
+    },
+    {
+      "ab23an23Label": "ab23an23_byte_1",
+      "ab23an23Bytes": [
+        49,
+        51,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 28258
+    },
+    {
+      "ab23an23Label": "ab23an23_byte_2",
+      "ab23an23Bytes": [
+        49,
+        50,
+        50,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 37328
+    },
+    {
+      "ab23an23Label": "ab23an23_byte_3",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        53,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 27665
+    },
+    {
+      "ab23an23Label": "ab23an23_byte_4",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        52,
+        52,
+        54,
+        55,
+        56,
+        57
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 33760
+    },
+    {
+      "ab23an23Label": "ab23an23_byte_5",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        55,
+        55,
+        56,
+        57
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 24325
+    },
+    {
+      "ab23an23Label": "ab23an23_byte_6",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        54,
+        56,
+        57
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 7809
+    },
+    {
+      "ab23an23Label": "ab23an23_byte_7",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        57,
+        57
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 6784
+    },
+    {
+      "ab23an23Label": "ab23an23_byte_8",
+      "ab23an23Bytes": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        56
+      ],
+      "ab23an23Initial": 65535,
+      "ab23an23Expected": 14736
+    }
+  ]
+}

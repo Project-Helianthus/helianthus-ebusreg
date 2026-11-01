@@ -1,0 +1,889 @@
+[
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        24,
+        0
+      ]
+    },
+    "quantity": "flow_temperature",
+    "codec_declaration": "DATA2c",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        68,
+        0
+      ]
+    },
+    "quantity": "central_heating_pump_active",
+    "codec_declaration": "on/off",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        2,
+        0
+      ]
+    },
+    "quantity": "water_pressure",
+    "codec_declaration": "DATA2b",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        5,
+        0
+      ]
+    },
+    "quantity": "flame_active",
+    "codec_declaration": "UCH (0x0F=on, 0xF0=off)",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        187,
+        0
+      ]
+    },
+    "quantity": "gas_valve_active",
+    "codec_declaration": "UCH (0x0F=on, 0xF0=off)",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        131,
+        0
+      ]
+    },
+    "quantity": "fan_speed",
+    "codec_declaration": "UIN",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        46,
+        0
+      ]
+    },
+    "quantity": "modulation_setpoint",
+    "codec_declaration": "SIN / 10",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [
+      "setpoint versus achieved modulation unresolved"
+    ],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        171,
+        0
+      ]
+    },
+    "quantity": "boiler_state_code",
+    "codec_declaration": "UCH",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        84,
+        0
+      ]
+    },
+    "quantity": "diverter_valve_position",
+    "codec_declaration": "UCH",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [
+      "position enum versus percent unresolved"
+    ],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        88,
+        0
+      ]
+    },
+    "quantity": "dhw_demand_active",
+    "codec_declaration": "on/off",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        85,
+        0
+      ]
+    },
+    "quantity": "dhw_water_flow_rate",
+    "codec_declaration": "UIN / 100",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        14,
+        4
+      ]
+    },
+    "quantity": "maximum_heating_flow_temperature_setpoint",
+    "codec_declaration": "DATA2c",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        165,
+        0
+      ]
+    },
+    "quantity": "maximum_heating_flow_temperature_setpoint",
+    "codec_declaration": "DATA2c",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        15,
+        4
+      ]
+    },
+    "quantity": "maximum_dhw_flow_temperature_setpoint",
+    "codec_declaration": "DATA2c",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        7,
+        4
+      ]
+    },
+    "quantity": "heating_partial_load_power",
+    "codec_declaration": "UCH",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [
+      "unit Unknown"
+    ],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        8,
+        4
+      ]
+    },
+    "quantity": "dhw_partial_load_power",
+    "codec_declaration": "UCH",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [
+      "unit Unknown"
+    ],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        158,
+        0
+      ]
+    },
+    "quantity": "storage_loading_pump_level",
+    "codec_declaration": "percent0",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        57,
+        0
+      ]
+    },
+    "quantity": "flow_temperature_setpoint",
+    "codec_declaration": "DATA2c",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        234,
+        3
+      ]
+    },
+    "quantity": "dhw_temperature_setpoint",
+    "codec_declaration": "DATA2c",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        123,
+        0
+      ]
+    },
+    "quantity": "circulation_pump_active",
+    "codec_declaration": "on/off",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        63,
+        0
+      ]
+    },
+    "quantity": "external_pump_active",
+    "codec_declaration": "on/off",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        242,
+        3
+      ]
+    },
+    "quantity": "heating_switch_active",
+    "codec_declaration": "on/off",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        36,
+        0
+      ]
+    },
+    "quantity": "fan_speed_setpoint",
+    "codec_declaration": "UIN",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        164,
+        0
+      ]
+    },
+    "quantity": "flame_ionization_current",
+    "codec_declaration": "SIN / 10",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [
+      "current versus voltage unresolved"
+    ],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  },
+  {
+    "key": {
+      "family": "boiler",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        251,
+        0
+      ]
+    },
+    "quantity": "primary_circuit_flow_rate",
+    "codec_declaration": "UIN / 100",
+    "width_bits": null,
+    "byte_order": null,
+    "unit": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "conflicts": [
+      "litres/minute versus litres/hour unresolved"
+    ],
+    "evidence": {
+      "metadata": "Proven",
+      "qualification": "Unknown",
+      "physical_support": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown",
+      "effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "execution": "Unknown"
+    }
+  }
+]

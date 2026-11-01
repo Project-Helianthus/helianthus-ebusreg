@@ -1,6 +1,7 @@
 package system
 
 import (
+	"bytes"
 	"encoding/binary"
 	"math"
 )
@@ -117,6 +118,10 @@ func Ab11DecodeValue(ab11Codec Ab11Codec, ab11Width int, ab11Grade Ab11Grade, ab
 	case Ab11TIME:
 		ab11Result.Ab11Interpretation = Ab11Time{ab11Raw[0], ab11Raw[1], ab11Raw[2]}
 	case Ab11FW, Ab11FWU:
+		if ab11Codec == Ab11FWU && bytes.Equal(ab11Raw, []byte{255, 255, 255}) {
+			// All-0xFF is the unavailable-firmware sentinel; keep raw only.
+			return ab11Result
+		}
 		ab11Parts := [3]uint8{}
 		for ab11Index, ab11Byte := range ab11Raw {
 			if ab11Codec == Ab11FW {

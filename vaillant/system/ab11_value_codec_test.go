@@ -123,6 +123,9 @@ func TestAb11InvalidDomains(ab11T *testing.T) {
 			ab11AssertFallback(ab11T, Ab11FW, 3, Ab11Proven, ab11Raw)
 		}
 	}
+	for _, ab11Grade := range []Ab11Grade{Ab11Proven, Ab11Hypothesis} {
+		ab11AssertFallback(ab11T, Ab11FWU, 3, ab11Grade, []byte{255, 255, 255})
+	}
 	for _, ab11Raw := range [][]byte{{0, 0, 0x80, 0x7f}, {0, 0, 0x80, 0xff}, {0, 0, 0xc0, 0x7f}, {1, 0, 0x80, 0x7f}} {
 		for _, ab11Grade := range []Ab11Grade{Ab11Proven, Ab11Hypothesis} {
 			ab11AssertFallback(ab11T, Ab11EXP, 4, ab11Grade, ab11Raw)

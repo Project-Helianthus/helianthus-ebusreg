@@ -87,7 +87,7 @@ func Ab09An09B509QuantityViews(ab09an09Identity, ab09an09Selection Ab09An09Selec
 		Ab09An09Selected:      ab09an09Selected,
 		Ab09An09ContractGrade: "Proven",
 		Ab09An09Temperature:   ab09an09Candidate(ab09an09Fields.Ab09An09Temperature, ab09an09Selected, "degrees Celsius", 16, true),
-		Ab09An09Flow:          ab09an09Candidate(ab09an09Fields.Ab09An09Flow, ab09an09Selected, "litres/minute", 100, false),
+		Ab09An09Flow:          ab09an09Candidate(ab09an09Fields.Ab09An09Flow, ab09an09Selected, "litres per minute", 100, false),
 		Ab09An09Volume:        ab09an09Candidate(ab09an09Fields.Ab09An09Volume, ab09an09Selected, "litres", 10, false),
 		Ab09An09MinimumVolume: ab09an09Candidate(ab09an09Fields.Ab09An09MinimumVolume, ab09an09Selected, "", 0, false),
 		Ab09An09MaximumVolume: ab09an09Candidate(ab09an09Fields.Ab09An09MaximumVolume, ab09an09Selected, "", 0, false),

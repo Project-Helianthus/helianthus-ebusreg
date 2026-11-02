@@ -71,7 +71,7 @@ func TestAb09An09IndependentVectors(ab09an09T *ab09an09testing.T) {
 				if ab09an09Index >= 3 {
 					ab09an09Grade = "Unknown"
 				}
-				if !ab09an09reflect.DeepEqual(ab09an09Got.Ab09An09Raw, ab09an09Bytes(ab09an09T, ab09an09Case.Ab09An09Raw[ab09an09Index])) || ab09an09Got.Ab09An09State != ab09an09Case.Ab09An09States[ab09an09Index] || !ab09an09reflect.DeepEqual(ab09an09Got.Ab09An09Value, ab09an09Case.Ab09An09Values[ab09an09Index]) || ab09an09Got.Ab09An09SemanticGrade != ab09an09Grade || ab09an09Got.Ab09An09NativeQualification != "Unknown" || ab09an09Got.Ab09An09Unit != []string{"degrees Celsius", "litres/minute", "litres", "", ""}[ab09an09Index] {
+				if !ab09an09reflect.DeepEqual(ab09an09Got.Ab09An09Raw, ab09an09Bytes(ab09an09T, ab09an09Case.Ab09An09Raw[ab09an09Index])) || ab09an09Got.Ab09An09State != ab09an09Case.Ab09An09States[ab09an09Index] || !ab09an09reflect.DeepEqual(ab09an09Got.Ab09An09Value, ab09an09Case.Ab09An09Values[ab09an09Index]) || ab09an09Got.Ab09An09SemanticGrade != ab09an09Grade || ab09an09Got.Ab09An09NativeQualification != "Unknown" || ab09an09Got.Ab09An09Unit != []string{"degrees Celsius", "litres per minute", "litres", "", ""}[ab09an09Index] {
 					ab09an09T.Errorf("ab09an09 field %d = %+v; expected state %s value %v", ab09an09Index, ab09an09Got, ab09an09Case.Ab09An09States[ab09an09Index], ab09an09Case.Ab09An09Values[ab09an09Index])
 				}
 			}

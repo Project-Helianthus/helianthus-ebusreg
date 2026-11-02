@@ -156,6 +156,17 @@ func TestAb11Aq11Reject(ab11aq11T *ab11aq11testing.T) {
 			ab11aq11T.Errorf("accepted %s", ab11aq11Data)
 		}
 	}
+	ab11aq11Valid := ab11aq11Cases(ab11aq11T)[0].Ab11Aq11Input
+	ab11aq11Embedded := []string{`"x":1,"x":2`, `"x":{"a":1,"\u0061":2}`, `"x":[{"a":1,"a":2}]`, `"x":"\ud800"`, `"x":"\udc00"`, `"x":"\ud800\u0041"`, "\"x\":\"\xff\"", "\"x\":\"\xc3\""}
+	if _, ab11aq11Err := Ab11Aq11Evaluate(ab11aq11Valid); ab11aq11Err != nil {
+		ab11aq11T.Fatal(ab11aq11Err)
+	}
+	for _, ab11aq11Member := range ab11aq11Embedded {
+		ab11aq11Data := append([]byte(`{`+ab11aq11Member+`,`), ab11aq11bytes.TrimLeft(ab11aq11Valid, " \t\r\n")[1:]...)
+		if ab11aq11Output, ab11aq11Err := Ab11Aq11Evaluate(ab11aq11Data); ab11aq11Err == nil || ab11aq11Output != nil {
+			ab11aq11T.Errorf("accepted embedded %q", ab11aq11Member)
+		}
+	}
 	for _, ab11aq11Group := range []string{"context", "fields", "arguments"} {
 		ab11aq11Names := map[string][]string{"context": {"primary", "secondary", "operation"}, "fields": {"request", "input"}, "arguments": {"ready_state", "final_option", "received_length"}}[ab11aq11Group]
 		for _, ab11aq11Name := range ab11aq11Names {

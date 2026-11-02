@@ -7,6 +7,7 @@ import (
 	ab11aq11io "io"
 	ab11aq11big "math/big"
 	ab11aq11strconv "strconv"
+	ab11aq11utf8 "unicode/utf8"
 )
 
 func ab11aq11Read(ab11aq11Decoder *ab11aq11json.Decoder) (any, error) {
@@ -74,7 +75,53 @@ func ab11aq11Integer(ab11aq11Value any, ab11aq11Max int64) (int64, bool) {
 	return ab11aq11Integer, ab11aq11Integer >= 0 && ab11aq11Integer <= ab11aq11Max
 }
 
+func ab11aq11Encoding(ab11aq11Data []byte) bool {
+	if !ab11aq11utf8.Valid(ab11aq11Data) {
+		return false
+	}
+	ab11aq11Inside := false
+	ab11aq11Unit := func(ab11aq11At int) (int, bool) {
+		if ab11aq11At+6 > len(ab11aq11Data) || ab11aq11Data[ab11aq11At] != '\\' || ab11aq11Data[ab11aq11At+1] != 'u' {
+			return 0, false
+		}
+		ab11aq11Parsed, ab11aq11Err := ab11aq11strconv.ParseUint(string(ab11aq11Data[ab11aq11At+2:ab11aq11At+6]), 16, 32)
+		return int(ab11aq11Parsed), ab11aq11Err == nil
+	}
+	for ab11aq11Index := 0; ab11aq11Index < len(ab11aq11Data); ab11aq11Index++ {
+		switch {
+		case !ab11aq11Inside:
+			ab11aq11Inside = ab11aq11Data[ab11aq11Index] == '"'
+		case ab11aq11Data[ab11aq11Index] == '"':
+			ab11aq11Inside = false
+		case ab11aq11Data[ab11aq11Index] == '\\':
+			if ab11aq11Index+1 < len(ab11aq11Data) && ab11aq11Data[ab11aq11Index+1] == 'u' {
+				ab11aq11Code, ab11aq11OK := ab11aq11Unit(ab11aq11Index)
+				if !ab11aq11OK {
+					return false
+				}
+				if ab11aq11Code >= 0xDC00 && ab11aq11Code <= 0xDFFF {
+					return false
+				}
+				if ab11aq11Code >= 0xD800 && ab11aq11Code <= 0xDBFF {
+					ab11aq11Low, ab11aq11OK := ab11aq11Unit(ab11aq11Index + 6)
+					if !ab11aq11OK || ab11aq11Low < 0xDC00 || ab11aq11Low > 0xDFFF {
+						return false
+					}
+					ab11aq11Index += 6
+				}
+				ab11aq11Index += 5
+			} else {
+				ab11aq11Index++
+			}
+		}
+	}
+	return true
+}
+
 func Ab11Aq11Evaluate(ab11aq11InputJSON ab11aq11json.RawMessage) (ab11aq11json.RawMessage, error) {
+	if !ab11aq11Encoding(ab11aq11InputJSON) {
+		return nil, ab11aq11fmt.Errorf("invalid string encoding")
+	}
 	ab11aq11Decoder := ab11aq11json.NewDecoder(ab11aq11bytes.NewReader(ab11aq11InputJSON))
 	ab11aq11Decoder.UseNumber()
 	ab11aq11Value, ab11aq11Err := ab11aq11Read(ab11aq11Decoder)

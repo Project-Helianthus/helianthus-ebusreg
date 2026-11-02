@@ -1,0 +1,105 @@
+{
+  "id": "ab49_fe01_partial_body",
+  "namespace": "ebus_standard",
+  "grade": "Hypothesis",
+  "body": {
+    "grade": "Unknown",
+    "unit": "Unknown",
+    "enum": "Unknown",
+    "selector": "Unknown",
+    "sentinel": "Unknown",
+    "text": "Unknown",
+    "termination": "Unknown"
+  },
+  "family_availability": "Unknown",
+  "native_support": "Unknown",
+  "lifecycle": "Unknown",
+  "physical_effects": "Unknown",
+  "physical_qualification": "Unknown",
+  "alternatives": [
+    {
+      "id": "ab49_fe01_request_explicit",
+      "direction": "request",
+      "constant_encoding": "explicit",
+      "grade": "Hypothesis",
+      "pebus_relevant": "Unknown",
+      "constants": [
+        {
+          "logical_position": 0,
+          "bit": 0,
+          "width_bits": 8,
+          "value_hex": "FE"
+        },
+        {
+          "logical_position": 1,
+          "bit": 0,
+          "width_bits": 8,
+          "value_hex": "01"
+        }
+      ]
+    },
+    {
+      "id": "ab49_fe01_request_unspecified",
+      "direction": "request",
+      "constant_encoding": "unspecified",
+      "grade": "Hypothesis",
+      "pebus_relevant": "Unknown",
+      "constants": [
+        {
+          "logical_position": 0,
+          "bit": 0,
+          "width_bits": 8,
+          "value_hex": "FE"
+        },
+        {
+          "logical_position": 1,
+          "bit": 0,
+          "width_bits": 8,
+          "value_hex": "01"
+        }
+      ]
+    },
+    {
+      "id": "ab49_fe01_positive_explicit",
+      "direction": "positive",
+      "constant_encoding": "explicit",
+      "grade": "Hypothesis",
+      "pebus_relevant": true,
+      "constants": [
+        {
+          "logical_position": 0,
+          "bit": 0,
+          "width_bits": 8,
+          "value_hex": "FE"
+        },
+        {
+          "logical_position": 1,
+          "bit": 0,
+          "width_bits": 8,
+          "value_hex": "01"
+        }
+      ]
+    },
+    {
+      "id": "ab49_fe01_positive_unspecified",
+      "direction": "positive",
+      "constant_encoding": "unspecified",
+      "grade": "Hypothesis",
+      "pebus_relevant": true,
+      "constants": [
+        {
+          "logical_position": 0,
+          "bit": 0,
+          "width_bits": 8,
+          "value_hex": "FE"
+        },
+        {
+          "logical_position": 1,
+          "bit": 0,
+          "width_bits": 8,
+          "value_hex": "01"
+        }
+      ]
+    }
+  ]
+}

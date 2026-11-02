@@ -38,6 +38,7 @@ ebus_standard_catalog func (IdentityKey) IsComplete() bool
 ebus_standard_catalog func (IdentityKey) PBValue() uint8
 ebus_standard_catalog func (IdentityKey) SBValue() uint8
 ebus_standard_catalog func (Service) PBValue() uint8
+ebus_standard_catalog func Ab49FEMetadata() []byte
 ebus_standard_catalog func CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord
 ebus_standard_catalog func ComputeContentSHA256(data []byte) string
 ebus_standard_catalog func EmbeddedYAML() []byte

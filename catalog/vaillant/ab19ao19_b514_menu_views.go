@@ -9,7 +9,10 @@ import (
 	ab19ao19utf8 "unicode/utf8"
 )
 
-func ab19ao19Read(ab19ao19Decoder *ab19ao19json.Decoder) (any, error) {
+func ab19ao19Read(ab19ao19Decoder *ab19ao19json.Decoder, ab19ao19Depth int) (any, error) {
+	if ab19ao19Depth > 64 {
+		return nil, ab19ao19fmt.Errorf("JSON nesting too deep")
+	}
 	ab19ao19Token, ab19ao19Err := ab19ao19Decoder.Token()
 	if ab19ao19Err != nil {
 		return nil, ab19ao19Err
@@ -30,7 +33,7 @@ func ab19ao19Read(ab19ao19Decoder *ab19ao19json.Decoder) (any, error) {
 				if _, ab19ao19Exists := ab19ao19Object[ab19ao19Key]; ab19ao19Exists {
 					return nil, ab19ao19fmt.Errorf("duplicate key %q", ab19ao19Key)
 				}
-				ab19ao19Value, ab19ao19Err := ab19ao19Read(ab19ao19Decoder)
+				ab19ao19Value, ab19ao19Err := ab19ao19Read(ab19ao19Decoder, ab19ao19Depth+1)
 				if ab19ao19Err != nil {
 					return nil, ab19ao19Err
 				}
@@ -43,7 +46,7 @@ func ab19ao19Read(ab19ao19Decoder *ab19ao19json.Decoder) (any, error) {
 		case '[':
 			ab19ao19Array := []any{}
 			for ab19ao19Decoder.More() {
-				ab19ao19Value, ab19ao19Err := ab19ao19Read(ab19ao19Decoder)
+				ab19ao19Value, ab19ao19Err := ab19ao19Read(ab19ao19Decoder, ab19ao19Depth+1)
 				if ab19ao19Err != nil {
 					return nil, ab19ao19Err
 				}
@@ -75,7 +78,7 @@ func Ab19Ao19Interpret(ab19ao19Input ab19ao19json.RawMessage) (ab19ao19json.RawM
 	}
 	ab19ao19Decoder := ab19ao19json.NewDecoder(ab19ao19bytes.NewReader(ab19ao19Input))
 	ab19ao19Decoder.UseNumber()
-	ab19ao19Value, ab19ao19Err := ab19ao19Read(ab19ao19Decoder)
+	ab19ao19Value, ab19ao19Err := ab19ao19Read(ab19ao19Decoder, 0)
 	if ab19ao19Err != nil {
 		return nil, ab19ao19Err
 	}
@@ -136,7 +139,7 @@ func Ab19Ao19Interpret(ab19ao19Input ab19ao19json.RawMessage) (ab19ao19json.RawM
 	ab19ao19Secondary, _ := ab19ao19Integer(ab19ao19Context["secondary"])
 	ab19ao19Operation, _ := ab19ao19Integer(ab19ao19Context["operation"])
 	ab19ao19View, _ := ab19ao19Context["view"].(string)
-	ab19ao19Selected := ab19ao19Primary == 245 && ab19ao19Secondary == 20 && ab19ao19Context["direction"] == "positive"
+	ab19ao19Selected := ab19ao19Primary == 181 && ab19ao19Secondary == 20 && ab19ao19Context["direction"] == "positive"
 	if !ab19ao19Selected {
 		return ab19ao19json.Marshal(ab19ao19Output)
 	}

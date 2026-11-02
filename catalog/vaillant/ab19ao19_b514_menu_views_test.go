@@ -10,7 +10,7 @@ import (
 )
 
 func ab19ao19Input(ab19ao19Operation int, ab19ao19View string, ab19ao19Fields map[string]any) map[string]any {
-	return map[string]any{"context": map[string]any{"primary": 245, "secondary": 20, "operation": ab19ao19Operation, "direction": "positive", "view": ab19ao19View, "family": map[string]any{"opaque": []any{"synthetic-family", 0}}, "variant": []any{"synthetic-variant", false}}, "fields": ab19ao19Fields}
+	return map[string]any{"context": map[string]any{"primary": 181, "secondary": 20, "operation": ab19ao19Operation, "direction": "positive", "view": ab19ao19View, "family": map[string]any{"opaque": []any{"synthetic-family", 0}}, "variant": []any{"synthetic-variant", false}}, "fields": ab19ao19Fields}
 }
 func ab19ao19Call(ab19ao19T *ab19ao19testing.T, ab19ao19InputObject map[string]any) map[string]any {
 	ab19ao19T.Helper()
@@ -303,7 +303,7 @@ func TestAb19Ao19Reject(ab19ao19T *ab19ao19testing.T) {
 			}
 		}
 	}
-	for _, ab19ao19InputText := range []string{`{"context":{"primary":"245"},"fields":{}}`, `{"context":{"secondary":20.5},"fields":{}}`, `{"context":{"operation":6.0},"fields":{}}`, `{"context":{"direction":0},"fields":{}}`, `{"context":{"view":1},"fields":{}}`} {
+	for _, ab19ao19InputText := range []string{`{"context":{"primary":"181"},"fields":{}}`, `{"context":{"secondary":20.5},"fields":{}}`, `{"context":{"operation":6.0},"fields":{}}`, `{"context":{"direction":0},"fields":{}}`, `{"context":{"view":1},"fields":{}}`} {
 		ab19ao19Output, ab19ao19Err := Ab19Ao19Interpret([]byte(ab19ao19InputText))
 		if ab19ao19Err == nil || ab19ao19Output != nil {
 			ab19ao19T.Fatal("accepted wrong kind")

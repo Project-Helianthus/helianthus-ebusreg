@@ -15,7 +15,7 @@ func ab54Word(ab54Value uint16) *uint16 { return &ab54Value }
 func ab54TestKey(ab54Secondary uint8) Ab54Key {
 	ab54Direction := "none"
 	if ab54Secondary >= 3 {
-		ab54Direction = "master-to-slave"
+		ab54Direction = "abstract-request"
 	}
 	return Ab54Key{Ab54Family: "standard-service", Ab54Variant: ab54fmt.Sprintf("FF%02d", ab54Secondary), Ab54Primary: 255,
 		Ab54Secondary: ab54Byte(ab54Secondary), Ab54Direction: ab54Direction, Ab54Field: "body-completeness",
@@ -174,7 +174,7 @@ func TestAb54ExactAxes(ab54T *ab54testing.T) {
 		{"ab54-secondary-zero", func(ab54K *Ab54Key) { ab54K.Ab54Secondary = ab54Byte(0) }},
 		{"ab54-operation-zero", func(ab54K *Ab54Key) { ab54K.Ab54Operation = ab54Byte(0) }},
 		{"ab54-operation-value", func(ab54K *Ab54Key) { ab54K.Ab54Operation = ab54Byte(1) }},
-		{"ab54-direction", func(ab54K *Ab54Key) { ab54K.Ab54Direction = "slave-to-master" }},
+		{"ab54-direction", func(ab54K *Ab54Key) { ab54K.Ab54Direction = "abstract-positive" }},
 		{"ab54-field", func(ab54K *Ab54Key) { ab54K.Ab54Field = "other-field" }},
 		{"ab54-alternative", func(ab54K *Ab54Key) { ab54K.Ab54Alternative = "other-alternative" }},
 		{"ab54-group-zero", func(ab54K *Ab54Key) { ab54K.Ab54Group = ab54Word(0) }},

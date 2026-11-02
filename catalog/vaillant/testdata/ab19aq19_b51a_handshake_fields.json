@@ -1,0 +1,306 @@
+[
+  {
+    "id": "ab19aq19_reset",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "view": "reset",
+        "direction": "positive",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "sequence": [
+          0
+        ],
+        "ack": [
+          2
+        ]
+      },
+      "arguments": {},
+      "extra": {
+        "absent": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results.ack.flags.denied": false,
+      "results.ack.unmodeled": 2
+    }
+  },
+  {
+    "id": "ab19aq19_positive2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "view": "handshake",
+        "direction": "positive",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "operation": 1
+      },
+      "fields": {
+        "sequence": [
+          255
+        ],
+        "flags": [
+          2
+        ],
+        "family_code": [
+          0
+        ],
+        "dsn": [
+          1,
+          2,
+          3
+        ],
+        "start": [],
+        "offset": [
+          4,
+          5
+        ]
+      },
+      "arguments": {},
+      "extra": {
+        "absent": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results.flags.flags.invalid": true,
+      "results.flags.flags.change": false,
+      "results.dsn.state": "absent-unless-change",
+      "results.start.state": "absent-unless-change"
+    }
+  },
+  {
+    "id": "ab19aq19_positive8",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "view": "handshake",
+        "direction": "positive",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "operation": 1
+      },
+      "fields": {
+        "sequence": [
+          255
+        ],
+        "flags": [
+          8
+        ],
+        "family_code": [
+          0
+        ],
+        "dsn": [
+          1,
+          2,
+          3
+        ],
+        "start": [],
+        "offset": [
+          4,
+          5
+        ]
+      },
+      "arguments": {},
+      "extra": {
+        "absent": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results.flags.flags.invalid": false,
+      "results.flags.flags.change": true,
+      "results.dsn.state": "complete",
+      "results.start.state": "complete"
+    }
+  },
+  {
+    "id": "ab19aq19_request",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "view": "handshake",
+        "direction": "request",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "operation": 1
+      },
+      "fields": {
+        "sequence": [
+          1
+        ],
+        "flags": [
+          2
+        ],
+        "crc": [
+          52,
+          18
+        ],
+        "dsn": [
+          9
+        ],
+        "start": [
+          3,
+          2
+        ],
+        "offset": []
+      },
+      "arguments": {},
+      "extra": {
+        "absent": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results.crc.number": 4660,
+      "results.crc.calculation": "Proven",
+      "results.flags.flags.change": true
+    }
+  },
+  {
+    "id": "ab19aq19_pair0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "view": "sequence-pair",
+        "direction": "pair",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request_sequence": [
+          0
+        ],
+        "response_sequence": [
+          255
+        ]
+      },
+      "arguments": {},
+      "extra": {
+        "absent": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results.request_sequence.flags.correlated": false
+    }
+  },
+  {
+    "id": "ab19aq19_pair255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "view": "sequence-pair",
+        "direction": "pair",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request_sequence": [
+          255
+        ],
+        "response_sequence": [
+          255
+        ]
+      },
+      "arguments": {},
+      "extra": {
+        "absent": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results.request_sequence.flags.correlated": true
+    }
+  },
+  {
+    "id": "ab19aq19_handshakepair",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "view": "sequence-pair",
+        "direction": "pair",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "operation": 1
+      },
+      "fields": {
+        "request_sequence": [
+          7
+        ],
+        "response_sequence": [
+          7
+        ]
+      },
+      "arguments": {},
+      "extra": {
+        "absent": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results.request_sequence.flags.correlated": true
+    }
+  },
+  {
+    "id": "ab19aq19_resetrequest",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "view": "reset",
+        "direction": "request",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "sequence": [
+          0
+        ]
+      },
+      "arguments": {},
+      "extra": {
+        "absent": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results.sequence.number": 0
+    }
+  }
+]

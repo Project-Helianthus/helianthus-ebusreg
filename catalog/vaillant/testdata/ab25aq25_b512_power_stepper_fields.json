@@ -1,0 +1,865 @@
+[
+  {
+    "id": "ab25aq25_power",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 7,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "maximum_power": [
+          255
+        ],
+        "minimum_power": [
+          250
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "maximum_power": {
+          "number": 255,
+          "unit": "kW",
+          "default": 0,
+          "calculation": "Proven",
+          "grade": "Hypothesis"
+        },
+        "minimum_power": {
+          "number": 125,
+          "candidate_domain": true
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_outside",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 7,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "maximum_power": [
+          0
+        ],
+        "minimum_power": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "maximum_power": {
+          "number": 0
+        },
+        "minimum_power": {
+          "number": 127.5,
+          "candidate_domain": false
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_empty_request",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 7,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {}
+    },
+    "expected": {
+      "state": "complete",
+      "results": {}
+    }
+  },
+  {
+    "id": "ab25aq25_missing_positive",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 7,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {}
+    },
+    "expected": {
+      "state": "partial",
+      "results": {
+        "maximum_power": {
+          "state": "incomplete"
+        },
+        "minimum_power": {
+          "state": "incomplete"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_status_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "inlet": [
+          240,
+          255
+        ],
+        "status": [
+          0
+        ],
+        "stepper": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "inlet": {
+          "number": -1
+        },
+        "status": {
+          "label": "valid"
+        },
+        "stepper": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_status_85",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "inlet": [
+          240,
+          255
+        ],
+        "status": [
+          85
+        ],
+        "stepper": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "inlet": {
+          "number": -1
+        },
+        "status": {
+          "label": "short"
+        },
+        "stepper": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_status_170",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "inlet": [
+          240,
+          255
+        ],
+        "status": [
+          170
+        ],
+        "stepper": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "inlet": {
+          "number": -1
+        },
+        "status": {
+          "label": "interruption-or-disconnected"
+        },
+        "stepper": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_status_84",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "inlet": [
+          240,
+          255
+        ],
+        "status": [
+          84
+        ],
+        "stepper": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "inlet": {
+          "number": -1
+        },
+        "status": {
+          "label": "unmapped"
+        },
+        "stepper": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_positive_independent",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "inlet": [
+          240,
+          255
+        ],
+        "status": [
+          85
+        ],
+        "setpoint": [
+          16,
+          0
+        ],
+        "stepper": [
+          128
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "setpoint": {
+          "number": 1
+        },
+        "status": {
+          "state": "Unknown"
+        },
+        "inlet": {
+          "state": "Unknown"
+        },
+        "stepper": {
+          "flags": {
+            "release": false
+          },
+          "reserved": 128
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_8_request_1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "stepper": [
+          1
+        ],
+        "inlet": [
+          240,
+          255
+        ],
+        "status": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "stepper": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_8_request_128",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "stepper": [
+          128
+        ],
+        "inlet": [
+          240,
+          255
+        ],
+        "status": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "stepper": {
+          "flags": {
+            "release": false
+          },
+          "reserved": 128
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_8_request_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "stepper": [
+          0
+        ],
+        "inlet": [
+          240,
+          255
+        ],
+        "status": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "stepper": {
+          "flags": {
+            "release": false
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_8_request_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "stepper": [
+          255
+        ],
+        "inlet": [
+          240,
+          255
+        ],
+        "status": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "stepper": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 254
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_8_positive_1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "stepper": [
+          1
+        ],
+        "setpoint": [
+          16,
+          0
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "stepper": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_8_positive_128",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "stepper": [
+          128
+        ],
+        "setpoint": [
+          16,
+          0
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "stepper": {
+          "flags": {
+            "release": false
+          },
+          "reserved": 128
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_8_positive_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "stepper": [
+          0
+        ],
+        "setpoint": [
+          16,
+          0
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "stepper": {
+          "flags": {
+            "release": false
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_8_positive_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 8,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "stepper": [
+          255
+        ],
+        "setpoint": [
+          16,
+          0
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "stepper": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 254
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_9_request_1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 9,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "release": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "release": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_9_request_128",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 9,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "release": [
+          128
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "release": {
+          "flags": {
+            "release": false
+          },
+          "reserved": 128
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_9_request_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 9,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "release": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "release": {
+          "flags": {
+            "release": false
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_9_request_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 9,
+        "direction": "request",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "release": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "release": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 254
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_9_positive_1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 9,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "release": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "release": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_9_positive_128",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 9,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "release": [
+          128
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "release": {
+          "flags": {
+            "release": false
+          },
+          "reserved": 128
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_9_positive_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 9,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "release": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "release": {
+          "flags": {
+            "release": false
+          },
+          "reserved": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab25aq25_9_positive_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 9,
+        "direction": "positive",
+        "view": "power-stepper",
+        "family": "synthetic",
+        "variant": "candidate"
+      },
+      "fields": {
+        "release": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "results": {
+        "release": {
+          "flags": {
+            "release": true
+          },
+          "reserved": 254
+        }
+      }
+    }
+  }
+]

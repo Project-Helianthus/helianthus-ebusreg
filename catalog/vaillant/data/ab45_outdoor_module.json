@@ -1,0 +1,1003 @@
+{
+  "representation_grade": "Proven",
+  "interpretation_grade": "Hypothesis",
+  "physical_qualification": "Unknown",
+  "opt_in": true,
+  "runtime_registration": false,
+  "wire_builder": false,
+  "unknown": [
+    "complete request bit names",
+    "positive scalar positions",
+    "variant",
+    "operation",
+    "ventilation role",
+    "negative forms",
+    "acknowledgement",
+    "retries/deadlines",
+    "atomicity",
+    "endpoint effects",
+    "relationship to other registers",
+    "physical lengths"
+  ],
+  "entries": [
+    {
+      "id": "ab45_b521_request",
+      "family": "outdoor_module",
+      "variant": null,
+      "direction": "request",
+      "service": "B521",
+      "operation": null,
+      "alternative": "request",
+      "logical_extent": 7,
+      "physical_extent": null,
+      "coordinate_system": "logical positions include prefix; not physical offsets",
+      "grade": "Hypothesis",
+      "physical_qualification": "Unknown",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [
+        {
+          "name": "raw_bit_0",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            0,
+            0
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "raw_bit_1",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            1,
+            1
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "raw_bit_2",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            2,
+            2
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "raw_bit_3",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            3,
+            3
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "raw_bit_4",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            4,
+            4
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "raw_bit_5",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            5,
+            5
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "reserved",
+          "logical_position": 3,
+          "width_bits": 2,
+          "bit_span": [
+            6,
+            7
+          ],
+          "raw_domain": [
+            0,
+            3
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {},
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "appliance_code_bit_0",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            0,
+            0
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "appliance_code_bit_1",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            1,
+            1
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "appliance_code_bit_2",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            2,
+            2
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "appliance_code_bit_3",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            3,
+            3
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "appliance_code_bit_4",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            4,
+            4
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "reserved",
+          "logical_position": 4,
+          "width_bits": 3,
+          "bit_span": [
+            5,
+            7
+          ],
+          "raw_domain": [
+            0,
+            7
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {},
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "noise_reduction",
+          "logical_position": 5,
+          "width_bits": 8,
+          "bit_span": null,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "percent",
+          "default": 0,
+          "mappings": {},
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "frost_protection_temperature",
+          "logical_position": 6,
+          "width_bits": 8,
+          "bit_span": null,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "degrees_C",
+          "default": 0,
+          "mappings": {},
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        }
+      ]
+    },
+    {
+      "id": "ab45_b521_positive",
+      "family": "outdoor_module",
+      "variant": null,
+      "direction": "response",
+      "service": "B521",
+      "operation": null,
+      "alternative": "positive",
+      "logical_extent": 12,
+      "physical_extent": null,
+      "coordinate_system": "logical positions include prefix; not physical offsets",
+      "grade": "Hypothesis",
+      "physical_qualification": "Unknown",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [
+        {
+          "name": "ready",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            0,
+            0
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "deicing_request",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            1,
+            1
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "deicing_active",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            2,
+            2
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "deicing_timeout_error",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            3,
+            3
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "deicing_with_heater",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            4,
+            4
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "reserved",
+          "logical_position": 3,
+          "width_bits": 2,
+          "bit_span": [
+            5,
+            6
+          ],
+          "raw_domain": [
+            0,
+            3
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {},
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "cleaning_request",
+          "logical_position": 3,
+          "width_bits": 1,
+          "bit_span": [
+            7,
+            7
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "heater",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            0,
+            0
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "relay_output",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            1,
+            1
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "fan_running",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            2,
+            2
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "brine_flow_reverse",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            3,
+            3
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "fan_error",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            4,
+            4
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "safety_limiter_error",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            5,
+            5
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "hot_summer",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            6,
+            6
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "bad_weather",
+          "logical_position": 4,
+          "width_bits": 1,
+          "bit_span": [
+            7,
+            7
+          ],
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "none",
+          "default": 0,
+          "mappings": {
+            "0": "disabled",
+            "1": "enabled"
+          },
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "brine_pump_speed",
+          "logical_position": null,
+          "width_bits": 8,
+          "bit_span": null,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "percent",
+          "default": 0,
+          "mappings": {},
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "fan_PWM",
+          "logical_position": null,
+          "width_bits": 8,
+          "bit_span": null,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "percent",
+          "default": 0,
+          "mappings": {},
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "fan_speed",
+          "logical_position": null,
+          "width_bits": 8,
+          "bit_span": null,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": {
+            "numerator": 10,
+            "denominator": 1,
+            "offset": 0
+          },
+          "unit": "rpm",
+          "default": 0,
+          "mappings": {},
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "temperature_1",
+          "logical_position": null,
+          "width_bits": 16,
+          "bit_span": null,
+          "raw_domain": [
+            -32768,
+            32767
+          ],
+          "signedness": "signed",
+          "byte_order": "little_endian",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 16,
+            "offset": 0
+          },
+          "unit": "degrees_C",
+          "default": 0,
+          "mappings": {},
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        },
+        {
+          "name": "temperature_2",
+          "logical_position": null,
+          "width_bits": 16,
+          "bit_span": null,
+          "raw_domain": [
+            -32768,
+            32767
+          ],
+          "signedness": "signed",
+          "byte_order": "little_endian",
+          "conversion": {
+            "numerator": 1,
+            "denominator": 16,
+            "offset": 0
+          },
+          "unit": "degrees_C",
+          "default": 0,
+          "mappings": {},
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes and unresolved alternatives"
+        }
+      ]
+    },
+    {
+      "id": "ab45_b521_negative",
+      "family": "outdoor_module",
+      "variant": null,
+      "direction": "response",
+      "service": "B521",
+      "operation": null,
+      "alternative": "negative",
+      "logical_extent": null,
+      "physical_extent": null,
+      "coordinate_system": "logical positions include prefix; not physical offsets",
+      "grade": "Hypothesis",
+      "physical_qualification": "Unknown",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": []
+    }
+  ]
+}

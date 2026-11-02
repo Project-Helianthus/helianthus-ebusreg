@@ -1,0 +1,192 @@
+[
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 89,
+      "direction": null,
+      "field": "temperature",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "codec": {
+      "representation": "signedLE16",
+      "width_bits": 16,
+      "divisor": 16,
+      "unit": "Celsius"
+    },
+    "position": null,
+    "label": null,
+    "preserve_raw": true,
+    "unknown": [
+      "absolute_field_positions",
+      "native_support",
+      "sentinels",
+      "response_adaptation",
+      "direction",
+      "physical_qualification",
+      "broad_catalog_completeness"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 89,
+      "direction": null,
+      "field": "flow",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "codec": {
+      "representation": "unsignedLE16",
+      "width_bits": 16,
+      "divisor": 100,
+      "unit": "litres per minute"
+    },
+    "position": null,
+    "label": null,
+    "preserve_raw": true,
+    "unknown": [
+      "absolute_field_positions",
+      "native_support",
+      "sentinels",
+      "response_adaptation",
+      "direction",
+      "physical_qualification",
+      "broad_catalog_completeness"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 89,
+      "direction": null,
+      "field": "volume",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "codec": {
+      "representation": "unsignedLE16",
+      "width_bits": 16,
+      "divisor": 10,
+      "unit": "litres"
+    },
+    "position": null,
+    "label": null,
+    "preserve_raw": true,
+    "unknown": [
+      "absolute_field_positions",
+      "native_support",
+      "sentinels",
+      "response_adaptation",
+      "direction",
+      "physical_qualification",
+      "broad_catalog_completeness"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 89,
+      "direction": null,
+      "field": "minimum_volume",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "codec": {
+      "representation": "raw",
+      "width_bits": null,
+      "divisor": null,
+      "unit": null
+    },
+    "position": null,
+    "label": null,
+    "preserve_raw": true,
+    "unknown": [
+      "absolute_field_positions",
+      "native_support",
+      "sentinels",
+      "response_adaptation",
+      "direction",
+      "physical_qualification",
+      "broad_catalog_completeness",
+      "width",
+      "scale",
+      "coordinates",
+      "enforcement",
+      "unit"
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 89,
+      "direction": null,
+      "field": "maximum_volume",
+      "group": null,
+      "requested_instance": null,
+      "register": null,
+      "command_role": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "codec": {
+      "representation": "raw",
+      "width_bits": null,
+      "divisor": null,
+      "unit": null
+    },
+    "position": null,
+    "label": null,
+    "preserve_raw": true,
+    "unknown": [
+      "absolute_field_positions",
+      "native_support",
+      "sentinels",
+      "response_adaptation",
+      "direction",
+      "physical_qualification",
+      "broad_catalog_completeness",
+      "width",
+      "scale",
+      "coordinates",
+      "enforcement",
+      "unit"
+    ]
+  }
+]

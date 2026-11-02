@@ -1,0 +1,815 @@
+[
+  {
+    "id": "ab03ap03_ordinary",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 3,"maximum": 4},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 3,
+    "maximum_sum": 4,
+    "effective": true,
+    "requested_state": 2,
+    "state": "complete",
+    "admitted_slots": [
+      0
+    ]
+  },
+  {
+    "id": "ab03ap03_equality",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 4,"maximum": 4},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 4,
+    "maximum_sum": 4,
+    "effective": false,
+    "requested_state": 1,
+    "state": "complete",
+    "admitted_slots": [
+      0
+    ]
+  },
+  {
+    "id": "ab03ap03_limited_zero",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 3,"maximum": 4},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 0,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 3,
+    "maximum_sum": 4,
+    "effective": false,
+    "requested_state": 1,
+    "state": "complete",
+    "admitted_slots": [
+      0
+    ]
+  },
+  {
+    "id": "ab03ap03_gate_zero",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          0
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 3,"maximum": 4},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 3,
+    "maximum_sum": 4,
+    "effective": true,
+    "requested_state": 0,
+    "state": "complete",
+    "admitted_slots": [
+      0
+    ]
+  },
+  {
+    "id": "ab03ap03_gate_high",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          128
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 3,"maximum": 4},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 3,
+    "maximum_sum": 4,
+    "effective": true,
+    "requested_state": 2,
+    "state": "complete",
+    "admitted_slots": [
+      0
+    ]
+  },
+  {
+    "id": "ab03ap03_token_zero",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 0,"maximum": 4},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 0,
+    "maximum_sum": 4,
+    "effective": true,
+    "requested_state": 2,
+    "state": "complete",
+    "admitted_slots": [
+      0
+    ]
+  },
+  {
+    "id": "ab03ap03_maximum_zero",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 3,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 3,
+    "maximum_sum": 0,
+    "effective": false,
+    "requested_state": 1,
+    "state": "complete",
+    "admitted_slots": [
+      0
+    ]
+  },
+  {
+    "id": "ab03ap03_registered",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": false,"capable": true,"failure": false,"token": 3,"maximum": 4},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 0,
+    "maximum_sum": 0,
+    "effective": false,
+    "requested_state": 1,
+    "state": "complete",
+    "admitted_slots": []
+  },
+  {
+    "id": "ab03ap03_capable",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": false,"failure": false,"token": 3,"maximum": 4},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 0,
+    "maximum_sum": 0,
+    "effective": false,
+    "requested_state": 1,
+    "state": "complete",
+    "admitted_slots": []
+  },
+  {
+    "id": "ab03ap03_failure",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": true,"token": 3,"maximum": 4},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 0,
+    "maximum_sum": 0,
+    "effective": false,
+    "requested_state": 1,
+    "state": "complete",
+    "admitted_slots": []
+  },
+  {
+    "id": "ab03ap03_wide",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 4294967295,"maximum": 4294967295},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": true,"capable": true,"failure": false,"token": 4294967295,"maximum": 4294967295}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 8589934590,
+    "maximum_sum": 8589934590,
+    "effective": false,
+    "requested_state": 1,
+    "state": "complete",
+    "admitted_slots": [
+      0,
+      8
+    ]
+  },
+  {
+    "id": "ab03ap03_special_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          0
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 3,"maximum": 4},
+          {"registered": true,"capable": true,"failure": false,"token": 100,"maximum": 200},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 3,
+    "maximum_sum": 4,
+    "effective": null,
+    "requested_state": 0,
+    "state": "partial",
+    "admitted_slots": [
+      0,
+      1
+    ]
+  },
+  {
+    "id": "ab03ap03_special_2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 3,"maximum": 4},
+          {"registered": true,"capable": true,"failure": false,"token": 100,"maximum": 200},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 3,
+    "maximum_sum": 4,
+    "effective": null,
+    "requested_state": null,
+    "state": "partial",
+    "admitted_slots": [
+      0,
+      1
+    ]
+  },
+  {
+    "id": "ab03ap03_special_excluded_registered",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 3,"maximum": 4},
+          {"registered": false,"capable": true,"failure": false,"token": 100,"maximum": 200},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 3,
+    "maximum_sum": 4,
+    "effective": true,
+    "requested_state": 2,
+    "state": "complete",
+    "admitted_slots": [
+      0
+    ]
+  },
+  {
+    "id": "ab03ap03_special_excluded_capable",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 3,"maximum": 4},
+          {"registered": true,"capable": false,"failure": false,"token": 100,"maximum": 200},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 3,
+    "maximum_sum": 4,
+    "effective": true,
+    "requested_state": 2,
+    "state": "complete",
+    "admitted_slots": [
+      0
+    ]
+  },
+  {
+    "id": "ab03ap03_special_excluded_failure",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 49,
+        "operation": 3,
+        "direction": "local",
+        "view": "ordinary-limit",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant",
+        "opaque": {
+          "x": [
+            null,
+            0,
+            false
+          ]
+        }
+      },
+      "fields": {
+        "gate": [
+          2
+        ]
+      },
+      "arguments": {
+        "rows": [
+          {"registered": true,"capable": true,"failure": false,"token": 3,"maximum": 4},
+          {"registered": true,"capable": true,"failure": true,"token": 100,"maximum": 200},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0},
+          {"registered": false,"capable": true,"failure": false,"token": 0,"maximum": 0}
+        ],
+        "limited": 1,
+        "opaque": {
+          "x": false
+        }
+      }
+    },
+    "token_sum": 3,
+    "maximum_sum": 4,
+    "effective": true,
+    "requested_state": 2,
+    "state": "complete",
+    "admitted_slots": [
+      0
+    ]
+  }
+]

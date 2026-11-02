@@ -1,0 +1,289 @@
+[
+  {
+    "id": "ab48_mode",
+    "key": {
+      "family": "vaillant",
+      "variant": "B510",
+      "primary": 181,
+      "secondary": 16,
+      "operation": 0,
+      "direction": "request",
+      "field": "mode",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B510.md",
+    "position": null,
+    "raw_form": "preserve original bytes",
+    "unknown": [
+      "other positions",
+      "peer acceptance",
+      "effects"
+    ],
+    "details": {
+      "default": "forced-heating",
+      "numeric_mode_code": null,
+      "symbolic_contexts": [
+        "forced-heating",
+        "forced-DHW",
+        "forced-off"
+      ],
+      "mode_encodings": "Unknown"
+    }
+  },
+  {
+    "id": "ab48_modulation",
+    "key": {
+      "family": "vaillant",
+      "variant": "B510",
+      "primary": 181,
+      "secondary": 16,
+      "operation": 0,
+      "direction": "request",
+      "field": "modulation",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B510.md",
+    "position": null,
+    "raw_form": "preserve original bytes",
+    "unknown": [
+      "other positions",
+      "peer acceptance",
+      "effects"
+    ],
+    "details": {
+      "declared_default": 67,
+      "width_bits": null,
+      "domain": null
+    }
+  },
+  {
+    "id": "ab48_options",
+    "key": {
+      "family": "vaillant",
+      "variant": "B510",
+      "primary": 181,
+      "secondary": 16,
+      "operation": 0,
+      "direction": "request",
+      "field": "options",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B510.md",
+    "position": null,
+    "raw_form": "preserve original bytes",
+    "unknown": [
+      "other positions",
+      "peer acceptance",
+      "effects"
+    ],
+    "details": {
+      "bit_defaults": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bit2_context": {
+        "field": "CH_setpoint",
+        "clear_role": "heating",
+        "set_role": "cooling",
+        "raw_value_changes": false
+      },
+      "width_bits": null
+    }
+  },
+  {
+    "id": "ab48_loading_pump",
+    "key": {
+      "family": "vaillant",
+      "variant": "B510",
+      "primary": 181,
+      "secondary": 16,
+      "operation": 0,
+      "direction": "request",
+      "field": "loading_pump",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B510.md",
+    "position": null,
+    "raw_form": "preserve original bytes",
+    "unknown": [
+      "other positions",
+      "peer acceptance",
+      "effects"
+    ],
+    "details": {
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "conversion": "raw / 2",
+      "unit": "percent",
+      "formal_domain": [
+        0,
+        127.5
+      ],
+      "declared_default": 255.0,
+      "default_conflict": true,
+      "raw_example": {
+        "bytes": "FF",
+        "value": 127.5
+      },
+      "forced_mode_dependency": true,
+      "contexts": [
+        {
+          "mode": "forced-heating",
+          "numeric_mode_code": null,
+          "meaning": "Unknown",
+          "activation": "Unknown"
+        },
+        {
+          "mode": "forced-DHW",
+          "numeric_mode_code": null,
+          "meaning": "Unknown",
+          "activation": "Unknown"
+        },
+        {
+          "mode": "forced-off",
+          "numeric_mode_code": null,
+          "meaning": "Unknown",
+          "activation": "Unknown"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ab48_CH_setpoint",
+    "key": {
+      "family": "vaillant",
+      "variant": "B510",
+      "primary": 181,
+      "secondary": 16,
+      "operation": 0,
+      "direction": "request",
+      "field": "CH_setpoint",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B510.md",
+    "position": null,
+    "raw_form": "preserve original bytes",
+    "unknown": [
+      "other positions",
+      "peer acceptance",
+      "effects"
+    ],
+    "details": {
+      "width_bits": null,
+      "zero_degrees_role": [
+        "stop",
+        "pump-stop"
+      ],
+      "transition": {
+        "from": 0,
+        "to": "positive",
+        "candidate_minimum_seconds": 300,
+        "execution_guarantee": false,
+        "enforcement": "Unknown"
+      },
+      "other_transitions": "Unknown"
+    }
+  },
+  {
+    "id": "ab48_pump_activation",
+    "key": {
+      "family": "vaillant",
+      "variant": "B510",
+      "primary": 181,
+      "secondary": 16,
+      "operation": 0,
+      "direction": "request",
+      "field": "pump_activation",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B510.md",
+    "position": null,
+    "raw_form": "preserve original bytes",
+    "unknown": [
+      "other positions",
+      "peer acceptance",
+      "effects"
+    ],
+    "details": {
+      "width_bits": null,
+      "forced_mode_dependency": true,
+      "contexts": [
+        {
+          "mode": "forced-heating",
+          "numeric_mode_code": null,
+          "activation": "Unknown"
+        },
+        {
+          "mode": "forced-DHW",
+          "numeric_mode_code": null,
+          "activation": "Unknown"
+        },
+        {
+          "mode": "forced-off",
+          "numeric_mode_code": null,
+          "activation": "Unknown"
+        }
+      ]
+    }
+  }
+]

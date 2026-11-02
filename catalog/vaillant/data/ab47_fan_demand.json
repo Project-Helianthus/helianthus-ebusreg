@@ -1,0 +1,356 @@
+{
+  "software_representation": "Proven",
+  "candidate_semantics": "Hypothesis",
+  "physical_qualification": "Unknown",
+  "limitations": [
+    "Partial field catalog; absent names and coordinates remain unknown.",
+    "Raw current modes 5..255 and all mode values remain unlabeled.",
+    "Current-mode raw 1 has two unresolved labels; the competing label is Unknown.",
+    "Heating priority during simultaneous cooling and bypass behavior are candidate semantics only.",
+    "FF is not a sentinel for room temperature, mode or fan.",
+    "Separate FF FF unset interpretation does not promote individual FF carriers.",
+    "No runtime registration, wire builder, automatic selection, native codec promotion or executable capability."
+  ],
+  "entries": [
+    {
+      "id": "ab47_current_mode",
+      "family": "vaillant",
+      "variant": "B522",
+      "direction": null,
+      "service": "B522",
+      "operation": null,
+      "alternative": "current-mode",
+      "logical_extent_bytes": null,
+      "logical_coordinates": "include prefix positions; not physical offsets",
+      "fields": [
+        {
+          "name": "current_mode",
+          "logical_position": null,
+          "width_bits": 8,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": "identity",
+          "unit": null,
+          "default": 0,
+          "mappings": {
+            "0": [
+              "no heating demand to source/circuits"
+            ],
+            "1": [
+              "no source demand but demand from a sink",
+              null
+            ],
+            "2": [
+              "source heating demand"
+            ],
+            "3": [
+              "no source cooling demand but demand from a sink"
+            ],
+            "4": [
+              "source cooling demand"
+            ]
+          },
+          "bits": null,
+          "reserved": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve original bytes including reserved bits"
+        }
+      ],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve full original carrier",
+      "physical_mapping": "Unknown",
+      "installed_support": "Unknown",
+      "execution": "Unknown",
+      "semantic_equivalence": "Unknown"
+    },
+    {
+      "id": "ab47_request",
+      "family": "vaillant",
+      "variant": "B522",
+      "direction": "request",
+      "service": "B522",
+      "operation": null,
+      "alternative": "request",
+      "logical_extent_bytes": 7,
+      "logical_coordinates": "include prefix positions; not physical offsets",
+      "fields": [
+        {
+          "name": "fan",
+          "logical_position": null,
+          "width_bits": 8,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": "identity",
+          "unit": null,
+          "default": 0,
+          "mappings": {},
+          "bits": null,
+          "reserved": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve original bytes including reserved bits"
+        },
+        {
+          "name": "automatic",
+          "logical_position": null,
+          "width_bits": 1,
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": "identity",
+          "unit": null,
+          "default": 0,
+          "mappings": {
+            "0": [
+              "disabled"
+            ],
+            "1": [
+              "enabled"
+            ]
+          },
+          "bits": [
+            0,
+            0
+          ],
+          "reserved": [
+            {
+              "bits": [
+                1,
+                7
+              ],
+              "expected": 0
+            }
+          ],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve original bytes including reserved bits"
+        },
+        {
+          "name": "room_temperature",
+          "logical_position": null,
+          "width_bits": 8,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": "raw * 0.5",
+          "unit": "degrees C",
+          "default": 0,
+          "mappings": {},
+          "bits": null,
+          "reserved": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve original bytes including reserved bits"
+        },
+        {
+          "name": "mode",
+          "logical_position": null,
+          "width_bits": 8,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": "identity",
+          "unit": null,
+          "default": 0,
+          "mappings": {},
+          "bits": null,
+          "reserved": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve original bytes including reserved bits"
+        }
+      ],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve full original carrier",
+      "physical_mapping": "Unknown",
+      "installed_support": "Unknown",
+      "execution": "Unknown",
+      "semantic_equivalence": "Unknown"
+    },
+    {
+      "id": "ab47_positive",
+      "family": "vaillant",
+      "variant": "B522",
+      "direction": "response",
+      "service": "B522",
+      "operation": null,
+      "alternative": "positive",
+      "logical_extent_bytes": 4,
+      "logical_coordinates": "include prefix positions; not physical offsets",
+      "fields": [
+        {
+          "name": null,
+          "logical_position": null,
+          "width_bits": 1,
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": "identity",
+          "unit": null,
+          "default": false,
+          "mappings": {
+            "0": [
+              false
+            ],
+            "1": [
+              true
+            ]
+          },
+          "bits": [
+            0,
+            0
+          ],
+          "reserved": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve original bytes including reserved bits"
+        },
+        {
+          "name": null,
+          "logical_position": null,
+          "width_bits": 1,
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": "identity",
+          "unit": null,
+          "default": false,
+          "mappings": {
+            "0": [
+              false
+            ],
+            "1": [
+              true
+            ]
+          },
+          "bits": [
+            1,
+            1
+          ],
+          "reserved": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve original bytes including reserved bits"
+        },
+        {
+          "name": null,
+          "logical_position": null,
+          "width_bits": 1,
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not_applicable",
+          "conversion": "identity",
+          "unit": null,
+          "default": false,
+          "mappings": {
+            "0": [
+              false
+            ],
+            "1": [
+              true
+            ]
+          },
+          "bits": [
+            2,
+            2
+          ],
+          "reserved": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve original bytes including reserved bits"
+        }
+      ],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve full original carrier",
+      "physical_mapping": "Unknown",
+      "installed_support": "Unknown",
+      "execution": "Unknown",
+      "semantic_equivalence": "Unknown",
+      "reserved": [
+        {
+          "bits": [
+            3,
+            7
+          ],
+          "expected": 0
+        }
+      ]
+    },
+    {
+      "id": "ab47_negative",
+      "family": "vaillant",
+      "variant": "B522",
+      "direction": "response",
+      "service": "B522",
+      "operation": null,
+      "alternative": "negative",
+      "logical_extent_bytes": null,
+      "logical_coordinates": "include prefix positions; not physical offsets",
+      "fields": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve full original carrier",
+      "physical_mapping": "Unknown",
+      "installed_support": "Unknown",
+      "execution": "Unknown",
+      "semantic_equivalence": "Unknown"
+    },
+    {
+      "id": "ab47_unset",
+      "family": "vaillant",
+      "variant": "B522",
+      "direction": null,
+      "service": "B522",
+      "operation": null,
+      "alternative": "FF FF unset",
+      "logical_extent_bytes": null,
+      "logical_coordinates": "include prefix positions; not physical offsets",
+      "fields": [
+        {
+          "name": null,
+          "logical_position": null,
+          "width_bits": null,
+          "raw_domain": null,
+          "signedness": "Unknown",
+          "byte_order": "Unknown",
+          "conversion": "Unknown",
+          "unit": null,
+          "default": null,
+          "mappings": {
+            "FF FF": [
+              "candidate unset"
+            ]
+          },
+          "bits": null,
+          "reserved": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve original bytes including reserved bits"
+        }
+      ],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve full original carrier",
+      "physical_mapping": "Unknown",
+      "installed_support": "Unknown",
+      "execution": "Unknown",
+      "semantic_equivalence": "Unknown"
+    }
+  ]
+}

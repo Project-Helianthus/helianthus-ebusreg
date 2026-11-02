@@ -171,7 +171,7 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 		assertConstraintQualification(t, values)
 	})
 
-	t.Run("echoed reply mapping overrides constraint record", func(t *testing.T) {
+	t.Run("ab01 mismatched known reply suppresses value and constraints", func(t *testing.T) {
 		t.Parallel()
 
 		bus := &vaillantMockBus{
@@ -196,17 +196,16 @@ func TestVaillantSystem_GetExtRegister_ResponseDecode(t *testing.T) {
 		}
 
 		values := result.(map[string]types.Value)
-		if got := values["constraint_record"]; !got.Valid || got.Value != uint16(0x0005) {
-			t.Fatalf("constraint_record = %+v; want 0x0005 valid", got)
+		if got := values["value"]; got.Valid || got.Value != nil {
+			t.Fatalf("value = %+v; want invalid without usable bytes", got)
 		}
-		if got := values["constraint_record_hex"]; !got.Valid || got.Value != "0005" {
-			t.Fatalf("constraint_record_hex = %+v; want 0005 valid", got)
+		for _, ab01Key := range []string{"constraints", "constraint_record", "constraint_record_hex", "constraint_type", "constraint_min", "constraint_max", "constraint_step"} {
+			if ab01Got, ab01OK := values[ab01Key]; ab01OK {
+				t.Fatalf("%s = %+v; want absent for mismatched selector", ab01Key, ab01Got)
+			}
 		}
-		if got := values["constraint_min"]; !got.Valid || got.Value != float64(5) {
-			t.Fatalf("constraint_min = %+v; want 5 valid", got)
-		}
-		if got := values["constraint_max"]; !got.Valid || got.Value != float64(30) {
-			t.Fatalf("constraint_max = %+v; want 30 valid", got)
+		if values["group"].Value != byte(0x01) || values["addr"].Value != uint16(0x0004) || values["reply_group"].Value != byte(0x03) || values["reply_addr"].Value != uint16(0x0005) {
+			t.Fatalf("requested and returned identities not preserved: %+v", values)
 		}
 		assertConstraintQualification(t, values)
 	})
@@ -402,10 +401,10 @@ func TestVaillantSystem_GetExtRegister_ConstraintQualificationMarkers(t *testing
 		addr            uint16
 		wantConstraints bool
 	}{
-		{"1-byte zero reply, mapped request", []byte{0x00}, 0x01, 0x0004, true},
+		{"1-byte zero reply, mapped request", []byte{0x00}, 0x01, 0x0004, false},
 		{"1-byte zero reply, unmapped request", []byte{0x00}, 0x00, 0x5C00, false},
-		{"3-byte reply, mapped request", []byte{0x01, 0x01, 0x04}, 0x01, 0x0004, true},
-		{"4-byte reply, resolved reply addr", []byte{0x01, 0x03, 0x05, 0x00}, 0x01, 0x0004, true},
+		{"3-byte reply, mapped request", []byte{0x01, 0x01, 0x04}, 0x01, 0x0004, false},
+		{"4-byte reply, resolved reply addr", []byte{0x01, 0x03, 0x05, 0x00}, 0x01, 0x0004, false},
 		{"4-byte reply, unresolved reply addr", []byte{0x01, 0x7F, 0x01, 0x00}, 0x01, 0x0004, false},
 		{"value reply, resolved reply addr", []byte{0x01, 0x01, 0x04, 0x00, 0x2A}, 0x01, 0x0004, true},
 		{"value reply, unresolved reply addr", []byte{0x01, 0x7F, 0x01, 0x00, 0x2A}, 0x01, 0x0004, false},

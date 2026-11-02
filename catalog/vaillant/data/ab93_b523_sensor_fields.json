@@ -1,0 +1,4023 @@
+{
+  "representation_grade": "Proven",
+  "physical_qualification": "Unknown",
+  "complete": false,
+  "limitations": [
+    "Finite supplemental B523 declarations; broader family remains incomplete. No catalog/provider/router registration or callable capability.",
+    "Logical positions include prefix coordinates and do not establish wire extents or installed support.",
+    "Only supplied candidate facts are represented; direction is Unknown. No native support, freshness, persistence or execution permission is established.",
+    "Raw unsigned replacement selection precedes signed conversion; replacement does not establish unavailable.",
+    "Signed selector compared with 32768 is an unresolved materialization conflict (Unknown).",
+    "Variant names describe alternative zero-status semantics, not qualified device models."
+  ],
+  "fields": [
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S1",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 3,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S1.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S2",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 5,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S2.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S3",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 7,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S3.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S4",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 9,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S4.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 6,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S5",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 11,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S5.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S6",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 13,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S6.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "status.reserved",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 4,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": true,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "PWM",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 15,
+      "width_bits": 8,
+      "bit_offset": null,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 2,
+      "unit": "percent",
+      "default": null,
+      "bounds": [
+        0,
+        255
+      ],
+      "enumeration": {},
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S1",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 3,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S1.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S2",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 5,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S2.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S3",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 7,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S3.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S4",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 9,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S4.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 6,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S5",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 11,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S5.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 18,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S6",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 13,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S6.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 18,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S7",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 15,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S7.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 18,
+      "width_bits": 2,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "status.reserved",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 18,
+      "width_bits": 2,
+      "bit_offset": 6,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": true,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S8",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 3,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S8.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S9",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 5,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S9.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S10",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 7,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S10.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S11",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 9,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S11.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 6,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S12",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 12,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S12.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S13",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 14,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S13.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "status.reserved",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 4,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": true,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "opaque",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 11,
+      "width_bits": 8,
+      "bit_offset": null,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": [
+        0,
+        255
+      ],
+      "enumeration": {},
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S1",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 3,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S1.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S2",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 5,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S2.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S3",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 7,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S3.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S4",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 9,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S4.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 6,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S5",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 11,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S5.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S6",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 13,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "S6.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "status.reserved",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 4,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": true,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 3,
+        "direction": null,
+        "field": "PWM",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 15,
+      "width_bits": 8,
+      "bit_offset": null,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 2,
+      "unit": "percent",
+      "default": null,
+      "bounds": [
+        0,
+        255
+      ],
+      "enumeration": {},
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S1",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 3,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S1.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S2",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 5,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S2.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S3",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 7,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S3.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S4",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 9,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S4.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 6,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S5",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 11,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S5.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 18,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S6",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 13,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S6.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 18,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S7",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 15,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "S7.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 18,
+      "width_bits": 2,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 6,
+        "direction": null,
+        "field": "status.reserved",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 18,
+      "width_bits": 2,
+      "bit_offset": 6,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": true,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S8",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 3,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S8.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S9",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 5,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S9.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S10",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 7,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S10.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S11",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 9,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S11.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 16,
+      "width_bits": 2,
+      "bit_offset": 6,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S12",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 12,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S12.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 0,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S13",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 14,
+      "width_bits": 16,
+      "bit_offset": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": 32768,
+      "selection": "unsigned raw equality before signed conversion",
+      "branches": [
+        {
+          "name": "replacement",
+          "signedness": "unsigned",
+          "byte_order": "little-endian",
+          "divide_by": 1,
+          "unit": null,
+          "default": 32768,
+          "bounds": [
+            0,
+            65535
+          ],
+          "grade": "Hypothesis"
+        },
+        {
+          "name": "normal",
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "divide_by": 16,
+          "unit": "Celsius",
+          "default": 0,
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "grade": "Hypothesis"
+        }
+      ],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "S13.status",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 2,
+      "bit_offset": 2,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": 1,
+      "unit": null,
+      "default": 0,
+      "bounds": [
+        0,
+        3
+      ],
+      "enumeration": {
+        "0": "valid-value-or-low-level",
+        "1": "open-circuit",
+        "2": "closed-circuit",
+        "3": "high-level"
+      },
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "status.reserved",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 17,
+      "width_bits": 4,
+      "bit_offset": 4,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": {},
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": true,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    },
+    {
+      "key": {
+        "family": "Vaillant",
+        "variant": "zero-valid-value-or-low-level",
+        "primary": 181,
+        "secondary": 35,
+        "operation": 7,
+        "direction": null,
+        "field": "opaque",
+        "opcode": null,
+        "group": null,
+        "instance": null,
+        "register": null
+      },
+      "logical_position": 11,
+      "width_bits": 8,
+      "bit_offset": null,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "divide_by": null,
+      "unit": null,
+      "default": null,
+      "bounds": [
+        0,
+        255
+      ],
+      "enumeration": {},
+      "replacement_raw": null,
+      "selection": "none",
+      "branches": [],
+      "reserved": false,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve original bytes including reserved bits"
+    }
+  ]
+}

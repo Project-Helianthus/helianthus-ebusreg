@@ -1,0 +1,160 @@
+{
+  "catalog": "ab31_pump_roles",
+  "representation_grade": "Proven",
+  "coordinate_system": "logical positions include prefix positions; not physical offsets",
+  "limitations": [
+    "Candidate interpretations remain Hypothesis; physical support remains Unknown.",
+    "Boiler-pump correspondence is role-qualified; universal boiler support and appliance exclusivity are Unknown.",
+    "Candidate broadcast, timer and later register change establish no causal chain, physical support or exclusive use.",
+    "No runtime registration, wire builder, write admission, automatic selection or native codec promotion.",
+    "Request, positive response and negative response forms are Unknown; direction is null where unknown."
+  ],
+  "entries": [
+    {
+      "id": "ab31_b508_op05_pump",
+      "family": "B508",
+      "variant": "pump role",
+      "direction": null,
+      "service": "B508",
+      "operation": "OP05",
+      "alternative": "pump state with conflicting defaults",
+      "logical_extent": null,
+      "grade": "Hypothesis",
+      "physical_qualification": "Unknown",
+      "raw_fallback": "preserve native bytes, including unmapped values and reserved bits",
+      "fields": [
+        {
+          "name": "pump state",
+          "logical_position": null,
+          "width_bytes": null,
+          "raw_domain": [
+            0,
+            1
+          ],
+          "signedness": "Unknown",
+          "byte_order": null,
+          "conversion": null,
+          "unit": null,
+          "default": null,
+          "mappings": {
+            "0": "blocked",
+            "1": "released"
+          },
+          "reserved_regions": null,
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve native bytes, including unmapped values and reserved bits",
+          "conflicting_default_descriptions": [
+            "blocked",
+            "released"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ab31_b508_op0b_solar",
+      "family": "B508",
+      "variant": "solar cascading",
+      "direction": null,
+      "service": "B508",
+      "operation": "OP0B",
+      "alternative": "independent tank flags",
+      "logical_extent": null,
+      "grade": "Hypothesis",
+      "physical_qualification": "Unknown",
+      "raw_fallback": "preserve native bytes, including unmapped values and reserved bits",
+      "fields": [
+        {
+          "name": "cycle-pause",
+          "logical_position": 3,
+          "width_bytes": null,
+          "raw_domain": null,
+          "signedness": "Unknown",
+          "byte_order": null,
+          "conversion": null,
+          "unit": null,
+          "default": null,
+          "mappings": {},
+          "reserved_regions": null,
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve native bytes, including unmapped values and reserved bits"
+        },
+        {
+          "name": "tank-one flag",
+          "logical_position": 4,
+          "width_bytes": 1,
+          "raw_domain": {
+            "min": 0,
+            "max": 255
+          },
+          "signedness": "unsigned",
+          "byte_order": null,
+          "conversion": {
+            "mask": 1,
+            "shift": 0
+          },
+          "unit": null,
+          "default": null,
+          "mappings": {
+            "0": "flag clear",
+            "1": "flag set"
+          },
+          "reserved_regions": [
+            {
+              "bits": [
+                1,
+                7
+              ]
+            }
+          ],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve native bytes, including unmapped values and reserved bits"
+        },
+        {
+          "name": "tank-two flag",
+          "logical_position": 5,
+          "width_bytes": 1,
+          "raw_domain": {
+            "min": 0,
+            "max": 255
+          },
+          "signedness": "unsigned",
+          "byte_order": null,
+          "conversion": {
+            "mask": 1,
+            "shift": 0
+          },
+          "unit": null,
+          "default": null,
+          "mappings": {
+            "0": "flag clear",
+            "1": "flag set"
+          },
+          "reserved_regions": [
+            {
+              "bits": [
+                1,
+                7
+              ]
+            }
+          ],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve native bytes, including unmapped values and reserved bits"
+        }
+      ]
+    },
+    {
+      "id": "ab31_noise_reduction_broadcast",
+      "family": "Unknown",
+      "variant": "noise-reduction",
+      "direction": "broadcast",
+      "service": null,
+      "operation": null,
+      "alternative": "distinct noise-reduction candidate",
+      "logical_extent": null,
+      "grade": "Hypothesis",
+      "physical_qualification": "Unknown",
+      "raw_fallback": "preserve native bytes, including unmapped values and reserved bits",
+      "fields": []
+    }
+  ]
+}

@@ -100,6 +100,13 @@ func (template rawReadTemplate) Build(params map[string]any) ([]byte, error) {
 	return append([]byte(nil), payload...), nil
 }
 
+type Ab07TimerSlot struct {
+	Ab07RawPair      [2]byte `json:"ab07_raw_pair"`
+	Ab07StartMinutes *int    `json:"ab07_start_minutes,omitempty"`
+	Ab07StopMinutes  *int    `json:"ab07_stop_minutes,omitempty"`
+	Ab07Unused       bool    `json:"ab07_unused"`
+}
+
 func decodeTimerResponse(sel1, sel2, sel3, weekday byte, payload []byte) map[string]types.Value {
 	values := map[string]types.Value{
 		"opcode":  {Value: timerOpcodeRead, Valid: true},
@@ -116,7 +123,24 @@ func decodeTimerResponse(sel1, sel2, sel3, weekday byte, payload []byte) map[str
 	}
 
 	values["value"] = types.Value{Value: append([]byte(nil), payload...), Valid: true}
-	values["slot_count"] = types.Value{Value: len(payload), Valid: true}
+	if len(payload) != 7 {
+		return values
+	}
+
+	ab07Slots := make([]Ab07TimerSlot, 3)
+	for ab07Index := range ab07Slots {
+		ab07Start, ab07Stop := payload[1+2*ab07Index], payload[2+2*ab07Index]
+		ab07Slots[ab07Index].Ab07RawPair = [2]byte{ab07Start, ab07Stop}
+		ab07Slots[ab07Index].Ab07Unused = ab07Start == 0x90 && ab07Stop == 0x90
+		if ab07Start < ab07Stop && ab07Stop <= 0x90 {
+			ab07StartMinutes, ab07StopMinutes := int(ab07Start)*10, int(ab07Stop)*10
+			ab07Slots[ab07Index].Ab07StartMinutes = &ab07StartMinutes
+			ab07Slots[ab07Index].Ab07StopMinutes = &ab07StopMinutes
+		}
+	}
+	values["slot_count"] = types.Value{Value: 3, Valid: true}
+	values["ab07_parameter_configuration"] = types.Value{Value: payload[0], Valid: true}
+	values["ab07_slots"] = types.Value{Value: ab07Slots, Valid: true}
 	return values
 }
 

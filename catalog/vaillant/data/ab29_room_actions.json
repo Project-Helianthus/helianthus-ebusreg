@@ -1,0 +1,844 @@
+{
+  "catalog": "ab29_room_actions",
+  "representation_grade": "Proven",
+  "candidate_grade": "Hypothesis",
+  "physical_qualification": "Unknown",
+  "coordinate_system": "logical positions include prefixes; not physical offsets",
+  "rows": [
+    {
+      "id": "ab29_b50a_op00_request",
+      "family": "B50A",
+      "variant": "room-action-temperature",
+      "direction": "read",
+      "service": "B50A",
+      "operation": "OP00",
+      "alternative": "request",
+      "logical_positions": null,
+      "extent_bytes": 0,
+      "raw_domain": "no arguments",
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "Unavailable sentinel is Unknown",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50a_op00_positive",
+      "family": "B50A",
+      "variant": "room-action-temperature",
+      "direction": "read",
+      "service": "B50A",
+      "operation": "OP00",
+      "alternative": "positive",
+      "logical_positions": null,
+      "extent_bytes": 3,
+      "raw_domain": "field domains",
+      "signedness": "per field",
+      "byte_order": "per field",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [
+        {
+          "name": "room_action",
+          "logical_positions": null,
+          "width_bytes": 1,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not applicable",
+          "conversion": {
+            "factor": 1,
+            "offset": 0
+          },
+          "unit": null,
+          "default": null,
+          "finite_mappings": {
+            "0": "no-action",
+            "1": "switch-on",
+            "2": "thermostat"
+          },
+          "reserved_regions": [
+            {
+              "range": [
+                3,
+                255
+              ],
+              "meaning": "unlabeled; retain raw"
+            }
+          ],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes",
+          "sentinel": "Unknown"
+        },
+        {
+          "name": "temperature",
+          "logical_positions": null,
+          "width_bytes": 2,
+          "raw_domain": [
+            -32768,
+            32767
+          ],
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "conversion": {
+            "factor": 0.0625,
+            "offset": 0,
+            "candidate_range": [
+              -2048,
+              2047.9375
+            ]
+          },
+          "unit": "degrees C",
+          "default": null,
+          "finite_mappings": {},
+          "reserved_regions": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes",
+          "sentinel": "Unknown; neither 8000 nor FFFF is a qualified unavailable marker"
+        }
+      ],
+      "relative_layout": [
+        "room_action",
+        "temperature"
+      ],
+      "limitations": [
+        "Unavailable sentinel is Unknown",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50a_op00_negative",
+      "family": "B50A",
+      "variant": "room-action-temperature",
+      "direction": "read",
+      "service": "B50A",
+      "operation": "OP00",
+      "alternative": "negative",
+      "logical_positions": null,
+      "extent_bytes": null,
+      "raw_domain": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "Unavailable sentinel is Unknown",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50c_op00_request",
+      "family": "B50C",
+      "variant": "keycode-digits",
+      "direction": "read",
+      "service": "B50C",
+      "operation": "OP00",
+      "alternative": "request",
+      "logical_positions": null,
+      "extent_bytes": 0,
+      "raw_domain": "no arguments",
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "Four independent numeric digits; not ASCII, BCD or u32",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50c_op00_positive",
+      "family": "B50C",
+      "variant": "keycode-digits",
+      "direction": "read",
+      "service": "B50C",
+      "operation": "OP00",
+      "alternative": "positive",
+      "logical_positions": null,
+      "extent_bytes": 4,
+      "raw_domain": "field domains",
+      "signedness": "per field",
+      "byte_order": "per field",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [
+        {
+          "name": "digit_1",
+          "logical_positions": null,
+          "width_bytes": 1,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not applicable",
+          "conversion": {
+            "factor": 1,
+            "offset": 0
+          },
+          "unit": null,
+          "default": 0,
+          "finite_mappings": {},
+          "reserved_regions": [
+            {
+              "range": [
+                10,
+                255
+              ],
+              "meaning": "outside candidate digit domain; retain raw"
+            }
+          ],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes",
+          "sentinel": "Unknown"
+        },
+        {
+          "name": "digit_2",
+          "logical_positions": null,
+          "width_bytes": 1,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not applicable",
+          "conversion": {
+            "factor": 1,
+            "offset": 0
+          },
+          "unit": null,
+          "default": 0,
+          "finite_mappings": {},
+          "reserved_regions": [
+            {
+              "range": [
+                10,
+                255
+              ],
+              "meaning": "outside candidate digit domain; retain raw"
+            }
+          ],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes",
+          "sentinel": "Unknown"
+        },
+        {
+          "name": "digit_3",
+          "logical_positions": null,
+          "width_bytes": 1,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not applicable",
+          "conversion": {
+            "factor": 1,
+            "offset": 0
+          },
+          "unit": null,
+          "default": 0,
+          "finite_mappings": {},
+          "reserved_regions": [
+            {
+              "range": [
+                10,
+                255
+              ],
+              "meaning": "outside candidate digit domain; retain raw"
+            }
+          ],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes",
+          "sentinel": "Unknown"
+        },
+        {
+          "name": "digit_4",
+          "logical_positions": null,
+          "width_bytes": 1,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not applicable",
+          "conversion": {
+            "factor": 1,
+            "offset": 0
+          },
+          "unit": null,
+          "default": 0,
+          "finite_mappings": {},
+          "reserved_regions": [
+            {
+              "range": [
+                10,
+                255
+              ],
+              "meaning": "outside candidate digit domain; retain raw"
+            }
+          ],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes",
+          "sentinel": "Unknown"
+        }
+      ],
+      "relative_layout": [
+        "digit_1",
+        "digit_2",
+        "digit_3",
+        "digit_4"
+      ],
+      "limitations": [
+        "Four independent numeric digits; not ASCII, BCD or u32",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50c_op00_negative",
+      "family": "B50C",
+      "variant": "keycode-digits",
+      "direction": "read",
+      "service": "B50C",
+      "operation": "OP00",
+      "alternative": "negative",
+      "logical_positions": null,
+      "extent_bytes": null,
+      "raw_domain": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "Four independent numeric digits; not ASCII, BCD or u32",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50c_op01_request",
+      "family": "B50C",
+      "variant": "signed-value",
+      "direction": "read",
+      "service": "B50C",
+      "operation": "OP01",
+      "alternative": "request",
+      "logical_positions": null,
+      "extent_bytes": 0,
+      "raw_domain": "no arguments",
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "Unit and sentinel are Unknown",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50c_op01_positive",
+      "family": "B50C",
+      "variant": "signed-value",
+      "direction": "read",
+      "service": "B50C",
+      "operation": "OP01",
+      "alternative": "positive",
+      "logical_positions": null,
+      "extent_bytes": 2,
+      "raw_domain": "field domains",
+      "signedness": "per field",
+      "byte_order": "per field",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [
+        {
+          "name": "value",
+          "logical_positions": null,
+          "width_bytes": 2,
+          "raw_domain": [
+            -32768,
+            32767
+          ],
+          "signedness": "signed",
+          "byte_order": "little-endian",
+          "conversion": {
+            "factor": 1,
+            "offset": 0
+          },
+          "unit": null,
+          "default": null,
+          "finite_mappings": {},
+          "reserved_regions": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes",
+          "sentinel": "Unknown"
+        }
+      ],
+      "relative_layout": [
+        "value"
+      ],
+      "limitations": [
+        "Unit and sentinel are Unknown",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50c_op01_negative",
+      "family": "B50C",
+      "variant": "signed-value",
+      "direction": "read",
+      "service": "B50C",
+      "operation": "OP01",
+      "alternative": "negative",
+      "logical_positions": null,
+      "extent_bytes": null,
+      "raw_domain": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "Unit and sentinel are Unknown",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50c_op02_request",
+      "family": "B50C",
+      "variant": "circuit-names",
+      "direction": "read",
+      "service": "B50C",
+      "operation": "OP02",
+      "alternative": "request",
+      "logical_positions": null,
+      "extent_bytes": null,
+      "raw_domain": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "Independent per-circuit values and failures; retain successful values on partial failure",
+        "Bounded aggregate 1..15 is not installed cardinality",
+        "Echoed circuit, string trimming, B524 namespace equivalence and wildcard semantics of zero are Unknown",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50c_op02_positive",
+      "family": "B50C",
+      "variant": "circuit-names",
+      "direction": "read",
+      "service": "B50C",
+      "operation": "OP02",
+      "alternative": "positive",
+      "logical_positions": null,
+      "extent_bytes": null,
+      "raw_domain": "field domains",
+      "signedness": "per field",
+      "byte_order": "per field",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [
+        {
+          "name": "circuit_name",
+          "logical_positions": null,
+          "width_bytes": null,
+          "raw_domain": null,
+          "signedness": "Unknown",
+          "byte_order": "Unknown",
+          "conversion": null,
+          "unit": null,
+          "default": null,
+          "finite_mappings": {},
+          "reserved_regions": [],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes",
+          "sentinel": "Unknown"
+        }
+      ],
+      "relative_layout": [
+        "circuit_name"
+      ],
+      "limitations": [
+        "Independent per-circuit values and failures; retain successful values on partial failure",
+        "Bounded aggregate 1..15 is not installed cardinality",
+        "Echoed circuit, string trimming, B524 namespace equivalence and wildcard semantics of zero are Unknown",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50c_op02_negative",
+      "family": "B50C",
+      "variant": "circuit-names",
+      "direction": "read",
+      "service": "B50C",
+      "operation": "OP02",
+      "alternative": "negative",
+      "logical_positions": null,
+      "extent_bytes": null,
+      "raw_domain": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "Independent per-circuit values and failures; retain successful values on partial failure",
+        "Bounded aggregate 1..15 is not installed cardinality",
+        "Echoed circuit, string trimming, B524 namespace equivalence and wildcard semantics of zero are Unknown",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50d_op00_request",
+      "family": "B50D",
+      "variant": "ui-room-action",
+      "direction": "UI-write",
+      "service": "B50D",
+      "operation": "OP00",
+      "alternative": "request",
+      "logical_positions": null,
+      "extent_bytes": 1,
+      "raw_domain": "field domains",
+      "signedness": "per field",
+      "byte_order": "per field",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [
+        {
+          "name": "room_action",
+          "logical_positions": null,
+          "width_bytes": 1,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not applicable",
+          "conversion": {
+            "factor": 1,
+            "offset": 0
+          },
+          "unit": null,
+          "default": 0,
+          "finite_mappings": {
+            "0": "no-action",
+            "1": "switch-on",
+            "2": "thermostat"
+          },
+          "reserved_regions": [
+            {
+              "range": [
+                3,
+                255
+              ],
+              "meaning": "unlabeled; retain raw"
+            }
+          ],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes",
+          "sentinel": "Unknown"
+        }
+      ],
+      "relative_layout": [
+        "room_action"
+      ],
+      "limitations": [
+        "UI-direction write is distinct from remote-control writes and completed UI effects",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50d_op00_positive",
+      "family": "B50D",
+      "variant": "ui-room-action",
+      "direction": "UI-write",
+      "service": "B50D",
+      "operation": "OP00",
+      "alternative": "positive",
+      "logical_positions": null,
+      "extent_bytes": null,
+      "raw_domain": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "UI-direction write is distinct from remote-control writes and completed UI effects",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50d_op00_negative",
+      "family": "B50D",
+      "variant": "ui-room-action",
+      "direction": "UI-write",
+      "service": "B50D",
+      "operation": "OP00",
+      "alternative": "negative",
+      "logical_positions": null,
+      "extent_bytes": null,
+      "raw_domain": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "UI-direction write is distinct from remote-control writes and completed UI effects",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50d_op01_request",
+      "family": "B50D",
+      "variant": "ui-holiday-status",
+      "direction": "UI-write",
+      "service": "B50D",
+      "operation": "OP01",
+      "alternative": "request",
+      "logical_positions": null,
+      "extent_bytes": 1,
+      "raw_domain": "field domains",
+      "signedness": "per field",
+      "byte_order": "per field",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [
+        {
+          "name": "holiday_status",
+          "logical_positions": null,
+          "width_bytes": 1,
+          "raw_domain": [
+            0,
+            255
+          ],
+          "signedness": "unsigned",
+          "byte_order": "not applicable",
+          "conversion": {
+            "factor": 1,
+            "offset": 0
+          },
+          "unit": null,
+          "default": 0,
+          "finite_mappings": {
+            "0": "0",
+            "1": "1"
+          },
+          "reserved_regions": [
+            {
+              "range": [
+                2,
+                255
+              ],
+              "meaning": "unlabeled; retain raw"
+            }
+          ],
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve raw bytes",
+          "sentinel": "Unknown"
+        }
+      ],
+      "relative_layout": [
+        "holiday_status"
+      ],
+      "limitations": [
+        "UI-direction write is distinct from remote-control writes and completed UI effects",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50d_op01_positive",
+      "family": "B50D",
+      "variant": "ui-holiday-status",
+      "direction": "UI-write",
+      "service": "B50D",
+      "operation": "OP01",
+      "alternative": "positive",
+      "logical_positions": null,
+      "extent_bytes": null,
+      "raw_domain": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "UI-direction write is distinct from remote-control writes and completed UI effects",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    },
+    {
+      "id": "ab29_b50d_op01_negative",
+      "family": "B50D",
+      "variant": "ui-holiday-status",
+      "direction": "UI-write",
+      "service": "B50D",
+      "operation": "OP01",
+      "alternative": "negative",
+      "logical_positions": null,
+      "extent_bytes": null,
+      "raw_domain": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": null,
+      "unit": null,
+      "default": null,
+      "finite_mappings": {},
+      "reserved_regions": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve raw bytes and unresolved alternatives",
+      "fields": [],
+      "relative_layout": [],
+      "limitations": [
+        "UI-direction write is distinct from remote-control writes and completed UI effects",
+        "Absolute logical positions including any prefix are Unknown",
+        "Unknown alternative layouts do not assert a qualified response format"
+      ],
+      "physical_qualification": "Unknown"
+    }
+  ]
+}

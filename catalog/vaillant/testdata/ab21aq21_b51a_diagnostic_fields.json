@@ -1,0 +1,550 @@
+[
+  {
+    "id": "ab21aq21_enable_zero",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "operation": 4,
+        "direction": "positive",
+        "view": "enable-bits",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "enable": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "expected": {
+      "enable": {
+        "flags": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab21aq21_range",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "operation": 5,
+        "direction": "positive",
+        "view": "range",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          10
+        ],
+        "display_type": [
+          7
+        ],
+        "value": [
+          52,
+          18
+        ],
+        "minimum": [
+          1,
+          0
+        ],
+        "maximum": [
+          255,
+          255
+        ],
+        "step": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "flags": {
+        "flags": {
+          "disabled": false,
+          "writable": true,
+          "additional-four-byte/no-range": true
+        },
+        "alternatives": [
+          {
+            "label": "additional-four-byte/no-range",
+            "state": "Hypothesis"
+          },
+          {
+            "label": "read-only-overrides-writable",
+            "state": "Hypothesis"
+          }
+        ]
+      },
+      "value": {
+        "number": 4660
+      },
+      "minimum": {
+        "number": 1
+      },
+      "maximum": {
+        "number": 65535
+      },
+      "step": {
+        "number": 0
+      },
+      "display_type": {
+        "number": 7
+      }
+    }
+  },
+  {
+    "id": "ab21aq21_disabled",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "operation": 5,
+        "direction": "positive",
+        "view": "range",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          1
+        ],
+        "display_type": [
+          7
+        ],
+        "value": [
+          52,
+          18
+        ],
+        "minimum": [
+          1,
+          0
+        ],
+        "maximum": [
+          255,
+          255
+        ],
+        "step": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "display_type": {
+        "state": "Unknown"
+      },
+      "value": {
+        "state": "Unknown"
+      },
+      "minimum": {
+        "state": "Unknown"
+      },
+      "maximum": {
+        "state": "Unknown"
+      },
+      "step": {
+        "state": "Unknown"
+      }
+    }
+  },
+  {
+    "id": "ab21aq21_enum",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "operation": 5,
+        "direction": "positive",
+        "view": "enum",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          4
+        ],
+        "alternatives": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4
+        ]
+      }
+    },
+    "expected": {
+      "alternatives": {
+        "alternatives": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab21aq21_four",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "operation": 5,
+        "direction": "positive",
+        "view": "four-byte",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          8
+        ],
+        "value": [
+          120,
+          86,
+          52,
+          18
+        ],
+        "reserved": [
+          0,
+          1,
+          255
+        ]
+      }
+    },
+    "expected": {
+      "value": {
+        "number": 305419896
+      },
+      "reserved": {
+        "reserved": [
+          0,
+          1,
+          255
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab21aq21_save_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "operation": 6,
+        "direction": "positive",
+        "view": "save",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          0
+        ],
+        "mirror": [
+          52,
+          18
+        ],
+        "symbol": [
+          1,
+          0
+        ],
+        "value": [
+          52,
+          18
+        ]
+      },
+      "arguments": {
+        "value_width": 2
+      }
+    },
+    "expected": {
+      "status": {
+        "label": "value-not-saved"
+      },
+      "mirror": {
+        "number": 4660
+      },
+      "symbol": {
+        "number": 1
+      },
+      "value": {
+        "number": 4660,
+        "alternatives": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab21aq21_save_1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "operation": 6,
+        "direction": "positive",
+        "view": "save",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          1
+        ],
+        "mirror": [
+          52,
+          18
+        ],
+        "symbol": [
+          1,
+          0
+        ],
+        "value": [
+          52,
+          18
+        ]
+      },
+      "arguments": {
+        "value_width": 2
+      }
+    },
+    "expected": {
+      "status": {
+        "label": "point-not-found"
+      },
+      "mirror": {
+        "number": 4660
+      },
+      "symbol": {
+        "number": 1
+      },
+      "value": {
+        "number": 4660,
+        "alternatives": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab21aq21_save_5",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "operation": 6,
+        "direction": "positive",
+        "view": "save",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          5
+        ],
+        "mirror": [
+          52,
+          18
+        ],
+        "symbol": [
+          1,
+          0
+        ],
+        "value": [
+          52,
+          18
+        ]
+      },
+      "arguments": {
+        "value_width": 2
+      }
+    },
+    "expected": {
+      "status": {
+        "label": "unmapped"
+      },
+      "mirror": {
+        "number": 4660
+      },
+      "symbol": {
+        "number": 1
+      },
+      "value": {
+        "number": 4660,
+        "alternatives": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab21aq21_save_width_one",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 26,
+        "operation": 6,
+        "direction": "positive",
+        "view": "save",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          2
+        ],
+        "mirror": [
+          0,
+          0
+        ],
+        "symbol": [
+          255,
+          255
+        ],
+        "value": [
+          52
+        ]
+      },
+      "arguments": {
+        "value_width": 1
+      }
+    },
+    "expected": {
+      "value": {
+        "number": 52,
+        "alternatives": [
+          1,
+          2
+        ]
+      },
+      "status": {
+        "label": "write-protected"
+      }
+    }
+  }
+]

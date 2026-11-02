@@ -38,6 +38,8 @@ ebus_standard_catalog func (IdentityKey) IsComplete() bool
 ebus_standard_catalog func (IdentityKey) PBValue() uint8
 ebus_standard_catalog func (IdentityKey) SBValue() uint8
 ebus_standard_catalog func (Service) PBValue() uint8
+ebus_standard_catalog func Ab28Entries() (ab28json.RawMessage, error)
+ebus_standard_catalog func Ab28Lookup(ab28Key Ab28Key) (ab28json.RawMessage, bool, error)
 ebus_standard_catalog func Ab79Candidates() Ab79Catalog
 ebus_standard_catalog func Ab79Lookup(ab79Key Ab79Key) (Ab79Entry, bool)
 ebus_standard_catalog func CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord
@@ -47,6 +49,7 @@ ebus_standard_catalog func LoadCatalog(data []byte) (Catalog, error)
 ebus_standard_catalog func MustEmbeddedCatalog() Catalog
 ebus_standard_catalog func NewProvider(cat Catalog, enabled bool) (*Provider, error)
 ebus_standard_catalog func NewProviderFromEnv(cat Catalog) (*Provider, error)
+ebus_standard_catalog type Ab28Key struct { Ab28Family string `json:"family"` Ab28Variant string `json:"variant"` Ab28Primary uint8 `json:"primary"` Ab28Secondary *uint8 `json:"secondary"` Ab28Operation *uint8 `json:"operation"` Ab28Direction string `json:"direction"` Ab28Field string `json:"field"` Ab28Alternative string `json:"alternative"` Ab28Group *uint8 `json:"group"` Ab28InstanceScope string `json:"instance_scope"` Ab28Register *uint16 `json:"register"` }
 ebus_standard_catalog type Ab79Catalog struct { Ab79PresenceGrade string `json:"presence_grade"` Ab79Scope string `json:"scope"` Ab79NativeContract string `json:"native_contract"` Ab79UnknownGrade string `json:"unknown_grade"` Ab79Unknowns []string `json:"unknowns"` Ab79Entries []Ab79Entry `json:"entries"` }
 ebus_standard_catalog type Ab79Entry struct { Ab79Key Ab79Key `json:"key"` Ab79Grade string `json:"grade"` Ab79AbstractOffset *int `json:"abstract_offset"` Ab79PhysicalOffset *int `json:"physical_offset"` Ab79Width *int `json:"width"` Ab79Encoding *string `json:"encoding"` Ab79Default *int `json:"default"` Ab79Minimum *int `json:"minimum"` Ab79Maximum *int `json:"maximum"` Ab79AlternativeMaximum *int `json:"alternative_maximum"` Ab79Unit *string `json:"unit"` Ab79Enum []string `json:"enum"` Ab79Notes []string `json:"notes"` }
 ebus_standard_catalog type Ab79Key struct { Ab79Family string `json:"family"` Ab79Variant string `json:"variant"` Ab79Primary *uint8 `json:"primary"` Ab79Secondary *uint8 `json:"secondary"` Ab79Operation *uint8 `json:"operation"` Ab79Direction string `json:"direction"` Ab79Field string `json:"field"` }

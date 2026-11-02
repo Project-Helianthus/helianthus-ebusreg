@@ -67,7 +67,12 @@ func ab17aq17Byte(ab17aq17Raw json.RawMessage) (int, error) {
 	return ab17aq17Number, nil
 }
 
-func ab17aq17Evaluate(ab17aq17InputRaw json.RawMessage) (json.RawMessage, error) {
+// Ab17Aq17Evaluate is the pure explicit-input evaluator for standard FF04 and
+// FF06 body extents. It reports the declared and available body lengths
+// independently, preserves every raw field and the opaque context, and grades
+// only the extent arithmetic (calculation Proven); body semantics and physical
+// support stay Unknown and the result is never qualified.
+func Ab17Aq17Evaluate(ab17aq17InputRaw json.RawMessage) (json.RawMessage, error) {
 	ab17aq17Decoder := json.NewDecoder(bytes.NewReader(ab17aq17InputRaw))
 	ab17aq17Decoder.UseNumber()
 	if ab17aq17Err := ab17aq17Value(ab17aq17Decoder); ab17aq17Err != nil {

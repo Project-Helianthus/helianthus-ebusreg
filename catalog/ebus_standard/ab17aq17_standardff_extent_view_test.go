@@ -14,7 +14,7 @@ func ab17aq17Run(ab17aq17T *testing.T, ab17aq17Input any) map[string]any {
 	if ab17aq17Err != nil {
 		ab17aq17T.Fatal(ab17aq17Err)
 	}
-	ab17aq17Output, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw)
+	ab17aq17Output, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw)
 	if ab17aq17Err != nil {
 		ab17aq17T.Fatal(ab17aq17Err)
 	}
@@ -117,7 +117,7 @@ func TestAb17Aq17Identity(ab17aq17T *testing.T) {
 
 func TestAb17Aq17Invalid(ab17aq17T *testing.T) {
 	for _, ab17aq17Raw := range []string{``, `{`, `[]`, `null`, `{} {}`, `{"x":{"a":1,"a":2}}`, `{"x":[{"a":1,"\u0061":2}]}`, `{"x":NaN}`} {
-		if ab17aq17Out, ab17aq17Err := ab17aq17Evaluate(json.RawMessage(ab17aq17Raw)); ab17aq17Err == nil || ab17aq17Out != nil {
+		if ab17aq17Out, ab17aq17Err := Ab17Aq17Evaluate(json.RawMessage(ab17aq17Raw)); ab17aq17Err == nil || ab17aq17Out != nil {
 			ab17aq17T.Fatal("accepted malformed", ab17aq17Raw)
 		}
 	}
@@ -140,14 +140,14 @@ func TestAb17Aq17Invalid(ab17aq17T *testing.T) {
 				ab17aq17Input[ab17aq17Key] = ab17aq17Bad
 			}
 			ab17aq17Raw, _ := json.Marshal(ab17aq17Input)
-			if ab17aq17Out, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil || ab17aq17Out != nil {
+			if ab17aq17Out, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil || ab17aq17Out != nil {
 				ab17aq17T.Fatal("accepted wrong kind", ab17aq17Key, ab17aq17Bad)
 			}
 		}
 	}
 	for _, ab17aq17Raw := range []string{`null`, `true`, `{}`, `""`} {
 		ab17aq17Raw = []string{`{"context":{"primary":255,"secondary":4,"direction":"positive","view":"body-extent"},"fields":{"body":` + ab17aq17Raw + `},"arguments":{"declared_length":2}}`}[0]
-		if ab17aq17Out, ab17aq17Err := ab17aq17Evaluate([]byte(ab17aq17Raw)); ab17aq17Err == nil || ab17aq17Out != nil {
+		if ab17aq17Out, ab17aq17Err := Ab17Aq17Evaluate([]byte(ab17aq17Raw)); ab17aq17Err == nil || ab17aq17Out != nil {
 			ab17aq17T.Fatal("nonarray body")
 		}
 	}
@@ -159,7 +159,7 @@ func TestAb17Aq17Invalid(ab17aq17T *testing.T) {
 			delete(ab17aq17Input["arguments"].(map[string]any), ab17aq17Key)
 		}
 		ab17aq17Raw, _ := json.Marshal(ab17aq17Input)
-		if _, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil {
+		if _, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil {
 			ab17aq17T.Fatal("missing argument")
 		}
 	}
@@ -193,7 +193,7 @@ func TestAb17Aq17PresenceAndMemory(ab17aq17T *testing.T) {
 	}
 	ab17aq17Raw, _ := json.Marshal(ab17aq17Base())
 	ab17aq17Original := append([]byte(nil), ab17aq17Raw...)
-	ab17aq17First, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw)
+	ab17aq17First, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw)
 	if ab17aq17Err != nil {
 		ab17aq17T.Fatal(ab17aq17Err)
 	}
@@ -207,7 +207,7 @@ func TestAb17Aq17PresenceAndMemory(ab17aq17T *testing.T) {
 	for ab17aq17Index := range ab17aq17First {
 		ab17aq17First[ab17aq17Index] = ' '
 	}
-	ab17aq17Next, ab17aq17Err := ab17aq17Evaluate(ab17aq17Original)
+	ab17aq17Next, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Original)
 	if ab17aq17Err != nil || string(ab17aq17Next) != ab17aq17Saved {
 		ab17aq17T.Fatal("cross call mutation")
 	}
@@ -244,7 +244,7 @@ func TestAb17Aq17AdditionalBoundaries(ab17aq17T *testing.T) {
 	}
 	ab17aq17Input["arguments"].(map[string]any)["extra"] = 0
 	ab17aq17Raw, _ := json.Marshal(ab17aq17Input)
-	if _, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil {
+	if _, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil {
 		ab17aq17T.Fatal("extra typed argument admitted")
 	}
 	for _, ab17aq17Body := range [][]int{nil, {}} {
@@ -262,6 +262,79 @@ func TestAb17Aq17AdditionalBoundaries(ab17aq17T *testing.T) {
 	}
 }
 
+// TestAb17Aq17EvaluateExportedContract drives the exported entry point with
+// literal JSON and compares the whole decoded result (or the error) with
+// independently written expectations, so a change to the extent arithmetic,
+// the identity gate, raw preservation or input rejection fails here.
+func TestAb17Aq17EvaluateExportedContract(ab17aq17T *testing.T) {
+	ab17aq17Cases := []struct {
+		ab17aq17Name  string
+		ab17aq17Input string
+		ab17aq17Want  string
+		ab17aq17Err   string
+	}{
+		{
+			ab17aq17Name:  "ff06-declared5-available3",
+			ab17aq17Input: `{"context":{"primary":255,"secondary":6,"direction":"positive","view":"body-extent"},"fields":{"body":[1,2,3]},"arguments":{"declared_length":5}}`,
+			ab17aq17Want:  `{"context":{"primary":255,"secondary":6,"direction":"positive","view":"body-extent"},"fields":{"body":[1,2,3]},"arguments":{"declared_length":5},"state":"partial","physical":"Unknown","qualified":false,"results":{"body":{"state":"Unknown","calculation":"Proven","declared_length":5,"raw":[1,2,3],"available_length":3,"declared_pair_count":2,"available_pair_count":1,"flags":{"declared_incomplete_tail":false,"whole_declared_span":false}}}}`,
+		},
+		{
+			ab17aq17Name:  "ff06-declared4-available6",
+			ab17aq17Input: `{"context":{"primary":255,"secondary":6,"direction":"positive","view":"body-extent"},"fields":{"body":[1,2,3,4,5,6]},"arguments":{"declared_length":4}}`,
+			ab17aq17Want:  `{"context":{"primary":255,"secondary":6,"direction":"positive","view":"body-extent"},"fields":{"body":[1,2,3,4,5,6]},"arguments":{"declared_length":4},"state":"partial","physical":"Unknown","qualified":false,"results":{"body":{"state":"Unknown","calculation":"Proven","declared_length":4,"raw":[1,2,3,4,5,6],"available_length":6,"declared_pair_count":1,"available_pair_count":1,"flags":{"declared_incomplete_tail":true,"whole_declared_span":false}}}}`,
+		},
+		{
+			ab17aq17Name:  "ff04-declared10-available10",
+			ab17aq17Input: `{"context":{"primary":255,"secondary":4,"direction":"positive","view":"body-extent"},"fields":{"body":[0,1,2,3,4,5,6,7,8,9]},"arguments":{"declared_length":10}}`,
+			ab17aq17Want:  `{"context":{"primary":255,"secondary":4,"direction":"positive","view":"body-extent"},"fields":{"body":[0,1,2,3,4,5,6,7,8,9]},"arguments":{"declared_length":10},"state":"complete","physical":"Unknown","qualified":false,"results":{"body":{"state":"Unknown","calculation":"Proven","declared_length":10,"raw":[0,1,2,3,4,5,6,7,8,9],"available_length":10,"flags":{"declared_minimum_satisfied":true,"initialized_minimum_satisfied":true,"bounded_minimum":true}}}}`,
+		},
+		{
+			ab17aq17Name:  "ff04-declared1-available1",
+			ab17aq17Input: `{"context":{"primary":255,"secondary":4,"direction":"positive","view":"body-extent"},"fields":{"body":[7]},"arguments":{"declared_length":1}}`,
+			ab17aq17Want:  `{"context":{"primary":255,"secondary":4,"direction":"positive","view":"body-extent"},"fields":{"body":[7]},"arguments":{"declared_length":1},"state":"partial","physical":"Unknown","qualified":false,"results":{"body":{"state":"Unknown","calculation":"Proven","declared_length":1,"raw":[7],"available_length":1,"flags":{"declared_minimum_satisfied":false,"initialized_minimum_satisfied":false,"bounded_minimum":false}}}}`,
+		},
+		{
+			ab17aq17Name:  "zero-operation-stays-raw-only",
+			ab17aq17Input: `{"context":{"primary":255,"secondary":4,"operation":0,"direction":"positive","view":"body-extent"},"fields":{"body":[0,1]},"arguments":{"declared_length":2}}`,
+			ab17aq17Want:  `{"context":{"primary":255,"secondary":4,"operation":0,"direction":"positive","view":"body-extent"},"fields":{"body":[0,1]},"arguments":{"declared_length":2},"state":"Unknown","physical":"Unknown","qualified":false,"results":{"body":{"raw":[0,1],"state":"Unknown"}}}`,
+		},
+		{
+			ab17aq17Name:  "trailing-json",
+			ab17aq17Input: `{"context":{"primary":255,"secondary":6,"direction":"positive","view":"body-extent"},"fields":{"body":[1,2,3]},"arguments":{"declared_length":5}} {}`,
+			ab17aq17Err:   "trailing JSON",
+		},
+		{
+			ab17aq17Name:  "declared-length-outside-byte",
+			ab17aq17Input: `{"context":{"primary":255,"secondary":6,"direction":"positive","view":"body-extent"},"fields":{"body":[1,2,3]},"arguments":{"declared_length":256}}`,
+			ab17aq17Err:   "integer outside byte range",
+		},
+	}
+	for _, ab17aq17Case := range ab17aq17Cases {
+		ab17aq17T.Run(ab17aq17Case.ab17aq17Name, func(ab17aq17T *testing.T) {
+			ab17aq17Out, ab17aq17Err := Ab17Aq17Evaluate(json.RawMessage(ab17aq17Case.ab17aq17Input))
+			if ab17aq17Case.ab17aq17Err != "" {
+				if ab17aq17Err == nil || !strings.Contains(ab17aq17Err.Error(), ab17aq17Case.ab17aq17Err) || ab17aq17Out != nil {
+					ab17aq17T.Fatalf("got output %s error %v, want nil output and error containing %q", ab17aq17Out, ab17aq17Err, ab17aq17Case.ab17aq17Err)
+				}
+				return
+			}
+			if ab17aq17Err != nil {
+				ab17aq17T.Fatalf("unexpected error: %v", ab17aq17Err)
+			}
+			var ab17aq17Got, ab17aq17Want any
+			if ab17aq17Err := json.Unmarshal(ab17aq17Out, &ab17aq17Got); ab17aq17Err != nil {
+				ab17aq17T.Fatal(ab17aq17Err)
+			}
+			if ab17aq17Err := json.Unmarshal([]byte(ab17aq17Case.ab17aq17Want), &ab17aq17Want); ab17aq17Err != nil {
+				ab17aq17T.Fatal(ab17aq17Err)
+			}
+			if !reflect.DeepEqual(ab17aq17Got, ab17aq17Want) {
+				ab17aq17T.Fatalf("got %s\nwant %s", ab17aq17Out, ab17aq17Case.ab17aq17Want)
+			}
+		})
+	}
+}
+
 func TestAb17Aq17OutputKeyCollision(ab17aq17T *testing.T) {
 	for _, ab17aq17Key := range []string{"state", "results", "physical", "qualified"} {
 		ab17aq17Input := ab17aq17Base()
@@ -270,7 +343,7 @@ func TestAb17Aq17OutputKeyCollision(ab17aq17T *testing.T) {
 		if ab17aq17Err != nil {
 			ab17aq17T.Fatal(ab17aq17Err)
 		}
-		if ab17aq17Out, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil || ab17aq17Out != nil {
+		if ab17aq17Out, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil || ab17aq17Out != nil {
 			ab17aq17T.Fatal("accepted colliding key", ab17aq17Key)
 		}
 	}

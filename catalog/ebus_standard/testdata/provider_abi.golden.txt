@@ -53,6 +53,8 @@ ebus_standard_catalog func Ab17Aq17Evaluate(ab17aq17InputRaw json.RawMessage) (j
 ebus_standard_catalog func Ab28Entries() (ab28json.RawMessage, error)
 ebus_standard_catalog func Ab28Lookup(ab28Key Ab28Key) (ab28json.RawMessage, bool, error)
 ebus_standard_catalog func Ab49FEMetadata() []byte
+ebus_standard_catalog func Ab54Entries() (ab54json.RawMessage, error)
+ebus_standard_catalog func Ab54Lookup(ab54Key Ab54Key) (ab54json.RawMessage, bool, error)
 ebus_standard_catalog func Ab76Interpret(ab76Selection Ab76Selection, ab76Body []byte) Ab76View
 ebus_standard_catalog func Ab78Interpret(ab78Key Ab78Key, ab78Body []byte) Ab78View
 ebus_standard_catalog func Ab79Candidates() Ab79Catalog
@@ -70,6 +72,7 @@ ebus_standard_catalog func MustEmbeddedCatalog() Catalog
 ebus_standard_catalog func NewProvider(cat Catalog, enabled bool) (*Provider, error)
 ebus_standard_catalog func NewProviderFromEnv(cat Catalog) (*Provider, error)
 ebus_standard_catalog type Ab28Key struct { Ab28Family string `json:"family"` Ab28Variant string `json:"variant"` Ab28Primary uint8 `json:"primary"` Ab28Secondary *uint8 `json:"secondary"` Ab28Operation *uint8 `json:"operation"` Ab28Direction string `json:"direction"` Ab28Field string `json:"field"` Ab28Alternative string `json:"alternative"` Ab28Group *uint8 `json:"group"` Ab28InstanceScope string `json:"instance_scope"` Ab28Register *uint16 `json:"register"` }
+ebus_standard_catalog type Ab54Key struct { Ab54Family string `json:"family"` Ab54Variant string `json:"variant"` Ab54Primary uint8 `json:"primary"` Ab54Secondary *uint8 `json:"secondary"` Ab54Operation *uint8 `json:"operation"` Ab54Direction string `json:"direction"` Ab54Field string `json:"field"` Ab54Alternative string `json:"alternative"` Ab54Group *uint16 `json:"group"` Ab54InstanceScope string `json:"instance_scope"` Ab54Register *uint16 `json:"register"` }
 ebus_standard_catalog type Ab76Component struct { Ab76Name string Ab76State Ab76State Ab76Raw *uint8 Ab76Value *uint8 Ab76Width int Ab76Maximum uint8 Ab76Default *uint8 Ab76Encoding Ab76Encoding }
 ebus_standard_catalog type Ab76Encoding string
 ebus_standard_catalog type Ab76Selection struct { Ab76Family string Ab76Variant string Ab76Function *uint8 Ab76Operation *uint8 Ab76Direction string Ab76Selector string Ab76Encoding Ab76Encoding }

@@ -14,7 +14,7 @@ func ab17aq17Run(ab17aq17T *testing.T, ab17aq17Input any) map[string]any {
 	if ab17aq17Err != nil {
 		ab17aq17T.Fatal(ab17aq17Err)
 	}
-	ab17aq17Output, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw)
+	ab17aq17Output, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw)
 	if ab17aq17Err != nil {
 		ab17aq17T.Fatal(ab17aq17Err)
 	}
@@ -117,7 +117,7 @@ func TestAb17Aq17Identity(ab17aq17T *testing.T) {
 
 func TestAb17Aq17Invalid(ab17aq17T *testing.T) {
 	for _, ab17aq17Raw := range []string{``, `{`, `[]`, `null`, `{} {}`, `{"x":{"a":1,"a":2}}`, `{"x":[{"a":1,"\u0061":2}]}`, `{"x":NaN}`} {
-		if ab17aq17Out, ab17aq17Err := Ab17Aq17Evaluate(json.RawMessage(ab17aq17Raw)); ab17aq17Err == nil || ab17aq17Out != nil {
+		if ab17aq17Out, ab17aq17Err := ab17aq17Evaluate(json.RawMessage(ab17aq17Raw)); ab17aq17Err == nil || ab17aq17Out != nil {
 			ab17aq17T.Fatal("accepted malformed", ab17aq17Raw)
 		}
 	}
@@ -140,14 +140,14 @@ func TestAb17Aq17Invalid(ab17aq17T *testing.T) {
 				ab17aq17Input[ab17aq17Key] = ab17aq17Bad
 			}
 			ab17aq17Raw, _ := json.Marshal(ab17aq17Input)
-			if ab17aq17Out, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil || ab17aq17Out != nil {
+			if ab17aq17Out, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil || ab17aq17Out != nil {
 				ab17aq17T.Fatal("accepted wrong kind", ab17aq17Key, ab17aq17Bad)
 			}
 		}
 	}
 	for _, ab17aq17Raw := range []string{`null`, `true`, `{}`, `""`} {
 		ab17aq17Raw = []string{`{"context":{"primary":255,"secondary":4,"direction":"positive","view":"body-extent"},"fields":{"body":` + ab17aq17Raw + `},"arguments":{"declared_length":2}}`}[0]
-		if ab17aq17Out, ab17aq17Err := Ab17Aq17Evaluate([]byte(ab17aq17Raw)); ab17aq17Err == nil || ab17aq17Out != nil {
+		if ab17aq17Out, ab17aq17Err := ab17aq17Evaluate([]byte(ab17aq17Raw)); ab17aq17Err == nil || ab17aq17Out != nil {
 			ab17aq17T.Fatal("nonarray body")
 		}
 	}
@@ -159,7 +159,7 @@ func TestAb17Aq17Invalid(ab17aq17T *testing.T) {
 			delete(ab17aq17Input["arguments"].(map[string]any), ab17aq17Key)
 		}
 		ab17aq17Raw, _ := json.Marshal(ab17aq17Input)
-		if _, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil {
+		if _, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil {
 			ab17aq17T.Fatal("missing argument")
 		}
 	}
@@ -193,7 +193,7 @@ func TestAb17Aq17PresenceAndMemory(ab17aq17T *testing.T) {
 	}
 	ab17aq17Raw, _ := json.Marshal(ab17aq17Base())
 	ab17aq17Original := append([]byte(nil), ab17aq17Raw...)
-	ab17aq17First, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw)
+	ab17aq17First, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw)
 	if ab17aq17Err != nil {
 		ab17aq17T.Fatal(ab17aq17Err)
 	}
@@ -207,7 +207,7 @@ func TestAb17Aq17PresenceAndMemory(ab17aq17T *testing.T) {
 	for ab17aq17Index := range ab17aq17First {
 		ab17aq17First[ab17aq17Index] = ' '
 	}
-	ab17aq17Next, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Original)
+	ab17aq17Next, ab17aq17Err := ab17aq17Evaluate(ab17aq17Original)
 	if ab17aq17Err != nil || string(ab17aq17Next) != ab17aq17Saved {
 		ab17aq17T.Fatal("cross call mutation")
 	}
@@ -244,7 +244,7 @@ func TestAb17Aq17AdditionalBoundaries(ab17aq17T *testing.T) {
 	}
 	ab17aq17Input["arguments"].(map[string]any)["extra"] = 0
 	ab17aq17Raw, _ := json.Marshal(ab17aq17Input)
-	if _, ab17aq17Err := Ab17Aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil {
+	if _, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil {
 		ab17aq17T.Fatal("extra typed argument admitted")
 	}
 	for _, ab17aq17Body := range [][]int{nil, {}} {
@@ -258,6 +258,20 @@ func TestAb17Aq17AdditionalBoundaries(ab17aq17T *testing.T) {
 		ab17aq17Result := ab17aq17Run(ab17aq17T, ab17aq17Input)["results"].(map[string]any)["body"].(map[string]any)
 		if _, ab17aq17OK := ab17aq17Result["available_pair_count"]; ab17aq17OK {
 			ab17aq17T.Fatal("empty or absent data invented pair count")
+		}
+	}
+}
+
+func TestAb17Aq17OutputKeyCollision(ab17aq17T *testing.T) {
+	for _, ab17aq17Key := range []string{"state", "results", "physical", "qualified"} {
+		ab17aq17Input := ab17aq17Base()
+		ab17aq17Input[ab17aq17Key] = 7
+		ab17aq17Raw, ab17aq17Err := json.Marshal(ab17aq17Input)
+		if ab17aq17Err != nil {
+			ab17aq17T.Fatal(ab17aq17Err)
+		}
+		if ab17aq17Out, ab17aq17Err := ab17aq17Evaluate(ab17aq17Raw); ab17aq17Err == nil || ab17aq17Out != nil {
+			ab17aq17T.Fatal("accepted colliding key", ab17aq17Key)
 		}
 	}
 }

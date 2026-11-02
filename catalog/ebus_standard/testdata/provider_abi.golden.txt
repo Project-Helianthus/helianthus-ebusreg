@@ -38,7 +38,6 @@ ebus_standard_catalog func (IdentityKey) IsComplete() bool
 ebus_standard_catalog func (IdentityKey) PBValue() uint8
 ebus_standard_catalog func (IdentityKey) SBValue() uint8
 ebus_standard_catalog func (Service) PBValue() uint8
-ebus_standard_catalog func Ab17Aq17Evaluate(ab17aq17InputRaw json.RawMessage) (json.RawMessage, error)
 ebus_standard_catalog func Ab79Candidates() Ab79Catalog
 ebus_standard_catalog func Ab79Lookup(ab79Key Ab79Key) (Ab79Entry, bool)
 ebus_standard_catalog func CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord

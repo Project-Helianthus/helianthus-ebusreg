@@ -67,7 +67,7 @@ func ab17aq17Byte(ab17aq17Raw json.RawMessage) (int, error) {
 	return ab17aq17Number, nil
 }
 
-func Ab17Aq17Evaluate(ab17aq17InputRaw json.RawMessage) (json.RawMessage, error) {
+func ab17aq17Evaluate(ab17aq17InputRaw json.RawMessage) (json.RawMessage, error) {
 	ab17aq17Decoder := json.NewDecoder(bytes.NewReader(ab17aq17InputRaw))
 	ab17aq17Decoder.UseNumber()
 	if ab17aq17Err := ab17aq17Value(ab17aq17Decoder); ab17aq17Err != nil {
@@ -139,6 +139,11 @@ func Ab17Aq17Evaluate(ab17aq17InputRaw json.RawMessage) (json.RawMessage, error)
 		ab17aq17Declared, ab17aq17Err = ab17aq17Byte(ab17aq17Raw)
 		if ab17aq17Err != nil {
 			return nil, ab17aq17Err
+		}
+	}
+	for _, ab17aq17Key := range []string{"state", "results", "physical", "qualified"} {
+		if _, ab17aq17OK := ab17aq17Input[ab17aq17Key]; ab17aq17OK {
+			return nil, fmt.Errorf("input key collides with output key %q", ab17aq17Key)
 		}
 	}
 	ab17aq17Output := map[string]any{}

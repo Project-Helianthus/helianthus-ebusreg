@@ -76,6 +76,11 @@ func Ab07Aq07Evaluate(ab07aq07Input ab07aq07json.RawMessage) (ab07aq07json.RawMe
 	if !ab07aq07OK {
 		return nil, ab07aq07fmt.Errorf("input object required")
 	}
+	for _, ab07aq07Reserved := range []string{"results", "state", "physical", "qualified"} {
+		if _, ab07aq07Present := ab07aq07Output[ab07aq07Reserved]; ab07aq07Present {
+			return nil, ab07aq07fmt.Errorf("input key %s is reserved for output", ab07aq07Reserved)
+		}
+	}
 	ab07aq07Context, ab07aq07OK := ab07aq07Output["context"].(map[string]any)
 	if !ab07aq07OK {
 		return nil, ab07aq07fmt.Errorf("context object required")

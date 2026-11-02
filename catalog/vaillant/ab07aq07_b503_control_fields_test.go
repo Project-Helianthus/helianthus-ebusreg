@@ -286,3 +286,12 @@ func TestAb07Aq07KindsAndPreservation(ab07aq07T *ab07aq07testing.T) {
 		ab07aq07T.Fatal("unsupported context evaluated")
 	}
 }
+
+func TestAb07Aq07RejectReservedOutputKeys(ab07aq07T *ab07aq07testing.T) {
+	for _, ab07aq07Key := range []string{"results", "state", "physical", "qualified"} {
+		ab07aq07Input := `{"context":{},"fields":{},"` + ab07aq07Key + `":{"opaque":1}}`
+		if ab07aq07Result, ab07aq07Error := Ab07Aq07Evaluate([]byte(ab07aq07Input)); ab07aq07Error == nil || ab07aq07Result != nil {
+			ab07aq07T.Fatalf("reserved key %s accepted", ab07aq07Key)
+		}
+	}
+}

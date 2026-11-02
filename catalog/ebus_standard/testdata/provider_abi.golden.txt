@@ -38,6 +38,8 @@ ebus_standard_catalog func (IdentityKey) IsComplete() bool
 ebus_standard_catalog func (IdentityKey) PBValue() uint8
 ebus_standard_catalog func (IdentityKey) SBValue() uint8
 ebus_standard_catalog func (Service) PBValue() uint8
+ebus_standard_catalog func Ab84BurnerMetadata() Ab84BurnerBodies
+ebus_standard_catalog func Ab84LookupBurnerField(ab84Key Ab84Key) (Ab84BurnerField, bool)
 ebus_standard_catalog func CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord
 ebus_standard_catalog func ComputeContentSHA256(data []byte) string
 ebus_standard_catalog func EmbeddedYAML() []byte
@@ -45,6 +47,11 @@ ebus_standard_catalog func LoadCatalog(data []byte) (Catalog, error)
 ebus_standard_catalog func MustEmbeddedCatalog() Catalog
 ebus_standard_catalog func NewProvider(cat Catalog, enabled bool) (*Provider, error)
 ebus_standard_catalog func NewProviderFromEnv(cat Catalog) (*Provider, error)
+ebus_standard_catalog type Ab84Axis struct { Ab84Present bool `json:"present"` Ab84Value uint16 `json:"value"` }
+ebus_standard_catalog type Ab84Bounds struct { Ab84Min int `json:"min"` Ab84Max int `json:"max"` }
+ebus_standard_catalog type Ab84BurnerBodies struct { Ab84RepresentationGrade string `json:"representation_grade"` Ab84Complete bool `json:"complete"` Ab84Coordinates string `json:"coordinates"` Ab84NativeSupport string `json:"native_support"` Ab84Qualification string `json:"qualification"` Ab84Freshness string `json:"freshness"` Ab84Persistence string `json:"persistence"` Ab84ExecutionPermission string `json:"execution_permission"` Ab84Fields []Ab84BurnerField `json:"fields"` }
+ebus_standard_catalog type Ab84BurnerField struct { Ab84Key Ab84Key `json:"key"` Ab84LogicalPosition *int `json:"logical_position"` Ab84WidthBits *int `json:"width_bits"` Ab84Signedness string `json:"signedness"` Ab84ByteOrder string `json:"byte_order"` Ab84Conversion string `json:"conversion"` Ab84Unit string `json:"unit"` Ab84Default *int `json:"default"` Ab84Bounds *Ab84Bounds `json:"bounds"` Ab84Enumeration map[int]string `json:"enumeration"` Ab84Replacement []int `json:"replacement"` Ab84Reserved []int `json:"reserved"` Ab84Constant *int `json:"constant"` Ab84Grade string `json:"grade"` Ab84RawFallback string `json:"raw_fallback"` }
+ebus_standard_catalog type Ab84Key struct { Ab84Family string `json:"family"` Ab84Variant string `json:"variant"` Ab84Primary Ab84Axis `json:"primary"` Ab84Secondary Ab84Axis `json:"secondary"` Ab84Operation Ab84Axis `json:"operation"` Ab84Direction string `json:"direction"` Ab84Field string `json:"field"` Ab84Opcode Ab84Axis `json:"opcode"` Ab84Group Ab84Axis `json:"group"` Ab84Instance Ab84Axis `json:"instance"` Ab84Register Ab84Axis `json:"register"` }
 ebus_standard_catalog type AnswerPolicy string
 ebus_standard_catalog type BroadcastOrAddressed string
 ebus_standard_catalog type CallerContext int

@@ -61,14 +61,21 @@ func TestAb05Ao05Capacity(ab05ao05T *ab05ao05testing.T) {
 		ab05ao05T.Run(ab05ao05fmt.Sprint(ab05ao05Byte), func(ab05ao05T *ab05ao05testing.T) {
 			ab05ao05Result := ab05ao05Run(ab05ao05T, ab05ao05Input(6, "capacity", map[string]any{"capacity": []int{ab05ao05Byte}, "cost": []int{1, 2}, "tail": []int{99}}))
 			ab05ao05Field := ab05ao05Result["fields"].(map[string]any)["capacity"].(map[string]any)
-			if ab05ao05Field["number"] != []float64{0, 0.1, 25, 25.1, 25.5}[ab05ao05Index] || ab05ao05Field["calculation"] != "Proven" || ab05ao05Field["grade"] != "Hypothesis" || ab05ao05Field["candidate_domain"] != (ab05ao05Byte <= 250) {
+			ab05ao05Number, ab05ao05HasNumber := ab05ao05Field["number"]
+			if ab05ao05Byte <= 250 && (!ab05ao05HasNumber || ab05ao05Number != []float64{0, 0.1, 25}[ab05ao05Index] || ab05ao05Field["calculation"] != "Proven") {
 				ab05ao05T.Fatalf("capacity: %#v", ab05ao05Field)
 			}
-			ab05ao05State := "Hypothesis"
-			if ab05ao05Byte > 250 {
-				ab05ao05State = "outside-candidate-domain"
+			if ab05ao05Byte > 250 && (ab05ao05HasNumber || ab05ao05Field["calculation"] != nil) {
+				ab05ao05T.Fatalf("capacity outside domain published a quantity: %#v", ab05ao05Field)
 			}
-			if ab05ao05Field["state"] != ab05ao05State || ab05ao05Result["state"] != "Hypothesis" {
+			if ab05ao05Field["grade"] != "Hypothesis" || ab05ao05Field["candidate_domain"] != (ab05ao05Byte <= 250) {
+				ab05ao05T.Fatalf("capacity: %#v", ab05ao05Field)
+			}
+			ab05ao05State, ab05ao05Aggregate := "Hypothesis", "Hypothesis"
+			if ab05ao05Byte > 250 {
+				ab05ao05State, ab05ao05Aggregate = "outside-candidate-domain", "partial"
+			}
+			if ab05ao05Field["state"] != ab05ao05State || ab05ao05Result["state"] != ab05ao05Aggregate {
 				ab05ao05T.Fatal(ab05ao05Result)
 			}
 			for _, ab05ao05Key := range []string{"cost", "tail"} {
@@ -93,7 +100,7 @@ func TestAb05Ao05Preference(ab05ao05T *ab05ao05testing.T) {
 				ab05ao05T.Fatal(ab05ao05Field)
 			}
 			if ab05ao05Index < 2 {
-				if ab05ao05Field["label"] != []string{"appliance-unavailable", "maximum-efficiency-preference"}[ab05ao05Index] || ab05ao05Field["state"] != "Hypothesis" {
+				if ab05ao05Field["label"] != []string{"appliance-unavailable candidate", "maximum-efficiency-preference"}[ab05ao05Index] || ab05ao05Field["state"] != "Hypothesis" {
 					ab05ao05T.Fatal(ab05ao05Field)
 				}
 			} else if ab05ao05Field["label"] != nil || ab05ao05Field["state"] != "unmapped" || ab05ao05Result["state"] != "partial" {

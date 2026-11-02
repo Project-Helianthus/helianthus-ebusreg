@@ -38,6 +38,9 @@ ebus_standard_catalog func (IdentityKey) IsComplete() bool
 ebus_standard_catalog func (IdentityKey) PBValue() uint8
 ebus_standard_catalog func (IdentityKey) SBValue() uint8
 ebus_standard_catalog func (Service) PBValue() uint8
+ebus_standard_catalog func Ab83CounterBodies() []Ab83Body
+ebus_standard_catalog func Ab83LookupBody(ab83Key Ab83Key) (Ab83Body, bool)
+ebus_standard_catalog func Ab83LookupField(ab83Key Ab83Key) (Ab83Field, bool)
 ebus_standard_catalog func CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord
 ebus_standard_catalog func ComputeContentSHA256(data []byte) string
 ebus_standard_catalog func EmbeddedYAML() []byte
@@ -45,6 +48,9 @@ ebus_standard_catalog func LoadCatalog(data []byte) (Catalog, error)
 ebus_standard_catalog func MustEmbeddedCatalog() Catalog
 ebus_standard_catalog func NewProvider(cat Catalog, enabled bool) (*Provider, error)
 ebus_standard_catalog func NewProviderFromEnv(cat Catalog) (*Provider, error)
+ebus_standard_catalog type Ab83Body struct { Ab83Key Ab83Key `json:"key"` Ab83BodyState string `json:"body_state"` Ab83ClaimGrade string `json:"claim_grade"` Ab83PhysicalDirection string `json:"physical_direction"` Ab83Callable bool `json:"callable"` Ab83RawFallback bool `json:"raw_fallback"` Ab83Fields []Ab83Field `json:"fields"` }
+ebus_standard_catalog type Ab83Field struct { Ab83Identity string `json:"identity"` Ab83LogicalPosition *int `json:"logical_position"` Ab83NativePosition *int `json:"native_position"` Ab83WidthBits *int `json:"width_bits"` Ab83Signedness *string `json:"signedness"` Ab83ByteOrder *string `json:"byte_order"` Ab83Encoding *string `json:"encoding"` Ab83Conversion *string `json:"conversion"` Ab83Unit *string `json:"unit"` Ab83Default *int `json:"default"` Ab83Minimum *int `json:"minimum"` Ab83Maximum *int `json:"maximum"` Ab83Enumeration map[string]string `json:"enumeration"` Ab83ReplacementValues []int `json:"replacement_values"` Ab83ReservedValues []int `json:"reserved_values"` Ab83ClaimGrade string `json:"claim_grade"` Ab83RawFallback bool `json:"raw_fallback"` }
+ebus_standard_catalog type Ab83Key struct { Ab83Family string `json:"family"` Ab83Variant string `json:"variant"` Ab83Primary *uint16 `json:"primary"` Ab83Secondary *uint8 `json:"secondary"` Ab83Operation *uint8 `json:"operation"` Ab83Direction string `json:"direction"` Ab83Field string `json:"field"` Ab83Opcode *uint8 `json:"opcode"` Ab83Group *uint8 `json:"group"` Ab83Instance *uint8 `json:"instance"` Ab83Register *uint16 `json:"register"` }
 ebus_standard_catalog type AnswerPolicy string
 ebus_standard_catalog type BroadcastOrAddressed string
 ebus_standard_catalog type CallerContext int

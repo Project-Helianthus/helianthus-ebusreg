@@ -1,0 +1,1157 @@
+[
+  {
+    "Ab05An05Label": "ab05an05_no_item_before_calendar",
+    "Ab05An05Input": {
+      "Ab05An05Context": {
+        "Ab05An05Family": "ab05an05-synthetic-family",
+        "Ab05An05Variant": "ab05an05-synthetic-variant",
+        "Ab05An05Operation": 1,
+        "Ab05An05Direction": "ab05an05-response"
+      },
+      "Ab05An05MarkerPresent": true,
+      "Ab05An05Marker": 0,
+      "Ab05An05RemainderPresent": true,
+      "Ab05An05Remainder": [
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "Ab05An05ErrorPresent": false,
+      "Ab05An05Error": 0,
+      "Ab05An05Calendar": [
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 59
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 23
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 31
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 12
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 99
+        }
+      ]
+    },
+    "Ab05An05Expected": {
+      "Ab05An05Fields": {
+        "Ab05An05Context": {
+          "Ab05An05Family": "ab05an05-synthetic-family",
+          "Ab05An05Variant": "ab05an05-synthetic-variant",
+          "Ab05An05Operation": 1,
+          "Ab05An05Direction": "ab05an05-response"
+        },
+        "Ab05An05MarkerPresent": true,
+        "Ab05An05Marker": 0,
+        "Ab05An05RemainderPresent": true,
+        "Ab05An05Remainder": [
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255
+        ],
+        "Ab05An05ErrorPresent": false,
+        "Ab05An05Error": 0,
+        "Ab05An05Calendar": [
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 59
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 23
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 12
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          }
+        ]
+      },
+      "Ab05An05State": "no-item",
+      "Ab05An05Components": [
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 59
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 23
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 12
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          },
+          "Ab05An05State": "unknown"
+        }
+      ],
+      "Ab05An05Complete": false,
+      "Ab05An05Contract": "Proven",
+      "Ab05An05Meaning": "Hypothesis",
+      "Ab05An05Qualification": "Unknown"
+    }
+  },
+  {
+    "Ab05An05Label": "ab05an05_non_ff",
+    "Ab05An05Input": {
+      "Ab05An05Context": {
+        "Ab05An05Family": "ab05an05-synthetic-family",
+        "Ab05An05Variant": "ab05an05-synthetic-variant",
+        "Ab05An05Operation": 1,
+        "Ab05An05Direction": "ab05an05-response"
+      },
+      "Ab05An05MarkerPresent": true,
+      "Ab05An05Marker": 0,
+      "Ab05An05RemainderPresent": true,
+      "Ab05An05Remainder": [
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        0
+      ],
+      "Ab05An05ErrorPresent": false,
+      "Ab05An05Error": 0,
+      "Ab05An05Calendar": [
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 59
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 23
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 31
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 12
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 99
+        }
+      ]
+    },
+    "Ab05An05Expected": {
+      "Ab05An05Fields": {
+        "Ab05An05Context": {
+          "Ab05An05Family": "ab05an05-synthetic-family",
+          "Ab05An05Variant": "ab05an05-synthetic-variant",
+          "Ab05An05Operation": 1,
+          "Ab05An05Direction": "ab05an05-response"
+        },
+        "Ab05An05MarkerPresent": true,
+        "Ab05An05Marker": 0,
+        "Ab05An05RemainderPresent": true,
+        "Ab05An05Remainder": [
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          0
+        ],
+        "Ab05An05ErrorPresent": false,
+        "Ab05An05Error": 0,
+        "Ab05An05Calendar": [
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 59
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 23
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 12
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          }
+        ]
+      },
+      "Ab05An05State": "unknown-branch",
+      "Ab05An05Components": [
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 59
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 23
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 12
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          },
+          "Ab05An05State": "unknown"
+        }
+      ],
+      "Ab05An05Complete": false,
+      "Ab05An05Contract": "Proven",
+      "Ab05An05Meaning": "Unknown",
+      "Ab05An05Qualification": "Unknown"
+    }
+  },
+  {
+    "Ab05An05Label": "ab05an05_error_replacements",
+    "Ab05An05Input": {
+      "Ab05An05Context": {
+        "Ab05An05Family": "ab05an05-synthetic-family",
+        "Ab05An05Variant": "ab05an05-synthetic-variant",
+        "Ab05An05Operation": 1,
+        "Ab05An05Direction": "ab05an05-response"
+      },
+      "Ab05An05MarkerPresent": true,
+      "Ab05An05Marker": 1,
+      "Ab05An05RemainderPresent": true,
+      "Ab05An05Remainder": [
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "Ab05An05ErrorPresent": true,
+      "Ab05An05Error": 4660,
+      "Ab05An05Calendar": [
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 255,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 999
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 255,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 999
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 255,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 999
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 255,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 999
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 255,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 999
+        }
+      ]
+    },
+    "Ab05An05Expected": {
+      "Ab05An05Fields": {
+        "Ab05An05Context": {
+          "Ab05An05Family": "ab05an05-synthetic-family",
+          "Ab05An05Variant": "ab05an05-synthetic-variant",
+          "Ab05An05Operation": 1,
+          "Ab05An05Direction": "ab05an05-response"
+        },
+        "Ab05An05MarkerPresent": true,
+        "Ab05An05Marker": 1,
+        "Ab05An05RemainderPresent": true,
+        "Ab05An05Remainder": [
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255
+        ],
+        "Ab05An05ErrorPresent": true,
+        "Ab05An05Error": 4660,
+        "Ab05An05Calendar": [
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 255,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 999
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 255,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 999
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 255,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 999
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 255,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 999
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 255,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 999
+          }
+        ]
+      },
+      "Ab05An05State": "error-without-complete-time",
+      "Ab05An05Components": [
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 255,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 999
+          },
+          "Ab05An05State": "replacement"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 255,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 999
+          },
+          "Ab05An05State": "replacement"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 255,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 999
+          },
+          "Ab05An05State": "replacement"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 255,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 999
+          },
+          "Ab05An05State": "replacement"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 255,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 999
+          },
+          "Ab05An05State": "replacement"
+        }
+      ],
+      "Ab05An05Complete": false,
+      "Ab05An05Contract": "Proven",
+      "Ab05An05Meaning": "Hypothesis",
+      "Ab05An05Qualification": "Unknown"
+    }
+  },
+  {
+    "Ab05An05Label": "ab05an05_candidate_limits",
+    "Ab05An05Input": {
+      "Ab05An05Context": {
+        "Ab05An05Family": "ab05an05-synthetic-family",
+        "Ab05An05Variant": "ab05an05-synthetic-variant",
+        "Ab05An05Operation": 1,
+        "Ab05An05Direction": "ab05an05-response"
+      },
+      "Ab05An05MarkerPresent": true,
+      "Ab05An05Marker": 2,
+      "Ab05An05RemainderPresent": true,
+      "Ab05An05Remainder": [
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "Ab05An05ErrorPresent": false,
+      "Ab05An05Error": 0,
+      "Ab05An05Calendar": [
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 59
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 23
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 31
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 12
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 99
+        }
+      ]
+    },
+    "Ab05An05Expected": {
+      "Ab05An05Fields": {
+        "Ab05An05Context": {
+          "Ab05An05Family": "ab05an05-synthetic-family",
+          "Ab05An05Variant": "ab05an05-synthetic-variant",
+          "Ab05An05Operation": 1,
+          "Ab05An05Direction": "ab05an05-response"
+        },
+        "Ab05An05MarkerPresent": true,
+        "Ab05An05Marker": 2,
+        "Ab05An05RemainderPresent": true,
+        "Ab05An05Remainder": [
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255
+        ],
+        "Ab05An05ErrorPresent": false,
+        "Ab05An05Error": 0,
+        "Ab05An05Calendar": [
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 59
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 23
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 12
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          }
+        ]
+      },
+      "Ab05An05State": "candidate-components",
+      "Ab05An05Components": [
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 59
+          },
+          "Ab05An05State": "candidate"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 23
+          },
+          "Ab05An05State": "candidate"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          "Ab05An05State": "candidate"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 12
+          },
+          "Ab05An05State": "candidate"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          },
+          "Ab05An05State": "candidate"
+        }
+      ],
+      "Ab05An05Complete": true,
+      "Ab05An05Contract": "Proven",
+      "Ab05An05Meaning": "Hypothesis",
+      "Ab05An05Qualification": "Unknown"
+    }
+  },
+  {
+    "Ab05An05Label": "ab05an05_partial_domains",
+    "Ab05An05Input": {
+      "Ab05An05Context": {
+        "Ab05An05Family": "ab05an05-synthetic-family",
+        "Ab05An05Variant": "ab05an05-synthetic-variant",
+        "Ab05An05Operation": 1,
+        "Ab05An05Direction": "ab05an05-response"
+      },
+      "Ab05An05MarkerPresent": true,
+      "Ab05An05Marker": 2,
+      "Ab05An05RemainderPresent": true,
+      "Ab05An05Remainder": [
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "Ab05An05ErrorPresent": false,
+      "Ab05An05Error": 0,
+      "Ab05An05Calendar": [
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 60
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 24
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 31
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 12
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 99
+        }
+      ]
+    },
+    "Ab05An05Expected": {
+      "Ab05An05Fields": {
+        "Ab05An05Context": {
+          "Ab05An05Family": "ab05an05-synthetic-family",
+          "Ab05An05Variant": "ab05an05-synthetic-variant",
+          "Ab05An05Operation": 1,
+          "Ab05An05Direction": "ab05an05-response"
+        },
+        "Ab05An05MarkerPresent": true,
+        "Ab05An05Marker": 2,
+        "Ab05An05RemainderPresent": true,
+        "Ab05An05Remainder": [
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255
+        ],
+        "Ab05An05ErrorPresent": false,
+        "Ab05An05Error": 0,
+        "Ab05An05Calendar": [
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 60
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 24
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 12
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          }
+        ]
+      },
+      "Ab05An05State": "candidate-components",
+      "Ab05An05Components": [
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 60
+          },
+          "Ab05An05State": "out-of-domain"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 24
+          },
+          "Ab05An05State": "out-of-domain"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          "Ab05An05State": "candidate"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 12
+          },
+          "Ab05An05State": "candidate"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          },
+          "Ab05An05State": "candidate"
+        }
+      ],
+      "Ab05An05Complete": false,
+      "Ab05An05Contract": "Proven",
+      "Ab05An05Meaning": "Hypothesis",
+      "Ab05An05Qualification": "Unknown"
+    }
+  },
+  {
+    "Ab05An05Label": "ab05an05_missing_month",
+    "Ab05An05Input": {
+      "Ab05An05Context": {
+        "Ab05An05Family": "ab05an05-synthetic-family",
+        "Ab05An05Variant": "ab05an05-synthetic-variant",
+        "Ab05An05Operation": 1,
+        "Ab05An05Direction": "ab05an05-response"
+      },
+      "Ab05An05MarkerPresent": true,
+      "Ab05An05Marker": 2,
+      "Ab05An05RemainderPresent": true,
+      "Ab05An05Remainder": [
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "Ab05An05ErrorPresent": false,
+      "Ab05An05Error": 0,
+      "Ab05An05Calendar": [
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 59
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 23
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 31
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": false,
+          "Ab05An05Value": 12
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 99
+        }
+      ]
+    },
+    "Ab05An05Expected": {
+      "Ab05An05Fields": {
+        "Ab05An05Context": {
+          "Ab05An05Family": "ab05an05-synthetic-family",
+          "Ab05An05Variant": "ab05an05-synthetic-variant",
+          "Ab05An05Operation": 1,
+          "Ab05An05Direction": "ab05an05-response"
+        },
+        "Ab05An05MarkerPresent": true,
+        "Ab05An05Marker": 2,
+        "Ab05An05RemainderPresent": true,
+        "Ab05An05Remainder": [
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255
+        ],
+        "Ab05An05ErrorPresent": false,
+        "Ab05An05Error": 0,
+        "Ab05An05Calendar": [
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 59
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 23
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": false,
+            "Ab05An05Value": 12
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          }
+        ]
+      },
+      "Ab05An05State": "unknown-branch",
+      "Ab05An05Components": [
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 59
+          },
+          "Ab05An05State": "candidate"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 23
+          },
+          "Ab05An05State": "candidate"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          "Ab05An05State": "candidate"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": false,
+            "Ab05An05Value": 12
+          },
+          "Ab05An05State": "missing"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          },
+          "Ab05An05State": "candidate"
+        }
+      ],
+      "Ab05An05Complete": false,
+      "Ab05An05Contract": "Proven",
+      "Ab05An05Meaning": "Unknown",
+      "Ab05An05Qualification": "Unknown"
+    }
+  },
+  {
+    "Ab05An05Label": "ab05an05_unknown_marker_before_calendar",
+    "Ab05An05Input": {
+      "Ab05An05Context": {
+        "Ab05An05Family": "ab05an05-synthetic-family",
+        "Ab05An05Variant": "ab05an05-synthetic-variant",
+        "Ab05An05Operation": 1,
+        "Ab05An05Direction": "ab05an05-response"
+      },
+      "Ab05An05MarkerPresent": true,
+      "Ab05An05Marker": 9,
+      "Ab05An05RemainderPresent": true,
+      "Ab05An05Remainder": [
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "Ab05An05ErrorPresent": false,
+      "Ab05An05Error": 0,
+      "Ab05An05Calendar": [
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 59
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 23
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 31
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 12
+        },
+        {
+          "Ab05An05RawPresent": true,
+          "Ab05An05Raw": 17,
+          "Ab05An05NormalizedPresent": true,
+          "Ab05An05Value": 99
+        }
+      ]
+    },
+    "Ab05An05Expected": {
+      "Ab05An05Fields": {
+        "Ab05An05Context": {
+          "Ab05An05Family": "ab05an05-synthetic-family",
+          "Ab05An05Variant": "ab05an05-synthetic-variant",
+          "Ab05An05Operation": 1,
+          "Ab05An05Direction": "ab05an05-response"
+        },
+        "Ab05An05MarkerPresent": true,
+        "Ab05An05Marker": 9,
+        "Ab05An05RemainderPresent": true,
+        "Ab05An05Remainder": [
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255
+        ],
+        "Ab05An05ErrorPresent": false,
+        "Ab05An05Error": 0,
+        "Ab05An05Calendar": [
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 59
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 23
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 12
+          },
+          {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          }
+        ]
+      },
+      "Ab05An05State": "unknown-branch",
+      "Ab05An05Components": [
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 59
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 23
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 31
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 12
+          },
+          "Ab05An05State": "unknown"
+        },
+        {
+          "Ab05An05Cell": {
+            "Ab05An05RawPresent": true,
+            "Ab05An05Raw": 17,
+            "Ab05An05NormalizedPresent": true,
+            "Ab05An05Value": 99
+          },
+          "Ab05An05State": "unknown"
+        }
+      ],
+      "Ab05An05Complete": false,
+      "Ab05An05Contract": "Proven",
+      "Ab05An05Meaning": "Unknown",
+      "Ab05An05Qualification": "Unknown"
+    }
+  }
+]

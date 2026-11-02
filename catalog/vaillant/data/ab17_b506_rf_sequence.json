@@ -1,0 +1,195 @@
+[
+  {
+    "ab17_id": "ab17-rf-count-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B506-RF",
+      "primary": 181,
+      "secondary": 6,
+      "operation": 13,
+      "direction": "none",
+      "field": "count",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "ab17_raw_form": "retain-original-bytes",
+    "ab17_unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "ab17_extent_bytes": null,
+    "ab17_minimum_bytes": null,
+    "ab17_maximum_bytes": null,
+    "ab17_field_position": null,
+    "ab17_count": {
+      "ab17_zero_meaning": "unlimited",
+      "ab17_finite_minimum": 1,
+      "ab17_finite_maximum": 255,
+      "ab17_finite_meaning": "count-value"
+    }
+  },
+  {
+    "ab17_id": "ab17-rf-sequence-0",
+    "key": {
+      "family": "vaillant",
+      "variant": "B506-RF",
+      "primary": 181,
+      "secondary": 6,
+      "operation": 13,
+      "direction": "none",
+      "field": "sequence",
+      "alternative": "0",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "ab17_raw_form": "retain-original-bytes",
+    "ab17_unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "ab17_extent_bytes": null,
+    "ab17_minimum_bytes": null,
+    "ab17_maximum_bytes": null,
+    "ab17_field_position": null,
+    "ab17_extent_class": "ab17-class-a"
+  },
+  {
+    "ab17_id": "ab17-rf-sequence-1",
+    "key": {
+      "family": "vaillant",
+      "variant": "B506-RF",
+      "primary": 181,
+      "secondary": 6,
+      "operation": 13,
+      "direction": "none",
+      "field": "sequence",
+      "alternative": "1",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "ab17_raw_form": "retain-original-bytes",
+    "ab17_unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "ab17_extent_bytes": null,
+    "ab17_minimum_bytes": null,
+    "ab17_maximum_bytes": null,
+    "ab17_field_position": null,
+    "ab17_extent_class": "ab17-class-a"
+  },
+  {
+    "ab17_id": "ab17-rf-sequence-2",
+    "key": {
+      "family": "vaillant",
+      "variant": "B506-RF",
+      "primary": 181,
+      "secondary": 6,
+      "operation": 13,
+      "direction": "none",
+      "field": "sequence",
+      "alternative": "2",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "ab17_raw_form": "retain-original-bytes",
+    "ab17_unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "ab17_extent_bytes": null,
+    "ab17_minimum_bytes": null,
+    "ab17_maximum_bytes": null,
+    "ab17_field_position": null,
+    "ab17_extent_class": "ab17-class-a"
+  },
+  {
+    "ab17_id": "ab17-rf-sequence-3",
+    "key": {
+      "family": "vaillant",
+      "variant": "B506-RF",
+      "primary": 181,
+      "secondary": 6,
+      "operation": 13,
+      "direction": "none",
+      "field": "sequence",
+      "alternative": "3",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "ab17_raw_form": "retain-original-bytes",
+    "ab17_unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "ab17_extent_bytes": null,
+    "ab17_minimum_bytes": null,
+    "ab17_maximum_bytes": null,
+    "ab17_field_position": null,
+    "ab17_extent_class": "ab17-class-b"
+  },
+  {
+    "ab17_id": "ab17-rf-stop-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B506-RF",
+      "primary": 181,
+      "secondary": 6,
+      "operation": 14,
+      "direction": "none",
+      "field": "stop",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "ab17_raw_form": "retain-original-bytes",
+    "ab17_unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown"
+    },
+    "ab17_extent_bytes": null,
+    "ab17_minimum_bytes": null,
+    "ab17_maximum_bytes": null,
+    "ab17_field_position": null,
+    "ab17_related_operations": [
+      12,
+      13
+    ],
+    "ab17_activation_order": "Unknown",
+    "ab17_retry_count": null,
+    "ab17_timeout": null,
+    "ab17_delivery_guarantee": "Unknown",
+    "ab17_completed_stop": "Unknown"
+  }
+]

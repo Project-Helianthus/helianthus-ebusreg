@@ -1,0 +1,281 @@
+{
+  "catalog": "ab85_b524_scalar_shapes",
+  "representation_grade": "Proven",
+  "physical_qualification": "Unknown",
+  "complete": false,
+  "limitations": [
+    "Finite supplemental declarations; broader family coverage is incomplete.",
+    "Family and instance absence is exact missing qualification, never a wildcard.",
+    "Request length and reply length do not choose a semantic alternative or family qualification.",
+    "Decode failure retains a prior cached value with uncertain freshness; no cache updater is supplied.",
+    "Installed support, omitted instance predicates, complete enumerations, units, persistence and wire adaptation are Unknown.",
+    "No builder, executor, provider registration, invocation, admission or runtime cache is supplied.",
+    "Logical positions including prefixes are Unknown; widths describe isolated candidate field bytes only."
+  ],
+  "entries": [
+    {
+      "key": {
+        "family": null,
+        "variant": null,
+        "primary": 181,
+        "secondary": 36,
+        "operation": null,
+        "direction": "read",
+        "field": "scalar",
+        "opcode": 2,
+        "group": 3,
+        "instance": null,
+        "register": 27
+      },
+      "shape": "u8",
+      "logical_position": null,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not applicable",
+      "conversion": {
+        "encoding": "u8",
+        "factor": 1,
+        "offset": 0
+      },
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement_values": null,
+      "reserved_values": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve native field bytes on every unsuccessful typed interpretation"
+    },
+    {
+      "key": {
+        "family": null,
+        "variant": null,
+        "primary": 181,
+        "secondary": 36,
+        "operation": null,
+        "direction": "read",
+        "field": "scalar",
+        "opcode": 2,
+        "group": 3,
+        "instance": null,
+        "register": 27
+      },
+      "shape": "u16",
+      "logical_position": null,
+      "width_bytes": 2,
+      "signedness": "unsigned",
+      "byte_order": "little-endian",
+      "conversion": {
+        "encoding": "u16",
+        "factor": 1,
+        "offset": 0
+      },
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement_values": null,
+      "reserved_values": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve native field bytes on every unsuccessful typed interpretation"
+    },
+    {
+      "key": {
+        "family": null,
+        "variant": null,
+        "primary": 181,
+        "secondary": 36,
+        "operation": null,
+        "direction": "read",
+        "field": "scalar",
+        "opcode": 2,
+        "group": 1,
+        "instance": null,
+        "register": 20
+      },
+      "shape": "u8",
+      "logical_position": null,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not applicable",
+      "conversion": {
+        "encoding": "u8",
+        "factor": 1,
+        "offset": 0
+      },
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement_values": null,
+      "reserved_values": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve native field bytes on every unsuccessful typed interpretation"
+    },
+    {
+      "key": {
+        "family": null,
+        "variant": null,
+        "primary": 181,
+        "secondary": 36,
+        "operation": null,
+        "direction": "read",
+        "field": "scalar",
+        "opcode": 2,
+        "group": 1,
+        "instance": null,
+        "register": 25
+      },
+      "shape": "u8",
+      "logical_position": null,
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "byte_order": "not applicable",
+      "conversion": {
+        "encoding": "u8",
+        "factor": 1,
+        "offset": 0
+      },
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement_values": null,
+      "reserved_values": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve native field bytes on every unsuccessful typed interpretation"
+    },
+    {
+      "key": {
+        "family": null,
+        "variant": null,
+        "primary": 181,
+        "secondary": 36,
+        "operation": null,
+        "direction": "read",
+        "field": "scalar",
+        "opcode": 2,
+        "group": 1,
+        "instance": null,
+        "register": 21
+      },
+      "shape": "binary32",
+      "logical_position": null,
+      "width_bytes": 4,
+      "signedness": "signed",
+      "byte_order": "little-endian",
+      "conversion": {
+        "encoding": "binary32",
+        "factor": 1,
+        "offset": 0
+      },
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement_values": null,
+      "reserved_values": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve native field bytes on every unsuccessful typed interpretation"
+    },
+    {
+      "key": {
+        "family": "controller-family",
+        "variant": null,
+        "primary": 181,
+        "secondary": 36,
+        "operation": null,
+        "direction": "write",
+        "field": "mode",
+        "opcode": 2,
+        "group": 3,
+        "instance": null,
+        "register": 6
+      },
+      "shape": "u16",
+      "logical_position": null,
+      "width_bytes": 2,
+      "signedness": "unsigned",
+      "byte_order": "little-endian",
+      "conversion": {
+        "encoding": "u16",
+        "factor": 1,
+        "offset": 0
+      },
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement_values": null,
+      "reserved_values": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve native field bytes on every unsuccessful typed interpretation"
+    },
+    {
+      "key": {
+        "family": "controller-family",
+        "variant": null,
+        "primary": 181,
+        "secondary": 36,
+        "operation": null,
+        "direction": "write",
+        "field": "manual-temperature",
+        "opcode": 2,
+        "group": 3,
+        "instance": null,
+        "register": 34
+      },
+      "shape": "binary32",
+      "logical_position": null,
+      "width_bytes": 4,
+      "signedness": "signed",
+      "byte_order": "little-endian",
+      "conversion": {
+        "encoding": "binary32",
+        "factor": 1,
+        "offset": 0
+      },
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement_values": null,
+      "reserved_values": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve native field bytes on every unsuccessful typed interpretation"
+    },
+    {
+      "key": {
+        "family": "controller-family",
+        "variant": null,
+        "primary": 181,
+        "secondary": 36,
+        "operation": null,
+        "direction": "write",
+        "field": "comfort-temperature",
+        "opcode": 2,
+        "group": 3,
+        "instance": null,
+        "register": 7
+      },
+      "shape": "binary32",
+      "logical_position": null,
+      "width_bytes": 4,
+      "signedness": "signed",
+      "byte_order": "little-endian",
+      "conversion": {
+        "encoding": "binary32",
+        "factor": 1,
+        "offset": 0
+      },
+      "unit": null,
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement_values": null,
+      "reserved_values": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve native field bytes on every unsuccessful typed interpretation"
+    }
+  ]
+}

@@ -41,7 +41,7 @@ func ab15aq15Evaluate(ab15aq15T *testing.T, ab15aq15Input any) map[string]any {
 
 func ab15aq15Decode(ab15aq15T *testing.T, ab15aq15Input []byte) map[string]any {
 	ab15aq15T.Helper()
-	ab15aq15Data, ab15aq15Err := ab15aq15EvaluateJSON(ab15aq15Input)
+	ab15aq15Data, ab15aq15Err := Ab15Aq15Evaluate(ab15aq15Input)
 	if ab15aq15Err != nil {
 		ab15aq15T.Fatal(ab15aq15Err)
 	}
@@ -196,7 +196,7 @@ func TestAb15Aq15WidthsAndIndependence(ab15aq15T *testing.T) {
 
 func TestAb15Aq15Reject(ab15aq15T *testing.T) {
 	for _, ab15aq15Raw := range []string{``, `null`, `[]`, `{} {} `, `{"context":{},"context":{},"fields":{}}`, `{"context":{"x":{"a":1,"a":2}},"fields":{}}`, `{"context":{},"fields":{},"x":[{"a":1,"a":2}]}`, `{"context":{},"fields":{},"x":1e999}`, `{"context":{},"fields":{}} true`, `{"context":{},"fields":{},}`} {
-		ab15aq15Result, ab15aq15Err := ab15aq15EvaluateJSON([]byte(ab15aq15Raw))
+		ab15aq15Result, ab15aq15Err := Ab15Aq15Evaluate([]byte(ab15aq15Raw))
 		if ab15aq15Err == nil || ab15aq15Result != nil {
 			ab15aq15T.Fatalf("accepted %s", ab15aq15Raw)
 		}
@@ -210,7 +210,7 @@ func TestAb15Aq15Reject(ab15aq15T *testing.T) {
 				ab15aq15Input["context"].(map[string]any)[ab15aq15Key] = ab15aq15Value
 			}
 			ab15aq15Data, _ := json.Marshal(ab15aq15Input)
-			ab15aq15Result, ab15aq15Err := ab15aq15EvaluateJSON(ab15aq15Data)
+			ab15aq15Result, ab15aq15Err := Ab15Aq15Evaluate(ab15aq15Data)
 			if ab15aq15Err == nil || ab15aq15Result != nil {
 				ab15aq15T.Fatalf("accepted %s", ab15aq15Data)
 			}
@@ -221,7 +221,7 @@ func TestAb15Aq15Reject(ab15aq15T *testing.T) {
 			ab15aq15Input := ab15aq15Input(ab15aq15T, ab15aq15Cases(ab15aq15T)[0].Ab15Aq15Input)
 			ab15aq15Input[ab15aq15Key] = ab15aq15Value
 			ab15aq15Data, _ := json.Marshal(ab15aq15Input)
-			if ab15aq15Result, ab15aq15Err := ab15aq15EvaluateJSON(ab15aq15Data); ab15aq15Err == nil || ab15aq15Result != nil {
+			if ab15aq15Result, ab15aq15Err := Ab15Aq15Evaluate(ab15aq15Data); ab15aq15Err == nil || ab15aq15Result != nil {
 				ab15aq15T.Fatal("wrong kind accepted")
 			}
 		}
@@ -229,7 +229,7 @@ func TestAb15Aq15Reject(ab15aq15T *testing.T) {
 	ab15aq15Input := ab15aq15Input(ab15aq15T, ab15aq15Cases(ab15aq15T)[0].Ab15Aq15Input)
 	ab15aq15Input["arguments"] = map[string]any{"unexpected": 0}
 	ab15aq15Data, _ := json.Marshal(ab15aq15Input)
-	if ab15aq15Result, ab15aq15Err := ab15aq15EvaluateJSON(ab15aq15Data); ab15aq15Err == nil || ab15aq15Result != nil {
+	if ab15aq15Result, ab15aq15Err := Ab15Aq15Evaluate(ab15aq15Data); ab15aq15Err == nil || ab15aq15Result != nil {
 		ab15aq15T.Fatal("argument accepted")
 	}
 }
@@ -246,7 +246,7 @@ func TestAb15Aq15Storage(ab15aq15T *testing.T) {
 		}
 	}
 	ab15aq15Data, _ := json.Marshal(ab15aq15Input)
-	ab15aq15First, ab15aq15Err := ab15aq15EvaluateJSON(ab15aq15Data)
+	ab15aq15First, ab15aq15Err := Ab15Aq15Evaluate(ab15aq15Data)
 	if ab15aq15Err != nil {
 		ab15aq15T.Fatal(ab15aq15Err)
 	}
@@ -268,7 +268,7 @@ func TestAb15Aq15Storage(ab15aq15T *testing.T) {
 func TestAb15Aq15ExactNumbersAndMissingSelectors(ab15aq15T *testing.T) {
 	for _, ab15aq15Number := range []string{"1e-999", "255.000000000000000001", "0.000000000000000001"} {
 		for _, ab15aq15Raw := range []string{`{"context":{"primary":` + ab15aq15Number + `},"fields":{}}`, `{"context":{},"fields":{"x":[` + ab15aq15Number + `]}}`} {
-			if ab15aq15Result, ab15aq15Err := ab15aq15EvaluateJSON([]byte(ab15aq15Raw)); ab15aq15Err == nil || ab15aq15Result != nil {
+			if ab15aq15Result, ab15aq15Err := Ab15Aq15Evaluate([]byte(ab15aq15Raw)); ab15aq15Err == nil || ab15aq15Result != nil {
 				ab15aq15T.Fatal("fraction accepted", ab15aq15Raw)
 			}
 		}
@@ -292,7 +292,7 @@ func TestAb15Aq15ExactNumbersAndMissingSelectors(ab15aq15T *testing.T) {
 			ab15aq15Input := ab15aq15Input(ab15aq15T, ab15aq15Cases(ab15aq15T)[0].Ab15Aq15Input)
 			ab15aq15Input["context"].(map[string]any)[ab15aq15Key] = ab15aq15Value
 			ab15aq15Data, _ := json.Marshal(ab15aq15Input)
-			if ab15aq15Result, ab15aq15Err := ab15aq15EvaluateJSON(ab15aq15Data); ab15aq15Err == nil || ab15aq15Result != nil {
+			if ab15aq15Result, ab15aq15Err := Ab15Aq15Evaluate(ab15aq15Data); ab15aq15Err == nil || ab15aq15Result != nil {
 				ab15aq15T.Fatal("identifier kind accepted")
 			}
 		}
@@ -304,7 +304,7 @@ func TestAb15Aq15ReservedKeysAndUnsupportedArguments(ab15aq15T *testing.T) {
 		ab15aq15Input := ab15aq15Input(ab15aq15T, ab15aq15Cases(ab15aq15T)[0].Ab15Aq15Input)
 		ab15aq15Input[ab15aq15Key] = "x"
 		ab15aq15Data, _ := json.Marshal(ab15aq15Input)
-		if ab15aq15Result, ab15aq15Err := ab15aq15EvaluateJSON(ab15aq15Data); ab15aq15Err == nil || ab15aq15Result != nil {
+		if ab15aq15Result, ab15aq15Err := Ab15Aq15Evaluate(ab15aq15Data); ab15aq15Err == nil || ab15aq15Result != nil {
 			ab15aq15T.Fatal("reserved key accepted", ab15aq15Key)
 		}
 	}
@@ -319,7 +319,15 @@ func TestAb15Aq15ReservedKeysAndUnsupportedArguments(ab15aq15T *testing.T) {
 
 func TestAb15Aq15DepthLimit(ab15aq15T *testing.T) {
 	ab15aq15Deep := `{"context":{},"fields":{},"x":` + strings.Repeat("[", 100) + strings.Repeat("]", 100) + `}`
-	if ab15aq15Result, ab15aq15Err := ab15aq15EvaluateJSON([]byte(ab15aq15Deep)); ab15aq15Err == nil || ab15aq15Result != nil {
+	if ab15aq15Result, ab15aq15Err := Ab15Aq15Evaluate([]byte(ab15aq15Deep)); ab15aq15Err == nil || ab15aq15Result != nil {
 		ab15aq15T.Fatal("deep nesting accepted")
+	}
+}
+
+func TestAb15Aq15RejectArgumentsOnUnsupportedContext(ab15aq15T *testing.T) {
+	for _, ab15aq15Raw := range []string{`{"context":{"primary":8},"fields":{},"arguments":5}`, `{"context":{},"fields":{},"arguments":[]}`} {
+		if ab15aq15Result, ab15aq15Err := Ab15Aq15Evaluate([]byte(ab15aq15Raw)); ab15aq15Err == nil || ab15aq15Result != nil {
+			ab15aq15T.Fatal("arguments accepted", ab15aq15Raw)
+		}
 	}
 }

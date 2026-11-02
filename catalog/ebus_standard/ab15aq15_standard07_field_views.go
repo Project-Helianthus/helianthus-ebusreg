@@ -77,7 +77,7 @@ func ab15aq15Byte(ab15aq15Value any) (int, bool) {
 	return int(ab15aq15Integer), ab15aq15Integer >= 0 && ab15aq15Integer <= 255
 }
 
-func ab15aq15EvaluateJSON(ab15aq15Input json.RawMessage) (json.RawMessage, error) {
+func Ab15Aq15Evaluate(ab15aq15Input json.RawMessage) (json.RawMessage, error) {
 	ab15aq15Decoder := json.NewDecoder(bytes.NewReader(ab15aq15Input))
 	ab15aq15Decoder.UseNumber()
 	ab15aq15Value, ab15aq15Err := ab15aq15Read(ab15aq15Decoder, 0)
@@ -118,6 +118,14 @@ func ab15aq15EvaluateJSON(ab15aq15Input json.RawMessage) (json.RawMessage, error
 			return nil, fmt.Errorf("reserved key %q in input", ab15aq15Key)
 		}
 	}
+	ab15aq15HasArguments := false
+	if ab15aq15Value, ab15aq15Found := ab15aq15Output["arguments"]; ab15aq15Found {
+		ab15aq15Arguments, ab15aq15OK := ab15aq15Value.(map[string]any)
+		if !ab15aq15OK {
+			return nil, fmt.Errorf("arguments must be object")
+		}
+		ab15aq15HasArguments = len(ab15aq15Arguments) != 0
+	}
 	ab15aq15Results := map[string]any{}
 	for ab15aq15Key, ab15aq15Value := range ab15aq15Fields {
 		ab15aq15Array, ab15aq15OK := ab15aq15Value.([]any)
@@ -142,11 +150,8 @@ func ab15aq15EvaluateJSON(ab15aq15Input json.RawMessage) (json.RawMessage, error
 	if ab15aq15Primary != 7 || !ab15aq15HasSecondary || (ab15aq15Secondary != 0 && ab15aq15Secondary != 2 && ab15aq15Secondary != 3 && ab15aq15Secondary != 5) || ab15aq15HasOperation || ab15aq15Context["view"] != "field-candidates" || (ab15aq15Direction != "request" && ab15aq15Direction != "positive") {
 		return json.Marshal(ab15aq15Output)
 	}
-	if ab15aq15Value, ab15aq15Found := ab15aq15Output["arguments"]; ab15aq15Found {
-		ab15aq15Arguments, ab15aq15OK := ab15aq15Value.(map[string]any)
-		if !ab15aq15OK || len(ab15aq15Arguments) != 0 {
-			return nil, fmt.Errorf("no arguments defined for this view")
-		}
+	if ab15aq15HasArguments {
+		return nil, fmt.Errorf("no arguments defined for this view")
 	}
 	ab15aq15Widths := map[string]int{}
 	if ab15aq15Direction == "positive" {

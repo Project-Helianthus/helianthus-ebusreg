@@ -38,6 +38,7 @@ ebus_standard_catalog func (IdentityKey) IsComplete() bool
 ebus_standard_catalog func (IdentityKey) PBValue() uint8
 ebus_standard_catalog func (IdentityKey) SBValue() uint8
 ebus_standard_catalog func (Service) PBValue() uint8
+ebus_standard_catalog func Ab17Aq17Evaluate(ab17aq17InputRaw json.RawMessage) (json.RawMessage, error)
 ebus_standard_catalog func Ab28Entries() (ab28json.RawMessage, error)
 ebus_standard_catalog func Ab28Lookup(ab28Key Ab28Key) (ab28json.RawMessage, bool, error)
 ebus_standard_catalog func Ab49FEMetadata() []byte

@@ -136,7 +136,7 @@ func Ab19Ao19Interpret(ab19ao19Input ab19ao19json.RawMessage) (ab19ao19json.RawM
 	ab19ao19Secondary, _ := ab19ao19Integer(ab19ao19Context["secondary"])
 	ab19ao19Operation, _ := ab19ao19Integer(ab19ao19Context["operation"])
 	ab19ao19View, _ := ab19ao19Context["view"].(string)
-	ab19ao19Selected := ab19ao19Primary == 181 && ab19ao19Secondary == 20 && ab19ao19Context["direction"] == "positive"
+	ab19ao19Selected := ab19ao19Primary == 245 && ab19ao19Secondary == 20 && ab19ao19Context["direction"] == "positive"
 	if !ab19ao19Selected {
 		return ab19ao19json.Marshal(ab19ao19Output)
 	}

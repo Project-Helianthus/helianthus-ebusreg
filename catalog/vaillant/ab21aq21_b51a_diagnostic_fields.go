@@ -179,6 +179,10 @@ func Ab21Aq21Evaluate(ab21aq21Input ab21aq21json.RawMessage) (ab21aq21json.RawMe
 			ab21aq21Result["raw"] = ab21aq21Raw
 		}
 		ab21aq21Array, _ := ab21aq21Raw.([]any)
+		if !ab21aq21Present && ab21aq21Operation == 5 && ab21aq21Key != "flags" && ab21aq21FlagsKnown && ab21aq21FlagNumber&1 != 0 {
+			ab21aq21Result["state"] = "Unknown"
+			continue
+		}
 		if !ab21aq21Present || len(ab21aq21Array) != ab21aq21Width {
 			ab21aq21Output["state"] = "partial"
 			continue

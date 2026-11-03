@@ -163,6 +163,9 @@ func TestAb21Aq21FieldWidthsAndSiblings(ab21aq21T *ab21aq21testing.T) {
 	for _, ab21aq21Case := range ab21aq21Cases(ab21aq21T) {
 		for ab21aq21Key, ab21aq21Value := range ab21aq21Case.Ab21Aq21Input["fields"].(map[string]any) {
 			for _, ab21aq21Mode := range []string{"absent", "empty", "short", "long"} {
+				if ab21aq21Mode == "absent" && ab21aq21Case.Ab21Aq21ID == "ab21aq21_disabled" && ab21aq21Key != "flags" {
+					continue
+				}
 				ab21aq21Input := ab21aq21Cases(ab21aq21T)[0].Ab21Aq21Input
 				for _, ab21aq21Candidate := range ab21aq21Cases(ab21aq21T) {
 					if ab21aq21Candidate.Ab21Aq21ID == ab21aq21Case.Ab21Aq21ID {
@@ -331,6 +334,23 @@ func TestAb21Aq21IndependentFieldValues(ab21aq21T *ab21aq21testing.T) {
 			if ab21aq21Result["state"] != "Unknown" || len(ab21aq21Result) != 2 {
 				ab21aq21T.Fatal("disabled interpretation", ab21aq21Key)
 			}
+		}
+	}
+	for _, ab21aq21Index := range []int{1, 3, 4} {
+		ab21aq21Input := ab21aq21Cases(ab21aq21T)[ab21aq21Index].Ab21Aq21Input
+		ab21aq21Input["fields"] = map[string]any{"flags": []any{float64(1)}}
+		ab21aq21Output := ab21aq21Eval(ab21aq21T, ab21aq21Input)
+		if ab21aq21Output["state"] != "complete" {
+			ab21aq21T.Fatal("disabled flags-only state", ab21aq21Output["state"])
+		}
+		for ab21aq21Key, ab21aq21Value := range ab21aq21Output["results"].(map[string]any) {
+			if ab21aq21Key != "flags" && ab21aq21Value.(map[string]any)["state"] != "Unknown" {
+				ab21aq21T.Fatal("disabled flags-only field", ab21aq21Key)
+			}
+		}
+		ab21aq21Input["fields"] = map[string]any{"flags": []any{float64(0)}}
+		if ab21aq21Eval(ab21aq21T, ab21aq21Input)["state"] != "partial" {
+			ab21aq21T.Fatal("enabled short reply must stay partial")
 		}
 	}
 	for ab21aq21Status, ab21aq21Label := range map[int]string{3: "range-violation", 4: "misconfiguration", 255: "unmapped"} {

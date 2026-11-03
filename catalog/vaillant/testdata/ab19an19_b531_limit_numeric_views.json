@@ -1,0 +1,17 @@
+{
+  "Ab19An19Limits": [
+    {"Ab19An19Label":"ab19an19-unsigned-ffff", "Ab19An19MinimumRaw":"0100", "Ab19An19MaximumRaw":"ffff", "Ab19An19MinimumValue":10, "Ab19An19MaximumValue":655350},
+    {"Ab19An19Label":"ab19an19-inverted", "Ab19An19MinimumRaw":"0a00", "Ab19An19MaximumRaw":"0500", "Ab19An19MinimumValue":100, "Ab19An19MaximumValue":50},
+    {"Ab19An19Label":"ab19an19-low-byte", "Ab19An19MinimumRaw":"0200", "Ab19An19MaximumRaw":"feff", "Ab19An19MinimumValue":20, "Ab19An19MaximumValue":655340},
+    {"Ab19An19Label":"ab19an19-high-byte", "Ab19An19MinimumRaw":"0101", "Ab19An19MaximumRaw":"fffe", "Ab19An19MinimumValue":2570, "Ab19An19MaximumValue":652790},
+    {"Ab19An19Label":"ab19an19-sign-boundary", "Ab19An19MinimumRaw":"0080", "Ab19An19MaximumRaw":"ff7f", "Ab19An19MinimumValue":327680, "Ab19An19MaximumValue":327670},
+    {"Ab19An19Label":"ab19an19-zero", "Ab19An19MinimumRaw":"0000", "Ab19An19MaximumRaw":"0000", "Ab19An19MinimumValue":0, "Ab19An19MaximumValue":0}
+  ],
+  "Ab19An19Getters": [
+    {"Ab19An19Label":"ab19an19-wrap", "Ab19An19Raw":655360, "Ab19An19Expected":0},
+    {"Ab19An19Label":"ab19an19-before-wrap", "Ab19An19Raw":655359, "Ab19An19Expected":65535},
+    {"Ab19An19Label":"ab19an19-floor", "Ab19An19Raw":19, "Ab19An19Expected":1},
+    {"Ab19An19Label":"ab19an19-u32-maximum", "Ab19An19Raw":4294967295, "Ab19An19Expected":39321},
+    {"Ab19An19Label":"ab19an19-zero-getter", "Ab19An19Raw":0, "Ab19An19Expected":0}
+  ]
+}

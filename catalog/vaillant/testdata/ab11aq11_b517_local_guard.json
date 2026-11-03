@@ -1,0 +1,922 @@
+[
+  {
+    "id": "ab11aq11_valid",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "complete",
+    "eligible": true,
+    "false": [],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_ready",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 2,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "complete",
+    "eligible": false,
+    "false": [
+      "ready_state"
+    ],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_option_zero",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 0,
+        "received_length": 10
+      }
+    },
+    "state": "complete",
+    "eligible": false,
+    "false": [
+      "final_option"
+    ],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_option_high",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 128,
+        "received_length": 10
+      }
+    },
+    "state": "complete",
+    "eligible": true,
+    "false": [],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_payload",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "complete",
+    "eligible": false,
+    "false": [
+      "payload_length"
+    ],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_received",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 9
+      }
+    },
+    "state": "complete",
+    "eligible": false,
+    "false": [
+      "payload_length",
+      "initialized_length"
+    ],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_beyond_storage",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 11
+      }
+    },
+    "state": "complete",
+    "eligible": false,
+    "false": [
+      "initialized_length"
+    ],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_request_primary",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          180,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "complete",
+    "eligible": false,
+    "false": [
+      "request_identity"
+    ],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_request_secondary",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          24
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "complete",
+    "eligible": false,
+    "false": [
+      "request_identity"
+    ],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_input_primary",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          180,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "complete",
+    "eligible": false,
+    "false": [
+      "input_identity"
+    ],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_input_secondary",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          23,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "complete",
+    "eligible": false,
+    "false": [
+      "input_identity"
+    ],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_request_missing",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "partial",
+    "eligible": false,
+    "false": [
+      "request_identity"
+    ],
+    "incomplete": [
+      "request_identity",
+      "eligible"
+    ]
+  },
+  {
+    "id": "ab11aq11_request_empty",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "partial",
+    "eligible": false,
+    "false": [
+      "request_identity"
+    ],
+    "incomplete": [
+      "request_identity",
+      "eligible"
+    ]
+  },
+  {
+    "id": "ab11aq11_request_short",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "partial",
+    "eligible": false,
+    "false": [
+      "request_identity"
+    ],
+    "incomplete": [
+      "request_identity",
+      "eligible"
+    ]
+  },
+  {
+    "id": "ab11aq11_input_missing",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "partial",
+    "eligible": false,
+    "false": [
+      "initialized_input",
+      "payload_length",
+      "initialized_length",
+      "input_identity"
+    ],
+    "incomplete": [
+      "initialized_input",
+      "payload_length",
+      "initialized_length",
+      "input_identity",
+      "eligible"
+    ]
+  },
+  {
+    "id": "ab11aq11_short_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": []
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "partial",
+    "eligible": false,
+    "false": [
+      "initialized_input",
+      "payload_length",
+      "initialized_length",
+      "input_identity"
+    ],
+    "incomplete": [
+      "initialized_input",
+      "payload_length",
+      "input_identity",
+      "eligible"
+    ]
+  },
+  {
+    "id": "ab11aq11_short_1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "partial",
+    "eligible": false,
+    "false": [
+      "initialized_input",
+      "payload_length",
+      "initialized_length",
+      "input_identity"
+    ],
+    "incomplete": [
+      "initialized_input",
+      "payload_length",
+      "input_identity",
+      "eligible"
+    ]
+  },
+  {
+    "id": "ab11aq11_short_2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "partial",
+    "eligible": false,
+    "false": [
+      "initialized_input",
+      "payload_length",
+      "initialized_length"
+    ],
+    "incomplete": [
+      "initialized_input",
+      "payload_length",
+      "eligible"
+    ]
+  },
+  {
+    "id": "ab11aq11_short_3",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "partial",
+    "eligible": false,
+    "false": [
+      "initialized_input",
+      "payload_length",
+      "initialized_length"
+    ],
+    "incomplete": [
+      "initialized_input",
+      "payload_length",
+      "eligible"
+    ]
+  },
+  {
+    "id": "ab11aq11_short_4",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "partial",
+    "eligible": false,
+    "false": [
+      "initialized_input",
+      "payload_length",
+      "initialized_length"
+    ],
+    "incomplete": [
+      "initialized_input",
+      "payload_length",
+      "eligible"
+    ]
+  },
+  {
+    "id": "ab11aq11_prefix",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          0,
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      }
+    },
+    "state": "complete",
+    "eligible": false,
+    "false": [
+      "payload_length",
+      "initialized_length",
+      "input_identity"
+    ],
+    "incomplete": []
+  },
+  {
+    "id": "ab11aq11_opaque",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 23,
+        "direction": "local",
+        "view": "adaptation-guard",
+        "family": "B518",
+        "variant": "other"
+      },
+      "fields": {
+        "request": [
+          181,
+          23
+        ],
+        "input": [
+          181,
+          24,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "ready_state": 3,
+        "final_option": 2,
+        "received_length": 10
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "state": "complete",
+    "eligible": true,
+    "false": [],
+    "incomplete": []
+  }
+]

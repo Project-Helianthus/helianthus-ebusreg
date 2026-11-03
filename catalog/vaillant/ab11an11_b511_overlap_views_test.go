@@ -48,9 +48,9 @@ func TestAb11An11SelectionAndExtent(ab11an11T *ab11an11testing.T) {
 			for ab11an11Index := range ab11an11Image {
 				ab11an11Image[ab11an11Index] = byte(ab11an11Index + 121)
 			}
-			ab11an11Selection := Ab11An11Selection{Ab11An11Family, ab11an11Variant, ab11an11Operation, "positive"}
+			ab11an11Selection := Ab11An11Selection{Ab11An11Family, ab11an11Variant, &ab11an11Operation, "positive"}
 			ab11an11Got := Ab11An11Interpret(ab11an11Selection, ab11an11Image)
-			if !ab11an11Got.Ab11An11Selected || ab11an11Got.Ab11An11RequiredExtent != ab11an11Required || ab11an11Got.Ab11An11CompleteLogicalExtent != (ab11an11Length >= ab11an11Required) || ab11an11Got.Ab11An11Selection != ab11an11Selection || ab11an11Got.Ab11An11AvailableExtent != ab11an11Length {
+			if !ab11an11Got.Ab11An11Selected || ab11an11Got.Ab11An11RequiredExtent != ab11an11Required || ab11an11Got.Ab11An11CompleteLogicalExtent != (ab11an11Length >= ab11an11Required) || !ab11an11reflect.DeepEqual(ab11an11Got.Ab11An11Selection, ab11an11Selection) || ab11an11Got.Ab11An11AvailableExtent != ab11an11Length {
 				ab11an11T.Fatalf("ab11an11 extent/selection: %+v", ab11an11Got)
 			}
 			if (ab11an11Got.Ab11An11RawFlag != nil) != (ab11an11Operation == 0 && ab11an11Length > 8) || (ab11an11Got.Ab11An11RawOverlay != nil) != (ab11an11Operation == 7 && ab11an11Length > 7) || (ab11an11Got.Ab11An11RawPressure != nil) != (ab11an11Variant == Ab11An11OP07ExtendedRoom && ab11an11Length > 8) {
@@ -61,7 +61,8 @@ func TestAb11An11SelectionAndExtent(ab11an11T *ab11an11testing.T) {
 					continue
 				}
 				ab11an11Wrong := ab11an11Selection
-				ab11an11Wrong.Ab11An11Operation = byte(ab11an11OtherOp)
+				ab11an11OtherByte := byte(ab11an11OtherOp)
+				ab11an11Wrong.Ab11An11Operation = &ab11an11OtherByte
 				ab11an11AssertUnknown(ab11an11T, ab11an11Wrong, ab11an11Image)
 			}
 			ab11an11Wrong := ab11an11Selection
@@ -79,6 +80,15 @@ func TestAb11An11SelectionAndExtent(ab11an11T *ab11an11testing.T) {
 	}
 }
 
+func ab11an11OpPtr(ab11an11Value byte) *byte { return &ab11an11Value }
+
+func TestAb11An11AbsentOperationFailsClosed(ab11an11T *ab11an11testing.T) {
+	ab11an11Image := make([]byte, 12)
+	for _, ab11an11Variant := range []string{Ab11An11OP00Reserved, Ab11An11OP00Fan, Ab11An11OP07Base, Ab11An11OP07ExtendedRoom} {
+		ab11an11AssertUnknown(ab11an11T, Ab11An11Selection{Ab11An11Family: Ab11An11Family, Ab11An11Variant: ab11an11Variant, Ab11An11Direction: "positive"}, ab11an11Image)
+	}
+}
+
 func ab11an11AssertUnknown(ab11an11T *ab11an11testing.T, ab11an11Selection Ab11An11Selection, ab11an11Image []byte) {
 	ab11an11T.Helper()
 	ab11an11Expected := Ab11An11View{Ab11An11Selection: ab11an11Selection, Ab11An11Raw: append([]byte(nil), ab11an11Image...), Ab11An11AvailableExtent: len(ab11an11Image), Ab11An11PressureDomain: "Unknown", Ab11An11CandidateGrade: "Unknown", Ab11An11PhysicalQualification: "Unknown"}
@@ -91,7 +101,7 @@ func TestAb11An11EveryBitAndOverlap(ab11an11T *ab11an11testing.T) {
 	for ab11an11Value := 0; ab11an11Value < 256; ab11an11Value++ {
 		ab11an11Image := []byte{17, 34, 51, 222, 223, 224, 225, 64, byte(ab11an11Value), 226, 227, 228}
 		for _, ab11an11Variant := range []string{Ab11An11OP00Reserved, Ab11An11OP00Fan} {
-			ab11an11Got := Ab11An11Interpret(Ab11An11Selection{Ab11An11Family, ab11an11Variant, 0, "positive"}, ab11an11Image)
+			ab11an11Got := Ab11An11Interpret(Ab11An11Selection{Ab11An11Family, ab11an11Variant, ab11an11OpPtr(0), "positive"}, ab11an11Image)
 			if ab11an11Got.Ab11An11RawFlag == nil || *ab11an11Got.Ab11An11RawFlag != byte(ab11an11Value) || !ab11an11reflect.DeepEqual(ab11an11Got.Ab11An11Raw, ab11an11Image) {
 				ab11an11T.Fatal("ab11an11 lost flag bits")
 			}
@@ -103,7 +113,7 @@ func TestAb11An11EveryBitAndOverlap(ab11an11T *ab11an11testing.T) {
 				ab11an11T.Fatal("ab11an11 fan bit mismatch")
 			}
 		}
-		ab11an11Selection := Ab11An11Selection{Ab11An11Family, Ab11An11OP07ExtendedRoom, 7, "positive"}
+		ab11an11Selection := Ab11An11Selection{Ab11An11Family, Ab11An11OP07ExtendedRoom, ab11an11OpPtr(7), "positive"}
 		ab11an11Got := Ab11An11Interpret(ab11an11Selection, ab11an11Image)
 		if ab11an11Got.Ab11An11RawPressure == nil || *ab11an11Got.Ab11An11RawPressure != byte(ab11an11Value) || ab11an11Got.Ab11An11RoomSetpointCelsius == nil || *ab11an11Got.Ab11An11RoomSetpointCelsius != 32 || ab11an11Got.Ab11An11RawOverlay == nil || *ab11an11Got.Ab11An11RawOverlay != 64 {
 			ab11an11T.Fatal("ab11an11 pressure changed independent overlay/room")
@@ -130,7 +140,7 @@ func TestAb11An11DetachedBuffers(ab11an11T *ab11an11testing.T) {
 		if ab11an11Variant == Ab11An11OP07ExtendedRoom {
 			ab11an11Operation = 7
 		}
-		ab11an11Selection := Ab11An11Selection{Ab11An11Family, ab11an11Variant, ab11an11Operation, "positive"}
+		ab11an11Selection := Ab11An11Selection{Ab11An11Family, ab11an11Variant, &ab11an11Operation, "positive"}
 		ab11an11Got := Ab11An11Interpret(ab11an11Selection, ab11an11Image)
 		ab11an11Before := Ab11An11Interpret(ab11an11Selection, append([]byte(nil), ab11an11Image...))
 		for ab11an11Index := range ab11an11Image {

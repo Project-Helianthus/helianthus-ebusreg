@@ -11,7 +11,7 @@ const (
 type Ab11An11Selection struct {
 	Ab11An11Family    string
 	Ab11An11Variant   string
-	Ab11An11Operation byte
+	Ab11An11Operation *byte
 	Ab11An11Direction string
 }
 
@@ -34,6 +34,10 @@ type Ab11An11View struct {
 }
 
 func Ab11An11Interpret(ab11an11Selection Ab11An11Selection, ab11an11LogicalImage []byte) Ab11An11View {
+	if ab11an11Selection.Ab11An11Operation != nil {
+		ab11an11Op := *ab11an11Selection.Ab11An11Operation
+		ab11an11Selection.Ab11An11Operation = &ab11an11Op
+	}
 	ab11an11View := Ab11An11View{
 		Ab11An11Selection:             ab11an11Selection,
 		Ab11An11Raw:                   append([]byte(nil), ab11an11LogicalImage...),
@@ -45,8 +49,11 @@ func Ab11An11Interpret(ab11an11Selection Ab11An11Selection, ab11an11LogicalImage
 	if ab11an11Selection.Ab11An11Family != Ab11An11Family || ab11an11Selection.Ab11An11Direction != "positive" {
 		return ab11an11View
 	}
+	if ab11an11Selection.Ab11An11Operation == nil {
+		return ab11an11View
+	}
 	switch {
-	case ab11an11Selection.Ab11An11Operation == 0 && (ab11an11Selection.Ab11An11Variant == Ab11An11OP00Reserved || ab11an11Selection.Ab11An11Variant == Ab11An11OP00Fan):
+	case *ab11an11Selection.Ab11An11Operation == 0 && (ab11an11Selection.Ab11An11Variant == Ab11An11OP00Reserved || ab11an11Selection.Ab11An11Variant == Ab11An11OP00Fan):
 		ab11an11View.Ab11An11RequiredExtent = 12
 		if len(ab11an11LogicalImage) > 8 {
 			ab11an11Flag := ab11an11LogicalImage[8]
@@ -56,7 +63,7 @@ func Ab11An11Interpret(ab11an11Selection Ab11An11Selection, ab11an11LogicalImage
 				ab11an11View.Ab11An11FanRunning = &ab11an11Fan
 			}
 		}
-	case ab11an11Selection.Ab11An11Operation == 7 && (ab11an11Selection.Ab11An11Variant == Ab11An11OP07Base || ab11an11Selection.Ab11An11Variant == Ab11An11OP07ExtendedRoom):
+	case *ab11an11Selection.Ab11An11Operation == 7 && (ab11an11Selection.Ab11An11Variant == Ab11An11OP07Base || ab11an11Selection.Ab11An11Variant == Ab11An11OP07ExtendedRoom):
 		ab11an11View.Ab11An11RequiredExtent = 8
 		if len(ab11an11LogicalImage) > 7 {
 			ab11an11Overlay := ab11an11LogicalImage[7]

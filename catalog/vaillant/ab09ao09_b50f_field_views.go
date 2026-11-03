@@ -8,7 +8,12 @@ import (
 	ab09ao09Strconv "strconv"
 )
 
-func ab09ao09Read(ab09ao09Decoder *ab09ao09JSON.Decoder) (any, error) {
+const ab09ao09MaxDepth = 64
+
+func ab09ao09Read(ab09ao09Decoder *ab09ao09JSON.Decoder, ab09ao09Depth int) (any, error) {
+	if ab09ao09Depth > ab09ao09MaxDepth {
+		return nil, ab09ao09Fmt.Errorf("JSON nesting too deep")
+	}
 	ab09ao09Token, ab09ao09Err := ab09ao09Decoder.Token()
 	if ab09ao09Err != nil {
 		return nil, ab09ao09Err
@@ -29,7 +34,7 @@ func ab09ao09Read(ab09ao09Decoder *ab09ao09JSON.Decoder) (any, error) {
 				if _, ab09ao09Found := ab09ao09Object[ab09ao09Key]; ab09ao09Found {
 					return nil, ab09ao09Fmt.Errorf("duplicate object key")
 				}
-				ab09ao09Value, ab09ao09Err := ab09ao09Read(ab09ao09Decoder)
+				ab09ao09Value, ab09ao09Err := ab09ao09Read(ab09ao09Decoder, ab09ao09Depth+1)
 				if ab09ao09Err != nil {
 					return nil, ab09ao09Err
 				}
@@ -40,7 +45,7 @@ func ab09ao09Read(ab09ao09Decoder *ab09ao09JSON.Decoder) (any, error) {
 		case '[':
 			ab09ao09Array := []any{}
 			for ab09ao09Decoder.More() {
-				ab09ao09Value, ab09ao09Err := ab09ao09Read(ab09ao09Decoder)
+				ab09ao09Value, ab09ao09Err := ab09ao09Read(ab09ao09Decoder, ab09ao09Depth+1)
 				if ab09ao09Err != nil {
 					return nil, ab09ao09Err
 				}
@@ -57,7 +62,7 @@ func ab09ao09Read(ab09ao09Decoder *ab09ao09JSON.Decoder) (any, error) {
 func Ab09Ao09Interpret(ab09ao09Input ab09ao09JSON.RawMessage) (ab09ao09JSON.RawMessage, error) {
 	ab09ao09Decoder := ab09ao09JSON.NewDecoder(ab09ao09Bytes.NewReader(ab09ao09Input))
 	ab09ao09Decoder.UseNumber()
-	ab09ao09Value, ab09ao09Err := ab09ao09Read(ab09ao09Decoder)
+	ab09ao09Value, ab09ao09Err := ab09ao09Read(ab09ao09Decoder, 0)
 	if ab09ao09Err != nil {
 		return nil, ab09ao09Err
 	}
@@ -87,7 +92,7 @@ func Ab09Ao09Interpret(ab09ao09Input ab09ao09JSON.RawMessage) (ab09ao09JSON.RawM
 			if !ab09ao09OK {
 				return nil, ab09ao09Fmt.Errorf("integer selector required")
 			}
-			if _, ab09ao09Err := ab09ao09Strconv.ParseInt(string(ab09ao09Number), 10, 64); ab09ao09Err != nil {
+			if _, ab09ao09Err := ab09ao09Strconv.ParseInt(string(ab09ao09Number), 10, 64); ab09ao09Err != nil && !ab09ao09IntegerOutOfRange(string(ab09ao09Number)) {
 				return nil, ab09ao09Fmt.Errorf("integer selector required")
 			}
 		}
@@ -224,4 +229,22 @@ func Ab09Ao09Interpret(ab09ao09Input ab09ao09JSON.RawMessage) (ab09ao09JSON.RawM
 		}
 	}
 	return ab09ao09JSON.Marshal(ab09ao09Output)
+}
+
+// ab09ao09IntegerOutOfRange reports a plain integer literal too large for int64;
+// such a selector is an unknown value, not a wrong kind.
+func ab09ao09IntegerOutOfRange(ab09ao09Text string) bool {
+	ab09ao09Digits := ab09ao09Text
+	if len(ab09ao09Digits) > 0 && ab09ao09Digits[0] == '-' {
+		ab09ao09Digits = ab09ao09Digits[1:]
+	}
+	if ab09ao09Digits == "" {
+		return false
+	}
+	for _, ab09ao09Char := range ab09ao09Digits {
+		if ab09ao09Char < '0' || ab09ao09Char > '9' {
+			return false
+		}
+	}
+	return true
 }

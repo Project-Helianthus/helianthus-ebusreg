@@ -4,6 +4,7 @@ import (
 	ab09ao09JSON "encoding/json"
 	ab09ao09OS "os"
 	ab09ao09Reflect "reflect"
+	ab09ao09Strings "strings"
 	ab09ao09Testing "testing"
 )
 
@@ -353,6 +354,27 @@ func TestAb09Ao09EveryFieldAxis(ab09ao09T *ab09ao09Testing.T) {
 			if ab09ao09Err == nil || ab09ao09Result != nil {
 				ab09ao09T.Fatal("wrong selector kind", ab09ao09Key)
 			}
+		}
+	}
+}
+
+func TestAb09Ao09DepthAndRange(ab09ao09T *ab09ao09Testing.T) {
+	ab09ao09Deep := `{"context":{"x":` + ab09ao09Strings.Repeat("[", 200000) + ab09ao09Strings.Repeat("]", 200000) + `},"fields":{}}`
+	if ab09ao09Output, ab09ao09Err := Ab09Ao09Interpret([]byte(ab09ao09Deep)); ab09ao09Err == nil || ab09ao09Output != nil {
+		ab09ao09T.Fatal("deep nesting accepted")
+	}
+	ab09ao09Shallow := `{"context":{"x":` + ab09ao09Strings.Repeat("[", 32) + ab09ao09Strings.Repeat("]", 32) + `},"fields":{}}`
+	if _, ab09ao09Err := Ab09Ao09Interpret([]byte(ab09ao09Shallow)); ab09ao09Err != nil {
+		ab09ao09T.Fatal(ab09ao09Err)
+	}
+	for _, ab09ao09Key := range []string{"operation", "primary", "secondary"} {
+		ab09ao09Data, ab09ao09Err := Ab09Ao09Interpret([]byte(`{"context":{"` + ab09ao09Key + `":5000000000000000000000,"direction":"positive"},"fields":{"temperature_one":[1,2]}}`))
+		if ab09ao09Err != nil {
+			ab09ao09T.Fatal(ab09ao09Key, ab09ao09Err)
+		}
+		var ab09ao09Output map[string]any
+		if ab09ao09Err = ab09ao09JSON.Unmarshal(ab09ao09Data, &ab09ao09Output); ab09ao09Err != nil || ab09ao09Output["state"] != "Unknown" {
+			ab09ao09T.Fatal(ab09ao09Key, "not Unknown")
 		}
 	}
 }

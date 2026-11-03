@@ -1,0 +1,288 @@
+[
+  {
+    "ab62Label": "ab62-controller-720-0007",
+    "ab62Family": "controller-720",
+    "ab62Register": 7,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-0008",
+    "ab62Family": "controller-720",
+    "ab62Register": 8,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-0010",
+    "ab62Family": "controller-720",
+    "ab62Register": 16,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-0011",
+    "ab62Family": "controller-720",
+    "ab62Register": 17,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-0012",
+    "ab62Family": "controller-720",
+    "ab62Register": 18,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-0014",
+    "ab62Family": "controller-720",
+    "ab62Register": 20,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-001F",
+    "ab62Family": "controller-720",
+    "ab62Register": 31,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-000A",
+    "ab62Family": "controller-720",
+    "ab62Register": 10,
+    "ab62Unit": "K",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-000B",
+    "ab62Family": "controller-720",
+    "ab62Register": 11,
+    "ab62Unit": "K",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-000F",
+    "ab62Family": "controller-720",
+    "ab62Register": 15,
+    "ab62Unit": "Unknown",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-001A",
+    "ab62Family": "controller-720",
+    "ab62Register": 26,
+    "ab62Unit": "%",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-720-001C",
+    "ab62Family": "controller-720",
+    "ab62Register": 28,
+    "ab62Unit": "Unknown",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-700-0007",
+    "ab62Family": "controller-700",
+    "ab62Register": 7,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-700-0008",
+    "ab62Family": "controller-700",
+    "ab62Register": 8,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-700-0010",
+    "ab62Family": "controller-700",
+    "ab62Register": 16,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-700-0011",
+    "ab62Family": "controller-700",
+    "ab62Register": 17,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-700-0012",
+    "ab62Family": "controller-700",
+    "ab62Register": 18,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-700-0014",
+    "ab62Family": "controller-700",
+    "ab62Register": 20,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-700-001F",
+    "ab62Family": "controller-700",
+    "ab62Register": 31,
+    "ab62Unit": "°C",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-700-000A",
+    "ab62Family": "controller-700",
+    "ab62Register": 10,
+    "ab62Unit": "K",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-700-000B",
+    "ab62Family": "controller-700",
+    "ab62Register": 11,
+    "ab62Unit": "K",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  },
+  {
+    "ab62Label": "ab62-controller-700-000F",
+    "ab62Family": "controller-700",
+    "ab62Register": 15,
+    "ab62Unit": "Unknown",
+    "ab62Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab62Expected": 1.5
+  }
+]

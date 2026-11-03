@@ -134,9 +134,6 @@ func decodeExtRegisterResponse(cmd byte, opcode byte, group, instance byte, addr
 		"payload":  {Value: append([]byte(nil), payload...), Valid: true},
 	}
 
-	constraint, hasConstraint := lookupB524Constraint(opcode, group, addr)
-	constraintRecord := addr
-
 	if len(payload) >= 4 {
 		values["prefix"] = types.Value{Value: append([]byte(nil), payload[:4]...), Valid: true}
 		replyGroup := payload[1]
@@ -144,13 +141,6 @@ func decodeExtRegisterResponse(cmd byte, opcode byte, group, instance byte, addr
 		values["reply_group"] = types.Value{Value: replyGroup, Valid: true}
 		values["reply_addr"] = types.Value{Value: replyAddr, Valid: true}
 		values["reply_addr_hex"] = types.Value{Value: fmt.Sprintf("%04X", replyAddr), Valid: true}
-		if resolved, ok := lookupB524Constraint(opcode, replyGroup, replyAddr); ok {
-			constraint = resolved
-			hasConstraint = true
-			constraintRecord = replyAddr
-		} else {
-			hasConstraint = false
-		}
 	} else {
 		values["prefix"] = types.Value{Valid: false}
 	}
@@ -161,16 +151,13 @@ func decodeExtRegisterResponse(cmd byte, opcode byte, group, instance byte, addr
 		values["reply_kind"] = types.Value{Valid: false}
 	}
 
-	if len(payload) == 1 && payload[0] == 0x00 {
+	if len(payload) <= 4 || values["reply_group"].Value != group || values["reply_addr"].Value != addr {
 		values["value"] = types.Value{Valid: false}
-		addB524ConstraintValues(values, constraint, hasConstraint, constraintRecord)
 		return values
 	}
-	if len(payload) <= 4 {
-		values["value"] = types.Value{Valid: false}
-		addB524ConstraintValues(values, constraint, hasConstraint, constraintRecord)
-		return values
-	}
+
+	constraint, hasConstraint := lookupB524Constraint(opcode, group, addr)
+	constraintRecord := addr
 
 	values["value"] = types.Value{Value: append([]byte(nil), payload[4:]...), Valid: true}
 	addB524ConstraintValues(values, constraint, hasConstraint, constraintRecord)

@@ -1,0 +1,408 @@
+[
+  {
+    "id": "ab17aq17_ff04_one",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 4,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [
+          0
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 1
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_minimum_satisfied": false,
+        "initialized_minimum_satisfied": false,
+        "bounded_minimum": false
+      }
+    }
+  },
+  {
+    "id": "ab17aq17_ff04_two",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 4,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [
+          0,
+          1
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 2
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_minimum_satisfied": true,
+        "initialized_minimum_satisfied": true,
+        "bounded_minimum": true
+      }
+    }
+  },
+  {
+    "id": "ab17aq17_ff04_truncated",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 4,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [
+          0,
+          1
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 10
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_minimum_satisfied": true,
+        "initialized_minimum_satisfied": true,
+        "bounded_minimum": false
+      }
+    }
+  },
+  {
+    "id": "ab17aq17_ff06_1_1",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 6,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [
+          0
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 1
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_incomplete_tail": false,
+        "whole_declared_span": true
+      },
+      "declared_pair_count": 0,
+      "available_pair_count": 0
+    }
+  },
+  {
+    "id": "ab17aq17_ff06_3_3",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 6,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [
+          0,
+          1,
+          2
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 3
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_incomplete_tail": false,
+        "whole_declared_span": true
+      },
+      "declared_pair_count": 1,
+      "available_pair_count": 1
+    }
+  },
+  {
+    "id": "ab17aq17_ff06_5_5",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 6,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 5
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_incomplete_tail": false,
+        "whole_declared_span": true
+      },
+      "declared_pair_count": 2,
+      "available_pair_count": 2
+    }
+  },
+  {
+    "id": "ab17aq17_ff06_2_2",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 6,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [
+          0,
+          1
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 2
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_incomplete_tail": true,
+        "whole_declared_span": false
+      },
+      "declared_pair_count": 0,
+      "available_pair_count": 0
+    }
+  },
+  {
+    "id": "ab17aq17_ff06_4_4",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 6,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 4
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_incomplete_tail": true,
+        "whole_declared_span": false
+      },
+      "declared_pair_count": 1,
+      "available_pair_count": 1
+    }
+  },
+  {
+    "id": "ab17aq17_ff06_5_3",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 6,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [
+          0,
+          1,
+          2
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 5
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_incomplete_tail": false,
+        "whole_declared_span": false
+      },
+      "declared_pair_count": 2,
+      "available_pair_count": 1
+    }
+  },
+  {
+    "id": "ab17aq17_ff06_3_4",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 6,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 3
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_incomplete_tail": false,
+        "whole_declared_span": true
+      },
+      "declared_pair_count": 1,
+      "available_pair_count": 1
+    }
+  },
+  {
+    "id": "ab17aq17_ff06_0_0",
+    "input": {
+      "context": {
+        "primary": 255,
+        "secondary": 6,
+        "direction": "positive",
+        "view": "body-extent",
+        "family": "synthetic-family",
+        "variant": ""
+      },
+      "fields": {
+        "body": [],
+        "opaque": []
+      },
+      "arguments": {
+        "declared_length": 0
+      },
+      "extra": {
+        "null": null,
+        "false": false,
+        "zero": 0,
+        "empty": []
+      }
+    },
+    "expected": {
+      "flags": {
+        "declared_incomplete_tail": false,
+        "whole_declared_span": false
+      }
+    }
+  }
+]

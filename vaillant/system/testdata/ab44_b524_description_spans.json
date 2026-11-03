@@ -1,0 +1,8 @@
+[
+  {"ab44ID":"ab44_uin","ab44Codec":"UIN","ab44Width":2,"ab44RR":2,"ab44Raw":[2,2,0,0,0,4,0,1,0],"ab44Minimum":0,"ab44Maximum":4,"ab44Step":1,"ab44Numeric":true},
+  {"ab44ID":"ab44_uin_high_register","ab44Codec":"UIN","ab44Width":2,"ab44RR":4660,"ab44Raw":[2,52,18,0,1,0,4,0,1],"ab44Minimum":256,"ab44Maximum":1024,"ab44Step":256,"ab44Numeric":true},
+  {"ab44ID":"ab44_uch","ab44Codec":"UCH","ab44Width":1,"ab44RR":2,"ab44Raw":[2,2,0,0,4,1],"ab44Minimum":0,"ab44Maximum":4,"ab44Step":1,"ab44Numeric":true},
+  {"ab44ID":"ab44_exp","ab44Codec":"EXP","ab44Width":4,"ab44RR":2,"ab44Raw":[2,2,0,0,0,160,193,0,0,160,65,0,0,128,63],"ab44Minimum":-20,"ab44Maximum":20,"ab44Step":1,"ab44Numeric":true},
+  {"ab44ID":"ab44_date","ab44Codec":"DATE","ab44Width":3,"ab44RR":2,"ab44Raw":[2,2,0,1,2,3,4,5,6,7,8,9],"ab44Numeric":false},
+  {"ab44ID":"ab44_time","ab44Codec":"TIME","ab44Width":3,"ab44RR":2,"ab44Raw":[2,2,0,0,0,0,23,59,59,0,15,0],"ab44Numeric":false}
+]

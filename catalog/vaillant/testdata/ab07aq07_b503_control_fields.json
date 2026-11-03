@@ -1,0 +1,1235 @@
+[
+  {
+    "ab07aq07id": "ab07aq07reset0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 3,
+        "direction": "positive",
+        "view": "reset-acceptance",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "acceptance": [
+          0
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "acceptance": {
+          "number": 0,
+          "value": false,
+          "state": "Hypothesis"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07reset1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 3,
+        "direction": "positive",
+        "view": "reset-acceptance",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "acceptance": [
+          1
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "acceptance": {
+          "number": 1,
+          "value": true,
+          "state": "Hypothesis"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07reset2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 3,
+        "direction": "positive",
+        "view": "reset-acceptance",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "acceptance": [
+          2
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "acceptance": {
+          "number": 2,
+          "state": "Unknown",
+          "unmodeled": 2
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07reset255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 3,
+        "direction": "positive",
+        "view": "reset-acceptance",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "acceptance": [
+          255
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "acceptance": {
+          "number": 255,
+          "state": "Unknown",
+          "unmodeled": 255
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07flags31",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 7,
+        "direction": "positive",
+        "view": "current-errors",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          31
+        ],
+        "feedback": [
+          2
+        ],
+        "error0": [
+          1,
+          0
+        ],
+        "error1": [
+          0,
+          1
+        ],
+        "error2": [
+          52,
+          18
+        ],
+        "error3": [
+          0,
+          0
+        ],
+        "error4": [
+          255,
+          255
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "flags": {
+          "flags": {
+            "bit0": true,
+            "bit1": true,
+            "bit2": true,
+            "bit3": true,
+            "bit4": true
+          },
+          "reserved": 0
+        },
+        "feedback": {
+          "label": "rejected"
+        },
+        "error0": {
+          "number": 1,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error1": {
+          "number": 256,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error2": {
+          "number": 4660,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error3": {
+          "number": 0,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error4": {
+          "number": 65535,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07flags224",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 7,
+        "direction": "positive",
+        "view": "current-errors",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          224
+        ],
+        "feedback": [
+          2
+        ],
+        "error0": [
+          1,
+          0
+        ],
+        "error1": [
+          0,
+          1
+        ],
+        "error2": [
+          52,
+          18
+        ],
+        "error3": [
+          0,
+          0
+        ],
+        "error4": [
+          255,
+          255
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "flags": {
+          "flags": {
+            "bit0": false,
+            "bit1": false,
+            "bit2": false,
+            "bit3": false,
+            "bit4": false
+          },
+          "reserved": 224
+        },
+        "feedback": {
+          "label": "rejected"
+        },
+        "error0": {
+          "number": 1,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error1": {
+          "number": 256,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error2": {
+          "number": 4660,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error3": {
+          "number": 0,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error4": {
+          "number": 65535,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07flags1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 7,
+        "direction": "positive",
+        "view": "current-errors",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          1
+        ],
+        "feedback": [
+          2
+        ],
+        "error0": [
+          1,
+          0
+        ],
+        "error1": [
+          0,
+          1
+        ],
+        "error2": [
+          52,
+          18
+        ],
+        "error3": [
+          0,
+          0
+        ],
+        "error4": [
+          255,
+          255
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "flags": {
+          "flags": {
+            "bit0": true,
+            "bit1": false,
+            "bit2": false,
+            "bit3": false,
+            "bit4": false
+          },
+          "reserved": 0
+        },
+        "feedback": {
+          "label": "rejected"
+        },
+        "error0": {
+          "number": 1,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error1": {
+          "number": 256,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error2": {
+          "number": 4660,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error3": {
+          "number": 0,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error4": {
+          "number": 65535,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07flags2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 7,
+        "direction": "positive",
+        "view": "current-errors",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          2
+        ],
+        "feedback": [
+          2
+        ],
+        "error0": [
+          1,
+          0
+        ],
+        "error1": [
+          0,
+          1
+        ],
+        "error2": [
+          52,
+          18
+        ],
+        "error3": [
+          0,
+          0
+        ],
+        "error4": [
+          255,
+          255
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "flags": {
+          "flags": {
+            "bit0": false,
+            "bit1": true,
+            "bit2": false,
+            "bit3": false,
+            "bit4": false
+          },
+          "reserved": 0
+        },
+        "feedback": {
+          "label": "rejected"
+        },
+        "error0": {
+          "number": 1,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error1": {
+          "number": 256,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error2": {
+          "number": 4660,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error3": {
+          "number": 0,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error4": {
+          "number": 65535,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07flags4",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 7,
+        "direction": "positive",
+        "view": "current-errors",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          4
+        ],
+        "feedback": [
+          2
+        ],
+        "error0": [
+          1,
+          0
+        ],
+        "error1": [
+          0,
+          1
+        ],
+        "error2": [
+          52,
+          18
+        ],
+        "error3": [
+          0,
+          0
+        ],
+        "error4": [
+          255,
+          255
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "flags": {
+          "flags": {
+            "bit0": false,
+            "bit1": false,
+            "bit2": true,
+            "bit3": false,
+            "bit4": false
+          },
+          "reserved": 0
+        },
+        "feedback": {
+          "label": "rejected"
+        },
+        "error0": {
+          "number": 1,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error1": {
+          "number": 256,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error2": {
+          "number": 4660,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error3": {
+          "number": 0,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error4": {
+          "number": 65535,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07flags8",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 7,
+        "direction": "positive",
+        "view": "current-errors",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          8
+        ],
+        "feedback": [
+          2
+        ],
+        "error0": [
+          1,
+          0
+        ],
+        "error1": [
+          0,
+          1
+        ],
+        "error2": [
+          52,
+          18
+        ],
+        "error3": [
+          0,
+          0
+        ],
+        "error4": [
+          255,
+          255
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "flags": {
+          "flags": {
+            "bit0": false,
+            "bit1": false,
+            "bit2": false,
+            "bit3": true,
+            "bit4": false
+          },
+          "reserved": 0
+        },
+        "feedback": {
+          "label": "rejected"
+        },
+        "error0": {
+          "number": 1,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error1": {
+          "number": 256,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error2": {
+          "number": 4660,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error3": {
+          "number": 0,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error4": {
+          "number": 65535,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07flags16",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 7,
+        "direction": "positive",
+        "view": "current-errors",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          16
+        ],
+        "feedback": [
+          2
+        ],
+        "error0": [
+          1,
+          0
+        ],
+        "error1": [
+          0,
+          1
+        ],
+        "error2": [
+          52,
+          18
+        ],
+        "error3": [
+          0,
+          0
+        ],
+        "error4": [
+          255,
+          255
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "flags": {
+          "flags": {
+            "bit0": false,
+            "bit1": false,
+            "bit2": false,
+            "bit3": false,
+            "bit4": true
+          },
+          "reserved": 0
+        },
+        "feedback": {
+          "label": "rejected"
+        },
+        "error0": {
+          "number": 1,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error1": {
+          "number": 256,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error2": {
+          "number": 4660,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error3": {
+          "number": 0,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        },
+        "error4": {
+          "number": 65535,
+          "grade": "Hypothesis",
+          "calculation": "Proven"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07missing",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 7,
+        "direction": "positive",
+        "view": "current-errors",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "feedback": [
+          1
+        ],
+        "error0": [
+          1,
+          0
+        ],
+        "error1": [
+          0,
+          1
+        ],
+        "error3": [
+          0,
+          0
+        ],
+        "error4": [
+          255,
+          255
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "partial",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "error2": {
+          "present": false,
+          "raw": null,
+          "state": "incomplete"
+        },
+        "feedback": {
+          "label": "accepted"
+        },
+        "error0": {
+          "number": 1
+        },
+        "error1": {
+          "number": 256
+        },
+        "error3": {
+          "number": 0
+        },
+        "error4": {
+          "number": 65535
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07category-common1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 4,
+        "direction": "request",
+        "view": "category-common",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "category": [
+          1
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "category": {
+          "number": 1,
+          "state": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07category-common2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 4,
+        "direction": "request",
+        "view": "category-common",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "category": [
+          2
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "category": {
+          "number": 2,
+          "state": "Hypothesis",
+          "label": "predictive-maintenance"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07category-common3",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 4,
+        "direction": "request",
+        "view": "category-common",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "category": [
+          3
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "category": {
+          "number": 3,
+          "state": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07category-common4",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 4,
+        "direction": "request",
+        "view": "category-common",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "category": [
+          4
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "category": {
+          "number": 4,
+          "state": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07category-common5",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 4,
+        "direction": "request",
+        "view": "category-common",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "category": [
+          5
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "category": {
+          "number": 5,
+          "state": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07category-reset1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 3,
+        "direction": "request",
+        "view": "category-reset",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "category": [
+          1
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "category": {
+          "number": 1,
+          "state": "Hypothesis",
+          "label": "error"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07category-reset2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 3,
+        "direction": "request",
+        "view": "category-reset",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "category": [
+          2
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "category": {
+          "number": 2,
+          "state": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07category-reset3",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 3,
+        "direction": "request",
+        "view": "category-reset",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "category": [
+          3
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "category": {
+          "number": 3,
+          "state": "Hypothesis",
+          "label": "status"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07category-reset4",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 3,
+        "direction": "request",
+        "view": "category-reset",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "category": [
+          4
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "category": {
+          "number": 4,
+          "state": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "ab07aq07id": "ab07aq07category-reset5",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 3,
+        "operation": 3,
+        "direction": "request",
+        "view": "category-reset",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "category": [
+          5
+        ]
+      },
+      "extra": {
+        "null": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "category": {
+          "number": 5,
+          "state": "Unknown"
+        }
+      }
+    }
+  }
+]

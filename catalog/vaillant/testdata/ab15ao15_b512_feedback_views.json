@@ -1,0 +1,104 @@
+[
+  {
+    "id": "ab15ao15_request",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 1,
+        "direction": "request",
+        "view": "directional-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "secondary_heating_pump": [
+          255
+        ],
+        "circulation_pump": [
+          255
+        ],
+        "solar_pump": [
+          255
+        ],
+        "loading_pump": [
+          255
+        ],
+        "error_relay": [
+          15
+        ],
+        "fume_flap": [
+          240
+        ]
+      }
+    },
+    "state": "Hypothesis",
+    "labels": {
+      "secondary_heating_pump": "leave-unchanged",
+      "circulation_pump": "leave-unchanged",
+      "solar_pump": "leave-unchanged",
+      "loading_pump": "leave-unchanged"
+    }
+  },
+  {
+    "id": "ab15ao15_positive",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 1,
+        "direction": "positive",
+        "view": "directional-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "secondary_heating_pump": [
+          255
+        ],
+        "circulation_pump": [
+          255
+        ],
+        "solar_pump": [
+          255
+        ],
+        "loading_pump": [
+          255
+        ],
+        "error_relay": [
+          15
+        ],
+        "fume_flap": [
+          240
+        ]
+      }
+    },
+    "state": "Hypothesis",
+    "labels": {
+      "secondary_heating_pump": "function-unavailable",
+      "circulation_pump": "function-unavailable",
+      "solar_pump": "function-unavailable",
+      "loading_pump": "function-unavailable"
+    }
+  },
+  {
+    "id": "ab15ao15_unknown",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "request",
+        "view": "directional-fields"
+      },
+      "fields": {
+        "error_relay": [
+          15,
+          240
+        ]
+      }
+    },
+    "state": "Unknown",
+    "labels": {}
+  }
+]

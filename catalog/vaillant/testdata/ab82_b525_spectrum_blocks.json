@@ -1,0 +1,1114 @@
+{
+  "blocks": [
+    {
+      "id": "ab82_selector_10",
+      "selector": 10,
+      "direction": "request",
+      "values": "007f80ff01010101010101010101010101010101010101010101010101010101",
+      "expected": {
+        "state": "valid",
+        "first_index": 0,
+        "last_index": 31,
+        "count": 32,
+        "head": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            127
+          ],
+          [
+            2,
+            -128
+          ],
+          [
+            3,
+            -1
+          ]
+        ],
+        "tail": [
+          31,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ab82_selector_11",
+      "selector": 11,
+      "direction": "request",
+      "values": "007f80ff01010101010101010101010101010101010101010101010101010101",
+      "expected": {
+        "state": "valid",
+        "first_index": 32,
+        "last_index": 63,
+        "count": 32,
+        "head": [
+          [
+            32,
+            0
+          ],
+          [
+            33,
+            127
+          ],
+          [
+            34,
+            -128
+          ],
+          [
+            35,
+            -1
+          ]
+        ],
+        "tail": [
+          63,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ab82_selector_12",
+      "selector": 12,
+      "direction": "request",
+      "values": "007f80ff01010101010101010101010101010101010101010101010101010101",
+      "expected": {
+        "state": "valid",
+        "first_index": 64,
+        "last_index": 95,
+        "count": 32,
+        "head": [
+          [
+            64,
+            0
+          ],
+          [
+            65,
+            127
+          ],
+          [
+            66,
+            -128
+          ],
+          [
+            67,
+            -1
+          ]
+        ],
+        "tail": [
+          95,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ab82_selector_13",
+      "selector": 13,
+      "direction": "request",
+      "values": "007f80ff01010101010101010101010101010101010101010101010101010101",
+      "expected": {
+        "state": "valid",
+        "first_index": 96,
+        "last_index": 127,
+        "count": 32,
+        "head": [
+          [
+            96,
+            0
+          ],
+          [
+            97,
+            127
+          ],
+          [
+            98,
+            -128
+          ],
+          [
+            99,
+            -1
+          ]
+        ],
+        "tail": [
+          127,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ab82_selector_14",
+      "selector": 14,
+      "direction": "request",
+      "values": "007f80ff01010101010101010101010101010101010101010101010101010101",
+      "expected": {
+        "state": "valid",
+        "first_index": 128,
+        "last_index": 159,
+        "count": 32,
+        "head": [
+          [
+            128,
+            0
+          ],
+          [
+            129,
+            127
+          ],
+          [
+            130,
+            -128
+          ],
+          [
+            131,
+            -1
+          ]
+        ],
+        "tail": [
+          159,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ab82_selector_15",
+      "selector": 15,
+      "direction": "request",
+      "values": "007f80ff01010101010101010101010101010101010101010101010101010101",
+      "expected": {
+        "state": "valid",
+        "first_index": 160,
+        "last_index": 191,
+        "count": 32,
+        "head": [
+          [
+            160,
+            0
+          ],
+          [
+            161,
+            127
+          ],
+          [
+            162,
+            -128
+          ],
+          [
+            163,
+            -1
+          ]
+        ],
+        "tail": [
+          191,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ab82_selector_16",
+      "selector": 16,
+      "direction": "request",
+      "values": "007f80ff01010101010101010101010101010101010101010101010101010101",
+      "expected": {
+        "state": "valid",
+        "first_index": 192,
+        "last_index": 223,
+        "count": 32,
+        "head": [
+          [
+            192,
+            0
+          ],
+          [
+            193,
+            127
+          ],
+          [
+            194,
+            -128
+          ],
+          [
+            195,
+            -1
+          ]
+        ],
+        "tail": [
+          223,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ab82_selector_17",
+      "selector": 17,
+      "direction": "request",
+      "values": "007f80ff01010101010101010101010101010101010101010101010101010101",
+      "expected": {
+        "state": "valid",
+        "first_index": 224,
+        "last_index": 255,
+        "count": 32,
+        "head": [
+          [
+            224,
+            0
+          ],
+          [
+            225,
+            127
+          ],
+          [
+            226,
+            -128
+          ],
+          [
+            227,
+            -1
+          ]
+        ],
+        "tail": [
+          255,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ab82_control_request_10_0",
+      "selector": 10,
+      "direction": "request",
+      "values": "",
+      "expected": {
+        "state": "short",
+        "count": 0,
+        "remainder": ""
+      }
+    },
+    {
+      "id": "ab82_control_request_10_2",
+      "selector": 10,
+      "direction": "request",
+      "values": "fe",
+      "expected": {
+        "state": "short",
+        "count": 1,
+        "remainder": ""
+      }
+    },
+    {
+      "id": "ab82_control_request_11_6",
+      "selector": 11,
+      "direction": "request",
+      "values": "7f80ff",
+      "expected": {
+        "state": "short",
+        "count": 3,
+        "remainder": ""
+      }
+    },
+    {
+      "id": "ab82_control_request_12_68",
+      "selector": 12,
+      "direction": "request",
+      "values": "8080808080808080808080808080808080808080808080808080808080808080aabb",
+      "expected": {
+        "state": "extra",
+        "count": 32,
+        "remainder": "aabb",
+        "first_index": 64,
+        "last_index": 95
+      }
+    },
+    {
+      "id": "ab82_control_positive_13_64",
+      "selector": 13,
+      "direction": "positive",
+      "values": "0000000000000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "state": "prefix-only",
+        "count": 0,
+        "remainder": ""
+      }
+    },
+    {
+      "id": "ab82_control_positive_13_0",
+      "selector": 13,
+      "direction": "positive",
+      "values": "",
+      "expected": {
+        "state": "prefix-only",
+        "count": 0,
+        "remainder": ""
+      }
+    },
+    {
+      "id": "ab82_control_request_9_64",
+      "selector": 9,
+      "direction": "request",
+      "values": "0000000000000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "state": "raw-only",
+        "count": 0,
+        "remainder": ""
+      }
+    },
+    {
+      "id": "ab82_control_request_18_64",
+      "selector": 18,
+      "direction": "request",
+      "values": "0000000000000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "state": "raw-only",
+        "count": 0,
+        "remainder": ""
+      }
+    },
+    {
+      "id": "ab82_control_notify_10_64",
+      "selector": 10,
+      "direction": "notify",
+      "values": "0000000000000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "state": "raw-only",
+        "count": 0,
+        "remainder": ""
+      }
+    }
+  ],
+  "joins": [
+    {
+      "id": "ab82_join_complete_shuffled",
+      "blocks": [
+        {
+          "selector": 15,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+        },
+        {
+          "selector": 10,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a"
+        },
+        {
+          "selector": 17,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+        },
+        {
+          "selector": 11,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+        },
+        {
+          "selector": 16,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1010101010101010101010101010101010101010101010101010101010101010"
+        },
+        {
+          "selector": 13,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d"
+        },
+        {
+          "selector": 14,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e"
+        }
+      ],
+      "expected": {
+        "state": "complete",
+        "complete": true,
+        "count": 256,
+        "missing": [],
+        "conflicts": []
+      }
+    },
+    {
+      "id": "ab82_join_seven",
+      "blocks": [
+        {
+          "selector": 10,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a"
+        },
+        {
+          "selector": 11,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+        },
+        {
+          "selector": 13,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d"
+        },
+        {
+          "selector": 14,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e"
+        },
+        {
+          "selector": 15,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+        },
+        {
+          "selector": 16,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1010101010101010101010101010101010101010101010101010101010101010"
+        }
+      ],
+      "expected": {
+        "state": "partial",
+        "complete": false,
+        "count": 224,
+        "missing": [
+          17
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "id": "ab82_join_missing_middle",
+      "blocks": [
+        {
+          "selector": 10,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a"
+        },
+        {
+          "selector": 11,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+        },
+        {
+          "selector": 13,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d"
+        },
+        {
+          "selector": 14,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e"
+        },
+        {
+          "selector": 15,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+        },
+        {
+          "selector": 16,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1010101010101010101010101010101010101010101010101010101010101010"
+        },
+        {
+          "selector": 17,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "expected": {
+        "state": "partial",
+        "complete": false,
+        "count": 224,
+        "missing": [
+          12
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "id": "ab82_join_identical_duplicate",
+      "blocks": [
+        {
+          "selector": 10,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a"
+        },
+        {
+          "selector": 11,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+        },
+        {
+          "selector": 13,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d"
+        },
+        {
+          "selector": 14,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e"
+        },
+        {
+          "selector": 15,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+        },
+        {
+          "selector": 16,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1010101010101010101010101010101010101010101010101010101010101010"
+        },
+        {
+          "selector": 17,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+        }
+      ],
+      "expected": {
+        "state": "complete",
+        "complete": true,
+        "count": 256,
+        "missing": [],
+        "conflicts": []
+      }
+    },
+    {
+      "id": "ab82_join_conflicting_duplicate",
+      "blocks": [
+        {
+          "selector": 10,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a"
+        },
+        {
+          "selector": 11,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+        },
+        {
+          "selector": 13,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d"
+        },
+        {
+          "selector": 14,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e"
+        },
+        {
+          "selector": 15,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+        },
+        {
+          "selector": 16,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1010101010101010101010101010101010101010101010101010101010101010"
+        },
+        {
+          "selector": 17,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "expected": {
+        "state": "conflict",
+        "complete": false,
+        "count": 224,
+        "missing": [
+          12
+        ],
+        "conflicts": [
+          12
+        ]
+      }
+    },
+    {
+      "id": "ab82_join_cross_family",
+      "blocks": [
+        {
+          "selector": 10,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a"
+        },
+        {
+          "selector": 11,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+        },
+        {
+          "selector": 13,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d"
+        },
+        {
+          "selector": 14,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e"
+        },
+        {
+          "selector": 15,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+        },
+        {
+          "selector": 16,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1010101010101010101010101010101010101010101010101010101010101010"
+        },
+        {
+          "selector": 17,
+          "family": "fam-b",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "expected": {
+        "state": "context-mismatch",
+        "complete": false,
+        "count": 0,
+        "missing": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "id": "ab82_join_cross_variant",
+      "blocks": [
+        {
+          "selector": 10,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a"
+        },
+        {
+          "selector": 11,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+        },
+        {
+          "selector": 13,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d"
+        },
+        {
+          "selector": 14,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e"
+        },
+        {
+          "selector": 15,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+        },
+        {
+          "selector": 16,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1010101010101010101010101010101010101010101010101010101010101010"
+        },
+        {
+          "selector": 17,
+          "family": "fam-a",
+          "variant": "var-b",
+          "operation": 1,
+          "values": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "expected": {
+        "state": "context-mismatch",
+        "complete": false,
+        "count": 0,
+        "missing": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "id": "ab82_join_cross_operation",
+      "blocks": [
+        {
+          "selector": 10,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a"
+        },
+        {
+          "selector": 11,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+        },
+        {
+          "selector": 13,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d"
+        },
+        {
+          "selector": 14,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e"
+        },
+        {
+          "selector": 15,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+        },
+        {
+          "selector": 16,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1010101010101010101010101010101010101010101010101010101010101010"
+        },
+        {
+          "selector": 17,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 2,
+          "values": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "expected": {
+        "state": "context-mismatch",
+        "complete": false,
+        "count": 0,
+        "missing": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "id": "ab82_join_short_not_complete",
+      "blocks": [
+        {
+          "selector": 10,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a"
+        },
+        {
+          "selector": 11,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+        },
+        {
+          "selector": 13,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d"
+        },
+        {
+          "selector": 14,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e"
+        },
+        {
+          "selector": 15,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+        },
+        {
+          "selector": 16,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1010101010101010101010101010101010101010101010101010101010101010"
+        },
+        {
+          "selector": 17,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0102"
+        }
+      ],
+      "expected": {
+        "state": "partial",
+        "complete": false,
+        "count": 226,
+        "missing": [],
+        "conflicts": []
+      }
+    },
+    {
+      "id": "ab82_join_extra_not_complete",
+      "blocks": [
+        {
+          "selector": 10,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a"
+        },
+        {
+          "selector": 11,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+        },
+        {
+          "selector": 12,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+        },
+        {
+          "selector": 13,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d"
+        },
+        {
+          "selector": 14,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e"
+        },
+        {
+          "selector": 15,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+        },
+        {
+          "selector": 16,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "1010101010101010101010101010101010101010101010101010101010101010"
+        },
+        {
+          "selector": 17,
+          "family": "fam-a",
+          "variant": "var-a",
+          "operation": 1,
+          "values": "111111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "expected": {
+        "state": "partial",
+        "complete": false,
+        "count": 256,
+        "missing": [],
+        "conflicts": []
+      }
+    },
+    {
+      "id": "ab82_join_empty",
+      "blocks": [],
+      "expected": {
+        "state": "empty",
+        "complete": false,
+        "count": 0,
+        "missing": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "conflicts": []
+      }
+    }
+  ]
+}

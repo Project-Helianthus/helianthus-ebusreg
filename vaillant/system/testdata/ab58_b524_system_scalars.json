@@ -1,0 +1,922 @@
+[
+  {
+    "ab58_label": "ab58_controller-720_0002",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 2,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0022",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 34,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0023",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 35,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0026",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 38,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0038",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 56,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0046",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 70,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_004B",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 75,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0067",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 103,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0068",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 104,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0073",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 115,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0095",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 149,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_009D",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 157,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_009E",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 158,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_009F",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 159,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_00A0",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 160,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_00EF",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 239,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0004",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 4,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "min",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0017",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 23,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "min",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0018",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 24,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "min",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0029",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 41,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "K",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_002F",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 47,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "Unknown",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0036",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 54,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "Unknown",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-720_0039",
+    "ab58_family": "controller-720",
+    "ab58_group": 0,
+    "ab58_register": 57,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "bar",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0002",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 2,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0022",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 34,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0023",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 35,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0026",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 38,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0038",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 56,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0046",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 70,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_004B",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 75,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0067",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 103,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0068",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 104,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0073",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 115,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0095",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 149,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_009D",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 157,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_009E",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 158,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_009F",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 159,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_00A0",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 160,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "°C",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0006",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 6,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "Unknown",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_002F",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 47,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "Unknown",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0036",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 54,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "Unknown",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0017",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 23,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "min",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0029",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 41,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "K",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0039",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 57,
+    "ab58_codec": "float32_le",
+    "ab58_unit": "bar",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "0000c03f",
+        "ab58_expected": 1.5
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "000080bf",
+        "ab58_expected": -1
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0042",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 66,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "Unknown",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  },
+  {
+    "ab58_label": "ab58_controller-700_0043",
+    "ab58_family": "controller-700",
+    "ab58_group": 0,
+    "ab58_register": 67,
+    "ab58_codec": "uint16_le",
+    "ab58_unit": "Unknown",
+    "ab58_examples": [
+      {
+        "ab58_label": "ab58_positive",
+        "ab58_hex": "3412",
+        "ab58_expected": 4660
+      },
+      {
+        "ab58_label": "ab58_negative_or_max",
+        "ab58_hex": "ffff",
+        "ab58_expected": 65535
+      }
+    ]
+  }
+]

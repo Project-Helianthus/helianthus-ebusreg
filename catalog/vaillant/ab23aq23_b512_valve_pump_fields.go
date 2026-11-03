@@ -8,7 +8,16 @@ import (
 	"strconv"
 )
 
+const ab23aq23MaxDepth = 64
+
 func ab23aq23Read(ab23aq23Decoder *json.Decoder) (any, error) {
+	return ab23aq23ReadDepth(ab23aq23Decoder, 0)
+}
+
+func ab23aq23ReadDepth(ab23aq23Decoder *json.Decoder, ab23aq23Depth int) (any, error) {
+	if ab23aq23Depth > ab23aq23MaxDepth {
+		return nil, fmt.Errorf("nesting too deep")
+	}
 	ab23aq23Token, ab23aq23Err := ab23aq23Decoder.Token()
 	if ab23aq23Err != nil {
 		return nil, ab23aq23Err
@@ -25,7 +34,7 @@ func ab23aq23Read(ab23aq23Decoder *json.Decoder) (any, error) {
 				if _, ab23aq23Exists := ab23aq23Object[ab23aq23Key.(string)]; ab23aq23Exists {
 					return nil, fmt.Errorf("duplicate key")
 				}
-				ab23aq23Value, ab23aq23Err := ab23aq23Read(ab23aq23Decoder)
+				ab23aq23Value, ab23aq23Err := ab23aq23ReadDepth(ab23aq23Decoder, ab23aq23Depth+1)
 				if ab23aq23Err != nil {
 					return nil, ab23aq23Err
 				}
@@ -36,7 +45,7 @@ func ab23aq23Read(ab23aq23Decoder *json.Decoder) (any, error) {
 		case '[':
 			ab23aq23Array := []any{}
 			for ab23aq23Decoder.More() {
-				ab23aq23Value, ab23aq23Err := ab23aq23Read(ab23aq23Decoder)
+				ab23aq23Value, ab23aq23Err := ab23aq23ReadDepth(ab23aq23Decoder, ab23aq23Depth+1)
 				if ab23aq23Err != nil {
 					return nil, ab23aq23Err
 				}

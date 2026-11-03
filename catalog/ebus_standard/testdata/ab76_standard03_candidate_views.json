@@ -1,0 +1,32 @@
+[
+  {
+    "Ab76Label": "ab76-decimal-not-bcd",
+    "Ab76Operation": 4,
+    "Ab76Body": [99, 1, 2],
+    "Ab76Names": ["c0", "c1", "c2"],
+    "Ab76Values": [99, 1, 2],
+    "Ab76Counter": 20199,
+    "Ab76Hours": null,
+    "Ab76Minute": null
+  },
+  {
+    "Ab76Label": "ab76-05-no-units-hour",
+    "Ab76Operation": 5,
+    "Ab76Body": [1, 2, 3],
+    "Ab76Names": ["minutes", "hundreds-of-hours", "ten-thousands-of-hours"],
+    "Ab76Values": [1, 2, 3],
+    "Ab76Counter": null,
+    "Ab76Hours": null,
+    "Ab76Minute": null
+  },
+  {
+    "Ab76Label": "ab76-06-local-display",
+    "Ab76Operation": 6,
+    "Ab76Body": [59, 1, 2, 3],
+    "Ab76Names": ["minutes", "h0", "h1", "h2"],
+    "Ab76Values": [59, 1, 2, 3],
+    "Ab76Counter": null,
+    "Ab76Hours": 30201,
+    "Ab76Minute": 59
+  }
+]

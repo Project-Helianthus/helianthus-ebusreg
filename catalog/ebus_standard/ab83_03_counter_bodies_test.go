@@ -16,6 +16,25 @@ func ab83TestKey(ab83Secondary uint8, ab83Variant string) Ab83Key {
 	return Ab83Key{Ab83Family: "standard_03", Ab83Variant: ab83Variant, Ab83Primary: ab83Ptr(uint16(3)), Ab83Secondary: ab83Ptr(ab83Secondary), Ab83Direction: ab83Direction}
 }
 
+func ab83Five(ab83Variant string) struct {
+	ab83Secondary uint8
+	ab83Names     []string
+	ab83Maxima    []int
+} {
+	if ab83Variant == "standard_response" {
+		return struct {
+			ab83Secondary uint8
+			ab83Names     []string
+			ab83Maxima    []int
+		}{5, []string{"minutes", "hours_1s", "hours_100s", "hours_10000s"}, []int{59, 99, 99, 99}}
+	}
+	return struct {
+		ab83Secondary uint8
+		ab83Names     []string
+		ab83Maxima    []int
+	}{5, []string{"minutes", "hours_100s", "hours_10000s"}, []int{59, 59, 59}}
+}
+
 func TestAb83ProductionMetadata(ab83T *ab83testing.T) {
 	ab83Bodies := Ab83CounterBodies()
 	if len(ab83Bodies) != 12 {
@@ -28,7 +47,7 @@ func TestAb83ProductionMetadata(ab83T *ab83testing.T) {
 			ab83Maxima    []int
 		}{
 			{4, []string{"start_count_1s", "start_count_100s", "start_count_10000s"}, []int{99, 99, 99}},
-			{5, []string{"minutes", "hours_100s", "hours_10000s"}, []int{59, 59, 59}},
+			ab83Five(ab83Variant),
 			{6, []string{"minutes", "hours_1s", "hours_100s", "hours_10000s"}, []int{59, 99, 99, 99}},
 			{7, nil, nil}, {8, nil, nil}, {16, nil, nil},
 		} {

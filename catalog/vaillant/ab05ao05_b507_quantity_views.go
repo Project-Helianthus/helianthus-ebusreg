@@ -147,12 +147,11 @@ func Ab05Ao05Interpret(ab05ao05Input ab05ao05json.RawMessage) (ab05ao05json.RawM
 			ab05ao05First, _ := ab05ao05strconv.Atoi(string(ab05ao05Array[0].(ab05ao05json.Number)))
 			if ab05ao05Selected == "capacity" {
 				ab05ao05Field["candidate_domain"] = ab05ao05First <= 250
+				ab05ao05Field["number"] = float64(ab05ao05First) / 10
+				ab05ao05Field["calculation"] = "Proven"
 				if ab05ao05First > 250 {
 					ab05ao05Field["state"] = "outside-candidate-domain"
 					ab05ao05Output["state"] = "partial"
-				} else {
-					ab05ao05Field["number"] = float64(ab05ao05First) / 10
-					ab05ao05Field["calculation"] = "Proven"
 				}
 			} else {
 				ab05ao05Second, _ := ab05ao05strconv.Atoi(string(ab05ao05Array[1].(ab05ao05json.Number)))

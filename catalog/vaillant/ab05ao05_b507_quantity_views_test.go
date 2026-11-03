@@ -62,11 +62,8 @@ func TestAb05Ao05Capacity(ab05ao05T *ab05ao05testing.T) {
 			ab05ao05Result := ab05ao05Run(ab05ao05T, ab05ao05Input(6, "capacity", map[string]any{"capacity": []int{ab05ao05Byte}, "cost": []int{1, 2}, "tail": []int{99}}))
 			ab05ao05Field := ab05ao05Result["fields"].(map[string]any)["capacity"].(map[string]any)
 			ab05ao05Number, ab05ao05HasNumber := ab05ao05Field["number"]
-			if ab05ao05Byte <= 250 && (!ab05ao05HasNumber || ab05ao05Number != []float64{0, 0.1, 25}[ab05ao05Index] || ab05ao05Field["calculation"] != "Proven") {
+			if !ab05ao05HasNumber || ab05ao05Number != []float64{0, 0.1, 25, 25.1, 25.5}[ab05ao05Index] || ab05ao05Field["calculation"] != "Proven" {
 				ab05ao05T.Fatalf("capacity: %#v", ab05ao05Field)
-			}
-			if ab05ao05Byte > 250 && (ab05ao05HasNumber || ab05ao05Field["calculation"] != nil) {
-				ab05ao05T.Fatalf("capacity outside domain published a quantity: %#v", ab05ao05Field)
 			}
 			if ab05ao05Field["grade"] != "Hypothesis" || ab05ao05Field["candidate_domain"] != (ab05ao05Byte <= 250) {
 				ab05ao05T.Fatalf("capacity: %#v", ab05ao05Field)

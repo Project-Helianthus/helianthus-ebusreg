@@ -42,6 +42,11 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+          # The persistent runner keeps its module and build caches on its
+          # volume; restoring the 2.9 GB setup-go cache over them only adds tar
+          # conflicts, and saving it again fails on the existing key. Hosted
+          # runners start empty and keep the cache.
+          cache: ${{ runner.environment == 'github-hosted' }}
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - run: go vet ./...
       - run: go build ./...
@@ -63,6 +68,11 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+          # The persistent runner keeps its module and build caches on its
+          # volume; restoring the 2.9 GB setup-go cache over them only adds tar
+          # conflicts, and saving it again fails on the existing key. Hosted
+          # runners start empty and keep the cache.
+          cache: ${{ runner.environment == 'github-hosted' }}
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - run: go test -race -count=1 ./...
       - name: Remove job-scoped git config
@@ -83,6 +93,11 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+          # The persistent runner keeps its module and build caches on its
+          # volume; restoring the 2.9 GB setup-go cache over them only adds tar
+          # conflicts, and saving it again fails on the existing key. Hosted
+          # runners start empty and keep the cache.
+          cache: ${{ runner.environment == 'github-hosted' }}
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - uses: acifani/setup-tinygo@v2
         with:
@@ -115,6 +130,11 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+          # The persistent runner keeps its module and build caches on its
+          # volume; restoring the 2.9 GB setup-go cache over them only adds tar
+          # conflicts, and saving it again fails on the existing key. Hosted
+          # runners start empty and keep the cache.
+          cache: ${{ runner.environment == 'github-hosted' }}
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - uses: golangci/golangci-lint-action@v6
       - name: Remove job-scoped git config

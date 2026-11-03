@@ -1,0 +1,177 @@
+[
+  {
+    "ab78Label": "ab78-heating",
+    "ab78Body": [
+      170,
+      90,
+      35,
+      255,
+      255
+    ],
+    "ab78Values": [
+      170,
+      90,
+      35,
+      -1,
+      255
+    ],
+    "ab78Name": "heating",
+    "ab78Domains": [
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain"
+    ]
+  },
+  {
+    "ab78Label": "ab78-zero-and-3f",
+    "ab78Body": [
+      0,
+      0,
+      0,
+      63,
+      0
+    ],
+    "ab78Values": [
+      0,
+      0,
+      0,
+      63,
+      0
+    ],
+    "ab78Name": "shutdown",
+    "ab78Domains": [
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain"
+    ]
+  },
+  {
+    "ab78Label": "ab78-boiler-91",
+    "ab78Body": [
+      85,
+      91,
+      90,
+      128,
+      101
+    ],
+    "ab78Values": [
+      85,
+      91,
+      90,
+      -128,
+      101
+    ],
+    "ab78Name": "DHW",
+    "ab78Domains": [
+      "within-candidate-domain",
+      "out-of-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain"
+    ]
+  },
+  {
+    "ab78Label": "ab78-dhw-91",
+    "ab78Body": [
+      204,
+      90,
+      91,
+      127,
+      100
+    ],
+    "ab78Values": [
+      204,
+      90,
+      91,
+      127,
+      100
+    ],
+    "ab78Name": "emission-check",
+    "ab78Domains": [
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "out-of-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain"
+    ]
+  },
+  {
+    "ab78Label": "ab78-stop",
+    "ab78Body": [
+      238,
+      255,
+      255,
+      0,
+      0
+    ],
+    "ab78Values": [
+      238,
+      255,
+      255,
+      0,
+      0
+    ],
+    "ab78Name": "controller-stop",
+    "ab78Domains": [
+      "within-candidate-domain",
+      "out-of-candidate-domain",
+      "out-of-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain"
+    ]
+  },
+  {
+    "ab78Label": "ab78-dd",
+    "ab78Body": [
+      221,
+      1,
+      2,
+      1,
+      3
+    ],
+    "ab78Values": [
+      null,
+      1,
+      2,
+      1,
+      3
+    ],
+    "ab78Name": "",
+    "ab78Domains": [
+      "unknown",
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain"
+    ]
+  },
+  {
+    "ab78Label": "ab78-unmapped",
+    "ab78Body": [
+      1,
+      89,
+      89,
+      254,
+      254
+    ],
+    "ab78Values": [
+      null,
+      89,
+      89,
+      -2,
+      254
+    ],
+    "ab78Name": "",
+    "ab78Domains": [
+      "unknown",
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain",
+      "within-candidate-domain"
+    ]
+  }
+]

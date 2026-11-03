@@ -1,0 +1,6 @@
+[
+ {"id":"ab19ap19_get_request","input":{"context":{"primary":181,"secondary":26,"operation":2,"direction":"request","view":"mirror-get"},"fields":{"sequence":[0],"flags":[0],"length":[3],"address":[255,255]}},"numbers":{"sequence":0,"flags":0,"length":3,"address":65535}},
+ {"id":"ab19ap19_get_positive","input":{"context":{"primary":181,"secondary":26,"operation":2,"direction":"positive","view":"mirror-get"},"fields":{"sequence":[255],"status":[2],"data":[17,34]}},"numbers":{"sequence":255,"status":2}},
+ {"id":"ab19ap19_put_request","input":{"context":{"primary":181,"secondary":26,"operation":3,"direction":"request","view":"mirror-put"},"fields":{"sequence":[0],"flags":[0],"mirror_address":[52,18],"symbol_address":[120,86],"data":[]}},"numbers":{"sequence":0,"flags":0,"mirror_address":4660,"symbol_address":22136}},
+ {"id":"ab19ap19_put_positive","input":{"context":{"primary":181,"secondary":26,"operation":3,"direction":"positive","view":"mirror-put"},"fields":{"sequence":[255],"flags":[0]}},"numbers":{"sequence":255,"flags":0}}
+]

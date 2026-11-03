@@ -1,0 +1,830 @@
+{
+  "representation_grade": "Proven",
+  "complete": false,
+  "coordinates": "logical byte coordinates only; no physical offsets or positive-body layout",
+  "native_support": "Unknown",
+  "qualification": "Unknown",
+  "freshness": "Unknown",
+  "persistence": "Unknown",
+  "execution_permission": "Unknown",
+  "fields": [
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "request",
+        "field": "primary",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 0,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "unit": "none",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": [],
+      "reserved": null,
+      "constant": 5,
+      "grade": "Hypothesis",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "request",
+        "field": "secondary",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 1,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "unit": "none",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": [],
+      "reserved": null,
+      "constant": 1,
+      "grade": "Hypothesis",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "request",
+        "field": "heat_state",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 2,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "unit": "none",
+      "default": 0,
+      "bounds": null,
+      "enumeration": {
+        "0": "shutdown",
+        "85": "DHW",
+        "170": "heating",
+        "204": "emission_check",
+        "238": "controller_stop"
+      },
+      "replacement": [],
+      "reserved": null,
+      "constant": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "request",
+        "field": "boiler_target",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 3,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "unit": "degrees_Celsius",
+      "default": 0,
+      "bounds": {
+        "min": 0,
+        "max": 90
+      },
+      "enumeration": null,
+      "replacement": [],
+      "reserved": null,
+      "constant": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "request",
+        "field": "dhw_target",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 4,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "unit": "degrees_Celsius",
+      "default": 0,
+      "bounds": {
+        "min": 0,
+        "max": 90
+      },
+      "enumeration": null,
+      "replacement": [],
+      "reserved": null,
+      "constant": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "request",
+        "field": "outside_temperature",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 5,
+      "width_bits": 8,
+      "signedness": "signed",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "unit": "degrees_Celsius",
+      "default": 0,
+      "bounds": {
+        "min": -128,
+        "max": 127
+      },
+      "enumeration": null,
+      "replacement": [],
+      "reserved": null,
+      "constant": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "request",
+        "field": "setting_percentage",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 6,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "unit": "percent",
+      "default": 0,
+      "bounds": {
+        "min": 0,
+        "max": 255
+      },
+      "enumeration": null,
+      "replacement": [],
+      "reserved": null,
+      "constant": null,
+      "grade": "Hypothesis",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "positive_declaration",
+        "field": "primary",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 0,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "unit": "none",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": [],
+      "reserved": null,
+      "constant": 5,
+      "grade": "Hypothesis",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "positive_declaration",
+        "field": "secondary",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": 1,
+      "width_bits": 8,
+      "signedness": "unsigned",
+      "byte_order": "not_applicable",
+      "conversion": "identity",
+      "unit": "none",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": [],
+      "reserved": null,
+      "constant": 1,
+      "grade": "Hypothesis",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "unprovided",
+        "field": "physical_positive_body",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "unit": "Unknown",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": null,
+      "reserved": null,
+      "constant": null,
+      "grade": "Unknown",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "unprovided",
+        "field": "acknowledgement",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "unit": "Unknown",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": null,
+      "reserved": null,
+      "constant": null,
+      "grade": "Unknown",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "unprovided",
+        "field": "outside_3f_replacement",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "unit": "Unknown",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": null,
+      "reserved": null,
+      "constant": null,
+      "grade": "Unknown",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "unprovided",
+        "field": "control_permission",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "unit": "Unknown",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": null,
+      "reserved": null,
+      "constant": null,
+      "grade": "Unknown",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "unprovided",
+        "field": "scheduling",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "unit": "Unknown",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": null,
+      "reserved": null,
+      "constant": null,
+      "grade": "Unknown",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "unprovided",
+        "field": "other_05_candidate_bodies",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "unit": "Unknown",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": null,
+      "reserved": null,
+      "constant": null,
+      "grade": "Unknown",
+      "raw_fallback": "retain_raw_bytes"
+    },
+    {
+      "key": {
+        "family": "burner",
+        "variant": "05_01_candidate",
+        "primary": {
+          "present": true,
+          "value": 5
+        },
+        "secondary": {
+          "present": true,
+          "value": 1
+        },
+        "operation": {
+          "present": false,
+          "value": 0
+        },
+        "direction": "unprovided",
+        "field": "dd_check_semantics",
+        "opcode": {
+          "present": false,
+          "value": 0
+        },
+        "group": {
+          "present": false,
+          "value": 0
+        },
+        "instance": {
+          "present": false,
+          "value": 0
+        },
+        "register": {
+          "present": false,
+          "value": 0
+        }
+      },
+      "logical_position": null,
+      "width_bits": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "conversion": "Unknown",
+      "unit": "Unknown",
+      "default": null,
+      "bounds": null,
+      "enumeration": null,
+      "replacement": null,
+      "reserved": null,
+      "constant": null,
+      "grade": "Unknown",
+      "raw_fallback": "retain_raw_bytes"
+    }
+  ]
+}

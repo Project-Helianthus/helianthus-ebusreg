@@ -1,0 +1,433 @@
+[
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 83,
+      "direction": "read",
+      "field": "hardware_identifier",
+      "alternative": "packed_decimal_candidate",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "width_bytes": 6,
+    "raw_form": "six opaque bytes",
+    "raw_fallback": "preserve all original bytes and unaffected fields",
+    "unresolved": {
+      "field_positions": "Unknown",
+      "segment_selectors": "Unknown",
+      "padding": "Unknown",
+      "termination": "Unknown",
+      "transport_correlation": "Unknown",
+      "completion_predicate": "Unknown"
+    },
+    "native_request_admission": false,
+    "complete_identity_inference": false,
+    "flags": {
+      "grade": "Unknown",
+      "bits": "Unknown"
+    },
+    "candidate": {
+      "grade": "Hypothesis",
+      "encoding": "packed_decimal_pairs",
+      "nibble_min": 0,
+      "nibble_max": 9,
+      "invalid_nibble": "candidate absent; preserve all raw bytes",
+      "security_identity": false
+    },
+    "synthetic_cases": [
+      {
+        "id": "ab46_decimal_pairs",
+        "raw": [
+          18,
+          52,
+          86,
+          120,
+          144,
+          18
+        ],
+        "candidate_decimal_pairs": [
+          12,
+          34,
+          56,
+          78,
+          90,
+          12
+        ],
+        "candidate_valid": true
+      },
+      {
+        "id": "ab46_invalid_nibble",
+        "raw": [
+          250,
+          52,
+          86,
+          120,
+          144,
+          18
+        ],
+        "candidate_decimal_pairs": null,
+        "candidate_valid": false
+      }
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 83,
+      "direction": "write",
+      "field": "hardware_identifier",
+      "alternative": "packed_decimal_candidate",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "width_bytes": 6,
+    "raw_form": "six opaque bytes",
+    "raw_fallback": "preserve all original bytes and unaffected fields",
+    "unresolved": {
+      "field_positions": "Unknown",
+      "segment_selectors": "Unknown",
+      "padding": "Unknown",
+      "termination": "Unknown",
+      "transport_correlation": "Unknown",
+      "completion_predicate": "Unknown"
+    },
+    "native_request_admission": false,
+    "complete_identity_inference": false,
+    "flags": {
+      "grade": "Unknown",
+      "bits": "Unknown"
+    },
+    "candidate": {
+      "grade": "Hypothesis",
+      "encoding": "packed_decimal_pairs",
+      "nibble_min": 0,
+      "nibble_max": 9,
+      "invalid_nibble": "candidate absent; preserve all raw bytes",
+      "security_identity": false
+    },
+    "synthetic_cases": [
+      {
+        "id": "ab46_decimal_pairs",
+        "raw": [
+          18,
+          52,
+          86,
+          120,
+          144,
+          18
+        ],
+        "candidate_decimal_pairs": [
+          12,
+          34,
+          56,
+          78,
+          90,
+          12
+        ],
+        "candidate_valid": true
+      },
+      {
+        "id": "ab46_invalid_nibble",
+        "raw": [
+          250,
+          52,
+          86,
+          120,
+          144,
+          18
+        ],
+        "candidate_decimal_pairs": null,
+        "candidate_valid": false
+      }
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 84,
+      "direction": "Unknown",
+      "field": "identity_content",
+      "alternative": "link_address_six",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "width_bytes": 6,
+    "raw_form": "six opaque link-address bytes",
+    "raw_fallback": "preserve all original bytes and unaffected fields",
+    "unresolved": {
+      "field_positions": "Unknown",
+      "segment_selectors": "Unknown",
+      "padding": "Unknown",
+      "termination": "Unknown",
+      "transport_correlation": "Unknown",
+      "completion_predicate": "Unknown"
+    },
+    "native_request_admission": false,
+    "complete_identity_inference": false,
+    "selection_by_length": false,
+    "interpretation": "Unknown",
+    "synthetic_raw": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "synthetic_id": "ab46_link_address_six"
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 84,
+      "direction": "Unknown",
+      "field": "identity_content",
+      "alternative": "conflicting_seven",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "width_bytes": 7,
+    "raw_form": "seven opaque bytes; extra byte uninterpreted",
+    "raw_fallback": "preserve all original bytes and unaffected fields",
+    "unresolved": {
+      "field_positions": "Unknown",
+      "segment_selectors": "Unknown",
+      "padding": "Unknown",
+      "termination": "Unknown",
+      "transport_correlation": "Unknown",
+      "completion_predicate": "Unknown"
+    },
+    "native_request_admission": false,
+    "complete_identity_inference": false,
+    "selection_by_length": false,
+    "interpretation": "Unknown",
+    "synthetic_raw": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "synthetic_id": "ab46_conflicting_seven"
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 84,
+      "direction": "Unknown",
+      "field": "identity_content",
+      "alternative": "segmented_characters",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "width_bytes": null,
+    "raw_form": "raw character segments; boundaries unresolved",
+    "raw_fallback": "preserve all original bytes and unaffected fields",
+    "unresolved": {
+      "field_positions": "Unknown",
+      "segment_selectors": "Unknown",
+      "padding": "Unknown",
+      "termination": "Unknown",
+      "transport_correlation": "Unknown",
+      "completion_predicate": "Unknown"
+    },
+    "native_request_admission": false,
+    "complete_identity_inference": false,
+    "selection_by_length": false,
+    "interpretation": "Unknown",
+    "synthetic_raw": [
+      1,
+      2,
+      3
+    ],
+    "synthetic_id": "ab46_segmented_characters"
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "B509",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 84,
+      "direction": "Unknown",
+      "field": "identity_state",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "width_bytes": null,
+    "raw_form": "feedback, status and content retained independently",
+    "raw_fallback": "preserve all original bytes and unaffected fields",
+    "unresolved": {
+      "field_positions": "Unknown",
+      "segment_selectors": "Unknown",
+      "padding": "Unknown",
+      "termination": "Unknown",
+      "transport_correlation": "Unknown",
+      "completion_predicate": "Unknown"
+    },
+    "native_request_admission": false,
+    "complete_identity_inference": false,
+    "properties": [
+      "feedback_success",
+      "status_success",
+      "content_extent",
+      "segment_completeness",
+      "complete_identity"
+    ],
+    "synthetic_cases": [
+      {
+        "id": "ab46_empty_success",
+        "feedback_success": true,
+        "status_success": true,
+        "content_extent": "empty",
+        "segments": [],
+        "segment_completeness": false,
+        "complete_identity": false
+      },
+      {
+        "id": "ab46_partial_success",
+        "feedback_success": true,
+        "status_success": true,
+        "content_extent": "partial",
+        "segments": [
+          {
+            "raw": [
+              65,
+              66
+            ],
+            "valid": true
+          },
+          {
+            "raw": [
+              250
+            ],
+            "valid": false
+          }
+        ],
+        "segment_completeness": false,
+        "complete_identity": false
+      },
+      {
+        "id": "ab46_status_failure",
+        "feedback_success": true,
+        "status_success": false,
+        "content_extent": "synthetic_full",
+        "segments": [
+          {
+            "raw": [
+              65,
+              66
+            ],
+            "valid": true
+          },
+          {
+            "raw": [
+              67,
+              68
+            ],
+            "valid": true
+          }
+        ],
+        "segment_completeness": true,
+        "complete_identity": false
+      },
+      {
+        "id": "ab46_segment_failure",
+        "feedback_success": true,
+        "status_success": true,
+        "content_extent": "partial",
+        "previous_segments": [
+          [
+            65,
+            66
+          ],
+          [
+            67,
+            68
+          ]
+        ],
+        "segments": [
+          {
+            "raw": [
+              69,
+              70
+            ],
+            "valid": true
+          },
+          {
+            "raw": [
+              250
+            ],
+            "valid": false
+          }
+        ],
+        "retained_segments": [
+          [
+            69,
+            70
+          ],
+          [
+            67,
+            68
+          ]
+        ],
+        "segment_completeness": false,
+        "complete_identity": false
+      }
+    ]
+  }
+]

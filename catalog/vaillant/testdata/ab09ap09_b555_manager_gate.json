@@ -1,0 +1,158 @@
+[
+  {
+    "id": "ab09ap09_byte_0",
+    "reply": [
+      0
+    ],
+    "controller_type": 2,
+    "spn": 385,
+    "family_match": true,
+    "bit0": false,
+    "bit1": false,
+    "eligible": false,
+    "high": 0
+  },
+  {
+    "id": "ab09ap09_byte_1",
+    "reply": [
+      1
+    ],
+    "controller_type": 2,
+    "spn": 385,
+    "family_match": true,
+    "bit0": true,
+    "bit1": false,
+    "eligible": false,
+    "high": 0
+  },
+  {
+    "id": "ab09ap09_byte_2",
+    "reply": [
+      2
+    ],
+    "controller_type": 2,
+    "spn": 385,
+    "family_match": true,
+    "bit0": false,
+    "bit1": true,
+    "eligible": false,
+    "high": 0
+  },
+  {
+    "id": "ab09ap09_byte_3",
+    "reply": [
+      3
+    ],
+    "controller_type": 2,
+    "spn": 385,
+    "family_match": true,
+    "bit0": true,
+    "bit1": true,
+    "eligible": true,
+    "high": 0
+  },
+  {
+    "id": "ab09ap09_byte_128",
+    "reply": [
+      128
+    ],
+    "controller_type": 2,
+    "spn": 385,
+    "family_match": true,
+    "bit0": false,
+    "bit1": false,
+    "eligible": false,
+    "high": 128
+  },
+  {
+    "id": "ab09ap09_byte_131",
+    "reply": [
+      131
+    ],
+    "controller_type": 2,
+    "spn": 385,
+    "family_match": true,
+    "bit0": true,
+    "bit1": true,
+    "eligible": true,
+    "high": 128
+  },
+  {
+    "id": "ab09ap09_controller_type_3",
+    "reply": [
+      3
+    ],
+    "controller_type": 3,
+    "spn": 385,
+    "family_match": true,
+    "bit0": true,
+    "bit1": true,
+    "eligible": false,
+    "high": 0
+  },
+  {
+    "id": "ab09ap09_controller_type_0",
+    "reply": [
+      3
+    ],
+    "controller_type": 0,
+    "spn": 385,
+    "family_match": true,
+    "bit0": true,
+    "bit1": true,
+    "eligible": false,
+    "high": 0
+  },
+  {
+    "id": "ab09ap09_spn_384",
+    "reply": [
+      3
+    ],
+    "controller_type": 2,
+    "spn": 384,
+    "family_match": true,
+    "bit0": true,
+    "bit1": true,
+    "eligible": false,
+    "high": 0
+  },
+  {
+    "id": "ab09ap09_spn_0",
+    "reply": [
+      3
+    ],
+    "controller_type": 2,
+    "spn": 0,
+    "family_match": true,
+    "bit0": true,
+    "bit1": true,
+    "eligible": false,
+    "high": 0
+  },
+  {
+    "id": "ab09ap09_family_match_false",
+    "reply": [
+      3
+    ],
+    "controller_type": 2,
+    "spn": 385,
+    "family_match": false,
+    "bit0": true,
+    "bit1": true,
+    "eligible": false,
+    "high": 0
+  },
+  {
+    "id": "ab09ap09_family_match_none",
+    "reply": [
+      3
+    ],
+    "controller_type": 2,
+    "spn": 385,
+    "family_match": null,
+    "bit0": true,
+    "bit1": true,
+    "eligible": false,
+    "high": 0
+  }
+]

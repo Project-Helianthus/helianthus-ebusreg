@@ -1,0 +1,580 @@
+[
+  {
+    "id": "ab01ao01_temperature_one_preserve",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          128
+        ],
+        "temperature_two": [
+          0,
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_one",
+    "label": "preserve-existing",
+    "state": "Hypothesis"
+  },
+  {
+    "id": "ab01ao01_temperature_one_default",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          0
+        ],
+        "temperature_two": [
+          0,
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_one",
+    "label": "circuit-default",
+    "state": "Hypothesis"
+  },
+  {
+    "id": "ab01ao01_temperature_one_ordinary",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          1,
+          0
+        ],
+        "temperature_two": [
+          0,
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_one",
+    "label": "numeric-unqualified",
+    "state": "Unknown"
+  },
+  {
+    "id": "ab01ao01_temperature_one_maximum",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          255,
+          255
+        ],
+        "temperature_two": [
+          0,
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_one",
+    "label": "numeric-unqualified",
+    "state": "Unknown"
+  },
+  {
+    "id": "ab01ao01_temperature_one_short",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0
+        ],
+        "temperature_two": [
+          0,
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_one",
+    "label": null,
+    "state": "incomplete"
+  },
+  {
+    "id": "ab01ao01_temperature_one_empty",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [],
+        "temperature_two": [
+          0,
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_one",
+    "label": null,
+    "state": "incomplete"
+  },
+  {
+    "id": "ab01ao01_temperature_one_absent",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_two": [
+          0,
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_one",
+    "label": null,
+    "state": "missing"
+  },
+  {
+    "id": "ab01ao01_temperature_one_overlong",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          128,
+          17
+        ],
+        "temperature_two": [
+          0,
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_one",
+    "label": null,
+    "state": "incomplete"
+  },
+  {
+    "id": "ab01ao01_temperature_two_preserve",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          128
+        ],
+        "temperature_two": [
+          0,
+          128
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_two",
+    "label": "preserve-existing",
+    "state": "Hypothesis"
+  },
+  {
+    "id": "ab01ao01_temperature_two_default",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          128
+        ],
+        "temperature_two": [
+          0,
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_two",
+    "label": "circuit-default",
+    "state": "Hypothesis"
+  },
+  {
+    "id": "ab01ao01_temperature_two_ordinary",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          128
+        ],
+        "temperature_two": [
+          1,
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_two",
+    "label": "numeric-unqualified",
+    "state": "Unknown"
+  },
+  {
+    "id": "ab01ao01_temperature_two_maximum",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          128
+        ],
+        "temperature_two": [
+          255,
+          255
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_two",
+    "label": "numeric-unqualified",
+    "state": "Unknown"
+  },
+  {
+    "id": "ab01ao01_temperature_two_short",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          128
+        ],
+        "temperature_two": [
+          0
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_two",
+    "label": null,
+    "state": "incomplete"
+  },
+  {
+    "id": "ab01ao01_temperature_two_empty",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          128
+        ],
+        "temperature_two": [],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_two",
+    "label": null,
+    "state": "incomplete"
+  },
+  {
+    "id": "ab01ao01_temperature_two_absent",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          128
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_two",
+    "label": null,
+    "state": "missing"
+  },
+  {
+    "id": "ab01ao01_temperature_two_overlong",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 50,
+        "direction": "request",
+        "view": "replacement-pair",
+        "family": "synthetic-family",
+        "variant": {
+          "opaque": [
+            0,
+            "variant"
+          ]
+        }
+      },
+      "fields": {
+        "temperature_one": [
+          0,
+          128
+        ],
+        "temperature_two": [
+          0,
+          128,
+          17
+        ],
+        "unmodelled": [
+          11,
+          255,
+          0
+        ]
+      }
+    },
+    "field": "temperature_two",
+    "label": null,
+    "state": "incomplete"
+  }
+]

@@ -200,11 +200,11 @@ func Ab27Ao27Interpret(ab27ao27Input json.RawMessage) (json.RawMessage, error) {
 	ab27ao27Reserved := map[string]any{"raw": ab27ao27Bytes, "state": "incomplete", "grade": "Hypothesis"}
 	if ab27ao27Complete {
 		ab27ao27Byte, _ := ab27ao27Integer(ab27ao27Bytes[0])
-		ab27ao27Mask := 240
+		ab27ao27Mask, ab27ao27Shift := 240, 4
 		if ab27ao27Operation == 6 {
-			ab27ao27Mask = 192
+			ab27ao27Mask, ab27ao27Shift = 192, 6
 		}
-		ab27ao27Reserved["raw"], ab27ao27Reserved["reserved"], ab27ao27Reserved["state"] = ab27ao27Byte, ab27ao27Byte&ab27ao27Mask, "Hypothesis"
+		ab27ao27Reserved["raw"], ab27ao27Reserved["reserved"], ab27ao27Reserved["state"] = ab27ao27Byte, (ab27ao27Byte&ab27ao27Mask)>>ab27ao27Shift, "Hypothesis"
 	}
 	ab27ao27Fields["status_reserved"] = ab27ao27Reserved
 	if ab27ao27Operation == 3 || ab27ao27Operation == 7 {

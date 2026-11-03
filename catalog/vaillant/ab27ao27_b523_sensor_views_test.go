@@ -197,7 +197,7 @@ func TestAb27Ao27StatusPairs(ab27ao27T *testing.T) {
 					ab27ao27InputValue := ab27ao27Input(ab27ao27Operation, ab27ao27Bytes)
 					ab27ao27InputValue["context"].(map[string]any)["view"] = ab27ao27View
 					ab27ao27Output := ab27ao27Call(ab27ao27T, ab27ao27InputValue)
-					if ab27ao27Field(ab27ao27Output, "status_reserved")["reserved"] != float64(int(1)<<ab27ao27Bit) {
+					if ab27ao27Field(ab27ao27Output, "status_reserved")["reserved"] != float64(int(1)<<(ab27ao27Bit-ab27ao27FirstReserved)) {
 						ab27ao27T.Fatal("reserved bit lost")
 					}
 					for ab27ao27Index := 0; ab27ao27Index < ab27ao27Count; ab27ao27Index++ {
@@ -475,9 +475,9 @@ func TestAb27Ao27PartialIndependentFields(ab27ao27T *testing.T) {
 					ab27ao27T.Fatal("reserved defaulted")
 				}
 			} else {
-				ab27ao27Want := float64(240)
+				ab27ao27Want := float64(15)
 				if ab27ao27Operation == 6 {
-					ab27ao27Want = 192
+					ab27ao27Want = 3
 				}
 				if ab27ao27Reserved["reserved"] != ab27ao27Want {
 					ab27ao27T.Fatal("reserved carrier")

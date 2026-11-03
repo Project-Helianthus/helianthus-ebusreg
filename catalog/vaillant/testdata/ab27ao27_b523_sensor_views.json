@@ -59,7 +59,7 @@
         "label": "high-level"
       },
       "status_reserved": {
-        "reserved": 240
+        "reserved": 15
       }
     }
   },
@@ -115,7 +115,7 @@
         "label": "closed-circuit"
       },
       "status_reserved": {
-        "reserved": 192
+        "reserved": 3
       }
     }
   },
@@ -175,7 +175,7 @@
         "state": "Unknown"
       },
       "status_reserved": {
-        "reserved": 240
+        "reserved": 15
       }
     }
   }

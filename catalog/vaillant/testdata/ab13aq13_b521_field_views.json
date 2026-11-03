@@ -1,0 +1,2352 @@
+[
+  {
+    "id": "ab13aq13_status0_bit0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          1
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status0": {
+        "flags": {
+          "ready": true,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status0_bit1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          2
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": true,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status0_bit2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          4
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": true,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status0_bit3",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          8
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": true,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status0_bit4",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          16
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": true,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status0_bit5",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          32
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 32
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status0_bit6",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          64
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 64
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status0_bit7",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          128
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": true
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status1_bit0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          1
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status1": {
+        "flags": {
+          "heater": true,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status1_bit1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          2
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": true,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status1_bit2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          4
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": true,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status1_bit3",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          8
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": true,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status1_bit4",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          16
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": true,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status1_bit5",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          32
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": true,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status1_bit6",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          64
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": true,
+          "bad-weather": false
+        },
+        "reserved": 0
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_status1_bit7",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          128
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": true
+        },
+        "reserved": 0
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_flags_bit0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          1
+        ],
+        "appliance_bits": [
+          0
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "flags": {
+        "flags": {
+          "bit0": true,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      },
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_flags_bit1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          2
+        ],
+        "appliance_bits": [
+          0
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": true,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      },
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_flags_bit2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          4
+        ],
+        "appliance_bits": [
+          0
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": true,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      },
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_flags_bit3",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          8
+        ],
+        "appliance_bits": [
+          0
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": true,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      },
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_flags_bit4",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          16
+        ],
+        "appliance_bits": [
+          0
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": true,
+          "bit5": false
+        },
+        "reserved": 0
+      },
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_flags_bit5",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          32
+        ],
+        "appliance_bits": [
+          0
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": true
+        },
+        "reserved": 0
+      },
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_flags_bit6",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          64
+        ],
+        "appliance_bits": [
+          0
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 64
+      },
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_flags_bit7",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          128
+        ],
+        "appliance_bits": [
+          0
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 128
+      },
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_appliance_bits_bit0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          1
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "appliance_bits": {
+        "flags": {
+          "bit0": true,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_appliance_bits_bit1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          2
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": true,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_appliance_bits_bit2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          4
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": true,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_appliance_bits_bit3",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          8
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": true,
+          "bit4": false
+        },
+        "reserved": 0
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_appliance_bits_bit4",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          16
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": true
+        },
+        "reserved": 0
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_appliance_bits_bit5",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          32
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 32
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_appliance_bits_bit6",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          64
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 64
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_appliance_bits_bit7",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          128
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 128
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_brine_percent_carrier",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          255
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "brine_percent": {
+        "number": 255,
+        "unit": "percent"
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_fan_percent_carrier",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          255
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "fan_percent": {
+        "number": 255,
+        "unit": "percent"
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_fan_speed_carrier",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          255
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "fan_speed": {
+        "number": 2550,
+        "unit": "rpm"
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_temperature0_carrier",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          254,
+          255
+        ],
+        "temperature1": [
+          0,
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "temperature0": {
+        "number": -0.125,
+        "unit": "Celsius"
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_temperature1_carrier",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          0,
+          0
+        ],
+        "temperature1": [
+          0,
+          128
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "temperature1": {
+        "number": -2048,
+        "unit": "Celsius"
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_noise_percent_carrier",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          0
+        ],
+        "noise_percent": [
+          255
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "noise_percent": {
+        "number": 255,
+        "unit": "percent"
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      },
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_frost_temperature_carrier",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          0
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          255
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "frost_temperature": {
+        "number": 255,
+        "unit": "Celsius"
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      },
+      "appliance_bits": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_five_independent_flags",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "request",
+        "view": "module-fields"
+      },
+      "fields": {
+        "flags": [
+          0
+        ],
+        "appliance_bits": [
+          31
+        ],
+        "noise_percent": [
+          0
+        ],
+        "frost_temperature": [
+          0
+        ]
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "appliance_bits": {
+        "flags": {
+          "bit0": true,
+          "bit1": true,
+          "bit2": true,
+          "bit3": true,
+          "bit4": true
+        },
+        "reserved": 0
+      },
+      "flags": {
+        "flags": {
+          "bit0": false,
+          "bit1": false,
+          "bit2": false,
+          "bit3": false,
+          "bit4": false,
+          "bit5": false
+        },
+        "reserved": 0
+      }
+    }
+  },
+  {
+    "id": "ab13aq13_independent_partial",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 33,
+        "direction": "positive",
+        "view": "module-fields"
+      },
+      "fields": {
+        "status0": [
+          0
+        ],
+        "status1": [
+          0
+        ],
+        "brine_percent": [
+          0
+        ],
+        "fan_percent": [
+          0
+        ],
+        "fan_speed": [
+          0
+        ],
+        "temperature0": [
+          254,
+          255
+        ]
+      }
+    },
+    "state": "partial",
+    "expected": {
+      "temperature0": {
+        "state": "complete",
+        "number": -0.125
+      },
+      "temperature1": {
+        "state": "incomplete",
+        "present": false,
+        "raw": null
+      },
+      "status0": {
+        "flags": {
+          "ready": false,
+          "deicing-request": false,
+          "deicing-active": false,
+          "deicing-timeout-error": false,
+          "deicing-with-heater": false,
+          "cleaning-request": false
+        },
+        "reserved": 0
+      },
+      "status1": {
+        "flags": {
+          "heater": false,
+          "relay-output": false,
+          "fan-running": false,
+          "brine-flow-reverse": false,
+          "fan-error": false,
+          "safety-limiter-error": false,
+          "hot-summer": false,
+          "bad-weather": false
+        },
+        "reserved": 0
+      }
+    }
+  }
+]

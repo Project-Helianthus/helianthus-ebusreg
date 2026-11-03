@@ -1,0 +1,2037 @@
+[
+  {
+    "Ab15An15Label": "ab15an15_clock_0_zero",
+    "Ab15An15Clock": [
+      [
+        0
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      0,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_0_max",
+    "Ab15An15Clock": [
+      [
+        153
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      99,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_0_replacement",
+    "Ab15An15Clock": [
+      [
+        255
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "replacement",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      null,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_0_high_invalid",
+    "Ab15An15Clock": [
+      [
+        250
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "malformed-decimal",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      null,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_0_low_invalid",
+    "Ab15An15Clock": [
+      [
+        26
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "malformed-decimal",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      null,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_0_high_only_invalid",
+    "Ab15An15Clock": [
+      [
+        161
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "malformed-decimal",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      null,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_0_missing",
+    "Ab15An15Clock": [
+      [],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "missing",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      null,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_0_failed",
+    "Ab15An15Clock": [
+      [
+        35
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "failed",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      null,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_0_failed_empty",
+    "Ab15An15Clock": [
+      [],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "failed",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      null,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_0_oversize",
+    "Ab15An15Clock": [
+      [
+        18,
+        35
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "failed",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      null,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_1_zero",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        0
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      0,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_1_max",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        153
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      99,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_1_replacement",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        255
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "replacement",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      null,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_1_high_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        250
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "malformed-decimal",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      null,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_1_low_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        26
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "malformed-decimal",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      null,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_1_high_only_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        161
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "malformed-decimal",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      null,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_1_missing",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "missing",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      null,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_1_failed",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "failed",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      null,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_1_failed_empty",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "failed",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      null,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_1_oversize",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        18,
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "failed",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      null,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_2_zero",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        0
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      0,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_2_max",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        153
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      99,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_2_replacement",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        255
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "replacement",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      null,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_2_high_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        250
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "malformed-decimal",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      null,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_2_low_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        26
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "malformed-decimal",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      null,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_2_high_only_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        161
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "malformed-decimal",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      null,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_2_missing",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "missing",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      null,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_2_failed",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        35
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "failed",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      null,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_2_failed_empty",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "failed",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      null,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_2_oversize",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        18,
+        35
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "failed",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      null,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_3_zero",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        0
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      0,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_3_max",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        153
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      99,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_3_replacement",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        255
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "replacement",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      null,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_3_high_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        250
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "malformed-decimal",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      null,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_3_low_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        26
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "malformed-decimal",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      null,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_3_high_only_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        161
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "malformed-decimal",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      null,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_3_missing",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "missing",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      null,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_3_failed",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        35
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "failed",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      null,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_3_failed_empty",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "failed",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      null,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_3_oversize",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18,
+        35
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "failed",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      null,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_4_zero",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        0
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      12,
+      0
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_4_max",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        153
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_4_replacement",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        255
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "replacement"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      12,
+      null
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_4_high_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        250
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "malformed-decimal"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      12,
+      null
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_4_low_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        26
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "malformed-decimal"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      12,
+      null
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_4_high_only_invalid",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        161
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "malformed-decimal"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      12,
+      null
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_4_missing",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      []
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "missing"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      12,
+      null
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_4_failed",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        35
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "failed"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      12,
+      null
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_4_failed_empty",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      []
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "failed"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      12,
+      null
+    ]
+  },
+  {
+    "Ab15An15Label": "ab15an15_clock_4_oversize",
+    "Ab15An15Clock": [
+      [
+        18
+      ],
+      [
+        35
+      ],
+      [
+        49
+      ],
+      [
+        18
+      ],
+      [
+        18,
+        35
+      ]
+    ],
+    "Ab15An15Failed": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Ab15An15States": [
+      "numeric",
+      "numeric",
+      "numeric",
+      "numeric",
+      "failed"
+    ],
+    "Ab15An15Values": [
+      12,
+      23,
+      31,
+      12,
+      null
+    ]
+  }
+]

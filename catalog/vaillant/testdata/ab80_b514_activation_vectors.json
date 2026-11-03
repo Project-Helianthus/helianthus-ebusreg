@@ -1,0 +1,9 @@
+[
+  {"ab80_id": "bits_short_zero_present", "ab80_operation": 3, "ab80_vector": [0, 0, 0], "ab80_state": "bits", "ab80_mask": 7, "ab80_complete": false, "ab80_remainder": [], "ab80_true": []},
+  {"ab80_id": "bits_empty", "ab80_operation": 3, "ab80_vector": [], "ab80_state": "bits", "ab80_mask": 0, "ab80_complete": false, "ab80_remainder": [], "ab80_true": []},
+  {"ab80_id": "bits_mixed_full", "ab80_operation": 3, "ab80_vector": [5, 128, 0, 0, 0, 0, 0, 0, 0, 255], "ab80_state": "bits", "ab80_mask": 1023, "ab80_complete": true, "ab80_remainder": [], "ab80_true": [[0, 0], [0, 2], [1, 7], [9, 0], [9, 1], [9, 2], [9, 3], [9, 4], [9, 5], [9, 6], [9, 7]]},
+  {"ab80_id": "bits_extra", "ab80_operation": 3, "ab80_vector": [0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 170], "ab80_state": "bits", "ab80_mask": 1023, "ab80_complete": false, "ab80_remainder": [170], "ab80_true": [[8, 1]]},
+  {"ab80_id": "scalars_full", "ab80_operation": 4, "ab80_vector": [0, 3, 128, 255, 1, 2, 4, 8, 16, 32, 64, 7], "ab80_state": "scalars", "ab80_mask": 4095, "ab80_complete": true, "ab80_remainder": []},
+  {"ab80_id": "scalars_short", "ab80_operation": 4, "ab80_vector": [0, 3], "ab80_state": "scalars", "ab80_mask": 3, "ab80_complete": false, "ab80_remainder": []},
+  {"ab80_id": "scalars_extra", "ab80_operation": 4, "ab80_vector": [0, 3, 128, 255, 1, 2, 4, 8, 16, 32, 64, 7, 9, 9], "ab80_state": "scalars", "ab80_mask": 4095, "ab80_complete": false, "ab80_remainder": [9, 9]}
+]

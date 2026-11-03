@@ -158,9 +158,15 @@ func TestAb80IdentityAxes(ab80T *testing.T) {
 		if ab80View.Ab80State() != Ab80StateRawOnly || ab80View.Ab80Grade() != Ab80GradeUnknown || ab80View.Ab80PresentMask() != 0 || ab80View.Ab80IsComplete() || ab80View.Ab80BitAt(0, 0).Ab80Present || ab80View.Ab80ScalarAt(0).Ab80Present || !bytes.Equal(ab80View.Ab80RawBytes(), ab80Vector) {
 			ab80T.Fatal(ab80Name)
 		}
+		if ab80View.Ab80FieldCount() != 0 || len(ab80View.Ab80RemainderBytes()) != 0 {
+			ab80T.Fatal(ab80Name, "raw-only exposes fields or remainder")
+		}
 	}
 	if Ab80Interpret(ab80Ident(4), ab80Vector).Ab80State() != Ab80StateScalars {
 		ab80T.Fatal("operation 4 control")
+	}
+	if ab80Valid.Ab80FieldCount() != 10 || Ab80Interpret(ab80Ident(4), ab80Vector).Ab80FieldCount() != 12 {
+		ab80T.Fatal("field count control")
 	}
 }
 
@@ -199,5 +205,20 @@ func TestAb80OwnedMemory(ab80T *testing.T) {
 	ab80Input[1] = 0x77
 	if ab80Raw.Ab80RawBytes()[1] != 2 {
 		ab80T.Fatal("raw-only aliased")
+	}
+}
+
+func TestAb80OwnedMemoryScalars(ab80T *testing.T) {
+	ab80Input := []byte{0, 3, 128, 255, 1, 2, 4, 8, 16, 32, 64, 7, 9}
+	ab80View := Ab80Interpret(ab80Ident(4), ab80Input)
+	ab80Input[3] = 0x11
+	ab80Input[12] = 0x22
+	if ab80View.Ab80RawBytes()[3] != 255 || ab80View.Ab80ScalarAt(3).Ab80Raw != 255 || ab80View.Ab80RemainderBytes()[0] != 9 {
+		ab80T.Fatal("scalar input aliased")
+	}
+	ab80View.Ab80RawBytes()[3] = 0
+	ab80View.Ab80RemainderBytes()[0] = 0
+	if ab80View.Ab80RawBytes()[3] != 255 || ab80View.Ab80ScalarAt(3).Ab80Raw != 255 || ab80View.Ab80RemainderBytes()[0] != 9 {
+		ab80T.Fatal("scalar returned memory aliased")
 	}
 }

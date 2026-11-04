@@ -110,19 +110,19 @@ func Ab09Ao09Interpret(ab09ao09Input ab09ao09JSON.RawMessage) (ab09ao09JSON.RawM
 		if !ab09ao09OK {
 			return nil, ab09ao09Fmt.Errorf("field must be a byte array")
 		}
-		ab09ao09Bytes := []int{}
+		ab09ao09Data := []int{}
 		for _, ab09ao09Element := range ab09ao09Array {
 			ab09ao09Number, ab09ao09OK := ab09ao09Element.(ab09ao09JSON.Number)
 			if !ab09ao09OK {
 				return nil, ab09ao09Fmt.Errorf("invalid byte")
 			}
 			ab09ao09Byte, ab09ao09Err := ab09ao09Strconv.Atoi(string(ab09ao09Number))
-			if ab09ao09Err != nil || ab09ao09Byte < 0 || ab09ao09Byte > 255 {
+			if ab09ao09Err != nil || ab09ao09Byte < 0 || ab09ao09Byte > 255 || string(ab09ao09Number) == "-0" {
 				return nil, ab09ao09Fmt.Errorf("invalid byte")
 			}
-			ab09ao09Bytes = append(ab09ao09Bytes, ab09ao09Byte)
+			ab09ao09Data = append(ab09ao09Data, ab09ao09Byte)
 		}
-		ab09ao09Arrays[ab09ao09Key] = ab09ao09Bytes
+		ab09ao09Arrays[ab09ao09Key] = ab09ao09Data
 	}
 	ab09ao09Fields := map[string]any{}
 	for ab09ao09Key, ab09ao09Value := range ab09ao09Raw {
@@ -147,22 +147,22 @@ func Ab09Ao09Interpret(ab09ao09Input ab09ao09JSON.RawMessage) (ab09ao09JSON.RawM
 	}
 	ab09ao09Output["state"] = "complete"
 	ab09ao09Field := func(ab09ao09Key string, ab09ao09Width int) (map[string]any, []int, bool) {
-		ab09ao09Bytes, ab09ao09Present := ab09ao09Arrays[ab09ao09Key]
+		ab09ao09Data, ab09ao09Present := ab09ao09Arrays[ab09ao09Key]
 		ab09ao09Result := map[string]any{"state": "missing", "grade": "Hypothesis"}
 		ab09ao09Fields[ab09ao09Key] = ab09ao09Result
 		if ab09ao09Present {
 			ab09ao09Result["raw"] = ab09ao09Raw[ab09ao09Key]
 			ab09ao09Result["state"] = "incomplete"
 		}
-		if !ab09ao09Present || len(ab09ao09Bytes) != ab09ao09Width {
+		if !ab09ao09Present || len(ab09ao09Data) != ab09ao09Width {
 			ab09ao09Output["state"] = "partial"
-			if len(ab09ao09Bytes) > ab09ao09Width {
+			if len(ab09ao09Data) > ab09ao09Width {
 				ab09ao09Result["state"] = "unmapped"
 			}
-			return ab09ao09Result, ab09ao09Bytes, false
+			return ab09ao09Result, ab09ao09Data, false
 		}
 		ab09ao09Result["state"] = "complete"
-		return ab09ao09Result, ab09ao09Bytes, true
+		return ab09ao09Result, ab09ao09Data, true
 	}
 	if ab09ao09View == "thermal-fields" {
 		for ab09ao09Index, ab09ao09Suffix := range []string{"one", "two", "three"} {
@@ -170,13 +170,13 @@ func Ab09Ao09Interpret(ab09ao09Input ab09ao09JSON.RawMessage) (ab09ao09JSON.RawM
 			if ab09ao09Index == 2 && ab09ao09Operation == ab09ao09JSON.Number("1") {
 				ab09ao09Key = "stack_voltage"
 			}
-			ab09ao09Result, ab09ao09Bytes, ab09ao09Complete := ab09ao09Field(ab09ao09Key, 2)
+			ab09ao09Result, ab09ao09Data, ab09ao09Complete := ab09ao09Field(ab09ao09Key, 2)
 			if ab09ao09Complete {
 				if ab09ao09Key == "stack_voltage" {
 					ab09ao09Result["state"] = "unit-conflict"
 					ab09ao09Output["state"] = "partial"
 				} else {
-					ab09ao09Result["number"] = float64(int16(uint16(ab09ao09Bytes[0])|uint16(ab09ao09Bytes[1])<<8)) / 16
+					ab09ao09Result["number"] = float64(int16(uint16(ab09ao09Data[0])|uint16(ab09ao09Data[1])<<8)) / 16
 					ab09ao09Result["label"] = "Celsius"
 					ab09ao09Result["calculation"] = "Proven"
 				}
@@ -185,20 +185,20 @@ func Ab09Ao09Interpret(ab09ao09Input ab09ao09JSON.RawMessage) (ab09ao09JSON.RawM
 		}
 	}
 	if ab09ao09View == "demand" {
-		ab09ao09Result, ab09ao09Bytes, ab09ao09Complete := ab09ao09Field("demand", 1)
+		ab09ao09Result, ab09ao09Data, ab09ao09Complete := ab09ao09Field("demand", 1)
 		if ab09ao09Complete {
 			ab09ao09Flags := map[string]bool{}
 			for ab09ao09Index, ab09ao09Name := range []string{"burner", "reformer-gas-valve", "gas-flow", "fan-power", "valve"} {
-				ab09ao09Flags[ab09ao09Name] = ab09ao09Bytes[0]&(1<<ab09ao09Index) != 0
+				ab09ao09Flags[ab09ao09Name] = ab09ao09Data[0]&(1<<ab09ao09Index) != 0
 			}
 			ab09ao09Result["flags"] = ab09ao09Flags
-			ab09ao09Result["reserved"] = ab09ao09Bytes[0] & 224
+			ab09ao09Result["reserved"] = ab09ao09Data[0] & 224
 			ab09ao09Result["label"] = "demand"
 		}
-		ab09ao09Result, ab09ao09Bytes, ab09ao09Complete = ab09ao09Field("feedback", 1)
+		ab09ao09Result, ab09ao09Data, ab09ao09Complete = ab09ao09Field("feedback", 1)
 		if ab09ao09Complete {
 			ab09ao09Result["label"] = "rejected"
-			if ab09ao09Bytes[0] == 1 {
+			if ab09ao09Data[0] == 1 {
 				ab09ao09Result["label"] = "accepted"
 			}
 		}

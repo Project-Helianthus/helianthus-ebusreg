@@ -197,7 +197,7 @@ func Ab23Aq23Evaluate(ab23aq23Input json.RawMessage) (json.RawMessage, error) {
 		case 2:
 			ab23aq23Widths = map[string]int{"valve": 1, "contact": 1, "tank": 2, "virtual_error": 2}
 		case 3:
-			ab23aq23Widths = map[string]int{"status": 1, "value": 2}
+			ab23aq23Widths = map[string]int{"status": 1, "temperature_raw": 2}
 		case 4:
 			ab23aq23Widths["feedback"] = 1
 		}
@@ -289,7 +289,7 @@ func Ab23Aq23Evaluate(ab23aq23Input json.RawMessage) (json.RawMessage, error) {
 			case 2:
 				ab23aq23Label = "short-circuit"
 			}
-		case "value":
+		case "temperature_raw":
 			ab23aq23Label = "raw"
 		case "feedback":
 			ab23aq23Label = "rejected"

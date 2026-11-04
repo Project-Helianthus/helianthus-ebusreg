@@ -331,7 +331,7 @@
         "status": [
           1
         ],
-        "value": [
+        "temperature_raw": [
           52,
           18
         ]
@@ -341,7 +341,7 @@
       "status": {
         "label": "disconnected"
       },
-      "value": {
+      "temperature_raw": {
         "number": 4660,
         "label": "raw"
       }
@@ -363,7 +363,7 @@
         "status": [
           2
         ],
-        "value": [
+        "temperature_raw": [
           255,
           255
         ]
@@ -373,7 +373,7 @@
       "status": {
         "label": "short-circuit"
       },
-      "value": {
+      "temperature_raw": {
         "number": 65535,
         "label": "raw"
       }
@@ -801,7 +801,7 @@
         "status": [
           0
         ],
-        "value": [
+        "temperature_raw": [
           0,
           1
         ]
@@ -812,7 +812,7 @@
         "number": 0,
         "label": "okay"
       },
-      "value": {
+      "temperature_raw": {
         "number": 256,
         "label": "raw"
       }

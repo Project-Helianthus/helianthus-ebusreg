@@ -150,7 +150,7 @@ func TestAb23Aq23WidthsAndIndependence(ab23aq23T *testing.T) {
 				case 2:
 					ab23aq23Widths = map[string]int{"valve": 1, "contact": 1, "tank": 2, "virtual_error": 2}
 				case 3:
-					ab23aq23Widths = map[string]int{"status": 1, "value": 2}
+					ab23aq23Widths = map[string]int{"status": 1, "temperature_raw": 2}
 				case 4:
 					ab23aq23Widths["feedback"] = 1
 				}
@@ -306,5 +306,29 @@ func TestAb23Aq23RetentionAndKinds(ab23aq23T *testing.T) {
 		if ab23aq23Result, ab23aq23Err := Ab23Aq23Evaluate([]byte(ab23aq23JSON)); ab23aq23Err == nil || ab23aq23Result != nil {
 			ab23aq23T.Fatal("invalid JSON accepted")
 		}
+	}
+}
+
+func TestAb23Aq23RegisteredTemperatureRaw(ab23aq23T *testing.T) {
+	ab23aq23Input := ab23aq23InputTest(3, "positive", map[string]any{
+		"status": []int{0}, "temperature_raw": []int{0x34, 0x12},
+	})
+	ab23aq23Output := ab23aq23EvaluateTest(ab23aq23T, ab23aq23Input)
+	ab23aq23Results := ab23aq23Output["results"].(map[string]any)
+	ab23aq23Result := ab23aq23Results["temperature_raw"].(map[string]any)
+	if ab23aq23Output["state"] != "complete" || ab23aq23Result["state"] != "complete" || ab23aq23Result["number"] != float64(4660) || ab23aq23Result["label"] != "raw" || ab23aq23Result["meaning"] != "Hypothesis" || ab23aq23Result["calculation"] != "Proven" {
+		ab23aq23T.Fatal(ab23aq23Output)
+	}
+	if !ab23aq23EqualTest(ab23aq23Result["raw"], []int{0x34, 0x12}) {
+		ab23aq23T.Fatal("registered raw bytes changed")
+	}
+	if _, ab23aq23Exists := ab23aq23Results["value"]; ab23aq23Exists {
+		ab23aq23T.Fatal("synthesized unregistered value field")
+	}
+	ab23aq23Input["fields"].(map[string]any)["value"] = []int{0xff, 0xff}
+	ab23aq23Output = ab23aq23EvaluateTest(ab23aq23T, ab23aq23Input)
+	ab23aq23Results = ab23aq23Output["results"].(map[string]any)
+	if ab23aq23Output["state"] != "complete" || ab23aq23Results["temperature_raw"].(map[string]any)["number"] != float64(4660) || !ab23aq23EqualTest(ab23aq23Results["value"], map[string]any{"raw": []int{255, 255}, "state": "Unknown"}) {
+		ab23aq23T.Fatal("extra field changed registered interpretation", ab23aq23Output)
 	}
 }

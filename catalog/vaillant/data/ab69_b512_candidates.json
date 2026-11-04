@@ -1,0 +1,551 @@
+{
+  "representation_grade": "Proven",
+  "physical_qualification": "Unknown",
+  "installed_support": "Unknown",
+  "response_adaptation": "Unknown",
+  "actual_versus_fallback_selection": "Unknown",
+  "scope": "Finite B512 pump and valve candidate declarations only; broader family catalog incomplete. Metadata presence grants neither routable invocation nor physical support.",
+  "entries": [
+    {
+      "key": {
+        "family": "B512",
+        "variant": "circulation",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 0,
+        "direction": "request",
+        "field": "setpoint"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 3,
+      "width": 1,
+      "raw_domain": [
+        0,
+        255
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": null,
+      "unit": "percent",
+      "default": 0,
+      "mappings": {
+        "0": "off"
+      },
+      "ranges": [
+        {
+          "min": 1,
+          "max": 100,
+          "meaning": "on/speed"
+        },
+        {
+          "min": 101,
+          "max": 255,
+          "meaning": "unresolved"
+        }
+      ],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "circulation",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 0,
+        "direction": "positive",
+        "field": "acknowledgement"
+      },
+      "grade": "Hypothesis",
+      "logical_position": null,
+      "width": null,
+      "raw_domain": null,
+      "signed": null,
+      "byte_order": null,
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {},
+      "ranges": [],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": [
+        "prefix-only",
+        "physical acknowledgement: Unknown"
+      ]
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "valve",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "request",
+        "field": "valve"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 3,
+      "width": 1,
+      "raw_domain": [
+        0,
+        255
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {
+        "0": "CH",
+        "50": "midpoint",
+        "100": "DHW",
+        "254": "standby",
+        "255": "unchanged"
+      },
+      "ranges": [],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "valve",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "positive",
+        "field": "valve_feedback"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 3,
+      "width": 1,
+      "raw_domain": [
+        0,
+        255
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {},
+      "ranges": [],
+      "alternatives": [
+        "actual",
+        "setpoint fallback"
+      ],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": [
+        "actual-versus-fallback selection: Unknown"
+      ]
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "valve",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "positive",
+        "field": "contact"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 4,
+      "width": 1,
+      "raw_domain": [
+        0,
+        255
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {
+        "0": "open",
+        "1": "closed"
+      },
+      "ranges": [],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "valve",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "positive",
+        "field": "tank_temperature"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 5,
+      "width": 2,
+      "raw_domain": [
+        -32768,
+        32767
+      ],
+      "signed": true,
+      "byte_order": "little-endian",
+      "divisor": 16,
+      "unit": "degrees C",
+      "default": null,
+      "mappings": {},
+      "ranges": [],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "valve",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "positive",
+        "field": "virtual_error"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 7,
+      "width": 2,
+      "raw_domain": [
+        0,
+        65535
+      ],
+      "signed": false,
+      "byte_order": "little-endian",
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {
+        "65535": "no-error"
+      },
+      "ranges": [],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": [
+        "supplements fault-service information"
+      ]
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "heating-pump",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "request",
+        "field": "setpoint"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 3,
+      "width": 1,
+      "raw_domain": [
+        0,
+        255
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {
+        "0": "off regardless of internal demand",
+        "255": "replacement/no-remote-control"
+      },
+      "ranges": [
+        {
+          "min": 1,
+          "max": 100,
+          "meaning": "on/speed"
+        }
+      ],
+      "alternatives": [],
+      "timeout_seconds": 900,
+      "timeout_restart": "every received service",
+      "external_mode": null,
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "heating-pump",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "positive",
+        "field": "feedback"
+      },
+      "grade": "Hypothesis",
+      "logical_position": null,
+      "width": 1,
+      "raw_domain": [
+        0,
+        255
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {
+        "1": "accepted"
+      },
+      "ranges": [
+        {
+          "min": 0,
+          "max": 0,
+          "meaning": "rejected"
+        },
+        {
+          "min": 2,
+          "max": 255,
+          "meaning": "rejected"
+        }
+      ],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "relay",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_1"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 3,
+      "width": 1,
+      "raw_domain": [
+        0,
+        255
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {
+        "0": "off",
+        "255": "unchanged"
+      },
+      "ranges": [
+        {
+          "min": 1,
+          "max": 100,
+          "meaning": "on-or-speed"
+        }
+      ],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": 8,
+      "notes": [
+        "no meaningful timeout declared"
+      ]
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "relay",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_2"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 4,
+      "width": 1,
+      "raw_domain": [
+        0,
+        255
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {
+        "0": "off",
+        "255": "unchanged"
+      },
+      "ranges": [
+        {
+          "min": 1,
+          "max": 100,
+          "meaning": "on-or-speed"
+        }
+      ],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": 8,
+      "notes": [
+        "no meaningful timeout declared"
+      ]
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "relay",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_3"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 5,
+      "width": 1,
+      "raw_domain": [
+        0,
+        255
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {
+        "0": "off",
+        "255": "unchanged"
+      },
+      "ranges": [
+        {
+          "min": 1,
+          "max": 100,
+          "meaning": "on-or-speed"
+        }
+      ],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": 8,
+      "notes": [
+        "no meaningful timeout declared"
+      ]
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "power",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 7,
+        "direction": "request",
+        "field": "arguments"
+      },
+      "grade": "Hypothesis",
+      "logical_position": null,
+      "width": null,
+      "raw_domain": null,
+      "signed": null,
+      "byte_order": null,
+      "divisor": null,
+      "unit": null,
+      "default": null,
+      "mappings": {},
+      "ranges": [],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": [
+        "no arguments"
+      ]
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "power",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 7,
+        "direction": "positive",
+        "field": "maximum_power"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 3,
+      "width": 1,
+      "raw_domain": [
+        0,
+        255
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": null,
+      "unit": "kW",
+      "default": 0,
+      "mappings": {},
+      "ranges": [],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "B512",
+        "variant": "power",
+        "primary": 181,
+        "secondary": 18,
+        "operation": 7,
+        "direction": "positive",
+        "field": "minimum_power"
+      },
+      "grade": "Hypothesis",
+      "logical_position": 4,
+      "width": 1,
+      "raw_domain": [
+        0,
+        250
+      ],
+      "signed": false,
+      "byte_order": null,
+      "divisor": 2,
+      "unit": "percent",
+      "default": 0,
+      "mappings": {},
+      "ranges": [
+        {
+          "min": 251,
+          "max": 255,
+          "meaning": "outside declared domain; retain raw"
+        }
+      ],
+      "alternatives": [],
+      "timeout_seconds": null,
+      "timeout_restart": null,
+      "external_mode": null,
+      "notes": []
+    }
+  ]
+}

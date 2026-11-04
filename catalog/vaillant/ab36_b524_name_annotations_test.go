@@ -585,7 +585,11 @@ func TestAb36InvalidData(ab36Test *ab36testing.T) {
 	ab36OtherRow["ab36_width"] = 2
 	ab36DifferentDuplicate := string(ab36Encode(ab36Test, []any{ab36Row, ab36OtherRow}))
 	ab36Original := ab36Data
-	ab36Test.Cleanup(func() { ab36Data = ab36Original })
+	ab36OriginalCatalog := ab36CachedCatalog
+	ab36Test.Cleanup(func() {
+		ab36Data = ab36Original
+		ab36CachedCatalog = ab36OriginalCatalog
+	})
 	for ab36Position, ab36Bad := range []string{
 		"", "[", "null", "{}", "[null]", "[42]", "[{}]", "[{\"key\":null}]", ab36Duplicate, ab36DifferentDuplicate,
 		ab36strings.Replace(ab36Valid, `"primary":181,`, ``, 1),
@@ -604,6 +608,7 @@ func TestAb36InvalidData(ab36Test *ab36testing.T) {
 				ab36Test.Fatal("ab36 invalid metadata accepted")
 			}
 			ab36Data = ab36Bad
+			ab36CachedCatalog = &ab36Catalog{ab36Source: ab36Data}
 			ab36Entries, ab36Error := Ab36Entries()
 			if ab36Error == nil || ab36Entries != nil {
 				ab36Test.Fatal("ab36 Entries swallowed invalid metadata")
@@ -615,6 +620,7 @@ func TestAb36InvalidData(ab36Test *ab36testing.T) {
 		})
 	}
 	ab36Data = "[]"
+	ab36CachedCatalog = &ab36Catalog{ab36Source: ab36Data}
 	ab36Entries, ab36Error := Ab36Entries()
 	if ab36Error != nil || string(ab36Entries) != "[]" {
 		ab36Test.Fatal("ab36 valid empty array rejected")
@@ -623,7 +629,11 @@ func TestAb36InvalidData(ab36Test *ab36testing.T) {
 
 func TestAb36OptionalAxesAndRawMetadata(ab36Test *ab36testing.T) {
 	ab36Original := ab36Data
-	ab36Test.Cleanup(func() { ab36Data = ab36Original })
+	ab36OriginalCatalog := ab36CachedCatalog
+	ab36Test.Cleanup(func() {
+		ab36Data = ab36Original
+		ab36CachedCatalog = ab36OriginalCatalog
+	})
 	ab36Base := ab36ExpectedRow(ab36Test, "06|0A|0007|RoomHumidity")
 	for _, ab36Field := range []string{"Ab36Secondary", "Ab36Operation", "Ab36Group", "Ab36Register"} {
 		ab36Test.Run("ab36_"+ab36Field, func(ab36Test *ab36testing.T) {
@@ -641,6 +651,7 @@ func TestAb36OptionalAxesAndRawMetadata(ab36Test *ab36testing.T) {
 				ab36Rows = append(ab36Rows, ab36Row)
 			}
 			ab36Data = string(ab36Encode(ab36Test, ab36Rows))
+			ab36CachedCatalog = &ab36Catalog{ab36Source: ab36Data}
 			for _, ab36Row := range ab36Rows {
 				ab36Actual, ab36Found, ab36Error := Ab36Lookup(ab36Row["key"].(Ab36Key))
 				if ab36Error != nil || !ab36Found {
@@ -654,7 +665,11 @@ func TestAb36OptionalAxesAndRawMetadata(ab36Test *ab36testing.T) {
 
 func TestAb36OmittedOptionalKeys(ab36Test *ab36testing.T) {
 	ab36Original := ab36Data
-	ab36Test.Cleanup(func() { ab36Data = ab36Original })
+	ab36OriginalCatalog := ab36CachedCatalog
+	ab36Test.Cleanup(func() {
+		ab36Data = ab36Original
+		ab36CachedCatalog = ab36OriginalCatalog
+	})
 	for _, ab36Field := range []string{"Ab36Secondary", "Ab36Operation", "Ab36Group", "Ab36Register"} {
 		ab36Test.Run("ab36_"+ab36Field, func(ab36Test *ab36testing.T) {
 			ab36Row := ab36ExpectedRow(ab36Test, "06|0A|0007|RoomHumidity")
@@ -672,6 +687,7 @@ func TestAb36OmittedOptionalKeys(ab36Test *ab36testing.T) {
 			delete(ab36KeyObject, ab36Definition.Tag.Get("json"))
 			ab36Row["key"] = ab36KeyObject
 			ab36Data = string(ab36Encode(ab36Test, []any{ab36Row}))
+			ab36CachedCatalog = &ab36Catalog{ab36Source: ab36Data}
 			ab36Actual, ab36Found, ab36Error := Ab36Lookup(ab36Key)
 			if ab36Error != nil || !ab36Found {
 				ab36Test.Fatalf("ab36 omitted optional key rejected: %v", ab36Error)
@@ -683,5 +699,48 @@ func TestAb36OmittedOptionalKeys(ab36Test *ab36testing.T) {
 				ab36Test.Fatal("ab36 omitted key matched explicit zero")
 			}
 		})
+	}
+}
+
+func TestAb36LookupCachedIndex(ab36Test *ab36testing.T) {
+	ab36Key := ab36ExpectedRow(ab36Test, "06|0A|0007|RoomHumidity")["key"].(Ab36Key)
+	// AllocsPerRun warms the cache before measuring repeated public lookups.
+	ab36Allocations := ab36testing.AllocsPerRun(10, func() {
+		ab36Row, ab36Found, ab36Error := Ab36Lookup(ab36Key)
+		if ab36Error != nil || !ab36Found || len(ab36Row) == 0 {
+			ab36Test.Fatal("ab36 cached lookup failed")
+		}
+	})
+	// Allow ample room for key encoding and the independent returned row,
+	// while rejecting full-catalog parsing and indexing on every lookup.
+	if ab36Allocations > 100 {
+		ab36Test.Fatalf("ab36 repeated lookup allocated %.0f objects; catalog index rebuilt", ab36Allocations)
+	}
+}
+
+func TestAb36CatalogValidationOnce(ab36Test *ab36testing.T) {
+	ab36Key := ab36ExpectedRow(ab36Test, "06|0A|0007|RoomHumidity")["key"].(Ab36Key)
+	ab36Encoded := string(ab36Encode(ab36Test, ab36Key))
+	ab36CatalogValue := &ab36Catalog{ab36Source: ab36Data}
+	ab36Index, ab36Error := ab36CatalogValue.ab36Load()
+	if ab36Error != nil || len(ab36Index) != 370 {
+		ab36Test.Fatalf("ab36 initial validation failed: %v", ab36Error)
+	}
+	ab36Want := append([]byte(nil), ab36Index[ab36Encoded]...)
+	// Changing the private source after initialization must not trigger validation again.
+	ab36CatalogValue.ab36Source = "["
+	ab36Again, ab36Error := ab36CatalogValue.ab36Load()
+	if ab36Error != nil || !ab36bytes.Equal(ab36Again[ab36Encoded], ab36Want) {
+		ab36Test.Fatal("ab36 validated index was rebuilt")
+	}
+	ab36Invalid := &ab36Catalog{ab36Source: "["}
+	ab36Index, ab36FirstError := ab36Invalid.ab36Load()
+	if ab36FirstError == nil || ab36Index != nil {
+		ab36Test.Fatal("ab36 invalid source accepted")
+	}
+	ab36Invalid.ab36Source = ab36Data
+	ab36Index, ab36Error = ab36Invalid.ab36Load()
+	if ab36Error != ab36FirstError || ab36Index != nil {
+		ab36Test.Fatal("ab36 validation error was not cached")
 	}
 }

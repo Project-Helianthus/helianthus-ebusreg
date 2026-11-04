@@ -5,10 +5,27 @@ import (
 	_ "embed"
 	ab36json "encoding/json"
 	ab36fmt "fmt"
+	ab36sync "sync"
 )
 
 //go:embed data/ab36_b524_name_annotations.json
 var ab36Data string
+
+type ab36Catalog struct {
+	ab36Source string
+	ab36Once   ab36sync.Once
+	ab36Index  map[string]ab36json.RawMessage
+	ab36Error  error
+}
+
+var ab36CachedCatalog = &ab36Catalog{ab36Source: ab36Data}
+
+func (ab36CatalogValue *ab36Catalog) ab36Load() (map[string]ab36json.RawMessage, error) {
+	ab36CatalogValue.ab36Once.Do(func() {
+		_, ab36CatalogValue.ab36Index, ab36CatalogValue.ab36Error = ab36Validate([]byte(ab36CatalogValue.ab36Source))
+	})
+	return ab36CatalogValue.ab36Index, ab36CatalogValue.ab36Error
+}
 
 type Ab36Key struct {
 	Ab36Family        string  `json:"family"`
@@ -69,14 +86,14 @@ func ab36Validate(ab36Source []byte) ([]ab36json.RawMessage, map[string]ab36json
 }
 
 func Ab36Entries() (ab36json.RawMessage, error) {
-	if _, _, ab36Error := ab36Validate([]byte(ab36Data)); ab36Error != nil {
+	if _, ab36Error := ab36CachedCatalog.ab36Load(); ab36Error != nil {
 		return nil, ab36Error
 	}
-	return ab36json.RawMessage(ab36Data), nil
+	return ab36json.RawMessage(ab36CachedCatalog.ab36Source), nil
 }
 
 func Ab36Lookup(ab36Key Ab36Key) (ab36json.RawMessage, bool, error) {
-	_, ab36Index, ab36Error := ab36Validate([]byte(ab36Data))
+	ab36Index, ab36Error := ab36CachedCatalog.ab36Load()
 	if ab36Error != nil {
 		return nil, false, ab36Error
 	}

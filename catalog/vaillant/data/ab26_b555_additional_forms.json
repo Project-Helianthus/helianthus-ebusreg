@@ -1,0 +1,1621 @@
+[
+  {
+    "id": "ab26-b555-a0-request",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 160,
+      "direction": "request",
+      "field": "availability",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [],
+    "relations": {
+      "required_accessible_initialized_bytes": 0,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a0-reply",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 160,
+      "direction": "reply",
+      "field": "availability",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [
+      {
+        "name": "DHW",
+        "byte": 0,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "circulation",
+        "byte": 0,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "noise_reduction",
+        "byte": 0,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "ventilation",
+        "byte": 0,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "high_tariff",
+        "byte": 0,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "reserved",
+        "byte": 0,
+        "bit": 5,
+        "width_bits": 3,
+        "encoding": "raw"
+      },
+      {
+        "name": "reserved",
+        "byte": 1,
+        "bit": 0,
+        "width_bits": 8,
+        "encoding": "raw"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 1,
+        "byte": 2,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 1,
+        "byte": 2,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 1,
+        "byte": 2,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 1,
+        "byte": 2,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 2,
+        "byte": 2,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 2,
+        "byte": 2,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 2,
+        "byte": 2,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 2,
+        "byte": 2,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 3,
+        "byte": 3,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 3,
+        "byte": 3,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 3,
+        "byte": 3,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 3,
+        "byte": 3,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 4,
+        "byte": 3,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 4,
+        "byte": 3,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 4,
+        "byte": 3,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 4,
+        "byte": 3,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 5,
+        "byte": 4,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 5,
+        "byte": 4,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 5,
+        "byte": 4,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 5,
+        "byte": 4,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 6,
+        "byte": 4,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 6,
+        "byte": 4,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 6,
+        "byte": 4,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 6,
+        "byte": 4,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 7,
+        "byte": 5,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 7,
+        "byte": 5,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 7,
+        "byte": 5,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 7,
+        "byte": 5,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 8,
+        "byte": 5,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 8,
+        "byte": 5,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 8,
+        "byte": 5,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 8,
+        "byte": 5,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 9,
+        "byte": 6,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 9,
+        "byte": 6,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 9,
+        "byte": 6,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 9,
+        "byte": 6,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 10,
+        "byte": 6,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 10,
+        "byte": 6,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 10,
+        "byte": 6,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 10,
+        "byte": 6,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 11,
+        "byte": 7,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 11,
+        "byte": 7,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 11,
+        "byte": 7,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 11,
+        "byte": 7,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 12,
+        "byte": 7,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 12,
+        "byte": 7,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 12,
+        "byte": 7,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "availability"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 12,
+        "byte": 7,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "availability"
+      }
+    ],
+    "relations": {
+      "required_accessible_initialized_bytes": 8,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a7-request",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 167,
+      "direction": "request",
+      "field": "visibility",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [],
+    "relations": {
+      "required_accessible_initialized_bytes": 0,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a7-reply",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 167,
+      "direction": "reply",
+      "field": "visibility",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [
+      {
+        "name": "DHW",
+        "byte": 0,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "circulation",
+        "byte": 0,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "noise_reduction",
+        "byte": 0,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "ventilation",
+        "byte": 0,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "high_tariff",
+        "byte": 0,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "reserved",
+        "byte": 0,
+        "bit": 5,
+        "width_bits": 3,
+        "encoding": "raw"
+      },
+      {
+        "name": "reserved",
+        "byte": 1,
+        "bit": 0,
+        "width_bits": 8,
+        "encoding": "raw"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 1,
+        "byte": 2,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 1,
+        "byte": 2,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 1,
+        "byte": 2,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 1,
+        "byte": 2,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 2,
+        "byte": 2,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 2,
+        "byte": 2,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 2,
+        "byte": 2,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 2,
+        "byte": 2,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 3,
+        "byte": 3,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 3,
+        "byte": 3,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 3,
+        "byte": 3,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 3,
+        "byte": 3,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 4,
+        "byte": 3,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 4,
+        "byte": 3,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 4,
+        "byte": 3,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 4,
+        "byte": 3,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 5,
+        "byte": 4,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 5,
+        "byte": 4,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 5,
+        "byte": 4,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 5,
+        "byte": 4,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 6,
+        "byte": 4,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 6,
+        "byte": 4,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 6,
+        "byte": 4,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 6,
+        "byte": 4,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 7,
+        "byte": 5,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 7,
+        "byte": 5,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 7,
+        "byte": 5,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 7,
+        "byte": 5,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 8,
+        "byte": 5,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 8,
+        "byte": 5,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 8,
+        "byte": 5,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 8,
+        "byte": 5,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 9,
+        "byte": 6,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 9,
+        "byte": 6,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 9,
+        "byte": 6,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 9,
+        "byte": 6,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 10,
+        "byte": 6,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 10,
+        "byte": 6,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 10,
+        "byte": 6,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 10,
+        "byte": 6,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 11,
+        "byte": 7,
+        "bit": 0,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 11,
+        "byte": 7,
+        "bit": 1,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 11,
+        "byte": 7,
+        "bit": 2,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 11,
+        "byte": 7,
+        "bit": 3,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_heating",
+        "channel": 12,
+        "byte": 7,
+        "bit": 4,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "zone_cooling",
+        "channel": 12,
+        "byte": 7,
+        "bit": 5,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_DHW",
+        "channel": 12,
+        "byte": 7,
+        "bit": 6,
+        "width_bits": 1,
+        "meaning": "visibility"
+      },
+      {
+        "name": "external_fixed_flow",
+        "channel": 12,
+        "byte": 7,
+        "bit": 7,
+        "width_bits": 1,
+        "meaning": "visibility"
+      }
+    ],
+    "relations": {
+      "required_accessible_initialized_bytes": 8,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a1-request",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 161,
+      "direction": "request",
+      "field": "reserved",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [],
+    "relations": {
+      "required_accessible_initialized_bytes": 0,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a1-reply",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 161,
+      "direction": "reply",
+      "field": "reserved",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [
+      {
+        "name": "reserved",
+        "byte": 0,
+        "bit": 0,
+        "width_bits": 48,
+        "encoding": "raw"
+      }
+    ],
+    "relations": {
+      "required_accessible_initialized_bytes": 6,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a2-request",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 162,
+      "direction": "request",
+      "field": "reserved",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [],
+    "relations": {
+      "required_accessible_initialized_bytes": 0,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a2-reply",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 162,
+      "direction": "reply",
+      "field": "reserved",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [
+      {
+        "name": "reserved",
+        "byte": 0,
+        "bit": 0,
+        "width_bits": 48,
+        "encoding": "raw"
+      }
+    ],
+    "relations": {
+      "required_accessible_initialized_bytes": 6,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a8-request",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 168,
+      "direction": "request",
+      "field": "reserved",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [],
+    "relations": {
+      "required_accessible_initialized_bytes": 0,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a8-reply",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 168,
+      "direction": "reply",
+      "field": "reserved",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [
+      {
+        "name": "reserved",
+        "byte": 0,
+        "bit": 0,
+        "width_bits": 48,
+        "encoding": "raw"
+      }
+    ],
+    "relations": {
+      "required_accessible_initialized_bytes": 6,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a9-request",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 169,
+      "direction": "request",
+      "field": "reserved",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [],
+    "relations": {
+      "required_accessible_initialized_bytes": 0,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a9-reply",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 169,
+      "direction": "reply",
+      "field": "reserved",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [
+      {
+        "name": "reserved",
+        "byte": 0,
+        "bit": 0,
+        "width_bits": 48,
+        "encoding": "raw"
+      }
+    ],
+    "relations": {
+      "required_accessible_initialized_bytes": 6,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a4-reply",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 164,
+      "direction": "reply",
+      "field": "weekday_counts",
+      "alternative": "positive",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [
+      {
+        "name": "status",
+        "byte": 0,
+        "width_bits": 8,
+        "encoding": "raw"
+      },
+      {
+        "name": "weekday_count",
+        "weekday_index": 1,
+        "byte": 1,
+        "width_bits": 8,
+        "encoding": "unsigned"
+      },
+      {
+        "name": "weekday_count",
+        "weekday_index": 2,
+        "byte": 2,
+        "width_bits": 8,
+        "encoding": "unsigned"
+      },
+      {
+        "name": "weekday_count",
+        "weekday_index": 3,
+        "byte": 3,
+        "width_bits": 8,
+        "encoding": "unsigned"
+      },
+      {
+        "name": "weekday_count",
+        "weekday_index": 4,
+        "byte": 4,
+        "width_bits": 8,
+        "encoding": "unsigned"
+      },
+      {
+        "name": "weekday_count",
+        "weekday_index": 5,
+        "byte": 5,
+        "width_bits": 8,
+        "encoding": "unsigned"
+      },
+      {
+        "name": "weekday_count",
+        "weekday_index": 6,
+        "byte": 6,
+        "width_bits": 8,
+        "encoding": "unsigned"
+      },
+      {
+        "name": "weekday_count",
+        "weekday_index": 7,
+        "byte": 7,
+        "width_bits": 8,
+        "encoding": "unsigned"
+      },
+      {
+        "name": "24_hour_count",
+        "byte": 8,
+        "width_bits": 8,
+        "encoding": "unsigned"
+      }
+    ],
+    "relations": {
+      "required_accessible_initialized_bytes": 9,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  },
+  {
+    "id": "ab26-b555-a5-reply",
+    "key": {
+      "family": "vaillant",
+      "variant": "b555",
+      "primary": 181,
+      "secondary": 85,
+      "operation": 165,
+      "direction": "reply",
+      "field": "daily_interval",
+      "alternative": "positive",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "coordinate_origin": "immediately_after_command",
+    "physical_offset": "Unknown",
+    "fields": [
+      {
+        "name": "status",
+        "byte": 0,
+        "width_bits": 8,
+        "encoding": "raw"
+      },
+      {
+        "name": "start_hour",
+        "byte": 1,
+        "width_bits": 8,
+        "encoding": "unsigned",
+        "domain": [
+          0,
+          24
+        ]
+      },
+      {
+        "name": "start_minute",
+        "byte": 2,
+        "width_bits": 8,
+        "encoding": "unsigned",
+        "domain": [
+          0,
+          59
+        ]
+      },
+      {
+        "name": "end_hour",
+        "byte": 3,
+        "width_bits": 8,
+        "encoding": "unsigned",
+        "domain": [
+          0,
+          24
+        ]
+      },
+      {
+        "name": "end_minute",
+        "byte": 4,
+        "width_bits": 8,
+        "encoding": "unsigned",
+        "domain": [
+          0,
+          59
+        ]
+      },
+      {
+        "name": "setpoint",
+        "byte": 5,
+        "width_bits": 16,
+        "encoding": "unsigned_little_endian",
+        "unit": "Unknown",
+        "sentinel": "Unknown"
+      }
+    ],
+    "relations": {
+      "required_accessible_initialized_bytes": 7,
+      "declared_extent_is_received_extent": false,
+      "local_count_is_received_extent": false,
+      "backing_capacity_is_received_extent": false,
+      "status_is_extent": false,
+      "numeric_threshold_is_extent": false,
+      "extra_bytes": "retain_raw",
+      "empty_arguments_are_physical_empty_packet": false
+    },
+    "raw_form": "retain_all_original_bytes_including_reserved_and_extra_bytes",
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_adaptation": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "other_timer_variants": "Unknown",
+      "unit": "Unknown",
+      "sentinel": "Unknown"
+    },
+    "qualification": "Unknown",
+    "executable": false
+  }
+]

@@ -1,0 +1,174 @@
+[
+  {
+    "id": "ab20-time-generic",
+    "key": {
+      "family": "vaillant",
+      "variant": "generic",
+      "primary": 181,
+      "secondary": 22,
+      "direction": "positive",
+      "field": "system-time",
+      "alternative": "none",
+      "instance_scope": "none"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "physical_length": "Unknown",
+    "native_support": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "timeout": "Unknown",
+    "broadcast": "Unknown",
+    "raw_form": "retained without normalization",
+    "unknown": [
+      "encoded operation",
+      "exact enum tables",
+      "missing positions",
+      "native qualification"
+    ],
+    "positive_state": "header-only"
+  },
+  {
+    "id": "ab20-time-other",
+    "key": {
+      "family": "vaillant",
+      "variant": "other",
+      "primary": 181,
+      "secondary": 22,
+      "direction": "positive",
+      "field": "system-time",
+      "alternative": "none",
+      "instance_scope": "none"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "physical_length": "Unknown",
+    "native_support": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "timeout": "Unknown",
+    "broadcast": "Unknown",
+    "raw_form": "retained without normalization",
+    "unknown": [
+      "encoded operation",
+      "exact enum tables",
+      "missing positions",
+      "native qualification"
+    ],
+    "positive_state": "absent"
+  },
+  {
+    "id": "ab20-energy-request",
+    "key": {
+      "family": "vaillant",
+      "variant": "energy-type",
+      "primary": 181,
+      "secondary": 22,
+      "direction": "request",
+      "field": "energy-type",
+      "alternative": "none",
+      "instance_scope": "none"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "physical_length": "Unknown",
+    "native_support": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "timeout": "Unknown",
+    "broadcast": "Unknown",
+    "raw_form": "retained without normalization",
+    "unknown": [
+      "encoded operation",
+      "exact enum tables",
+      "missing positions",
+      "native qualification"
+    ],
+    "representation": "raw-u8-enum",
+    "raw_mask": 255,
+    "enum_labels": "Unknown"
+  },
+  {
+    "id": "ab20-energy-read",
+    "key": {
+      "family": "vaillant",
+      "variant": "energy-type",
+      "primary": 181,
+      "secondary": 22,
+      "direction": "read-positive",
+      "field": "energy-type",
+      "alternative": "none",
+      "instance_scope": "none"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "physical_length": "Unknown",
+    "native_support": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "timeout": "Unknown",
+    "broadcast": "Unknown",
+    "raw_form": "retained without normalization",
+    "unknown": [
+      "encoded operation",
+      "exact enum tables",
+      "missing positions",
+      "native qualification"
+    ],
+    "representation": "low-six-and-independent-flags",
+    "raw_mask": 255,
+    "value_mask": 63,
+    "flags": [
+      {
+        "bit": 6,
+        "mask": 64
+      },
+      {
+        "bit": 7,
+        "mask": 128
+      }
+    ]
+  },
+  {
+    "id": "ab20-energy-write",
+    "key": {
+      "family": "vaillant",
+      "variant": "energy-type",
+      "primary": 181,
+      "secondary": 22,
+      "direction": "write-positive",
+      "field": "energy-type",
+      "alternative": "none",
+      "instance_scope": "none"
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md",
+    "physical_length": "Unknown",
+    "native_support": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "timeout": "Unknown",
+    "broadcast": "Unknown",
+    "raw_form": "retained without normalization",
+    "unknown": [
+      "encoded operation",
+      "exact enum tables",
+      "missing positions",
+      "native qualification"
+    ],
+    "representation": "scalar-six-bit",
+    "raw_mask": 255,
+    "value_mask": 63,
+    "unmodeled_mask": 192
+  }
+]

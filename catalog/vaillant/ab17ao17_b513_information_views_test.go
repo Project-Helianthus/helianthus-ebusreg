@@ -48,7 +48,7 @@ func ab17ao17Field(ab17ao17Output map[string]any, ab17ao17Name string) map[strin
 }
 func TestAb17Ao17Flags(ab17ao17T *testing.T) {
 	ab17ao17Names := []string{"capabilities", "fuel", "storage", "features"}
-	ab17ao17Labels := [][]string{{"floor-standing", "condensing", "fan-assisted", "open-vented", "high-modulation-range", "water-heater", "step-modulation", "ECS"}, {"gas", "oil", "ABC"}, {"layer-tank", "warm-start", "external-tank", "combination"}, {"solar-compact", "basic-solar", "AAPS", "advanced-power", "partial-load", "parameter-master"}}
+	ab17ao17Labels := [][]string{{"floor-standing", "condensing", "fan-assisted", "open-vented", "high-modulation-range", "water-heater", "step-modulation", "ECS"}, {"gas", "oil", "ABC"}, {"layer-tank", "warm-start", "external-tank", "combination"}, {"solar-compact", "basic-solar", "AAPS", "advanced-power", "partial-load", "parameter-primary"}}
 	for ab17ao17Index, ab17ao17Name := range ab17ao17Names {
 		for ab17ao17Bit := 0; ab17ao17Bit < 8; ab17ao17Bit++ {
 			ab17ao17T.Run(fmt.Sprintf("%s_bit%d", ab17ao17Name, ab17ao17Bit), func(ab17ao17T *testing.T) {

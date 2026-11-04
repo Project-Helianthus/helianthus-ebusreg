@@ -151,7 +151,7 @@ func Ab17Ao17Interpret(ab17ao17Input json.RawMessage) (json.RawMessage, error) {
 				}
 				ab17ao17Field["label"] = ab17ao17Labels[ab17ao17Number]
 			} else {
-				ab17ao17Labels := [][]string{{"floor-standing", "condensing", "fan-assisted", "open-vented", "high-modulation-range", "water-heater", "step-modulation", "ECS"}, {"gas", "oil", "ABC"}, {"layer-tank", "warm-start", "external-tank", "combination"}, {"solar-compact", "basic-solar", "AAPS", "advanced-power", "partial-load", "parameter-master"}}[ab17ao17Index-1]
+				ab17ao17Labels := [][]string{{"floor-standing", "condensing", "fan-assisted", "open-vented", "high-modulation-range", "water-heater", "step-modulation", "ECS"}, {"gas", "oil", "ABC"}, {"layer-tank", "warm-start", "external-tank", "combination"}, {"solar-compact", "basic-solar", "AAPS", "advanced-power", "partial-load", "parameter-primary"}}[ab17ao17Index-1]
 				ab17ao17Flags := map[string]bool{}
 				for ab17ao17Bit, ab17ao17Label := range ab17ao17Labels {
 					ab17ao17Flags[ab17ao17Label] = ab17ao17Number&(1<<ab17ao17Bit) != 0

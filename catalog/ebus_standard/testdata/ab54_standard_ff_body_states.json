@@ -1,0 +1,435 @@
+[
+  {
+    "id": "ab54-ff00",
+    "key": {
+      "family": "standard-service",
+      "variant": "FF00",
+      "primary": 255,
+      "secondary": 0,
+      "operation": null,
+      "direction": "none",
+      "field": "body-completeness",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Proven",
+    "raw_form": {
+      "PB": "FF",
+      "SB": "00",
+      "NN": "Unknown",
+      "body": "Unknown"
+    },
+    "query_identity": "none",
+    "reply_service": "Unknown",
+    "invocable": false,
+    "executable": false,
+    "semantic_validity": "Unknown",
+    "physical_qualification": "Unknown",
+    "unknowns": {
+      "native_emission": "Unknown",
+      "forwarding_eligibility": "Unknown",
+      "target_identity": "Unknown",
+      "correlation": "Unknown",
+      "lifecycle_effects": "Unknown",
+      "installed_support": "Unknown",
+      "physical_ack": "Unknown",
+      "exact_body_fields": "Unknown",
+      "pair_meaning": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown"
+    },
+    "policy_boundary": "metadata only; no emitter",
+    "minimum_overhead_width": null,
+    "service_pair_width": null,
+    "cases": []
+  },
+  {
+    "id": "ab54-ff01",
+    "key": {
+      "family": "standard-service",
+      "variant": "FF01",
+      "primary": 255,
+      "secondary": 1,
+      "operation": null,
+      "direction": "none",
+      "field": "body-completeness",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Proven",
+    "raw_form": {
+      "PB": "FF",
+      "SB": "01",
+      "NN": "0",
+      "body": "Unknown"
+    },
+    "query_identity": "none",
+    "reply_service": "Unknown",
+    "invocable": false,
+    "executable": false,
+    "semantic_validity": "Unknown",
+    "physical_qualification": "Unknown",
+    "unknowns": {
+      "native_emission": "Unknown",
+      "forwarding_eligibility": "Unknown",
+      "target_identity": "Unknown",
+      "correlation": "Unknown",
+      "lifecycle_effects": "Unknown",
+      "installed_support": "Unknown",
+      "physical_ack": "Unknown",
+      "exact_body_fields": "Unknown",
+      "pair_meaning": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown"
+    },
+    "policy_boundary": "NN0; reset of dynamic target configuration requires explicit emission policy; no emitter added",
+    "minimum_overhead_width": null,
+    "service_pair_width": null,
+    "cases": []
+  },
+  {
+    "id": "ab54-ff02",
+    "key": {
+      "family": "standard-service",
+      "variant": "FF02",
+      "primary": 255,
+      "secondary": 2,
+      "operation": null,
+      "direction": "none",
+      "field": "body-completeness",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Proven",
+    "raw_form": {
+      "PB": "FF",
+      "SB": "02",
+      "NN": "0",
+      "body": "Unknown"
+    },
+    "query_identity": "none",
+    "reply_service": "Unknown",
+    "invocable": false,
+    "executable": false,
+    "semantic_validity": "Unknown",
+    "physical_qualification": "Unknown",
+    "unknowns": {
+      "native_emission": "Unknown",
+      "forwarding_eligibility": "Unknown",
+      "target_identity": "Unknown",
+      "correlation": "Unknown",
+      "lifecycle_effects": "Unknown",
+      "installed_support": "Unknown",
+      "physical_ack": "Unknown",
+      "exact_body_fields": "Unknown",
+      "pair_meaning": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown"
+    },
+    "policy_boundary": "NN0 independent of responder availability; no responder inference",
+    "minimum_overhead_width": null,
+    "service_pair_width": null,
+    "cases": []
+  },
+  {
+    "id": "ab54-ff03",
+    "key": {
+      "family": "standard-service",
+      "variant": "FF03",
+      "primary": 255,
+      "secondary": 3,
+      "operation": null,
+      "direction": "abstract-request",
+      "field": "body-completeness",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Proven",
+    "raw_form": {
+      "PB": "FF",
+      "SB": "03",
+      "NN": "Unknown",
+      "body": "Unknown"
+    },
+    "query_identity": "net-status-query",
+    "reply_service": "same-service",
+    "invocable": false,
+    "executable": false,
+    "semantic_validity": "Unknown",
+    "physical_qualification": "Unknown",
+    "unknowns": {
+      "native_emission": "Unknown",
+      "forwarding_eligibility": "Unknown",
+      "target_identity": "Unknown",
+      "correlation": "Unknown",
+      "lifecycle_effects": "Unknown",
+      "installed_support": "Unknown",
+      "physical_ack": "Unknown",
+      "exact_body_fields": "Unknown",
+      "pair_meaning": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown"
+    },
+    "policy_boundary": "metadata only; no emitter",
+    "minimum_overhead_width": null,
+    "service_pair_width": null,
+    "cases": []
+  },
+  {
+    "id": "ab54-ff04",
+    "key": {
+      "family": "standard-service",
+      "variant": "FF04",
+      "primary": 255,
+      "secondary": 4,
+      "operation": null,
+      "direction": "abstract-request",
+      "field": "body-completeness",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Proven",
+    "raw_form": {
+      "PB": "FF",
+      "SB": "04",
+      "NN": "1..10",
+      "body": "Unknown"
+    },
+    "query_identity": "monitored-participants-query",
+    "reply_service": "same-service",
+    "invocable": false,
+    "executable": false,
+    "semantic_validity": "Unknown",
+    "physical_qualification": "Unknown",
+    "unknowns": {
+      "native_emission": "Unknown",
+      "forwarding_eligibility": "Unknown",
+      "target_identity": "Unknown",
+      "correlation": "Unknown",
+      "lifecycle_effects": "Unknown",
+      "installed_support": "Unknown",
+      "physical_ack": "Unknown",
+      "exact_body_fields": "Unknown",
+      "pair_meaning": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown"
+    },
+    "policy_boundary": "metadata only; no emitter",
+    "minimum_overhead_width": 2,
+    "service_pair_width": null,
+    "cases": [
+      {
+        "id": "ab54-ff04-length1",
+        "grade": "Proven",
+        "nn": 1,
+        "raw": [
+          0
+        ],
+        "minimum_overhead_met": false,
+        "body_complete": false,
+        "semantic_validity": "Unknown",
+        "state": "truncated/raw"
+      },
+      {
+        "id": "ab54-ff04-length2",
+        "grade": "Proven",
+        "nn": 2,
+        "raw": [
+          0,
+          0
+        ],
+        "minimum_overhead_met": true,
+        "body_complete": null,
+        "semantic_validity": "Unknown",
+        "state": "minimum-overhead-only"
+      }
+    ]
+  },
+  {
+    "id": "ab54-ff05",
+    "key": {
+      "family": "standard-service",
+      "variant": "FF05",
+      "primary": 255,
+      "secondary": 5,
+      "operation": null,
+      "direction": "abstract-request",
+      "field": "body-completeness",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Proven",
+    "raw_form": {
+      "PB": "FF",
+      "SB": "05",
+      "NN": "Unknown",
+      "body": "Unknown"
+    },
+    "query_identity": "failed-nodes-query",
+    "reply_service": "same-service",
+    "invocable": false,
+    "executable": false,
+    "semantic_validity": "Unknown",
+    "physical_qualification": "Unknown",
+    "unknowns": {
+      "native_emission": "Unknown",
+      "forwarding_eligibility": "Unknown",
+      "target_identity": "Unknown",
+      "correlation": "Unknown",
+      "lifecycle_effects": "Unknown",
+      "installed_support": "Unknown",
+      "physical_ack": "Unknown",
+      "exact_body_fields": "Unknown",
+      "pair_meaning": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown"
+    },
+    "policy_boundary": "metadata only; no emitter",
+    "minimum_overhead_width": null,
+    "service_pair_width": null,
+    "cases": []
+  },
+  {
+    "id": "ab54-ff06",
+    "key": {
+      "family": "standard-service",
+      "variant": "FF06",
+      "primary": 255,
+      "secondary": 6,
+      "operation": null,
+      "direction": "abstract-request",
+      "field": "body-completeness",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Proven",
+    "raw_form": {
+      "PB": "FF",
+      "SB": "06",
+      "NN": "1+2n for complete service pairs",
+      "body": "Unknown"
+    },
+    "query_identity": "required-services-query",
+    "reply_service": "same-service",
+    "invocable": false,
+    "executable": false,
+    "semantic_validity": "Unknown",
+    "physical_qualification": "Unknown",
+    "unknowns": {
+      "native_emission": "Unknown",
+      "forwarding_eligibility": "Unknown",
+      "target_identity": "Unknown",
+      "correlation": "Unknown",
+      "lifecycle_effects": "Unknown",
+      "installed_support": "Unknown",
+      "physical_ack": "Unknown",
+      "exact_body_fields": "Unknown",
+      "pair_meaning": "Unknown",
+      "presence": "Unknown",
+      "freshness": "Unknown"
+    },
+    "policy_boundary": "metadata only; no emitter",
+    "minimum_overhead_width": null,
+    "service_pair_width": 2,
+    "cases": [
+      {
+        "id": "ab54-ff06-length1",
+        "grade": "Proven",
+        "nn": 1,
+        "raw": [
+          0
+        ],
+        "complete_pairs": 0,
+        "pair_shape_complete": true,
+        "raw_remainder": [],
+        "body_complete": null,
+        "semantic_validity": "Unknown",
+        "state": "arithmetic-only"
+      },
+      {
+        "id": "ab54-ff06-length2",
+        "grade": "Proven",
+        "nn": 2,
+        "raw": [
+          0,
+          0
+        ],
+        "complete_pairs": 0,
+        "pair_shape_complete": false,
+        "raw_remainder": [
+          0
+        ],
+        "body_complete": false,
+        "semantic_validity": "Unknown",
+        "state": "incomplete/raw-remainder"
+      },
+      {
+        "id": "ab54-ff06-length3",
+        "grade": "Proven",
+        "nn": 3,
+        "raw": [
+          0,
+          0,
+          0
+        ],
+        "complete_pairs": 1,
+        "pair_shape_complete": true,
+        "raw_remainder": [],
+        "body_complete": null,
+        "semantic_validity": "Unknown",
+        "state": "arithmetic-only"
+      },
+      {
+        "id": "ab54-ff06-length4",
+        "grade": "Proven",
+        "nn": 4,
+        "raw": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "complete_pairs": 1,
+        "pair_shape_complete": false,
+        "raw_remainder": [
+          0
+        ],
+        "body_complete": false,
+        "semantic_validity": "Unknown",
+        "state": "incomplete/raw-remainder"
+      },
+      {
+        "id": "ab54-ff06-length5",
+        "grade": "Proven",
+        "nn": 5,
+        "raw": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "complete_pairs": 2,
+        "pair_shape_complete": true,
+        "raw_remainder": [],
+        "body_complete": null,
+        "semantic_validity": "Unknown",
+        "state": "arithmetic-only"
+      }
+    ]
+  }
+]

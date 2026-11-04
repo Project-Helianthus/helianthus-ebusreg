@@ -384,3 +384,14 @@ func TestAb05Aq05CanonicalSum(ab05aq05T *testing.T) {
 		ab05aq05T.Fatalf("non-canonical sum: %s", ab05aq05Output)
 	}
 }
+
+func TestAb05Aq05RejectDeepNesting(ab05aq05T *testing.T) {
+	ab05aq05Deep := `{"context":{},"fields":{},"x":` + strings.Repeat("[", 100000) + strings.Repeat("]", 100000) + `}`
+	if ab05aq05Output, ab05aq05Error := Ab05Aq05Evaluate([]byte(ab05aq05Deep)); ab05aq05Error == nil || ab05aq05Output != nil {
+		ab05aq05T.Fatalf("accepted over-deep input")
+	}
+	ab05aq05Shallow := `{"context":{},"fields":{},"x":` + strings.Repeat("[", 8) + strings.Repeat("]", 8) + `}`
+	if _, ab05aq05Error := Ab05Aq05Evaluate([]byte(ab05aq05Shallow)); ab05aq05Error != nil {
+		ab05aq05T.Fatalf("rejected shallow input: %v", ab05aq05Error)
+	}
+}

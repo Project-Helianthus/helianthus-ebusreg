@@ -11,7 +11,12 @@ import (
 	"strings"
 )
 
-func ab05aq05Read(ab05aq05Decoder *json.Decoder) (any, error) {
+const ab05aq05MaxDepth = 64
+
+func ab05aq05Read(ab05aq05Decoder *json.Decoder, ab05aq05Depth int) (any, error) {
+	if ab05aq05Depth > ab05aq05MaxDepth {
+		return nil, fmt.Errorf("nesting too deep")
+	}
 	ab05aq05Token, ab05aq05Error := ab05aq05Decoder.Token()
 	if ab05aq05Error != nil {
 		return nil, ab05aq05Error
@@ -30,7 +35,7 @@ func ab05aq05Read(ab05aq05Decoder *json.Decoder) (any, error) {
 				if _, ab05aq05Exists := ab05aq05Object[ab05aq05Name]; ab05aq05Exists {
 					return nil, fmt.Errorf("duplicate key %q", ab05aq05Name)
 				}
-				ab05aq05Child, ab05aq05Err := ab05aq05Read(ab05aq05Decoder)
+				ab05aq05Child, ab05aq05Err := ab05aq05Read(ab05aq05Decoder, ab05aq05Depth+1)
 				if ab05aq05Err != nil {
 					return nil, ab05aq05Err
 				}
@@ -41,7 +46,7 @@ func ab05aq05Read(ab05aq05Decoder *json.Decoder) (any, error) {
 		case '[':
 			ab05aq05Array := []any{}
 			for ab05aq05Decoder.More() {
-				ab05aq05Child, ab05aq05Err := ab05aq05Read(ab05aq05Decoder)
+				ab05aq05Child, ab05aq05Err := ab05aq05Read(ab05aq05Decoder, ab05aq05Depth+1)
 				if ab05aq05Err != nil {
 					return nil, ab05aq05Err
 				}
@@ -93,7 +98,7 @@ func ab05aq05Byte(ab05aq05Value any) (int, bool) {
 func Ab05Aq05Evaluate(ab05aq05Input json.RawMessage) (json.RawMessage, error) {
 	ab05aq05Decoder := json.NewDecoder(bytes.NewReader(ab05aq05Input))
 	ab05aq05Decoder.UseNumber()
-	ab05aq05Parsed, ab05aq05Error := ab05aq05Read(ab05aq05Decoder)
+	ab05aq05Parsed, ab05aq05Error := ab05aq05Read(ab05aq05Decoder, 0)
 	if ab05aq05Error != nil {
 		return nil, ab05aq05Error
 	}

@@ -305,3 +305,46 @@ func TestAb20IdentityValidation(ab20T *ab20testing.T) {
 		})
 	}
 }
+
+func TestAb20UnknownIdentityAxes(ab20T *ab20testing.T) {
+	ab20Key := ab20KeyFor("generic", "positive", "system-time")
+	ab20Encoded, ab20Err := ab20json.Marshal(ab20Key)
+	if ab20Err != nil {
+		ab20T.Fatal(ab20Err)
+	}
+	for _, ab20Field := range []string{"operaton", "unknown_axis"} {
+		ab20T.Run("ab20-"+ab20Field, func(ab20T *ab20testing.T) {
+			var ab20Identity map[string]ab20json.RawMessage
+			if ab20Err := ab20json.Unmarshal(ab20Encoded, &ab20Identity); ab20Err != nil {
+				ab20T.Fatal(ab20Err)
+			}
+			ab20Identity[ab20Field] = ab20json.RawMessage(`0`)
+			ab20Fixture, ab20Err := ab20json.Marshal([]any{map[string]any{"id": "ab20-unknown-axis", "key": ab20Identity}})
+			if ab20Err != nil {
+				ab20T.Fatal(ab20Err)
+			}
+			if _, ab20Err := ab20Validate(ab20Fixture); ab20Err == nil {
+				ab20T.Fatal("ab20 unknown identity axis admitted")
+			}
+			if ab20Raw, ab20Found, ab20Err := ab20Lookup(ab20Fixture, ab20Key); ab20Err == nil || ab20Found || ab20Raw != nil {
+				ab20T.Fatal("ab20 malformed identity lookup did not fail closed")
+			}
+		})
+	}
+	ab20Fixture, ab20Err := ab20json.Marshal([]any{map[string]any{"id": "ab20-variable-metadata", "key": ab20Key, "ab20_extra_metadata": "retained"}})
+	if ab20Err != nil {
+		ab20T.Fatal(ab20Err)
+	}
+	if _, ab20Err := ab20Validate(ab20Fixture); ab20Err != nil {
+		ab20T.Fatalf("ab20 variable row metadata rejected: %v", ab20Err)
+	}
+	ab20Raw, ab20Found, ab20Err := ab20Lookup(ab20Fixture, ab20Key)
+	if ab20Err != nil || !ab20Found {
+		ab20T.Fatalf("ab20 variable metadata lookup: %v %v", ab20Found, ab20Err)
+	}
+	var ab20Row map[string]ab20json.RawMessage
+	if ab20Err := ab20json.Unmarshal(ab20Raw, &ab20Row); ab20Err != nil {
+		ab20T.Fatal(ab20Err)
+	}
+	ab20Want(ab20T, ab20Row, "ab20_extra_metadata", `"retained"`)
+}

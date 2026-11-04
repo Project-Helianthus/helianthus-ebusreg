@@ -1,6 +1,7 @@
 package vaillant
 
 import (
+	ab20bytes "bytes"
 	_ "embed"
 	ab20json "encoding/json"
 	ab20fmt "fmt"
@@ -37,8 +38,8 @@ func ab20Validate(ab20Data []byte) ([]ab20json.RawMessage, error) {
 	ab20IDs := make(map[string]bool)
 	for _, ab20Row := range ab20Rows {
 		var ab20Entry struct {
-			Ab20ID  string  `json:"id"`
-			Ab20Key Ab20Key `json:"key"`
+			Ab20ID  string              `json:"id"`
+			Ab20Key ab20json.RawMessage `json:"key"`
 		}
 		if ab20Err := ab20json.Unmarshal(ab20Row, &ab20Entry); ab20Err != nil {
 			return nil, ab20fmt.Errorf("ab20 catalog: %w", ab20Err)
@@ -54,7 +55,12 @@ func ab20Validate(ab20Data []byte) ([]ab20json.RawMessage, error) {
 		if ab20Primary, ab20Present := ab20Identity["primary"]; !ab20Present || string(ab20Primary) == "null" {
 			return nil, ab20fmt.Errorf("ab20 catalog: missing primary")
 		}
-		ab20Key := ab20Entry.Ab20Key
+		var ab20Key Ab20Key
+		ab20Decoder := ab20json.NewDecoder(ab20bytes.NewReader(ab20Entry.Ab20Key))
+		ab20Decoder.DisallowUnknownFields()
+		if ab20Err := ab20Decoder.Decode(&ab20Key); ab20Err != nil {
+			return nil, ab20fmt.Errorf("ab20 catalog: %w", ab20Err)
+		}
 		if !ab20strings.HasPrefix(ab20Entry.Ab20ID, "ab20-") || ab20IDs[ab20Entry.Ab20ID] || ab20Key.Ab20Family == "" || ab20Key.Ab20Variant == "" || ab20Key.Ab20Direction == "" || ab20Key.Ab20Field == "" || ab20Key.Ab20Alternative == "" || ab20Key.Ab20InstanceScope == "" {
 			return nil, ab20fmt.Errorf("ab20 catalog: incomplete identity or duplicate id")
 		}

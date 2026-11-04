@@ -1,0 +1,1581 @@
+{
+  "representation_grade": "Proven",
+  "native_support": "Unknown",
+  "runtime_effects": "Unknown",
+  "other_module_layouts": "Unknown",
+  "limitations": [
+    "Finite candidate metadata; broader family catalog remains incomplete.",
+    "Logical positions include the three-position prefix; abstract extents are not physical reply lengths.",
+    "Acceptance is not physical ACK, persistence or readback.",
+    "No routing, timed relay controller, physical qualification or runtime admission.",
+    "Native qualification, freshness and execution authority are not established by candidate metadata."
+  ],
+  "entries": [
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 1,
+        "direction": "request",
+        "field": "relay_1"
+      },
+      "logical_position": 3,
+      "width_bits": 8,
+      "request_extent": 10,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 1,
+        "direction": "request",
+        "field": "relay_2"
+      },
+      "logical_position": 4,
+      "width_bits": 8,
+      "request_extent": 10,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 1,
+        "direction": "request",
+        "field": "relay_3"
+      },
+      "logical_position": 5,
+      "width_bits": 8,
+      "request_extent": 10,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 1,
+        "direction": "request",
+        "field": "relay_4"
+      },
+      "logical_position": 6,
+      "width_bits": 8,
+      "request_extent": 10,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 1,
+        "direction": "request",
+        "field": "relay_5"
+      },
+      "logical_position": 7,
+      "width_bits": 8,
+      "request_extent": 10,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 1,
+        "direction": "request",
+        "field": "relay_6"
+      },
+      "logical_position": 8,
+      "width_bits": 8,
+      "request_extent": 10,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 1,
+        "direction": "request",
+        "field": "pwm_1"
+      },
+      "logical_position": 9,
+      "width_bits": 8,
+      "request_extent": 10,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "numeric_codec",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 250,
+              "result": "percent",
+              "divide_by": 2,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        },
+        {
+          "name": "behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 200,
+              "result": "percent",
+              "divide_by": 2,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 201,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_1"
+      },
+      "logical_position": 3,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_2"
+      },
+      "logical_position": 4,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_3"
+      },
+      "logical_position": 5,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_4"
+      },
+      "logical_position": 6,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_5"
+      },
+      "logical_position": 7,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_6"
+      },
+      "logical_position": 8,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_7"
+      },
+      "logical_position": 9,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_8"
+      },
+      "logical_position": 10,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_9"
+      },
+      "logical_position": 11,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_10"
+      },
+      "logical_position": 12,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_11"
+      },
+      "logical_position": 13,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "relay_12"
+      },
+      "logical_position": 14,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "relay_behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "off",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 253,
+              "result": "on_then_off",
+              "divide_by": null,
+              "duration_unit": "seconds",
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 254,
+              "raw_max": 254,
+              "result": "on",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 255,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "pwm_1"
+      },
+      "logical_position": 15,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "numeric_codec",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 250,
+              "result": "percent",
+              "divide_by": 2,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        },
+        {
+          "name": "behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 200,
+              "result": "percent",
+              "divide_by": 2,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 201,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "request",
+        "field": "pwm_2"
+      },
+      "logical_position": 16,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": null,
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "numeric_codec",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 250,
+              "result": "percent",
+              "divide_by": 2,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        },
+        {
+          "name": "behavior",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 200,
+              "result": "percent",
+              "divide_by": 2,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 201,
+              "raw_max": 255,
+              "result": "unchanged",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 0,
+        "direction": "response",
+        "field": "feedback"
+      },
+      "logical_position": 3,
+      "width_bits": 8,
+      "request_extent": null,
+      "positive_extent": null,
+      "default_raw": 0,
+      "default_result": "rejected",
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "feedback",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "rejected",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 1,
+              "result": "accepted",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 2,
+              "raw_max": 255,
+              "result": "rejected",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 1,
+        "direction": "response",
+        "field": "feedback"
+      },
+      "logical_position": 3,
+      "width_bits": 8,
+      "request_extent": 10,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": "rejected",
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "feedback",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "rejected",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 1,
+              "result": "accepted",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 2,
+              "raw_max": 255,
+              "result": "rejected",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 2,
+        "direction": "response",
+        "field": "feedback"
+      },
+      "logical_position": 3,
+      "width_bits": 8,
+      "request_extent": null,
+      "positive_extent": null,
+      "default_raw": 0,
+      "default_result": "rejected",
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "feedback",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "rejected",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 1,
+              "result": "accepted",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 2,
+              "raw_max": 255,
+              "result": "rejected",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 4,
+        "direction": "response",
+        "field": "feedback"
+      },
+      "logical_position": 3,
+      "width_bits": 8,
+      "request_extent": null,
+      "positive_extent": null,
+      "default_raw": 0,
+      "default_result": "rejected-or-unsupported",
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "feedback",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "rejected-or-unsupported",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 1,
+              "result": "accepted",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 2,
+              "raw_max": 255,
+              "result": "rejected-or-unsupported",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": null,
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "direction": "response",
+        "field": "feedback"
+      },
+      "logical_position": 3,
+      "width_bits": 8,
+      "request_extent": 17,
+      "positive_extent": 4,
+      "default_raw": 0,
+      "default_result": "rejected-or-unsupported",
+      "grade": "Hypothesis",
+      "raw_domain": [
+        0,
+        255
+      ],
+      "alternatives": [
+        {
+          "name": "feedback",
+          "grade": "Hypothesis",
+          "rules": [
+            {
+              "raw_min": 0,
+              "raw_max": 0,
+              "result": "rejected-or-unsupported",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 1,
+              "raw_max": 1,
+              "result": "accepted",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            },
+            {
+              "raw_min": 2,
+              "raw_max": 255,
+              "result": "rejected-or-unsupported",
+              "divide_by": null,
+              "duration_unit": null,
+              "grade": "Hypothesis"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

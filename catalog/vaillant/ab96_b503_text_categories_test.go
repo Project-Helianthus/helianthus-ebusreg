@@ -1,6 +1,7 @@
 package vaillant
 
 import (
+	ab96bytes "bytes"
 	ab96json "encoding/json"
 	ab96reflect "reflect"
 	ab96testing "testing"
@@ -236,5 +237,45 @@ func TestAb96MalformedData(ab96Test *ab96testing.T) {
 	}
 	if _, ab96Error = Ab96Entries(); ab96Error == nil {
 		ab96Test.Fatal("duplicate accepted")
+	}
+}
+
+func TestAb96PrimaryPresence(ab96Test *ab96testing.T) {
+	ab96Saved := ab96Data
+	ab96Test.Cleanup(func() { ab96Data = ab96Saved })
+	ab96Expected := ab96Find(ab96Test, "common", nil, "categories")
+	ab96Expected.Ab96Key.Ab96Primary = 0
+	ab96Encoded, ab96Error := ab96json.Marshal([]Ab96Entry{ab96Expected})
+	if ab96Error != nil {
+		ab96Test.Fatal(ab96Error)
+	}
+	for _, ab96Case := range []struct {
+		ab96Name    string
+		ab96Primary string
+		ab96Valid   bool
+	}{
+		{"omitted", "", false},
+		{"null", "\"primary\":null,", false},
+		{"zero", "\"primary\":0,", true},
+	} {
+		ab96Test.Run(ab96Case.ab96Name, func(ab96Test *ab96testing.T) {
+			ab96Data = ab96bytes.Replace(ab96Encoded, []byte("\"primary\":0,"), []byte(ab96Case.ab96Primary), 1)
+			ab96Entries, ab96Error := Ab96Entries()
+			if ab96Case.ab96Valid {
+				if ab96Error != nil || !ab96reflect.DeepEqual(ab96Entries, []Ab96Entry{ab96Expected}) {
+					ab96Test.Fatalf("explicit primary zero: %v %v", ab96Entries, ab96Error)
+				}
+			} else if ab96Error == nil || ab96Entries != nil {
+				ab96Test.Fatal("missing primary accepted by entries")
+			}
+			ab96Entry, ab96Found, ab96Error := Ab96Lookup(ab96Expected.Ab96Key)
+			if ab96Case.ab96Valid {
+				if ab96Error != nil || !ab96Found || !ab96reflect.DeepEqual(ab96Entry, ab96Expected) {
+					ab96Test.Fatal("explicit primary zero lookup failed", ab96Error)
+				}
+			} else if ab96Error == nil || ab96Found || !ab96reflect.DeepEqual(ab96Entry, Ab96Entry{}) {
+				ab96Test.Fatal("missing primary accepted by lookup")
+			}
+		})
 	}
 }

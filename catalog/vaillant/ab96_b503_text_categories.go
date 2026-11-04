@@ -48,19 +48,32 @@ type Ab96Entry struct {
 }
 
 func Ab96Entries() ([]Ab96Entry, error) {
-	var ab96Entries []Ab96Entry
+	var ab96Decoded []struct {
+		Ab96Entry
+		Ab96Key struct {
+			Ab96Key
+			Ab96Primary *uint8 `json:"primary"`
+		} `json:"key"`
+	}
 	ab96Decoder := ab96json.NewDecoder(ab96bytes.NewReader(ab96Data))
 	ab96Decoder.DisallowUnknownFields()
-	if ab96Error := ab96Decoder.Decode(&ab96Entries); ab96Error != nil {
+	if ab96Error := ab96Decoder.Decode(&ab96Decoded); ab96Error != nil {
 		return nil, ab96Error
 	}
 	if ab96Error := ab96Decoder.Decode(new(any)); ab96Error != ab96io.EOF {
 		return nil, ab96fmt.Errorf("ab96: trailing embedded data: %v", ab96Error)
 	}
-	if len(ab96Entries) == 0 {
+	if len(ab96Decoded) == 0 {
 		return nil, ab96fmt.Errorf("ab96: empty embedded catalog")
 	}
-	for ab96Index, ab96Entry := range ab96Entries {
+	ab96Entries := make([]Ab96Entry, 0, len(ab96Decoded))
+	for ab96Index, ab96Wire := range ab96Decoded {
+		if ab96Wire.Ab96Key.Ab96Primary == nil {
+			return nil, ab96fmt.Errorf("ab96: missing embedded primary in entry %d", ab96Index)
+		}
+		ab96Entry := ab96Wire.Ab96Entry
+		ab96Entry.Ab96Key = ab96Wire.Ab96Key.Ab96Key
+		ab96Entry.Ab96Key.Ab96Primary = *ab96Wire.Ab96Key.Ab96Primary
 		if ab96Entry.Ab96Key.Ab96Family == "" || ab96Entry.Ab96Key.Ab96Variant == "" || ab96Entry.Ab96Key.Ab96Field == "" ||
 			(ab96Entry.Ab96Grade != "Hypothesis" && ab96Entry.Ab96Grade != "Proven" && ab96Entry.Ab96Grade != "Unknown") ||
 			ab96Entry.Ab96MetadataPresence != "Proven" || ab96Entry.Ab96PhysicalQualification != "Unknown" ||
@@ -72,11 +85,12 @@ func Ab96Entries() ([]Ab96Entry, error) {
 			(ab96Entry.Ab96Position != nil && *ab96Entry.Ab96Position < 0) {
 			return nil, ab96fmt.Errorf("ab96: invalid embedded width or position")
 		}
-		for _, ab96Previous := range ab96Entries[:ab96Index] {
+		for _, ab96Previous := range ab96Entries {
 			if ab96reflect.DeepEqual(ab96Previous.Ab96Key, ab96Entry.Ab96Key) {
 				return nil, ab96fmt.Errorf("ab96: duplicate embedded key")
 			}
 		}
+		ab96Entries = append(ab96Entries, ab96Entry)
 	}
 	return ab96Entries, nil
 }

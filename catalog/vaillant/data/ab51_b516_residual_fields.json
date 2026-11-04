@@ -1,0 +1,1126 @@
+[
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "setpoint",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": 8,
+    "width_grade": "Hypothesis",
+    "variant_association_grade": "Unknown",
+    "unit": "degrees Celsius",
+    "raw_form": {
+      "encoding": "unsigned",
+      "divide_by": 2,
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ]
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "mode",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": null,
+    "width_grade": "Unknown",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "opaque",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ]
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "special_function",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": null,
+    "width_grade": "Unknown",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "opaque",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ]
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "message_1",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": 8,
+    "width_grade": "Hypothesis",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "opaque",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "independent": true
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "message_2",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": 8,
+    "width_grade": "Hypothesis",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "opaque",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "independent": true
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "message_3",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": 8,
+    "width_grade": "Hypothesis",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "opaque",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "independent": true
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "message_4",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": 8,
+    "width_grade": "Hypothesis",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "opaque",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "independent": true
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "message_5",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": 8,
+    "width_grade": "Hypothesis",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "opaque",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "independent": true
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "minute",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": null,
+    "width_grade": "Unknown",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "packed-decimal",
+      "selection_order": [
+        "raw FF replacement",
+        "decimal validation",
+        "decimal conversion"
+      ],
+      "replacement_raw": 255,
+      "invalid": "retain raw",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "time_order": [
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "century": null,
+    "timezone": null
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "hour",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": null,
+    "width_grade": "Unknown",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "packed-decimal",
+      "selection_order": [
+        "raw FF replacement",
+        "decimal validation",
+        "decimal conversion"
+      ],
+      "replacement_raw": 255,
+      "invalid": "retain raw",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "time_order": [
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "century": null,
+    "timezone": null
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "day",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": null,
+    "width_grade": "Unknown",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "packed-decimal",
+      "selection_order": [
+        "raw FF replacement",
+        "decimal validation",
+        "decimal conversion"
+      ],
+      "replacement_raw": 255,
+      "invalid": "retain raw",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "time_order": [
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "century": null,
+    "timezone": null
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "month",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": null,
+    "width_grade": "Unknown",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "packed-decimal",
+      "selection_order": [
+        "raw FF replacement",
+        "decimal validation",
+        "decimal conversion"
+      ],
+      "replacement_raw": 255,
+      "invalid": "retain raw",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "time_order": [
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "century": null,
+    "timezone": null
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 8,
+      "direction": "Unknown",
+      "field": "year",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": null,
+    "width_grade": "Unknown",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "packed-decimal",
+      "selection_order": [
+        "raw FF replacement",
+        "decimal validation",
+        "decimal conversion"
+      ],
+      "replacement_raw": 255,
+      "invalid": "retain raw",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "sequence": [
+      "setpoint",
+      "mode",
+      "special_function",
+      "message_1",
+      "message_2",
+      "message_3",
+      "message_4",
+      "message_5",
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "time_order": [
+      "minute",
+      "hour",
+      "day",
+      "month",
+      "year"
+    ],
+    "century": null,
+    "timezone": null
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 13,
+      "direction": "Unknown",
+      "field": "word_1",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": 16,
+    "width_grade": "Hypothesis",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "unsigned",
+      "byte_order": "little-endian",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "independent": true,
+    "label": null,
+    "sentinel": null
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 13,
+      "direction": "Unknown",
+      "field": "word_2",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": 16,
+    "width_grade": "Hypothesis",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "unsigned",
+      "byte_order": "little-endian",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "independent": true,
+    "label": null,
+    "sentinel": null
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 13,
+      "direction": "Unknown",
+      "field": "word_3",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": 16,
+    "width_grade": "Hypothesis",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "unsigned",
+      "byte_order": "little-endian",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "independent": true,
+    "label": null,
+    "sentinel": null
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 13,
+      "direction": "Unknown",
+      "field": "word_4",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": 16,
+    "width_grade": "Hypothesis",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "unsigned",
+      "byte_order": "little-endian",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "independent": true,
+    "label": null,
+    "sentinel": null
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 14,
+      "direction": "Unknown",
+      "field": "page",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": null,
+    "width_grade": "Unknown",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "opaque",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "maximum_length": null
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 14,
+      "direction": "Unknown",
+      "field": "data",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": null,
+    "width_grade": "Unknown",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "opaque",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "maximum_length": null,
+    "variable": true,
+    "empty_metadata": true,
+    "peer_acceptance": "Unknown"
+  },
+  {
+    "key": {
+      "family": "Vaillant",
+      "variant": "Unknown",
+      "primary": 181,
+      "secondary": 22,
+      "operation": 2,
+      "direction": "Unknown",
+      "field": "unresolved_time_associations",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "none",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "physical_qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "position": null,
+    "position_grade": "Unknown",
+    "width_bits": null,
+    "width_grade": "Unknown",
+    "variant_association_grade": "Unknown",
+    "unit": null,
+    "raw_form": {
+      "encoding": "opaque",
+      "preserve": "original bytes"
+    },
+    "unresolved": [
+      "Wire positions and variant associations are Unknown."
+    ],
+    "excluded": [
+      "Passive energy, OP14 aggregation, time-positive alternatives, energy-type flags, meter/clear enums and physical identity are separate.",
+      "OP03 decimal software-version and identity-bearing structures have no supplied fields and are not instantiated.",
+      "Voltage conversion is variant-specific and Unknown here."
+    ],
+    "native_contract": "Companion AL18 in helianthus-docs-ebus; supplied finite candidate facts only; no native promotion.",
+    "association_grade": "Unknown",
+    "conflicts": {
+      "minute": "minute metadata on a second field conflicts with unprovided field associations",
+      "day": {
+        "default": 0,
+        "calendar_domain": [
+          1,
+          31
+        ],
+        "status": "out-of-domain calendar conflict",
+        "association_grade": "Unknown"
+      },
+      "month": {
+        "default": 0,
+        "calendar_domain": [
+          1,
+          12
+        ],
+        "status": "out-of-domain calendar conflict",
+        "association_grade": "Unknown"
+      }
+    }
+  }
+]

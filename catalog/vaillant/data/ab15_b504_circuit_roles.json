@@ -1,0 +1,907 @@
+[
+  {
+    "id": "ab15-reload-delay-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 11,
+      "direction": "none",
+      "field": "reload-delay",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "solar-storage-charging-delay",
+    "applies_to": [
+      "solar-storage"
+    ],
+    "relations": [
+      "reload delay concerns solar storage charging"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-parallel-tank-filling-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 11,
+      "direction": "none",
+      "field": "parallel-tank-filling",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "global-mixer-circuit-filling",
+    "applies_to": [
+      "all-mixer-circuits"
+    ],
+    "relations": [
+      "parallel-tank filling applies globally to mixer circuits"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-room-setpoint-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 45,
+      "direction": "none",
+      "field": "room-setpoint",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "inverter-indoor-room-setpoint",
+    "applies_to": [
+      "inverter-indoor-circuit"
+    ],
+    "relations": [
+      "room temperature is the regulation input"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-room-temperature-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 45,
+      "direction": "none",
+      "field": "room-temperature",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "regulation-input",
+    "applies_to": [
+      "inverter-indoor-circuit"
+    ],
+    "relations": [
+      "regulation input for room setpoint"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-system-cooling-support-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 13,
+      "direction": "none",
+      "field": "system-cooling-support",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "system-cooling-support",
+    "applies_to": [
+      "system"
+    ],
+    "relations": [
+      "request bit 0 expresses cooling support",
+      "system generation occupies a different byte"
+    ],
+    "condition": "none",
+    "bit": 0,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-system-generation-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 13,
+      "direction": "none",
+      "field": "system-generation",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "system-generation",
+    "applies_to": [
+      "system"
+    ],
+    "relations": [
+      "different byte from cooling-support request bit 0"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-dhw-request-dhw",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 13,
+      "direction": "none",
+      "field": "dhw-request",
+      "alternative": "dhw",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "dhw-request",
+    "applies_to": [
+      "dhw-circuit"
+    ],
+    "relations": [
+      "DHW interpretation applies only to a DHW circuit"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-circuit-temperature-burner",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 13,
+      "direction": "none",
+      "field": "circuit-temperature",
+      "alternative": "burner",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "common-sensor",
+    "applies_to": [
+      "burner-circuit"
+    ],
+    "relations": [
+      "circuit role determines temperature meaning"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-desired-temperature-burner",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 13,
+      "direction": "none",
+      "field": "desired-temperature",
+      "alternative": "burner",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "desired-common-sensor",
+    "applies_to": [
+      "burner-circuit"
+    ],
+    "relations": [
+      "circuit role determines desired-temperature meaning"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-circuit-temperature-mixer",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 13,
+      "direction": "none",
+      "field": "circuit-temperature",
+      "alternative": "mixer",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "flow",
+    "applies_to": [
+      "mixer-circuit"
+    ],
+    "relations": [
+      "circuit role determines temperature meaning"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-desired-temperature-mixer",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 13,
+      "direction": "none",
+      "field": "desired-temperature",
+      "alternative": "mixer",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "desired-flow",
+    "applies_to": [
+      "mixer-circuit"
+    ],
+    "relations": [
+      "circuit role determines desired-temperature meaning"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-circuit-temperature-dhw",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 13,
+      "direction": "none",
+      "field": "circuit-temperature",
+      "alternative": "dhw",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "tank",
+    "applies_to": [
+      "dhw-circuit"
+    ],
+    "relations": [
+      "circuit role determines temperature meaning"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-desired-temperature-dhw",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 13,
+      "direction": "none",
+      "field": "desired-temperature",
+      "alternative": "dhw",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "desired-tank",
+    "applies_to": [
+      "dhw-circuit"
+    ],
+    "relations": [
+      "circuit role determines desired-temperature meaning"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-desired-flow-unsuppressed",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 24,
+      "direction": "none",
+      "field": "desired-flow",
+      "alternative": "unsuppressed",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "unsuppressed-desired-flow",
+    "applies_to": [
+      "circuit"
+    ],
+    "relations": [
+      "independent of suppressed desired flow during tank charging"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-desired-flow-suppressed",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 24,
+      "direction": "none",
+      "field": "desired-flow",
+      "alternative": "suppressed",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "suppressed-desired-flow",
+    "applies_to": [
+      "circuit"
+    ],
+    "relations": [
+      "zero during tank charging does not replace unsuppressed demand"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-drying-day-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 1,
+      "direction": "none",
+      "field": "drying-day",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "drying-program-indication",
+    "applies_to": [
+      "circuit"
+    ],
+    "relations": [
+      "nonzero drying day identifies a drying program",
+      "zero has no nonzero-program indication"
+    ],
+    "condition": "nonzero",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-averaged-outside-temperature-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 51,
+      "direction": "none",
+      "field": "averaged-outside-temperature",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "correction-included-average",
+    "applies_to": [
+      "system"
+    ],
+    "relations": [
+      "averaged outside temperature includes configured correction"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery",
+      "averaging and correction arithmetic"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-maximum-solar-temperature-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 33,
+      "direction": "none",
+      "field": "maximum-solar-temperature",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "maximum-solar-temperature",
+    "applies_to": [
+      "all-solar-circuits"
+    ],
+    "relations": [
+      "maximum solar temperature spans solar circuits"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-tank-state-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 33,
+      "direction": "none",
+      "field": "tank-state",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "temperature-to-maximum-percentage",
+    "applies_to": [
+      "solar-circuit"
+    ],
+    "relations": [
+      "distinct calculated quantity from collector-to-tank switching ratio"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery",
+      "exact formula"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  },
+  {
+    "id": "ab15-solar-yield-none",
+    "key": {
+      "family": "vaillant",
+      "variant": "B504",
+      "primary": 181,
+      "secondary": 4,
+      "operation": 33,
+      "direction": "none",
+      "field": "solar-yield",
+      "alternative": "none",
+      "group": null,
+      "instance_scope": "dynamic",
+      "register": null
+    },
+    "grade": "Hypothesis",
+    "metadata_presence": "Proven",
+    "native_contract": "protocols/ebus-services/ebus-overview.md",
+    "physical_qualification": "Unknown",
+    "role": "collector-to-tank-switching-ratio",
+    "applies_to": [
+      "solar-circuit"
+    ],
+    "relations": [
+      "distinct calculated quantity from temperature-to-maximum percentage"
+    ],
+    "condition": "none",
+    "bit": null,
+    "unknown": [
+      "byte positions",
+      "widths",
+      "wire direction",
+      "generation values",
+      "suppression algorithms",
+      "native support",
+      "physical effects",
+      "persistence",
+      "delivery",
+      "exact formula"
+    ],
+    "raw": {
+      "form": "opaque",
+      "preserve": true,
+      "interpretation": "Unknown"
+    }
+  }
+]

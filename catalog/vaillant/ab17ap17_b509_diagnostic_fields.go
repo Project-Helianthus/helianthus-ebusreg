@@ -143,14 +143,22 @@ func Ab17Ap17Evaluate(ab17ap17Input ab17ap17JSON.RawMessage) (ab17ap17JSON.RawMe
 	ab17ap17Output["state"] = "complete"
 	ab17ap17Output["grade"] = "Hypothesis"
 	ab17ap17Output["correlation"] = "Unknown"
+	ab17ap17Aliases := map[string]string{"count": "requested_count", "status": "write_status"}
+	for ab17ap17Short, ab17ap17Long := range ab17ap17Aliases {
+		_, ab17ap17ShortExists := ab17ap17Raw[ab17ap17Short]
+		_, ab17ap17LongExists := ab17ap17Raw[ab17ap17Long]
+		if ab17ap17ShortExists && ab17ap17LongExists {
+			return nil, ab17ap17Fmt.Errorf("%s and %s are aliases and must not both be present", ab17ap17Short, ab17ap17Long)
+		}
+	}
 	ab17ap17Expected := map[string]int{}
 	if ab17ap17Direction == "request" || ab17ap17Operation == 52 {
 		ab17ap17Expected["address"] = 4
 	}
 	if ab17ap17Operation == 52 && ab17ap17Direction == "request" {
-		ab17ap17Expected["count"] = 1
+		ab17ap17Expected[ab17ap17AliasKey(ab17ap17Raw, "count", ab17ap17Aliases)] = 1
 	} else if ab17ap17Operation == 53 && ab17ap17Direction == "response" {
-		ab17ap17Expected["status"] = 1
+		ab17ap17Expected[ab17ap17AliasKey(ab17ap17Raw, "status", ab17ap17Aliases)] = 1
 	} else {
 		ab17ap17Expected["data"] = -1
 	}
@@ -182,9 +190,16 @@ func Ab17Ap17Evaluate(ab17ap17Input ab17ap17JSON.RawMessage) (ab17ap17JSON.RawMe
 		}
 		ab17ap17Result["number"] = ab17ap17Number
 		ab17ap17Result["calculation"] = "Proven"
-		if ab17ap17Key == "status" {
+		if ab17ap17Key == "status" || ab17ap17Key == "write_status" {
 			ab17ap17Result["candidate_domain"] = ab17ap17Number <= 6
 		}
 	}
 	return ab17ap17JSON.Marshal(ab17ap17Output)
+}
+
+func ab17ap17AliasKey(ab17ap17Raw map[string]any, ab17ap17Short string, ab17ap17Aliases map[string]string) string {
+	if _, ab17ap17Exists := ab17ap17Raw[ab17ap17Aliases[ab17ap17Short]]; ab17ap17Exists {
+		return ab17ap17Aliases[ab17ap17Short]
+	}
+	return ab17ap17Short
 }

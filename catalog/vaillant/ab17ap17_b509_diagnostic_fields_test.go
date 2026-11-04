@@ -305,3 +305,74 @@ func TestAb17Ap17UnmappedFields(ab17ap17T *ab17ap17Testing.T) {
 		}
 	}
 }
+
+func TestAb17Ap17RegistryFieldNames(ab17ap17T *ab17ap17Testing.T) {
+	ab17ap17Req := ab17ap17Base(ab17ap17T)
+	ab17ap17Fields := ab17ap17Req["fields"].(map[string]any)
+	ab17ap17Fields["requested_count"] = ab17ap17Fields["count"]
+	delete(ab17ap17Fields, "count")
+	ab17ap17Out := ab17ap17Run(ab17ap17T, ab17ap17Req)
+	if ab17ap17Out["state"] != "complete" {
+		ab17ap17T.Fatalf("requested_count not consumed: %v", ab17ap17Out)
+	}
+	if ab17ap17Out["fields"].(map[string]any)["requested_count"].(map[string]any)["state"] != "complete" {
+		ab17ap17T.Fatalf("requested_count unresolved: %v", ab17ap17Out)
+	}
+	ab17ap17Put := ab17ap17Base(ab17ap17T)
+	ab17ap17Ctx := ab17ap17Put["context"].(map[string]any)
+	ab17ap17Ctx["operation"] = 53
+	ab17ap17Ctx["direction"] = "response"
+	ab17ap17Ctx["view"] = "diagnostic-put"
+	ab17ap17Put["fields"] = map[string]any{"write_status": []any{3}}
+	ab17ap17PutOut := ab17ap17Run(ab17ap17T, ab17ap17Put)
+	if ab17ap17PutOut["state"] != "complete" || ab17ap17PutOut["fields"].(map[string]any)["write_status"].(map[string]any)["candidate_domain"] != true {
+		ab17ap17T.Fatalf("write_status not consumed: %v", ab17ap17PutOut)
+	}
+}
+
+func TestAb17Ap17RegistryScalarBoundaries(ab17ap17T *ab17ap17Testing.T) {
+	for _, ab17ap17Key := range []string{"requested_count", "write_status"} {
+		for _, ab17ap17Value := range []int{0, 6, 7, 255} {
+			ab17ap17T.Run("ab17ap17_"+ab17ap17Key+"_"+string(ab17ap17MustMarshal(ab17ap17T, ab17ap17Value)), func(ab17ap17T *ab17ap17Testing.T) {
+				ab17ap17Input := ab17ap17Base(ab17ap17T)
+				ab17ap17Alias := "count"
+				ab17ap17Raw := map[string]any{"address": []int{120, 86, 52, 18}, ab17ap17Key: []int{ab17ap17Value}}
+				if ab17ap17Key == "write_status" {
+					ab17ap17Alias = "status"
+					ab17ap17Context := ab17ap17Input["context"].(map[string]any)
+					ab17ap17Context["operation"] = 53
+					ab17ap17Context["direction"] = "response"
+					ab17ap17Context["view"] = "diagnostic-put"
+					delete(ab17ap17Raw, "address")
+				}
+				ab17ap17Input["fields"] = ab17ap17Raw
+				ab17ap17Output := ab17ap17Run(ab17ap17T, ab17ap17Input)
+				ab17ap17Fields := ab17ap17Output["fields"].(map[string]any)
+				ab17ap17Expected := map[string]any{
+					"raw": []int{ab17ap17Value}, "state": "complete", "grade": "Hypothesis",
+					"number": ab17ap17Value, "calculation": "Proven",
+				}
+				if ab17ap17Key == "write_status" {
+					ab17ap17Expected["candidate_domain"] = ab17ap17Value <= 6
+				}
+				ab17ap17Want := ab17ap17Decode(ab17ap17T, ab17ap17MustMarshal(ab17ap17T, ab17ap17Expected))
+				if !ab17ap17Reflect.DeepEqual(ab17ap17Fields[ab17ap17Key], ab17ap17Want) {
+					ab17ap17T.Fatalf("canonical scalar differs: got %v; want %v", ab17ap17Fields[ab17ap17Key], ab17ap17Want)
+				}
+				if _, ab17ap17Exists := ab17ap17Fields[ab17ap17Alias]; ab17ap17Exists {
+					ab17ap17T.Fatal("fabricated short alias")
+				}
+				if ab17ap17Output["state"] != "complete" || ab17ap17Output["physical"] != "Unknown" || ab17ap17Output["qualified"] != false || ab17ap17Output["correlation"] != "Unknown" {
+					ab17ap17T.Fatalf("canonical scalar changed evidence boundaries: %v", ab17ap17Output)
+				}
+				ab17ap17Normalized := ab17ap17Decode(ab17ap17T, ab17ap17MustMarshal(ab17ap17T, ab17ap17Input))
+				if !ab17ap17Reflect.DeepEqual(ab17ap17Output["raw"], ab17ap17Normalized["fields"]) {
+					ab17ap17T.Fatal("canonical raw fields changed")
+				}
+				if ab17ap17Key == "requested_count" && ab17ap17Fields["address"].(map[string]any)["number"] != ab17ap17JSON.Number("305419896") {
+					ab17ap17T.Fatal("independent address lost")
+				}
+			})
+		}
+	}
+}

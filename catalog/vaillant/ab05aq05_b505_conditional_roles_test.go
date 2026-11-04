@@ -355,3 +355,32 @@ func TestAb05Aq05BoundedNumbers(ab05aq05T *testing.T) {
 		ab05aq05T.Fatalf("bounded sum failed: %s %v", ab05aq05Output, ab05aq05Error)
 	}
 }
+
+func TestAb05Aq05ReservedKeysAndCollisions(ab05aq05T *testing.T) {
+	for _, ab05aq05Key := range []string{"state", "results", "physical", "qualified"} {
+		ab05aq05Object := ab05aq05Input("dhw-enable", 49, map[string]any{"enabled": []int{1}}, map[string]any{})
+		ab05aq05Object[ab05aq05Key] = "Proven"
+		ab05aq05Bytes, _ := json.Marshal(ab05aq05Object)
+		if ab05aq05Output, ab05aq05Error := Ab05Aq05Evaluate(ab05aq05Bytes); ab05aq05Error == nil || ab05aq05Output != nil {
+			ab05aq05T.Fatalf("accepted reserved key %s", ab05aq05Key)
+		}
+	}
+	ab05aq05Object := ab05aq05Input("flow-excess", 23, map[string]any{"flow-excess": []int{7, 8}}, map[string]any{"demand": json.Number("40"), "excess": json.Number("5")})
+	ab05aq05Results := ab05aq05Run(ab05aq05T, ab05aq05Object)["results"].(map[string]any)
+	ab05aq05View := ab05aq05Results["flow-excess"].(map[string]any)
+	if !reflect.DeepEqual(ab05aq05View["field_raw"], []any{float64(7), float64(8)}) || ab05aq05View["number"] != float64(45) {
+		ab05aq05T.Fatalf("collision lost field raw: %v", ab05aq05View)
+	}
+}
+
+func TestAb05Aq05CanonicalSum(ab05aq05T *testing.T) {
+	ab05aq05Object := ab05aq05Input("flow-excess", 23, map[string]any{}, map[string]any{"demand": json.Number("0.25"), "excess": json.Number("0.1")})
+	ab05aq05Bytes, _ := json.Marshal(ab05aq05Object)
+	ab05aq05Output, ab05aq05Error := Ab05Aq05Evaluate(ab05aq05Bytes)
+	if ab05aq05Error != nil {
+		ab05aq05T.Fatal(ab05aq05Error)
+	}
+	if !strings.Contains(string(ab05aq05Output), `"number":0.35,`) && !strings.Contains(string(ab05aq05Output), `"number":0.35}`) {
+		ab05aq05T.Fatalf("non-canonical sum: %s", ab05aq05Output)
+	}
+}

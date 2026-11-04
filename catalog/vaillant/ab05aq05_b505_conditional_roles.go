@@ -133,6 +133,11 @@ func Ab05Aq05Evaluate(ab05aq05Input json.RawMessage) (json.RawMessage, error) {
 			}
 		}
 	}
+	for _, ab05aq05Reserved := range []string{"state", "results", "physical", "qualified"} {
+		if _, ab05aq05Present := ab05aq05Output[ab05aq05Reserved]; ab05aq05Present {
+			return nil, fmt.Errorf("reserved top-level key %q", ab05aq05Reserved)
+		}
+	}
 	ab05aq05Results := map[string]any{}
 	for ab05aq05Name, ab05aq05Raw := range ab05aq05Fields {
 		ab05aq05Array, ab05aq05Valid := ab05aq05Raw.([]any)
@@ -208,15 +213,18 @@ func Ab05Aq05Evaluate(ab05aq05Input json.RawMessage) (json.RawMessage, error) {
 		}
 		ab05aq05Sum := new(big.Rat).Add(ab05aq05Left, ab05aq05Right)
 		ab05aq05Denominator := new(big.Int).Set(ab05aq05Sum.Denom())
-		ab05aq05Scale := 0
+		ab05aq05Twos, ab05aq05Fives := 0, 0
 		for ab05aq05Denominator.Cmp(big.NewInt(1)) != 0 {
 			ab05aq05Divisor := int64(2)
 			if ab05aq05Denominator.Bit(0) != 0 {
 				ab05aq05Divisor = 5
+				ab05aq05Fives++
+			} else {
+				ab05aq05Twos++
 			}
 			ab05aq05Denominator.Quo(ab05aq05Denominator, big.NewInt(ab05aq05Divisor))
-			ab05aq05Scale++
 		}
+		ab05aq05Scale := max(ab05aq05Twos, ab05aq05Fives)
 		ab05aq05Result["raw"] = map[string]any{"demand": ab05aq05Demand, "excess": ab05aq05Excess}
 		ab05aq05Result["number"] = json.Number(ab05aq05Sum.FloatString(ab05aq05Scale))
 		ab05aq05Result["calculation"] = "Proven"
@@ -289,6 +297,9 @@ func Ab05Aq05Evaluate(ab05aq05Input json.RawMessage) (json.RawMessage, error) {
 				}
 			}
 		}
+	}
+	if ab05aq05Prior, ab05aq05Exists := ab05aq05Results[ab05aq05Name].(map[string]any); ab05aq05Exists && ab05aq05Name == ab05aq05View {
+		ab05aq05Result["field_raw"] = ab05aq05Prior["raw"]
 	}
 	ab05aq05Results[ab05aq05Name] = ab05aq05Result
 	return json.Marshal(ab05aq05Output)

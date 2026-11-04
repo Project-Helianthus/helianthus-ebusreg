@@ -1,0 +1,99 @@
+[
+  {
+    "id": "ab21ap21-synthetic-1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 35,
+        "operation": 1,
+        "view": "relay-six",
+        "direction": "request",
+        "family": "synthetic-family"
+      },
+      "fields": {
+        "relays": [
+          0,
+          1,
+          253,
+          254,
+          255,
+          0
+        ],
+        "pwm1": [
+          201
+        ]
+      },
+      "arguments": {
+        "variant": "three-circuit"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab21ap21-synthetic-5",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 35,
+        "operation": 5,
+        "view": "relay-twelve",
+        "direction": "request",
+        "family": "synthetic-family"
+      },
+      "fields": {
+        "relays": [
+          255,
+          254,
+          253,
+          1,
+          0,
+          255,
+          0,
+          1,
+          253,
+          254,
+          255,
+          0
+        ],
+        "pwm1": [
+          250
+        ],
+        "pwm2": [
+          255
+        ]
+      },
+      "arguments": {
+        "variant": "three-circuit"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab21ap21-synthetic-2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 35,
+        "operation": 2,
+        "view": "mixer",
+        "direction": "request",
+        "family": "synthetic-family"
+      },
+      "fields": {
+        "circuit": [
+          2
+        ],
+        "mode": [
+          1
+        ],
+        "setpoint": [
+          190
+        ]
+      },
+      "arguments": {
+        "variant": "three-circuit"
+      }
+    },
+    "state": "complete"
+  }
+]

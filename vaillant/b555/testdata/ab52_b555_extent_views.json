@@ -1,0 +1,606 @@
+{
+ "ab52_a4_cases": [
+  {
+   "ab52_id": "ab52-a4-declared8-available8",
+   "ab52_declared": 8,
+   "ab52_raw_hex": "0002000301040506",
+   "ab52_expect": {
+    "raw_hex": "0002000301040506",
+    "status_present": true,
+    "status": 0,
+    "status_accepted": true,
+    "status_unavailable": false,
+    "day_counts": [
+     2,
+     0,
+     3,
+     1,
+     4,
+     5,
+     6
+    ],
+    "week_complete": true,
+    "week_valid": true,
+    "eighth_present": false,
+    "eighth": 0,
+    "incomplete": false,
+    "issues": []
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-declared8-available9-hides-byte8",
+   "ab52_declared": 8,
+   "ab52_raw_hex": "000200030104050609",
+   "ab52_expect": {
+    "raw_hex": "0002000301040506",
+    "status_present": true,
+    "status": 0,
+    "status_accepted": true,
+    "status_unavailable": false,
+    "day_counts": [
+     2,
+     0,
+     3,
+     1,
+     4,
+     5,
+     6
+    ],
+    "week_complete": true,
+    "week_valid": true,
+    "eighth_present": false,
+    "eighth": 0,
+    "incomplete": false,
+    "issues": [
+     "available_exceeds_declared"
+    ]
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-declared9-available8-eighth-incomplete",
+   "ab52_declared": 9,
+   "ab52_raw_hex": "0002000301040506",
+   "ab52_expect": {
+    "raw_hex": "0002000301040506",
+    "status_present": true,
+    "status": 0,
+    "status_accepted": true,
+    "status_unavailable": false,
+    "day_counts": [
+     2,
+     0,
+     3,
+     1,
+     4,
+     5,
+     6
+    ],
+    "week_complete": true,
+    "week_valid": true,
+    "eighth_present": false,
+    "eighth": 0,
+    "incomplete": true,
+    "issues": [
+     "available_short"
+    ]
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-declared9-available9-eighth-zero",
+   "ab52_declared": 9,
+   "ab52_raw_hex": "000200030104050600",
+   "ab52_expect": {
+    "raw_hex": "000200030104050600",
+    "status_present": true,
+    "status": 0,
+    "status_accepted": true,
+    "status_unavailable": false,
+    "day_counts": [
+     2,
+     0,
+     3,
+     1,
+     4,
+     5,
+     6
+    ],
+    "week_complete": true,
+    "week_valid": true,
+    "eighth_present": true,
+    "eighth": 0,
+    "incomplete": false,
+    "issues": []
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-declared9-available9-eighth-nonzero",
+   "ab52_declared": 9,
+   "ab52_raw_hex": "00020003010405060b",
+   "ab52_expect": {
+    "raw_hex": "00020003010405060b",
+    "status_present": true,
+    "status": 0,
+    "status_accepted": true,
+    "status_unavailable": false,
+    "day_counts": [
+     2,
+     0,
+     3,
+     1,
+     4,
+     5,
+     6
+    ],
+    "week_complete": true,
+    "week_valid": true,
+    "eighth_present": true,
+    "eighth": 11,
+    "incomplete": false,
+    "issues": []
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-day-count-12-valid",
+   "ab52_declared": 8,
+   "ab52_raw_hex": "0000000000000c00",
+   "ab52_expect": {
+    "raw_hex": "0000000000000c00",
+    "status_present": true,
+    "status": 0,
+    "status_accepted": true,
+    "status_unavailable": false,
+    "day_counts": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     12,
+     0
+    ],
+    "week_complete": true,
+    "week_valid": true,
+    "eighth_present": false,
+    "eighth": 0,
+    "incomplete": false,
+    "issues": []
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-day-count-13-invalid",
+   "ab52_declared": 8,
+   "ab52_raw_hex": "0000000000000d00",
+   "ab52_expect": {
+    "raw_hex": "0000000000000d00",
+    "status_present": true,
+    "status": 0,
+    "status_accepted": true,
+    "status_unavailable": false,
+    "day_counts": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     13,
+     0
+    ],
+    "week_complete": true,
+    "week_valid": false,
+    "eighth_present": false,
+    "eighth": 0,
+    "incomplete": false,
+    "issues": [
+     "day_count_over_limit"
+    ]
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-status3-unavailable-days-kept",
+   "ab52_declared": 8,
+   "ab52_raw_hex": "0301020304050607",
+   "ab52_expect": {
+    "raw_hex": "0301020304050607",
+    "status_present": true,
+    "status": 3,
+    "status_accepted": false,
+    "status_unavailable": true,
+    "day_counts": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "week_complete": true,
+    "week_valid": true,
+    "eighth_present": false,
+    "eighth": 0,
+    "incomplete": false,
+    "issues": []
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-status5-unclassified",
+   "ab52_declared": 8,
+   "ab52_raw_hex": "0501020304050607",
+   "ab52_expect": {
+    "raw_hex": "0501020304050607",
+    "status_present": true,
+    "status": 5,
+    "status_accepted": false,
+    "status_unavailable": false,
+    "day_counts": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "week_complete": true,
+    "week_valid": true,
+    "eighth_present": false,
+    "eighth": 0,
+    "incomplete": false,
+    "issues": []
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-declared6-below-week",
+   "ab52_declared": 6,
+   "ab52_raw_hex": "000102030405060708",
+   "ab52_expect": {
+    "raw_hex": "000102030405",
+    "status_present": true,
+    "status": 0,
+    "status_accepted": true,
+    "status_unavailable": false,
+    "day_counts": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "week_complete": false,
+    "week_valid": false,
+    "eighth_present": false,
+    "eighth": 0,
+    "incomplete": true,
+    "issues": [
+     "available_exceeds_declared",
+     "declared_below_week"
+    ]
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-negative-declared",
+   "ab52_declared": -1,
+   "ab52_raw_hex": "00010203",
+   "ab52_expect": {
+    "raw_hex": "",
+    "status_present": false,
+    "status": 0,
+    "status_accepted": false,
+    "status_unavailable": false,
+    "day_counts": [],
+    "week_complete": false,
+    "week_valid": false,
+    "eighth_present": false,
+    "eighth": 0,
+    "incomplete": true,
+    "issues": [
+     "declared_negative"
+    ]
+   }
+  },
+  {
+   "ab52_id": "ab52-a4-empty",
+   "ab52_declared": 0,
+   "ab52_raw_hex": "",
+   "ab52_expect": {
+    "raw_hex": "",
+    "status_present": false,
+    "status": 0,
+    "status_accepted": false,
+    "status_unavailable": false,
+    "day_counts": [],
+    "week_complete": false,
+    "week_valid": false,
+    "eighth_present": false,
+    "eighth": 0,
+    "incomplete": true,
+    "issues": [
+     "declared_below_week"
+    ]
+   }
+  }
+ ],
+ "ab52_a5_cases": [
+  {
+   "ab52_id": "ab52-a5-status3-out-of-range-times-ffff",
+   "ab52_declared": 7,
+   "ab52_raw_hex": "03173b183cffff",
+   "ab52_expect": {
+    "raw_hex": "03173b183cffff",
+    "status": {
+     "present": true,
+     "value": 3
+    },
+    "status_accepted": false,
+    "start_hour": {
+     "present": true,
+     "value": 23
+    },
+    "start_minute": {
+     "present": true,
+     "value": 59
+    },
+    "end_hour": {
+     "present": true,
+     "value": 24
+    },
+    "end_minute": {
+     "present": true,
+     "value": 60
+    },
+    "setpoint_present": true,
+    "setpoint_raw": 65535,
+    "setpoint_tenths": 6553.5,
+    "incomplete": false,
+    "issues": []
+   }
+  },
+  {
+   "ab52_id": "ab52-a5-status0-ordinary-setpoint",
+   "ab52_declared": 7,
+   "ab52_raw_hex": "00061e1600d200",
+   "ab52_expect": {
+    "raw_hex": "00061e1600d200",
+    "status": {
+     "present": true,
+     "value": 0
+    },
+    "status_accepted": true,
+    "start_hour": {
+     "present": true,
+     "value": 6
+    },
+    "start_minute": {
+     "present": true,
+     "value": 30
+    },
+    "end_hour": {
+     "present": true,
+     "value": 22
+    },
+    "end_minute": {
+     "present": true,
+     "value": 0
+    },
+    "setpoint_present": true,
+    "setpoint_raw": 210,
+    "setpoint_tenths": 21.0,
+    "incomplete": false,
+    "issues": []
+   }
+  },
+  {
+   "ab52_id": "ab52-a5-status0-setpoint-zero",
+   "ab52_declared": 7,
+   "ab52_raw_hex": "00061e16000000",
+   "ab52_expect": {
+    "raw_hex": "00061e16000000",
+    "status": {
+     "present": true,
+     "value": 0
+    },
+    "status_accepted": true,
+    "start_hour": {
+     "present": true,
+     "value": 6
+    },
+    "start_minute": {
+     "present": true,
+     "value": 30
+    },
+    "end_hour": {
+     "present": true,
+     "value": 22
+    },
+    "end_minute": {
+     "present": true,
+     "value": 0
+    },
+    "setpoint_present": true,
+    "setpoint_raw": 0,
+    "setpoint_tenths": 0.0,
+    "incomplete": false,
+    "issues": []
+   }
+  },
+  {
+   "ab52_id": "ab52-a5-status9-setpoint-kept",
+   "ab52_declared": 7,
+   "ab52_raw_hex": "09061e1600d200",
+   "ab52_expect": {
+    "raw_hex": "09061e1600d200",
+    "status": {
+     "present": true,
+     "value": 9
+    },
+    "status_accepted": false,
+    "start_hour": {
+     "present": true,
+     "value": 6
+    },
+    "start_minute": {
+     "present": true,
+     "value": 30
+    },
+    "end_hour": {
+     "present": true,
+     "value": 22
+    },
+    "end_minute": {
+     "present": true,
+     "value": 0
+    },
+    "setpoint_present": true,
+    "setpoint_raw": 210,
+    "setpoint_tenths": 21.0,
+    "incomplete": false,
+    "issues": []
+   }
+  },
+  {
+   "ab52_id": "ab52-a5-declared7-available6",
+   "ab52_declared": 7,
+   "ab52_raw_hex": "00061e1600d2",
+   "ab52_expect": {
+    "raw_hex": "00061e1600d2",
+    "status": {
+     "present": true,
+     "value": 0
+    },
+    "status_accepted": true,
+    "start_hour": {
+     "present": true,
+     "value": 6
+    },
+    "start_minute": {
+     "present": true,
+     "value": 30
+    },
+    "end_hour": {
+     "present": true,
+     "value": 22
+    },
+    "end_minute": {
+     "present": true,
+     "value": 0
+    },
+    "setpoint_present": false,
+    "setpoint_raw": 0,
+    "setpoint_tenths": 0.0,
+    "incomplete": true,
+    "issues": [
+     "available_short"
+    ]
+   }
+  },
+  {
+   "ab52_id": "ab52-a5-declared8-available7",
+   "ab52_declared": 8,
+   "ab52_raw_hex": "00061e1600d200",
+   "ab52_expect": {
+    "raw_hex": "00061e1600d200",
+    "status": {
+     "present": true,
+     "value": 0
+    },
+    "status_accepted": true,
+    "start_hour": {
+     "present": true,
+     "value": 6
+    },
+    "start_minute": {
+     "present": true,
+     "value": 30
+    },
+    "end_hour": {
+     "present": true,
+     "value": 22
+    },
+    "end_minute": {
+     "present": true,
+     "value": 0
+    },
+    "setpoint_present": true,
+    "setpoint_raw": 210,
+    "setpoint_tenths": 21.0,
+    "incomplete": true,
+    "issues": [
+     "available_short"
+    ]
+   }
+  },
+  {
+   "ab52_id": "ab52-a5-declared6-available7",
+   "ab52_declared": 6,
+   "ab52_raw_hex": "00061e1600d200",
+   "ab52_expect": {
+    "raw_hex": "00061e1600d2",
+    "status": {
+     "present": true,
+     "value": 0
+    },
+    "status_accepted": true,
+    "start_hour": {
+     "present": true,
+     "value": 6
+    },
+    "start_minute": {
+     "present": true,
+     "value": 30
+    },
+    "end_hour": {
+     "present": true,
+     "value": 22
+    },
+    "end_minute": {
+     "present": true,
+     "value": 0
+    },
+    "setpoint_present": false,
+    "setpoint_raw": 0,
+    "setpoint_tenths": 0.0,
+    "incomplete": true,
+    "issues": [
+     "available_exceeds_declared",
+     "declared_below_a5_setpoint"
+    ]
+   }
+  },
+  {
+   "ab52_id": "ab52-a5-negative-declared",
+   "ab52_declared": -3,
+   "ab52_raw_hex": "00061e1600d200",
+   "ab52_expect": {
+    "raw_hex": "",
+    "status": {
+     "present": false,
+     "value": 0
+    },
+    "status_accepted": false,
+    "start_hour": {
+     "present": false,
+     "value": 0
+    },
+    "start_minute": {
+     "present": false,
+     "value": 0
+    },
+    "end_hour": {
+     "present": false,
+     "value": 0
+    },
+    "end_minute": {
+     "present": false,
+     "value": 0
+    },
+    "setpoint_present": false,
+    "setpoint_raw": 0,
+    "setpoint_tenths": 0.0,
+    "incomplete": true,
+    "issues": [
+     "declared_negative"
+    ]
+   }
+  }
+ ]
+}

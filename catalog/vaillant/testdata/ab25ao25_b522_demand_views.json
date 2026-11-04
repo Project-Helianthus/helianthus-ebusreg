@@ -1,0 +1,79 @@
+{
+  "ab25ao25_cases": [
+    {
+      "id": "ab25ao25-request-control",
+      "input": {
+        "context": {"primary": 181, "secondary": 34, "operation": 7, "direction": "request", "view": "isolated-fields", "family": "opaque-a", "variant": 3},
+        "fields": {"mode": [2], "fan": [255], "room_temperature": [255], "automatic": [128], "tail": [9, 0]},
+        "arguments": {"enabled": true, "count": 0}
+      },
+      "expected": {
+        "context": {"primary": 181, "secondary": 34, "operation": 7, "direction": "request", "view": "isolated-fields", "family": "opaque-a", "variant": 3},
+        "raw": {"mode": [2], "fan": [255], "room_temperature": [255], "automatic": [128], "tail": [9, 0]},
+        "arguments": {"enabled": true, "count": 0},
+        "state": "complete",
+        "physical": "Unknown",
+        "qualified": false,
+        "fields": {
+          "mode": {"raw": [2], "state": "decoded", "grade": "Hypothesis", "number": 2, "label": "source-heating-demand"},
+          "fan": {"raw": [255], "state": "decoded", "grade": "Hypothesis", "number": 255},
+          "room_temperature": {"raw": [255], "state": "decoded", "grade": "Hypothesis", "number": 127.5, "unit": "celsius", "calculation": "Proven", "candidate_domain": true},
+          "automatic": {"raw": [128], "state": "decoded", "grade": "Hypothesis", "number": 0, "label": "disabled", "reserved": 128}
+        }
+      }
+    },
+    {
+      "id": "ab25ao25-request-partial",
+      "input": {
+        "context": {"primary": 181, "secondary": 34, "operation": 0, "direction": "request", "view": "isolated-fields"},
+        "fields": {"mode": [1], "fan": [], "room_temperature": [1], "automatic": [1, 1]}
+      },
+      "expected": {
+        "context": {"primary": 181, "secondary": 34, "operation": 0, "direction": "request", "view": "isolated-fields"},
+        "raw": {"mode": [1], "fan": [], "room_temperature": [1], "automatic": [1, 1]},
+        "state": "partial",
+        "physical": "Unknown",
+        "qualified": false,
+        "fields": {
+          "mode": {"raw": [1], "state": "label-conflict", "grade": "Hypothesis", "number": 1, "label": "no-source-demand-sink-demand"},
+          "fan": {"raw": [], "state": "incomplete", "grade": "Hypothesis"},
+          "room_temperature": {"raw": [1], "state": "decoded", "grade": "Hypothesis", "number": 0.5, "unit": "celsius", "calculation": "Proven", "candidate_domain": true},
+          "automatic": {"raw": [1, 1], "state": "overlong", "grade": "Hypothesis"}
+        }
+      }
+    },
+    {
+      "id": "ab25ao25-positive-reserved-only",
+      "input": {
+        "context": {"primary": 181, "secondary": 34, "operation": 1, "direction": "positive", "view": "isolated-fields"},
+        "fields": {"positive_flags": [8]}
+      },
+      "expected": {
+        "context": {"primary": 181, "secondary": 34, "operation": 1, "direction": "positive", "view": "isolated-fields"},
+        "raw": {"positive_flags": [8]},
+        "state": "complete",
+        "physical": "Unknown",
+        "qualified": false,
+        "fields": {
+          "positive_flags": {"raw": [8], "state": "decoded", "grade": "Hypothesis", "flags": [false, false, false], "reserved": 8}
+        }
+      }
+    },
+    {
+      "id": "ab25ao25-unknown-view",
+      "input": {
+        "context": {"primary": 181, "secondary": 34, "operation": 1, "direction": "request", "view": "other"},
+        "fields": {"mode": [2]}
+      },
+      "expected": {
+        "context": {"primary": 181, "secondary": 34, "operation": 1, "direction": "request", "view": "other"},
+        "raw": {"mode": [2]},
+        "state": "unknown",
+        "unknown_reasons": ["view"],
+        "physical": "Unknown",
+        "qualified": false,
+        "fields": {}
+      }
+    }
+  ]
+}

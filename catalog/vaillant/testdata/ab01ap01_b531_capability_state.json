@@ -1,0 +1,8 @@
+[
+ {"id":"ab01ap01_even_prior","registered":2,"prior":2,"result":1,"updated":2,"cached_bit0":false,"whole_nonzero":true,"outcome":"admitted"},
+ {"id":"ab01ap01_initial","registered":1,"prior":0,"result":1,"updated":1,"cached_bit0":true,"whole_nonzero":true,"outcome":"admitted"},
+ {"id":"ab01ap01_clear","registered":1,"prior":2,"result":0,"updated":0,"cached_bit0":false,"whole_nonzero":false,"outcome":"cleared"},
+ {"id":"ab01ap01_skip","registered":0,"prior":2,"result":0,"updated":2,"cached_bit0":false,"whole_nonzero":true,"outcome":"skipped"},
+ {"id":"ab01ap01_unknown","registered":2,"prior":3,"result":2,"updated":3,"cached_bit0":true,"whole_nonzero":true,"outcome":"Unknown"},
+ {"id":"ab01ap01_maximum","registered":4294967295,"prior":4294967295,"result":1,"updated":4294967295,"cached_bit0":true,"whole_nonzero":true,"outcome":"admitted"}
+]

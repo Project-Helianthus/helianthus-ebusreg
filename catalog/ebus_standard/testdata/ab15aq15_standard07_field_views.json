@@ -1,0 +1,628 @@
+[
+  {
+    "id": "ab15aq15_warm",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 2,
+        "direction": "request",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          0,
+          50
+        ],
+        "duration": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "temperature": {
+        "number": 50,
+        "candidate_domain": true,
+        "calculation": "Proven",
+        "grade": "Hypothesis"
+      },
+      "duration": {
+        "number": 0,
+        "unit": "minutes"
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_cold",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 2,
+        "direction": "request",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          0,
+          206
+        ],
+        "duration": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "temperature": {
+        "number": -50,
+        "candidate_domain": true
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_outside",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 2,
+        "direction": "request",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          0,
+          128
+        ],
+        "duration": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "temperature": {
+        "number": -128,
+        "candidate_domain": false
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_sunday",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 0,
+        "direction": "request",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          0,
+          50
+        ],
+        "weekday": [
+          6
+        ],
+        "second": [
+          18
+        ],
+        "minute": [
+          34
+        ],
+        "hour": [
+          23
+        ],
+        "day": [
+          31
+        ],
+        "month": [
+          12
+        ],
+        "year": [
+          99
+        ]
+      }
+    },
+    "expected": {
+      "temperature": {
+        "number": 50
+      },
+      "weekday": {
+        "label": "Sunday"
+      },
+      "second": {
+        "conversion": "Unknown",
+        "candidate_domain": [
+          0,
+          59
+        ]
+      },
+      "minute": {
+        "conversion": "Unknown",
+        "candidate_domain": [
+          0,
+          59
+        ]
+      },
+      "hour": {
+        "candidate_domain": [
+          0,
+          23
+        ]
+      },
+      "day": {
+        "candidate_domain": [
+          1,
+          31
+        ]
+      },
+      "month": {
+        "candidate_domain": [
+          1,
+          12
+        ]
+      },
+      "year": {
+        "candidate_domain": [
+          0,
+          99
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_seven",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 0,
+        "direction": "request",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          0,
+          50
+        ],
+        "weekday": [
+          7
+        ],
+        "second": [
+          18
+        ],
+        "minute": [
+          34
+        ],
+        "hour": [
+          23
+        ],
+        "day": [
+          31
+        ],
+        "month": [
+          12
+        ],
+        "year": [
+          99
+        ]
+      }
+    },
+    "expected": {
+      "temperature": {
+        "number": 50
+      },
+      "weekday": {
+        "label": "unmapped"
+      },
+      "second": {
+        "conversion": "Unknown",
+        "candidate_domain": [
+          0,
+          59
+        ]
+      },
+      "minute": {
+        "conversion": "Unknown",
+        "candidate_domain": [
+          0,
+          59
+        ]
+      },
+      "hour": {
+        "candidate_domain": [
+          0,
+          23
+        ]
+      },
+      "day": {
+        "candidate_domain": [
+          1,
+          31
+        ]
+      },
+      "month": {
+        "candidate_domain": [
+          1,
+          12
+        ]
+      },
+      "year": {
+        "candidate_domain": [
+          0,
+          99
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_ff",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 0,
+        "direction": "request",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          0,
+          50
+        ],
+        "weekday": [
+          255
+        ],
+        "second": [
+          18
+        ],
+        "minute": [
+          34
+        ],
+        "hour": [
+          23
+        ],
+        "day": [
+          31
+        ],
+        "month": [
+          12
+        ],
+        "year": [
+          99
+        ]
+      }
+    },
+    "expected": {
+      "temperature": {
+        "number": 50
+      },
+      "weekday": {
+        "label": "unmapped"
+      },
+      "second": {
+        "conversion": "Unknown",
+        "candidate_domain": [
+          0,
+          59
+        ]
+      },
+      "minute": {
+        "conversion": "Unknown",
+        "candidate_domain": [
+          0,
+          59
+        ]
+      },
+      "hour": {
+        "candidate_domain": [
+          0,
+          23
+        ]
+      },
+      "day": {
+        "candidate_domain": [
+          1,
+          31
+        ]
+      },
+      "month": {
+        "candidate_domain": [
+          1,
+          12
+        ]
+      },
+      "year": {
+        "candidate_domain": [
+          0,
+          99
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_block",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 3,
+        "direction": "request",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "block": [
+          18
+        ]
+      }
+    },
+    "expected": {
+      "block": {
+        "raw": [
+          18
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_blocks",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 5,
+        "direction": "request",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "secondary_block": [
+          18
+        ],
+        "primary_block": [
+          52
+        ]
+      }
+    },
+    "expected": {
+      "secondary_block": {
+        "raw": [
+          18
+        ]
+      },
+      "primary_block": {
+        "raw": [
+          52
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_positive_0",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 0,
+        "direction": "positive",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "version": [
+          18
+        ],
+        "revision": [
+          52
+        ],
+        "bitmap": [
+          128,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          255
+        ]
+      }
+    },
+    "expected": {
+      "version": {
+        "raw": [
+          18
+        ]
+      },
+      "revision": {
+        "raw": [
+          52
+        ]
+      },
+      "bitmap": {
+        "raw": [
+          128,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          255
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_positive_2",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 2,
+        "direction": "positive",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "version": [
+          18
+        ],
+        "revision": [
+          52
+        ],
+        "bitmap": [
+          128,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          255
+        ]
+      }
+    },
+    "expected": {
+      "version": {
+        "raw": [
+          18
+        ]
+      },
+      "revision": {
+        "raw": [
+          52
+        ]
+      },
+      "bitmap": {
+        "raw": [
+          128,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          255
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_positive_3",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 3,
+        "direction": "positive",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "version": [
+          18
+        ],
+        "revision": [
+          52
+        ],
+        "bitmap": [
+          128,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          255
+        ]
+      }
+    },
+    "expected": {
+      "version": {
+        "raw": [
+          18
+        ]
+      },
+      "revision": {
+        "raw": [
+          52
+        ]
+      },
+      "bitmap": {
+        "raw": [
+          128,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          255
+        ]
+      }
+    }
+  },
+  {
+    "id": "ab15aq15_positive_5",
+    "input": {
+      "context": {
+        "primary": 7,
+        "secondary": 5,
+        "direction": "positive",
+        "view": "field-candidates",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "version": [
+          18
+        ],
+        "revision": [
+          52
+        ],
+        "bitmap": [
+          128,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          255
+        ]
+      }
+    },
+    "expected": {
+      "version": {
+        "raw": [
+          18
+        ]
+      },
+      "revision": {
+        "raw": [
+          52
+        ]
+      },
+      "bitmap": {
+        "raw": [
+          128,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          255
+        ]
+      }
+    }
+  }
+]

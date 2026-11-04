@@ -1,0 +1,470 @@
+[
+  {
+    "Ab01An01Label": "ab01an01-1",
+    "Ab01An01Family": "controller-700",
+    "Ab01An01GG": 0,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 52,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-2",
+    "Ab01An01Family": "controller-700",
+    "Ab01An01GG": 0,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 53,
+    "Ab01An01Alternative": "time",
+    "Ab01An01Bytes": [
+      23,
+      59,
+      58
+    ],
+    "Ab01An01Expected": [
+      23,
+      59,
+      58
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-3",
+    "Ab01An01Family": "controller-700",
+    "Ab01An01GG": 0,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 113,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-4",
+    "Ab01An01Family": "controller-700",
+    "Ab01An01GG": 0,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 114,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-5",
+    "Ab01An01Family": "controller-700",
+    "Ab01An01GG": 1,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 9,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-6",
+    "Ab01An01Family": "controller-700",
+    "Ab01An01GG": 1,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 10,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-7",
+    "Ab01An01Family": "controller-700",
+    "Ab01An01GG": 3,
+    "Ab01An01II": 241,
+    "Ab01An01RR": 3,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-8",
+    "Ab01An01Family": "controller-700",
+    "Ab01An01GG": 3,
+    "Ab01An01II": 241,
+    "Ab01An01RR": 4,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-9",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 0,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 52,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-10",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 0,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 53,
+    "Ab01An01Alternative": "time",
+    "Ab01An01Bytes": [
+      23,
+      59,
+      58
+    ],
+    "Ab01An01Expected": [
+      23,
+      59,
+      58
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-11",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 0,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 218,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-12",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 0,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 219,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-13",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 1,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 9,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-14",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 1,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 10,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-15",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 3,
+    "Ab01An01II": 241,
+    "Ab01An01RR": 3,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-16",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 3,
+    "Ab01An01II": 241,
+    "Ab01An01RR": 4,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-17",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 1,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 16,
+    "Ab01An01Alternative": "time",
+    "Ab01An01Bytes": [
+      23,
+      59,
+      58
+    ],
+    "Ab01An01Expected": [
+      23,
+      59,
+      58
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-18",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 1,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 17,
+    "Ab01An01Alternative": "time",
+    "Ab01An01Bytes": [
+      23,
+      59,
+      58
+    ],
+    "Ab01An01Expected": [
+      23,
+      59,
+      58
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-19",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 3,
+    "Ab01An01II": 241,
+    "Ab01An01RR": 36,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-20",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 3,
+    "Ab01An01II": 241,
+    "Ab01An01RR": 30,
+    "Ab01An01Alternative": "time",
+    "Ab01An01Bytes": [
+      23,
+      59,
+      58
+    ],
+    "Ab01An01Expected": [
+      23,
+      59,
+      58
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-21",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 3,
+    "Ab01An01II": 241,
+    "Ab01An01RR": 32,
+    "Ab01An01Alternative": "time",
+    "Ab01An01Bytes": [
+      23,
+      59,
+      58
+    ],
+    "Ab01An01Expected": [
+      23,
+      59,
+      58
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-22",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 3,
+    "Ab01An01II": 241,
+    "Ab01An01RR": 33,
+    "Ab01An01Alternative": "time",
+    "Ab01An01Bytes": [
+      23,
+      59,
+      58
+    ],
+    "Ab01An01Expected": [
+      23,
+      59,
+      58
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-23",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 9,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 7,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-24",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 9,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 9,
+    "Ab01An01Alternative": "date",
+    "Ab01An01Bytes": [
+      31,
+      12,
+      99
+    ],
+    "Ab01An01Expected": [
+      31,
+      12,
+      99
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-25",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 9,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 8,
+    "Ab01An01Alternative": "time",
+    "Ab01An01Bytes": [
+      23,
+      59,
+      58
+    ],
+    "Ab01An01Expected": [
+      23,
+      59,
+      58
+    ]
+  },
+  {
+    "Ab01An01Label": "ab01an01-26",
+    "Ab01An01Family": "controller-720",
+    "Ab01An01GG": 9,
+    "Ab01An01II": 0,
+    "Ab01An01RR": 10,
+    "Ab01An01Alternative": "time",
+    "Ab01An01Bytes": [
+      23,
+      59,
+      58
+    ],
+    "Ab01An01Expected": [
+      23,
+      59,
+      58
+    ]
+  }
+]

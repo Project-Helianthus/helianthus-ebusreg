@@ -1,0 +1,129 @@
+[
+  {
+    "ab34_id": "ab34_legacy_request",
+    "ab34_identity": {
+      "ab34_family": "legacy-interface",
+      "ab34_variant": "legacy-computer-interface",
+      "ab34_primary": 181,
+      "ab34_secondary": 1,
+      "ab34_operation": null,
+      "ab34_direction": "initiator-to-initiator",
+      "ab34_field": "sequencing",
+      "ab34_alternative": "none",
+      "ab34_group": null,
+      "ab34_instance_scope": "none",
+      "ab34_register": null
+    },
+    "ab34_representation_grade": "Proven",
+    "ab34_candidate_grade": "Hypothesis",
+    "ab34_service": "B501",
+    "ab34_service_role": "request",
+    "ab34_raw_form": {
+      "ab34_service": "B501",
+      "ab34_payload": null,
+      "ab34_policy": "preserve complete native bytes and unaffected last-known-good fields"
+    },
+    "ab34_unknown": {
+      "ab34_synchronization_bytes": "Unknown",
+      "ab34_state_order_beyond_wait": "Unknown",
+      "ab34_timeout_duration": "Unknown",
+      "ab34_segmentation": "Unknown",
+      "ab34_retries": "Unknown",
+      "ab34_return_codec": "Unknown",
+      "ab34_transport_adaptation": "Unknown",
+      "ab34_native_support": "Unknown",
+      "ab34_physical_effects": "Unknown",
+      "ab34_persistence": "Unknown",
+      "ab34_delivery": "Unknown"
+    },
+    "ab34_sequence": {
+      "ab34_synchronization_required": true,
+      "ab34_synchronization_token": null,
+      "ab34_timeout_cooldown_min_ms": 3500,
+      "ab34_cooldown_event": "timeout",
+      "ab34_success_cooldown_required": false,
+      "ab34_request_service": "B501",
+      "ab34_positive_status_service": "B501",
+      "ab34_return_data_service": "B502",
+      "ab34_status_is_return_data": false
+    }
+  },
+  {
+    "ab34_id": "ab34_legacy_positive-status",
+    "ab34_identity": {
+      "ab34_family": "legacy-interface",
+      "ab34_variant": "legacy-computer-interface",
+      "ab34_primary": 181,
+      "ab34_secondary": 1,
+      "ab34_operation": null,
+      "ab34_direction": "initiator-to-initiator",
+      "ab34_field": "status",
+      "ab34_alternative": "positive",
+      "ab34_group": null,
+      "ab34_instance_scope": "none",
+      "ab34_register": null
+    },
+    "ab34_representation_grade": "Proven",
+    "ab34_candidate_grade": "Hypothesis",
+    "ab34_service": "B501",
+    "ab34_service_role": "positive-status",
+    "ab34_raw_form": {
+      "ab34_service": "B501",
+      "ab34_payload": null,
+      "ab34_policy": "preserve complete native bytes and unaffected last-known-good fields"
+    },
+    "ab34_unknown": {
+      "ab34_synchronization_bytes": "Unknown",
+      "ab34_state_order_beyond_wait": "Unknown",
+      "ab34_timeout_duration": "Unknown",
+      "ab34_segmentation": "Unknown",
+      "ab34_retries": "Unknown",
+      "ab34_return_codec": "Unknown",
+      "ab34_transport_adaptation": "Unknown",
+      "ab34_native_support": "Unknown",
+      "ab34_physical_effects": "Unknown",
+      "ab34_persistence": "Unknown",
+      "ab34_delivery": "Unknown"
+    },
+    "ab34_context_only": true
+  },
+  {
+    "ab34_id": "ab34_legacy_return-data",
+    "ab34_identity": {
+      "ab34_family": "legacy-interface",
+      "ab34_variant": "legacy-computer-interface",
+      "ab34_primary": 181,
+      "ab34_secondary": 2,
+      "ab34_operation": null,
+      "ab34_direction": "initiator-to-initiator",
+      "ab34_field": "data",
+      "ab34_alternative": "none",
+      "ab34_group": null,
+      "ab34_instance_scope": "none",
+      "ab34_register": null
+    },
+    "ab34_representation_grade": "Proven",
+    "ab34_candidate_grade": "Hypothesis",
+    "ab34_service": "B502",
+    "ab34_service_role": "return-data",
+    "ab34_raw_form": {
+      "ab34_service": "B502",
+      "ab34_payload": null,
+      "ab34_policy": "preserve complete native bytes and unaffected last-known-good fields"
+    },
+    "ab34_unknown": {
+      "ab34_synchronization_bytes": "Unknown",
+      "ab34_state_order_beyond_wait": "Unknown",
+      "ab34_timeout_duration": "Unknown",
+      "ab34_segmentation": "Unknown",
+      "ab34_retries": "Unknown",
+      "ab34_return_codec": "Unknown",
+      "ab34_transport_adaptation": "Unknown",
+      "ab34_native_support": "Unknown",
+      "ab34_physical_effects": "Unknown",
+      "ab34_persistence": "Unknown",
+      "ab34_delivery": "Unknown"
+    },
+    "ab34_context_only": true
+  }
+]

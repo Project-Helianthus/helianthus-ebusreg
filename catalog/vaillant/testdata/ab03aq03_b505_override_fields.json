@@ -1,0 +1,374 @@
+[
+  {
+    "id": "ab03aq03_override_85",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 77,
+        "direction": "request",
+        "view": "override",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "sensor_status": [
+          85
+        ],
+        "remote_control": [
+          1
+        ],
+        "pump_power": [
+          255
+        ]
+      },
+      "extra": {
+        "absent_control": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      },
+      "arguments": {
+        "display_percent": 25
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "grade": "Hypothesis",
+      "physical": "Unknown",
+      "qualified": false,
+      "candidate_validity_seconds": 900,
+      "results": {
+        "sensor_status": {
+          "raw": [
+            85
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "label": "short-circuit"
+        },
+        "remote_control": {
+          "raw": [
+            1
+          ],
+          "label": "enabled"
+        },
+        "display_percent": {
+          "number": 25,
+          "candidate_domain": true
+        },
+        "pump_power": {
+          "raw": [
+            255
+          ],
+          "state": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab03aq03_override_170",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 77,
+        "direction": "request",
+        "view": "override",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "sensor_status": [
+          170
+        ],
+        "remote_control": [
+          2
+        ],
+        "pump_power": [
+          255
+        ]
+      },
+      "extra": {
+        "absent_control": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      },
+      "arguments": {
+        "display_percent": 26
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "grade": "Hypothesis",
+      "physical": "Unknown",
+      "qualified": false,
+      "candidate_validity_seconds": 900,
+      "results": {
+        "sensor_status": {
+          "raw": [
+            170
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "label": "open"
+        },
+        "remote_control": {
+          "raw": [
+            2
+          ],
+          "label": "unmapped"
+        },
+        "display_percent": {
+          "number": 26,
+          "candidate_domain": false
+        },
+        "pump_power": {
+          "raw": [
+            255
+          ],
+          "state": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab03aq03_override_84",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 77,
+        "direction": "request",
+        "view": "override",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "sensor_status": [
+          84
+        ],
+        "remote_control": [
+          0
+        ],
+        "pump_power": [
+          255
+        ]
+      },
+      "extra": {
+        "absent_control": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      },
+      "arguments": {
+        "display_percent": 0
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "grade": "Hypothesis",
+      "physical": "Unknown",
+      "qualified": false,
+      "candidate_validity_seconds": 900,
+      "results": {
+        "sensor_status": {
+          "raw": [
+            84
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "label": "unmapped"
+        },
+        "remote_control": {
+          "raw": [
+            0
+          ],
+          "label": "unmapped"
+        },
+        "display_percent": {
+          "number": 0,
+          "candidate_domain": true
+        },
+        "pump_power": {
+          "raw": [
+            255
+          ],
+          "state": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab03aq03_opaque",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 97,
+        "direction": "request",
+        "view": "override",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "sensor_status": [
+          85
+        ],
+        "dhw_setpoint": []
+      },
+      "extra": {
+        "absent_control": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "grade": "Hypothesis",
+      "physical": "Unknown",
+      "qualified": false,
+      "candidate_validity_seconds": 900,
+      "results": {
+        "sensor_status": {
+          "raw": [
+            85
+          ],
+          "state": "Unknown"
+        },
+        "dhw_setpoint": {
+          "raw": [],
+          "state": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab03aq03_priority_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 78,
+        "direction": "request",
+        "view": "priority",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "priority": [
+          0
+        ]
+      },
+      "extra": {
+        "absent_control": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "grade": "Hypothesis",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "priority": {
+          "raw": [
+            0
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "calculation": "Proven",
+          "number": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "ab03aq03_priority_127",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 78,
+        "direction": "request",
+        "view": "priority",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "priority": [
+          127
+        ]
+      },
+      "extra": {
+        "absent_control": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "grade": "Hypothesis",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "priority": {
+          "raw": [
+            127
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "calculation": "Proven",
+          "number": 127
+        }
+      }
+    }
+  },
+  {
+    "id": "ab03aq03_priority_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 5,
+        "operation": 78,
+        "direction": "request",
+        "view": "priority",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "priority": [
+          255
+        ]
+      },
+      "extra": {
+        "absent_control": null,
+        "zero": 0,
+        "false": false,
+        "empty": []
+      }
+    },
+    "expected": {
+      "state": "complete",
+      "grade": "Hypothesis",
+      "physical": "Unknown",
+      "qualified": false,
+      "results": {
+        "priority": {
+          "raw": [
+            255
+          ],
+          "state": "complete",
+          "grade": "Hypothesis",
+          "calculation": "Proven",
+          "number": 255
+        }
+      }
+    }
+  }
+]

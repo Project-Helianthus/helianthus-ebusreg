@@ -243,6 +243,54 @@ func TestAb54InvalidAndDuplicate(ab54T *ab54testing.T) {
 	}
 }
 
+func TestAb54RequiredNullableAxes(ab54T *ab54testing.T) {
+	ab54Raw := ab54Get(ab54T, ab54TestKey(4))
+	for _, ab54Axis := range []string{"secondary", "operation", "group", "register"} {
+		ab54T.Run("ab54-"+ab54Axis, func(ab54T *ab54testing.T) {
+			for _, ab54Value := range []string{"", "null", "0", "1"} {
+				ab54T.Run("ab54-value-"+ab54Value, func(ab54T *ab54testing.T) {
+					ab54Row := ab54Object(ab54T, ab54Raw)
+					ab54Fields := ab54Object(ab54T, ab54Row["key"])
+					delete(ab54Fields, ab54Axis)
+					if ab54Value != "" {
+						ab54Fields[ab54Axis] = ab54json.RawMessage(ab54Value)
+					}
+					ab54KeyData, ab54Err := ab54json.Marshal(ab54Fields)
+					if ab54Err != nil {
+						ab54T.Fatal(ab54Err)
+					}
+					ab54Row["key"] = ab54KeyData
+					ab54Source, ab54Err := ab54json.Marshal([]map[string]ab54json.RawMessage{ab54Row})
+					if ab54Err != nil {
+						ab54T.Fatal(ab54Err)
+					}
+					var ab54Key Ab54Key
+					if ab54Err := ab54json.Unmarshal(ab54KeyData, &ab54Key); ab54Err != nil {
+						ab54T.Fatal(ab54Err)
+					}
+					ab54Entries, ab54Index, ab54ValidateErr := ab54Validate(ab54Source)
+					ab54Got, ab54Found, ab54LookupErr := ab54Lookup(ab54Source, ab54Key)
+					if ab54Value == "" {
+						if ab54ValidateErr == nil || ab54Entries != nil || ab54Index != nil {
+							ab54T.Error("ab54 missing nullable axis passed validation")
+						}
+						if ab54LookupErr == nil || ab54Found || ab54Got != nil {
+							ab54T.Error("ab54 missing nullable axis passed lookup")
+						}
+						return
+					}
+					if ab54ValidateErr != nil || !ab54bytes.Equal(ab54Entries, ab54Source) || len(ab54Index) != 1 {
+						ab54T.Fatalf("ab54 explicit nullable axis failed validation: %v", ab54ValidateErr)
+					}
+					if ab54LookupErr != nil || !ab54Found || !ab54bytes.Equal(ab54Got, ab54Source[1:len(ab54Source)-1]) {
+						ab54T.Fatalf("ab54 explicit nullable axis failed exact lookup: %v", ab54LookupErr)
+					}
+				})
+			}
+		})
+	}
+}
+
 func TestAb54IndependentStorage(ab54T *ab54testing.T) {
 	ab54Before := ab54Get(ab54T, ab54TestKey(4))
 	ab54Entries, ab54Err := Ab54Entries()

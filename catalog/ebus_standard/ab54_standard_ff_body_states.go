@@ -90,6 +90,8 @@ func ab54Validate(ab54Data []byte) (ab54json.RawMessage, map[string]ab54json.Raw
 			}
 		}
 		if len(ab54Fields["primary"]) == 0 || ab54bytes.Equal(ab54Fields["primary"], []byte("null")) ||
+			len(ab54Fields["secondary"]) == 0 || len(ab54Fields["operation"]) == 0 ||
+			len(ab54Fields["group"]) == 0 || len(ab54Fields["register"]) == 0 ||
 			ab54Key.Ab54Family == "" || ab54Key.Ab54Variant == "" || ab54Key.Ab54Direction == "" ||
 			ab54Key.Ab54Field == "" || ab54Key.Ab54Alternative == "" || ab54Key.Ab54InstanceScope == "" {
 			return nil, nil, ab54fmt.Errorf("ab54: incomplete key; use none for non-applicable string axes")

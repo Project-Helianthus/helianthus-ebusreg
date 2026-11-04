@@ -48,15 +48,17 @@ func ab25an25State(ab25an25Key Ab25An25Key, ab25an25Raw []byte) Ab25An25State {
 	}
 }
 
-func ab25an25Matches(ab25an25Selected, ab25an25Key Ab25An25Key) bool {
+func ab25an25Matches(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Direction string) bool {
 	return ab25an25Selected == ab25an25Key && ab25an25Selected.Ab25An25Family != "" &&
-		ab25an25Selected.Ab25An25Profile != "" && ab25an25Selected.Ab25An25Direction == "positive" &&
+		ab25an25Selected.Ab25An25Profile != "" && ab25an25Selected.Ab25An25Direction == ab25an25Direction &&
 		ab25an25Selected.Ab25An25Service >= 0x0900 && ab25an25Selected.Ab25An25Service <= 0x0903
 }
 
+// Body views match the positive direction; address and count views match the
+// abstract-request direction that carries those request fields.
 func Ab25An25ViewBody(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Raw []byte) Ab25An25Body {
 	ab25an25View := Ab25An25Body{Ab25An25State: ab25an25State(ab25an25Key, ab25an25Raw)}
-	if !ab25an25Matches(ab25an25Selected, ab25an25Key) {
+	if !ab25an25Matches(ab25an25Selected, ab25an25Key, "positive") {
 		return ab25an25View
 	}
 	if ab25an25Key.Ab25An25Service == 0x0902 {
@@ -82,7 +84,7 @@ func Ab25An25ViewBody(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Raw []b
 
 func Ab25An25ViewAddress(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Field []byte) Ab25An25Address {
 	ab25an25View := Ab25An25Address{Ab25An25State: ab25an25State(ab25an25Key, ab25an25Field)}
-	if !ab25an25Matches(ab25an25Selected, ab25an25Key) {
+	if !ab25an25Matches(ab25an25Selected, ab25an25Key, "abstract-request") {
 		return ab25an25View
 	}
 	if len(ab25an25Field) != 2 {
@@ -102,7 +104,7 @@ func Ab25An25ViewAddress(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Fiel
 
 func Ab25An25ViewCount(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Count uint8) Ab25An25Count {
 	ab25an25View := Ab25An25Count{Ab25An25State: ab25an25State(ab25an25Key, []byte{ab25an25Count}), Ab25An25Value: ab25an25Count}
-	if !ab25an25Matches(ab25an25Selected, ab25an25Key) || (ab25an25Key.Ab25An25Service != 0x0900 && ab25an25Key.Ab25An25Service != 0x0902) {
+	if !ab25an25Matches(ab25an25Selected, ab25an25Key, "abstract-request") || (ab25an25Key.Ab25An25Service != 0x0900 && ab25an25Key.Ab25An25Service != 0x0902) {
 		return ab25an25View
 	}
 	ab25an25View.Ab25An25State.Ab25An25State = "candidate"

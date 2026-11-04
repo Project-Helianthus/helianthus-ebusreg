@@ -7,6 +7,7 @@ import (
 	"io"
 	"math/big"
 	"strconv"
+	"strings"
 	"unicode/utf8"
 )
 
@@ -61,6 +62,16 @@ func ab25ap25Byte(ab25ap25Value any) (int, bool) {
 	ab25ap25Number, ab25ap25OK := ab25ap25Value.(json.Number)
 	if !ab25ap25OK {
 		return 0, false
+	}
+	// Bound the token before big.Rat materializes any power of ten.
+	if len(ab25ap25Number) > 64 {
+		return 0, false
+	}
+	if ab25ap25Marker := strings.IndexAny(string(ab25ap25Number), "eE"); ab25ap25Marker >= 0 {
+		ab25ap25Exponent, ab25ap25Error := strconv.Atoi(string(ab25ap25Number[ab25ap25Marker+1:]))
+		if ab25ap25Error != nil || ab25ap25Exponent < -64 || ab25ap25Exponent > 64 {
+			return 0, false
+		}
 	}
 	ab25ap25Rational, ab25ap25OK := new(big.Rat).SetString(string(ab25ap25Number))
 	if !ab25ap25OK || !ab25ap25Rational.IsInt() || !ab25ap25Rational.Num().IsInt64() {

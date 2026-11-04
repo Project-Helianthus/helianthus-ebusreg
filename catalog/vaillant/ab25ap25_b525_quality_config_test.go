@@ -370,3 +370,22 @@ func TestAb25Ap25Admission(ab25ap25T *testing.T) {
 		ab25ap25T.Fatal("integral JSON numbers rejected", ab25ap25Error)
 	}
 }
+
+func TestAb25Ap25OversizedExponentRejected(ab25ap25T *testing.T) {
+	for _, ab25ap25Number := range []string{"1e999999999", "0e999999999", "1e-999999999", "1e65", "1E65", "1e99999999999999999999"} {
+		for _, ab25ap25Template := range []string{
+			`{"context":{"primary":%s},"fields":{}}`,
+			`{"context":{},"fields":{"rssi":[%s]}}`,
+		} {
+			ab25ap25InputBytes := fmt.Sprintf(ab25ap25Template, ab25ap25Number)
+			ab25ap25Output, ab25ap25Error := Ab25Ap25Evaluate([]byte(ab25ap25InputBytes))
+			if ab25ap25Error == nil || ab25ap25Output != nil {
+				ab25ap25T.Errorf("oversized exponent admitted: %s", ab25ap25InputBytes)
+			}
+		}
+	}
+	ab25ap25Output, ab25ap25Error := Ab25Ap25Evaluate([]byte(`{"context":{"primary":1.81e2},"fields":{"rssi":[2.5e1]}}`))
+	if ab25ap25Error != nil || ab25ap25Output == nil {
+		ab25ap25T.Errorf("small exponent rejected: %v", ab25ap25Error)
+	}
+}

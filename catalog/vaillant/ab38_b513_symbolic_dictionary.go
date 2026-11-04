@@ -6,10 +6,30 @@ import (
 	ab38json "encoding/json"
 	ab38fmt "fmt"
 	ab38io "io"
+	ab38sync "sync"
 )
 
 //go:embed data/ab38_b513_symbolic_dictionary.json
 var ab38Data []byte
+
+type ab38Cache struct {
+	ab38Once    ab38sync.Once
+	ab38Entries ab38json.RawMessage
+	ab38Index   map[string]ab38json.RawMessage
+	ab38Err     error
+}
+
+var ab38Dictionary = new(ab38Cache)
+
+func ab38Load() *ab38Cache {
+	ab38Dictionary.ab38Once.Do(func() {
+		_, ab38Dictionary.ab38Index, ab38Dictionary.ab38Err = ab38Validate(ab38Data)
+		if ab38Dictionary.ab38Err == nil {
+			ab38Dictionary.ab38Entries = ab38bytes.Clone(ab38Data)
+		}
+	})
+	return ab38Dictionary
+}
 
 type Ab38Key struct {
 	Ab38Family              string  `json:"family"`
@@ -90,22 +110,23 @@ func ab38Validate(ab38Source []byte) ([]ab38json.RawMessage, map[string]ab38json
 }
 
 func Ab38Entries() (ab38json.RawMessage, error) {
-	if _, _, ab38Err := ab38Validate(ab38Data); ab38Err != nil {
-		return nil, ab38Err
+	ab38Cached := ab38Load()
+	if ab38Cached.ab38Err != nil {
+		return nil, ab38Cached.ab38Err
 	}
-	return ab38bytes.Clone(ab38Data), nil
+	return ab38bytes.Clone(ab38Cached.ab38Entries), nil
 }
 
 func Ab38Lookup(ab38Key Ab38Key) (ab38json.RawMessage, bool, error) {
-	_, ab38Index, ab38Err := ab38Validate(ab38Data)
-	if ab38Err != nil {
-		return nil, false, ab38Err
+	ab38Cached := ab38Load()
+	if ab38Cached.ab38Err != nil {
+		return nil, false, ab38Cached.ab38Err
 	}
 	ab38Encoded, ab38Err := ab38json.Marshal(ab38Key)
 	if ab38Err != nil {
 		return nil, false, ab38Err
 	}
-	ab38Raw, ab38Found := ab38Index[string(ab38Encoded)]
+	ab38Raw, ab38Found := ab38Cached.ab38Index[string(ab38Encoded)]
 	return ab38bytes.Clone(ab38Raw), ab38Found, nil
 }
 

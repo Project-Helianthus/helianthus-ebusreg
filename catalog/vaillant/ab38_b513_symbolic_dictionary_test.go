@@ -7,6 +7,7 @@ import (
 	ab38reflect "reflect"
 	ab38strconv "strconv"
 	ab38strings "strings"
+	ab38sync "sync"
 	ab38testing "testing"
 )
 
@@ -1370,6 +1371,21 @@ func TestAb38LookupExactRows(ab38T *ab38testing.T) {
 	}
 }
 
+func TestAb38LookupCachedAllocations(ab38T *ab38testing.T) {
+	ab38K := ab38Key(0, "eBUS")
+	if _, ab38Found, ab38Err := Ab38Lookup(ab38K); ab38Err != nil || !ab38Found {
+		ab38T.Fatalf("ab38 cache warmup failed: %v", ab38Err)
+	}
+	ab38Allocations := ab38testing.AllocsPerRun(3, func() {
+		if ab38Raw, ab38Found, ab38Err := Ab38Lookup(ab38K); ab38Err != nil || !ab38Found || len(ab38Raw) == 0 {
+			ab38T.Fatalf("ab38 cached lookup failed: %v", ab38Err)
+		}
+	})
+	if ab38Allocations > 20 {
+		ab38T.Fatalf("ab38 repeated lookup allocated %.0f objects; expected at most 20 for the key and selected row", ab38Allocations)
+	}
+}
+
 func TestAb38GapsAndNonApplicableAxes(ab38T *ab38testing.T) {
 	ab38Known := map[uint16]bool{}
 	for _, ab38Line := range ab38strings.Split(ab38ExpectedTable, "\n") {
@@ -1484,8 +1500,65 @@ func TestAb38IndependentStorage(ab38T *ab38testing.T) {
 func ab38Install(ab38T *ab38testing.T, ab38Source []byte) {
 	ab38T.Helper()
 	ab38Previous := ab38Data
+	ab38PreviousCache := ab38Dictionary
 	ab38Data = ab38Source
-	ab38T.Cleanup(func() { ab38Data = ab38Previous })
+	ab38Dictionary = new(ab38Cache)
+	ab38T.Cleanup(func() {
+		ab38Data = ab38Previous
+		ab38Dictionary = ab38PreviousCache
+	})
+}
+
+func TestAb38ConcurrentCacheInitialization(ab38T *ab38testing.T) {
+	ab38Source := ab38Encode(ab38T, []any{ab38ExpectedRow(ab38T, 0, "AccessoryRelaisOne")})
+	ab38Install(ab38T, ab38Source)
+	var ab38Wait ab38sync.WaitGroup
+	ab38Start := make(chan struct{})
+	for ab38Worker := 0; ab38Worker < 16; ab38Worker++ {
+		ab38Wait.Add(1)
+		go func() {
+			defer ab38Wait.Done()
+			<-ab38Start
+			ab38Entries, ab38Err := Ab38Entries()
+			if ab38Err != nil || !ab38bytes.Equal(ab38Entries, ab38Source) {
+				ab38T.Errorf("ab38 concurrent entries failed: %v", ab38Err)
+				return
+			}
+			ab38Raw, ab38Found, ab38Err := Ab38Lookup(ab38Key(0, "eBUS"))
+			if ab38Err != nil || !ab38Found || !ab38bytes.Contains(ab38Raw, []byte("AccessoryRelaisOne")) {
+				ab38T.Errorf("ab38 concurrent lookup failed: %v", ab38Err)
+				return
+			}
+			ab38Entries[0] ^= 0xff
+			ab38Raw[0] ^= 0xff
+		}()
+	}
+	close(ab38Start)
+	ab38Wait.Wait()
+	ab38Entries, ab38Err := Ab38Entries()
+	if ab38Err != nil || !ab38bytes.Equal(ab38Entries, ab38Source) {
+		ab38T.Fatalf("ab38 concurrent callers changed cached entries: %v", ab38Err)
+	}
+}
+
+func TestAb38CachedSourceIsolation(ab38T *ab38testing.T) {
+	ab38Source := ab38Encode(ab38T, []any{ab38ExpectedRow(ab38T, 0, "AccessoryRelaisOne")})
+	ab38Install(ab38T, ab38Source)
+	ab38Expected := ab38bytes.Clone(ab38Source)
+	if _, ab38Found, ab38Err := Ab38Lookup(ab38Key(0, "eBUS")); ab38Err != nil || !ab38Found {
+		ab38T.Fatalf("ab38 cache warmup failed: %v", ab38Err)
+	}
+	for ab38Offset := range ab38Source {
+		ab38Source[ab38Offset] ^= 0xff
+	}
+	ab38Entries, ab38Err := Ab38Entries()
+	if ab38Err != nil || !ab38bytes.Equal(ab38Entries, ab38Expected) {
+		ab38T.Fatalf("ab38 cached entries retain source storage: %v", ab38Err)
+	}
+	ab38Raw, ab38Found, ab38Err := Ab38Lookup(ab38Key(0, "PeBUS"))
+	if ab38Err != nil || !ab38Found || !ab38bytes.Contains(ab38Raw, []byte("AccessoryRelaisOne")) {
+		ab38T.Fatalf("ab38 cached lookup retains source storage: %v", ab38Err)
+	}
 }
 
 func TestAb38MalformedAndDuplicates(ab38T *ab38testing.T) {

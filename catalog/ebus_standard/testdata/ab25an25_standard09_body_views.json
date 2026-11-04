@@ -1,0 +1,649 @@
+{
+  "ab25an25Bodies": [
+    {
+      "ab25an25Label": "ab25an25_0900",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [
+        9,
+        0,
+        170,
+        85
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25Data": [
+        170,
+        85
+      ],
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0903",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [
+        9,
+        3,
+        170,
+        85
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25Data": [
+        170,
+        85
+      ],
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0902_unstripped",
+      "ab25an25Service": 2306,
+      "ab25an25Raw": [
+        9,
+        2,
+        170,
+        85
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25Data": [
+        9,
+        2,
+        170,
+        85
+      ],
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0902_ordinary",
+      "ab25an25Service": 2306,
+      "ab25an25Raw": [
+        170
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25Data": [
+        170
+      ],
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0902_empty",
+      "ab25an25Service": 2306,
+      "ab25an25Raw": [],
+      "ab25an25State": "candidate",
+      "ab25an25Data": [],
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0901_constants",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [
+        9,
+        1
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0901_extension",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [
+        9,
+        1,
+        170
+      ],
+      "ab25an25State": "unresolved",
+      "ab25an25Data": null,
+      "ab25an25Tail": [
+        170
+      ]
+    },
+    {
+      "ab25an25Label": "ab25an25_0900_empty",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0900_short",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [
+        9
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0900_first",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [
+        8,
+        0
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0900_second",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [
+        9,
+        255
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0900_empty_data",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [
+        9,
+        0
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25Data": [],
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0901_empty",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0901_short",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [
+        9
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0901_first",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [
+        8,
+        1
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0901_second",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [
+        9,
+        255
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0903_empty",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0903_short",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [
+        9
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0903_first",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [
+        8,
+        3
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0903_second",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [
+        9,
+        255
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25Data": null,
+      "ab25an25Tail": null
+    },
+    {
+      "ab25an25Label": "ab25an25_0903_empty_data",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [
+        9,
+        3
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25Data": [],
+      "ab25an25Tail": null
+    }
+  ],
+  "ab25an25Addresses": [
+    {
+      "ab25an25Label": "ab25an25_address_0_base",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [
+        52,
+        18
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": 4660,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_0_low",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [
+        53,
+        18
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": 4661,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_0_high",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [
+        52,
+        19
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": 4916,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_0_empty",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_0_short",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [
+        52
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_0_long",
+      "ab25an25Service": 2304,
+      "ab25an25Raw": [
+        52,
+        18,
+        0
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_1_base",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [
+        52,
+        18
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": 4660,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_1_low",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [
+        53,
+        18
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": 4661,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_1_high",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [
+        52,
+        19
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": 4916,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_1_empty",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_1_short",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [
+        52
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_1_long",
+      "ab25an25Service": 2305,
+      "ab25an25Raw": [
+        52,
+        18,
+        0
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_2_base",
+      "ab25an25Service": 2306,
+      "ab25an25Raw": [
+        52,
+        18
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": null,
+      "ab25an25Low": 52,
+      "ab25an25High": 18
+    },
+    {
+      "ab25an25Label": "ab25an25_address_2_low",
+      "ab25an25Service": 2306,
+      "ab25an25Raw": [
+        53,
+        18
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": null,
+      "ab25an25Low": 53,
+      "ab25an25High": 18
+    },
+    {
+      "ab25an25Label": "ab25an25_address_2_high",
+      "ab25an25Service": 2306,
+      "ab25an25Raw": [
+        52,
+        19
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": null,
+      "ab25an25Low": 52,
+      "ab25an25High": 19
+    },
+    {
+      "ab25an25Label": "ab25an25_address_2_empty",
+      "ab25an25Service": 2306,
+      "ab25an25Raw": [],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_2_short",
+      "ab25an25Service": 2306,
+      "ab25an25Raw": [
+        52
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_2_long",
+      "ab25an25Service": 2306,
+      "ab25an25Raw": [
+        52,
+        18,
+        0
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_3_base",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [
+        52,
+        18
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": null,
+      "ab25an25Low": 52,
+      "ab25an25High": 18
+    },
+    {
+      "ab25an25Label": "ab25an25_address_3_low",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [
+        53,
+        18
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": null,
+      "ab25an25Low": 53,
+      "ab25an25High": 18
+    },
+    {
+      "ab25an25Label": "ab25an25_address_3_high",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [
+        52,
+        19
+      ],
+      "ab25an25State": "candidate",
+      "ab25an25LE": null,
+      "ab25an25Low": 52,
+      "ab25an25High": 19
+    },
+    {
+      "ab25an25Label": "ab25an25_address_3_empty",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_3_short",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [
+        52
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    },
+    {
+      "ab25an25Label": "ab25an25_address_3_long",
+      "ab25an25Service": 2307,
+      "ab25an25Raw": [
+        52,
+        18,
+        0
+      ],
+      "ab25an25State": "incomplete",
+      "ab25an25LE": null,
+      "ab25an25Low": null,
+      "ab25an25High": null
+    }
+  ],
+  "ab25an25Counts": [
+    {
+      "ab25an25Label": "ab25an25_count_0_0",
+      "ab25an25Service": 2304,
+      "ab25an25Value": 0,
+      "ab25an25State": "candidate",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_0_10",
+      "ab25an25Service": 2304,
+      "ab25an25Value": 10,
+      "ab25an25State": "candidate",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_0_11",
+      "ab25an25Service": 2304,
+      "ab25an25Value": 11,
+      "ab25an25State": "candidate",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_0_255",
+      "ab25an25Service": 2304,
+      "ab25an25Value": 255,
+      "ab25an25State": "candidate",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_1_0",
+      "ab25an25Service": 2305,
+      "ab25an25Value": 0,
+      "ab25an25State": "unknown",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_1_10",
+      "ab25an25Service": 2305,
+      "ab25an25Value": 10,
+      "ab25an25State": "unknown",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_1_11",
+      "ab25an25Service": 2305,
+      "ab25an25Value": 11,
+      "ab25an25State": "unknown",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_1_255",
+      "ab25an25Service": 2305,
+      "ab25an25Value": 255,
+      "ab25an25State": "unknown",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_2_0",
+      "ab25an25Service": 2306,
+      "ab25an25Value": 0,
+      "ab25an25State": "candidate",
+      "ab25an25Maximum": 10,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_2_10",
+      "ab25an25Service": 2306,
+      "ab25an25Value": 10,
+      "ab25an25State": "candidate",
+      "ab25an25Maximum": 10,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_2_11",
+      "ab25an25Service": 2306,
+      "ab25an25Value": 11,
+      "ab25an25State": "candidate",
+      "ab25an25Maximum": 10,
+      "ab25an25Conflict": true
+    },
+    {
+      "ab25an25Label": "ab25an25_count_2_255",
+      "ab25an25Service": 2306,
+      "ab25an25Value": 255,
+      "ab25an25State": "candidate",
+      "ab25an25Maximum": 10,
+      "ab25an25Conflict": true
+    },
+    {
+      "ab25an25Label": "ab25an25_count_3_0",
+      "ab25an25Service": 2307,
+      "ab25an25Value": 0,
+      "ab25an25State": "unknown",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_3_10",
+      "ab25an25Service": 2307,
+      "ab25an25Value": 10,
+      "ab25an25State": "unknown",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_3_11",
+      "ab25an25Service": 2307,
+      "ab25an25Value": 11,
+      "ab25an25State": "unknown",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    },
+    {
+      "ab25an25Label": "ab25an25_count_3_255",
+      "ab25an25Service": 2307,
+      "ab25an25Value": 255,
+      "ab25an25State": "unknown",
+      "ab25an25Maximum": null,
+      "ab25an25Conflict": false
+    }
+  ]
+}

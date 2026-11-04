@@ -1,0 +1,332 @@
+{
+  "metadata_presence": "Proven",
+  "physical_adaptation": "Unknown",
+  "installed_support": "Unknown",
+  "polling_permission": "Unknown",
+  "routable_invocation": "Unknown",
+  "limitations": [
+    "Finite partial B504 read-candidate metadata; broader family catalog remains incomplete.",
+    "Candidate presence does not establish native qualification, freshness, invocation or physical support.",
+    "Preserve original raw values; omitted positions, other sentinels and offset arithmetic remain Unknown.",
+    "No automatic variant selection, provider registration, polling defaults or executor."
+  ],
+  "entries": [
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "outside-temperature-div16",
+        "primary": 181,
+        "secondary": 4,
+        "operation": 22,
+        "direction": "response",
+        "field": "corrected_outside_temperature"
+      },
+      "grade": "Hypothesis",
+      "position": null,
+      "width_bytes": 2,
+      "signedness": "signed",
+      "byte_order": "little-endian",
+      "divisor": 16,
+      "unit": "degrees Celsius",
+      "labels": {},
+      "positive_label": null,
+      "domain": null,
+      "notes": [
+        "Unqualified candidate; reply length cannot select a divisor."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "outside-temperature-div256",
+        "primary": 181,
+        "secondary": 4,
+        "operation": 22,
+        "direction": "response",
+        "field": "corrected_outside_temperature"
+      },
+      "grade": "Hypothesis",
+      "position": null,
+      "width_bytes": 2,
+      "signedness": "signed",
+      "byte_order": "little-endian",
+      "divisor": 256,
+      "unit": "degrees Celsius",
+      "labels": {},
+      "positive_label": null,
+      "domain": null,
+      "notes": [
+        "Separate unqualified alternative; reply length cannot select a divisor."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "unused-tail",
+        "primary": 181,
+        "secondary": 4,
+        "operation": 22,
+        "direction": "response",
+        "field": "unused_tail"
+      },
+      "grade": "Unknown",
+      "position": null,
+      "width_bytes": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "labels": {},
+      "positive_label": null,
+      "domain": null,
+      "notes": [
+        "Variable unused tail; extent and trailing offset are Unknown."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "setpoint",
+        "primary": 181,
+        "secondary": 4,
+        "operation": 32,
+        "direction": "response",
+        "field": "setpoint"
+      },
+      "grade": "Hypothesis",
+      "position": null,
+      "width_bytes": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "labels": {
+        "0": "no-demand"
+      },
+      "positive_label": "nonzero candidate",
+      "domain": null,
+      "notes": [
+        "Nonzero setpoints include declared offsets; exact arithmetic is Unknown."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "protection",
+        "primary": 181,
+        "secondary": 4,
+        "operation": 33,
+        "direction": "response",
+        "field": "protection_temperature"
+      },
+      "grade": "Hypothesis",
+      "position": null,
+      "width_bytes": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "labels": {
+        "0": "off"
+      },
+      "positive_label": "protection-active",
+      "domain": null,
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "adjustment",
+        "primary": 181,
+        "secondary": 4,
+        "operation": 38,
+        "direction": "response",
+        "field": "adjustment_flag"
+      },
+      "grade": "Hypothesis",
+      "position": null,
+      "width_bytes": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "labels": {
+        "1": "setpoint change permitted"
+      },
+      "positive_label": null,
+      "domain": null,
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "room-temperature",
+        "primary": 181,
+        "secondary": 4,
+        "operation": 38,
+        "direction": "response",
+        "field": "room_temperature"
+      },
+      "grade": "Hypothesis",
+      "position": null,
+      "width_bytes": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "labels": {
+        "255": "unavailable"
+      },
+      "positive_label": null,
+      "domain": null,
+      "notes": [
+        "Unavailable is contextual to this operation and field alone."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "solar-scalar-three",
+        "primary": 181,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "solar_state"
+      },
+      "grade": "Hypothesis",
+      "position": null,
+      "width_bytes": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "labels": {},
+      "positive_label": null,
+      "domain": {
+        "values": [
+          0,
+          1,
+          2
+        ],
+        "minimum": null,
+        "maximum": null,
+        "step": null
+      },
+      "notes": [
+        "Scalar table; meanings of individual codes remain Unknown."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "solar-scalar-two",
+        "primary": 181,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "solar_state"
+      },
+      "grade": "Hypothesis",
+      "position": null,
+      "width_bytes": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "labels": {},
+      "positive_label": null,
+      "domain": {
+        "values": [
+          0,
+          1
+        ],
+        "minimum": null,
+        "maximum": null,
+        "step": null
+      },
+      "notes": [
+        "Separate scalar table; meanings of individual codes remain Unknown."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "solar-bits",
+        "primary": 181,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "solar_state"
+      },
+      "grade": "Unknown",
+      "position": null,
+      "width_bytes": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divisor": null,
+      "unit": null,
+      "labels": {},
+      "positive_label": null,
+      "domain": null,
+      "notes": [
+        "Competing bit descriptions remain separate; bit positions and meanings are Unknown."
+      ]
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "preheating-five-minute-60",
+        "primary": 181,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "preheating_duration"
+      },
+      "grade": "Hypothesis",
+      "position": null,
+      "width_bytes": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divisor": null,
+      "unit": "minutes",
+      "labels": {},
+      "positive_label": null,
+      "domain": {
+        "values": null,
+        "minimum": 0,
+        "maximum": 60,
+        "step": 5
+      },
+      "notes": []
+    },
+    {
+      "key": {
+        "family": "vaillant",
+        "variant": "preheating-300",
+        "primary": 181,
+        "secondary": 4,
+        "operation": null,
+        "direction": "response",
+        "field": "preheating_duration"
+      },
+      "grade": "Hypothesis",
+      "position": null,
+      "width_bytes": null,
+      "signedness": "Unknown",
+      "byte_order": "Unknown",
+      "divisor": null,
+      "unit": "minutes",
+      "labels": {},
+      "positive_label": null,
+      "domain": {
+        "values": null,
+        "minimum": 0,
+        "maximum": 300,
+        "step": null
+      },
+      "notes": [
+        "Step is unprovided; this candidate is not a union with the five-minute alternative."
+      ]
+    }
+  ]
+}

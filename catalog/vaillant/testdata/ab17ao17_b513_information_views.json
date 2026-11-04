@@ -1,0 +1,6 @@
+[
+ {"id":"ab17ao17_information_tail","input":{"context":{"primary":181,"secondary":19,"operation":7,"direction":"positive","view":"information","family":"synthetic-family","variant":"synthetic-variant"},"fields":{"logical_object":[91,82,73,2,255,7,15,63,1,7,8,9,201]}},"state":"Hypothesis"},
+ {"id":"ab17ao17_feedback_op05","input":{"context":{"primary":181,"secondary":19,"operation":5,"direction":"positive","view":"feedback"},"fields":{"feedback":[0]}},"state":"Hypothesis"},
+ {"id":"ab17ao17_feedback_op06","input":{"context":{"primary":181,"secondary":19,"operation":6,"direction":"positive","view":"feedback"},"fields":{"feedback":[0]}},"state":"Hypothesis"},
+ {"id":"ab17ao17_physical_unknown","input":{"context":{"primary":181,"secondary":19,"operation":7,"direction":"positive","view":"physical"},"fields":{"logical_object":[181,19,7,2,255,7,15,63,1,7,8,9]}},"state":"Unknown"}
+]

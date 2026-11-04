@@ -1,0 +1,206 @@
+[
+  {
+    "id": "ab21ao21_request03",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 25,
+        "operation": 3,
+        "direction": "request",
+        "view": "logical-body"
+      },
+      "fields": {
+        "logical_object": [
+          0,
+          0,
+          0,
+          0,
+          255,
+          65
+        ]
+      }
+    },
+    "fields": {
+      "opaque": {
+        "raw": [
+          0,
+          255,
+          65
+        ],
+        "state": "Hypothesis",
+        "flags": {
+          "accepted_empty": "Unknown",
+          "unlimited_carrier": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab21ao21_request08",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 25,
+        "operation": 8,
+        "direction": "request",
+        "view": "logical-body"
+      },
+      "fields": {
+        "logical_object": [
+          0,
+          0,
+          0,
+          127,
+          0,
+          255
+        ]
+      }
+    },
+    "fields": {
+      "slave_address": {
+        "raw": [
+          127
+        ],
+        "state": "Hypothesis"
+      },
+      "opaque": {
+        "raw": [
+          0,
+          255
+        ],
+        "state": "Hypothesis",
+        "flags": {
+          "accepted_empty": "Unknown",
+          "unlimited_carrier": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab21ao21_positive03",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 25,
+        "operation": 3,
+        "direction": "positive",
+        "view": "logical-body"
+      },
+      "fields": {
+        "logical_object": [
+          0,
+          0,
+          0,
+          0,
+          255
+        ]
+      }
+    },
+    "fields": {
+      "opaque": {
+        "raw": [
+          0,
+          255
+        ],
+        "state": "Hypothesis",
+        "flags": {
+          "accepted_empty": "Unknown",
+          "unlimited_carrier": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab21ao21_positiveAA",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 25,
+        "operation": 170,
+        "direction": "positive",
+        "view": "logical-body"
+      },
+      "fields": {
+        "logical_object": [
+          0,
+          0,
+          0,
+          255,
+          0
+        ]
+      }
+    },
+    "fields": {
+      "opaque": {
+        "raw": [
+          255,
+          0
+        ],
+        "state": "Hypothesis",
+        "flags": {
+          "accepted_empty": "Unknown",
+          "unlimited_carrier": "Unknown"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab21ao21_positive06",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 25,
+        "operation": 6,
+        "direction": "positive",
+        "view": "logical-body"
+      },
+      "fields": {
+        "logical_object": [
+          0,
+          0,
+          0,
+          255
+        ]
+      }
+    },
+    "fields": {
+      "form": {
+        "raw": [
+          0,
+          0,
+          0
+        ],
+        "state": "Hypothesis",
+        "label": "prefix-only"
+      },
+      "unmodelled": {
+        "raw": [
+          255
+        ],
+        "state": "Unknown"
+      }
+    }
+  },
+  {
+    "id": "ab21ao21_positive01",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 25,
+        "operation": 1,
+        "direction": "positive",
+        "view": "logical-body"
+      },
+      "fields": {
+        "logical_object": [
+          0,
+          0,
+          0,
+          65,
+          99
+        ]
+      }
+    },
+    "fields": {}
+  }
+]

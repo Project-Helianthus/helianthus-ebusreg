@@ -1,0 +1,275 @@
+{
+  "ab66Keys": [
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 0,
+      "Ab66Register": 2
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 0,
+      "Ab66Register": 3
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 0,
+      "Ab66Register": 4
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 0,
+      "Ab66Register": 128
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 1,
+      "Ab66Register": 1
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 1,
+      "Ab66Register": 2
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 1,
+      "Ab66Register": 3
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 1,
+      "Ab66Register": 4
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 1,
+      "Ab66Register": 5
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 1,
+      "Ab66Register": 6
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 2,
+      "Ab66Register": 1
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 2,
+      "Ab66Register": 2
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 2,
+      "Ab66Register": 4
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 2,
+      "Ab66Register": 5
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 2,
+      "Ab66Register": 6
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 3,
+      "Ab66Register": 1
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 3,
+      "Ab66Register": 2
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 3,
+      "Ab66Register": 5
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 3,
+      "Ab66Register": 6
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 4,
+      "Ab66Register": 1
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 4,
+      "Ab66Register": 2
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 4,
+      "Ab66Register": 3
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 4,
+      "Ab66Register": 4
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 4,
+      "Ab66Register": 5
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 4,
+      "Ab66Register": 6
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 5,
+      "Ab66Register": 1
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 5,
+      "Ab66Register": 2
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 5,
+      "Ab66Register": 3
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 5,
+      "Ab66Register": 4
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 8,
+      "Ab66Register": 1
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 8,
+      "Ab66Register": 2
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 8,
+      "Ab66Register": 3
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 8,
+      "Ab66Register": 4
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 8,
+      "Ab66Register": 5
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 8,
+      "Ab66Register": 6
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 9,
+      "Ab66Register": 1
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 9,
+      "Ab66Register": 2
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 9,
+      "Ab66Register": 3
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 9,
+      "Ab66Register": 4
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 9,
+      "Ab66Register": 5
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 9,
+      "Ab66Register": 6
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 10,
+      "Ab66Register": 1
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 10,
+      "Ab66Register": 2
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 10,
+      "Ab66Register": 3
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 10,
+      "Ab66Register": 5
+    },
+    {
+      "Ab66Opcode": 2,
+      "Ab66Group": 10,
+      "Ab66Register": 6
+    }
+  ],
+  "ab66Controls": [
+    {
+      "Ab66Key": {
+        "Ab66Opcode": 2,
+        "Ab66Group": 0,
+        "Ab66Register": 2
+      },
+      "Ab66Hint": {
+        "Ab66Type": "f32_range",
+        "Ab66Min": -26,
+        "Ab66Max": 10,
+        "Ab66Step": 1
+      }
+    },
+    {
+      "Ab66Key": {
+        "Ab66Opcode": 2,
+        "Ab66Group": 0,
+        "Ab66Register": 4
+      },
+      "Ab66Hint": {
+        "Ab66Type": "u16_range",
+        "Ab66Min": 0,
+        "Ab66Max": 300,
+        "Ab66Step": 10
+      }
+    },
+    {
+      "Ab66Key": {
+        "Ab66Opcode": 2,
+        "Ab66Group": 3,
+        "Ab66Register": 2
+      },
+      "Ab66Hint": {
+        "Ab66Type": "f32_range",
+        "Ab66Min": 15,
+        "Ab66Max": 30,
+        "Ab66Step": 0.5
+      }
+    }
+  ]
+}

@@ -1,0 +1,959 @@
+[
+  {
+    "id": "ab01aq01-positive16",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 22,
+        "direction": "positive",
+        "view": "corrected-outside",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          16,
+          0
+        ]
+      },
+      "arguments": {
+        "divisor": 16
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          16,
+          0
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "number": 1,
+        "calculation": "Proven"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-positive256",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 22,
+        "direction": "positive",
+        "view": "corrected-outside",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          16,
+          0
+        ]
+      },
+      "arguments": {
+        "divisor": 256
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          16,
+          0
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "number": 0.0625,
+        "calculation": "Proven"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-negative16",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 22,
+        "direction": "positive",
+        "view": "corrected-outside",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          240,
+          255
+        ]
+      },
+      "arguments": {
+        "divisor": 16
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          240,
+          255
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "number": -1,
+        "calculation": "Proven"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-negative256",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 22,
+        "direction": "positive",
+        "view": "corrected-outside",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          240,
+          255
+        ]
+      },
+      "arguments": {
+        "divisor": 256
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          240,
+          255
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "number": -0.0625,
+        "calculation": "Proven"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-demand0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 32,
+        "direction": "positive",
+        "view": "demand",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "raw": [
+          0
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "no-demand"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-demand1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 32,
+        "direction": "positive",
+        "view": "demand",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "raw": [
+          1
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "offset-included-candidate"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-demand255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 32,
+        "direction": "positive",
+        "view": "demand",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "raw": [
+          255
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "offset-included-candidate"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-protection0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 33,
+        "direction": "positive",
+        "view": "protection",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          0
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "off"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-protection1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 33,
+        "direction": "positive",
+        "view": "protection",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          1
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "protection-active"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-protection255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 33,
+        "direction": "positive",
+        "view": "protection",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          255
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "protection-active"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-adjustment1room255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 38,
+        "direction": "positive",
+        "view": "adjustment",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "adjustment": [
+          1
+        ],
+        "room": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "adjustment": {
+        "raw": [
+          1
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "change-permitted"
+      },
+      "room": {
+        "raw": [
+          255
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "unavailable-candidate"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-adjustment1room254",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 38,
+        "direction": "positive",
+        "view": "adjustment",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "adjustment": [
+          1
+        ],
+        "room": [
+          254
+        ]
+      }
+    },
+    "expected": {
+      "adjustment": {
+        "raw": [
+          1
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "change-permitted"
+      },
+      "room": {
+        "raw": [
+          254
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-adjustment2room255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 38,
+        "direction": "positive",
+        "view": "adjustment",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "adjustment": [
+          2
+        ],
+        "room": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "adjustment": {
+        "raw": [
+          2
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis"
+      },
+      "room": {
+        "raw": [
+          255
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "unavailable-candidate"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-adjustment2room254",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 38,
+        "direction": "positive",
+        "view": "adjustment",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "adjustment": [
+          2
+        ],
+        "room": [
+          254
+        ]
+      }
+    },
+    "expected": {
+      "adjustment": {
+        "raw": [
+          2
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis"
+      },
+      "room": {
+        "raw": [
+          254
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-burner",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 13,
+        "direction": "positive",
+        "view": "circuit-role",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          40
+        ],
+        "dhw_request": [
+          1
+        ]
+      },
+      "arguments": {
+        "role": "burner"
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          40
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "common-sensor",
+        "number": 40
+      },
+      "dhw_request": {
+        "raw": [
+          1
+        ],
+        "present": true,
+        "state": "Unknown"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-mixer",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 13,
+        "direction": "positive",
+        "view": "circuit-role",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          40
+        ],
+        "dhw_request": [
+          1
+        ]
+      },
+      "arguments": {
+        "role": "mixer"
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          40
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "flow",
+        "number": 40
+      },
+      "dhw_request": {
+        "raw": [
+          1
+        ],
+        "present": true,
+        "state": "Unknown"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-dhw",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 13,
+        "direction": "positive",
+        "view": "circuit-role",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          40
+        ],
+        "dhw_request": [
+          1
+        ]
+      },
+      "arguments": {
+        "role": "dhw"
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          40
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "tank",
+        "number": 40
+      },
+      "dhw_request": {
+        "raw": [
+          1
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "dhw"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-unknown",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 13,
+        "direction": "positive",
+        "view": "circuit-role",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          40
+        ],
+        "dhw_request": [
+          1
+        ]
+      },
+      "arguments": {
+        "role": "unknown"
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          40
+        ],
+        "present": true,
+        "state": "Unknown"
+      },
+      "dhw_request": {
+        "raw": [
+          1
+        ],
+        "present": true,
+        "state": "Unknown"
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-token-zero",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 13,
+        "direction": "positive",
+        "view": "circuit-role",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          0
+        ]
+      },
+      "arguments": {
+        "role": "burner"
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          0
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "common-sensor",
+        "number": 0
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-token-max",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 13,
+        "direction": "positive",
+        "view": "circuit-role",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          255
+        ]
+      },
+      "arguments": {
+        "role": "mixer"
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          255
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "flow",
+        "number": 255
+      }
+    },
+    "state": "complete"
+  },
+  {
+    "id": "ab01aq01-short-with-sibling",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 13,
+        "direction": "positive",
+        "view": "circuit-role",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [],
+        "dhw_request": [
+          1
+        ]
+      },
+      "arguments": {
+        "role": "dhw"
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [],
+        "present": true,
+        "state": "incomplete"
+      },
+      "dhw_request": {
+        "raw": [
+          1
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "dhw"
+      }
+    },
+    "state": "partial"
+  },
+  {
+    "id": "ab01aq01-short-outside",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 22,
+        "direction": "positive",
+        "view": "corrected-outside",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          16
+        ]
+      },
+      "arguments": {
+        "divisor": 16
+      }
+    },
+    "expected": {
+      "temperature": {
+        "raw": [
+          16
+        ],
+        "present": true,
+        "state": "incomplete"
+      }
+    },
+    "state": "partial"
+  },
+  {
+    "id": "ab01aq01-dhw-request-zero",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 13,
+        "direction": "positive",
+        "view": "circuit-role",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          40
+        ],
+        "dhw_request": [
+          0
+        ]
+      },
+      "arguments": {
+        "role": "dhw"
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "temperature": {
+        "raw": [
+          40
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "number": 40,
+        "label": "tank"
+      },
+      "dhw_request": {
+        "raw": [
+          0
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "label": "dhw"
+      }
+    }
+  },
+  {
+    "id": "ab01aq01-mixer-request-max",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 13,
+        "direction": "positive",
+        "view": "circuit-role",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          40
+        ],
+        "dhw_request": [
+          255
+        ]
+      },
+      "arguments": {
+        "role": "mixer"
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "temperature": {
+        "raw": [
+          40
+        ],
+        "present": true,
+        "state": "complete",
+        "grade": "Hypothesis",
+        "number": 40,
+        "label": "flow"
+      },
+      "dhw_request": {
+        "raw": [
+          255
+        ],
+        "present": true,
+        "state": "Unknown"
+      }
+    }
+  },
+  {
+    "id": "ab01aq01-unknown-empty-role",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 4,
+        "operation": 13,
+        "direction": "positive",
+        "view": "circuit-role",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "temperature": [
+          40
+        ],
+        "dhw_request": [
+          0
+        ]
+      },
+      "arguments": {
+        "role": ""
+      }
+    },
+    "state": "complete",
+    "expected": {
+      "temperature": {
+        "raw": [
+          40
+        ],
+        "present": true,
+        "state": "Unknown"
+      },
+      "dhw_request": {
+        "raw": [
+          0
+        ],
+        "present": true,
+        "state": "Unknown"
+      }
+    }
+  }
+]

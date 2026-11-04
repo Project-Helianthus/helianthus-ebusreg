@@ -1,0 +1,197 @@
+[
+  {
+    "ab64Label": "ab64-controller-720-0002",
+    "ab64Family": "controller-720",
+    "ab64Register": 2,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-720-0005",
+    "ab64Family": "controller-720",
+    "ab64Register": 5,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-720-0009",
+    "ab64Family": "controller-720",
+    "ab64Register": 9,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-720-000F",
+    "ab64Family": "controller-720",
+    "ab64Register": 15,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-720-0014",
+    "ab64Family": "controller-720",
+    "ab64Register": 20,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-720-0015",
+    "ab64Family": "controller-720",
+    "ab64Register": 21,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-720-0023",
+    "ab64Family": "controller-720",
+    "ab64Register": 35,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-720-0028",
+    "ab64Family": "controller-720",
+    "ab64Register": 40,
+    "ab64Unit": "%",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-700-0002",
+    "ab64Family": "controller-700",
+    "ab64Register": 2,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-700-0005",
+    "ab64Family": "controller-700",
+    "ab64Register": 5,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-700-0009",
+    "ab64Family": "controller-700",
+    "ab64Register": 9,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-700-000F",
+    "ab64Family": "controller-700",
+    "ab64Register": 15,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-700-0014",
+    "ab64Family": "controller-700",
+    "ab64Register": 20,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-700-0015",
+    "ab64Family": "controller-700",
+    "ab64Register": 21,
+    "ab64Unit": "°C",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  },
+  {
+    "ab64Label": "ab64-controller-700-0028",
+    "ab64Family": "controller-700",
+    "ab64Register": 40,
+    "ab64Unit": "%",
+    "ab64Raw": [
+      0,
+      0,
+      192,
+      63
+    ],
+    "ab64Expected": 1.5
+  }
+]

@@ -1,0 +1,993 @@
+[
+  {
+    "id": "ab23aq23_op00_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 0,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "number": 0,
+        "label": "off"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op00_100",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 0,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          100
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "number": 100,
+        "label": "on-or-speed"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op00_101",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 0,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          101
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "number": 101,
+        "label": "unmapped"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op00_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 0,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "number": 255,
+        "label": "unmapped"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_valve_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "valve": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "valve": {
+        "number": 0,
+        "label": "CH"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_valve_50",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "valve": [
+          50
+        ]
+      }
+    },
+    "expected": {
+      "valve": {
+        "number": 50,
+        "label": "midpoint"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_valve_100",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "valve": [
+          100
+        ]
+      }
+    },
+    "expected": {
+      "valve": {
+        "number": 100,
+        "label": "DHW"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_valve_254",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "valve": [
+          254
+        ]
+      }
+    },
+    "expected": {
+      "valve": {
+        "number": 254,
+        "label": "standby"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_valve_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "valve": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "valve": {
+        "number": 255,
+        "label": "unchanged"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op02_feedback",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "valve": [
+          50
+        ],
+        "contact": [
+          2
+        ],
+        "tank": [
+          240,
+          255
+        ],
+        "virtual_error": [
+          255,
+          255
+        ]
+      }
+    },
+    "expected": {
+      "valve": {
+        "label": "unresolved",
+        "alternatives": [
+          "actual",
+          "setpoint-fallback"
+        ]
+      },
+      "contact": {
+        "number": 2,
+        "label": "unmapped"
+      },
+      "tank": {
+        "number": -1,
+        "label": "Celsius"
+      },
+      "virtual_error": {
+        "number": 65535,
+        "label": "no-error"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op02_tank_sentinel",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "valve": [
+          0
+        ],
+        "contact": [
+          0
+        ],
+        "tank": [
+          255,
+          255
+        ],
+        "virtual_error": [
+          0,
+          0
+        ]
+      }
+    },
+    "expected": {
+      "tank": {
+        "number": -0.0625,
+        "label": "Celsius"
+      },
+      "virtual_error": {
+        "number": 0,
+        "label": "unmapped"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op03",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 3,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          1
+        ],
+        "temperature_raw": [
+          52,
+          18
+        ]
+      }
+    },
+    "expected": {
+      "status": {
+        "label": "disconnected"
+      },
+      "temperature_raw": {
+        "number": 4660,
+        "label": "raw"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op03_ffff",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 3,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          2
+        ],
+        "temperature_raw": [
+          255,
+          255
+        ]
+      }
+    },
+    "expected": {
+      "status": {
+        "label": "short-circuit"
+      },
+      "temperature_raw": {
+        "number": 65535,
+        "label": "raw"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_selector",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 3,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "selector": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "selector": {
+        "label": "valve-temperature-input"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op04_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "number": 0,
+        "label": "off",
+        "candidate_domain": {
+          "timeout_seconds": 900,
+          "reset": "every-service"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op04_100",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          100
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "number": 100,
+        "label": "on-or-speed",
+        "candidate_domain": {
+          "timeout_seconds": 900,
+          "reset": "every-service"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op04_101",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          101
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "number": 101,
+        "label": "unmapped",
+        "candidate_domain": {
+          "timeout_seconds": 900,
+          "reset": "every-service"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op04_254",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          254
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "number": 254,
+        "label": "unmapped",
+        "candidate_domain": {
+          "timeout_seconds": 900,
+          "reset": "every-service"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_op04_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "setpoint": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "setpoint": {
+        "number": 255,
+        "label": "no-remote-control",
+        "candidate_domain": {
+          "timeout_seconds": 900,
+          "reset": "every-service"
+        }
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_accepted_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "feedback": [
+          0
+        ]
+      }
+    },
+    "expected": {
+      "feedback": {
+        "label": "rejected"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_accepted_1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "feedback": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "feedback": {
+        "label": "accepted"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_accepted_2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "feedback": [
+          2
+        ]
+      }
+    },
+    "expected": {
+      "feedback": {
+        "label": "rejected"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_accepted_255",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 4,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "feedback": [
+          255
+        ]
+      }
+    },
+    "expected": {
+      "feedback": {
+        "label": "rejected"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_channels",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 5,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "channel0": [
+          255
+        ],
+        "channel1": [
+          100
+        ],
+        "channel2": [
+          101
+        ]
+      },
+      "arguments": {
+        "external_modes": [
+          8,
+          0,
+          8
+        ]
+      }
+    },
+    "expected": {
+      "channel0": {
+        "label": "unchanged",
+        "prerequisite": true
+      },
+      "channel1": {
+        "label": "on-or-speed",
+        "prerequisite": false
+      },
+      "channel2": {
+        "label": "unmapped",
+        "prerequisite": true
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_contact_closed",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "valve": [
+          255
+        ],
+        "contact": [
+          1
+        ],
+        "tank": [
+          16,
+          0
+        ],
+        "virtual_error": [
+          52,
+          18
+        ]
+      }
+    },
+    "expected": {
+      "valve": {
+        "alternatives": [
+          "actual",
+          "setpoint-fallback"
+        ],
+        "label": "unresolved"
+      },
+      "contact": {
+        "number": 1,
+        "label": "closed"
+      },
+      "tank": {
+        "number": 1,
+        "label": "Celsius"
+      },
+      "virtual_error": {
+        "number": 4660,
+        "label": "unmapped"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_contact_open",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 2,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "valve": [
+          100
+        ],
+        "contact": [
+          0
+        ],
+        "tank": [
+          0,
+          0
+        ],
+        "virtual_error": [
+          1,
+          0
+        ]
+      }
+    },
+    "expected": {
+      "contact": {
+        "number": 0,
+        "label": "open"
+      },
+      "tank": {
+        "number": 0,
+        "label": "Celsius"
+      },
+      "virtual_error": {
+        "number": 1,
+        "label": "unmapped"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_status_okay",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 3,
+        "direction": "positive",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "status": [
+          0
+        ],
+        "temperature_raw": [
+          0,
+          1
+        ]
+      }
+    },
+    "expected": {
+      "status": {
+        "number": 0,
+        "label": "okay"
+      },
+      "temperature_raw": {
+        "number": 256,
+        "label": "raw"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_selector_unknown",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 3,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "selector": [
+          1
+        ]
+      }
+    },
+    "expected": {
+      "selector": {
+        "number": 1,
+        "label": "unmapped"
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_channels_0",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 5,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "channel0": [
+          0
+        ],
+        "channel1": [
+          1
+        ],
+        "channel2": [
+          255
+        ]
+      },
+      "arguments": {
+        "external_modes": [
+          8,
+          0,
+          0
+        ]
+      }
+    },
+    "expected": {
+      "channel0": {
+        "number": 0,
+        "label": "off",
+        "prerequisite": true
+      },
+      "channel1": {
+        "number": 1,
+        "label": "on-or-speed",
+        "prerequisite": false
+      },
+      "channel2": {
+        "number": 255,
+        "label": "unchanged",
+        "prerequisite": false
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_channels_1",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 5,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "channel0": [
+          100
+        ],
+        "channel1": [
+          101
+        ],
+        "channel2": [
+          254
+        ]
+      },
+      "arguments": {
+        "external_modes": [
+          0,
+          8,
+          0
+        ]
+      }
+    },
+    "expected": {
+      "channel0": {
+        "number": 100,
+        "label": "on-or-speed",
+        "prerequisite": false
+      },
+      "channel1": {
+        "number": 101,
+        "label": "unmapped",
+        "prerequisite": true
+      },
+      "channel2": {
+        "number": 254,
+        "label": "unmapped",
+        "prerequisite": false
+      }
+    }
+  },
+  {
+    "id": "ab23aq23_channels_2",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 18,
+        "operation": 5,
+        "direction": "request",
+        "view": "actuator-fields",
+        "family": "synthetic-family",
+        "variant": "synthetic-variant"
+      },
+      "fields": {
+        "channel0": [
+          255
+        ],
+        "channel1": [
+          0
+        ],
+        "channel2": [
+          100
+        ]
+      },
+      "arguments": {
+        "external_modes": [
+          0,
+          0,
+          8
+        ]
+      }
+    },
+    "expected": {
+      "channel0": {
+        "number": 255,
+        "label": "unchanged",
+        "prerequisite": false
+      },
+      "channel1": {
+        "number": 0,
+        "label": "off",
+        "prerequisite": false
+      },
+      "channel2": {
+        "number": 100,
+        "label": "on-or-speed",
+        "prerequisite": true
+      }
+    }
+  }
+]

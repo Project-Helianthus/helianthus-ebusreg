@@ -1,0 +1,4 @@
+[
+  {"id":"ab23ao23_request_max","direction":"request","bytes":[93,17,201,173,255,255,240,1,255,0,222],"numbers":{"PWM1":127.5,"PWM2":127.5,"stepper":240,"ED":127.5}},
+  {"id":"ab23ao23_positive_independent","direction":"positive","bytes":[19,211,46,255,3,0,12,255,255,0,0,16,0,171,232,3,94,1,222],"numbers":{"ADC":1023,"temperature1":192,"temperature2":-0.0625,"temperature3":0,"temperature4":1,"impeller":1000,"vortex":350}}
+]

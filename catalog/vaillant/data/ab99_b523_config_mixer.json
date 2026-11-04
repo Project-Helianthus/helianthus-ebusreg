@@ -1,0 +1,1350 @@
+[
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 0,
+      "direction": "request",
+      "field": "relay_groups_134"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 3,
+    "values": {
+      "0": "output",
+      "1": "mixer"
+    },
+    "default": 0,
+    "request_extent": 11,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 0,
+      "direction": "request",
+      "field": "relay_groups_256"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 4,
+    "values": {
+      "0": "output",
+      "1": "mixer"
+    },
+    "default": 0,
+    "request_extent": 11,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 0,
+      "direction": "request",
+      "field": "S1"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 5,
+    "values": {
+      "0": "kindA",
+      "1": "kindB",
+      "2": "digital"
+    },
+    "default": 0,
+    "other_values": "undefined-or-ignored",
+    "request_extent": 11,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 0,
+      "direction": "request",
+      "field": "S2"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 6,
+    "values": {
+      "0": "kindA",
+      "1": "kindB",
+      "2": "digital"
+    },
+    "default": 0,
+    "other_values": "undefined-or-ignored",
+    "request_extent": 11,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 0,
+      "direction": "request",
+      "field": "S3"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 7,
+    "values": {
+      "0": "kindA",
+      "1": "kindB",
+      "2": "digital"
+    },
+    "default": 0,
+    "other_values": "undefined-or-ignored",
+    "request_extent": 11,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 0,
+      "direction": "request",
+      "field": "S4"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 8,
+    "values": {
+      "0": "kindA",
+      "1": "kindB",
+      "2": "digital"
+    },
+    "default": 0,
+    "other_values": "undefined-or-ignored",
+    "request_extent": 11,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 0,
+      "direction": "request",
+      "field": "S5"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 9,
+    "values": {
+      "0": "kindA",
+      "1": "kindB",
+      "2": "digital"
+    },
+    "default": 0,
+    "other_values": "undefined-or-ignored",
+    "request_extent": 11,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 0,
+      "direction": "request",
+      "field": "S6"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 10,
+    "values": {
+      "0": "kindA",
+      "1": "kindB",
+      "2": "digital"
+    },
+    "default": 0,
+    "other_values": "undefined-or-ignored",
+    "request_extent": 11,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "R1/R7/R8"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 3,
+    "values": {
+      "0": "output",
+      "1": "mixer"
+    },
+    "default": 0,
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "R2/R9/R10"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 4,
+    "values": {
+      "0": "output",
+      "1": "mixer"
+    },
+    "default": 0,
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "R3/R11/R12"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 5,
+    "values": {
+      "0": "output",
+      "1": "mixer"
+    },
+    "default": 0,
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S1"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 6,
+    "bits": [
+      {
+        "index": 0,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 1,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 2,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 3,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S2"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 6,
+    "bits": [
+      {
+        "index": 4,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 5,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 6,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 7,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S3"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 7,
+    "bits": [
+      {
+        "index": 0,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 1,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 2,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 3,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S4"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 7,
+    "bits": [
+      {
+        "index": 4,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 5,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 6,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 7,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S5"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 8,
+    "bits": [
+      {
+        "index": 0,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 1,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 2,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 3,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S6"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 8,
+    "bits": [
+      {
+        "index": 4,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 5,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 6,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 7,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S7"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 9,
+    "bits": [
+      {
+        "index": 0,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 1,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 2,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 3,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S8"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 9,
+    "bits": [
+      {
+        "index": 4,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 5,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 6,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 7,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S9"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 10,
+    "bits": [
+      {
+        "index": 0,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 1,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 2,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 3,
+        "label": "PWM",
+        "reserved": false,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S10"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 10,
+    "bits": [
+      {
+        "index": 4,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 5,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 6,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 7,
+        "label": "PWM",
+        "reserved": false,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S11"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 11,
+    "bits": [
+      {
+        "index": 0,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 1,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 2,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 3,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      },
+      {
+        "index": 4,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      },
+      {
+        "index": 5,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      },
+      {
+        "index": 6,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      },
+      {
+        "index": 7,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S12"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 12,
+    "bits": [
+      {
+        "index": 0,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 1,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 2,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 3,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "configuration",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 4,
+      "direction": "request",
+      "field": "S13"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 12,
+    "bits": [
+      {
+        "index": 4,
+        "label": "kindA",
+        "reserved": false,
+        "default": 1
+      },
+      {
+        "index": 5,
+        "label": "kindB",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 6,
+        "label": "digital",
+        "reserved": false,
+        "default": 0
+      },
+      {
+        "index": 7,
+        "label": null,
+        "reserved": true,
+        "default": 0
+      }
+    ],
+    "one_hot": false,
+    "alternatives": [
+      "independent sensor flags",
+      "competing nibble-code interpretation unresolved",
+      "repeated sensor associations unresolved"
+    ],
+    "request_extent": 13,
+    "positive_extent": 4
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "mixer-smaller",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 2,
+      "direction": "request",
+      "field": "circuit"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 3,
+    "values": {
+      "0": "first group",
+      "1": "second group"
+    },
+    "other_values": "ignored"
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "mixer-smaller",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 2,
+      "direction": "request",
+      "field": "mode"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 4,
+    "values": {
+      "0": "stop/pump-off/close",
+      "1": "heating-regulation",
+      "2": "cooling-regulation",
+      "3": "pump-off/open",
+      "4": "pump-on/close",
+      "5": "pump-on/open"
+    },
+    "other_values": "ignored"
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "mixer-smaller",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 2,
+      "direction": "request",
+      "field": "setpoint"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 5,
+    "width_bits": 8,
+    "default": 0,
+    "unit": "Celsius",
+    "relevant_modes": [
+      1,
+      2
+    ],
+    "irrelevant_modes": [
+      0,
+      3,
+      4,
+      5
+    ],
+    "candidates": [
+      {
+        "label": "signed-half-degree",
+        "signed": true,
+        "scale": 0.5,
+        "minimum": -64,
+        "maximum": 63.5
+      },
+      {
+        "label": "raw190-95-clamp",
+        "raw": 190,
+        "value": 95,
+        "clamp": 95
+      }
+    ],
+    "notes": [
+      "Competing interpretations remain separate; raw BE is retained."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "mixer-smaller",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 2,
+      "direction": "positive",
+      "field": "feedback"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 3,
+    "notes": [
+      "Raw feedback only; no new meaning."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "mixer-smaller",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 2,
+      "direction": "positive",
+      "field": "movement"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 4,
+    "width_bits": 8,
+    "unit": "percent",
+    "intervals": [
+      {
+        "minimum": -100,
+        "maximum": -1,
+        "label": "closing"
+      },
+      {
+        "minimum": 0,
+        "maximum": 0,
+        "label": "stopped"
+      },
+      {
+        "minimum": 1,
+        "maximum": 100,
+        "label": "opening"
+      }
+    ],
+    "other_values": "unresolved",
+    "notes": [
+      "Signed 8-bit; magnitude 100 maximum.",
+      "No executed movement or physical adaptation inferred."
+    ],
+    "signed": true
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "mixer-larger",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 2,
+      "direction": "request",
+      "field": "circuit"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 3,
+    "values": {
+      "0": "first group",
+      "1": "second group",
+      "2": "third group"
+    },
+    "other_values": "ignored"
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "mixer-larger",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 2,
+      "direction": "request",
+      "field": "mode"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 4,
+    "values": {
+      "0": "stop/pump-off/close",
+      "1": "heating-regulation",
+      "2": "cooling-regulation",
+      "3": "pump-off/open",
+      "4": "pump-on/close",
+      "5": "pump-on/open"
+    },
+    "other_values": "ignored"
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "mixer-larger",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 2,
+      "direction": "request",
+      "field": "setpoint"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 5,
+    "width_bits": 8,
+    "default": 0,
+    "unit": "Celsius",
+    "relevant_modes": [
+      1,
+      2
+    ],
+    "irrelevant_modes": [
+      0,
+      3,
+      4,
+      5
+    ],
+    "candidates": [
+      {
+        "label": "signed-half-degree",
+        "signed": true,
+        "scale": 0.5,
+        "minimum": -64,
+        "maximum": 63.5
+      },
+      {
+        "label": "raw190-95-clamp",
+        "raw": 190,
+        "value": 95,
+        "clamp": 95
+      }
+    ],
+    "notes": [
+      "Competing interpretations remain separate; raw BE is retained."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "mixer-larger",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 2,
+      "direction": "positive",
+      "field": "feedback"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 3,
+    "notes": [
+      "Raw feedback only; no new meaning."
+    ]
+  },
+  {
+    "key": {
+      "family": "vaillant",
+      "variant": "mixer-larger",
+      "primary": 181,
+      "secondary": 35,
+      "operation": 2,
+      "direction": "positive",
+      "field": "movement"
+    },
+    "grade": "Hypothesis",
+    "physical_adaptation": "Unknown",
+    "support": "Unknown",
+    "executed_movement": "Unknown",
+    "selected_interpretation": "Unknown",
+    "unknown_metadata": "Unknown",
+    "preserve_raw": true,
+    "position": 4,
+    "width_bits": 8,
+    "unit": "percent",
+    "intervals": [
+      {
+        "minimum": -100,
+        "maximum": -1,
+        "label": "closing"
+      },
+      {
+        "minimum": 0,
+        "maximum": 0,
+        "label": "stopped"
+      },
+      {
+        "minimum": 1,
+        "maximum": 100,
+        "label": "opening"
+      }
+    ],
+    "other_values": "unresolved",
+    "notes": [
+      "Signed 8-bit; magnitude 100 maximum.",
+      "No executed movement or physical adaptation inferred."
+    ],
+    "signed": true
+  }
+]

@@ -1,0 +1,15 @@
+[
+ {"id":"ab11ao11_count_zero","count":0,"parsed":true,"feedback":1,"bit_six":64,"prior":165,"number":165,"freshness":"Unknown","rule":"Unknown","state":"Unknown"},
+ {"id":"ab11ao11_count_one","count":1,"parsed":true,"feedback":1,"bit_six":64,"prior":165,"number":0,"freshness":"fresh","rule":"replace-zero","state":"Hypothesis"},
+ {"id":"ab11ao11_count_two","count":2,"parsed":true,"feedback":1,"bit_six":64,"prior":165,"number":0,"freshness":"fresh","rule":"replace-zero","state":"Hypothesis"},
+ {"id":"ab11ao11_count_three","count":3,"parsed":true,"feedback":1,"bit_six":64,"prior":165,"number":64,"freshness":"fresh","rule":"replace-bit-six","state":"Hypothesis"},
+ {"id":"ab11ao11_bit_zero","count":3,"parsed":true,"feedback":1,"bit_six":0,"prior":165,"number":0,"freshness":"fresh","rule":"replace-bit-six","state":"Hypothesis"},
+ {"id":"ab11ao11_count_255","count":255,"parsed":true,"feedback":1,"bit_six":64,"prior":165,"number":64,"freshness":"fresh","rule":"replace-bit-six","state":"Hypothesis"},
+ {"id":"ab11ao11_count_256","count":256,"parsed":true,"feedback":1,"bit_six":64,"prior":165,"number":64,"freshness":"fresh","rule":"replace-bit-six","state":"Hypothesis"},
+ {"id":"ab11ao11_failed","count":3,"parsed":false,"feedback":1,"bit_six":64,"prior":165,"number":165,"freshness":"Unknown","rule":"retain","state":"Hypothesis"},
+ {"id":"ab11ao11_feedback_zero","count":3,"parsed":true,"feedback":0,"bit_six":64,"prior":165,"number":165,"freshness":"Unknown","rule":"retain","state":"Hypothesis"},
+ {"id":"ab11ao11_feedback_two","count":3,"parsed":true,"feedback":2,"bit_six":64,"prior":165,"number":165,"freshness":"Unknown","rule":"retain","state":"Hypothesis"},
+ {"id":"ab11ao11_feedback_255","count":3,"parsed":true,"feedback":255,"bit_six":64,"prior":165,"number":165,"freshness":"Unknown","rule":"retain","state":"Hypothesis"},
+ {"id":"ab11ao11_prior_zero","count":3,"parsed":false,"feedback":1,"bit_six":64,"prior":0,"number":0,"freshness":"Unknown","rule":"retain","state":"Hypothesis"},
+ {"id":"ab11ao11_prior_255","count":3,"parsed":false,"feedback":1,"bit_six":64,"prior":255,"number":255,"freshness":"Unknown","rule":"retain","state":"Hypothesis"}
+]

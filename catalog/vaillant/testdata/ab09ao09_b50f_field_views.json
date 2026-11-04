@@ -1,0 +1,58 @@
+[
+  {
+    "ab09ao09_id": "ab09ao09_integrity_only",
+    "input": {
+      "context": {
+        "primary": 181,
+        "secondary": 15,
+        "operation": 2,
+        "direction": "positive",
+        "view": "integrity-only",
+        "family": "synthetic"
+      },
+      "fields": {
+        "integrity_one": [
+          18
+        ],
+        "integrity_two": [
+          52
+        ]
+      }
+    },
+    "expected": {
+      "state": "partial",
+      "physical": "Unknown",
+      "qualified": false,
+      "raw": {
+        "integrity_one": [
+          18
+        ],
+        "integrity_two": [
+          52
+        ]
+      },
+      "fields": {
+        "integrity_one": {
+          "raw": [
+            18
+          ],
+          "state": "unknown-order",
+          "grade": "Hypothesis",
+          "logical_position": 11,
+          "word_order": "Unknown",
+          "crc": "Unknown"
+        },
+        "integrity_two": {
+          "raw": [
+            52
+          ],
+          "state": "unknown-order",
+          "grade": "Hypothesis",
+          "logical_position": 12,
+          "word_order": "Unknown",
+          "crc": "Unknown"
+        }
+      }
+    }
+  }
+]

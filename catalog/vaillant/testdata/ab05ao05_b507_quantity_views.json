@@ -1,0 +1,127 @@
+{
+  "ab05ao05Capacity0": {
+    "context": {
+      "primary": 181,
+      "secondary": 7,
+      "operation": 6,
+      "direction": "positive",
+      "view": "capacity",
+      "family": "synthetic-family",
+      "variant": "synthetic-variant"
+    },
+    "fields": {
+      "capacity": [
+        0
+      ]
+    }
+  },
+  "ab05ao05Capacity1": {
+    "context": {
+      "primary": 181,
+      "secondary": 7,
+      "operation": 6,
+      "direction": "positive",
+      "view": "capacity",
+      "family": "synthetic-family",
+      "variant": "synthetic-variant"
+    },
+    "fields": {
+      "capacity": [
+        1
+      ]
+    }
+  },
+  "ab05ao05Capacity2": {
+    "context": {
+      "primary": 181,
+      "secondary": 7,
+      "operation": 6,
+      "direction": "positive",
+      "view": "capacity",
+      "family": "synthetic-family",
+      "variant": "synthetic-variant"
+    },
+    "fields": {
+      "capacity": [
+        250
+      ]
+    }
+  },
+  "ab05ao05Capacity3": {
+    "context": {
+      "primary": 181,
+      "secondary": 7,
+      "operation": 6,
+      "direction": "positive",
+      "view": "capacity",
+      "family": "synthetic-family",
+      "variant": "synthetic-variant"
+    },
+    "fields": {
+      "capacity": [
+        251
+      ]
+    }
+  },
+  "ab05ao05Capacity4": {
+    "context": {
+      "primary": 181,
+      "secondary": 7,
+      "operation": 6,
+      "direction": "positive",
+      "view": "capacity",
+      "family": "synthetic-family",
+      "variant": "synthetic-variant"
+    },
+    "fields": {
+      "capacity": [
+        255
+      ]
+    }
+  },
+  "ab05ao05Preference0": {
+    "context": {
+      "primary": 181,
+      "secondary": 7,
+      "operation": 8,
+      "direction": "positive",
+      "view": "preference"
+    },
+    "fields": {
+      "preference": [
+        0,
+        0
+      ]
+    }
+  },
+  "ab05ao05Preference1": {
+    "context": {
+      "primary": 181,
+      "secondary": 7,
+      "operation": 8,
+      "direction": "positive",
+      "view": "preference"
+    },
+    "fields": {
+      "preference": [
+        255,
+        255
+      ]
+    }
+  },
+  "ab05ao05Preference2": {
+    "context": {
+      "primary": 181,
+      "secondary": 7,
+      "operation": 8,
+      "direction": "positive",
+      "view": "preference"
+    },
+    "fields": {
+      "preference": [
+        0,
+        1
+      ]
+    }
+  }
+}

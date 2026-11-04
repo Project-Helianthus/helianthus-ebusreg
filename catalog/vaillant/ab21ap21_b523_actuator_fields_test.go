@@ -208,8 +208,17 @@ func TestAb21Ap21Feedback(ab21ap21T *testing.T) {
 			if ab21ap21Operation == 5 {
 				ab21ap21Want = "rejected-or-unsupported"
 			}
+			if ab21ap21Operation == 2 {
+				ab21ap21Want = "unrecognized"
+			}
 			if ab21ap21Feedback == 1 {
 				ab21ap21Want = "accepted"
+				if ab21ap21Operation == 2 {
+					ab21ap21Want = "pump-on"
+				}
+			}
+			if ab21ap21Feedback == 0 && ab21ap21Operation == 2 {
+				ab21ap21Want = "pump-off"
 			}
 			if ab21ap21FieldFor(ab21ap21EvaluateFor(ab21ap21T, ab21ap21Input), "feedback")["label"] != ab21ap21Want {
 				ab21ap21T.Fatal("feedback operation")
@@ -322,8 +331,14 @@ func TestAb21Ap21Reject(ab21ap21T *testing.T) {
 		ab21ap21Input := ab21ap21InputFor(2, "request")
 		ab21ap21Input["arguments"].(map[string]any)["variant"] = ab21ap21Bad
 		ab21ap21Bytes, _ := json.Marshal(ab21ap21Input)
-		if _, ab21ap21Error := Ab21Ap21Evaluate(ab21ap21Bytes); ab21ap21Error == nil {
-			ab21ap21T.Fatal("bad variant")
+		ab21ap21Out, ab21ap21Error := Ab21Ap21Evaluate(ab21ap21Bytes)
+		if ab21ap21Error != nil {
+			ab21ap21T.Fatal(ab21ap21Error)
+		}
+		ab21ap21Decoded := map[string]any{}
+		_ = json.Unmarshal(ab21ap21Out, &ab21ap21Decoded)
+		if _, ab21ap21Has := ab21ap21Decoded["fields"].(map[string]any)["mode"]; !ab21ap21Has {
+			ab21ap21T.Fatal("siblings dropped")
 		}
 	}
 	for _, ab21ap21RemoveArguments := range []bool{true, false} {
@@ -334,8 +349,8 @@ func TestAb21Ap21Reject(ab21ap21T *testing.T) {
 			delete(ab21ap21Input["arguments"].(map[string]any), "variant")
 		}
 		ab21ap21Bytes, _ := json.Marshal(ab21ap21Input)
-		if _, ab21ap21Error := Ab21Ap21Evaluate(ab21ap21Bytes); ab21ap21Error == nil {
-			ab21ap21T.Fatal("missing variant")
+		if _, ab21ap21Error := Ab21Ap21Evaluate(ab21ap21Bytes); ab21ap21Error != nil {
+			ab21ap21T.Fatal(ab21ap21Error)
 		}
 	}
 }

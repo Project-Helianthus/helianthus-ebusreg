@@ -11,7 +11,13 @@ import (
 	"unicode/utf8"
 )
 
-func ab25ap25Read(ab25ap25Decoder *json.Decoder) (any, error) {
+// ab25ap25MaxDepth bounds container nesting so hostile input cannot exhaust the stack.
+const ab25ap25MaxDepth = 256
+
+func ab25ap25Read(ab25ap25Decoder *json.Decoder, ab25ap25Depth int) (any, error) {
+	if ab25ap25Depth > ab25ap25MaxDepth {
+		return nil, fmt.Errorf("nesting exceeds maximum depth")
+	}
 	ab25ap25Token, ab25ap25Error := ab25ap25Decoder.Token()
 	if ab25ap25Error != nil {
 		return nil, ab25ap25Error
@@ -29,7 +35,7 @@ func ab25ap25Read(ab25ap25Decoder *json.Decoder) (any, error) {
 				if _, ab25ap25Exists := ab25ap25Object[ab25ap25Key]; ab25ap25Exists {
 					return nil, fmt.Errorf("duplicate key %q", ab25ap25Key)
 				}
-				ab25ap25Value, ab25ap25Error := ab25ap25Read(ab25ap25Decoder)
+				ab25ap25Value, ab25ap25Error := ab25ap25Read(ab25ap25Decoder, ab25ap25Depth+1)
 				if ab25ap25Error != nil {
 					return nil, ab25ap25Error
 				}
@@ -42,7 +48,7 @@ func ab25ap25Read(ab25ap25Decoder *json.Decoder) (any, error) {
 		case '[':
 			ab25ap25Array := []any{}
 			for ab25ap25Decoder.More() {
-				ab25ap25Value, ab25ap25Error := ab25ap25Read(ab25ap25Decoder)
+				ab25ap25Value, ab25ap25Error := ab25ap25Read(ab25ap25Decoder, ab25ap25Depth+1)
 				if ab25ap25Error != nil {
 					return nil, ab25ap25Error
 				}
@@ -129,7 +135,7 @@ func Ab25Ap25Evaluate(ab25ap25Input json.RawMessage) (json.RawMessage, error) {
 	}
 	ab25ap25Decoder := json.NewDecoder(bytes.NewReader(ab25ap25Input))
 	ab25ap25Decoder.UseNumber()
-	ab25ap25Value, ab25ap25Error := ab25ap25Read(ab25ap25Decoder)
+	ab25ap25Value, ab25ap25Error := ab25ap25Read(ab25ap25Decoder, 0)
 	if ab25ap25Error != nil {
 		return nil, ab25ap25Error
 	}

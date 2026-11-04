@@ -389,3 +389,21 @@ func TestAb25Ap25OversizedExponentRejected(ab25ap25T *testing.T) {
 		ab25ap25T.Errorf("small exponent rejected: %v", ab25ap25Error)
 	}
 }
+
+func TestAb25Ap25NestingDepthRejected(ab25ap25T *testing.T) {
+	ab25ap25Deep := strings.Repeat("[", 1000000)
+	for _, ab25ap25Input := range []string{
+		`{"context":{"x":` + ab25ap25Deep + `},"fields":{}}`,
+		`{"context":{},"fields":{"rssi":` + ab25ap25Deep + `}}`,
+		`{"context":{"x":` + strings.Repeat(`{"a":`, 1000000) + `1},"fields":{}}`,
+	} {
+		ab25ap25Output, ab25ap25Error := Ab25Ap25Evaluate([]byte(ab25ap25Input))
+		if ab25ap25Error == nil || ab25ap25Output != nil {
+			ab25ap25T.Errorf("excessive nesting admitted")
+		}
+	}
+	ab25ap25Output, ab25ap25Error := Ab25Ap25Evaluate([]byte(`{"context":{"x":` + strings.Repeat("[", 50) + strings.Repeat("]", 50) + `},"fields":{}}`))
+	if ab25ap25Error != nil || ab25ap25Output == nil {
+		ab25ap25T.Errorf("moderate nesting rejected: %v", ab25ap25Error)
+	}
+}

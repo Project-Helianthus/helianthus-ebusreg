@@ -1,0 +1,245 @@
+{
+  "catalog": "ab37_tunnel",
+  "representation_grade": "Proven",
+  "coordinate_system": "logical positions include prefix positions; not physical offsets",
+  "rows": [
+    {
+      "id": "ab37_b517_request",
+      "family": "B517",
+      "variant": "declared",
+      "direction": "request",
+      "service": "B5",
+      "operation": "17",
+      "alternative": "declared_request",
+      "body_extent": null,
+      "fields": [
+        {
+          "name": "destination",
+          "logical_position": null,
+          "width_bits": 8,
+          "extent": null,
+          "raw_domain": {
+            "min": 0,
+            "max": 255
+          },
+          "signedness": "unsigned",
+          "byte_order": null,
+          "conversion": null,
+          "unit": null,
+          "default": 8,
+          "mappings": {},
+          "reserved_regions": null,
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve unchanged bytes, including empty data"
+        },
+        {
+          "name": "data",
+          "logical_position": null,
+          "width_bits": null,
+          "extent": {
+            "through": "end-of-PDU",
+            "abstract_min": 0,
+            "abstract_max": 65535,
+            "transport_capacity": null
+          },
+          "raw_domain": "opaque bytes",
+          "signedness": "Unknown",
+          "byte_order": null,
+          "conversion": null,
+          "unit": null,
+          "default": null,
+          "mappings": {},
+          "reserved_regions": null,
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve unchanged bytes, including empty data"
+        }
+      ],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve unchanged bytes, including empty data"
+    },
+    {
+      "id": "ab37_b517_positive",
+      "family": "B517",
+      "variant": "declared",
+      "direction": "positive",
+      "service": "B5",
+      "operation": "18",
+      "alternative": "declared_positive",
+      "body_extent": null,
+      "fields": [
+        {
+          "name": "data",
+          "logical_position": null,
+          "width_bits": null,
+          "extent": {
+            "through": "end-of-PDU",
+            "abstract_min": 0,
+            "abstract_max": 65535,
+            "transport_capacity": null
+          },
+          "raw_domain": "opaque bytes",
+          "signedness": "Unknown",
+          "byte_order": null,
+          "conversion": null,
+          "unit": null,
+          "default": null,
+          "mappings": {},
+          "reserved_regions": null,
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve unchanged bytes, including empty data"
+        }
+      ],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve unchanged bytes, including empty data"
+    },
+    {
+      "id": "ab37_b517_negative",
+      "family": "B517",
+      "variant": "declared",
+      "direction": "negative",
+      "service": null,
+      "operation": null,
+      "alternative": "declared_negative",
+      "body_extent": null,
+      "fields": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve unchanged bytes, including empty data"
+    },
+    {
+      "id": "ab37_b518_request",
+      "family": "B518",
+      "variant": "partial",
+      "direction": "request",
+      "service": null,
+      "operation": null,
+      "alternative": "partial_request",
+      "body_extent": null,
+      "fields": [
+        {
+          "name": "constant",
+          "logical_position": 0,
+          "width_bits": 8,
+          "extent": null,
+          "raw_domain": {
+            "constant": 181
+          },
+          "signedness": "unsigned",
+          "byte_order": null,
+          "conversion": null,
+          "unit": null,
+          "default": null,
+          "mappings": {},
+          "reserved_regions": null,
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve unchanged bytes, including empty data"
+        }
+      ],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve unchanged bytes, including empty data"
+    },
+    {
+      "id": "ab37_b518_positive",
+      "family": "B518",
+      "variant": "partial",
+      "direction": "positive",
+      "service": null,
+      "operation": null,
+      "alternative": "partial_positive",
+      "body_extent": null,
+      "fields": [
+        {
+          "name": "constant",
+          "logical_position": 0,
+          "width_bits": 8,
+          "extent": null,
+          "raw_domain": {
+            "constant": 245
+          },
+          "signedness": "unsigned",
+          "byte_order": null,
+          "conversion": null,
+          "unit": null,
+          "default": null,
+          "mappings": {},
+          "reserved_regions": null,
+          "grade": "Hypothesis",
+          "raw_fallback": "preserve unchanged bytes, including empty data"
+        }
+      ],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve unchanged bytes, including empty data"
+    },
+    {
+      "id": "ab37_b518_negative",
+      "family": "B518",
+      "variant": "partial",
+      "direction": "negative",
+      "service": null,
+      "operation": null,
+      "alternative": "partial_negative",
+      "body_extent": null,
+      "fields": [],
+      "grade": "Hypothesis",
+      "raw_fallback": "preserve unchanged bytes, including empty data"
+    }
+  ],
+  "tunnel_client_policy": {
+    "grade": "Hypothesis",
+    "destination_domain": {
+      "min": 1,
+      "max": 254
+    },
+    "inner_destination": "original destination",
+    "opaque_data": "original PDU",
+    "returned_data_context": "original service",
+    "local_result_codes": [
+      10,
+      6,
+      7
+    ],
+    "local_result_meanings": null,
+    "remote_feedback": "separate from local result codes",
+    "default_8": "not an installed address"
+  },
+  "adaptation_alternative": {
+    "grade": "Hypothesis",
+    "ready_state": 3,
+    "final_option": "nonzero",
+    "length_equation": {
+      "input_byte": 4,
+      "add": 6,
+      "equals": "available length"
+    },
+    "request_check": {
+      "service": "B5",
+      "operation": "17"
+    },
+    "input_check": {
+      "service": "B5",
+      "operation": "18"
+    },
+    "universal_prefix_removal": false,
+    "qualification": "all conditions required; length equation alone is insufficient"
+  },
+  "limitations": {
+    "physical_relationship": "Unknown",
+    "destination_roles": "Unknown",
+    "forwarder": "Unknown",
+    "correlation": "Unknown",
+    "timeout": "Unknown",
+    "refusal": "Unknown",
+    "fragmentation": "Unknown",
+    "transport_support": "Unknown",
+    "peer_support": "Unknown",
+    "scheduling": "Unknown",
+    "write_permission": "Unknown"
+  },
+  "admission": {
+    "runtime_registration": false,
+    "wire_builder": false,
+    "automatic_selection": false,
+    "native_codec_promotion": false,
+    "executable_capability": false,
+    "physical_qualification": "Unknown"
+  }
+}

@@ -211,7 +211,15 @@ func TestAb21Ap21Feedback(ab21ap21T *testing.T) {
 			if ab21ap21Feedback == 1 {
 				ab21ap21Want = "accepted"
 			}
-			if ab21ap21FieldFor(ab21ap21EvaluateFor(ab21ap21T, ab21ap21Input), "feedback")["label"] != ab21ap21Want {
+			if ab21ap21Operation == 2 {
+				ab21ap21Want = map[int]string{0: "pump-off", 1: "pump-on"}[ab21ap21Feedback]
+			}
+			ab21ap21Label := ab21ap21FieldFor(ab21ap21EvaluateFor(ab21ap21T, ab21ap21Input), "feedback")["label"]
+			if ab21ap21Operation == 2 && ab21ap21Want == "" {
+				if ab21ap21Label != nil {
+					ab21ap21T.Fatal("unknown pump byte labelled")
+				}
+			} else if ab21ap21Label != ab21ap21Want {
 				ab21ap21T.Fatal("feedback operation")
 			}
 		}
@@ -318,24 +326,27 @@ func TestAb21Ap21Reject(ab21ap21T *testing.T) {
 			}
 		}
 	}
-	for _, ab21ap21Bad := range []any{nil, false, 0, []any{}, "unknown"} {
+	for _, ab21ap21Bad := range []any{nil, false, 0, []any{}, "unknown", "missing", "no-arguments"} {
 		ab21ap21Input := ab21ap21InputFor(2, "request")
-		ab21ap21Input["arguments"].(map[string]any)["variant"] = ab21ap21Bad
-		ab21ap21Bytes, _ := json.Marshal(ab21ap21Input)
-		if ab21ap21Out, ab21ap21Error := Ab21Ap21Evaluate(ab21ap21Bytes); ab21ap21Error == nil || ab21ap21Out != nil {
-			ab21ap21T.Fatalf("accepted variant %s", ab21ap21Bytes)
-		}
-	}
-	for _, ab21ap21RemoveArguments := range []bool{true, false} {
-		ab21ap21Input := ab21ap21InputFor(2, "request")
-		if ab21ap21RemoveArguments {
-			delete(ab21ap21Input, "arguments")
-		} else {
+		switch ab21ap21Bad {
+		case "missing":
 			delete(ab21ap21Input["arguments"].(map[string]any), "variant")
+		case "no-arguments":
+			delete(ab21ap21Input, "arguments")
+		default:
+			ab21ap21Input["arguments"].(map[string]any)["variant"] = ab21ap21Bad
 		}
-		ab21ap21Bytes, _ := json.Marshal(ab21ap21Input)
-		if ab21ap21Out, ab21ap21Error := Ab21Ap21Evaluate(ab21ap21Bytes); ab21ap21Error == nil || ab21ap21Out != nil {
-			ab21ap21T.Fatalf("accepted %s", ab21ap21Bytes)
+		for _, ab21ap21Circuit := range []int{0, 1, 2} {
+			ab21ap21Input["fields"].(map[string]any)["circuit"] = []int{ab21ap21Circuit}
+			ab21ap21Input["fields"].(map[string]any)["mode"] = []int{1}
+			ab21ap21Out := ab21ap21EvaluateFor(ab21ap21T, ab21ap21Input)
+			if ab21ap21FieldFor(ab21ap21Out, "mode")["label"] != "heating-regulation" || ab21ap21FieldFor(ab21ap21Out, "setpoint") == nil {
+				ab21ap21T.Fatalf("siblings lost %v", ab21ap21Bad)
+			}
+			ab21ap21Got := ab21ap21FieldFor(ab21ap21Out, "circuit")
+			if (ab21ap21Circuit == 2) != (ab21ap21Got["state"] == "Unknown") || (ab21ap21Circuit < 2 && ab21ap21Got["label"] == nil) {
+				ab21ap21T.Fatalf("circuit state %v", ab21ap21Got)
+			}
 		}
 	}
 }

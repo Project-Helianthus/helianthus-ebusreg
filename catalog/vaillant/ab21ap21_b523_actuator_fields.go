@@ -139,7 +139,7 @@ func Ab21Ap21Evaluate(ab21ap21Input json.RawMessage) (json.RawMessage, error) {
 	if ab21ap21Operation == 2 && ab21ap21Direction == "request" {
 		ab21ap21Variant, _ = ab21ap21Arguments["variant"].(string)
 		if ab21ap21Variant != "two-circuit" && ab21ap21Variant != "three-circuit" {
-			return nil, fmt.Errorf("arguments.variant must be two-circuit or three-circuit")
+			ab21ap21Variant = ""
 		}
 	}
 	ab21ap21Output["state"] = "complete"
@@ -160,10 +160,21 @@ func Ab21Ap21Evaluate(ab21ap21Input json.RawMessage) (json.RawMessage, error) {
 		if ab21ap21Array, ab21ap21Field, ab21ap21OK := ab21ap21Get("feedback", 1); ab21ap21OK {
 			ab21ap21ByteValue, _ := ab21ap21Byte(ab21ap21Array[0])
 			ab21ap21Field["label"] = "rejected"
-			if ab21ap21Operation == 5 {
+			switch ab21ap21Operation {
+			case 2:
+				switch ab21ap21ByteValue {
+				case 0:
+					ab21ap21Field["label"] = "pump-off"
+				case 1:
+					ab21ap21Field["label"] = "pump-on"
+				default:
+					delete(ab21ap21Field, "label")
+					ab21ap21Field["state"] = "Unknown"
+				}
+			case 5:
 				ab21ap21Field["label"] = "rejected-or-unsupported"
 			}
-			if ab21ap21ByteValue == 1 {
+			if ab21ap21Operation != 2 && ab21ap21ByteValue == 1 {
 				ab21ap21Field["label"] = "accepted"
 			}
 		}
@@ -244,6 +255,9 @@ func Ab21Ap21Evaluate(ab21ap21Input json.RawMessage) (json.RawMessage, error) {
 			ab21ap21ByteValue, _ := ab21ap21Byte(ab21ap21Array[0])
 			if ab21ap21ByteValue < 2 || (ab21ap21ByteValue == 2 && ab21ap21Variant == "three-circuit") {
 				ab21ap21Field["label"] = fmt.Sprintf("circuit-%d", ab21ap21ByteValue)
+			} else if ab21ap21ByteValue == 2 && ab21ap21Variant == "" {
+				ab21ap21Field["state"] = "Unknown"
+				ab21ap21Output["state"] = "partial"
 			} else {
 				ab21ap21Field["label"] = "ignored"
 			}

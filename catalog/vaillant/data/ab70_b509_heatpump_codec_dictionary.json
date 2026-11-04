@@ -1,0 +1,1014 @@
+[
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        208,
+        0
+      ]
+    },
+    "quantity": "heat_pump_status",
+    "codec_declaration": "hpstatus enum",
+    "unit": null,
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        188,
+        0
+      ]
+    },
+    "quantity": "environmental_energy_yield_total",
+    "codec_declaration": "energy4",
+    "unit": "kWh",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter.",
+      "Environmental versus delivered yield remains unresolved."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        186,
+        0
+      ]
+    },
+    "quantity": "environmental_power",
+    "codec_declaration": "power",
+    "unit": "kW",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        187,
+        0
+      ]
+    },
+    "quantity": "environmental_power_ratio",
+    "codec_declaration": "percent0",
+    "unit": "%",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        141,
+        0
+      ]
+    },
+    "quantity": "refrigerant_superheat",
+    "codec_declaration": "temp",
+    "unit": "K delta",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        142,
+        0
+      ]
+    },
+    "quantity": "refrigerant_subcooling",
+    "codec_declaration": "temp",
+    "unit": "K delta",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        15,
+        0
+      ]
+    },
+    "quantity": "source_inlet_temperature",
+    "codec_declaration": "tempsensor",
+    "unit": "C",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        20,
+        0
+      ]
+    },
+    "quantity": "refrigerant_high_pressure",
+    "codec_declaration": "sensor",
+    "unit": "bar",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        21,
+        0
+      ]
+    },
+    "quantity": "refrigerant_low_pressure",
+    "codec_declaration": "sensor",
+    "unit": "bar",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        228,
+        0
+      ]
+    },
+    "quantity": "compressor_state",
+    "codec_declaration": "UCH enum",
+    "unit": null,
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        233,
+        0
+      ]
+    },
+    "quantity": "compressor_control_state",
+    "codec_declaration": "UCH enum",
+    "unit": null,
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        230,
+        0
+      ]
+    },
+    "quantity": "compressor_minimum_on_duration",
+    "codec_declaration": "seconds",
+    "unit": "s",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        231,
+        0
+      ]
+    },
+    "quantity": "compressor_minimum_off_duration",
+    "codec_declaration": "seconds",
+    "unit": "s",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        232,
+        0
+      ]
+    },
+    "quantity": "compressor_minimum_start_interval",
+    "codec_declaration": "seconds",
+    "unit": "s",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        168,
+        0
+      ]
+    },
+    "quantity": "compressor_dhw_start_count",
+    "codec_declaration": "counter",
+    "unit": "count",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        180,
+        0
+      ]
+    },
+    "quantity": "compressor_high_pressure_cutout_count",
+    "codec_declaration": "counter",
+    "unit": "count",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        206,
+        1
+      ]
+    },
+    "quantity": "defrost_active",
+    "codec_declaration": "yesno",
+    "unit": "bool",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        87,
+        1
+      ]
+    },
+    "quantity": "phase_order_status",
+    "codec_declaration": "phaseok enum",
+    "unit": null,
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        136,
+        0
+      ]
+    },
+    "quantity": "phase_status_flags",
+    "codec_declaration": "phase flags",
+    "unit": "bitmask",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        63,
+        0
+      ]
+    },
+    "quantity": "inrush_current_limiter_output_active",
+    "codec_declaration": "on/off",
+    "unit": null,
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        169,
+        1
+      ]
+    },
+    "quantity": "noise_reduction_active",
+    "codec_declaration": "yesno",
+    "unit": "bool",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        36,
+        1
+      ]
+    },
+    "quantity": "noise_reduction_factor",
+    "codec_declaration": "percent0",
+    "unit": null,
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter.",
+      "Ratio unit remains Unknown."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        226,
+        1
+      ]
+    },
+    "quantity": "environmental_power",
+    "codec_declaration": "UCH",
+    "unit": "W",
+    "width_bits": 8,
+    "signedness": "unsigned",
+    "byte_order": null,
+    "declared_scale": 100,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        227,
+        1
+      ]
+    },
+    "quantity": "bivalent_mode",
+    "codec_declaration": "UCH enum",
+    "unit": null,
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        228,
+        1
+      ]
+    },
+    "quantity": "source_temperature_limit_at_maximum_flow",
+    "codec_declaration": "SCH",
+    "unit": "C",
+    "width_bits": null,
+    "signedness": "signed",
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        229,
+        1
+      ]
+    },
+    "quantity": "source_temperature_limit_slope",
+    "codec_declaration": "UCH",
+    "unit": "slope",
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        233,
+        1
+      ]
+    },
+    "quantity": "refrigerant_low_pressure_maximum",
+    "codec_declaration": "ULG",
+    "unit": null,
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter.",
+      "Pressure unit remains Unknown."
+    ]
+  },
+  {
+    "key": {
+      "family": "heat-pump",
+      "variant": "direct-symbolic-candidate",
+      "primary": 181,
+      "secondary": 9,
+      "operation": 13,
+      "direction": "read",
+      "selector": [
+        128,
+        0
+      ]
+    },
+    "quantity": "compressor_energy_integral",
+    "codec_declaration": "value",
+    "unit": null,
+    "width_bits": null,
+    "signedness": null,
+    "byte_order": null,
+    "declared_scale": null,
+    "converter": null,
+    "mapping": null,
+    "sentinel": null,
+    "grade": "Hypothesis",
+    "software_contract": "Proven",
+    "qualification": "Unknown",
+    "presence": "Unknown",
+    "freshness": "Unknown",
+    "execution": "Unknown",
+    "physical_effects": "Unknown",
+    "persistence": "Unknown",
+    "delivery": "Unknown",
+    "notes": [
+      "Literal codec declaration; no executable converter.",
+      "Integral codec and unit remain Unknown."
+    ]
+  }
+]

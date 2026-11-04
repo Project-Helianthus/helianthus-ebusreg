@@ -234,10 +234,32 @@ func TestAb03Aq03Reject(ab03aq03T *testing.T) {
 			}
 		}
 	}
+	ab03aq03Deep := `{"context":{},"fields":{},"x":` + strings.Repeat("[", 3000000) + strings.Repeat("]", 3000000) + `}`
+	if ab03aq03Output, ab03aq03Err := Ab03Aq03Evaluate([]byte(ab03aq03Deep)); ab03aq03Err == nil || ab03aq03Output != nil {
+		ab03aq03T.Fatal("deep nesting accepted")
+	}
+	if ab03aq03Output, ab03aq03Err := Ab03Aq03Evaluate([]byte(`{"context":{},"fields":{},"arguments":{"display_percent":-0}}`)); ab03aq03Err == nil || ab03aq03Output != nil {
+		ab03aq03T.Fatal("negative zero accepted")
+	}
+	for _, ab03aq03Key := range []string{"physical", "qualified", "state", "results", "grade", "candidate_validity_seconds"} {
+		ab03aq03Input := ab03aq03Input(ab03aq03T, 0)
+		ab03aq03Input[ab03aq03Key] = "x"
+		if ab03aq03Output, ab03aq03Err := Ab03Aq03Evaluate(ab03aq03MustJSON(ab03aq03Input)); ab03aq03Err == nil || ab03aq03Output != nil {
+			ab03aq03T.Fatalf("colliding key %s accepted", ab03aq03Key)
+		}
+	}
+}
+
+func TestAb03Aq03OptionalDisplay(ab03aq03T *testing.T) {
 	ab03aq03Input := ab03aq03Input(ab03aq03T, 0)
 	delete(ab03aq03Input, "arguments")
-	if ab03aq03Output, ab03aq03Err := Ab03Aq03Evaluate(ab03aq03MustJSON(ab03aq03Input)); ab03aq03Err == nil || ab03aq03Output != nil {
-		ab03aq03T.Fatal("missing display accepted")
+	ab03aq03Got := ab03aq03Run(ab03aq03T, ab03aq03Input)
+	ab03aq03Results := ab03aq03Got["results"].(map[string]any)
+	if _, ab03aq03OK := ab03aq03Results["display_percent"]; ab03aq03OK {
+		ab03aq03T.Fatal("display result invented")
+	}
+	if ab03aq03Got["state"] != "complete" || ab03aq03Results["sensor_status"].(map[string]any)["label"] == nil {
+		ab03aq03T.Fatal("siblings unavailable without display_percent")
 	}
 }
 

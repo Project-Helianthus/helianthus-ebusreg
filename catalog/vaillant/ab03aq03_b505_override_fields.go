@@ -8,7 +8,12 @@ import (
 	"strconv"
 )
 
-func ab03aq03Validate(ab03aq03Decoder *json.Decoder) error {
+const ab03aq03MaxDepth = 64
+
+func ab03aq03Validate(ab03aq03Decoder *json.Decoder, ab03aq03Depth int) error {
+	if ab03aq03Depth > ab03aq03MaxDepth {
+		return fmt.Errorf("nesting too deep")
+	}
 	ab03aq03Token, ab03aq03Err := ab03aq03Decoder.Token()
 	if ab03aq03Err != nil {
 		return ab03aq03Err
@@ -27,13 +32,13 @@ func ab03aq03Validate(ab03aq03Decoder *json.Decoder) error {
 					return fmt.Errorf("duplicate or invalid object key")
 				}
 				ab03aq03Seen[ab03aq03Name] = true
-				if ab03aq03Err := ab03aq03Validate(ab03aq03Decoder); ab03aq03Err != nil {
+				if ab03aq03Err := ab03aq03Validate(ab03aq03Decoder, ab03aq03Depth+1); ab03aq03Err != nil {
 					return ab03aq03Err
 				}
 			}
 		case '[':
 			for ab03aq03Decoder.More() {
-				if ab03aq03Err := ab03aq03Validate(ab03aq03Decoder); ab03aq03Err != nil {
+				if ab03aq03Err := ab03aq03Validate(ab03aq03Decoder, ab03aq03Depth+1); ab03aq03Err != nil {
 					return ab03aq03Err
 				}
 			}
@@ -62,7 +67,7 @@ func ab03aq03Object(ab03aq03Raw json.RawMessage) (map[string]json.RawMessage, er
 
 func ab03aq03Byte(ab03aq03Raw json.RawMessage) (int, error) {
 	ab03aq03Number, ab03aq03Err := strconv.Atoi(string(ab03aq03Raw))
-	if ab03aq03Err != nil || ab03aq03Number < 0 || ab03aq03Number > 255 {
+	if ab03aq03Err != nil || string(ab03aq03Raw) == "-0" || ab03aq03Number < 0 || ab03aq03Number > 255 {
 		return 0, fmt.Errorf("expected integer in 0..255")
 	}
 	return ab03aq03Number, nil
@@ -71,7 +76,7 @@ func ab03aq03Byte(ab03aq03Raw json.RawMessage) (int, error) {
 func Ab03Aq03Evaluate(ab03aq03InputRaw json.RawMessage) (json.RawMessage, error) {
 	ab03aq03Decoder := json.NewDecoder(bytes.NewReader(ab03aq03InputRaw))
 	ab03aq03Decoder.UseNumber()
-	if ab03aq03Err := ab03aq03Validate(ab03aq03Decoder); ab03aq03Err != nil {
+	if ab03aq03Err := ab03aq03Validate(ab03aq03Decoder, 0); ab03aq03Err != nil {
 		return nil, ab03aq03Err
 	}
 	if _, ab03aq03Err := ab03aq03Decoder.Token(); ab03aq03Err != io.EOF {
@@ -151,6 +156,11 @@ func Ab03Aq03Evaluate(ab03aq03InputRaw json.RawMessage) (json.RawMessage, error)
 	ab03aq03Priority := ab03aq03Strings["view"] == "priority" && ab03aq03Operation == 78
 	ab03aq03Supported := ab03aq03Numbers["primary"] == 181 && ab03aq03Numbers["secondary"] == 5 && ab03aq03Strings["direction"] == "request" && (ab03aq03Override || ab03aq03Priority)
 	ab03aq03Output := map[string]any{}
+	for _, ab03aq03Key := range []string{"physical", "qualified", "state", "results", "grade", "candidate_validity_seconds"} {
+		if _, ab03aq03OK := ab03aq03Input[ab03aq03Key]; ab03aq03OK {
+			return nil, fmt.Errorf("input key %s collides with output key", ab03aq03Key)
+		}
+	}
 	for ab03aq03Key, ab03aq03Raw := range ab03aq03Input {
 		ab03aq03Output[ab03aq03Key] = ab03aq03Raw
 	}
@@ -175,10 +185,9 @@ func Ab03Aq03Evaluate(ab03aq03InputRaw json.RawMessage) (json.RawMessage, error)
 		ab03aq03Required = []string{"priority"}
 	}
 	if ab03aq03Operation == 77 {
-		if _, ab03aq03OK := ab03aq03Arguments["display_percent"]; !ab03aq03OK {
-			return nil, fmt.Errorf("missing display_percent")
+		if ab03aq03Raw, ab03aq03OK := ab03aq03Arguments["display_percent"]; ab03aq03OK {
+			ab03aq03Results["display_percent"] = map[string]any{"raw": ab03aq03Raw, "state": "complete", "grade": "Hypothesis", "number": ab03aq03Display, "candidate_domain": ab03aq03Display == 0 || ab03aq03Display == 25 || ab03aq03Display == 50 || ab03aq03Display == 75 || ab03aq03Display == 100}
 		}
-		ab03aq03Results["display_percent"] = map[string]any{"raw": ab03aq03Arguments["display_percent"], "state": "complete", "grade": "Hypothesis", "number": ab03aq03Display, "candidate_domain": ab03aq03Display == 0 || ab03aq03Display == 25 || ab03aq03Display == 50 || ab03aq03Display == 75 || ab03aq03Display == 100}
 		ab03aq03Required = []string{"sensor_status", "remote_control"}
 	}
 	if ab03aq03Operation != 77 && len(ab03aq03Arguments) != 0 {

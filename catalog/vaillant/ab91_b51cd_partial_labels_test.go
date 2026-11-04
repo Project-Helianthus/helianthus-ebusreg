@@ -22,6 +22,32 @@ func ab91Catalog(ab91T *testing.T) Ab91PartialLabels {
 	return ab91Catalog
 }
 
+func TestAb91CanonicalResponseDirection(ab91T *testing.T) {
+	ab91Replies := 0
+	for _, ab91Entry := range ab91Catalog(ab91T).Ab91Entries {
+		if ab91Entry.Ab91Key.Ab91Direction != string(ab91Standard.DirectionRequest) {
+			continue
+		}
+		ab91Key := ab91Entry.Ab91Key
+		ab91Key.Ab91Direction = string(ab91Standard.DirectionResponse)
+		ab91Reply, ab91Found, ab91Error := Ab91LookupB51CDPartialLabel(ab91Key)
+		if ab91Error != nil || !ab91Found {
+			ab91T.Fatalf("ab91 canonical response missing for %s: %v", ab91Key.Ab91Label, ab91Error)
+		}
+		if !reflect.DeepEqual(ab91Reply.Ab91Key, ab91Key) || ab91Reply.Ab91Field.Ab91Constant == nil || *ab91Reply.Ab91Field.Ab91Constant != 0xF5 {
+			ab91T.Fatalf("ab91 canonical response lost positive constant for %s", ab91Key.Ab91Label)
+		}
+		ab91Key.Ab91Direction = "positive"
+		if _, ab91Found, ab91Error := Ab91LookupB51CDPartialLabel(ab91Key); ab91Error != nil || ab91Found {
+			ab91T.Fatal("ab91 positive classification matched a direction")
+		}
+		ab91Replies++
+	}
+	if ab91Replies != 23 {
+		ab91T.Fatalf("ab91 got %d canonical replies, want 23", ab91Replies)
+	}
+}
+
 func TestAb91ExactPartialLabels(ab91T *testing.T) {
 	ab91Catalog := ab91Catalog(ab91T)
 	ab91WantCatalog := Ab91PartialLabels{
@@ -46,7 +72,7 @@ func TestAb91ExactPartialLabels(ab91T *testing.T) {
 	ab91Seen := make(map[string]bool)
 	for ab91Variant, ab91Suffixes := range ab91Labels {
 		for _, ab91Suffix := range ab91Suffixes {
-			for ab91Direction, ab91Constant := range map[string]uint8{"request": 0xB5, "positive": 0xF5} {
+			for ab91Direction, ab91Constant := range map[string]uint8{"request": 0xB5, "response": 0xF5} {
 				ab91Key := Ab91PartialKey{Ab91Family: "vaillant", Ab91Variant: ab91Variant, Ab91Label: ab91Variant + "_" + ab91Suffix, Ab91Primary: 0xB5, Ab91Direction: ab91Direction, Ab91Field: "coded_constant"}
 				ab91T.Run("ab91_"+ab91Key.Ab91Label+"_"+ab91Direction, func(ab91T *testing.T) {
 					ab91Row, ab91Found, ab91Error := Ab91LookupB51CDPartialLabel(ab91Key)

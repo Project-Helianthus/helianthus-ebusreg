@@ -1,0 +1,10 @@
+[
+ {"id":"ab23ap23_zero","value":0,"low":0,"high":0,"flag6":false,"flag7":false},
+ {"id":"ab23ap23_one","value":1,"low":1,"high":0,"flag6":false,"flag7":false},
+ {"id":"ab23ap23_low_max","value":63,"low":63,"high":0,"flag6":false,"flag7":false},
+ {"id":"ab23ap23_bit_six","value":64,"low":0,"high":64,"flag6":true,"flag7":false},
+ {"id":"ab23ap23_bit_seven","value":128,"low":0,"high":128,"flag6":false,"flag7":true},
+ {"id":"ab23ap23_high_pair","value":192,"low":0,"high":192,"flag6":true,"flag7":true},
+ {"id":"ab23ap23_c1","value":193,"low":1,"high":192,"flag6":true,"flag7":true},
+ {"id":"ab23ap23_full","value":255,"low":63,"high":192,"flag6":true,"flag7":true}
+]

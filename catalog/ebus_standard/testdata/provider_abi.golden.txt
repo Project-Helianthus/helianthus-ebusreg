@@ -50,6 +50,9 @@ ebus_standard_catalog func (IdentityKey) SBValue() uint8
 ebus_standard_catalog func (Service) PBValue() uint8
 ebus_standard_catalog func Ab15Aq15Evaluate(ab15aq15Input json.RawMessage) (json.RawMessage, error)
 ebus_standard_catalog func Ab17Aq17Evaluate(ab17aq17InputRaw json.RawMessage) (json.RawMessage, error)
+ebus_standard_catalog func Ab25An25ViewAddress(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Field []byte) Ab25An25Address
+ebus_standard_catalog func Ab25An25ViewBody(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Raw []byte) Ab25An25Body
+ebus_standard_catalog func Ab25An25ViewCount(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Count uint8) Ab25An25Count
 ebus_standard_catalog func Ab28Entries() (ab28json.RawMessage, error)
 ebus_standard_catalog func Ab28Lookup(ab28Key Ab28Key) (ab28json.RawMessage, bool, error)
 ebus_standard_catalog func Ab49FEMetadata() []byte
@@ -75,6 +78,11 @@ ebus_standard_catalog func LoadCatalog(data []byte) (Catalog, error)
 ebus_standard_catalog func MustEmbeddedCatalog() Catalog
 ebus_standard_catalog func NewProvider(cat Catalog, enabled bool) (*Provider, error)
 ebus_standard_catalog func NewProviderFromEnv(cat Catalog) (*Provider, error)
+ebus_standard_catalog type Ab25An25Address struct { Ab25An25State Ab25An25State Ab25An25LE *uint16 Ab25An25Low *uint8 Ab25An25High *uint8 }
+ebus_standard_catalog type Ab25An25Body struct { Ab25An25State Ab25An25State Ab25An25Data []byte Ab25An25UnresolvedTail []byte }
+ebus_standard_catalog type Ab25An25Count struct { Ab25An25State Ab25An25State Ab25An25Value uint8 Ab25An25CandidateMaximum *uint8 Ab25An25Conflict bool }
+ebus_standard_catalog type Ab25An25Key struct { Ab25An25Family string Ab25An25Profile string Ab25An25Service uint16 Ab25An25Direction string }
+ebus_standard_catalog type Ab25An25State struct { Ab25An25Key Ab25An25Key Ab25An25Raw []byte Ab25An25State string Ab25An25ContractGrade string Ab25An25MeaningGrade string Ab25An25ExecutionGrade string Ab25An25PhysicalSupportGrade string Ab25An25PhysicalOffsetsGrade string Ab25An25PositivePrefixRelevanceGrade string }
 ebus_standard_catalog type Ab28Key struct { Ab28Family string `json:"family"` Ab28Variant string `json:"variant"` Ab28Primary uint8 `json:"primary"` Ab28Secondary *uint8 `json:"secondary"` Ab28Operation *uint8 `json:"operation"` Ab28Direction string `json:"direction"` Ab28Field string `json:"field"` Ab28Alternative string `json:"alternative"` Ab28Group *uint8 `json:"group"` Ab28InstanceScope string `json:"instance_scope"` Ab28Register *uint16 `json:"register"` }
 ebus_standard_catalog type Ab54Key struct { Ab54Family string `json:"family"` Ab54Variant string `json:"variant"` Ab54Primary uint8 `json:"primary"` Ab54Secondary *uint8 `json:"secondary"` Ab54Operation *uint8 `json:"operation"` Ab54Direction string `json:"direction"` Ab54Field string `json:"field"` Ab54Alternative string `json:"alternative"` Ab54Group *uint16 `json:"group"` Ab54InstanceScope string `json:"instance_scope"` Ab54Register *uint16 `json:"register"` }
 ebus_standard_catalog type Ab76Component struct { Ab76Name string Ab76State Ab76State Ab76Raw *uint8 Ab76Value *uint8 Ab76Width int Ab76Maximum uint8 Ab76Default *uint8 Ab76Encoding Ab76Encoding }

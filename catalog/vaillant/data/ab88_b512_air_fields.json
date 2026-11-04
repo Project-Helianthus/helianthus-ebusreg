@@ -278,11 +278,9 @@
       "otherwise": null,
       "bits": {
         "0": {
-          "0": "15V",
-          "1": "tray-heater relay"
+          "1": "15V"
         },
         "1": {
-          "0": "15V",
           "1": "tray-heater relay"
         }
       },

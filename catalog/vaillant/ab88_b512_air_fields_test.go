@@ -124,7 +124,7 @@ func TestAb88ProductionFields(ab88T *testing.T) {
 			ab88Bits := map[string]map[string]string{}
 			ab88Reserved := []int{}
 			if ab88Want.ab88Name == "relay" {
-				ab88Bits = map[string]map[string]string{"0": {"0": "15V", "1": "tray-heater relay"}, "1": {"0": "15V", "1": "tray-heater relay"}}
+				ab88Bits = map[string]map[string]string{"0": {"1": "15V"}, "1": {"1": "tray-heater relay"}}
 				ab88Reserved = []int{2, 3, 4, 5, 6, 7}
 			}
 			if !reflect.DeepEqual(ab88Got.Ab88Bits, ab88Bits) || !reflect.DeepEqual(ab88Got.Ab88ReservedBits, ab88Reserved) {
@@ -216,6 +216,37 @@ func TestAb88SyntheticValues(ab88T *testing.T) {
 	}
 	if ab88Get(ab88T, 13, "positive", "digital").Ab88Enumeration["2"] != "" {
 		ab88T.Fatal("ab88 digital 2 unlabeled")
+	}
+}
+
+func TestAb88RelayBitRoles(ab88T *testing.T) {
+	ab88Relay := ab88Get(ab88T, 11, "request", "relay")
+	for _, ab88Case := range []struct {
+		ab88Raw  byte
+		ab88Want []string
+	}{
+		{0x00, []string{}},
+		{0x01, []string{"15V"}},
+		{0x02, []string{"tray-heater relay"}},
+		{0x03, []string{"15V", "tray-heater relay"}},
+		{0x04, []string{}},
+		{0x05, []string{"15V"}},
+		{0x06, []string{"tray-heater relay"}},
+		{0x07, []string{"15V", "tray-heater relay"}},
+	} {
+		ab88T.Run(fmt.Sprintf("ab88_%02x", ab88Case.ab88Raw), func(ab88T *testing.T) {
+			ab88Labels := []string{}
+			for ab88Bit := 0; ab88Bit < 8; ab88Bit++ {
+				ab88State := (ab88Case.ab88Raw >> ab88Bit) & 1
+				ab88Label := ab88Relay.Ab88Bits[strconv.Itoa(ab88Bit)][strconv.Itoa(int(ab88State))]
+				if ab88Label != "" {
+					ab88Labels = append(ab88Labels, ab88Label)
+				}
+			}
+			if !reflect.DeepEqual(ab88Labels, ab88Case.ab88Want) {
+				ab88T.Fatalf("ab88 relay roles got %v want %v", ab88Labels, ab88Case.ab88Want)
+			}
+		})
 	}
 }
 

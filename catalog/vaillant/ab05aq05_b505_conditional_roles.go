@@ -7,6 +7,8 @@ import (
 	"io"
 	"math"
 	"math/big"
+	"strconv"
+	"strings"
 )
 
 func ab05aq05Read(ab05aq05Decoder *json.Decoder) (any, error) {
@@ -49,12 +51,30 @@ func ab05aq05Read(ab05aq05Decoder *json.Decoder) (any, error) {
 			return ab05aq05Array, ab05aq05Error
 		}
 	case json.Number:
+		if ab05aq05Err := ab05aq05Bound(string(ab05aq05Value)); ab05aq05Err != nil {
+			return nil, ab05aq05Err
+		}
 		ab05aq05Number, ab05aq05Err := ab05aq05Value.Float64()
 		if ab05aq05Err != nil || math.IsInf(ab05aq05Number, 0) || math.IsNaN(ab05aq05Number) {
 			return nil, fmt.Errorf("nonfinite number")
 		}
 	}
 	return ab05aq05Token, nil
+}
+
+// ab05aq05Bound rejects numeric tokens whose length or decimal exponent would
+// make exact rational arithmetic and rendering unbounded.
+func ab05aq05Bound(ab05aq05Token string) error {
+	if len(ab05aq05Token) > 64 {
+		return fmt.Errorf("number token too long")
+	}
+	if ab05aq05Index := strings.IndexAny(ab05aq05Token, "eE"); ab05aq05Index >= 0 {
+		ab05aq05Exponent, ab05aq05Err := strconv.Atoi(ab05aq05Token[ab05aq05Index+1:])
+		if ab05aq05Err != nil || ab05aq05Exponent > 400 || ab05aq05Exponent < -400 {
+			return fmt.Errorf("number exponent out of range")
+		}
+	}
+	return nil
 }
 
 func ab05aq05Byte(ab05aq05Value any) (int, bool) {

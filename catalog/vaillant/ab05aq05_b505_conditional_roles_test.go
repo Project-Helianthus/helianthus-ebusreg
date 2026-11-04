@@ -342,3 +342,16 @@ func TestAb05Aq05IndependentInputs(ab05aq05T *testing.T) {
 		}
 	}
 }
+
+func TestAb05Aq05BoundedNumbers(ab05aq05T *testing.T) {
+	ab05aq05Prefix := `{"context":{"primary":181,"secondary":5,"operation":23,"direction":"request","view":"flow-excess"},"fields":{},"arguments":{`
+	for _, ab05aq05Bad := range []string{`"demand":1e-100000,"excess":5`, `"demand":1,"excess":1e1000000`, `"demand":1e-401,"excess":5`, `"demand":0.` + strings.Repeat("0", 70) + `1,"excess":5`} {
+		if ab05aq05Output, ab05aq05Error := Ab05Aq05Evaluate([]byte(ab05aq05Prefix + ab05aq05Bad + `}}`)); ab05aq05Error == nil || ab05aq05Output != nil {
+			ab05aq05T.Fatalf("accepted %s", ab05aq05Bad)
+		}
+	}
+	ab05aq05Output, ab05aq05Error := Ab05Aq05Evaluate([]byte(ab05aq05Prefix + `"demand":40,"excess":5e0}}`))
+	if ab05aq05Error != nil || !strings.Contains(string(ab05aq05Output), `"number":45`) {
+		ab05aq05T.Fatalf("bounded sum failed: %s %v", ab05aq05Output, ab05aq05Error)
+	}
+}

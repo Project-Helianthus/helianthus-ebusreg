@@ -136,7 +136,10 @@ jobs:
           # runners start empty and keep the cache.
           cache: ${{ runner.environment == 'github-hosted' }}
       - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
-      - uses: golangci/golangci-lint-action@v6
+      - uses: golangci/golangci-lint-action@v8
+        with:
+          # Same golangci-lint as the readability baseline job: one version reads .golangci.yml.
+          version: v2.11.4
       - name: Remove job-scoped git config
         if: always()
         run: rm -f "$RUNNER_TEMP/gitconfig"

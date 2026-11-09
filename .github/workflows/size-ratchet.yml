@@ -1,0 +1,33 @@
+name: Go size ratchet
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  size-ratchet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Test guard and measure debt
+        env:
+          GOWORK: 'off'
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+          GOTOOLCHAIN: local
+          GOFLAGS: '-buildvcs=false'
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python3 -m unittest discover -s scripts/tests -p test_size_ratchet.py -v
+          python3 scripts/check_size_ratchet.py

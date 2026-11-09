@@ -1,0 +1,110 @@
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"go/ast"
+	"go/parser"
+	"go/printer"
+	"go/token"
+	"os"
+	"strings"
+)
+
+type Row struct {
+	Path   string `json:"path"`
+	Symbol string `json:"symbol"`
+	Metric string `json:"metric"`
+	Value  int    `json:"value"`
+}
+
+func main() {
+	var paths []string
+	if err := json.NewDecoder(os.Stdin).Decode(&paths); err != nil {
+		panic(err)
+	}
+	rows := []Row{}
+	for _, path := range paths {
+		data, err := os.ReadFile(path)
+		if err != nil {
+			panic(err)
+		}
+		fs := token.NewFileSet()
+		file, err := parser.ParseFile(fs, path, data, parser.ParseComments|parser.AllErrors)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+		lines := bytes.Count(data, []byte("\n"))
+		if len(data) > 0 && data[len(data)-1] != '\n' {
+			lines++
+		}
+		rows = append(rows, Row{path, "<file>", "file_lines", lines})
+		count := 0
+		repeated := map[string]int{}
+		var walk func(ast.Node, string)
+		walk = func(node ast.Node, enclosing string) {
+			ordinal := 0
+			ast.Inspect(node, func(n ast.Node) bool {
+				if n == nil {
+					return false
+				}
+				symbol := ""
+				switch f := n.(type) {
+				case *ast.FuncDecl:
+					symbol = f.Name.Name
+					if symbol == "init" || symbol == "_" {
+						repeated[symbol]++
+						symbol = fmt.Sprintf("%s[%d]", symbol, repeated[symbol])
+					}
+					if f.Recv != nil {
+						var receiver bytes.Buffer
+						if err := printer.Fprint(&receiver, fs, f.Recv.List[0].Type); err != nil {
+							panic(err)
+						}
+						symbol = "(" + strings.ReplaceAll(receiver.String(), " ", "") + ")." + symbol
+					}
+				case *ast.FuncLit:
+					ordinal++
+					symbol = fmt.Sprintf("%s/literal[%d]", enclosing, ordinal)
+				}
+				if symbol != "" {
+					count++
+					rows = append(rows, Row{path, symbol, "function_lines", fs.Position(n.End()).Line - fs.Position(n.Pos()).Line + 1})
+					switch f := n.(type) {
+					case *ast.FuncDecl:
+						if f.Body != nil {
+							walk(f.Body, symbol)
+						}
+					case *ast.FuncLit:
+						walk(f.Body, symbol)
+					}
+					return false
+				}
+				// Global initializers use their declared names rather than line offsets.
+				if v, ok := n.(*ast.ValueSpec); ok && enclosing == "<file>" {
+					names := []string{}
+					for _, name := range v.Names {
+						names = append(names, name.Name)
+					}
+					name := strings.Join(names, ",")
+					if v.Names[0].Name == "_" {
+						repeated["value:"+name]++
+						name = fmt.Sprintf("%s[%d]", name, repeated["value:"+name])
+					}
+					for i, value := range v.Values {
+						walk(value, fmt.Sprintf("%s/value[%d]", name, i+1))
+					}
+					return false
+				}
+				return true
+			})
+		}
+		walk(file, "<file>")
+		rows = append(rows, Row{path, "<file>", "functions_per_file", count})
+	}
+	if err := json.NewEncoder(os.Stdout).Encode(rows); err != nil {
+		panic(err)
+	}
+}

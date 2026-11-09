@@ -90,11 +90,23 @@ def inventory(root):
     return entries
 
 
+TEST_PREFIX = re.compile(r"^(?:Test|Benchmark|Fuzz|Example)")
+
+
+def scan_text(entry):
+    # The Go test prefix is not part of the name, so a lowercase code directly
+    # after it (Testxy73Read) is a token start just like TestXY73Read.
+    symbol = entry["symbol"]
+    if entry["category"] == "test":
+        symbol = TEST_PREFIX.sub("", symbol, count=1)
+    return symbol
+
+
 def violations(entries, vocabulary):
     return sorted({(entry["path"], entry["symbol"], entry["category"])
                    for entry in entries
                    if any(m.group().upper() not in vocabulary
-                          for m in TOKENS.finditer(entry["symbol"]))})
+                          for m in TOKENS.finditer(scan_text(entry)))})
 
 
 def check(root, policy):

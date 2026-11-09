@@ -85,6 +85,14 @@ func Generic[XY92 any]() {}
         self.source("package modbus; func TestXY74Read() {}", "new/read_test.go")
         self.assertIn(("new/read_test.go", "TestXY74Read", "test"), self.check())
 
+    def test_lowercase_code_after_test_prefix_is_rejected(self):
+        for name in ["Testxy73Read", "Benchmarkxy73Read", "Fuzzxy73Read", "Examplexy73Read"]:
+            with self.subTest(name=name):
+                entry = {"path": "read_test.go", "symbol": name, "category": "test"}
+                self.assertTrue(GATE.violations([entry], set()))
+        self.source("package modbus; func Testxy73Read() {}", "new/read_test.go")
+        self.assertIn(("new/read_test.go", "Testxy73Read", "test"), self.check())
+
     def test_exact_baseline_and_reductions(self):
         self.source("package modbus; func TestXY73Read() {}")
         self.data["baseline"] = [{"path": "read.go", "symbol": "TestXY73Read", "category": "test"}]

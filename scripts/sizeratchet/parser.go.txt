@@ -71,7 +71,7 @@ func main() {
 				}
 				if symbol != "" {
 					count++
-					rows = append(rows, Row{path, symbol, "function_lines", fs.Position(n.End()).Line - fs.Position(n.Pos()).Line + 1})
+					rows = append(rows, Row{path, symbol, "function_lines", fs.PositionFor(n.End(), false).Line - fs.PositionFor(n.Pos(), false).Line + 1})
 					switch f := n.(type) {
 					case *ast.FuncDecl:
 						if f.Body != nil {

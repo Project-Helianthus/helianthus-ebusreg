@@ -102,6 +102,16 @@ class RatchetTests(unittest.TestCase):
             moved, _ = guard.measure(root)
             self.assertEqual({guard.key(r) for r in rows}, {guard.key(r) for r in moved})
 
+    def test_line_directive_does_not_shrink_span(self):
+        with tempfile.TemporaryDirectory(dir=SCRATCH) as work:
+            root = Path(work)
+            (root / "sample.go").write_text(
+                'package sample\nfunc Example() {\n'
+                '//line other.go:1\n_ = 1\n_ = 2\n_ = 3\n}\n')
+            rows, _ = guard.measure(root)
+            values = {(r["symbol"], r["metric"]): r["value"] for r in rows}
+            self.assertEqual(values[("Example", "function_lines")], 6)
+
     def test_parse_failure_even_in_inactive_file(self):
         with tempfile.TemporaryDirectory(dir=SCRATCH) as work:
             root = Path(work)

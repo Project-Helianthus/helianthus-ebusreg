@@ -11,7 +11,7 @@
         "variant": "synthetic-variant"
       },
       "fields": {
-        "temperature": [
+        "outdoor_temperature": [
           0,
           50
         ],
@@ -21,7 +21,7 @@
       }
     },
     "expected": {
-      "temperature": {
+      "outdoor_temperature": {
         "number": 50,
         "candidate_domain": true,
         "calculation": "Proven",
@@ -45,7 +45,7 @@
         "variant": "synthetic-variant"
       },
       "fields": {
-        "temperature": [
+        "outdoor_temperature": [
           0,
           206
         ],
@@ -55,7 +55,7 @@
       }
     },
     "expected": {
-      "temperature": {
+      "outdoor_temperature": {
         "number": -50,
         "candidate_domain": true
       }
@@ -73,7 +73,7 @@
         "variant": "synthetic-variant"
       },
       "fields": {
-        "temperature": [
+        "outdoor_temperature": [
           0,
           128
         ],
@@ -83,7 +83,7 @@
       }
     },
     "expected": {
-      "temperature": {
+      "outdoor_temperature": {
         "number": -128,
         "candidate_domain": false
       }
@@ -101,7 +101,7 @@
         "variant": "synthetic-variant"
       },
       "fields": {
-        "temperature": [
+        "outdoor_temperature": [
           0,
           50
         ],
@@ -129,7 +129,7 @@
       }
     },
     "expected": {
-      "temperature": {
+      "outdoor_temperature": {
         "number": 50
       },
       "weekday": {
@@ -187,7 +187,7 @@
         "variant": "synthetic-variant"
       },
       "fields": {
-        "temperature": [
+        "outdoor_temperature": [
           0,
           50
         ],
@@ -215,7 +215,7 @@
       }
     },
     "expected": {
-      "temperature": {
+      "outdoor_temperature": {
         "number": 50
       },
       "weekday": {
@@ -273,7 +273,7 @@
         "variant": "synthetic-variant"
       },
       "fields": {
-        "temperature": [
+        "outdoor_temperature": [
           0,
           50
         ],
@@ -301,7 +301,7 @@
       }
     },
     "expected": {
-      "temperature": {
+      "outdoor_temperature": {
         "number": 50
       },
       "weekday": {

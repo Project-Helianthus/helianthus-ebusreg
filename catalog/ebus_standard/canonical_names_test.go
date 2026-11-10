@@ -2,6 +2,7 @@ package ebus_standard_catalog
 
 import (
 	"encoding/json"
+	"reflect"
 	"testing"
 )
 
@@ -44,4 +45,43 @@ func TestCanonicalOutdoorNames(t *testing.T) {
 	duration := ab28TestRow(t, ab28TestKey(2, "request", "duration"))
 	ab28Assert(t, duration, "default", `0`)
 	ab28Assert(t, duration, "zero_permanent_interpretation", `"Unknown"`)
+}
+
+func TestCanonicalOutdoorFieldViews(t *testing.T) {
+	for _, fixture := range ab15aq15Cases(t) {
+		input := ab15aq15Input(t, fixture.Ab15Aq15Input)
+		context := input["context"].(map[string]any)
+		if context["direction"] != "request" || (context["secondary"] != float64(0) && context["secondary"] != float64(2)) {
+			continue
+		}
+		t.Run(fixture.Ab15Aq15ID, func(t *testing.T) {
+			output := ab15aq15Evaluate(t, input)
+			results := output["results"].(map[string]any)
+			outdoor := results["outdoor_temperature"].(map[string]any)
+			if output["state"] != "complete" || outdoor["state"] != "complete" || outdoor["number"] == nil || outdoor["grade"] != "Hypothesis" {
+				t.Fatalf("canonical field not decoded: %v", output)
+			}
+			for _, old := range []string{"temperature", "outside_temperature"} {
+				if _, found := results[old]; found {
+					t.Fatalf("alternate field emitted: %s", old)
+				}
+				legacyInput := ab15aq15Input(t, fixture.Ab15Aq15Input)
+				fields := legacyInput["fields"].(map[string]any)
+				fields[old] = fields["outdoor_temperature"]
+				delete(fields, "outdoor_temperature")
+				legacyOutput := ab15aq15Evaluate(t, legacyInput)
+				legacyResults := legacyOutput["results"].(map[string]any)
+				missing := legacyResults["outdoor_temperature"].(map[string]any)
+				unknown := legacyResults[old].(map[string]any)
+				if legacyOutput["state"] != "partial" || missing["absent"] != true || missing["state"] != "incomplete" || unknown["state"] != "Unknown" || len(unknown) != 2 {
+					t.Fatalf("alternate field decoded: %v", legacyOutput)
+				}
+				for key, result := range results {
+					if key != "outdoor_temperature" && !reflect.DeepEqual(legacyResults[key], result) {
+						t.Fatalf("unaffected field changed: %s", key)
+					}
+				}
+			}
+		})
+	}
 }

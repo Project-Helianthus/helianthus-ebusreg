@@ -2,8 +2,9 @@
 
 ## Unreleased
 
-- Standard 0700 and 0702 candidate metadata emits `outdoor_temperature` for
-  the documented outdoor quantity. Previous keys do not resolve. `duration`
+- Standard 0700 and 0702 candidate metadata and field views emit
+  `outdoor_temperature` for the documented outdoor quantity. Previous keys do
+  not resolve as candidates. `duration`
   stays provisional with its existing zero semantics.
 - B524 annotation APIs emit the existing public OP02 canonical names and their
   open questions without documentary legacy-name or display-alias fields.

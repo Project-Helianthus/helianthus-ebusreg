@@ -90,7 +90,7 @@ func TestAb15Aq15Fixture(ab15aq15T *testing.T) {
 				}
 				ab15aq15Allowed := map[string]bool{"raw": true, "state": true, "grade": true}
 				switch ab15aq15Key {
-				case "temperature":
+				case "outdoor_temperature":
 					for _, ab15aq15Property := range []string{"number", "unit", "calculation", "candidate_domain"} {
 						ab15aq15Allowed[ab15aq15Property] = true
 					}
@@ -205,7 +205,7 @@ func TestAb15Aq15Reject(ab15aq15T *testing.T) {
 		for _, ab15aq15Key := range []string{"primary", "secondary", "operation", "field"} {
 			ab15aq15Input := ab15aq15Input(ab15aq15T, ab15aq15Cases(ab15aq15T)[0].Ab15Aq15Input)
 			if ab15aq15Key == "field" {
-				ab15aq15Input["fields"].(map[string]any)["temperature"] = []any{ab15aq15Value, 0}
+				ab15aq15Input["fields"].(map[string]any)["outdoor_temperature"] = []any{ab15aq15Value, 0}
 			} else {
 				ab15aq15Input["context"].(map[string]any)[ab15aq15Key] = ab15aq15Value
 			}

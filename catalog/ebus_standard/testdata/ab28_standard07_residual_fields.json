@@ -1,6 +1,6 @@
 [
   {
-    "id": "ab28-0700-request-outside_temperature",
+    "id": "ab28-0700-request-outdoor_temperature",
     "key": {
       "family": "standard",
       "variant": "standard07",
@@ -8,7 +8,7 @@
       "secondary": 0,
       "operation": null,
       "direction": "request",
-      "field": "outside_temperature",
+      "field": "outdoor_temperature",
       "alternative": "none",
       "group": null,
       "instance_scope": "none",
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "id": "ab28-0702-request-temperature",
+    "id": "ab28-0702-request-outdoor_temperature",
     "key": {
       "family": "standard",
       "variant": "standard07",
@@ -62,7 +62,7 @@
       "secondary": 2,
       "operation": null,
       "direction": "request",
-      "field": "temperature",
+      "field": "outdoor_temperature",
       "alternative": "none",
       "group": null,
       "instance_scope": "none",

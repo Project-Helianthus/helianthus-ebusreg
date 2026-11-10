@@ -159,9 +159,9 @@ func Ab15Aq15Evaluate(ab15aq15Input json.RawMessage) (json.RawMessage, error) {
 	} else {
 		switch ab15aq15Secondary {
 		case 0:
-			ab15aq15Widths = map[string]int{"temperature": 2, "weekday": 1, "second": 1, "minute": 1, "hour": 1, "day": 1, "month": 1, "year": 1}
+			ab15aq15Widths = map[string]int{"outdoor_temperature": 2, "weekday": 1, "second": 1, "minute": 1, "hour": 1, "day": 1, "month": 1, "year": 1}
 		case 2:
-			ab15aq15Widths = map[string]int{"temperature": 2, "duration": 1}
+			ab15aq15Widths = map[string]int{"outdoor_temperature": 2, "duration": 1}
 		case 3:
 			ab15aq15Widths = map[string]int{"block": 1}
 		case 5:
@@ -189,7 +189,7 @@ func Ab15Aq15Evaluate(ab15aq15Input json.RawMessage) (json.RawMessage, error) {
 			continue
 		}
 		switch ab15aq15Key {
-		case "temperature":
+		case "outdoor_temperature":
 			ab15aq15Second, _ := ab15aq15Byte(ab15aq15Array[1])
 			ab15aq15Signed := int(int16(uint16(ab15aq15First | ab15aq15Second<<8)))
 			ab15aq15Result["number"] = float64(ab15aq15Signed) / 256

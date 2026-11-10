@@ -107,10 +107,7 @@ func TestAb28ResidualFields(ab28T *ab28testing.T) {
 		ab28Assert(ab28T, ab28Object, "executable_schema", `false`)
 	}
 	for _, ab28Secondary := range []uint8{0, 2} {
-		ab28Field := "temperature"
-		if ab28Secondary == 0 {
-			ab28Field = "outside_temperature"
-		}
+		ab28Field := "outdoor_temperature"
 		ab28Object := ab28TestRow(ab28T, ab28TestKey(ab28Secondary, "request", ab28Field))
 		for ab28Field, ab28Expected := range map[string]string{"offset": "0", "width": "2", "encoding": `"signed LE16 /256"`, "unit": `"degrees Celsius"`, "raw_minimum": "-12800", "raw_maximum": "12800", "minimum": "-50", "maximum": "50", "sentinel_8000": `"Unknown"`, "examples": `[{"raw":[0,50],"value":50},{"raw":[0,206],"value":-50}]`} {
 			ab28Assert(ab28T, ab28Object, ab28Field, ab28Expected)
@@ -128,7 +125,7 @@ func TestAb28ResidualFields(ab28T *ab28testing.T) {
 		ab28Assert(ab28T, ab28Object, "literal", ab28fmt.Sprint(ab28Case.Ab28Literal))
 		ab28Assert(ab28T, ab28Object, "field_association", `"Unknown"`)
 	}
-	for _, ab28Key := range []Ab28Key{ab28TestKey(0, "request", "weekday"), ab28TestKey(0, "request", "outside_temperature"), ab28TestKey(2, "request", "temperature")} {
+	for _, ab28Key := range []Ab28Key{ab28TestKey(0, "request", "weekday"), ab28TestKey(0, "request", "outdoor_temperature"), ab28TestKey(2, "request", "outdoor_temperature")} {
 		if _, ab28OK := ab28TestRow(ab28T, ab28Key)["default"]; ab28OK {
 			ab28T.Fatal("unassociated default attached to field")
 		}
@@ -211,7 +208,7 @@ func TestAb28ExactAxes(ab28T *ab28testing.T) {
 	}
 	for _, ab28Case := range ab28Changes {
 		ab28T.Run("ab28_"+ab28Case.Ab28Name, func(ab28T *ab28testing.T) {
-			ab28Base := ab28TestKey(0, "request", "outside_temperature")
+			ab28Base := ab28TestKey(0, "request", "outdoor_temperature")
 			ab28Changed := ab28Base
 			ab28Case.Ab28Change(&ab28Changed)
 			ab28Original, ab28Found, ab28Err := Ab28Lookup(ab28Base)
@@ -258,7 +255,7 @@ func TestAb28ExactAxes(ab28T *ab28testing.T) {
 	// ab28: independent nonzero optional controls prevent presence-only matching.
 	for _, ab28Axis := range []string{"secondary", "operation", "group", "register"} {
 		ab28T.Run("ab28_"+ab28Axis+"_value", func(ab28T *ab28testing.T) {
-			ab28Base := ab28TestKey(0, "request", "outside_temperature")
+			ab28Base := ab28TestKey(0, "request", "outdoor_temperature")
 			ab28Base.Ab28Operation = &ab28Zero8
 			ab28Base.Ab28Group = &ab28Zero8
 			ab28Base.Ab28Register = &ab28Zero16
@@ -297,7 +294,7 @@ func TestAb28ExactAxes(ab28T *ab28testing.T) {
 }
 
 func TestAb28ValidationAndCopies(ab28T *ab28testing.T) {
-	ab28Key := ab28TestKey(0, "request", "outside_temperature")
+	ab28Key := ab28TestKey(0, "request", "outdoor_temperature")
 	ab28Row, ab28Found, ab28Err := Ab28Lookup(ab28Key)
 	if ab28Err != nil || !ab28Found {
 		ab28T.Fatal(ab28Err)

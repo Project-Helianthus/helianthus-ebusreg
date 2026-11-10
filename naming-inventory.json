@@ -9,6 +9,7 @@
     ".gitignore",
     ".golangci.yml",
     "AGENTS.md",
+    "CHANGELOG.md",
     "LICENSE",
     "README.md",
     "catalog/ebus_standard/ab15aq15_standard07_field_views.go",
@@ -37,6 +38,7 @@
     "catalog/ebus_standard/ab83_03_counter_bodies_test.go",
     "catalog/ebus_standard/ab84_05_burner_bodies.go",
     "catalog/ebus_standard/ab84_05_burner_bodies_test.go",
+    "catalog/ebus_standard/canonical_names_test.go",
     "catalog/ebus_standard/catalog.go",
     "catalog/ebus_standard/catalog.yaml",
     "catalog/ebus_standard/doc.go",
@@ -306,6 +308,7 @@
     "catalog/vaillant/ab98_b51a_diagnostic_variants_test.go",
     "catalog/vaillant/ab99_b523_config_mixer.go",
     "catalog/vaillant/ab99_b523_config_mixer_test.go",
+    "catalog/vaillant/canonical_names_test.go",
     "catalog/vaillant/data/ab12_b50f_status_spans.json",
     "catalog/vaillant/data/ab13_b507_energy_candidates.json",
     "catalog/vaillant/data/ab14_b509_op59_quantities.json",
@@ -423,6 +426,8 @@
     "go.sum",
     "hello_test.go",
     "internal/match/match.go",
+    "naming-consumers.json",
+    "naming-inventory.json",
     "providers/vaillant/providers.go",
     "pv/catalog.go",
     "pv/catalog_red_test.go",
@@ -611,7 +616,7 @@
     "vaillant/system/testdata/ab64_b524_zone_scalars.json",
     "vaillant/system/testdata/ab66_b524_unscoped_hints.json"
   ],
-  "coverage": "Incomplete: Go AST, embedded data and semantic consumer bindings require further enumeration.",
+  "coverage": "Lexical rows retain documentary before-change locations; exact structured emissions below cover the bounded naming change. Unclassified names remain provisional; no ecosystem-wide compliance is claimed.",
   "rows": [
     {
       "owning_file": "catalog/ebus_standard/ab15aq15_standard07_field_views.go",
@@ -187692,7 +187697,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_outdoor_bivalence_temperature_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -187732,7 +187740,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "continuous_heating_outdoor_temperature_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -187772,7 +187783,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "frost_protection_delay_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -187812,7 +187826,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "preheating_time_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -187852,7 +187869,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "manual_cooling_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -187896,7 +187916,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "unknown_11",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -187936,7 +187959,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_enabled_at_holiday",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -187984,7 +188010,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "automatic_cooling_enabled",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188024,7 +188053,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cylinder_parallel_loading_enabled",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188064,7 +188096,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_circuit_bleeding_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188104,7 +188139,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_frost_protection_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188144,7 +188182,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "room_humidity_limit_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188184,7 +188225,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "hybrid_control_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188232,7 +188276,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "backup_heater_tariff",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188272,7 +188319,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "electricity_price_at_low_tariff",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188312,7 +188362,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "electricity_price_at_high_tariff",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188357,7 +188410,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "backup_heater_type",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188397,7 +188453,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "adaptive_heating_curve_enabled",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188447,7 +188506,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "automatic_daylight_saving_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188495,7 +188557,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_operating_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188535,7 +188600,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_loading_time_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188575,7 +188643,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_blocking_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188620,7 +188691,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_flow_rate_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188660,7 +188734,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_pump_overrun_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188700,7 +188777,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heat_generator_flow_temperature_limit_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188748,7 +188828,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "automatic_sequence_reversal",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188788,7 +188871,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_outdoor_alternative_temperature_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188828,7 +188914,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_outdoor_bivalence_temperature_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188869,7 +188958,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "backup_heater_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188909,7 +189001,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "temporary_backup_heater_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188949,7 +189044,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_flow_temperature_setpoint_maximum_at_heat_pump_fault",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -188989,7 +189087,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cylinder_loading_start_hysteresis",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189029,7 +189130,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cylinder_loading_offset",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189069,7 +189173,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_legionella_protection_start_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189109,7 +189216,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_legionella_protection_start_weekday",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189167,7 +189277,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "maintenance_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189207,7 +189320,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "outdoor_temperature_offset",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189247,7 +189363,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "functional_module_configuration_code",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189285,7 +189404,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "language",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189323,7 +189445,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189364,7 +189489,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189404,7 +189532,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "hydraulic_scheme_code",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189444,7 +189575,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_start_temperature_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189484,7 +189618,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "water_pressure",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189524,7 +189661,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "hybrid_unknown_2",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189564,7 +189704,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_yield_total_reset_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189605,7 +189748,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_yield_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189646,7 +189792,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "environmental_yield_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189686,7 +189835,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "environmental_yield_total_reset_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189726,7 +189878,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_volatile_organic_compound_sensor_1",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189766,7 +189921,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_volatile_organic_compound_sensor_2",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189806,7 +189964,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_fan_speed_limit_maximum_at_day",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189846,7 +190007,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_fan_speed_limit_maximum_at_night",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189886,7 +190050,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_heat_recovery",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189926,7 +190093,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "utility_lockout_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -189966,7 +190136,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_flow_temperature_setpoint_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190006,7 +190179,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "emergency_operation_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190052,7 +190228,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "energy_manager_state",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190092,7 +190271,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "electricity_consumption_total_reset_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190132,7 +190314,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "settings_reset_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190174,7 +190359,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "flow_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190214,7 +190402,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "backup_heater_power_limit_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190254,7 +190445,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "multifunction_output_2_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190294,7 +190488,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_fuel_consumption_current_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190334,7 +190531,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_electricity_consumption_current_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190374,7 +190574,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_electricity_consumption_current_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190414,7 +190617,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_fuel_consumption_current_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190454,7 +190660,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_fuel_consumption_previous_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190494,7 +190703,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_electricity_consumption_previous_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190534,7 +190746,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_electricity_consumption_previous_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190574,7 +190789,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_fuel_consumption_previous_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190614,7 +190832,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_fuel_consumption_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190654,7 +190875,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_electricity_consumption_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190694,7 +190918,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_electricity_consumption_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190734,7 +190961,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_fuel_consumption_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190774,7 +191004,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "electricity_consumption_1_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190814,7 +191047,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "fuel_consumption_1_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190854,7 +191090,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heat_recovery_yield_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190894,7 +191133,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "actuator_sensor_test_device_code",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190934,7 +191176,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "actuator_sensor_test_sensor_code",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -190974,7 +191219,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "actuator_sensor_test_actuator_code",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191014,7 +191262,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_volatile_organic_compound_sensor_3",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191054,7 +191305,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_volatile_organic_compound_limit_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191094,7 +191348,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_fan_speed_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191134,7 +191391,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "home_screen_unknown_6",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191174,7 +191434,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cylinder_bottom_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191214,7 +191477,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cylinder_top_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191252,7 +191518,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "unknown_1",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191292,7 +191561,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "multifunction_input_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191332,7 +191604,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "installer_name_prefix",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191372,7 +191647,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "installer_name_suffix",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191412,7 +191690,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "installer_phone_number_prefix",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191452,7 +191733,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "installer_phone_number_suffix",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191500,7 +191784,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "holiday_start_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191547,7 +191834,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "holiday_end_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191601,7 +191891,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "outdoor_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191641,7 +191934,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "special_function_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191681,7 +191977,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "installer_access_code",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191721,7 +192020,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "installation_assistant_ready",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191766,7 +192068,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "home_screen_special_function",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191806,7 +192111,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_time_program_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191846,7 +192154,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_zone_time_program_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191886,7 +192197,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_operating_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191926,7 +192240,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_zone_operating_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -191966,7 +192283,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "home_screen_operating_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192004,7 +192324,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "unknown_3",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192044,7 +192367,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "screed_drying_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192084,7 +192410,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cylinder_loading_start_offset",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192124,7 +192453,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cylinder_loading_stop_offset",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192164,7 +192496,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "room_temperature_setpoint_at_holiday",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192209,7 +192544,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "bank_holiday_start_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192254,7 +192592,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "bank_holiday_end_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192294,7 +192635,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "actuator_sensor_test_sensor_reading",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192334,7 +192678,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "backlight_on_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192379,7 +192726,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "drainback_start_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192424,7 +192774,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "drainback_station",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192464,7 +192817,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_pump_kick_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192504,7 +192860,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_pump_kick_gradient_limit_minimum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192544,7 +192903,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heat_pump_flow_temperature_setpoint_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192584,7 +192946,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "boiler_remote_reset_available",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192632,7 +192997,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "display_test_pattern",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192680,7 +193048,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "backlight_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192720,7 +193091,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cylinder_type",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192758,7 +193132,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "unknown_4",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192798,7 +193175,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "left_button_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192838,7 +193218,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "right_button_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192878,7 +193261,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "encoder_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192918,7 +193304,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "external_crystal_status",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192958,7 +193347,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "outdoor_temperature_daily_average",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -192998,7 +193390,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "maintenance_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193038,7 +193433,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "eeprom_update_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193078,7 +193476,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "boiler_reset_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193118,7 +193519,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "rtc_crystal_ok",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193156,7 +193560,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "unknown_5",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193196,7 +193603,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "time_program_reset_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193241,7 +193651,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "home_screen_headline",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193281,7 +193694,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_cylinder_top_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193321,7 +193737,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_cylinder_bottom_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193361,7 +193780,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_cylinder_top_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193401,7 +193823,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_cylinder_bottom_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193441,7 +193866,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "pv_surplus_enabled",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193481,7 +193909,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_cylinder_offset_at_pv_surplus",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193521,7 +193952,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_time_program_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193561,7 +193995,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_special_function_state",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193606,7 +194043,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cascade_client_sequence",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193646,7 +194086,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "menu_button_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193686,7 +194129,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "confirm_button_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193726,7 +194172,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "back_button_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193766,7 +194215,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "up_button_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193806,7 +194258,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "down_button_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193846,7 +194301,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "isolation_switch_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193886,7 +194344,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_electricity_consumption_current_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193926,7 +194387,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_electricity_consumption_previous_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -193966,7 +194430,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_electricity_consumption_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194006,7 +194473,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "network_identifier",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194046,7 +194516,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "multifunction_output_1_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194086,7 +194559,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "outdoor_temperature_sensor_ok",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194126,7 +194602,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "external_energy_management_enabled",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194166,7 +194645,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_diverter_valve",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194206,7 +194688,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_electricity_consumption_current_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194246,7 +194731,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_electricity_consumption_previous_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194286,7 +194774,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_electricity_consumption_current_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194326,7 +194817,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_electricity_consumption_previous_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194366,7 +194860,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_fuel_consumption_previous_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194406,7 +194903,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_fuel_consumption_previous_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194446,7 +194946,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_electricity_consumption_previous_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194486,7 +194989,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_electricity_consumption_current_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194526,7 +195032,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "electricity_consumption_current_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194566,7 +195075,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "electricity_consumption_previous_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194606,7 +195118,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "electricity_consumption_current_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194646,7 +195161,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "electricity_consumption_previous_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194686,7 +195204,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "electricity_consumption_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194726,7 +195247,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_fuel_consumption_current_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194766,7 +195290,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_fuel_consumption_current_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194806,7 +195333,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "fuel_consumption_current_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194846,7 +195376,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "fuel_consumption_previous_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194886,7 +195419,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "fuel_consumption_current_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194926,7 +195462,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "fuel_consumption_previous_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -194967,7 +195506,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "fuel_consumption_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195007,7 +195549,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heat_recovery_yield_previous_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195047,7 +195592,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heat_recovery_yield_current_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195087,7 +195635,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heat_recovery_yield_current_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195127,7 +195678,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heat_recovery_yield_previous_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195167,7 +195721,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_yield_previous_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195207,7 +195764,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_yield_current_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195247,7 +195807,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_yield_current_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195287,7 +195850,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_yield_previous_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195327,7 +195893,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "environmental_yield_previous_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195367,7 +195936,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "environmental_yield_previous_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195407,7 +195979,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "environmental_yield_current_year",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195455,7 +196030,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "electricity_tariff_type",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195496,7 +196074,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "manual_cooling_start_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195537,7 +196118,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "manual_cooling_end_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195580,7 +196164,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "room_temperature_control_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195620,7 +196207,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "screed_drying_profile_1_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195660,7 +196250,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "screed_drying_profile_2_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195700,7 +196293,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "screed_drying_profile_3_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195740,7 +196336,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "environmental_yield_current_month",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195780,7 +196379,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_control_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195820,7 +196422,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "automatic_control_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195860,7 +196465,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "up_button_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195900,7 +196508,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "down_button_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195940,7 +196551,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "help_button_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -195980,7 +196594,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "confirm_button_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196020,7 +196637,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "menu_button_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196060,7 +196680,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "back_button_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196100,7 +196723,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "slider_button_1_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196140,7 +196766,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "slider_button_2_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196180,7 +196809,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "slider_button_3_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196220,7 +196852,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "slider_button_4_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196260,7 +196895,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "slider_button_5_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196300,7 +196938,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "slider_button_6_level",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196340,7 +196981,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "continuous_heating_room_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196380,7 +197024,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "priority_error_code",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196420,7 +197067,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "priority_maintenance_code",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196468,7 +197118,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "holiday_start_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196515,7 +197168,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "holiday_end_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196555,7 +197211,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "holiday_start_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196595,7 +197254,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "holiday_end_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196635,7 +197297,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "room_temperature_setpoint_at_holiday",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196675,7 +197340,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "holiday_abort_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196715,7 +197383,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "manual_cooling_abort_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196755,7 +197426,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_boost_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196795,7 +197469,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "external_demand_input_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196835,7 +197512,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heat_pump_temperature_difference_limit_minimum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196875,7 +197555,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_heat_pump_flow_temperature_setpoint_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196915,7 +197598,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "boiler_flow_temperature_setpoint_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196955,7 +197641,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_circuit_type",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -196995,7 +197684,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_circulation_pump_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197040,7 +197732,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_operating_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197081,7 +197776,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197131,7 +197829,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197171,7 +197872,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_pump_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197211,7 +197915,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_time_program_reset_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197251,7 +197958,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_flow_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197294,7 +198004,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_holiday_start_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197337,7 +198050,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_holiday_end_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197377,7 +198093,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_bank_holiday_start_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197417,7 +198136,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_bank_holiday_end_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197457,7 +198179,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_special_function_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197497,7 +198222,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_central_control_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197537,7 +198265,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_special_function_state",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197577,7 +198308,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_holiday_start_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197617,7 +198351,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_holiday_end_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197657,7 +198394,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_holiday_abort_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197697,7 +198437,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_preference",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197737,7 +198480,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_recharge_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197777,7 +198523,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_loading_efficiency_state",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197817,7 +198566,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "hydraulic_circuit_type",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197886,7 +198638,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_type",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197926,7 +198681,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_room_influence_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -197966,7 +198724,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_return_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198006,7 +198767,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_condensate_sensitive_emitter_available",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198047,7 +198811,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_cooling_enabled",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198087,7 +198854,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_flow_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198127,7 +198897,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_flow_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198167,7 +198940,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_circuit_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198207,7 +198983,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_unknown_7",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198247,7 +199026,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_circuit_flow_temperature_offset",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198287,7 +199069,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_flow_high_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198327,7 +199112,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_flow_low_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198375,7 +199163,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_frost_protection_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198415,7 +199206,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_heating_curve_factor",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198455,7 +199249,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_circuit_flow_temperature_setpoint_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198495,7 +199292,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_circuit_flow_temperature_setpoint_minimum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198535,7 +199335,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_flow_temperature_setpoint_minimum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198575,7 +199378,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_circuit_operating_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198615,7 +199421,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_circuit_outdoor_temperature_limit_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198655,7 +199464,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_room_temperature_influence_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198695,7 +199507,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_screed_drying_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198735,7 +199550,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "screed_drying_circuit_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198775,7 +199593,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "dhw_circuit_circulation_pump_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198815,7 +199636,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_external_demand_input",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198855,7 +199679,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_mixer_movement",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198896,7 +199723,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_pump_unknown_8",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198941,7 +199771,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_adaptive_heating_curve_offset",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -198981,7 +199814,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_unknown_9",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199038,7 +199874,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_state",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199078,7 +199917,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_circuit_outdoor_temperature_limit_minimum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199119,7 +199961,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_unknown_10",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199161,7 +200006,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_mixer_position",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199201,7 +200049,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_room_humidity",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199246,7 +200097,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_dew_point_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199287,7 +200141,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_pump_operating_time_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199328,7 +200185,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "circuit_pump_start_count_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199368,7 +200228,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_zone_operating_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199408,7 +200271,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_zone_room_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199458,7 +200324,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_holiday_start_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199508,7 +200377,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_holiday_end_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199548,7 +200420,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_room_temperature_setpoint_at_holiday",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199588,7 +200463,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_operating_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199628,7 +200506,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_room_comfort_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199668,7 +200549,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_room_temperature_setpoint_at_quick_veto",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199708,7 +200592,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_room_setback_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199748,7 +200635,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_operating_mode_at_teleswitch",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199788,7 +200678,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_zone_operating_mode_at_teleswitch",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199828,7 +200721,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_bank_holiday_start_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199868,7 +200764,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_bank_holiday_end_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199908,7 +200807,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_special_function_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199948,7 +200850,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_room_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -199988,7 +200893,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_time_program_reset_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200028,7 +200936,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_enabled",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200068,7 +200979,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_valve_position",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200108,7 +201022,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_room_sensor_binding_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200148,7 +201065,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_room_effective_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200188,7 +201108,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_zone_room_effective_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200226,7 +201149,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_name",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200276,7 +201202,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_name_prefix",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200326,7 +201255,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_name_suffix",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200366,7 +201298,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_time_program_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200406,7 +201341,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_zone_time_program_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200446,7 +201384,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_special_function_state",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200486,7 +201427,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_circuit_assignment",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200526,7 +201470,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_event_end_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200566,7 +201513,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_quick_veto_end_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200606,7 +201556,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_holiday_end_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200646,7 +201599,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_holiday_start_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200686,7 +201642,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_room_manual_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200726,7 +201685,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_zone_room_manual_temperature_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200776,7 +201738,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_quick_veto_end_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200816,7 +201781,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_holiday_abort_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200856,7 +201824,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_quick_veto_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200896,7 +201867,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_manual_cooling_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200936,7 +201910,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_room_humidity",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -200976,7 +201953,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_cooling_enabled",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201021,7 +202001,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_summer_cutoff_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201066,7 +202049,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_continuous_heating_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201111,7 +202097,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "zone_frost_protection_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201151,7 +202140,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "heating_zone_thermostat_cutoff_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201191,7 +202183,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "cooling_zone_thermostat_cutoff_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201232,7 +202227,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_pump_operating_time_total_reset_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201273,7 +202271,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_pump_kick_enabled",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201319,7 +202320,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_collector_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201359,7 +202363,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_collector_temperature_limit_minimum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201399,7 +202406,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_circuit_protection_temperature_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201439,7 +202449,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_circuit_protection_stop_temperature_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201479,7 +202492,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_yield_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201529,7 +202545,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_pump_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201569,7 +202588,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_circuit_flow_rate",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201609,7 +202631,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_circuit_flow_rate_setpoint",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201650,7 +202675,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_pump_operating_time_total",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201690,7 +202718,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_pump_power_limit_minimum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201730,7 +202761,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_cylinder_temperature_limit_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201770,7 +202804,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_cylinder_start_temperature_difference_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201810,7 +202847,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_cylinder_stop_temperature_difference_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201855,7 +202895,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "solar_cylinder_bottom_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201895,7 +202938,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "differential_control_temperature_limit_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201935,7 +202981,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "differential_control_temperature_limit_minimum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -201975,7 +203024,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "differential_control_start_temperature_difference_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202015,7 +203067,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "differential_control_stop_temperature_difference_limit",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202055,7 +203110,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "differential_control_sensor_1_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202095,7 +203153,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "differential_control_sensor_2_temperature",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202135,7 +203196,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "differential_control_output",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202175,7 +203239,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_special_function_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202223,7 +203290,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_operating_mode",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202263,7 +203333,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_time_program_active",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202303,7 +203376,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_special_function_state",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202343,7 +203419,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_volatile_organic_compound_sensor_1",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202383,7 +203462,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_volatile_organic_compound_sensor_2",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202423,7 +203505,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_holiday_end_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202463,7 +203548,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_holiday_end_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202503,7 +203591,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_holiday_start_date",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202543,7 +203634,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_holiday_start_clock_time",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202583,7 +203677,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_heat_recovery",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202623,7 +203720,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_volatile_organic_compound_limit_maximum",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202663,7 +203763,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_fan_speed_limit_maximum_at_day",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202703,7 +203806,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_fan_speed_limit_maximum_at_night",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202743,7 +203849,10 @@
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
         "physical_qualification": "Unknown"
-      }
+      },
+      "runtime_name": "ventilation_holiday_abort_command",
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202771,7 +203880,7 @@
       "value_class": null,
       "unit": null,
       "status": "provisional",
-      "open_question": "No matching public name-table identity.",
+      "open_question": "No matching public OP06 canonical-name contract; native label is evidence only.",
       "consumer_files": [],
       "native_evidence": {
         "legacy_name": null,
@@ -202780,8 +203889,12 @@
         "representation_grade": "Proven",
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
-        "physical_qualification": "Unknown"
-      }
+        "physical_qualification": "Unknown",
+        "native_label": "RoomHumidity"
+      },
+      "runtime_name": null,
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     },
     {
       "owning_file": "catalog/vaillant/data/ab36_b524_name_annotations.json",
@@ -202809,7 +203922,7 @@
       "value_class": null,
       "unit": null,
       "status": "provisional",
-      "open_question": "No matching public name-table identity.",
+      "open_question": "No matching public OP06 canonical-name contract; native label is evidence only.",
       "consumer_files": [],
       "native_evidence": {
         "legacy_name": null,
@@ -202818,8 +203931,732 @@
         "representation_grade": "Proven",
         "grade": "Hypothesis",
         "semantics_grade": "Unknown",
-        "physical_qualification": "Unknown"
-      }
+        "physical_qualification": "Unknown",
+        "native_label": "RoomTemp"
+      },
+      "runtime_name": null,
+      "runtime_aliases": false,
+      "native_evidence_role": "Documentary correspondence only; never a runtime lookup or fallback source."
     }
-  ]
+  ],
+  "emission_contract": {
+    "public_contracts": [
+      "architecture/naming.md",
+      "protocols/ebus-services/ebus-standard07-residual-fields.md",
+      "protocols/vaillant/fixtures/b524-op02-register-names.csv"
+    ],
+    "standard07": [
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 0,
+          "operation": null,
+          "direction": "request",
+          "field": "outdoor_temperature",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "outdoor_temperature",
+        "unit": "degrees Celsius",
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 2,
+          "operation": null,
+          "direction": "request",
+          "field": "outdoor_temperature",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "outdoor_temperature",
+        "unit": "degrees Celsius",
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 0,
+          "operation": null,
+          "direction": "request",
+          "field": "second",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "second",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 0,
+          "operation": null,
+          "direction": "request",
+          "field": "minute",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "minute",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 0,
+          "operation": null,
+          "direction": "request",
+          "field": "hour",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "hour",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 0,
+          "operation": null,
+          "direction": "request",
+          "field": "day",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "day",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 0,
+          "operation": null,
+          "direction": "request",
+          "field": "month",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "month",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 0,
+          "operation": null,
+          "direction": "request",
+          "field": "year",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "year",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 0,
+          "operation": null,
+          "direction": "request",
+          "field": "weekday",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "weekday",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 0,
+          "operation": null,
+          "direction": "none",
+          "field": "unassociated_default",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "unassociated_default",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 2,
+          "operation": null,
+          "direction": "request",
+          "field": "duration",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "duration",
+        "unit": "minutes",
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 2,
+          "operation": null,
+          "direction": "none",
+          "field": "unassociated_default",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "unassociated_default",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "request",
+          "field": "block",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "block",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "positive",
+          "field": "version",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "version",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "positive",
+          "field": "revision",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "revision",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_0",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_0",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_1",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_1",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_2",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_2",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_3",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_3",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_4",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_4",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_5",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_5",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_6",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_6",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 3,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_7",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_7",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "request",
+          "field": "secondary_block",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "secondary_block",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "request",
+          "field": "primary_block",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "primary_block",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "positive",
+          "field": "version",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "version",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "positive",
+          "field": "revision",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "revision",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_0",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_0",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_1",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_1",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_2",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_2",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_3",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_3",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_4",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_4",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_5",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_5",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_6",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_6",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 5,
+          "operation": null,
+          "direction": "positive",
+          "field": "bitmap_7",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "bitmap_7",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 254,
+          "operation": null,
+          "direction": "request",
+          "field": "inquiry",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "inquiry",
+        "unit": null,
+        "grade": "Hypothesis"
+      },
+      {
+        "identity": {
+          "family": "standard",
+          "variant": "standard07",
+          "primary": 7,
+          "secondary": 255,
+          "operation": null,
+          "direction": "request",
+          "field": "sign_of_life",
+          "alternative": "none",
+          "group": null,
+          "instance_scope": "none",
+          "register": null
+        },
+        "emitted_name": "sign_of_life",
+        "unit": null,
+        "grade": "Hypothesis"
+      }
+    ],
+    "accepted_key_changes": [
+      {
+        "primary": 7,
+        "secondary": 0,
+        "direction": "request",
+        "previous_name": "outside_temperature",
+        "name": "outdoor_temperature"
+      },
+      {
+        "primary": 7,
+        "secondary": 2,
+        "direction": "request",
+        "previous_name": "temperature",
+        "name": "outdoor_temperature"
+      }
+    ],
+    "b524": {
+      "op02_count": 368,
+      "open_question_count": 142,
+      "non_provisional_changed_documentary_spellings": 208,
+      "canonical_name_changes": 0,
+      "op06_count": 2,
+      "unmatched_policy": "Retain both OP06 rows with null canonical_name and separate native_label/raw_form; never join them to OP02.",
+      "withdrawn_fields": [
+        "legacy_name",
+        "display_alias"
+      ],
+      "op02_documentary_withdrawal": "raw_form correspondence is preserved in native_evidence in this non-runtime inventory.",
+      "runtime_fields": [
+        "canonical_name",
+        "grade",
+        "key",
+        "open_question",
+        "physical_qualification",
+        "representation_grade",
+        "semantics_grade",
+        "unresolved"
+      ]
+    },
+    "schema_decode": "Generic Schema.Decode emits caller-supplied SchemaField.Name. No global spelling rewrite, new decoder or native admission is introduced.",
+    "retained_provisional": [
+      "duration activity and differing zero semantics",
+      "all other non-B524 names without a supported native contract"
+    ],
+    "evidence_class": "S; renew affected security, hardware and release-candidate evidence before release."
+  }
 }

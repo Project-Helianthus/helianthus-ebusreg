@@ -51,7 +51,7 @@ func TestAb13FiniteMetadata(ab13T *ab13testing.T) {
 		if ab13Entry.Ab13Position != nil || ab13Entry.Ab13Key.Ab13Direction != nil || ab13Entry.Ab13Key.Ab13Group != nil || ab13Entry.Ab13Key.Ab13RequestedInstance != nil || ab13Entry.Ab13Key.Ab13Register != nil || ab13Entry.Ab13Key.Ab13CommandRole != nil || ab13Entry.Ab13Reference != "Unknown" {
 			ab13T.Fatal("invented coordinates or reference")
 		}
-		if ab13Entry.Ab13NativeContract != "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B507.md" {
+		if ab13Entry.Ab13NativeContract != "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b507.md" {
 			ab13T.Fatal("native contract")
 		}
 	}

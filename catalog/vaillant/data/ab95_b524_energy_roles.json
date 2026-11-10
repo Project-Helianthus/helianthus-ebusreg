@@ -32,7 +32,7 @@
     "metadata_boundary_grade": "Proven",
     "metadata_boundary": "Metadata lookup cannot establish applied state or installed capability.",
     "physical_qualification": "Unknown",
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B524.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b524.md",
     "readback_instance": 0
   },
   {
@@ -68,7 +68,7 @@
     "metadata_boundary_grade": "Proven",
     "metadata_boundary": "Metadata lookup cannot establish applied state or installed capability.",
     "physical_qualification": "Unknown",
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B524.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b524.md",
     "readback_instance": 0
   },
   {
@@ -106,7 +106,7 @@
     "metadata_boundary_grade": "Proven",
     "metadata_boundary": "Metadata lookup cannot establish applied state or installed capability.",
     "physical_qualification": "Unknown",
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B524.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b524.md",
     "readback_instance": 0
   },
   {
@@ -142,7 +142,7 @@
     "metadata_boundary_grade": "Proven",
     "metadata_boundary": "Metadata lookup cannot establish applied state or installed capability.",
     "physical_qualification": "Unknown",
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B524.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b524.md",
     "readback_instance": 0
   },
   {
@@ -179,7 +179,7 @@
     "metadata_boundary_grade": "Proven",
     "metadata_boundary": "Metadata lookup cannot establish applied state or installed capability.",
     "physical_qualification": "Unknown",
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B524.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b524.md",
     "readback_instance": 0
   }
 ]

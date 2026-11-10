@@ -54,7 +54,7 @@ func TestAb48FiniteMetadata(ab48T *ab48testing.T) {
 			if ab48Err != nil || !ab48Found {
 				ab48T.Fatalf("ab48 lookup: %v %v", ab48Found, ab48Err)
 			}
-			ab48ExpectedRow := map[string]any{"id": "ab48_" + ab48Field, "key": ab48Key, "grade": "Hypothesis", "metadata_presence": "Proven", "physical_qualification": "Unknown", "presence": "Unknown", "freshness": "Unknown", "execution": "Unknown", "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B510.md", "position": nil, "raw_form": "preserve original bytes", "unknown": []string{"other positions", "peer acceptance", "effects"}, "details": ab48Decode(ab48T, []byte(ab48Details))}
+			ab48ExpectedRow := map[string]any{"id": "ab48_" + ab48Field, "key": ab48Key, "grade": "Hypothesis", "metadata_presence": "Proven", "physical_qualification": "Unknown", "presence": "Unknown", "freshness": "Unknown", "execution": "Unknown", "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b510.md", "position": nil, "raw_form": "preserve original bytes", "unknown": []string{"other positions", "peer acceptance", "effects"}, "details": ab48Decode(ab48T, []byte(ab48Details))}
 			if !ab48reflect.DeepEqual(ab48Decode(ab48T, ab48Raw), ab48Decode(ab48T, ab48Marshal(ab48T, ab48ExpectedRow))) {
 				ab48T.Fatalf("ab48 whole row mismatch: %s", ab48Raw)
 			}

@@ -55,6 +55,11 @@ func ab36Validate(ab36Source []byte) ([]ab36json.RawMessage, map[string]ab36json
 		if ab36Error := ab36json.Unmarshal(ab36Row, &ab36Object); ab36Error != nil {
 			return nil, nil, ab36Error
 		}
+		for _, documentaryField := range []string{"legacy_name", "display_alias", "previous_name"} {
+			if _, ab36Present := ab36Object[documentaryField]; ab36Present {
+				return nil, nil, ab36fmt.Errorf("ab36: documentary name field is not runtime data")
+			}
+		}
 		ab36RawKey, ab36Present := ab36Object["key"]
 		if !ab36Present || ab36bytes.Equal(ab36bytes.TrimSpace(ab36RawKey), []byte("null")) {
 			return nil, nil, ab36fmt.Errorf("ab36: missing key")

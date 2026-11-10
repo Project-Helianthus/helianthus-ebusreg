@@ -49,7 +49,7 @@ func TestAb95FiveTargets(ab95T *ab95testing.T) {
 		if ab95Entry.Ab95FieldOffset != nil || ab95Entry.Ab95ByteOrder != nil || ab95Entry.Ab95NativeUnit != nil || ab95Entry.Ab95ControlEnumeration != nil || ab95Entry.Ab95ResponseForm != nil {
 			ab95T.Fatal("unprovided metadata invented")
 		}
-		if ab95Entry.Ab95RawPreservation != "Preserve native raw values and partial last-known-good fields independently." || ab95Entry.Ab95NativeContract != "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B524.md" {
+		if ab95Entry.Ab95RawPreservation != "Preserve native raw values and partial last-known-good fields independently." || ab95Entry.Ab95NativeContract != "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b524.md" {
 			ab95T.Fatal("native contract/raw boundary changed")
 		}
 	}

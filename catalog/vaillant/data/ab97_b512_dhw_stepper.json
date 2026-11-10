@@ -28,7 +28,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
   {
@@ -62,7 +62,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
   {
@@ -91,7 +91,7 @@
       "physical adaptation",
       "support"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "signed": false,
     "byte_order": "little-endian",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -123,7 +123,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "label_grade": "Hypothesis",
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -155,7 +155,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "label_grade": "Hypothesis",
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -187,7 +187,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "label_grade": "Hypothesis",
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -219,7 +219,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "label_grade": "Hypothesis",
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -251,7 +251,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "label_grade": "Unknown",
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -283,7 +283,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "label_grade": "Unknown",
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -315,7 +315,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "label_grade": "Unknown",
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -347,7 +347,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "label_grade": "Unknown",
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -378,7 +378,7 @@
       "support",
       "physical adaptation"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "formal_unit": "Celsius",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -409,7 +409,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
   {
@@ -439,7 +439,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
   {
@@ -469,7 +469,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
   {
@@ -499,7 +499,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
   {
@@ -529,7 +529,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "label_grade": "Unknown",
     "boolean_default": false,
@@ -562,7 +562,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "label_grade": "Unknown",
     "boolean_default": false,
@@ -595,7 +595,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "label_grade": "Unknown",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -627,7 +627,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "label_grade": "Unknown",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -659,7 +659,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "label_grade": "Unknown",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -691,7 +691,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "label_grade": "Unknown",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -723,7 +723,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "label_grade": "Unknown",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -755,7 +755,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "label_grade": "Unknown",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -787,7 +787,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -819,7 +819,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -851,7 +851,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -883,7 +883,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -915,7 +915,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -947,7 +947,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -979,7 +979,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1010,7 +1010,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1041,7 +1041,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
   {
@@ -1071,7 +1071,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
   {
@@ -1106,7 +1106,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "signed": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1137,7 +1137,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "signed": true,
     "byte_order": "little-endian",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -1173,7 +1173,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
   {
@@ -1203,7 +1203,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "signed": true,
     "byte_order": "little-endian",
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -1235,7 +1235,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -1267,7 +1267,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1298,7 +1298,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1329,7 +1329,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1360,7 +1360,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1391,7 +1391,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1422,7 +1422,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1453,7 +1453,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1484,7 +1484,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -1516,7 +1516,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1547,7 +1547,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1578,7 +1578,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1609,7 +1609,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1640,7 +1640,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1671,7 +1671,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1702,7 +1702,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1733,7 +1733,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -1765,7 +1765,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1796,7 +1796,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1827,7 +1827,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1858,7 +1858,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1889,7 +1889,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1920,7 +1920,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1951,7 +1951,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -1982,7 +1982,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": false,
     "boolean_default": false,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
@@ -2014,7 +2014,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -2045,7 +2045,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -2076,7 +2076,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -2107,7 +2107,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -2138,7 +2138,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -2169,7 +2169,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -2200,7 +2200,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "reserved": true,
     "coordinate_basis": "logical; includes three-position B5/12/operation prefix"
   },
@@ -2231,7 +2231,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": null
   },
   {
@@ -2262,7 +2262,7 @@
       "actual movement",
       "name does not encode operation 14"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": null
   },
   {
@@ -2292,7 +2292,7 @@
       "support",
       "actual movement"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": null
   },
   {
@@ -2323,7 +2323,7 @@
       "actual movement",
       "name does not encode operation 14"
     ],
-    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B512.md",
+    "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b512.md",
     "coordinate_basis": null
   }
 ]

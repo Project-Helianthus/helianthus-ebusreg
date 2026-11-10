@@ -2,7 +2,7 @@
   "metadata_presence": "Proven",
   "physical_qualification": "Unknown",
   "routable_invocation": "Unknown",
-  "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B510.md",
+  "native_contract": "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-b510.md",
   "limitations": [
     "Finite candidate declarations only; broader family catalog incomplete.",
     "Coordinates and omitted mode codes remain unknown.",

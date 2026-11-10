@@ -260,6 +260,9 @@
         "cmd/gateway/matter_binding_feed_v1_test.go",
         "cmd/gateway/matter_library_composition.go",
         "cmd/gateway/matter_library_composition_test.go",
+        "cmd/gateway/matter_profile_disabled.go",
+        "cmd/gateway/matter_profile_enabled.go",
+        "cmd/gateway/matter_profile_test.go",
         "cmd/gateway/mcp_bus_observability_integration_test.go",
         "cmd/gateway/mcp_tool_inventory_test.go",
         "cmd/gateway/mcp_watch_summary_integration_test.go",
@@ -472,6 +475,7 @@
         "docs/architecture/matter-binding-feed-v1.md",
         "docs/architecture/matter-output-binding-v1.md",
         "docs/architecture/mux-raw-symbol-continuity.md",
+        "docs/architecture/no-matter-build.md",
         "docs/architecture/portal-catalog-admission-transport-v1.md",
         "docs/architecture/portal-config-diagnostic-projection.md",
         "docs/architecture/portal-config-sharing.md",
@@ -1431,6 +1435,7 @@
         "scripts/build_portal_assets.sh",
         "scripts/capture_m8_source_window.sh",
         "scripts/capture_m8_source_window_test.py",
+        "scripts/check_no_matter_profile.py",
         "scripts/check_portal_assets.sh",
         "scripts/check_semantic_imports.py",
         "scripts/ci_local.sh",
@@ -2937,7 +2942,10 @@
         "unknown_device_dump.go",
         "unknown_device_dump_test.go"
       ],
-      "qualification": "Lexical candidates only; actual binding and absence require semantic review."
+      "qualification": "Lexical candidates only; actual binding and absence require semantic review.",
+      "adoption_obligation": "Adopt the supported names on emitted values with no aliases; preserve full native identity, raw evidence, field-level retained state and qualification. Validate affected MCP and GraphQL surfaces before release.",
+      "snapshot_inventory_review": "Compared every supplied source-file inventory entry with the supplied public tree. Added profile/lifecycle helpers do not bind these library names.",
+      "binding_review": "Semantic reads retain register identities and project outdoor values; no direct Ab36/Ab65 binding found. Registry reference paths and generic schema/projection consumers still require coordinated MCP/GraphQL parity checks."
     },
     "ha-integration": {
       "source_files": [
@@ -2976,6 +2984,7 @@
         "custom_components/helianthus/energy.py",
         "custom_components/helianthus/entity_updates.py",
         "custom_components/helianthus/entry_cleanup.py",
+        "custom_components/helianthus/entry_runtime.py",
         "custom_components/helianthus/entry_services.py",
         "custom_components/helianthus/entry_setup.py",
         "custom_components/helianthus/evse_m2m.py",
@@ -3000,7 +3009,6 @@
         "custom_components/helianthus/sensor_descriptors.py",
         "custom_components/helianthus/sensor_setup.py",
         "custom_components/helianthus/services.yaml",
-        "custom_components/helianthus/smoke_profile.py",
         "custom_components/helianthus/storage_m2m.py",
         "custom_components/helianthus/strings.json",
         "custom_components/helianthus/subscriptions.py",
@@ -3012,6 +3020,7 @@
         "custom_components/helianthus/zone_parent.py",
         "docs/adversarial-runtime-contract.md",
         "docs/dhw-bound-reprobe.md",
+        "docs/entry-runtime-lifecycle.md",
         "docs/freshness-availability-contract.md",
         "docs/legacy-sensor-shared-migration.md",
         "docs/offline-consumer-acceptance-boundary.md",
@@ -3037,6 +3046,7 @@
         "scripts/readability-baseline.json",
         "scripts/run-ha-dual-topology-smoke.sh",
         "scripts/run_post_parity_adoption_checks.py",
+        "scripts/smoke_profile.py",
         "tests/conftest.py",
         "tests/fixtures/adversarial-runtime/v1/gateway/evaluated-fail.json",
         "tests/fixtures/adversarial-runtime/v1/gateway/execution-error.json",
@@ -3074,6 +3084,7 @@
         "tests/test_entity_icon_gate.py",
         "tests/test_entity_updates.py",
         "tests/test_entry_cleanup_retry_isolation.py",
+        "tests/test_entry_runtime_contract.py",
         "tests/test_entrypoint_phases.py",
         "tests/test_evse_binding_single_faults.py",
         "tests/test_evse_descriptor_collision_axes.py",
@@ -3135,6 +3146,7 @@
         "tests/test_semantic_snapshot_remaining_edges.py",
         "tests/test_semantic_snapshot_sensors.py",
         "tests/test_sensor.py",
+        "tests/test_smoke_cli_location.py",
         "tests/test_smoke_profile.py",
         "tests/test_solar_cylinder.py",
         "tests/test_storage_m2m.py",
@@ -3261,7 +3273,10 @@
       "registry_reference_files": [
         "README.md"
       ],
-      "qualification": "Lexical candidates only; actual binding and absence require semantic review."
+      "qualification": "Lexical candidates only; actual binding and absence require semantic review.",
+      "adoption_obligation": "Adopt the supported names on emitted values with no aliases; preserve full native identity, raw evidence, field-level retained state and qualification. Validate affected MCP and GraphQL surfaces before release.",
+      "snapshot_inventory_review": "Compared every supplied source-file inventory entry with the supplied public tree. Added profile/lifecycle helpers do not bind these library names.",
+      "binding_review": "The listed registry reference is documentary; runtime consumers use gateway surfaces. Their gateway-contract tests remain required in the coordinated wave."
     },
     "ebus-vdev": {
       "source_files": [
@@ -3307,7 +3322,10 @@
       "registry_reference_files": [
         "README.md"
       ],
-      "qualification": "Lexical candidates only; actual binding and absence require semantic review."
+      "qualification": "Lexical candidates only; actual binding and absence require semantic review.",
+      "adoption_obligation": "Adopt the supported names on emitted values with no aliases; preserve full native identity, raw evidence, field-level retained state and qualification. Validate affected MCP and GraphQL surfaces before release.",
+      "snapshot_inventory_review": "Compared every supplied source-file inventory entry with the supplied public tree. Added profile/lifecycle helpers do not bind these library names.",
+      "binding_review": "The listed registry reference is documentary; runtime consumers use gateway surfaces. Their gateway-contract tests remain required in the coordinated wave."
     },
     "matter-binding": {
       "source_files": [
@@ -3504,7 +3522,16 @@
         "tools/validate_lock.py"
       ],
       "registry_reference_files": [],
-      "qualification": "Lexical candidates only; actual binding and absence require semantic review."
+      "qualification": "Lexical candidates only; actual binding and absence require semantic review.",
+      "adoption_obligation": "Adopt the supported names on emitted values with no aliases; preserve full native identity, raw evidence, field-level retained state and qualification. Validate affected MCP and GraphQL surfaces before release.",
+      "snapshot_inventory_review": "Compared every supplied source-file inventory entry with the supplied public tree. Added profile/lifecycle helpers do not bind these library names.",
+      "reviewed_passthrough_paths": [
+        "adoption/reference.go",
+        "candidates/hvac/candidate.go",
+        "candidates/epm/candidate.go",
+        "candidates/eem/candidate.go"
+      ],
+      "binding_review": "No direct name binding found. Generic source Fact, native evidence and projection ports preserve caller identity; this is not proof of downstream compatibility."
     },
     "vrc-explorer": {
       "source_files": [
@@ -4013,8 +4040,28 @@
         "tests/test_transport_enhanced_tcp.py",
         "tests/test_ve_scanner_integrity.py"
       ],
-      "registry_reference_files": [],
-      "qualification": "Lexical candidates only; actual binding and absence require semantic review."
+      "registry_reference_files": [
+        "fixtures/b524-basv0-description-profile-v1.json",
+        "fixtures/b524-basv0-register-observations-v1.json",
+        "fixtures/b524_shared/protocols/vaillant/fixtures/b524-basv0-description-profile-v1.json",
+        "fixtures/b524_shared/protocols/vaillant/fixtures/b524-basv0-register-observations-v1.json",
+        "src/helianthus_vrc_explorer/data/b524_docs_catalog_names.csv",
+        "src/helianthus_vrc_explorer/data/b524_register_name_correspondence.csv",
+        "src/helianthus_vrc_explorer/data/b524_register_names.csv",
+        "src/helianthus_vrc_explorer/data/myvaillant_register_map.csv",
+        "src/helianthus_vrc_explorer/fixtures/b524-basv0-description-profile-v1.json",
+        "src/helianthus_vrc_explorer/fixtures/b524-basv0-register-observations-v1.json",
+        "src/helianthus_vrc_explorer/replay_trace.py",
+        "src/helianthus_vrc_explorer/scanner/b524_orchestration.py",
+        "src/helianthus_vrc_explorer/ui/browse_hydration.py",
+        "tests/test_b524_register_names.py",
+        "tests/test_browse_detail_panel.py",
+        "tests/test_replay_trace.py"
+      ],
+      "qualification": "Lexical candidates only; actual binding and absence require semantic review.",
+      "adoption_obligation": "Adopt the supported names on emitted values with no aliases; preserve full native identity, raw evidence, field-level retained state and qualification. Validate affected MCP and GraphQL surfaces before release.",
+      "snapshot_inventory_review": "Compared every supplied source-file inventory entry with the supplied public tree. Added profile/lifecycle helpers do not bind these library names.",
+      "binding_review": "Replay/scanner join opcode, group and register before displaying a name. Hydration can retain a source name; coordinated consumer adoption must keep OP06 separate and eliminate alternate canonical keys."
     },
     "ebusgo": {
       "source_files": [
@@ -4874,8 +4921,14 @@
   "documentation_contract": "docs-ebus/architecture/naming.md",
   "unresolved": [
     "duration activity and zero semantics",
-    "unapproved vocabulary",
-    "Go fields, serialized and embedded names not exhaustively extracted",
-    "consumer binding and dynamic path review"
-  ]
+    "all non-B524 names without a supported native contract",
+    "consumer-chain integration and full MCP/GraphQL parity validation",
+    "renew affected release evidence and validate lowercase public page targets before shipping"
+  ],
+  "coordinated_contract": {
+    "standard07": "Only outdoor_temperature for the matched 0700/0702 quantities; old keys absent.",
+    "b524": "Existing OP02 canonical_name and exact open questions; no legacy_name/display_alias fields. OP06 native_label remains evidence only.",
+    "qualification": "Synthetic correctness establishes no native support or physical validation.",
+    "documentary_only": true
+  }
 }

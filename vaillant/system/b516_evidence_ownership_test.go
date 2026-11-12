@@ -11,7 +11,7 @@ import (
 )
 
 // Synthetic vectors use the request/response layouts in docs-ebus
-// protocols/vaillant/ebus-vaillant-B516-energy.md, sections 3, 5 and 6.
+// protocols/vaillant/ebus-vaillant-b516-energy.md, sections 3, 5 and 6.
 func TestK09DecodedEvidenceOwnsBytes(t *testing.T) {
 	t.Parallel()
 	for _, tc := range []struct {

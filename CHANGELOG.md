@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Remove the unused duplicate `pv/` package and its tests. Protocol-independent
+  photovoltaic semantics belong to `helianthus-semreg` (`packs/pv`); native
+  eBUS registry ownership remains here. Gateway adoption and release bill of
+  materials reconciliation remain required.
+
 - Standard 0700 and 0702 candidate metadata and field views emit
   `outdoor_temperature` for the documented outdoor quantity. Previous keys do
   not resolve as candidates. `duration`

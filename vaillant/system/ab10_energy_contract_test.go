@@ -9,7 +9,7 @@ import (
 
 // Synthetic layouts follow the native contract referenced by
 // b516_evidence_ownership_test.go: docs-ebus
-// protocols/vaillant/ebus-vaillant-B516-energy.md, sections 3, 5 and 6.
+// protocols/vaillant/ebus-vaillant-b516-energy.md, sections 3, 5 and 6.
 func TestAb10PassiveShapesAndIndependentFields(ab10t *ab10testing.T) {
 	for _, ab10case := range []struct {
 		ab10name                                          string

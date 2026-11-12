@@ -15,6 +15,9 @@
 
 - Byte-level transport, framing, and low-level bus primitives (use `helianthus-ebusgo`).
 - Gateway runtime/API process wiring and live deployment orchestration (use `helianthus-ebusgateway`).
+- Protocol-independent photovoltaic semantics (owned by `helianthus-semreg`, `packs/pv`).
+  The unused duplicate `pv/` package has been removed; native eBUS registry,
+  identity, and projection behavior remains owned here.
 
 ## Status and Maturity
 
@@ -100,7 +103,7 @@ index fields `0xFF` and exact 11-byte successful read replies remain the
 supported layouts; padded replies and other B516 subcommands are outside
 this decoder's scope.
 
-Evidence: [B516 energy statistics, sections 3–6.1](https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/fb174a4a54a7d3e425dbad702708ebe6ee118552/protocols/vaillant/ebus-vaillant-B516-energy.md),
+Evidence: [B516 energy statistics, sections 3–6.1](https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B516-energy.md),
 read from the canonical docs clone's `origin/main`. Section 6.1 records a total
 reply with `87 34` (2026-04-07) and 14165 Wh. Month-level hardware validation
 and the historical years a regulator actually answers remain open in that

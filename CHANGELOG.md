@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Move `catalog/ebus_standard` (package `ebus_standard_catalog`) to
+  `catalog/ebusstandard` (package `ebusstandard`), together with its
+  `internal/safetypolicy` package. Consumers must update imports; the old
+  path has no forwarding package. The `ebus_standard` service namespace,
+  method identifiers, catalog data and error texts are unchanged. Gateway
+  adoption and release bill of materials reconciliation remain required.
+
 - Remove the unused duplicate `pv/` package and its tests. Protocol-independent
   photovoltaic semantics belong to `helianthus-semreg` (`packs/pv`); native
   eBUS registry ownership remains here. Gateway adoption and release bill of

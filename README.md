@@ -103,11 +103,10 @@ index fields `0xFF` and exact 11-byte successful read replies remain the
 supported layouts; padded replies and other B516 subcommands are outside
 this decoder's scope.
 
-Evidence: [B516 energy statistics, sections 3–6.1](https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/vaillant/ebus-vaillant-B516-energy.md),
-read from the canonical docs clone's `origin/main`. Section 6.1 records a total
-reply with `87 34` (2026-04-07) and 14165 Wh. Month-level hardware validation
-and the historical years a regulator actually answers remain open in that
-source; decoding the packed range does not prove device support.
+Evidence class: Hypothesis. Candidate status: pending validation.
+Month-level hardware validation and the historical years a regulator actually
+answers remain open; decoding the packed range does not prove device support.
+Provenance is not published.
 
 ## Shared Service Projections
 

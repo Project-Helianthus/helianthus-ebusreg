@@ -1,42 +1,42 @@
 package ebusstandard
 
 type Standard09BodyViewKey struct {
-	Standard09BodyViewFamily    string
-	Standard09BodyViewProfile   string
-	Standard09BodyViewService   uint16
-	Standard09BodyViewDirection string
+	Standard09BodyViewFamily    string `json:"Ab25An25Family"`
+	Standard09BodyViewProfile   string `json:"Ab25An25Profile"`
+	Standard09BodyViewService   uint16 `json:"Ab25An25Service"`
+	Standard09BodyViewDirection string `json:"Ab25An25Direction"`
 }
 
 type Standard09BodyViewState struct {
-	Standard09BodyViewKey                          Standard09BodyViewKey
-	Standard09BodyViewRaw                          []byte
-	Standard09BodyViewState                        string
-	Standard09BodyViewContractGrade                string
-	Standard09BodyViewMeaningGrade                 string
-	Standard09BodyViewExecutionGrade               string
-	Standard09BodyViewPhysicalSupportGrade         string
-	Standard09BodyViewPhysicalOffsetsGrade         string
-	Standard09BodyViewPositivePrefixRelevanceGrade string
+	Standard09BodyViewKey                          Standard09BodyViewKey `json:"Ab25An25Key"`
+	Standard09BodyViewRaw                          []byte                `json:"Ab25An25Raw"`
+	Standard09BodyViewState                        string                `json:"Ab25An25State"`
+	Standard09BodyViewContractGrade                string                `json:"Ab25An25ContractGrade"`
+	Standard09BodyViewMeaningGrade                 string                `json:"Ab25An25MeaningGrade"`
+	Standard09BodyViewExecutionGrade               string                `json:"Ab25An25ExecutionGrade"`
+	Standard09BodyViewPhysicalSupportGrade         string                `json:"Ab25An25PhysicalSupportGrade"`
+	Standard09BodyViewPhysicalOffsetsGrade         string                `json:"Ab25An25PhysicalOffsetsGrade"`
+	Standard09BodyViewPositivePrefixRelevanceGrade string                `json:"Ab25An25PositivePrefixRelevanceGrade"`
 }
 
 type Standard09BodyViewBody struct {
-	Standard09BodyViewState          Standard09BodyViewState
-	Standard09BodyViewData           []byte
-	Standard09BodyViewUnresolvedTail []byte
+	Standard09BodyViewState          Standard09BodyViewState `json:"Ab25An25State"`
+	Standard09BodyViewData           []byte                  `json:"Ab25An25Data"`
+	Standard09BodyViewUnresolvedTail []byte                  `json:"Ab25An25UnresolvedTail"`
 }
 
 type Standard09BodyViewAddress struct {
-	Standard09BodyViewState Standard09BodyViewState
-	Standard09BodyViewLE    *uint16
-	Standard09BodyViewLow   *uint8
-	Standard09BodyViewHigh  *uint8
+	Standard09BodyViewState Standard09BodyViewState `json:"Ab25An25State"`
+	Standard09BodyViewLE    *uint16                 `json:"Ab25An25LE"`
+	Standard09BodyViewLow   *uint8                  `json:"Ab25An25Low"`
+	Standard09BodyViewHigh  *uint8                  `json:"Ab25An25High"`
 }
 
 type Standard09BodyViewCount struct {
-	Standard09BodyViewState            Standard09BodyViewState
-	Standard09BodyViewValue            uint8
-	Standard09BodyViewCandidateMaximum *uint8
-	Standard09BodyViewConflict         bool
+	Standard09BodyViewState            Standard09BodyViewState `json:"Ab25An25State"`
+	Standard09BodyViewValue            uint8                   `json:"Ab25An25Value"`
+	Standard09BodyViewCandidateMaximum *uint8                  `json:"Ab25An25CandidateMaximum"`
+	Standard09BodyViewConflict         bool                    `json:"Ab25An25Conflict"`
 }
 
 func standard09BodyViewState(standard09BodyViewKey Standard09BodyViewKey, standard09BodyViewRaw []byte) Standard09BodyViewState {

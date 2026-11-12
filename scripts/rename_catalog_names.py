@@ -266,6 +266,22 @@ def rename_comment(text, mapping):
     return WORD.sub(lambda m: mapping.get(m.group(), m.group()), text)
 
 
+def preserve_projection_json_keys(source):
+    """Keep implicit JSON field keys before renaming exported struct fields."""
+    lines = source.splitlines(keepends=True)
+    in_struct = False
+    for index, line in enumerate(lines):
+        if re.fullmatch(r"type [A-Z]\w* struct \{\n", line):
+            in_struct = True
+        elif in_struct and line == "}\n":
+            in_struct = False
+        elif in_struct:
+            match = re.fullmatch(r"\t([A-Z]\w*)\s+([^`\n]+)\n", line)
+            if match and coded(match.group(1)):
+                lines[index] = line.rstrip("\n") + f' `json:"{match.group(1)}"`\n'
+    return "".join(lines)
+
+
 def rewrite_go(source, mapping):
     out = []
     for kind, text in lex(source):
@@ -362,6 +378,8 @@ def update_inventories(root, mapping, moves):
         if (row["owning_file"].startswith(PACKAGE_DIR + "/")
                 and row["kind"] in ("go_identifier", "go_field_candidate")):
             row["current_name"] = mapping.get(row["current_name"], row["current_name"])
+            if "target" in row:
+                row["target"] = mapping.get(row["target"], row["target"])
             for key in ("declaration", "field_candidate"):
                 if key in row["identity"]:
                     row["identity"][key] = mapping.get(row["identity"][key], row["identity"][key])
@@ -423,6 +441,8 @@ def run(root, print_map):
     sources = {}
     for path in package_files(root):
         source = path.read_text()
+        if not path.name.endswith("_test.go"):
+            source = preserve_projection_json_keys(source)
         if path.name in FIXTURE_BOUND:
             source = add_fixture_tags(source, *FIXTURE_BOUND[path.name])
         sources[path] = rewrite_go(source, mapping)
@@ -442,6 +462,22 @@ def run(root, print_map):
     if heading not in text:
         raise SystemExit("CHANGELOG.md has no Unreleased section")
     changelog.write_text(text.replace(heading, heading + changelog_entry(mapping) + "\n", 1))
+
+
+def test_inventory_targets(tmp_path):
+    row = {'owning_file': 'catalog/ebusstandard/ab76_standard03_candidate_views.go', 'kind': 'go_identifier', 'current_name': 'Ab76Interpret', 'target': 'Ab76Interpret', 'status': 'unchanged', 'identity': {'declaration': 'Ab76Interpret'}}
+    (tmp_path / 'naming-inventory.json').write_text(json.dumps({'source_files': [row['owning_file']], 'rows': [row]}))
+    (tmp_path / 'naming-consumers.json').write_text('{}')
+    update_inventories(tmp_path, {'Ab76Interpret': 'Standard03CandidateViewInterpret'}, moved_paths())
+    result = json.loads((tmp_path / 'naming-inventory.json').read_text())['rows'][0]
+    assert result['current_name'] == result['target'] == 'Standard03CandidateViewInterpret'
+
+def test_projection_tags():
+    source = 'type Ab76Selection struct {\n\tAb76Family string\n\tAb76Value int `json:"value"`\n}\n'
+    tagged = preserve_projection_json_keys(source)
+    assert '`json:"Ab76Family"`' in tagged
+    assert '`json:"value"`' in tagged
+    assert preserve_projection_json_keys(tagged) == tagged
 
 
 if __name__ == "__main__":

@@ -701,7 +701,7 @@
         "declaration": "Standard07FieldViewEvaluate"
       },
       "current_name": "Standard07FieldViewEvaluate",
-      "target": "Ab15Aq15Evaluate",
+      "target": "Standard07FieldViewEvaluate",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -2335,7 +2335,7 @@
         "declaration": "StandardFFExtentViewEvaluate"
       },
       "current_name": "StandardFFExtentViewEvaluate",
-      "target": "Ab17Aq17Evaluate",
+      "target": "StandardFFExtentViewEvaluate",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -3323,7 +3323,7 @@
         "declaration": "Standard09BodyViewKey"
       },
       "current_name": "Standard09BodyViewKey",
-      "target": "Ab25An25Key",
+      "target": "Standard09BodyViewKey",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -3342,7 +3342,7 @@
         "field_candidate": "Standard09BodyViewFamily"
       },
       "current_name": "Standard09BodyViewFamily",
-      "target": "Ab25An25Family",
+      "target": "Standard09BodyViewFamily",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3361,7 +3361,7 @@
         "field_candidate": "Standard09BodyViewProfile"
       },
       "current_name": "Standard09BodyViewProfile",
-      "target": "Ab25An25Profile",
+      "target": "Standard09BodyViewProfile",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3380,7 +3380,7 @@
         "field_candidate": "Standard09BodyViewService"
       },
       "current_name": "Standard09BodyViewService",
-      "target": "Ab25An25Service",
+      "target": "Standard09BodyViewService",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3399,7 +3399,7 @@
         "field_candidate": "Standard09BodyViewDirection"
       },
       "current_name": "Standard09BodyViewDirection",
-      "target": "Ab25An25Direction",
+      "target": "Standard09BodyViewDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3418,7 +3418,7 @@
         "declaration": "Standard09BodyViewState"
       },
       "current_name": "Standard09BodyViewState",
-      "target": "Ab25An25State",
+      "target": "Standard09BodyViewState",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -3437,7 +3437,7 @@
         "field_candidate": "Standard09BodyViewKey"
       },
       "current_name": "Standard09BodyViewKey",
-      "target": "Ab25An25Key",
+      "target": "Standard09BodyViewKey",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3456,7 +3456,7 @@
         "field_candidate": "Standard09BodyViewRaw"
       },
       "current_name": "Standard09BodyViewRaw",
-      "target": "Ab25An25Raw",
+      "target": "Standard09BodyViewRaw",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3475,7 +3475,7 @@
         "field_candidate": "Standard09BodyViewState"
       },
       "current_name": "Standard09BodyViewState",
-      "target": "Ab25An25State",
+      "target": "Standard09BodyViewState",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3494,7 +3494,7 @@
         "field_candidate": "Standard09BodyViewContractGrade"
       },
       "current_name": "Standard09BodyViewContractGrade",
-      "target": "Ab25An25ContractGrade",
+      "target": "Standard09BodyViewContractGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3513,7 +3513,7 @@
         "field_candidate": "Standard09BodyViewMeaningGrade"
       },
       "current_name": "Standard09BodyViewMeaningGrade",
-      "target": "Ab25An25MeaningGrade",
+      "target": "Standard09BodyViewMeaningGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3532,7 +3532,7 @@
         "field_candidate": "Standard09BodyViewExecutionGrade"
       },
       "current_name": "Standard09BodyViewExecutionGrade",
-      "target": "Ab25An25ExecutionGrade",
+      "target": "Standard09BodyViewExecutionGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3551,7 +3551,7 @@
         "field_candidate": "Standard09BodyViewPhysicalSupportGrade"
       },
       "current_name": "Standard09BodyViewPhysicalSupportGrade",
-      "target": "Ab25An25PhysicalSupportGrade",
+      "target": "Standard09BodyViewPhysicalSupportGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3570,7 +3570,7 @@
         "field_candidate": "Standard09BodyViewPhysicalOffsetsGrade"
       },
       "current_name": "Standard09BodyViewPhysicalOffsetsGrade",
-      "target": "Ab25An25PhysicalOffsetsGrade",
+      "target": "Standard09BodyViewPhysicalOffsetsGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3589,7 +3589,7 @@
         "field_candidate": "Standard09BodyViewPositivePrefixRelevanceGrade"
       },
       "current_name": "Standard09BodyViewPositivePrefixRelevanceGrade",
-      "target": "Ab25An25PositivePrefixRelevanceGrade",
+      "target": "Standard09BodyViewPositivePrefixRelevanceGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3608,7 +3608,7 @@
         "declaration": "Standard09BodyViewBody"
       },
       "current_name": "Standard09BodyViewBody",
-      "target": "Ab25An25Body",
+      "target": "Standard09BodyViewBody",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -3627,7 +3627,7 @@
         "field_candidate": "Standard09BodyViewState"
       },
       "current_name": "Standard09BodyViewState",
-      "target": "Ab25An25State",
+      "target": "Standard09BodyViewState",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3646,7 +3646,7 @@
         "field_candidate": "Standard09BodyViewData"
       },
       "current_name": "Standard09BodyViewData",
-      "target": "Ab25An25Data",
+      "target": "Standard09BodyViewData",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3665,7 +3665,7 @@
         "field_candidate": "Standard09BodyViewUnresolvedTail"
       },
       "current_name": "Standard09BodyViewUnresolvedTail",
-      "target": "Ab25An25UnresolvedTail",
+      "target": "Standard09BodyViewUnresolvedTail",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3684,7 +3684,7 @@
         "declaration": "Standard09BodyViewAddress"
       },
       "current_name": "Standard09BodyViewAddress",
-      "target": "Ab25An25Address",
+      "target": "Standard09BodyViewAddress",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -3703,7 +3703,7 @@
         "field_candidate": "Standard09BodyViewState"
       },
       "current_name": "Standard09BodyViewState",
-      "target": "Ab25An25State",
+      "target": "Standard09BodyViewState",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3722,7 +3722,7 @@
         "field_candidate": "Standard09BodyViewLE"
       },
       "current_name": "Standard09BodyViewLE",
-      "target": "Ab25An25LE",
+      "target": "Standard09BodyViewLE",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3741,7 +3741,7 @@
         "field_candidate": "Standard09BodyViewLow"
       },
       "current_name": "Standard09BodyViewLow",
-      "target": "Ab25An25Low",
+      "target": "Standard09BodyViewLow",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3760,7 +3760,7 @@
         "field_candidate": "Standard09BodyViewHigh"
       },
       "current_name": "Standard09BodyViewHigh",
-      "target": "Ab25An25High",
+      "target": "Standard09BodyViewHigh",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3779,7 +3779,7 @@
         "declaration": "Standard09BodyViewCount"
       },
       "current_name": "Standard09BodyViewCount",
-      "target": "Ab25An25Count",
+      "target": "Standard09BodyViewCount",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -3798,7 +3798,7 @@
         "field_candidate": "Standard09BodyViewState"
       },
       "current_name": "Standard09BodyViewState",
-      "target": "Ab25An25State",
+      "target": "Standard09BodyViewState",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3817,7 +3817,7 @@
         "field_candidate": "Standard09BodyViewValue"
       },
       "current_name": "Standard09BodyViewValue",
-      "target": "Ab25An25Value",
+      "target": "Standard09BodyViewValue",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3836,7 +3836,7 @@
         "field_candidate": "Standard09BodyViewCandidateMaximum"
       },
       "current_name": "Standard09BodyViewCandidateMaximum",
-      "target": "Ab25An25CandidateMaximum",
+      "target": "Standard09BodyViewCandidateMaximum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3855,7 +3855,7 @@
         "field_candidate": "Standard09BodyViewConflict"
       },
       "current_name": "Standard09BodyViewConflict",
-      "target": "Ab25An25Conflict",
+      "target": "Standard09BodyViewConflict",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -3893,7 +3893,7 @@
         "declaration": "Standard09ViewBody"
       },
       "current_name": "Standard09ViewBody",
-      "target": "Ab25An25ViewBody",
+      "target": "Standard09ViewBody",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -4007,7 +4007,7 @@
         "declaration": "Standard09ViewAddress"
       },
       "current_name": "Standard09ViewAddress",
-      "target": "Ab25An25ViewAddress",
+      "target": "Standard09ViewAddress",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -4064,7 +4064,7 @@
         "declaration": "Standard09ViewCount"
       },
       "current_name": "Standard09ViewCount",
-      "target": "Ab25An25ViewCount",
+      "target": "Standard09ViewCount",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -4140,7 +4140,7 @@
         "declaration": "Standard07ResidualKey"
       },
       "current_name": "Standard07ResidualKey",
-      "target": "Ab28Key",
+      "target": "Standard07ResidualKey",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -4159,7 +4159,7 @@
         "field_candidate": "Standard07ResidualFamily"
       },
       "current_name": "Standard07ResidualFamily",
-      "target": "Ab28Family",
+      "target": "Standard07ResidualFamily",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4197,7 +4197,7 @@
         "field_candidate": "Standard07ResidualVariant"
       },
       "current_name": "Standard07ResidualVariant",
-      "target": "Ab28Variant",
+      "target": "Standard07ResidualVariant",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4235,7 +4235,7 @@
         "field_candidate": "Standard07ResidualPrimary"
       },
       "current_name": "Standard07ResidualPrimary",
-      "target": "Ab28Primary",
+      "target": "Standard07ResidualPrimary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4273,7 +4273,7 @@
         "field_candidate": "Standard07ResidualSecondary"
       },
       "current_name": "Standard07ResidualSecondary",
-      "target": "Ab28Secondary",
+      "target": "Standard07ResidualSecondary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4311,7 +4311,7 @@
         "field_candidate": "Standard07ResidualOperation"
       },
       "current_name": "Standard07ResidualOperation",
-      "target": "Ab28Operation",
+      "target": "Standard07ResidualOperation",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4349,7 +4349,7 @@
         "field_candidate": "Standard07ResidualDirection"
       },
       "current_name": "Standard07ResidualDirection",
-      "target": "Ab28Direction",
+      "target": "Standard07ResidualDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4387,7 +4387,7 @@
         "field_candidate": "Standard07ResidualField"
       },
       "current_name": "Standard07ResidualField",
-      "target": "Ab28Field",
+      "target": "Standard07ResidualField",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4425,7 +4425,7 @@
         "field_candidate": "Standard07ResidualAlternative"
       },
       "current_name": "Standard07ResidualAlternative",
-      "target": "Ab28Alternative",
+      "target": "Standard07ResidualAlternative",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4463,7 +4463,7 @@
         "field_candidate": "Standard07ResidualGroup"
       },
       "current_name": "Standard07ResidualGroup",
-      "target": "Ab28Group",
+      "target": "Standard07ResidualGroup",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4501,7 +4501,7 @@
         "field_candidate": "Standard07ResidualInstanceScope"
       },
       "current_name": "Standard07ResidualInstanceScope",
-      "target": "Ab28InstanceScope",
+      "target": "Standard07ResidualInstanceScope",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4539,7 +4539,7 @@
         "field_candidate": "Standard07ResidualRegister"
       },
       "current_name": "Standard07ResidualRegister",
-      "target": "Ab28Register",
+      "target": "Standard07ResidualRegister",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4577,7 +4577,7 @@
         "field_candidate": "Standard07ResidualKey"
       },
       "current_name": "Standard07ResidualKey",
-      "target": "Ab28Key",
+      "target": "Standard07ResidualKey",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4881,7 +4881,7 @@
         "declaration": "Standard07ResidualEntries"
       },
       "current_name": "Standard07ResidualEntries",
-      "target": "Ab28Entries",
+      "target": "Standard07ResidualEntries",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -4900,7 +4900,7 @@
         "field_candidate": "Standard07ResidualKey"
       },
       "current_name": "Standard07ResidualKey",
-      "target": "Ab28Key",
+      "target": "Standard07ResidualKey",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -4938,7 +4938,7 @@
         "declaration": "Standard07ResidualLookup"
       },
       "current_name": "Standard07ResidualLookup",
-      "target": "Ab28Lookup",
+      "target": "Standard07ResidualLookup",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -4976,7 +4976,7 @@
         "declaration": "StandardFEMetadata"
       },
       "current_name": "StandardFEMetadata",
-      "target": "Ab49FEMetadata",
+      "target": "StandardFEMetadata",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -5052,7 +5052,7 @@
         "declaration": "StandardFFBodyStateKey"
       },
       "current_name": "StandardFFBodyStateKey",
-      "target": "Ab54Key",
+      "target": "StandardFFBodyStateKey",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -5071,7 +5071,7 @@
         "field_candidate": "StandardFFBodyStateFamily"
       },
       "current_name": "StandardFFBodyStateFamily",
-      "target": "Ab54Family",
+      "target": "StandardFFBodyStateFamily",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5109,7 +5109,7 @@
         "field_candidate": "StandardFFBodyStateVariant"
       },
       "current_name": "StandardFFBodyStateVariant",
-      "target": "Ab54Variant",
+      "target": "StandardFFBodyStateVariant",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5147,7 +5147,7 @@
         "field_candidate": "StandardFFBodyStatePrimary"
       },
       "current_name": "StandardFFBodyStatePrimary",
-      "target": "Ab54Primary",
+      "target": "StandardFFBodyStatePrimary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5185,7 +5185,7 @@
         "field_candidate": "StandardFFBodyStateSecondary"
       },
       "current_name": "StandardFFBodyStateSecondary",
-      "target": "Ab54Secondary",
+      "target": "StandardFFBodyStateSecondary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5223,7 +5223,7 @@
         "field_candidate": "StandardFFBodyStateOperation"
       },
       "current_name": "StandardFFBodyStateOperation",
-      "target": "Ab54Operation",
+      "target": "StandardFFBodyStateOperation",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5261,7 +5261,7 @@
         "field_candidate": "StandardFFBodyStateDirection"
       },
       "current_name": "StandardFFBodyStateDirection",
-      "target": "Ab54Direction",
+      "target": "StandardFFBodyStateDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5299,7 +5299,7 @@
         "field_candidate": "StandardFFBodyStateField"
       },
       "current_name": "StandardFFBodyStateField",
-      "target": "Ab54Field",
+      "target": "StandardFFBodyStateField",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5337,7 +5337,7 @@
         "field_candidate": "StandardFFBodyStateAlternative"
       },
       "current_name": "StandardFFBodyStateAlternative",
-      "target": "Ab54Alternative",
+      "target": "StandardFFBodyStateAlternative",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5375,7 +5375,7 @@
         "field_candidate": "StandardFFBodyStateGroup"
       },
       "current_name": "StandardFFBodyStateGroup",
-      "target": "Ab54Group",
+      "target": "StandardFFBodyStateGroup",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5413,7 +5413,7 @@
         "field_candidate": "StandardFFBodyStateInstanceScope"
       },
       "current_name": "StandardFFBodyStateInstanceScope",
-      "target": "Ab54InstanceScope",
+      "target": "StandardFFBodyStateInstanceScope",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5451,7 +5451,7 @@
         "field_candidate": "StandardFFBodyStateRegister"
       },
       "current_name": "StandardFFBodyStateRegister",
-      "target": "Ab54Register",
+      "target": "StandardFFBodyStateRegister",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5869,7 +5869,7 @@
         "declaration": "StandardFFBodyStateEntries"
       },
       "current_name": "StandardFFBodyStateEntries",
-      "target": "Ab54Entries",
+      "target": "StandardFFBodyStateEntries",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -5888,7 +5888,7 @@
         "declaration": "StandardFFBodyStateLookup"
       },
       "current_name": "StandardFFBodyStateLookup",
-      "target": "Ab54Lookup",
+      "target": "StandardFFBodyStateLookup",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -5907,7 +5907,7 @@
         "declaration": "Standard03CandidateViewState"
       },
       "current_name": "Standard03CandidateViewState",
-      "target": "Ab76State",
+      "target": "Standard03CandidateViewState",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -5926,7 +5926,7 @@
         "declaration": "Standard03CandidateViewEncoding"
       },
       "current_name": "Standard03CandidateViewEncoding",
-      "target": "Ab76Encoding",
+      "target": "Standard03CandidateViewEncoding",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -5945,7 +5945,7 @@
         "field_candidate": "Standard03CandidateViewRawOnly"
       },
       "current_name": "Standard03CandidateViewRawOnly",
-      "target": "Ab76RawOnly",
+      "target": "Standard03CandidateViewRawOnly",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -5964,7 +5964,7 @@
         "field_candidate": "Standard03CandidateViewIncomplete"
       },
       "current_name": "Standard03CandidateViewIncomplete",
-      "target": "Ab76Incomplete",
+      "target": "Standard03CandidateViewIncomplete",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6002,7 +6002,7 @@
         "field_candidate": "Standard03CandidateViewExtra"
       },
       "current_name": "Standard03CandidateViewExtra",
-      "target": "Ab76Extra",
+      "target": "Standard03CandidateViewExtra",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6040,7 +6040,7 @@
         "field_candidate": "Standard03CandidateViewInvalid"
       },
       "current_name": "Standard03CandidateViewInvalid",
-      "target": "Ab76Invalid",
+      "target": "Standard03CandidateViewInvalid",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6078,7 +6078,7 @@
         "field_candidate": "Standard03CandidateViewComplete"
       },
       "current_name": "Standard03CandidateViewComplete",
-      "target": "Ab76Complete",
+      "target": "Standard03CandidateViewComplete",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6097,7 +6097,7 @@
         "field_candidate": "Standard03CandidateViewAbsent"
       },
       "current_name": "Standard03CandidateViewAbsent",
-      "target": "Ab76Absent",
+      "target": "Standard03CandidateViewAbsent",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6135,7 +6135,7 @@
         "field_candidate": "Standard03CandidateViewValid"
       },
       "current_name": "Standard03CandidateViewValid",
-      "target": "Ab76Valid",
+      "target": "Standard03CandidateViewValid",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6173,7 +6173,7 @@
         "field_candidate": "Standard03CandidateViewEncodingUnspecified"
       },
       "current_name": "Standard03CandidateViewEncodingUnspecified",
-      "target": "Ab76EncodingUnspecified",
+      "target": "Standard03CandidateViewEncodingUnspecified",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6192,7 +6192,7 @@
         "field_candidate": "Standard03CandidateViewDecimalChunks"
       },
       "current_name": "Standard03CandidateViewDecimalChunks",
-      "target": "Ab76DecimalChunks",
+      "target": "Standard03CandidateViewDecimalChunks",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6211,7 +6211,7 @@
         "field_candidate": "Standard03CandidateViewUnsignedU8"
       },
       "current_name": "Standard03CandidateViewUnsignedU8",
-      "target": "Ab76UnsignedU8",
+      "target": "Standard03CandidateViewUnsignedU8",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6230,7 +6230,7 @@
         "declaration": "Standard03CandidateViewSelection"
       },
       "current_name": "Standard03CandidateViewSelection",
-      "target": "Ab76Selection",
+      "target": "Standard03CandidateViewSelection",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -6249,7 +6249,7 @@
         "field_candidate": "Standard03CandidateViewFamily"
       },
       "current_name": "Standard03CandidateViewFamily",
-      "target": "Ab76Family",
+      "target": "Standard03CandidateViewFamily",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6268,7 +6268,7 @@
         "field_candidate": "Standard03CandidateViewVariant"
       },
       "current_name": "Standard03CandidateViewVariant",
-      "target": "Ab76Variant",
+      "target": "Standard03CandidateViewVariant",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6287,7 +6287,7 @@
         "field_candidate": "Standard03CandidateViewFunction"
       },
       "current_name": "Standard03CandidateViewFunction",
-      "target": "Ab76Function",
+      "target": "Standard03CandidateViewFunction",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6306,7 +6306,7 @@
         "field_candidate": "Standard03CandidateViewOperation"
       },
       "current_name": "Standard03CandidateViewOperation",
-      "target": "Ab76Operation",
+      "target": "Standard03CandidateViewOperation",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6325,7 +6325,7 @@
         "field_candidate": "Standard03CandidateViewDirection"
       },
       "current_name": "Standard03CandidateViewDirection",
-      "target": "Ab76Direction",
+      "target": "Standard03CandidateViewDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6344,7 +6344,7 @@
         "field_candidate": "Standard03CandidateViewSelector"
       },
       "current_name": "Standard03CandidateViewSelector",
-      "target": "Ab76Selector",
+      "target": "Standard03CandidateViewSelector",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6363,7 +6363,7 @@
         "field_candidate": "Standard03CandidateViewEncoding"
       },
       "current_name": "Standard03CandidateViewEncoding",
-      "target": "Ab76Encoding",
+      "target": "Standard03CandidateViewEncoding",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6382,7 +6382,7 @@
         "declaration": "Standard03CandidateViewComponent"
       },
       "current_name": "Standard03CandidateViewComponent",
-      "target": "Ab76Component",
+      "target": "Standard03CandidateViewComponent",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -6401,7 +6401,7 @@
         "field_candidate": "Standard03CandidateViewName"
       },
       "current_name": "Standard03CandidateViewName",
-      "target": "Ab76Name",
+      "target": "Standard03CandidateViewName",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6420,7 +6420,7 @@
         "field_candidate": "Standard03CandidateViewState"
       },
       "current_name": "Standard03CandidateViewState",
-      "target": "Ab76State",
+      "target": "Standard03CandidateViewState",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6439,7 +6439,7 @@
         "field_candidate": "Standard03CandidateViewRaw"
       },
       "current_name": "Standard03CandidateViewRaw",
-      "target": "Ab76Raw",
+      "target": "Standard03CandidateViewRaw",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6458,7 +6458,7 @@
         "field_candidate": "Standard03CandidateViewValue"
       },
       "current_name": "Standard03CandidateViewValue",
-      "target": "Ab76Value",
+      "target": "Standard03CandidateViewValue",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6477,7 +6477,7 @@
         "field_candidate": "Standard03CandidateViewWidth"
       },
       "current_name": "Standard03CandidateViewWidth",
-      "target": "Ab76Width",
+      "target": "Standard03CandidateViewWidth",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6496,7 +6496,7 @@
         "field_candidate": "Standard03CandidateViewMaximum"
       },
       "current_name": "Standard03CandidateViewMaximum",
-      "target": "Ab76Maximum",
+      "target": "Standard03CandidateViewMaximum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6515,7 +6515,7 @@
         "field_candidate": "Standard03CandidateViewDefault"
       },
       "current_name": "Standard03CandidateViewDefault",
-      "target": "Ab76Default",
+      "target": "Standard03CandidateViewDefault",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6534,7 +6534,7 @@
         "field_candidate": "Standard03CandidateViewEncoding"
       },
       "current_name": "Standard03CandidateViewEncoding",
-      "target": "Ab76Encoding",
+      "target": "Standard03CandidateViewEncoding",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6553,7 +6553,7 @@
         "declaration": "Standard03CandidateView"
       },
       "current_name": "Standard03CandidateView",
-      "target": "Ab76View",
+      "target": "Standard03CandidateView",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -6572,7 +6572,7 @@
         "field_candidate": "Standard03CandidateViewSelection"
       },
       "current_name": "Standard03CandidateViewSelection",
-      "target": "Ab76Selection",
+      "target": "Standard03CandidateViewSelection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6591,7 +6591,7 @@
         "field_candidate": "Standard03CandidateViewState"
       },
       "current_name": "Standard03CandidateViewState",
-      "target": "Ab76State",
+      "target": "Standard03CandidateViewState",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6610,7 +6610,7 @@
         "field_candidate": "Standard03CandidateViewRaw"
       },
       "current_name": "Standard03CandidateViewRaw",
-      "target": "Ab76Raw",
+      "target": "Standard03CandidateViewRaw",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6629,7 +6629,7 @@
         "field_candidate": "Standard03CandidateViewRemainder"
       },
       "current_name": "Standard03CandidateViewRemainder",
-      "target": "Ab76Remainder",
+      "target": "Standard03CandidateViewRemainder",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6648,7 +6648,7 @@
         "field_candidate": "Standard03CandidateViewComponents"
       },
       "current_name": "Standard03CandidateViewComponents",
-      "target": "Ab76Components",
+      "target": "Standard03CandidateViewComponents",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6667,7 +6667,7 @@
         "field_candidate": "Standard03CandidateViewLocalCounter"
       },
       "current_name": "Standard03CandidateViewLocalCounter",
-      "target": "Ab76LocalCounter",
+      "target": "Standard03CandidateViewLocalCounter",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6686,7 +6686,7 @@
         "field_candidate": "Standard03CandidateViewLocalHours"
       },
       "current_name": "Standard03CandidateViewLocalHours",
-      "target": "Ab76LocalHours",
+      "target": "Standard03CandidateViewLocalHours",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6705,7 +6705,7 @@
         "field_candidate": "Standard03CandidateViewLocalMinute"
       },
       "current_name": "Standard03CandidateViewLocalMinute",
-      "target": "Ab76LocalMinute",
+      "target": "Standard03CandidateViewLocalMinute",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6724,7 +6724,7 @@
         "field_candidate": "Standard03CandidateViewImplementationGrade"
       },
       "current_name": "Standard03CandidateViewImplementationGrade",
-      "target": "Ab76ImplementationGrade",
+      "target": "Standard03CandidateViewImplementationGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6743,7 +6743,7 @@
         "field_candidate": "Standard03CandidateViewMeaningGrade"
       },
       "current_name": "Standard03CandidateViewMeaningGrade",
-      "target": "Ab76MeaningGrade",
+      "target": "Standard03CandidateViewMeaningGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6762,7 +6762,7 @@
         "field_candidate": "Standard03CandidateViewNativeProperties"
       },
       "current_name": "Standard03CandidateViewNativeProperties",
-      "target": "Ab76NativeProperties",
+      "target": "Standard03CandidateViewNativeProperties",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -6781,7 +6781,7 @@
         "declaration": "Standard03CandidateViewInterpret"
       },
       "current_name": "Standard03CandidateViewInterpret",
-      "target": "Ab76Interpret",
+      "target": "Standard03CandidateViewInterpret",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -7047,7 +7047,7 @@
         "declaration": "Standard07CandidateKey"
       },
       "current_name": "Standard07CandidateKey",
-      "target": "Ab77Key",
+      "target": "Standard07CandidateKey",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -7066,7 +7066,7 @@
         "field_candidate": "Standard07CandidateFamily"
       },
       "current_name": "Standard07CandidateFamily",
-      "target": "Ab77Family",
+      "target": "Standard07CandidateFamily",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7104,7 +7104,7 @@
         "field_candidate": "Standard07CandidateVariant"
       },
       "current_name": "Standard07CandidateVariant",
-      "target": "Ab77Variant",
+      "target": "Standard07CandidateVariant",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7142,7 +7142,7 @@
         "field_candidate": "Standard07CandidatePrimary"
       },
       "current_name": "Standard07CandidatePrimary",
-      "target": "Ab77Primary",
+      "target": "Standard07CandidatePrimary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7180,7 +7180,7 @@
         "field_candidate": "Standard07CandidateSecondary"
       },
       "current_name": "Standard07CandidateSecondary",
-      "target": "Ab77Secondary",
+      "target": "Standard07CandidateSecondary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7218,7 +7218,7 @@
         "field_candidate": "Standard07CandidateOperation"
       },
       "current_name": "Standard07CandidateOperation",
-      "target": "Ab77Operation",
+      "target": "Standard07CandidateOperation",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7256,7 +7256,7 @@
         "field_candidate": "Standard07CandidateDirection"
       },
       "current_name": "Standard07CandidateDirection",
-      "target": "Ab77Direction",
+      "target": "Standard07CandidateDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7294,7 +7294,7 @@
         "field_candidate": "Standard07CandidateField"
       },
       "current_name": "Standard07CandidateField",
-      "target": "Ab77Field",
+      "target": "Standard07CandidateField",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7332,7 +7332,7 @@
         "declaration": "Standard07CandidateControl"
       },
       "current_name": "Standard07CandidateControl",
-      "target": "Ab77Control",
+      "target": "Standard07CandidateControl",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -7351,7 +7351,7 @@
         "field_candidate": "Standard07CandidateNotOkayMinimum"
       },
       "current_name": "Standard07CandidateNotOkayMinimum",
-      "target": "Ab77NotOkayMinimum",
+      "target": "Standard07CandidateNotOkayMinimum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7389,7 +7389,7 @@
         "field_candidate": "Standard07CandidateNotOkayMaximum"
       },
       "current_name": "Standard07CandidateNotOkayMaximum",
-      "target": "Ab77NotOkayMaximum",
+      "target": "Standard07CandidateNotOkayMaximum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7427,7 +7427,7 @@
         "field_candidate": "Standard07CandidateDefault"
       },
       "current_name": "Standard07CandidateDefault",
-      "target": "Ab77Default",
+      "target": "Standard07CandidateDefault",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7465,7 +7465,7 @@
         "field_candidate": "Standard07CandidateOkayValues"
       },
       "current_name": "Standard07CandidateOkayValues",
-      "target": "Ab77OkayValues",
+      "target": "Standard07CandidateOkayValues",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7503,7 +7503,7 @@
         "declaration": "Standard07CandidateLocalParser"
       },
       "current_name": "Standard07CandidateLocalParser",
-      "target": "Ab77LocalParser",
+      "target": "Standard07CandidateLocalParser",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -7522,7 +7522,7 @@
         "field_candidate": "Standard07CandidateMinimumDeclaredCount"
       },
       "current_name": "Standard07CandidateMinimumDeclaredCount",
-      "target": "Ab77MinimumDeclaredCount",
+      "target": "Standard07CandidateMinimumDeclaredCount",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7560,7 +7560,7 @@
         "field_candidate": "Standard07CandidateMaximumDeclaredCount"
       },
       "current_name": "Standard07CandidateMaximumDeclaredCount",
-      "target": "Ab77MaximumDeclaredCount",
+      "target": "Standard07CandidateMaximumDeclaredCount",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7598,7 +7598,7 @@
         "field_candidate": "Standard07CandidateMinimumAvailableCount"
       },
       "current_name": "Standard07CandidateMinimumAvailableCount",
-      "target": "Ab77MinimumAvailableCount",
+      "target": "Standard07CandidateMinimumAvailableCount",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7636,7 +7636,7 @@
         "field_candidate": "Standard07CandidateIdentifierOffset"
       },
       "current_name": "Standard07CandidateIdentifierOffset",
-      "target": "Ab77IdentifierOffset",
+      "target": "Standard07CandidateIdentifierOffset",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7674,7 +7674,7 @@
         "field_candidate": "Standard07CandidateIdentifierWidth"
       },
       "current_name": "Standard07CandidateIdentifierWidth",
-      "target": "Ab77IdentifierWidth",
+      "target": "Standard07CandidateIdentifierWidth",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7712,7 +7712,7 @@
         "field_candidate": "Standard07CandidateFirstIdentifierNonzero"
       },
       "current_name": "Standard07CandidateFirstIdentifierNonzero",
-      "target": "Ab77FirstIdentifierNonzero",
+      "target": "Standard07CandidateFirstIdentifierNonzero",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7750,7 +7750,7 @@
         "field_candidate": "Standard07CandidateCharacterZeroAllowed"
       },
       "current_name": "Standard07CandidateCharacterZeroAllowed",
-      "target": "Ab77CharacterZeroAllowed",
+      "target": "Standard07CandidateCharacterZeroAllowed",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7788,7 +7788,7 @@
         "field_candidate": "Standard07CandidateCharacterMinimum"
       },
       "current_name": "Standard07CandidateCharacterMinimum",
-      "target": "Ab77CharacterMinimum",
+      "target": "Standard07CandidateCharacterMinimum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7826,7 +7826,7 @@
         "field_candidate": "Standard07CandidateCharacterMaximum"
       },
       "current_name": "Standard07CandidateCharacterMaximum",
-      "target": "Ab77CharacterMaximum",
+      "target": "Standard07CandidateCharacterMaximum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7864,7 +7864,7 @@
         "field_candidate": "Standard07CandidateNumericOffsets"
       },
       "current_name": "Standard07CandidateNumericOffsets",
-      "target": "Ab77NumericOffsets",
+      "target": "Standard07CandidateNumericOffsets",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7902,7 +7902,7 @@
         "field_candidate": "Standard07CandidateLowNibbleMaximum"
       },
       "current_name": "Standard07CandidateLowNibbleMaximum",
-      "target": "Ab77LowNibbleMaximum",
+      "target": "Standard07CandidateLowNibbleMaximum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7940,7 +7940,7 @@
         "field_candidate": "Standard07CandidateHighNibbleMaximum"
       },
       "current_name": "Standard07CandidateHighNibbleMaximum",
-      "target": "Ab77HighNibbleMaximum",
+      "target": "Standard07CandidateHighNibbleMaximum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -7978,7 +7978,7 @@
         "field_candidate": "Standard07CandidateDecimalMultiplier"
       },
       "current_name": "Standard07CandidateDecimalMultiplier",
-      "target": "Ab77DecimalMultiplier",
+      "target": "Standard07CandidateDecimalMultiplier",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8016,7 +8016,7 @@
         "field_candidate": "Standard07CandidateMajorOffset"
       },
       "current_name": "Standard07CandidateMajorOffset",
-      "target": "Ab77MajorOffset",
+      "target": "Standard07CandidateMajorOffset",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8054,7 +8054,7 @@
         "field_candidate": "Standard07CandidateMinorOffset"
       },
       "current_name": "Standard07CandidateMinorOffset",
-      "target": "Ab77MinorOffset",
+      "target": "Standard07CandidateMinorOffset",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8092,7 +8092,7 @@
         "field_candidate": "Standard07CandidateProductOffsets"
       },
       "current_name": "Standard07CandidateProductOffsets",
-      "target": "Ab77ProductOffsets",
+      "target": "Standard07CandidateProductOffsets",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8130,7 +8130,7 @@
         "field_candidate": "Standard07CandidateProductMultiplier"
       },
       "current_name": "Standard07CandidateProductMultiplier",
-      "target": "Ab77ProductMultiplier",
+      "target": "Standard07CandidateProductMultiplier",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8168,7 +8168,7 @@
         "field_candidate": "Standard07CandidateConsumesByteZero"
       },
       "current_name": "Standard07CandidateConsumesByteZero",
-      "target": "Ab77ConsumesByteZero",
+      "target": "Standard07CandidateConsumesByteZero",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8206,7 +8206,7 @@
         "field_candidate": "Standard07CandidateGrade"
       },
       "current_name": "Standard07CandidateGrade",
-      "target": "Ab77Grade",
+      "target": "Standard07CandidateGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8244,7 +8244,7 @@
         "field_candidate": "Standard07CandidateScope"
       },
       "current_name": "Standard07CandidateScope",
-      "target": "Ab77Scope",
+      "target": "Standard07CandidateScope",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8282,7 +8282,7 @@
         "declaration": "Standard07CandidateEntry"
       },
       "current_name": "Standard07CandidateEntry",
-      "target": "Ab77Entry",
+      "target": "Standard07CandidateEntry",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -8301,7 +8301,7 @@
         "field_candidate": "Standard07CandidateKey"
       },
       "current_name": "Standard07CandidateKey",
-      "target": "Ab77Key",
+      "target": "Standard07CandidateKey",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8339,7 +8339,7 @@
         "field_candidate": "Standard07CandidateGrade"
       },
       "current_name": "Standard07CandidateGrade",
-      "target": "Ab77Grade",
+      "target": "Standard07CandidateGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8377,7 +8377,7 @@
         "field_candidate": "Standard07CandidateLogicalPosition"
       },
       "current_name": "Standard07CandidateLogicalPosition",
-      "target": "Ab77LogicalPosition",
+      "target": "Standard07CandidateLogicalPosition",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8415,7 +8415,7 @@
         "field_candidate": "Standard07CandidateWidth"
       },
       "current_name": "Standard07CandidateWidth",
-      "target": "Ab77Width",
+      "target": "Standard07CandidateWidth",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8453,7 +8453,7 @@
         "field_candidate": "Standard07CandidateDirectReplyRequired"
       },
       "current_name": "Standard07CandidateDirectReplyRequired",
-      "target": "Ab77DirectReplyRequired",
+      "target": "Standard07CandidateDirectReplyRequired",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8491,7 +8491,7 @@
         "field_candidate": "Standard07CandidateControl"
       },
       "current_name": "Standard07CandidateControl",
-      "target": "Ab77Control",
+      "target": "Standard07CandidateControl",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8529,7 +8529,7 @@
         "field_candidate": "Standard07CandidateLocalParser"
       },
       "current_name": "Standard07CandidateLocalParser",
-      "target": "Ab77LocalParser",
+      "target": "Standard07CandidateLocalParser",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8567,7 +8567,7 @@
         "declaration": "Standard07Candidates"
       },
       "current_name": "Standard07Candidates",
-      "target": "Ab77Candidates",
+      "target": "Standard07Candidates",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -8586,7 +8586,7 @@
         "field_candidate": "Standard07CandidateUnknownGrade"
       },
       "current_name": "Standard07CandidateUnknownGrade",
-      "target": "Ab77UnknownGrade",
+      "target": "Standard07CandidateUnknownGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8624,7 +8624,7 @@
         "field_candidate": "Standard07CandidatePresenceGrade"
       },
       "current_name": "Standard07CandidatePresenceGrade",
-      "target": "Ab77PresenceGrade",
+      "target": "Standard07CandidatePresenceGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8662,7 +8662,7 @@
         "field_candidate": "Standard07CandidateScope"
       },
       "current_name": "Standard07CandidateScope",
-      "target": "Ab77Scope",
+      "target": "Standard07CandidateScope",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8700,7 +8700,7 @@
         "field_candidate": "Standard07CandidateUnknown"
       },
       "current_name": "Standard07CandidateUnknown",
-      "target": "Ab77Unknown",
+      "target": "Standard07CandidateUnknown",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8738,7 +8738,7 @@
         "field_candidate": "Standard07CandidateEntries"
       },
       "current_name": "Standard07CandidateEntries",
-      "target": "Ab77Entries",
+      "target": "Standard07CandidateEntries",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8776,7 +8776,7 @@
         "declaration": "Standard07CandidateMetadata"
       },
       "current_name": "Standard07CandidateMetadata",
-      "target": "Ab77CandidateMetadata",
+      "target": "Standard07CandidateMetadata",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -8795,7 +8795,7 @@
         "declaration": "Standard07CandidateLookup"
       },
       "current_name": "Standard07CandidateLookup",
-      "target": "Ab77Lookup",
+      "target": "Standard07CandidateLookup",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -8814,7 +8814,7 @@
         "declaration": "Standard05CandidateViewState"
       },
       "current_name": "Standard05CandidateViewState",
-      "target": "Ab78State",
+      "target": "Standard05CandidateViewState",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -8833,7 +8833,7 @@
         "declaration": "Standard05CandidateViewKey"
       },
       "current_name": "Standard05CandidateViewKey",
-      "target": "Ab78Key",
+      "target": "Standard05CandidateViewKey",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -8852,7 +8852,7 @@
         "field_candidate": "Standard05CandidateViewFamily"
       },
       "current_name": "Standard05CandidateViewFamily",
-      "target": "Ab78Family",
+      "target": "Standard05CandidateViewFamily",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8871,7 +8871,7 @@
         "field_candidate": "Standard05CandidateViewVariant"
       },
       "current_name": "Standard05CandidateViewVariant",
-      "target": "Ab78Variant",
+      "target": "Standard05CandidateViewVariant",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8890,7 +8890,7 @@
         "field_candidate": "Standard05CandidateViewPrimary"
       },
       "current_name": "Standard05CandidateViewPrimary",
-      "target": "Ab78Primary",
+      "target": "Standard05CandidateViewPrimary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8909,7 +8909,7 @@
         "field_candidate": "Standard05CandidateViewSecondary"
       },
       "current_name": "Standard05CandidateViewSecondary",
-      "target": "Ab78Secondary",
+      "target": "Standard05CandidateViewSecondary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8928,7 +8928,7 @@
         "field_candidate": "Standard05CandidateViewOperation"
       },
       "current_name": "Standard05CandidateViewOperation",
-      "target": "Ab78Operation",
+      "target": "Standard05CandidateViewOperation",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8947,7 +8947,7 @@
         "field_candidate": "Standard05CandidateViewDirection"
       },
       "current_name": "Standard05CandidateViewDirection",
-      "target": "Ab78Direction",
+      "target": "Standard05CandidateViewDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8966,7 +8966,7 @@
         "field_candidate": "Standard05CandidateViewSelector"
       },
       "current_name": "Standard05CandidateViewSelector",
-      "target": "Ab78Selector",
+      "target": "Standard05CandidateViewSelector",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -8985,7 +8985,7 @@
         "declaration": "Standard05CandidateViewField"
       },
       "current_name": "Standard05CandidateViewField",
-      "target": "Ab78Field",
+      "target": "Standard05CandidateViewField",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -9004,7 +9004,7 @@
         "field_candidate": "Standard05CandidateViewLabel"
       },
       "current_name": "Standard05CandidateViewLabel",
-      "target": "Ab78Label",
+      "target": "Standard05CandidateViewLabel",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9023,7 +9023,7 @@
         "field_candidate": "Standard05CandidateViewRaw"
       },
       "current_name": "Standard05CandidateViewRaw",
-      "target": "Ab78Raw",
+      "target": "Standard05CandidateViewRaw",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9042,7 +9042,7 @@
         "field_candidate": "Standard05CandidateViewValue"
       },
       "current_name": "Standard05CandidateViewValue",
-      "target": "Ab78Value",
+      "target": "Standard05CandidateViewValue",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9061,7 +9061,7 @@
         "field_candidate": "Standard05CandidateViewName"
       },
       "current_name": "Standard05CandidateViewName",
-      "target": "Ab78Name",
+      "target": "Standard05CandidateViewName",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9080,7 +9080,7 @@
         "field_candidate": "Standard05CandidateViewInterpretation"
       },
       "current_name": "Standard05CandidateViewInterpretation",
-      "target": "Ab78Interpretation",
+      "target": "Standard05CandidateViewInterpretation",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9099,7 +9099,7 @@
         "field_candidate": "Standard05CandidateViewDomain"
       },
       "current_name": "Standard05CandidateViewDomain",
-      "target": "Ab78Domain",
+      "target": "Standard05CandidateViewDomain",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9118,7 +9118,7 @@
         "field_candidate": "Standard05CandidateViewDefault"
       },
       "current_name": "Standard05CandidateViewDefault",
-      "target": "Ab78Default",
+      "target": "Standard05CandidateViewDefault",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9137,7 +9137,7 @@
         "field_candidate": "Standard05CandidateViewMinimum"
       },
       "current_name": "Standard05CandidateViewMinimum",
-      "target": "Ab78Minimum",
+      "target": "Standard05CandidateViewMinimum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9156,7 +9156,7 @@
         "field_candidate": "Standard05CandidateViewMaximum"
       },
       "current_name": "Standard05CandidateViewMaximum",
-      "target": "Ab78Maximum",
+      "target": "Standard05CandidateViewMaximum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9175,7 +9175,7 @@
         "declaration": "Standard05CandidateView"
       },
       "current_name": "Standard05CandidateView",
-      "target": "Ab78View",
+      "target": "Standard05CandidateView",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -9194,7 +9194,7 @@
         "field_candidate": "Standard05CandidateViewKey"
       },
       "current_name": "Standard05CandidateViewKey",
-      "target": "Ab78Key",
+      "target": "Standard05CandidateViewKey",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9213,7 +9213,7 @@
         "field_candidate": "Standard05CandidateViewRaw"
       },
       "current_name": "Standard05CandidateViewRaw",
-      "target": "Ab78Raw",
+      "target": "Standard05CandidateViewRaw",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9232,7 +9232,7 @@
         "field_candidate": "Standard05CandidateViewRemainder"
       },
       "current_name": "Standard05CandidateViewRemainder",
-      "target": "Ab78Remainder",
+      "target": "Standard05CandidateViewRemainder",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9251,7 +9251,7 @@
         "field_candidate": "Standard05CandidateViewState"
       },
       "current_name": "Standard05CandidateViewState",
-      "target": "Ab78State",
+      "target": "Standard05CandidateViewState",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9270,7 +9270,7 @@
         "field_candidate": "Standard05CandidateViewComplete"
       },
       "current_name": "Standard05CandidateViewComplete",
-      "target": "Ab78Complete",
+      "target": "Standard05CandidateViewComplete",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9289,7 +9289,7 @@
         "field_candidate": "Standard05CandidateViewFields"
       },
       "current_name": "Standard05CandidateViewFields",
-      "target": "Ab78Fields",
+      "target": "Standard05CandidateViewFields",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9308,7 +9308,7 @@
         "field_candidate": "Standard05CandidateViewAPIGrade"
       },
       "current_name": "Standard05CandidateViewAPIGrade",
-      "target": "Ab78APIGrade",
+      "target": "Standard05CandidateViewAPIGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9327,7 +9327,7 @@
         "field_candidate": "Standard05CandidateViewMeaningGrade"
       },
       "current_name": "Standard05CandidateViewMeaningGrade",
-      "target": "Ab78MeaningGrade",
+      "target": "Standard05CandidateViewMeaningGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9346,7 +9346,7 @@
         "field_candidate": "Standard05CandidateViewNativeGrade"
       },
       "current_name": "Standard05CandidateViewNativeGrade",
-      "target": "Ab78NativeGrade",
+      "target": "Standard05CandidateViewNativeGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9365,7 +9365,7 @@
         "field_candidate": "Standard05CandidateViewUnknowns"
       },
       "current_name": "Standard05CandidateViewUnknowns",
-      "target": "Ab78Unknowns",
+      "target": "Standard05CandidateViewUnknowns",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9384,7 +9384,7 @@
         "declaration": "Standard05CandidateViewInterpret"
       },
       "current_name": "Standard05CandidateViewInterpret",
-      "target": "Ab78Interpret",
+      "target": "Standard05CandidateViewInterpret",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -9707,7 +9707,7 @@
         "declaration": "Standard09CandidateKey"
       },
       "current_name": "Standard09CandidateKey",
-      "target": "Ab79Key",
+      "target": "Standard09CandidateKey",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -9726,7 +9726,7 @@
         "field_candidate": "Standard09CandidateFamily"
       },
       "current_name": "Standard09CandidateFamily",
-      "target": "Ab79Family",
+      "target": "Standard09CandidateFamily",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9764,7 +9764,7 @@
         "field_candidate": "Standard09CandidateVariant"
       },
       "current_name": "Standard09CandidateVariant",
-      "target": "Ab79Variant",
+      "target": "Standard09CandidateVariant",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9802,7 +9802,7 @@
         "field_candidate": "Standard09CandidatePrimary"
       },
       "current_name": "Standard09CandidatePrimary",
-      "target": "Ab79Primary",
+      "target": "Standard09CandidatePrimary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9840,7 +9840,7 @@
         "field_candidate": "Standard09CandidateSecondary"
       },
       "current_name": "Standard09CandidateSecondary",
-      "target": "Ab79Secondary",
+      "target": "Standard09CandidateSecondary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9878,7 +9878,7 @@
         "field_candidate": "Standard09CandidateOperation"
       },
       "current_name": "Standard09CandidateOperation",
-      "target": "Ab79Operation",
+      "target": "Standard09CandidateOperation",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9916,7 +9916,7 @@
         "field_candidate": "Standard09CandidateDirection"
       },
       "current_name": "Standard09CandidateDirection",
-      "target": "Ab79Direction",
+      "target": "Standard09CandidateDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9954,7 +9954,7 @@
         "field_candidate": "Standard09CandidateField"
       },
       "current_name": "Standard09CandidateField",
-      "target": "Ab79Field",
+      "target": "Standard09CandidateField",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -9992,7 +9992,7 @@
         "declaration": "Standard09CandidateEntry"
       },
       "current_name": "Standard09CandidateEntry",
-      "target": "Ab79Entry",
+      "target": "Standard09CandidateEntry",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -10011,7 +10011,7 @@
         "field_candidate": "Standard09CandidateKey"
       },
       "current_name": "Standard09CandidateKey",
-      "target": "Ab79Key",
+      "target": "Standard09CandidateKey",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10049,7 +10049,7 @@
         "field_candidate": "Standard09CandidateGrade"
       },
       "current_name": "Standard09CandidateGrade",
-      "target": "Ab79Grade",
+      "target": "Standard09CandidateGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10087,7 +10087,7 @@
         "field_candidate": "Standard09CandidateAbstractOffset"
       },
       "current_name": "Standard09CandidateAbstractOffset",
-      "target": "Ab79AbstractOffset",
+      "target": "Standard09CandidateAbstractOffset",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10125,7 +10125,7 @@
         "field_candidate": "Standard09CandidatePhysicalOffset"
       },
       "current_name": "Standard09CandidatePhysicalOffset",
-      "target": "Ab79PhysicalOffset",
+      "target": "Standard09CandidatePhysicalOffset",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10163,7 +10163,7 @@
         "field_candidate": "Standard09CandidateWidth"
       },
       "current_name": "Standard09CandidateWidth",
-      "target": "Ab79Width",
+      "target": "Standard09CandidateWidth",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10201,7 +10201,7 @@
         "field_candidate": "Standard09CandidateEncoding"
       },
       "current_name": "Standard09CandidateEncoding",
-      "target": "Ab79Encoding",
+      "target": "Standard09CandidateEncoding",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10239,7 +10239,7 @@
         "field_candidate": "Standard09CandidateDefault"
       },
       "current_name": "Standard09CandidateDefault",
-      "target": "Ab79Default",
+      "target": "Standard09CandidateDefault",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10277,7 +10277,7 @@
         "field_candidate": "Standard09CandidateMinimum"
       },
       "current_name": "Standard09CandidateMinimum",
-      "target": "Ab79Minimum",
+      "target": "Standard09CandidateMinimum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10315,7 +10315,7 @@
         "field_candidate": "Standard09CandidateMaximum"
       },
       "current_name": "Standard09CandidateMaximum",
-      "target": "Ab79Maximum",
+      "target": "Standard09CandidateMaximum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10353,7 +10353,7 @@
         "field_candidate": "Standard09CandidateAlternativeMaximum"
       },
       "current_name": "Standard09CandidateAlternativeMaximum",
-      "target": "Ab79AlternativeMaximum",
+      "target": "Standard09CandidateAlternativeMaximum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10391,7 +10391,7 @@
         "field_candidate": "Standard09CandidateUnit"
       },
       "current_name": "Standard09CandidateUnit",
-      "target": "Ab79Unit",
+      "target": "Standard09CandidateUnit",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10429,7 +10429,7 @@
         "field_candidate": "Standard09CandidateEnum"
       },
       "current_name": "Standard09CandidateEnum",
-      "target": "Ab79Enum",
+      "target": "Standard09CandidateEnum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10467,7 +10467,7 @@
         "field_candidate": "Standard09CandidateNotes"
       },
       "current_name": "Standard09CandidateNotes",
-      "target": "Ab79Notes",
+      "target": "Standard09CandidateNotes",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10505,7 +10505,7 @@
         "declaration": "Standard09CandidateCatalog"
       },
       "current_name": "Standard09CandidateCatalog",
-      "target": "Ab79Catalog",
+      "target": "Standard09CandidateCatalog",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -10524,7 +10524,7 @@
         "field_candidate": "Standard09CandidatePresenceGrade"
       },
       "current_name": "Standard09CandidatePresenceGrade",
-      "target": "Ab79PresenceGrade",
+      "target": "Standard09CandidatePresenceGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10562,7 +10562,7 @@
         "field_candidate": "Standard09CandidateScope"
       },
       "current_name": "Standard09CandidateScope",
-      "target": "Ab79Scope",
+      "target": "Standard09CandidateScope",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10600,7 +10600,7 @@
         "field_candidate": "Standard09CandidateNativeContract"
       },
       "current_name": "Standard09CandidateNativeContract",
-      "target": "Ab79NativeContract",
+      "target": "Standard09CandidateNativeContract",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10646,7 +10646,7 @@
         "field_candidate": "Standard09CandidateUnknownGrade"
       },
       "current_name": "Standard09CandidateUnknownGrade",
-      "target": "Ab79UnknownGrade",
+      "target": "Standard09CandidateUnknownGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10684,7 +10684,7 @@
         "field_candidate": "Standard09CandidateUnknowns"
       },
       "current_name": "Standard09CandidateUnknowns",
-      "target": "Ab79Unknowns",
+      "target": "Standard09CandidateUnknowns",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10722,7 +10722,7 @@
         "field_candidate": "Standard09CandidateEntries"
       },
       "current_name": "Standard09CandidateEntries",
-      "target": "Ab79Entries",
+      "target": "Standard09CandidateEntries",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10760,7 +10760,7 @@
         "declaration": "Standard09Candidates"
       },
       "current_name": "Standard09Candidates",
-      "target": "Ab79Candidates",
+      "target": "Standard09Candidates",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -10779,7 +10779,7 @@
         "declaration": "Standard09CandidateLookup"
       },
       "current_name": "Standard09CandidateLookup",
-      "target": "Ab79Lookup",
+      "target": "Standard09CandidateLookup",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -10817,7 +10817,7 @@
         "declaration": "Standard0fCandidateKey"
       },
       "current_name": "Standard0fCandidateKey",
-      "target": "Ab81Key",
+      "target": "Standard0fCandidateKey",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -10836,7 +10836,7 @@
         "field_candidate": "Standard0fCandidateFamily"
       },
       "current_name": "Standard0fCandidateFamily",
-      "target": "Ab81Family",
+      "target": "Standard0fCandidateFamily",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10874,7 +10874,7 @@
         "field_candidate": "Standard0fCandidateVariant"
       },
       "current_name": "Standard0fCandidateVariant",
-      "target": "Ab81Variant",
+      "target": "Standard0fCandidateVariant",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10912,7 +10912,7 @@
         "field_candidate": "Standard0fCandidatePrimary"
       },
       "current_name": "Standard0fCandidatePrimary",
-      "target": "Ab81Primary",
+      "target": "Standard0fCandidatePrimary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10950,7 +10950,7 @@
         "field_candidate": "Standard0fCandidateSecondary"
       },
       "current_name": "Standard0fCandidateSecondary",
-      "target": "Ab81Secondary",
+      "target": "Standard0fCandidateSecondary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -10988,7 +10988,7 @@
         "field_candidate": "Standard0fCandidateOperation"
       },
       "current_name": "Standard0fCandidateOperation",
-      "target": "Ab81Operation",
+      "target": "Standard0fCandidateOperation",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11026,7 +11026,7 @@
         "field_candidate": "Standard0fCandidateDirection"
       },
       "current_name": "Standard0fCandidateDirection",
-      "target": "Ab81Direction",
+      "target": "Standard0fCandidateDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11064,7 +11064,7 @@
         "field_candidate": "Standard0fCandidateField"
       },
       "current_name": "Standard0fCandidateField",
-      "target": "Ab81Field",
+      "target": "Standard0fCandidateField",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11102,7 +11102,7 @@
         "declaration": "Standard0fCandidatePositive"
       },
       "current_name": "Standard0fCandidatePositive",
-      "target": "Ab81Positive",
+      "target": "Standard0fCandidatePositive",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -11121,7 +11121,7 @@
         "field_candidate": "Standard0fCandidatePrefix"
       },
       "current_name": "Standard0fCandidatePrefix",
-      "target": "Ab81Prefix",
+      "target": "Standard0fCandidatePrefix",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11159,7 +11159,7 @@
         "field_candidate": "Standard0fCandidateTypedDataPresent"
       },
       "current_name": "Standard0fCandidateTypedDataPresent",
-      "target": "Ab81TypedDataPresent",
+      "target": "Standard0fCandidateTypedDataPresent",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11197,7 +11197,7 @@
         "field_candidate": "Standard0fCandidateGrade"
       },
       "current_name": "Standard0fCandidateGrade",
-      "target": "Ab81Grade",
+      "target": "Standard0fCandidateGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11235,7 +11235,7 @@
         "declaration": "Standard0fCandidate"
       },
       "current_name": "Standard0fCandidate",
-      "target": "Ab81Candidate",
+      "target": "Standard0fCandidate",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -11254,7 +11254,7 @@
         "field_candidate": "Standard0fCandidateKey"
       },
       "current_name": "Standard0fCandidateKey",
-      "target": "Ab81Key",
+      "target": "Standard0fCandidateKey",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11292,7 +11292,7 @@
         "field_candidate": "Standard0fCandidateMetadataGrade"
       },
       "current_name": "Standard0fCandidateMetadataGrade",
-      "target": "Ab81MetadataGrade",
+      "target": "Standard0fCandidateMetadataGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11330,7 +11330,7 @@
         "field_candidate": "Standard0fCandidateGrade"
       },
       "current_name": "Standard0fCandidateGrade",
-      "target": "Ab81Grade",
+      "target": "Standard0fCandidateGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11368,7 +11368,7 @@
         "field_candidate": "Standard0fCandidateBody"
       },
       "current_name": "Standard0fCandidateBody",
-      "target": "Ab81Body",
+      "target": "Standard0fCandidateBody",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11406,7 +11406,7 @@
         "field_candidate": "Standard0fCandidateOffset"
       },
       "current_name": "Standard0fCandidateOffset",
-      "target": "Ab81Offset",
+      "target": "Standard0fCandidateOffset",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11444,7 +11444,7 @@
         "field_candidate": "Standard0fCandidateWidth"
       },
       "current_name": "Standard0fCandidateWidth",
-      "target": "Ab81Width",
+      "target": "Standard0fCandidateWidth",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11482,7 +11482,7 @@
         "field_candidate": "Standard0fCandidatePhysicalNN"
       },
       "current_name": "Standard0fCandidatePhysicalNN",
-      "target": "Ab81PhysicalNN",
+      "target": "Standard0fCandidatePhysicalNN",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11520,7 +11520,7 @@
         "field_candidate": "Standard0fCandidateACK"
       },
       "current_name": "Standard0fCandidateACK",
-      "target": "Ab81ACK",
+      "target": "Standard0fCandidateACK",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11558,7 +11558,7 @@
         "field_candidate": "Standard0fCandidateSupport"
       },
       "current_name": "Standard0fCandidateSupport",
-      "target": "Ab81Support",
+      "target": "Standard0fCandidateSupport",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11596,7 +11596,7 @@
         "field_candidate": "Standard0fCandidateEffects"
       },
       "current_name": "Standard0fCandidateEffects",
-      "target": "Ab81Effects",
+      "target": "Standard0fCandidateEffects",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11634,7 +11634,7 @@
         "field_candidate": "Standard0fCandidateExecutable"
       },
       "current_name": "Standard0fCandidateExecutable",
-      "target": "Ab81Executable",
+      "target": "Standard0fCandidateExecutable",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11672,7 +11672,7 @@
         "field_candidate": "Standard0fCandidateSendable"
       },
       "current_name": "Standard0fCandidateSendable",
-      "target": "Ab81Sendable",
+      "target": "Standard0fCandidateSendable",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11710,7 +11710,7 @@
         "field_candidate": "Standard0fCandidateRaw"
       },
       "current_name": "Standard0fCandidateRaw",
-      "target": "Ab81Raw",
+      "target": "Standard0fCandidateRaw",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11748,7 +11748,7 @@
         "field_candidate": "Standard0fCandidatePositive"
       },
       "current_name": "Standard0fCandidatePositive",
-      "target": "Ab81Positive",
+      "target": "Standard0fCandidatePositive",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11786,7 +11786,7 @@
         "field_candidate": "Standard0fCandidateLimits"
       },
       "current_name": "Standard0fCandidateLimits",
-      "target": "Ab81Limits",
+      "target": "Standard0fCandidateLimits",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11824,7 +11824,7 @@
         "declaration": "Standard0fCandidates"
       },
       "current_name": "Standard0fCandidates",
-      "target": "Ab81Candidates",
+      "target": "Standard0fCandidates",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -11843,7 +11843,7 @@
         "declaration": "Standard0fCandidateLookup"
       },
       "current_name": "Standard0fCandidateLookup",
-      "target": "Ab81Lookup",
+      "target": "Standard0fCandidateLookup",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -11881,7 +11881,7 @@
         "declaration": "Standard03CounterBodyKey"
       },
       "current_name": "Standard03CounterBodyKey",
-      "target": "Ab83Key",
+      "target": "Standard03CounterBodyKey",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -11900,7 +11900,7 @@
         "field_candidate": "Standard03CounterBodyFamily"
       },
       "current_name": "Standard03CounterBodyFamily",
-      "target": "Ab83Family",
+      "target": "Standard03CounterBodyFamily",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11938,7 +11938,7 @@
         "field_candidate": "Standard03CounterBodyVariant"
       },
       "current_name": "Standard03CounterBodyVariant",
-      "target": "Ab83Variant",
+      "target": "Standard03CounterBodyVariant",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -11976,7 +11976,7 @@
         "field_candidate": "Standard03CounterBodyPrimary"
       },
       "current_name": "Standard03CounterBodyPrimary",
-      "target": "Ab83Primary",
+      "target": "Standard03CounterBodyPrimary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12014,7 +12014,7 @@
         "field_candidate": "Standard03CounterBodySecondary"
       },
       "current_name": "Standard03CounterBodySecondary",
-      "target": "Ab83Secondary",
+      "target": "Standard03CounterBodySecondary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12052,7 +12052,7 @@
         "field_candidate": "Standard03CounterBodyOperation"
       },
       "current_name": "Standard03CounterBodyOperation",
-      "target": "Ab83Operation",
+      "target": "Standard03CounterBodyOperation",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12090,7 +12090,7 @@
         "field_candidate": "Standard03CounterBodyDirection"
       },
       "current_name": "Standard03CounterBodyDirection",
-      "target": "Ab83Direction",
+      "target": "Standard03CounterBodyDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12128,7 +12128,7 @@
         "field_candidate": "Standard03CounterBodyField"
       },
       "current_name": "Standard03CounterBodyField",
-      "target": "Ab83Field",
+      "target": "Standard03CounterBodyField",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12166,7 +12166,7 @@
         "field_candidate": "Standard03CounterBodyOpcode"
       },
       "current_name": "Standard03CounterBodyOpcode",
-      "target": "Ab83Opcode",
+      "target": "Standard03CounterBodyOpcode",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12204,7 +12204,7 @@
         "field_candidate": "Standard03CounterBodyGroup"
       },
       "current_name": "Standard03CounterBodyGroup",
-      "target": "Ab83Group",
+      "target": "Standard03CounterBodyGroup",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12242,7 +12242,7 @@
         "field_candidate": "Standard03CounterBodyInstance"
       },
       "current_name": "Standard03CounterBodyInstance",
-      "target": "Ab83Instance",
+      "target": "Standard03CounterBodyInstance",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12280,7 +12280,7 @@
         "field_candidate": "Standard03CounterBodyRegister"
       },
       "current_name": "Standard03CounterBodyRegister",
-      "target": "Ab83Register",
+      "target": "Standard03CounterBodyRegister",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12318,7 +12318,7 @@
         "declaration": "Standard03CounterBodyField"
       },
       "current_name": "Standard03CounterBodyField",
-      "target": "Ab83Field",
+      "target": "Standard03CounterBodyField",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -12337,7 +12337,7 @@
         "field_candidate": "Standard03CounterBodyIdentity"
       },
       "current_name": "Standard03CounterBodyIdentity",
-      "target": "Ab83Identity",
+      "target": "Standard03CounterBodyIdentity",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12375,7 +12375,7 @@
         "field_candidate": "Standard03CounterBodyLogicalPosition"
       },
       "current_name": "Standard03CounterBodyLogicalPosition",
-      "target": "Ab83LogicalPosition",
+      "target": "Standard03CounterBodyLogicalPosition",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12413,7 +12413,7 @@
         "field_candidate": "Standard03CounterBodyNativePosition"
       },
       "current_name": "Standard03CounterBodyNativePosition",
-      "target": "Ab83NativePosition",
+      "target": "Standard03CounterBodyNativePosition",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12451,7 +12451,7 @@
         "field_candidate": "Standard03CounterBodyWidthBits"
       },
       "current_name": "Standard03CounterBodyWidthBits",
-      "target": "Ab83WidthBits",
+      "target": "Standard03CounterBodyWidthBits",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12489,7 +12489,7 @@
         "field_candidate": "Standard03CounterBodySignedness"
       },
       "current_name": "Standard03CounterBodySignedness",
-      "target": "Ab83Signedness",
+      "target": "Standard03CounterBodySignedness",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12527,7 +12527,7 @@
         "field_candidate": "Standard03CounterBodyByteOrder"
       },
       "current_name": "Standard03CounterBodyByteOrder",
-      "target": "Ab83ByteOrder",
+      "target": "Standard03CounterBodyByteOrder",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12565,7 +12565,7 @@
         "field_candidate": "Standard03CounterBodyEncoding"
       },
       "current_name": "Standard03CounterBodyEncoding",
-      "target": "Ab83Encoding",
+      "target": "Standard03CounterBodyEncoding",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12603,7 +12603,7 @@
         "field_candidate": "Standard03CounterBodyConversion"
       },
       "current_name": "Standard03CounterBodyConversion",
-      "target": "Ab83Conversion",
+      "target": "Standard03CounterBodyConversion",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12641,7 +12641,7 @@
         "field_candidate": "Standard03CounterBodyUnit"
       },
       "current_name": "Standard03CounterBodyUnit",
-      "target": "Ab83Unit",
+      "target": "Standard03CounterBodyUnit",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12679,7 +12679,7 @@
         "field_candidate": "Standard03CounterBodyDefault"
       },
       "current_name": "Standard03CounterBodyDefault",
-      "target": "Ab83Default",
+      "target": "Standard03CounterBodyDefault",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12717,7 +12717,7 @@
         "field_candidate": "Standard03CounterBodyMinimum"
       },
       "current_name": "Standard03CounterBodyMinimum",
-      "target": "Ab83Minimum",
+      "target": "Standard03CounterBodyMinimum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12755,7 +12755,7 @@
         "field_candidate": "Standard03CounterBodyMaximum"
       },
       "current_name": "Standard03CounterBodyMaximum",
-      "target": "Ab83Maximum",
+      "target": "Standard03CounterBodyMaximum",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12793,7 +12793,7 @@
         "field_candidate": "Standard03CounterBodyEnumeration"
       },
       "current_name": "Standard03CounterBodyEnumeration",
-      "target": "Ab83Enumeration",
+      "target": "Standard03CounterBodyEnumeration",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12831,7 +12831,7 @@
         "field_candidate": "Standard03CounterBodyReplacementValues"
       },
       "current_name": "Standard03CounterBodyReplacementValues",
-      "target": "Ab83ReplacementValues",
+      "target": "Standard03CounterBodyReplacementValues",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12869,7 +12869,7 @@
         "field_candidate": "Standard03CounterBodyReservedValues"
       },
       "current_name": "Standard03CounterBodyReservedValues",
-      "target": "Ab83ReservedValues",
+      "target": "Standard03CounterBodyReservedValues",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12907,7 +12907,7 @@
         "field_candidate": "Standard03CounterBodyClaimGrade"
       },
       "current_name": "Standard03CounterBodyClaimGrade",
-      "target": "Ab83ClaimGrade",
+      "target": "Standard03CounterBodyClaimGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12945,7 +12945,7 @@
         "field_candidate": "Standard03CounterBodyRawFallback"
       },
       "current_name": "Standard03CounterBodyRawFallback",
-      "target": "Ab83RawFallback",
+      "target": "Standard03CounterBodyRawFallback",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -12983,7 +12983,7 @@
         "declaration": "Standard03CounterBody"
       },
       "current_name": "Standard03CounterBody",
-      "target": "Ab83Body",
+      "target": "Standard03CounterBody",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -13002,7 +13002,7 @@
         "field_candidate": "Standard03CounterBodyKey"
       },
       "current_name": "Standard03CounterBodyKey",
-      "target": "Ab83Key",
+      "target": "Standard03CounterBodyKey",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13040,7 +13040,7 @@
         "field_candidate": "Standard03CounterBodyState"
       },
       "current_name": "Standard03CounterBodyState",
-      "target": "Ab83BodyState",
+      "target": "Standard03CounterBodyState",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13078,7 +13078,7 @@
         "field_candidate": "Standard03CounterBodyClaimGrade"
       },
       "current_name": "Standard03CounterBodyClaimGrade",
-      "target": "Ab83ClaimGrade",
+      "target": "Standard03CounterBodyClaimGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13116,7 +13116,7 @@
         "field_candidate": "Standard03CounterBodyPhysicalDirection"
       },
       "current_name": "Standard03CounterBodyPhysicalDirection",
-      "target": "Ab83PhysicalDirection",
+      "target": "Standard03CounterBodyPhysicalDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13154,7 +13154,7 @@
         "field_candidate": "Standard03CounterBodyCallable"
       },
       "current_name": "Standard03CounterBodyCallable",
-      "target": "Ab83Callable",
+      "target": "Standard03CounterBodyCallable",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13192,7 +13192,7 @@
         "field_candidate": "Standard03CounterBodyRawFallback"
       },
       "current_name": "Standard03CounterBodyRawFallback",
-      "target": "Ab83RawFallback",
+      "target": "Standard03CounterBodyRawFallback",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13230,7 +13230,7 @@
         "field_candidate": "Standard03CounterBodyFields"
       },
       "current_name": "Standard03CounterBodyFields",
-      "target": "Ab83Fields",
+      "target": "Standard03CounterBodyFields",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13268,7 +13268,7 @@
         "declaration": "Standard03CounterBodies"
       },
       "current_name": "Standard03CounterBodies",
-      "target": "Ab83CounterBodies",
+      "target": "Standard03CounterBodies",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -13287,7 +13287,7 @@
         "declaration": "Standard03CounterLookupBody"
       },
       "current_name": "Standard03CounterLookupBody",
-      "target": "Ab83LookupBody",
+      "target": "Standard03CounterLookupBody",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -13306,7 +13306,7 @@
         "declaration": "Standard03CounterBodyLookupField"
       },
       "current_name": "Standard03CounterBodyLookupField",
-      "target": "Ab83LookupField",
+      "target": "Standard03CounterBodyLookupField",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -13344,7 +13344,7 @@
         "declaration": "Standard05BurnerBodyAxis"
       },
       "current_name": "Standard05BurnerBodyAxis",
-      "target": "Ab84Axis",
+      "target": "Standard05BurnerBodyAxis",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -13363,7 +13363,7 @@
         "field_candidate": "Standard05BurnerBodyPresent"
       },
       "current_name": "Standard05BurnerBodyPresent",
-      "target": "Ab84Present",
+      "target": "Standard05BurnerBodyPresent",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13401,7 +13401,7 @@
         "field_candidate": "Standard05BurnerBodyValue"
       },
       "current_name": "Standard05BurnerBodyValue",
-      "target": "Ab84Value",
+      "target": "Standard05BurnerBodyValue",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13439,7 +13439,7 @@
         "declaration": "Standard05BurnerBodyKey"
       },
       "current_name": "Standard05BurnerBodyKey",
-      "target": "Ab84Key",
+      "target": "Standard05BurnerBodyKey",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -13458,7 +13458,7 @@
         "field_candidate": "Standard05BurnerBodyFamily"
       },
       "current_name": "Standard05BurnerBodyFamily",
-      "target": "Ab84Family",
+      "target": "Standard05BurnerBodyFamily",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13496,7 +13496,7 @@
         "field_candidate": "Standard05BurnerBodyVariant"
       },
       "current_name": "Standard05BurnerBodyVariant",
-      "target": "Ab84Variant",
+      "target": "Standard05BurnerBodyVariant",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13534,7 +13534,7 @@
         "field_candidate": "Standard05BurnerBodyPrimary"
       },
       "current_name": "Standard05BurnerBodyPrimary",
-      "target": "Ab84Primary",
+      "target": "Standard05BurnerBodyPrimary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13572,7 +13572,7 @@
         "field_candidate": "Standard05BurnerBodySecondary"
       },
       "current_name": "Standard05BurnerBodySecondary",
-      "target": "Ab84Secondary",
+      "target": "Standard05BurnerBodySecondary",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13610,7 +13610,7 @@
         "field_candidate": "Standard05BurnerBodyOperation"
       },
       "current_name": "Standard05BurnerBodyOperation",
-      "target": "Ab84Operation",
+      "target": "Standard05BurnerBodyOperation",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13648,7 +13648,7 @@
         "field_candidate": "Standard05BurnerBodyDirection"
       },
       "current_name": "Standard05BurnerBodyDirection",
-      "target": "Ab84Direction",
+      "target": "Standard05BurnerBodyDirection",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13686,7 +13686,7 @@
         "field_candidate": "Standard05BurnerBodyField"
       },
       "current_name": "Standard05BurnerBodyField",
-      "target": "Ab84Field",
+      "target": "Standard05BurnerBodyField",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13724,7 +13724,7 @@
         "field_candidate": "Standard05BurnerBodyOpcode"
       },
       "current_name": "Standard05BurnerBodyOpcode",
-      "target": "Ab84Opcode",
+      "target": "Standard05BurnerBodyOpcode",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13762,7 +13762,7 @@
         "field_candidate": "Standard05BurnerBodyGroup"
       },
       "current_name": "Standard05BurnerBodyGroup",
-      "target": "Ab84Group",
+      "target": "Standard05BurnerBodyGroup",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13800,7 +13800,7 @@
         "field_candidate": "Standard05BurnerBodyInstance"
       },
       "current_name": "Standard05BurnerBodyInstance",
-      "target": "Ab84Instance",
+      "target": "Standard05BurnerBodyInstance",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13838,7 +13838,7 @@
         "field_candidate": "Standard05BurnerBodyRegister"
       },
       "current_name": "Standard05BurnerBodyRegister",
-      "target": "Ab84Register",
+      "target": "Standard05BurnerBodyRegister",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13876,7 +13876,7 @@
         "declaration": "Standard05BurnerBodyBounds"
       },
       "current_name": "Standard05BurnerBodyBounds",
-      "target": "Ab84Bounds",
+      "target": "Standard05BurnerBodyBounds",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -13895,7 +13895,7 @@
         "field_candidate": "Standard05BurnerBodyMin"
       },
       "current_name": "Standard05BurnerBodyMin",
-      "target": "Ab84Min",
+      "target": "Standard05BurnerBodyMin",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13933,7 +13933,7 @@
         "field_candidate": "Standard05BurnerBodyMax"
       },
       "current_name": "Standard05BurnerBodyMax",
-      "target": "Ab84Max",
+      "target": "Standard05BurnerBodyMax",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -13971,7 +13971,7 @@
         "declaration": "Standard05BurnerField"
       },
       "current_name": "Standard05BurnerField",
-      "target": "Ab84BurnerField",
+      "target": "Standard05BurnerField",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -13990,7 +13990,7 @@
         "field_candidate": "Standard05BurnerBodyKey"
       },
       "current_name": "Standard05BurnerBodyKey",
-      "target": "Ab84Key",
+      "target": "Standard05BurnerBodyKey",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14028,7 +14028,7 @@
         "field_candidate": "Standard05BurnerBodyLogicalPosition"
       },
       "current_name": "Standard05BurnerBodyLogicalPosition",
-      "target": "Ab84LogicalPosition",
+      "target": "Standard05BurnerBodyLogicalPosition",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14066,7 +14066,7 @@
         "field_candidate": "Standard05BurnerBodyWidthBits"
       },
       "current_name": "Standard05BurnerBodyWidthBits",
-      "target": "Ab84WidthBits",
+      "target": "Standard05BurnerBodyWidthBits",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14104,7 +14104,7 @@
         "field_candidate": "Standard05BurnerBodySignedness"
       },
       "current_name": "Standard05BurnerBodySignedness",
-      "target": "Ab84Signedness",
+      "target": "Standard05BurnerBodySignedness",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14142,7 +14142,7 @@
         "field_candidate": "Standard05BurnerBodyByteOrder"
       },
       "current_name": "Standard05BurnerBodyByteOrder",
-      "target": "Ab84ByteOrder",
+      "target": "Standard05BurnerBodyByteOrder",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14180,7 +14180,7 @@
         "field_candidate": "Standard05BurnerBodyConversion"
       },
       "current_name": "Standard05BurnerBodyConversion",
-      "target": "Ab84Conversion",
+      "target": "Standard05BurnerBodyConversion",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14218,7 +14218,7 @@
         "field_candidate": "Standard05BurnerBodyUnit"
       },
       "current_name": "Standard05BurnerBodyUnit",
-      "target": "Ab84Unit",
+      "target": "Standard05BurnerBodyUnit",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14256,7 +14256,7 @@
         "field_candidate": "Standard05BurnerBodyDefault"
       },
       "current_name": "Standard05BurnerBodyDefault",
-      "target": "Ab84Default",
+      "target": "Standard05BurnerBodyDefault",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14294,7 +14294,7 @@
         "field_candidate": "Standard05BurnerBodyBounds"
       },
       "current_name": "Standard05BurnerBodyBounds",
-      "target": "Ab84Bounds",
+      "target": "Standard05BurnerBodyBounds",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14332,7 +14332,7 @@
         "field_candidate": "Standard05BurnerBodyEnumeration"
       },
       "current_name": "Standard05BurnerBodyEnumeration",
-      "target": "Ab84Enumeration",
+      "target": "Standard05BurnerBodyEnumeration",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14370,7 +14370,7 @@
         "field_candidate": "Standard05BurnerBodyReplacement"
       },
       "current_name": "Standard05BurnerBodyReplacement",
-      "target": "Ab84Replacement",
+      "target": "Standard05BurnerBodyReplacement",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14408,7 +14408,7 @@
         "field_candidate": "Standard05BurnerBodyReserved"
       },
       "current_name": "Standard05BurnerBodyReserved",
-      "target": "Ab84Reserved",
+      "target": "Standard05BurnerBodyReserved",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14446,7 +14446,7 @@
         "field_candidate": "Standard05BurnerBodyConstant"
       },
       "current_name": "Standard05BurnerBodyConstant",
-      "target": "Ab84Constant",
+      "target": "Standard05BurnerBodyConstant",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14484,7 +14484,7 @@
         "field_candidate": "Standard05BurnerBodyGrade"
       },
       "current_name": "Standard05BurnerBodyGrade",
-      "target": "Ab84Grade",
+      "target": "Standard05BurnerBodyGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14522,7 +14522,7 @@
         "field_candidate": "Standard05BurnerBodyRawFallback"
       },
       "current_name": "Standard05BurnerBodyRawFallback",
-      "target": "Ab84RawFallback",
+      "target": "Standard05BurnerBodyRawFallback",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14560,7 +14560,7 @@
         "declaration": "Standard05BurnerBodies"
       },
       "current_name": "Standard05BurnerBodies",
-      "target": "Ab84BurnerBodies",
+      "target": "Standard05BurnerBodies",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -14579,7 +14579,7 @@
         "field_candidate": "Standard05BurnerBodyRepresentationGrade"
       },
       "current_name": "Standard05BurnerBodyRepresentationGrade",
-      "target": "Ab84RepresentationGrade",
+      "target": "Standard05BurnerBodyRepresentationGrade",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14617,7 +14617,7 @@
         "field_candidate": "Standard05BurnerBodyComplete"
       },
       "current_name": "Standard05BurnerBodyComplete",
-      "target": "Ab84Complete",
+      "target": "Standard05BurnerBodyComplete",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14655,7 +14655,7 @@
         "field_candidate": "Standard05BurnerBodyCoordinates"
       },
       "current_name": "Standard05BurnerBodyCoordinates",
-      "target": "Ab84Coordinates",
+      "target": "Standard05BurnerBodyCoordinates",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14693,7 +14693,7 @@
         "field_candidate": "Standard05BurnerBodyNativeSupport"
       },
       "current_name": "Standard05BurnerBodyNativeSupport",
-      "target": "Ab84NativeSupport",
+      "target": "Standard05BurnerBodyNativeSupport",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14731,7 +14731,7 @@
         "field_candidate": "Standard05BurnerBodyQualification"
       },
       "current_name": "Standard05BurnerBodyQualification",
-      "target": "Ab84Qualification",
+      "target": "Standard05BurnerBodyQualification",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14769,7 +14769,7 @@
         "field_candidate": "Standard05BurnerBodyFreshness"
       },
       "current_name": "Standard05BurnerBodyFreshness",
-      "target": "Ab84Freshness",
+      "target": "Standard05BurnerBodyFreshness",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14807,7 +14807,7 @@
         "field_candidate": "Standard05BurnerBodyPersistence"
       },
       "current_name": "Standard05BurnerBodyPersistence",
-      "target": "Ab84Persistence",
+      "target": "Standard05BurnerBodyPersistence",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14845,7 +14845,7 @@
         "field_candidate": "Standard05BurnerBodyExecutionPermission"
       },
       "current_name": "Standard05BurnerBodyExecutionPermission",
-      "target": "Ab84ExecutionPermission",
+      "target": "Standard05BurnerBodyExecutionPermission",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14883,7 +14883,7 @@
         "field_candidate": "Standard05BurnerBodyFields"
       },
       "current_name": "Standard05BurnerBodyFields",
-      "target": "Ab84Fields",
+      "target": "Standard05BurnerBodyFields",
       "kind": "go_field_candidate",
       "roles": [],
       "public_evidence": [
@@ -14921,7 +14921,7 @@
         "declaration": "Standard05BurnerMetadata"
       },
       "current_name": "Standard05BurnerMetadata",
-      "target": "Ab84BurnerMetadata",
+      "target": "Standard05BurnerMetadata",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [
@@ -14940,7 +14940,7 @@
         "declaration": "Standard05LookupBurnerField"
       },
       "current_name": "Standard05LookupBurnerField",
-      "target": "Ab84LookupBurnerField",
+      "target": "Standard05LookupBurnerField",
       "kind": "go_identifier",
       "roles": [],
       "public_evidence": [

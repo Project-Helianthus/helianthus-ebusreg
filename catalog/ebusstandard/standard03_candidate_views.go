@@ -18,38 +18,38 @@ const (
 )
 
 type Standard03CandidateViewSelection struct {
-	Standard03CandidateViewFamily    string
-	Standard03CandidateViewVariant   string
-	Standard03CandidateViewFunction  *uint8
-	Standard03CandidateViewOperation *uint8
-	Standard03CandidateViewDirection string
-	Standard03CandidateViewSelector  string
-	Standard03CandidateViewEncoding  Standard03CandidateViewEncoding
+	Standard03CandidateViewFamily    string                          `json:"Ab76Family"`
+	Standard03CandidateViewVariant   string                          `json:"Ab76Variant"`
+	Standard03CandidateViewFunction  *uint8                          `json:"Ab76Function"`
+	Standard03CandidateViewOperation *uint8                          `json:"Ab76Operation"`
+	Standard03CandidateViewDirection string                          `json:"Ab76Direction"`
+	Standard03CandidateViewSelector  string                          `json:"Ab76Selector"`
+	Standard03CandidateViewEncoding  Standard03CandidateViewEncoding `json:"Ab76Encoding"`
 }
 
 type Standard03CandidateViewComponent struct {
-	Standard03CandidateViewName     string
-	Standard03CandidateViewState    Standard03CandidateViewState
-	Standard03CandidateViewRaw      *uint8
-	Standard03CandidateViewValue    *uint8
-	Standard03CandidateViewWidth    int
-	Standard03CandidateViewMaximum  uint8
-	Standard03CandidateViewDefault  *uint8
-	Standard03CandidateViewEncoding Standard03CandidateViewEncoding
+	Standard03CandidateViewName     string                          `json:"Ab76Name"`
+	Standard03CandidateViewState    Standard03CandidateViewState    `json:"Ab76State"`
+	Standard03CandidateViewRaw      *uint8                          `json:"Ab76Raw"`
+	Standard03CandidateViewValue    *uint8                          `json:"Ab76Value"`
+	Standard03CandidateViewWidth    int                             `json:"Ab76Width"`
+	Standard03CandidateViewMaximum  uint8                           `json:"Ab76Maximum"`
+	Standard03CandidateViewDefault  *uint8                          `json:"Ab76Default"`
+	Standard03CandidateViewEncoding Standard03CandidateViewEncoding `json:"Ab76Encoding"`
 }
 
 type Standard03CandidateView struct {
-	Standard03CandidateViewSelection           Standard03CandidateViewSelection
-	Standard03CandidateViewState               Standard03CandidateViewState
-	Standard03CandidateViewRaw                 []byte
-	Standard03CandidateViewRemainder           []byte
-	Standard03CandidateViewComponents          []Standard03CandidateViewComponent
-	Standard03CandidateViewLocalCounter        *int
-	Standard03CandidateViewLocalHours          *int
-	Standard03CandidateViewLocalMinute         *int
-	Standard03CandidateViewImplementationGrade string
-	Standard03CandidateViewMeaningGrade        string
-	Standard03CandidateViewNativeProperties    map[string]string
+	Standard03CandidateViewSelection           Standard03CandidateViewSelection   `json:"Ab76Selection"`
+	Standard03CandidateViewState               Standard03CandidateViewState       `json:"Ab76State"`
+	Standard03CandidateViewRaw                 []byte                             `json:"Ab76Raw"`
+	Standard03CandidateViewRemainder           []byte                             `json:"Ab76Remainder"`
+	Standard03CandidateViewComponents          []Standard03CandidateViewComponent `json:"Ab76Components"`
+	Standard03CandidateViewLocalCounter        *int                               `json:"Ab76LocalCounter"`
+	Standard03CandidateViewLocalHours          *int                               `json:"Ab76LocalHours"`
+	Standard03CandidateViewLocalMinute         *int                               `json:"Ab76LocalMinute"`
+	Standard03CandidateViewImplementationGrade string                             `json:"Ab76ImplementationGrade"`
+	Standard03CandidateViewMeaningGrade        string                             `json:"Ab76MeaningGrade"`
+	Standard03CandidateViewNativeProperties    map[string]string                  `json:"Ab76NativeProperties"`
 }
 
 func standard03CandidateViewCopyByte(standard03CandidateViewValue *uint8) *uint8 {

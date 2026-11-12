@@ -3,38 +3,38 @@ package ebusstandard
 type Standard05CandidateViewState string
 
 type Standard05CandidateViewKey struct {
-	Standard05CandidateViewFamily    string
-	Standard05CandidateViewVariant   string
-	Standard05CandidateViewPrimary   *uint8
-	Standard05CandidateViewSecondary *uint8
-	Standard05CandidateViewOperation *uint8
-	Standard05CandidateViewDirection string
-	Standard05CandidateViewSelector  string
+	Standard05CandidateViewFamily    string `json:"Ab78Family"`
+	Standard05CandidateViewVariant   string `json:"Ab78Variant"`
+	Standard05CandidateViewPrimary   *uint8 `json:"Ab78Primary"`
+	Standard05CandidateViewSecondary *uint8 `json:"Ab78Secondary"`
+	Standard05CandidateViewOperation *uint8 `json:"Ab78Operation"`
+	Standard05CandidateViewDirection string `json:"Ab78Direction"`
+	Standard05CandidateViewSelector  string `json:"Ab78Selector"`
 }
 
 type Standard05CandidateViewField struct {
-	Standard05CandidateViewLabel          string
-	Standard05CandidateViewRaw            *uint8
-	Standard05CandidateViewValue          *int
-	Standard05CandidateViewName           string
-	Standard05CandidateViewInterpretation Standard05CandidateViewState
-	Standard05CandidateViewDomain         Standard05CandidateViewState
-	Standard05CandidateViewDefault        int
-	Standard05CandidateViewMinimum        int
-	Standard05CandidateViewMaximum        int
+	Standard05CandidateViewLabel          string                       `json:"Ab78Label"`
+	Standard05CandidateViewRaw            *uint8                       `json:"Ab78Raw"`
+	Standard05CandidateViewValue          *int                         `json:"Ab78Value"`
+	Standard05CandidateViewName           string                       `json:"Ab78Name"`
+	Standard05CandidateViewInterpretation Standard05CandidateViewState `json:"Ab78Interpretation"`
+	Standard05CandidateViewDomain         Standard05CandidateViewState `json:"Ab78Domain"`
+	Standard05CandidateViewDefault        int                          `json:"Ab78Default"`
+	Standard05CandidateViewMinimum        int                          `json:"Ab78Minimum"`
+	Standard05CandidateViewMaximum        int                          `json:"Ab78Maximum"`
 }
 
 type Standard05CandidateView struct {
-	Standard05CandidateViewKey          Standard05CandidateViewKey
-	Standard05CandidateViewRaw          []byte
-	Standard05CandidateViewRemainder    []byte
-	Standard05CandidateViewState        Standard05CandidateViewState
-	Standard05CandidateViewComplete     bool
-	Standard05CandidateViewFields       [5]Standard05CandidateViewField
-	Standard05CandidateViewAPIGrade     string
-	Standard05CandidateViewMeaningGrade string
-	Standard05CandidateViewNativeGrade  string
-	Standard05CandidateViewUnknowns     []string
+	Standard05CandidateViewKey          Standard05CandidateViewKey      `json:"Ab78Key"`
+	Standard05CandidateViewRaw          []byte                          `json:"Ab78Raw"`
+	Standard05CandidateViewRemainder    []byte                          `json:"Ab78Remainder"`
+	Standard05CandidateViewState        Standard05CandidateViewState    `json:"Ab78State"`
+	Standard05CandidateViewComplete     bool                            `json:"Ab78Complete"`
+	Standard05CandidateViewFields       [5]Standard05CandidateViewField `json:"Ab78Fields"`
+	Standard05CandidateViewAPIGrade     string                          `json:"Ab78APIGrade"`
+	Standard05CandidateViewMeaningGrade string                          `json:"Ab78MeaningGrade"`
+	Standard05CandidateViewNativeGrade  string                          `json:"Ab78NativeGrade"`
+	Standard05CandidateViewUnknowns     []string                        `json:"Ab78Unknowns"`
 }
 
 func standard05CandidateViewCopyByte(standard05CandidateViewByte *uint8) *uint8 {

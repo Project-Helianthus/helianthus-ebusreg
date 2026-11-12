@@ -10,7 +10,7 @@ import (
 	ab85reflect "reflect"
 	ab85testing "testing"
 
-	ab85standard "github.com/Project-Helianthus/helianthus-ebusreg/catalog/ebus_standard"
+	ab85standard "github.com/Project-Helianthus/helianthus-ebusreg/catalog/ebusstandard"
 )
 
 func ab85Pointer[ab85Value any](ab85Input ab85Value) *ab85Value { return &ab85Input }

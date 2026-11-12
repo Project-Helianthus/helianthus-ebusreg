@@ -3,331 +3,331 @@
   "golangci_lint": "2.11.4",
   "entries": [
     {
-      "path": "catalog/ebus_standard/ab15aq15_standard07_field_views.go",
+      "path": "catalog/ebusstandard/ab15aq15_standard07_field_views.go",
       "symbol": "Ab15Aq15Evaluate",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab25an25_standard09_body_views.go",
+      "path": "catalog/ebusstandard/ab25an25_standard09_body_views.go",
       "symbol": "Ab25An25Address",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab25an25_standard09_body_views.go",
+      "path": "catalog/ebusstandard/ab25an25_standard09_body_views.go",
       "symbol": "Ab25An25Body",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab25an25_standard09_body_views.go",
+      "path": "catalog/ebusstandard/ab25an25_standard09_body_views.go",
       "symbol": "Ab25An25Count",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab25an25_standard09_body_views.go",
+      "path": "catalog/ebusstandard/ab25an25_standard09_body_views.go",
       "symbol": "Ab25An25Key",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab25an25_standard09_body_views.go",
+      "path": "catalog/ebusstandard/ab25an25_standard09_body_views.go",
       "symbol": "Ab25An25State",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab25an25_standard09_body_views.go",
+      "path": "catalog/ebusstandard/ab25an25_standard09_body_views.go",
       "symbol": "Ab25An25ViewAddress",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab25an25_standard09_body_views.go",
+      "path": "catalog/ebusstandard/ab25an25_standard09_body_views.go",
       "symbol": "Ab25An25ViewBody",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab25an25_standard09_body_views.go",
+      "path": "catalog/ebusstandard/ab25an25_standard09_body_views.go",
       "symbol": "Ab25An25ViewCount",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab28_standard07_residual_fields.go",
+      "path": "catalog/ebusstandard/ab28_standard07_residual_fields.go",
       "symbol": "Ab28Entries",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab28_standard07_residual_fields.go",
+      "path": "catalog/ebusstandard/ab28_standard07_residual_fields.go",
       "symbol": "Ab28Key",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab28_standard07_residual_fields.go",
+      "path": "catalog/ebusstandard/ab28_standard07_residual_fields.go",
       "symbol": "Ab28Lookup",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab49_fe_metadata.go",
+      "path": "catalog/ebusstandard/ab49_fe_metadata.go",
       "symbol": "Ab49FEMetadata",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab54_standard_ff_body_states.go",
+      "path": "catalog/ebusstandard/ab54_standard_ff_body_states.go",
       "symbol": "Ab54Entries",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab54_standard_ff_body_states.go",
+      "path": "catalog/ebusstandard/ab54_standard_ff_body_states.go",
       "symbol": "Ab54Key",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab54_standard_ff_body_states.go",
+      "path": "catalog/ebusstandard/ab54_standard_ff_body_states.go",
       "symbol": "Ab54Lookup",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab76_standard03_candidate_views.go",
+      "path": "catalog/ebusstandard/ab76_standard03_candidate_views.go",
       "symbol": "Ab76Component",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab76_standard03_candidate_views.go",
+      "path": "catalog/ebusstandard/ab76_standard03_candidate_views.go",
       "symbol": "Ab76Encoding",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab76_standard03_candidate_views.go",
+      "path": "catalog/ebusstandard/ab76_standard03_candidate_views.go",
       "symbol": "Ab76Interpret",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab76_standard03_candidate_views.go",
+      "path": "catalog/ebusstandard/ab76_standard03_candidate_views.go",
       "symbol": "Ab76RawOnly",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab76_standard03_candidate_views.go",
+      "path": "catalog/ebusstandard/ab76_standard03_candidate_views.go",
       "symbol": "Ab76Selection",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab76_standard03_candidate_views.go",
+      "path": "catalog/ebusstandard/ab76_standard03_candidate_views.go",
       "symbol": "Ab76State",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab76_standard03_candidate_views.go",
+      "path": "catalog/ebusstandard/ab76_standard03_candidate_views.go",
       "symbol": "Ab76View",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab77_07_candidates.go",
+      "path": "catalog/ebusstandard/ab77_07_candidates.go",
       "symbol": "Ab77CandidateMetadata",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab77_07_candidates.go",
+      "path": "catalog/ebusstandard/ab77_07_candidates.go",
       "symbol": "Ab77Candidates",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab77_07_candidates.go",
+      "path": "catalog/ebusstandard/ab77_07_candidates.go",
       "symbol": "Ab77Control",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab77_07_candidates.go",
+      "path": "catalog/ebusstandard/ab77_07_candidates.go",
       "symbol": "Ab77Entry",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab77_07_candidates.go",
+      "path": "catalog/ebusstandard/ab77_07_candidates.go",
       "symbol": "Ab77Key",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab77_07_candidates.go",
+      "path": "catalog/ebusstandard/ab77_07_candidates.go",
       "symbol": "Ab77LocalParser",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab77_07_candidates.go",
+      "path": "catalog/ebusstandard/ab77_07_candidates.go",
       "symbol": "Ab77Lookup",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab78_standard05_candidate_views.go",
+      "path": "catalog/ebusstandard/ab78_standard05_candidate_views.go",
       "symbol": "Ab78Field",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab78_standard05_candidate_views.go",
+      "path": "catalog/ebusstandard/ab78_standard05_candidate_views.go",
       "symbol": "Ab78Interpret",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab78_standard05_candidate_views.go",
+      "path": "catalog/ebusstandard/ab78_standard05_candidate_views.go",
       "symbol": "Ab78Key",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab78_standard05_candidate_views.go",
+      "path": "catalog/ebusstandard/ab78_standard05_candidate_views.go",
       "symbol": "Ab78State",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab78_standard05_candidate_views.go",
+      "path": "catalog/ebusstandard/ab78_standard05_candidate_views.go",
       "symbol": "Ab78View",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab79_09_candidates.go",
+      "path": "catalog/ebusstandard/ab79_09_candidates.go",
       "symbol": "Ab79Candidates",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab79_09_candidates.go",
+      "path": "catalog/ebusstandard/ab79_09_candidates.go",
       "symbol": "Ab79Catalog",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab79_09_candidates.go",
+      "path": "catalog/ebusstandard/ab79_09_candidates.go",
       "symbol": "Ab79Entry",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab79_09_candidates.go",
+      "path": "catalog/ebusstandard/ab79_09_candidates.go",
       "symbol": "Ab79Key",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab79_09_candidates.go",
+      "path": "catalog/ebusstandard/ab79_09_candidates.go",
       "symbol": "Ab79Lookup",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab81_0f_candidates.go",
+      "path": "catalog/ebusstandard/ab81_0f_candidates.go",
       "symbol": "Ab81Candidate",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab81_0f_candidates.go",
+      "path": "catalog/ebusstandard/ab81_0f_candidates.go",
       "symbol": "Ab81Candidates",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab81_0f_candidates.go",
+      "path": "catalog/ebusstandard/ab81_0f_candidates.go",
       "symbol": "Ab81Key",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab81_0f_candidates.go",
+      "path": "catalog/ebusstandard/ab81_0f_candidates.go",
       "symbol": "Ab81Lookup",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab81_0f_candidates.go",
+      "path": "catalog/ebusstandard/ab81_0f_candidates.go",
       "symbol": "Ab81Positive",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab83_03_counter_bodies.go",
+      "path": "catalog/ebusstandard/ab83_03_counter_bodies.go",
       "symbol": "Ab83Body",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab83_03_counter_bodies.go",
+      "path": "catalog/ebusstandard/ab83_03_counter_bodies.go",
       "symbol": "Ab83Field",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab83_03_counter_bodies.go",
+      "path": "catalog/ebusstandard/ab83_03_counter_bodies.go",
       "symbol": "Ab83Key",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab84_05_burner_bodies.go",
+      "path": "catalog/ebusstandard/ab84_05_burner_bodies.go",
       "symbol": "Ab84Axis",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab84_05_burner_bodies.go",
+      "path": "catalog/ebusstandard/ab84_05_burner_bodies.go",
       "symbol": "Ab84Bounds",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab84_05_burner_bodies.go",
+      "path": "catalog/ebusstandard/ab84_05_burner_bodies.go",
       "symbol": "Ab84BurnerBodies",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab84_05_burner_bodies.go",
+      "path": "catalog/ebusstandard/ab84_05_burner_bodies.go",
       "symbol": "Ab84BurnerField",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab84_05_burner_bodies.go",
+      "path": "catalog/ebusstandard/ab84_05_burner_bodies.go",
       "symbol": "Ab84BurnerMetadata",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab84_05_burner_bodies.go",
+      "path": "catalog/ebusstandard/ab84_05_burner_bodies.go",
       "symbol": "Ab84Key",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "catalog/ebus_standard/ab84_05_burner_bodies.go",
+      "path": "catalog/ebusstandard/ab84_05_burner_bodies.go",
       "symbol": "Ab84LookupBurnerField",
       "rule": "revive/exported",
       "count": 1

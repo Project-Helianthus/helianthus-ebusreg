@@ -3,7 +3,7 @@ package vaillant
 import (
 	ab91Context "context"
 	ab91Errors "errors"
-	ab91Standard "github.com/Project-Helianthus/helianthus-ebusreg/catalog/ebus_standard"
+	ab91Standard "github.com/Project-Helianthus/helianthus-ebusreg/catalog/ebusstandard"
 	"go/ast"
 	"go/parser"
 	"go/token"

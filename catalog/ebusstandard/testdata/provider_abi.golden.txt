@@ -1,0 +1,161 @@
+ebusstandard const Ab76Absent
+ebusstandard const Ab76Complete
+ebusstandard const Ab76DecimalChunks
+ebusstandard const Ab76EncodingUnspecified
+ebusstandard const Ab76Extra
+ebusstandard const Ab76Incomplete
+ebusstandard const Ab76Invalid
+ebusstandard const Ab76RawOnly
+ebusstandard const Ab76UnsignedU8
+ebusstandard const Ab76Valid
+ebusstandard const AddressedBroadcast
+ebusstandard const AddressedDirect
+ebusstandard const AnswerNone
+ebusstandard const AnswerRequired
+ebusstandard const CallerContextSystemNMRuntime
+ebusstandard const CallerContextUserFacing
+ebusstandard const CanonicalPlanSHA256
+ebusstandard const CatalogVersion
+ebusstandard const DirectionRequest
+ebusstandard const DirectionResponse
+ebusstandard const DisableEnvVar
+ebusstandard const LengthPrefixByte
+ebusstandard const LengthPrefixFixed
+ebusstandard const LengthPrefixNone
+ebusstandard const LengthPrefixTypedPayload
+ebusstandard const Namespace
+ebusstandard const RoleInitiator
+ebusstandard const RoleOriginator
+ebusstandard const RoleResponder
+ebusstandard const SafetyBroadcast
+ebusstandard const SafetyDestructive
+ebusstandard const SafetyMemoryWrite
+ebusstandard const SafetyMutating
+ebusstandard const SafetyReadOnlyBusLoad
+ebusstandard const SafetyReadOnlySafe
+ebusstandard const SourceDeviceInfo
+ebusstandard const SourceEBUSStandardIdent
+ebusstandard const SourceOperatorSeed
+ebusstandard const SourcePassiveObservation
+ebusstandard const TelegramClassAddressed
+ebusstandard const TelegramClassBroadcast
+ebusstandard const TelegramClassControllerBroadcast
+ebusstandard const TelegramClassInitiatorInitiator
+ebusstandard func (*Provider) Identification(ctx context.Context) (IdentificationDescriptor, error)
+ebusstandard func (*Provider) Invoke(ctx context.Context, methodID string, params map[string]any, caller CallerContext) (map[string]any, error)
+ebusstandard func (*Provider) IsEnabled() bool
+ebusstandard func (IdentityKey) IsComplete() bool
+ebusstandard func (IdentityKey) PBValue() uint8
+ebusstandard func (IdentityKey) SBValue() uint8
+ebusstandard func (Service) PBValue() uint8
+ebusstandard func Ab15Aq15Evaluate(ab15aq15Input json.RawMessage) (json.RawMessage, error)
+ebusstandard func Ab17Aq17Evaluate(ab17aq17InputRaw json.RawMessage) (json.RawMessage, error)
+ebusstandard func Ab25An25ViewAddress(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Field []byte) Ab25An25Address
+ebusstandard func Ab25An25ViewBody(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Raw []byte) Ab25An25Body
+ebusstandard func Ab25An25ViewCount(ab25an25Selected, ab25an25Key Ab25An25Key, ab25an25Count uint8) Ab25An25Count
+ebusstandard func Ab28Entries() (ab28json.RawMessage, error)
+ebusstandard func Ab28Lookup(ab28Key Ab28Key) (ab28json.RawMessage, bool, error)
+ebusstandard func Ab49FEMetadata() []byte
+ebusstandard func Ab54Entries() (ab54json.RawMessage, error)
+ebusstandard func Ab54Lookup(ab54Key Ab54Key) (ab54json.RawMessage, bool, error)
+ebusstandard func Ab76Interpret(ab76Selection Ab76Selection, ab76Body []byte) Ab76View
+ebusstandard func Ab77CandidateMetadata() Ab77Candidates
+ebusstandard func Ab77Lookup(ab77Key Ab77Key) (Ab77Entry, bool)
+ebusstandard func Ab78Interpret(ab78Key Ab78Key, ab78Body []byte) Ab78View
+ebusstandard func Ab79Candidates() Ab79Catalog
+ebusstandard func Ab79Lookup(ab79Key Ab79Key) (Ab79Entry, bool)
+ebusstandard func Ab81Candidates() []Ab81Candidate
+ebusstandard func Ab81Lookup(ab81Key Ab81Key) (Ab81Candidate, bool)
+ebusstandard func Ab83CounterBodies() []Ab83Body
+ebusstandard func Ab83LookupBody(ab83Key Ab83Key) (Ab83Body, bool)
+ebusstandard func Ab83LookupField(ab83Key Ab83Key) (Ab83Field, bool)
+ebusstandard func Ab84BurnerMetadata() Ab84BurnerBodies
+ebusstandard func Ab84LookupBurnerField(ab84Key Ab84Key) (Ab84BurnerField, bool)
+ebusstandard func CompareIdentity(existing DeviceInfo, desc IdentificationDescriptor) ProvenanceRecord
+ebusstandard func ComputeContentSHA256(data []byte) string
+ebusstandard func EmbeddedYAML() []byte
+ebusstandard func LoadCatalog(data []byte) (Catalog, error)
+ebusstandard func MustEmbeddedCatalog() Catalog
+ebusstandard func NewProvider(cat Catalog, enabled bool) (*Provider, error)
+ebusstandard func NewProviderFromEnv(cat Catalog) (*Provider, error)
+ebusstandard type Ab25An25Address struct { Ab25An25State Ab25An25State Ab25An25LE *uint16 Ab25An25Low *uint8 Ab25An25High *uint8 }
+ebusstandard type Ab25An25Body struct { Ab25An25State Ab25An25State Ab25An25Data []byte Ab25An25UnresolvedTail []byte }
+ebusstandard type Ab25An25Count struct { Ab25An25State Ab25An25State Ab25An25Value uint8 Ab25An25CandidateMaximum *uint8 Ab25An25Conflict bool }
+ebusstandard type Ab25An25Key struct { Ab25An25Family string Ab25An25Profile string Ab25An25Service uint16 Ab25An25Direction string }
+ebusstandard type Ab25An25State struct { Ab25An25Key Ab25An25Key Ab25An25Raw []byte Ab25An25State string Ab25An25ContractGrade string Ab25An25MeaningGrade string Ab25An25ExecutionGrade string Ab25An25PhysicalSupportGrade string Ab25An25PhysicalOffsetsGrade string Ab25An25PositivePrefixRelevanceGrade string }
+ebusstandard type Ab28Key struct { Ab28Family string `json:"family"` Ab28Variant string `json:"variant"` Ab28Primary uint8 `json:"primary"` Ab28Secondary *uint8 `json:"secondary"` Ab28Operation *uint8 `json:"operation"` Ab28Direction string `json:"direction"` Ab28Field string `json:"field"` Ab28Alternative string `json:"alternative"` Ab28Group *uint8 `json:"group"` Ab28InstanceScope string `json:"instance_scope"` Ab28Register *uint16 `json:"register"` }
+ebusstandard type Ab54Key struct { Ab54Family string `json:"family"` Ab54Variant string `json:"variant"` Ab54Primary uint8 `json:"primary"` Ab54Secondary *uint8 `json:"secondary"` Ab54Operation *uint8 `json:"operation"` Ab54Direction string `json:"direction"` Ab54Field string `json:"field"` Ab54Alternative string `json:"alternative"` Ab54Group *uint16 `json:"group"` Ab54InstanceScope string `json:"instance_scope"` Ab54Register *uint16 `json:"register"` }
+ebusstandard type Ab76Component struct { Ab76Name string Ab76State Ab76State Ab76Raw *uint8 Ab76Value *uint8 Ab76Width int Ab76Maximum uint8 Ab76Default *uint8 Ab76Encoding Ab76Encoding }
+ebusstandard type Ab76Encoding string
+ebusstandard type Ab76Selection struct { Ab76Family string Ab76Variant string Ab76Function *uint8 Ab76Operation *uint8 Ab76Direction string Ab76Selector string Ab76Encoding Ab76Encoding }
+ebusstandard type Ab76State string
+ebusstandard type Ab76View struct { Ab76Selection Ab76Selection Ab76State Ab76State Ab76Raw []byte Ab76Remainder []byte Ab76Components []Ab76Component Ab76LocalCounter *int Ab76LocalHours *int Ab76LocalMinute *int Ab76ImplementationGrade string Ab76MeaningGrade string Ab76NativeProperties map[string]string }
+ebusstandard type Ab77Candidates struct { Ab77UnknownGrade string `json:"unknown_grade"` Ab77PresenceGrade string `json:"presence_grade"` Ab77Scope string `json:"scope"` Ab77Unknown []string `json:"unknown"` Ab77Entries []Ab77Entry `json:"entries"` }
+ebusstandard type Ab77Control struct { Ab77NotOkayMinimum int `json:"not_okay_minimum"` Ab77NotOkayMaximum int `json:"not_okay_maximum"` Ab77Default string `json:"default"` Ab77OkayValues []int `json:"okay_values"` }
+ebusstandard type Ab77Entry struct { Ab77Key Ab77Key `json:"key"` Ab77Grade string `json:"grade"` Ab77LogicalPosition *int `json:"logical_position"` Ab77Width *int `json:"width"` Ab77DirectReplyRequired *bool `json:"direct_reply_required"` Ab77Control *Ab77Control `json:"control"` Ab77LocalParser *Ab77LocalParser `json:"local_parser"` }
+ebusstandard type Ab77Key struct { Ab77Family string `json:"family"` Ab77Variant string `json:"variant"` Ab77Primary byte `json:"primary"` Ab77Secondary *byte `json:"secondary"` Ab77Operation *byte `json:"operation"` Ab77Direction string `json:"direction"` Ab77Field string `json:"field"` }
+ebusstandard type Ab77LocalParser struct { Ab77MinimumDeclaredCount int `json:"minimum_declared_count"` Ab77MaximumDeclaredCount *int `json:"maximum_declared_count"` Ab77MinimumAvailableCount int `json:"minimum_available_count"` Ab77IdentifierOffset int `json:"identifier_offset"` Ab77IdentifierWidth int `json:"identifier_width"` Ab77FirstIdentifierNonzero bool `json:"first_identifier_nonzero"` Ab77CharacterZeroAllowed bool `json:"character_zero_allowed"` Ab77CharacterMinimum byte `json:"character_minimum"` Ab77CharacterMaximum byte `json:"character_maximum"` Ab77NumericOffsets []int `json:"numeric_offsets"` Ab77LowNibbleMaximum byte `json:"low_nibble_maximum"` Ab77HighNibbleMaximum *byte `json:"high_nibble_maximum"` Ab77DecimalMultiplier int `json:"decimal_multiplier"` Ab77MajorOffset int `json:"major_offset"` Ab77MinorOffset int `json:"minor_offset"` Ab77ProductOffsets []int `json:"product_offsets"` Ab77ProductMultiplier int `json:"product_multiplier"` Ab77ConsumesByteZero bool `json:"consumes_byte_zero"` Ab77Grade string `json:"grade"` Ab77Scope string `json:"scope"` }
+ebusstandard type Ab78Field struct { Ab78Label string Ab78Raw *uint8 Ab78Value *int Ab78Name string Ab78Interpretation Ab78State Ab78Domain Ab78State Ab78Default int Ab78Minimum int Ab78Maximum int }
+ebusstandard type Ab78Key struct { Ab78Family string Ab78Variant string Ab78Primary *uint8 Ab78Secondary *uint8 Ab78Operation *uint8 Ab78Direction string Ab78Selector string }
+ebusstandard type Ab78State string
+ebusstandard type Ab78View struct { Ab78Key Ab78Key Ab78Raw []byte Ab78Remainder []byte Ab78State Ab78State Ab78Complete bool Ab78Fields [5]Ab78Field Ab78APIGrade string Ab78MeaningGrade string Ab78NativeGrade string Ab78Unknowns []string }
+ebusstandard type Ab79Catalog struct { Ab79PresenceGrade string `json:"presence_grade"` Ab79Scope string `json:"scope"` Ab79NativeContract string `json:"native_contract"` Ab79UnknownGrade string `json:"unknown_grade"` Ab79Unknowns []string `json:"unknowns"` Ab79Entries []Ab79Entry `json:"entries"` }
+ebusstandard type Ab79Entry struct { Ab79Key Ab79Key `json:"key"` Ab79Grade string `json:"grade"` Ab79AbstractOffset *int `json:"abstract_offset"` Ab79PhysicalOffset *int `json:"physical_offset"` Ab79Width *int `json:"width"` Ab79Encoding *string `json:"encoding"` Ab79Default *int `json:"default"` Ab79Minimum *int `json:"minimum"` Ab79Maximum *int `json:"maximum"` Ab79AlternativeMaximum *int `json:"alternative_maximum"` Ab79Unit *string `json:"unit"` Ab79Enum []string `json:"enum"` Ab79Notes []string `json:"notes"` }
+ebusstandard type Ab79Key struct { Ab79Family string `json:"family"` Ab79Variant string `json:"variant"` Ab79Primary *uint8 `json:"primary"` Ab79Secondary *uint8 `json:"secondary"` Ab79Operation *uint8 `json:"operation"` Ab79Direction string `json:"direction"` Ab79Field string `json:"field"` }
+ebusstandard type Ab81Candidate struct { Ab81Key Ab81Key `json:"key"` Ab81MetadataGrade string `json:"metadata_grade"` Ab81Grade string `json:"grade"` Ab81Body string `json:"body"` Ab81Offset *int `json:"offset"` Ab81Width *int `json:"width"` Ab81PhysicalNN *int `json:"physical_nn"` Ab81ACK string `json:"ack"` Ab81Support string `json:"support"` Ab81Effects string `json:"effects"` Ab81Executable bool `json:"executable"` Ab81Sendable bool `json:"sendable"` Ab81Raw []byte `json:"raw"` Ab81Positive *Ab81Positive `json:"positive"` Ab81Limits []string `json:"limits"` }
+ebusstandard type Ab81Key struct { Ab81Family string `json:"family"` Ab81Variant string `json:"variant"` Ab81Primary byte `json:"primary"` Ab81Secondary *byte `json:"secondary"` Ab81Operation *byte `json:"operation"` Ab81Direction string `json:"direction"` Ab81Field string `json:"field"` }
+ebusstandard type Ab81Positive struct { Ab81Prefix string `json:"prefix"` Ab81TypedDataPresent *bool `json:"typed_data_present"` Ab81Grade string `json:"grade"` }
+ebusstandard type Ab83Body struct { Ab83Key Ab83Key `json:"key"` Ab83BodyState string `json:"body_state"` Ab83ClaimGrade string `json:"claim_grade"` Ab83PhysicalDirection string `json:"physical_direction"` Ab83Callable bool `json:"callable"` Ab83RawFallback bool `json:"raw_fallback"` Ab83Fields []Ab83Field `json:"fields"` }
+ebusstandard type Ab83Field struct { Ab83Identity string `json:"identity"` Ab83LogicalPosition *int `json:"logical_position"` Ab83NativePosition *int `json:"native_position"` Ab83WidthBits *int `json:"width_bits"` Ab83Signedness *string `json:"signedness"` Ab83ByteOrder *string `json:"byte_order"` Ab83Encoding *string `json:"encoding"` Ab83Conversion *string `json:"conversion"` Ab83Unit *string `json:"unit"` Ab83Default *int `json:"default"` Ab83Minimum *int `json:"minimum"` Ab83Maximum *int `json:"maximum"` Ab83Enumeration map[string]string `json:"enumeration"` Ab83ReplacementValues []int `json:"replacement_values"` Ab83ReservedValues []int `json:"reserved_values"` Ab83ClaimGrade string `json:"claim_grade"` Ab83RawFallback bool `json:"raw_fallback"` }
+ebusstandard type Ab83Key struct { Ab83Family string `json:"family"` Ab83Variant string `json:"variant"` Ab83Primary *uint16 `json:"primary"` Ab83Secondary *uint8 `json:"secondary"` Ab83Operation *uint8 `json:"operation"` Ab83Direction string `json:"direction"` Ab83Field string `json:"field"` Ab83Opcode *uint8 `json:"opcode"` Ab83Group *uint8 `json:"group"` Ab83Instance *uint8 `json:"instance"` Ab83Register *uint16 `json:"register"` }
+ebusstandard type Ab84Axis struct { Ab84Present bool `json:"present"` Ab84Value uint16 `json:"value"` }
+ebusstandard type Ab84Bounds struct { Ab84Min int `json:"min"` Ab84Max int `json:"max"` }
+ebusstandard type Ab84BurnerBodies struct { Ab84RepresentationGrade string `json:"representation_grade"` Ab84Complete bool `json:"complete"` Ab84Coordinates string `json:"coordinates"` Ab84NativeSupport string `json:"native_support"` Ab84Qualification string `json:"qualification"` Ab84Freshness string `json:"freshness"` Ab84Persistence string `json:"persistence"` Ab84ExecutionPermission string `json:"execution_permission"` Ab84Fields []Ab84BurnerField `json:"fields"` }
+ebusstandard type Ab84BurnerField struct { Ab84Key Ab84Key `json:"key"` Ab84LogicalPosition *int `json:"logical_position"` Ab84WidthBits *int `json:"width_bits"` Ab84Signedness string `json:"signedness"` Ab84ByteOrder string `json:"byte_order"` Ab84Conversion string `json:"conversion"` Ab84Unit string `json:"unit"` Ab84Default *int `json:"default"` Ab84Bounds *Ab84Bounds `json:"bounds"` Ab84Enumeration map[int]string `json:"enumeration"` Ab84Replacement []int `json:"replacement"` Ab84Reserved []int `json:"reserved"` Ab84Constant *int `json:"constant"` Ab84Grade string `json:"grade"` Ab84RawFallback string `json:"raw_fallback"` }
+ebusstandard type Ab84Key struct { Ab84Family string `json:"family"` Ab84Variant string `json:"variant"` Ab84Primary Ab84Axis `json:"primary"` Ab84Secondary Ab84Axis `json:"secondary"` Ab84Operation Ab84Axis `json:"operation"` Ab84Direction string `json:"direction"` Ab84Field string `json:"field"` Ab84Opcode Ab84Axis `json:"opcode"` Ab84Group Ab84Axis `json:"group"` Ab84Instance Ab84Axis `json:"instance"` Ab84Register Ab84Axis `json:"register"` }
+ebusstandard type AnswerPolicy string
+ebusstandard type BroadcastOrAddressed string
+ebusstandard type CallerContext int
+ebusstandard type Catalog struct { Namespace string `yaml:"namespace"` Version string `yaml:"version"` PlanSHA256 string `yaml:"plan_sha256"` Services []Service `yaml:"services"` ContentSHA256 string `yaml:"-"` }
+ebusstandard type Command struct { ID string `yaml:"id"` Name string `yaml:"name"` Description string `yaml:"description,omitempty"` Identity IdentityKey `yaml:"identity"` SafetyClass SafetyClass `yaml:"safety_class"` Request []Parameter `yaml:"request,omitempty"` Response []Parameter `yaml:"response,omitempty"` }
+ebusstandard type DeviceInfo struct { Manufacturer string DeviceID string SoftwareVersion string HardwareVersion string }
+ebusstandard type Direction string
+ebusstandard type FieldProvenance struct { Preferred string Sources []IdentitySourceValue Agreement bool }
+ebusstandard type IdentificationDescriptor struct { Manufacturer string DeviceID string SoftwareVersion string HardwareVersion string Source string CatalogVersion string Valid bool }
+ebusstandard type IdentityKey struct { Namespace string `yaml:"namespace"` PB *uint8 `yaml:"pb"` SB *uint8 `yaml:"sb"` SelectorPath string `yaml:"selector_path"` TelegramClass TelegramClass `yaml:"telegram_class"` Direction Direction `yaml:"direction"` RequestOrResponseRole RequestOrResponseRole `yaml:"request_or_response_role"` BroadcastOrAddressed BroadcastOrAddressed `yaml:"broadcast_or_addressed"` AnswerPolicy AnswerPolicy `yaml:"answer_policy"` LengthPrefixMode LengthPrefixMode `yaml:"length_prefix_mode"` SelectorDecoder string `yaml:"selector_decoder"` ServiceVariant string `yaml:"service_variant"` TransportCapabilityRequirements []string `yaml:"transport_capability_requirements"` Version string `yaml:"version"` }
+ebusstandard type IdentitySource string
+ebusstandard type IdentitySourceValue struct { Source IdentitySource Value string Valid bool }
+ebusstandard type LengthPrefixMode string
+ebusstandard type Parameter struct { Name string `yaml:"name"` Type string `yaml:"type"` Description string `yaml:"description,omitempty"` }
+ebusstandard type ProvenanceRecord struct { Manufacturer FieldProvenance DeviceID FieldProvenance SoftwareVersion FieldProvenance HardwareVersion FieldProvenance }
+ebusstandard type Provider struct { catalog Catalog methodIdx map[string]Command enabled bool }
+ebusstandard type RequestOrResponseRole string
+ebusstandard type SafetyClass string
+ebusstandard type Service struct { PB *uint8 `yaml:"pb"` Name string `yaml:"name"` Description string `yaml:"description,omitempty"` Commands []Command `yaml:"commands"` }
+ebusstandard type TelegramClass string
+ebusstandard var ErrAmbiguousLengthSelector
+ebusstandard var ErrCatalogMissingServices
+ebusstandard var ErrDuplicateIdentityKey
+ebusstandard var ErrDuplicateMethodID
+ebusstandard var ErrEmptyMethodID
+ebusstandard var ErrIncompleteIdentityKey
+ebusstandard var ErrInvalidNamespace
+ebusstandard var ErrProviderDisabled
+ebusstandard var ErrSafetyClassDenied
+ebusstandard var ErrServiceMissingCommands
+ebusstandard var ErrServiceMissingPB
+ebusstandard var ErrServicePBMismatch
+ebusstandard var ErrUnknownEnumValue
+ebusstandard var ErrUnknownMethod
+ebusstandard var ErrUnknownSafetyClass
+safetypolicy const Broadcast
+safetypolicy const CallerSystemNMRuntime
+safetypolicy const CallerUserFacing
+safetypolicy const Destructive
+safetypolicy const MemoryWrite
+safetypolicy const Mutating
+safetypolicy const ReadOnlyBusLoad
+safetypolicy const ReadOnlySafe
+safetypolicy func Allow(class Class, caller Caller) bool
+safetypolicy type Caller int
+safetypolicy type Class string

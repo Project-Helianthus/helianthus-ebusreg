@@ -393,12 +393,12 @@ def update_inventories(root, mapping, moves):
 
 
 def update_golden(root, mapping):
-    path = root / GOLDEN
-    lines = path.read_text().split("\n")
-    if lines[-1] != "":
-        raise SystemExit("golden fixture lacks a final newline")
-    renamed = [rewrite_go(line, mapping) for line in lines[:-1]]
-    path.write_text("\n".join(sorted(renamed)) + "\n")
+    # Use the snapshot's own serializer so tags added to projections are
+    # recorded along with renamed symbols and their signatures.
+    subprocess.run(
+        ["go", "test", "./" + PACKAGE_DIR,
+         "-run", "^TestProvider_ABISnapshot$", "-count=1", "-update"],
+        cwd=root, check=True)
 
 
 def changelog_entry(mapping):
@@ -478,6 +478,33 @@ def test_projection_tags():
     assert '`json:"Ab76Family"`' in tagged
     assert '`json:"value"`' in tagged
     assert preserve_projection_json_keys(tagged) == tagged
+
+
+def test_golden_projection_tags(tmp_path):
+    import shutil
+
+    package = tmp_path / PACKAGE_DIR
+    package.mkdir(parents=True)
+    (package / "testdata").mkdir()
+    (tmp_path / "go.mod").write_text("module snapshotexample\n\ngo 1.23\n")
+    snapshot_test = Path(__file__).resolve().parent.parent / PACKAGE_DIR / "provider_abi_snapshot_test.go"
+    shutil.copyfile(snapshot_test, package / snapshot_test.name)
+    (package / "internal/safetypolicy").mkdir(parents=True)
+    source = ('package ebusstandard\n\ntype Ab76Selection struct {\n'
+              '\tAb76Family string\n'
+              '\tAb76Value int `json:"value"`\n}\n')
+    mapping = {"Ab76Selection": "Standard03CandidateViewSelection",
+               "Ab76Family": "Standard03CandidateViewFamily",
+               "Ab76Value": "Standard03CandidateViewValue"}
+    (package / "projection.go").write_text(
+        rewrite_go(preserve_projection_json_keys(source), mapping))
+    golden = tmp_path / GOLDEN
+    golden.write_text('ebusstandard type Ab76Selection struct { Ab76Family string Ab76Value int `json:"value"` }\n')
+    update_golden(tmp_path, mapping)
+    assert golden.read_text() == (
+        'ebusstandard type Standard03CandidateViewSelection struct { '
+        'Standard03CandidateViewFamily string `json:"Ab76Family"` '
+        'Standard03CandidateViewValue int `json:"value"` }\n')
 
 
 if __name__ == "__main__":

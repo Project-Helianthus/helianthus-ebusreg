@@ -2,12 +2,6 @@
   "version": 1,
   "debt": [
     {
-      "path": "catalog/vaillant/ab38_b513_symbolic_dictionary_test.go",
-      "symbol": "<file>",
-      "metric": "file_lines",
-      "value": 1630
-    },
-    {
       "path": "catalog/vaillant/b503_control_fields.go",
       "symbol": "B503ControlFieldEvaluate",
       "metric": "function_lines",
@@ -66,6 +60,12 @@
       "symbol": "B512ValvePumpFieldEvaluate",
       "metric": "function_lines",
       "value": 209
+    },
+    {
+      "path": "catalog/vaillant/b513_symbolic_dictionary_test.go",
+      "symbol": "<file>",
+      "metric": "file_lines",
+      "value": 1630
     },
     {
       "path": "catalog/vaillant/b514_menu_views.go",

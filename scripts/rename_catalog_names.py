@@ -8,6 +8,8 @@ still holds its coded files (--slice selects it):
 - ebusstandard: every coded file of catalog/ebusstandard.
 - vaillant-01-29: the catalog/vaillant files whose code number is 01 to 29.
   Files with higher codes that use these identifiers are edited in place.
+- vaillant-30-99: the remaining catalog/vaillant files, whose code number is
+  30 to 99, and canonical_names_test.go, which uses their identifiers.
 
 Production and test Go files lose their code prefix and keep the behavior part
 of their name. Go identifiers that start with a code prefix of the slice are
@@ -187,7 +189,10 @@ EBUSSTANDARD = SimpleNamespace(
             "Ab78Domains": "ab78Domains"}),
     },
     reflect_names={},
+    source_paths={},
     import_unaliases={},
+    size_overrides={},
+    prune_absent=False,
     # Fields are tagged by preserve_projection_json_keys and the explicit
     # fixture_bound table.
     tag_fields=False,
@@ -373,6 +378,8 @@ VAILLANT_01_29 = SimpleNamespace(
             "Ab15Operation", "Ab15Direction", "Ab15Field", "Ab15Alternative",
             "Ab15Group", "Ab15InstanceScope", "Ab15Register"),
     },
+    # Test string literals that name a moved Go source file (go/parser).
+    source_paths={},
     # File-scoped import aliases that only carried the code; the import loses
     # its alias and the uses take the package name. The stem-derived alias
     # (b511FailureTransitionJSON) would make gofmt split the one-line
@@ -382,6 +389,8 @@ VAILLANT_01_29 = SimpleNamespace(
         "ab13ao13json": (("ab13ao13_b511_failure_transition.go",
                           "ab13ao13_b511_failure_transition_test.go"), "encoding/json"),
     },
+    size_overrides={},
+    prune_absent=False,
     # Exported production struct fields are all tagged; test structs are
     # tagged when every renamed field is a key of the package fixtures.
     tag_fields=True,
@@ -392,7 +401,322 @@ VAILLANT_01_29 = SimpleNamespace(
     internal_dir=None,
 )
 
-SLICES = {cfg.name: cfg for cfg in (EBUSSTANDARD, VAILLANT_01_29)}
+
+VAILLANT_30_99 = SimpleNamespace(
+    name="vaillant-30-99",
+    package_dir="catalog/vaillant",
+    # The work-item code is dropped and the rest of the name kept. The
+    # catalog of the mirror fields (from ab90) takes the plain name
+    # b51a_mirror_fields.go; its evaluator was named
+    # b51a_mirror_fields_evaluator.go by the previous slice.
+    file_moves=(
+        ("ab30_b524_family_codebooks", "b524_family_codebooks"),
+        ("ab31_pump_roles", "pump_roles"),
+        ("ab32_b524_component_selectors", "b524_component_selectors"),
+        ("ab33_appliance_info", "appliance_info"),
+        ("ab34_b501_legacy_sequence", "b501_legacy_sequence"),
+        ("ab35_legacy_timer", "legacy_timer"),
+        ("ab36_b524_name_annotations", "b524_name_annotations"),
+        ("ab37_tunnel", "tunnel"),
+        ("ab38_b513_symbolic_dictionary", "b513_symbolic_dictionary"),
+        ("ab39_opaque_programming", "opaque_programming"),
+        ("ab40_b509_symbolic_annotations", "b509_symbolic_annotations"),
+        ("ab41_program_blocks", "program_blocks"),
+        ("ab43_simulator_adc", "simulator_adc"),
+        ("ab45_outdoor_module", "outdoor_module"),
+        ("ab46_b509_identity_shapes", "b509_identity_shapes"),
+        ("ab47_fan_demand", "fan_demand"),
+        ("ab48_b510_operating_defaults", "b510_operating_defaults"),
+        ("ab50_b511_class_candidates", "b511_class_candidates"),
+        ("ab51_b516_residual_fields", "b516_residual_fields"),
+        ("ab53_b504_candidates", "b504_candidates"),
+        ("ab55_b505_candidates", "b505_candidates"),
+        ("ab56_b524_numeric_candidates", "b524_numeric_candidates"),
+        ("ab57_b506_candidates", "b506_candidates"),
+        ("ab59_b509_candidates", "b509_candidates"),
+        ("ab61_b50e_candidates", "b50e_candidates"),
+        ("ab63_b50f_candidates", "b50f_candidates"),
+        ("ab65_b510_candidates", "b510_candidates"),
+        ("ab67_b511_candidates", "b511_candidates"),
+        ("ab68_b509_boiler_codec_dictionary", "b509_boiler_codec_dictionary"),
+        ("ab69_b512_candidates", "b512_candidates"),
+        ("ab70_b509_heatpump_codec_dictionary", "b509_heatpump_codec_dictionary"),
+        ("ab71_b523_candidates", "b523_candidates"),
+        ("ab72_b516_statistics_directions", "b516_statistics_directions"),
+        ("ab73_b525_candidates", "b525_candidates"),
+        ("ab74_b50e_rule_value_rows", "b50e_rule_value_rows"),
+        ("ab75_b531_candidates", "b531_candidates"),
+        ("ab80_b514_activation_vectors", "b514_activation_vectors"),
+        ("ab82_b525_spectrum_blocks", "b525_spectrum_blocks"),
+        ("ab85_b524_scalar_shapes", "b524_scalar_shapes"),
+        ("ab86_b503_history_flags", "b503_history_flags"),
+        ("ab87_b509_diagnostic_shapes", "b509_diagnostic_shapes"),
+        ("ab88_b512_air_fields", "b512_air_fields"),
+        ("ab89_b514_menu_feedback", "b514_menu_feedback"),
+        ("ab90_b51a_mirror_fields", "b51a_mirror_fields"),
+        ("ab91_b51cd_partial_labels", "b51cd_partial_labels"),
+        ("ab92_b520_blocks", "b520_blocks"),
+        ("ab93_b523_sensor_fields", "b523_sensor_fields"),
+        ("ab94_b555_numeric_units", "b555_numeric_units"),
+        ("ab95_b524_energy_roles", "b524_energy_roles"),
+        ("ab96_b503_text_categories", "b503_text_categories"),
+        ("ab97_b512_dhw_stepper", "b512_dhw_stepper"),
+        ("ab98_b51a_diagnostic_variants", "b51a_diagnostic_variants"),
+        ("ab99_b523_config_mixer", "b523_config_mixer"),
+    ),
+    # Stem: the destination file name in UpperCamelCase, the service in
+    # upper-case hex, initialisms in Go form and the last word singular.
+    stems={
+        "ab30": "B524FamilyCodebook",
+        "ab31": "PumpRole",
+        "ab32": "B524ComponentSelector",
+        "ab33": "ApplianceInfo",
+        "ab34": "B501LegacySequence",
+        "ab35": "LegacyTimer",
+        "ab36": "B524NameAnnotation",
+        "ab37": "Tunnel",
+        "ab38": "B513SymbolicDictionary",
+        "ab39": "OpaqueProgramming",
+        "ab40": "B509SymbolicAnnotation",
+        "ab41": "ProgramBlock",
+        "ab43": "SimulatorADC",
+        "ab45": "OutdoorModule",
+        "ab46": "B509IdentityShape",
+        "ab47": "FanDemand",
+        "ab48": "B510OperatingDefault",
+        "ab50": "B511ClassCandidate",
+        "ab51": "B516ResidualField",
+        "ab53": "B504Candidate",
+        "ab55": "B505Candidate",
+        "ab56": "B524NumericCandidate",
+        "ab57": "B506Candidate",
+        "ab59": "B509Candidate",
+        "ab61": "B50ECandidate",
+        "ab63": "B50FCandidate",
+        "ab65": "B510Candidate",
+        "ab67": "B511Candidate",
+        "ab68": "B509BoilerCodecDictionary",
+        "ab69": "B512Candidate",
+        "ab70": "B509HeatpumpCodecDictionary",
+        "ab71": "B523Candidate",
+        "ab72": "B516StatisticsDirection",
+        "ab73": "B525Candidate",
+        "ab74": "B50ERuleValueRow",
+        "ab75": "B531Candidate",
+        "ab80": "B514ActivationVector",
+        "ab82": "B525SpectrumBlock",
+        "ab85": "B524ScalarShape",
+        "ab86": "B503HistoryFlag",
+        "ab87": "B509DiagnosticShape",
+        "ab88": "B512AirField",
+        "ab89": "B514MenuFeedback",
+        "ab90": "B51AMirrorField",
+        "ab91": "B51CDPartialLabel",
+        "ab92": "B520Block",
+        "ab93": "B523SensorField",
+        "ab94": "B555NumericUnit",
+        "ab95": "B524EnergyRole",
+        "ab96": "B503TextCategory",
+        "ab97": "B512DHWStepper",
+        "ab98": "B51ADiagnosticVariant",
+        "ab99": "B523ConfigMixer",
+    },
+    # Exported names whose remainder repeats a stem word: the stem keeps its
+    # service and is cut before the first repeated word, and the remainder
+    # follows; a service the remainder repeats is dropped from it (for
+    # example Ab53LookupB504Candidate -> B504LookupCandidate). Where a
+    # shortened top-level declaration would equal another renamed name,
+    # the declaration takes the short name and the other keeps the default
+    # <Stem><remainder> (struct fields: Ab85Shape, Ab88Field, Ab88Fields,
+    # Ab90Field, Ab90Fields, Ab91Label, Ab93Field, Ab93Fields,
+    # Ab94UnitGrade; the type Ab91PartialLabels next to the accessor
+    # Ab91B51CDPartialLabels). Ab67B511Key and Ab92B520Field keep the
+    # default because the shortened name is the default of the struct fields
+    # Ab67Key and Ab92Field.
+    exported_overrides={
+        "Ab30Family": "B524Family",
+        "Ab31PumpRoles": "PumpRoles",
+        "Ab32Components": "B524Components",
+        "Ab33ApplianceInfoCatalog": "ApplianceInfoCatalog",
+        "Ab35LegacyTimerCatalog": "LegacyTimerCatalog",
+        "Ab37TunnelCatalog": "TunnelCatalog",
+        "Ab38DictionaryClass": "B513SymbolicDictionaryClass",
+        "Ab38DictionaryNamespace": "B513SymbolicDictionaryNamespace",
+        "Ab39OpaqueProgramming": "OpaqueProgramming",
+        "Ab41ProgramBlocks": "ProgramBlocks",
+        "Ab43SimulatorADC": "SimulatorADC",
+        "Ab45OutdoorModuleCatalog": "OutdoorModuleCatalog",
+        "Ab47FanDemandCatalog": "FanDemandCatalog",
+        "Ab51Field": "B516ResidualField",
+        "Ab53B504Candidates": "B504Candidates",
+        "Ab53LookupB504Candidate": "B504LookupCandidate",
+        "Ab55B505Candidates": "B505Candidates",
+        "Ab56CandidateSet": "B524NumericCandidateSet",
+        "Ab57B506Candidates": "B506Candidates",
+        "Ab57B506Lookup": "B506CandidateLookup",
+        "Ab59B509Candidates": "B509Candidates",
+        "Ab61AllRulesCandidate": "B50EAllRulesCandidate",
+        "Ab61B50ECandidates": "B50ECandidates",
+        "Ab61LookupB50ECandidate": "B50ELookupCandidate",
+        "Ab63B50FCandidates": "B50FCandidates",
+        "Ab63B50FLookup": "B50FCandidateLookup",
+        "Ab65B510Candidates": "B510Candidates",
+        "Ab67B511Catalog": "B511CandidateCatalog",
+        "Ab67B511Declarations": "B511CandidateDeclarations",
+        "Ab67B511Entry": "B511CandidateEntry",
+        "Ab67B511Lookup": "B511CandidateLookup",
+        "Ab68CodecDeclaration": "B509BoilerCodecDeclaration",
+        "Ab69B512Candidates": "B512Candidates",
+        "Ab69Candidate": "B512Candidate",
+        "Ab70CodecDeclaration": "B509HeatpumpCodecDeclaration",
+        "Ab71B523Candidates": "B523Candidates",
+        "Ab72Direction": "B516StatisticsDirection",
+        "Ab73B525Candidates": "B525Candidates",
+        "Ab74Value": "B50ERuleValue",
+        "Ab75B531Candidates": "B531Candidates",
+        "Ab75LookupB531": "B531CandidateLookup",
+        "Ab80Vector": "B514ActivationVector",
+        "Ab82Block": "B525SpectrumBlock",
+        "Ab82BlockLength": "B525SpectrumBlockLength",
+        "Ab82Blocks": "B525SpectrumBlocks",
+        "Ab82JoinBlock": "B525SpectrumJoinBlock",
+        "Ab85ScalarShape": "B524ScalarShape",
+        "Ab85ScalarShapes": "B524ScalarShapes",
+        "Ab86HistoryCatalog": "B503HistoryCatalog",
+        "Ab86HistoryField": "B503HistoryField",
+        "Ab86HistoryLookup": "B503HistoryLookup",
+        "Ab86HistoryMetadata": "B503HistoryMetadata",
+        "Ab87B509DiagnosticShapes": "B509DiagnosticShapes",
+        "Ab87DiagnosticCatalog": "B509DiagnosticCatalog",
+        "Ab87DiagnosticField": "B509DiagnosticField",
+        "Ab87DiagnosticKey": "B509DiagnosticKey",
+        "Ab87LookupB509DiagnosticField": "B509LookupDiagnosticField",
+        "Ab88AirField": "B512AirField",
+        "Ab88AirKey": "B512AirKey",
+        "Ab88AirMetadata": "B512AirMetadata",
+        "Ab88AirOperation": "B512AirOperation",
+        "Ab88B512AirFields": "B512AirFields",
+        "Ab88LookupB512AirField": "B512LookupAirField",
+        "Ab89MenuFeedback": "B514MenuFeedback",
+        "Ab90B51AMirrorFields": "B51AMirrorFields",
+        "Ab90LookupB51AMirrorField": "B51ALookupMirrorField",
+        "Ab90MirrorAlternative": "B51AMirrorAlternative",
+        "Ab90MirrorBit": "B51AMirrorBit",
+        "Ab90MirrorField": "B51AMirrorField",
+        "Ab90MirrorKey": "B51AMirrorKey",
+        "Ab90MirrorMetadata": "B51AMirrorMetadata",
+        "Ab91B51CDPartialLabels": "B51CDPartialLabels",
+        "Ab91LookupB51CDPartialLabel": "B51CDLookupPartialLabel",
+        "Ab91PartialField": "B51CDPartialField",
+        "Ab91PartialKey": "B51CDPartialKey",
+        "Ab91PartialLabel": "B51CDPartialLabel",
+        "Ab92B520Blocks": "B520Blocks",
+        "Ab92B520Catalog": "B520BlockCatalog",
+        "Ab92LookupB520": "B520BlockLookup",
+        "Ab93B523SensorFields": "B523SensorFields",
+        "Ab93LookupB523SensorField": "B523LookupSensorField",
+        "Ab93SensorBranch": "B523SensorBranch",
+        "Ab93SensorCatalog": "B523SensorCatalog",
+        "Ab93SensorField": "B523SensorField",
+        "Ab93SensorKey": "B523SensorKey",
+        "Ab93Sensors": "B523Sensors",
+        "Ab94B555NumericUnits": "B555NumericUnits",
+        "Ab94LookupB555NumericUnits": "B555LookupNumericUnits",
+        "Ab94NumericField": "B555NumericField",
+        "Ab94NumericMax": "B555NumericMax",
+        "Ab94NumericMetadata": "B555NumericMetadata",
+        "Ab94NumericMin": "B555NumericMin",
+        "Ab94Unit": "B555NumericUnit",
+        "Ab94UnitCode": "B555NumericUnitCode",
+        "Ab95CommandRole": "B524EnergyCommandRole",
+        "Ab98Variant": "B51ADiagnosticVariant",
+    },
+    # Resolved collisions: the bytes and encoding/json import aliases
+    # (ab<code>bytes, ab<code>json) would equal a byte slice or helper of
+    # the same package (ab<code>Bytes, ab<code>JSON) and take a Package
+    # suffix; two locals of the program block test would equal a helper
+    # function (ab41Expected, ab41Field) and take a Value suffix.
+    collision_overrides={
+        "ab32bytes": "b524ComponentSelectorBytesPackage",
+        "ab33json": "applianceInfoJSONPackage",
+        "ab41expected": "programBlockExpectedValue",
+        "ab41field": "programBlockFieldValue",
+        "ab68json": "b509BoilerCodecDictionaryJSONPackage",
+        "ab70json": "b509HeatpumpCodecDictionaryJSONPackage",
+        "ab95bytes": "b524EnergyRoleBytesPackage",
+        "ab96bytes": "b503TextCategoryBytesPackage",
+        "ab97bytes": "b512DHWStepperBytesPackage",
+    },
+    initialisms={"json": "JSON", "id": "ID", "io": "IO", "utf8": "UTF8",
+                 "ascii": "ASCII"},
+    fixture_bound={},
+    # Test string literals that name a renamed struct field or function for
+    # reflection or go/ast checks; they follow the rename. A literal may
+    # list several names separated by spaces.
+    reflect_names={
+        "ab30_b524_family_codebooks_test.go": (
+            "Ab30Secondary", "Ab30Operation", "Ab30Group", "Ab30Register"),
+        "ab34_b501_legacy_sequence_test.go": ("Ab34Family",),
+        "ab36_b524_name_annotations_test.go": (
+            "Ab36Secondary", "Ab36Operation", "Ab36Group", "Ab36Register"),
+        "ab46_b509_identity_shapes_test.go": ("Ab46Primary",),
+        "ab56_b524_numeric_candidates_test.go": (
+            "Ab56Secondary", "Ab56Operation", "Ab56Opcode", "Ab56Group",
+            "Ab56Instance", "Ab56Register"),
+        "ab70_b509_heatpump_codec_dictionary_test.go": (
+            "Ab70Quantity", "Ab70CodecDeclaration", "Ab70Grade",
+            "Ab70SoftwareContract",
+            "Ab70Qualification Ab70Presence Ab70Freshness Ab70Execution "
+            "Ab70PhysicalEffects Ab70Persistence Ab70Delivery"),
+        "ab85_b524_scalar_shapes_test.go": ("Ab85Opcode", "Ab85Register"),
+        "ab88_b512_air_fields_test.go": ("Ab88Value", "Ab88Present"),
+        "ab89_b514_menu_feedback_test.go": (
+            "Ab89Secondary", "Ab89Operation", "Ab89Opcode", "Ab89Group",
+            "Ab89Instance", "Ab89Register"),
+        "ab90_b51a_mirror_fields_test.go": (
+            "Ab90Secondary", "Ab90Operation", "Ab90Opcode", "Ab90Group",
+            "Ab90Instance", "Ab90Register"),
+        "ab91_b51cd_partial_labels_test.go": (
+            "Ab91Family", "Ab91Variant", "Ab91Label", "Ab91Primary",
+            "Ab91Secondary", "Ab91Operation", "Ab91Direction", "Ab91Field",
+            "Ab91Opcode", "Ab91Group", "Ab91Instance", "Ab91Register",
+            "Ab91B51CDPartialLabels", "Ab91LookupB51CDPartialLabel",
+            "ab91FindPartialLabel", "ab91PartialLabelsJSON"),
+        "ab93_b523_sensor_fields_test.go": (
+            "Ab93Family", "Ab93Variant", "Ab93Primary", "Ab93Secondary",
+            "Ab93Operation", "Ab93Direction", "Ab93Field", "Ab93Opcode",
+            "Ab93Group", "Ab93Instance", "Ab93Register"),
+        "ab96_b503_text_categories_test.go": (
+            "Ab96Secondary", "Ab96Operation", "Ab96Group",
+            "Ab96RequestedInstance", "Ab96Register", "Ab96Direction",
+            "Ab96CommandRole"),
+    },
+    # The partial label test parses its production file with go/parser.
+    source_paths={
+        "ab91_b51cd_partial_labels_test.go": ("ab91_b51cd_partial_labels.go",),
+    },
+    import_unaliases={},
+    # Test locals that would make gofmt split one-line closures and push a
+    # file over its size baseline take a short name; the name must be unused
+    # in that file and the local must not occur in any other file. The
+    # symbolic dictionary test keeps its 1630 lines with the closure
+    # parameter key.
+    size_overrides={
+        "ab38K": ("ab38_b513_symbolic_dictionary_test.go", "key"),
+    },
+    # The behavior-name baseline keeps an entry for ab36Aliases, which the
+    # name annotation test no longer contains; it is deleted.
+    prune_absent=True,
+    tag_fields=True,
+    golden=None,
+    regression=("canonical_names_test.go",
+                lambda tagged, mapping: field_json_keys_test(
+                    tagged, mapping, "TestRenamedCatalogFieldJSONKeys")),
+    internal_dir=None,
+)
+
+
+SLICES = {cfg.name: cfg for cfg in (EBUSSTANDARD, VAILLANT_01_29, VAILLANT_30_99)}
 
 
 def lex(source):
@@ -443,6 +767,8 @@ def coded(name, cfg):
 
 
 def new_name(name, cfg):
+    if name in cfg.size_overrides:
+        return cfg.size_overrides[name][1]
     if name in cfg.import_unaliases:
         return cfg.import_unaliases[name][1].rsplit("/", 1)[1]
     if name in cfg.exported_overrides:
@@ -483,7 +809,15 @@ def build_map(root, cfg):
             if new_name(alias, cfg) in idents:
                 raise SystemExit(f"import alias {alias} cannot take its package name")
         other.discard(new_name(alias, cfg))
-    for table in (cfg.exported_overrides, cfg.collision_overrides, cfg.import_unaliases):
+    for name, (file_name, target) in cfg.size_overrides.items():
+        users = [path.name for path in package_files(root, cfg)
+                 if name in {text for kind, text in lex(path.read_text()) if kind == "ident"}]
+        idents = {text for kind, text in lex((root / cfg.package_dir / file_name).read_text())
+                  if kind == "ident"}
+        if users != [file_name] or target in idents or target in KEYWORDS:
+            raise SystemExit(f"size override {name} -> {target} is not local to {file_name}")
+    for table in (cfg.exported_overrides, cfg.collision_overrides, cfg.import_unaliases,
+                  cfg.size_overrides):
         unused = sorted(set(table) - old)
         if unused:
             raise SystemExit(f"override for an absent identifier: {unused}")
@@ -493,7 +827,7 @@ def build_map(root, cfg):
         if target in seen:
             raise SystemExit(f"collision: {seen[target]} and {name} -> {target}")
         seen[target] = name
-        if name in cfg.import_unaliases:
+        if name in cfg.import_unaliases or name in cfg.size_overrides:
             continue
         if target in other or target in KEYWORDS or CODE.fullmatch(target):
             raise SystemExit(f"collision with an existing name: {name} -> {target}")
@@ -569,6 +903,7 @@ NAMED_STRUCT = re.compile(r"type ([A-Za-z_]\w*) struct \{")
 NESTED_FIELD = re.compile(r"([A-Za-z_]\w*) +[\[\]*.\w]*struct \{")
 FIELD_LINE = re.compile(r"([A-Za-z_]\w*(?:, [A-Za-z_]\w*)*)( +)([^`]*?)( +`.*`)?")
 EMBEDDED_LINE = re.compile(r"\*?[A-Za-z_][\w.]*( +`.*`)?")
+NAMED_STRUCT_DECL = re.compile(r"^type ([A-Za-z_]\w*) struct \{", re.M)
 
 
 def json_tag(name):
@@ -579,14 +914,17 @@ def renamed_field(name, cfg):
     return name[:1].isupper() and coded(name, cfg) is not None
 
 
-def tag_struct_fields(source, cfg, wanted):
+def tag_struct_fields(source, cfg, wanted, flattened=frozenset()):
     """Give renamed exported fields an explicit tag with their old name.
 
     Works on gofmt output: one field declaration per line, struct bodies
     indented one tab deeper than the line that opens them. wanted(names)
     decides per struct from the renamed field names it declares. A
     declaration with several names is split so every field carries its own
-    key. Returns the source and the (type, fields) pairs that were tagged.
+    key. An untagged embedded field may be renamed only when it names a
+    struct type of the package (flattened): encoding/json promotes its
+    fields and never uses its name as a key. Returns the source and the
+    (type, fields) pairs that were tagged.
     """
     lines = source.split("\n")
     edits, tagged, stack = {}, [], []
@@ -644,7 +982,9 @@ def tag_struct_fields(source, cfg, wanted):
         if match is None or match.group(3) == "":
             if EMBEDDED_LINE.fullmatch(code_part) is None:
                 raise SystemExit(f"unexpected struct field line: {line!r}")
-            if renamed_field(code_part.lstrip("*").split(" ")[0], cfg):
+            embedded = code_part.lstrip("*").split(" ")[0]
+            if renamed_field(embedded, cfg) and (
+                    embedded not in flattened or "`" in code_part):
                 raise SystemExit(f"embedded renamed field: {line!r}")
             continue
         stack[-1]["fields"].append({
@@ -676,7 +1016,7 @@ def fixture_keys(root, cfg):
     return keys
 
 
-def field_json_keys_test(tagged, mapping):
+def field_json_keys_test(tagged, mapping, name="TestRenamedFieldJSONKeys"):
     """Regression test that pins the JSON key of every tagged field."""
     rows = []
     for type_name, fields in tagged:
@@ -684,7 +1024,7 @@ def field_json_keys_test(tagged, mapping):
         rows.append(f"\t\t{{{mapping.get(type_name, type_name)}{{}}, "
                     f"map[string]string{{{pairs}}}}},\n")
     return (
-        "func TestRenamedFieldJSONKeys(t *testing.T) {\n"
+        f"func {name}(t *testing.T) {{\n"
         "\tcases := []struct {\n"
         "\t\tvalue any\n"
         "\t\tkeys  map[string]string\n"
@@ -722,7 +1062,7 @@ def drop_import_alias(source, alias, import_path):
     return source.replace(spec, f'\t"{import_path}"\n')
 
 
-def rewrite_go(source, mapping, names=()):
+def rewrite_go(source, mapping, names=(), paths=None):
     out = []
     for kind, text in lex(source):
         if kind == "ident":
@@ -730,7 +1070,9 @@ def rewrite_go(source, mapping, names=()):
         elif kind == "comment":
             text = rename_comment(text, mapping)
         elif kind == "string" and text[:1] == '"' and text[1:-1] in names:
-            text = '"' + mapping[text[1:-1]] + '"'
+            text = '"' + " ".join(mapping[word] for word in text[1:-1].split(" ")) + '"'
+        elif kind == "string" and text[:1] == '"' and paths and text[1:-1] in paths:
+            text = '"' + paths[text[1:-1]] + '"'
         out.append(text)
     return "".join(out)
 
@@ -775,19 +1117,31 @@ def behavior_tokens(root):
     return module, vocabulary
 
 
+def file_idents(path):
+    return {text for kind, text in lex(path.read_text()) if kind == "ident"}
+
+
 def update_baselines(root, mapping, moves, cfg):
     prefix = cfg.package_dir + "/"
     module, vocabulary = behavior_tokens(root)
     path = root / "scripts/behavior-name-baseline.json"
     data = load_json(path)
-    rows = []
+    rows, idents = [], {}
     for row in data["baseline"]:
-        if row["path"] in moves:
+        moved = row["path"] in moves
+        if moved:
             row = dict(row, path=moves[row["path"]])
             if row["category"] == "filename":
                 row["symbol"] = row["path"].rsplit("/", 1)[1]
         if row["path"].startswith(prefix) and row["category"] == "identifier":
             row = dict(row, symbol=mapping.get(row["symbol"], row["symbol"]))
+            # A coded identifier the moved file no longer declares or uses is
+            # a removed name: its entry is deleted, not re-keyed.
+            if moved and cfg.prune_absent:
+                if row["path"] not in idents:
+                    idents[row["path"]] = file_idents(root / row["path"])
+                if row["symbol"] not in idents[row["path"]]:
+                    continue
         if module.violations([row], vocabulary):
             rows.append(row)
     data["baseline"] = sorted(rows, key=lambda r: (r["path"], r["symbol"], r["category"]))
@@ -871,6 +1225,46 @@ def changelog_entry(mapping, cfg):
             "  unchanged. `scripts/rename_catalog_names.py` reproduces the change.\n"
             "  Gateway adoption and release bill of materials reconciliation remain\n"
             "  required.\n")
+    if cfg is VAILLANT_30_99:
+        collisions = "".join(f"  - `{old}` -> `{new}`\n"
+                             for old, new in sorted(cfg.collision_overrides.items()))
+        sizes = "".join(f"  - `{old}` -> `{new}`\n"
+                        for old, (_, new) in sorted(cfg.size_overrides.items()))
+        return (
+            "- Remove work-item codes from the remaining `catalog/vaillant` files,\n"
+            "  whose code number is 30 to 99, and from the Go identifiers that\n"
+            "  start with their codes; no `catalog/vaillant` file name carries a\n"
+            "  code any more. Each production file and its test twin is renamed;\n"
+            "  embedded data and testdata fixtures keep their names. The mirror\n"
+            "  field catalog takes the plain name `b51a_mirror_fields.go` next to\n"
+            "  `b51a_mirror_fields_evaluator.go`:\n" + files +
+            counts + stems +
+            "  Exported names whose remainder repeats a stem word keep the stem's\n"
+            "  service, cut the stem before the first repeated word and drop a\n"
+            "  service the remainder repeats. Where two renamed names would meet,\n"
+            "  one keeps `<Stem><remainder>`: `Ab67B511Key` ->\n"
+            "  `B511CandidateB511Key` and `Ab92B520Field` -> `B520BlockB520Field`,\n"
+            "  whose short form is the name of a struct field, the type\n"
+            "  `Ab91PartialLabels` -> `B51CDPartialLabelPartialLabels` next to the\n"
+            "  accessor `B51CDPartialLabels`, and nine struct fields such as\n"
+            "  `Ab88Field` -> `B512AirFieldField`:\n" + overrides +
+            "  Import aliases and test locals that would equal another name take\n"
+            "  a `Package` or `Value` suffix:\n" + collisions +
+            "  The closure parameter of the symbolic dictionary test takes a short\n"
+            "  name so the file stays within its size baseline:\n" + sizes +
+            "  `canonical_names_test.go` follows the `B524NameAnnotation...` names.\n"
+            "  Embedded struct fields keep no JSON key of their own; renamed\n"
+            "  exported struct fields that had no JSON tag carry an explicit tag\n"
+            "  with the unchanged key, and `TestRenamedCatalogFieldJSONKeys` pins\n"
+            "  every key. Test strings that name a renamed field or function for\n"
+            "  reflection or `go/ast` checks, and the production file name the\n"
+            "  partial label test parses, follow the rename. Consumers must update\n"
+            "  references; there are no aliases. JSON tags, string values, error\n"
+            "  texts, `go:embed` paths, data and fixture names and test function\n"
+            "  names are unchanged.\n"
+            "  `scripts/rename_catalog_names.py --slice vaillant-30-99` reproduces\n"
+            "  the change. Gateway adoption and release bill of materials\n"
+            "  reconciliation remain required.\n")
     return (
         "- Remove work-item codes from the `catalog/vaillant` files whose code\n"
         "  number is 01 to 29 and from the Go identifiers that start with their\n"
@@ -920,18 +1314,21 @@ def run(root, print_map, cfg):
             print(f"{name} {target}")
         return
     keys = fixture_keys(root, cfg) if cfg.tag_fields else set()
+    flattened = frozenset(
+        name for path in package_files(root, cfg) if not path.name.endswith("_test.go")
+        for name in NAMED_STRUCT_DECL.findall(path.read_text()))
     sources, tagged = {}, []
     for path in package_files(root, cfg):
         source = original = path.read_text()
         test = path.name.endswith("_test.go")
         if cfg.tag_fields and not test:
-            source, found = tag_struct_fields(source, cfg, lambda names: True)
+            source, found = tag_struct_fields(source, cfg, lambda names: True, flattened)
             if any(type_name is None for type_name, _ in found):
                 raise SystemExit(f"renamed field of an anonymous struct in {path.name}")
             tagged.extend(found)
         elif cfg.tag_fields:
             source, _ = tag_struct_fields(
-                source, cfg, lambda names: all(n.lower() in keys for n in names))
+                source, cfg, lambda names: all(n.lower() in keys for n in names), flattened)
         elif not test:
             source = preserve_projection_json_keys(source, cfg)
         if path.name in cfg.fixture_bound:
@@ -944,10 +1341,18 @@ def run(root, print_map, cfg):
     for name, names in cfg.reflect_names.items():
         found = {text[1:-1] for kind, text in lex((root / cfg.package_dir / name).read_text())
                  if kind == "string"}
-        if not set(names) <= found or not set(names) <= set(mapping):
+        words = {word for item in names for word in item.split(" ")}
+        if not set(names) <= found or not words <= set(mapping):
             raise SystemExit(f"reflection names not found in {name}")
+    file_names = {old + ".go": new + ".go" for old, new in cfg.file_moves}
+    for name, olds in cfg.source_paths.items():
+        found = {text[1:-1] for kind, text in lex((root / cfg.package_dir / name).read_text())
+                 if kind == "string"}
+        if not set(olds) <= found or not set(olds) <= set(file_names):
+            raise SystemExit(f"source file names not found in {name}")
     for path, (source, original) in sources.items():
-        source = rewrite_go(source, mapping, cfg.reflect_names.get(path.name, ()))
+        paths = {old: file_names[old] for old in cfg.source_paths.get(path.name, ())}
+        source = rewrite_go(source, mapping, cfg.reflect_names.get(path.name, ()), paths)
         if path.name == regression_file:
             source = append_test(source, regression(tagged, mapping))
         sources[path] = (source, original)
@@ -1089,6 +1494,78 @@ def test_vaillant_names():
     assert coded("Ab30Key", cfg) is None and coded("Ab21An21Value", cfg) is None
     assert len(moved_paths(cfg)) == 118
     assert set(code for code in cfg.stems) == {old.split("_", 1)[0] for old, _ in cfg.file_moves}
+
+
+def test_vaillant_30_99_names():
+    cfg = VAILLANT_30_99
+    assert new_name("Ab36Key", cfg) == "B524NameAnnotationKey"
+    assert new_name("ab36reflect", cfg) == "b524NameAnnotationReflect"
+    assert new_name("ab70json", cfg) == "b509HeatpumpCodecDictionaryJSONPackage"
+    assert new_name("Ab53LookupB504Candidate", cfg) == "B504LookupCandidate"
+    assert new_name("Ab67B511Key", cfg) == "B511CandidateB511Key"
+    assert new_name("Ab88Field", cfg) == "B512AirFieldField"
+    assert new_name("ab38K", cfg) == "key"
+    assert coded("Ab29Key", cfg) is None and coded("Ab42Key", cfg) is None
+    assert len(moved_paths(cfg)) == 106
+    assert set(cfg.stems) == {old.split("_", 1)[0] for old, _ in cfg.file_moves}
+    assert moved_paths(cfg)["catalog/vaillant/ab90_b51a_mirror_fields.go"] == \
+        "catalog/vaillant/b51a_mirror_fields.go"
+    targets = {new for _, new in cfg.file_moves} | {
+        new for _, new in VAILLANT_01_29.file_moves}
+    assert len(targets) == len(cfg.file_moves) + len(VAILLANT_01_29.file_moves)
+
+
+def test_rewrite_go_strings():
+    mapping = {"Ab70Grade": "B509HeatpumpCodecDictionaryGrade",
+               "Ab70Delivery": "B509HeatpumpCodecDictionaryDelivery"}
+    source = ('x := []string{"Ab70Grade", "Ab70Grade Ab70Delivery", "ab70_grade"}\n'
+              'f := "ab91_b51cd_partial_labels.go"\n')
+    result = rewrite_go(source, mapping, ("Ab70Grade", "Ab70Grade Ab70Delivery"),
+                        {"ab91_b51cd_partial_labels.go": "b51cd_partial_labels.go"})
+    assert result == (
+        'x := []string{"B509HeatpumpCodecDictionaryGrade", '
+        '"B509HeatpumpCodecDictionaryGrade B509HeatpumpCodecDictionaryDelivery", '
+        '"ab70_grade"}\nf := "b51cd_partial_labels.go"\n')
+    assert rewrite_go(source, mapping) == source
+
+
+def test_flattened_embedded_fields():
+    source = "type ab38Row struct {\n\tAb38Key\n\tAb38Label string\n}\n"
+    result, tagged = tag_struct_fields(source, VAILLANT_30_99, lambda names: True,
+                                       frozenset({"Ab38Key"}))
+    assert '\tAb38Key\n\tAb38Label string `json:"Ab38Label"`\n' in result
+    assert tagged == [("ab38Row", ["Ab38Label"])]
+    for embedded, flattened in (("\tAb38Key\n", frozenset()),
+                                ('\tAb38Key `json:"key"`\n', frozenset({"Ab38Key"}))):
+        try:
+            tag_struct_fields("type ab38Row struct {\n" + embedded + "}\n",
+                              VAILLANT_30_99, lambda names: True, flattened)
+        except SystemExit:
+            continue
+        raise AssertionError(embedded)
+
+
+def test_prune_absent_identifier_rows(tmp_path):
+    cfg = VAILLANT_30_99
+    package = tmp_path / cfg.package_dir
+    package.mkdir(parents=True)
+    (tmp_path / "scripts").mkdir()
+    for name in ("check_behavior_names.py", "behavior-name-baseline.json"):
+        (tmp_path / "scripts" / name).write_bytes(
+            (Path(__file__).resolve().parent / name).read_bytes())
+    old, new = "catalog/vaillant/ab36_b524_name_annotations_test.go", \
+        "catalog/vaillant/b524_name_annotations_test.go"
+    (tmp_path / new).write_text("package vaillant\n\nvar ab36Rows int\n")
+    baseline = json.loads((tmp_path / "scripts/behavior-name-baseline.json").read_text())
+    baseline["baseline"] = [
+        {"path": old, "symbol": "ab36Aliases", "category": "identifier"},
+        {"path": old, "symbol": "ab36Rows", "category": "identifier"}]
+    (tmp_path / "scripts/behavior-name-baseline.json").write_text(json.dumps(baseline))
+    (tmp_path / "scripts/go-lint-baseline.json").write_text('{"entries": []}')
+    (tmp_path / "scripts/size-baseline.json").write_text('{"debt": []}')
+    update_baselines(tmp_path, {}, {old: new}, cfg)
+    rows = json.loads((tmp_path / "scripts/behavior-name-baseline.json").read_text())["baseline"]
+    assert rows == [{"path": new, "symbol": "ab36Rows", "category": "identifier"}]
 
 
 if __name__ == "__main__":

@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Add package documentation to the 13 packages that had none: the module
+  root, `catalog/vaillant`, `internal/match`, `providers/vaillant`,
+  `registry`, `router`, `schema`, `vaillant/b555`, `vaillant/dhw`,
+  `vaillant/heating`, `vaillant/productids`, `vaillant/solar` and
+  `vaillant/system`. Twelve packages get a new `doc.go` that holds only the
+  package comment (responsibility, ownership boundary and non-obvious
+  contracts) and the package clause; `vaillant/b555` carries its package
+  comment on the package clause of the existing `vaillant/b555/b555.go`
+  (comment lines only); no other Go file changes. The 13
+  `revive/package-comments` rows leave `scripts/go-lint-baseline.json`.
 - Remove work-item codes from `catalog/ebusstandard` file names and Go
   identifiers. Each production file and its test twin is renamed; the
   testdata fixtures keep their names:

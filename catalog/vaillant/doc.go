@@ -9,11 +9,14 @@
 // (Proven, Hypothesis or Unknown), and nothing here promotes a Hypothesis
 // or Unknown entry.
 //
-// The functions fail closed. Catalogue loaders reject unknown fields,
-// trailing data, duplicate keys and incomplete finite catalogues instead
-// of returning a partial list, and lookups report "not found" separately
-// from a catalogue error. Interpreters read JSON evidence strictly,
-// rejecting duplicate keys, trailing data and unexpected shapes; where
-// they take raw bytes they keep them next to any interpretation, and an
-// unsupported context is reported as such rather than interpreted.
+// Validation is per catalogue, not package-wide. Most loaders and
+// interpreters read their embedded or supplied JSON strictly, rejecting
+// unknown fields, trailing data, duplicate keys and incomplete entries
+// instead of returning a partial list, and report "not found" separately
+// from a catalogue error. A few older candidate loaders decode their
+// embedded list without that validation and return it as is, so callers
+// must not assume strictness for a loader whose signature has no error
+// result. Where raw bytes are taken they are kept next to any
+// interpretation, and an unsupported context is reported as such rather
+// than interpreted.
 package vaillant

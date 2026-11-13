@@ -14,8 +14,9 @@
 // target parameter is consulted only when the device has no address. A
 // reply decodes to a value map that always carries the raw reply payload
 // and the request coordinates next to the decoded fields. A reply shorter
-// than its layout is not an error: the fields it lacks are marked invalid,
-// and an empty write reply reports the write as not accepted. Missing
+// than its layout is not an error: the decoded map then carries an invalid
+// status entry and omits the fields it lacks, so consumers test for a key
+// before using it. An empty write reply reports the write as not accepted. Missing
 // parameters, an unknown method or a reply with other command bytes fail
 // with the transport library's invalid-payload error.
 //

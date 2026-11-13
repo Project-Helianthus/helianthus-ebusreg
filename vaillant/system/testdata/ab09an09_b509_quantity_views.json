@@ -2,16 +2,16 @@
   {
     "Ab09An09Name": "ab09an09_control",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -22,11 +22,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -39,16 +39,16 @@
   {
     "Ab09An09Name": "ab09an09_temperature_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -59,11 +59,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -2048,
@@ -76,16 +76,16 @@
   {
     "Ab09An09Name": "ab09an09_flow_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -96,11 +96,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -113,16 +113,16 @@
   {
     "Ab09An09Name": "ab09an09_volume_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -133,11 +133,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -150,16 +150,16 @@
   {
     "Ab09An09Name": "ab09an09_minimumvolume_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -170,11 +170,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -187,16 +187,16 @@
   {
     "Ab09An09Name": "ab09an09_maximumvolume_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -207,11 +207,11 @@
       "ffff"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -224,16 +224,16 @@
   {
     "Ab09An09Name": "ab09an09_temperature_absent",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -244,11 +244,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_absent",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "absent",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       null,
@@ -261,16 +261,16 @@
   {
     "Ab09An09Name": "ab09an09_temperature_empty",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -281,11 +281,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_malformed",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "malformed",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       null,
@@ -298,16 +298,16 @@
   {
     "Ab09An09Name": "ab09an09_temperature_short",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -318,11 +318,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_malformed",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "malformed",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       null,
@@ -335,16 +335,16 @@
   {
     "Ab09An09Name": "ab09an09_temperature_long",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -355,11 +355,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_malformed",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "malformed",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       null,
@@ -372,16 +372,16 @@
   {
     "Ab09An09Name": "ab09an09_flow_absent",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -392,11 +392,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_absent",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "absent",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -409,16 +409,16 @@
   {
     "Ab09An09Name": "ab09an09_flow_empty",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -429,11 +429,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_malformed",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "malformed",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -446,16 +446,16 @@
   {
     "Ab09An09Name": "ab09an09_flow_short",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -466,11 +466,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_malformed",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "malformed",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -483,16 +483,16 @@
   {
     "Ab09An09Name": "ab09an09_flow_long",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -503,11 +503,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_malformed",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "malformed",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -520,16 +520,16 @@
   {
     "Ab09An09Name": "ab09an09_volume_absent",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -540,11 +540,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_absent",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "absent",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -557,16 +557,16 @@
   {
     "Ab09An09Name": "ab09an09_volume_empty",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -577,11 +577,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_malformed",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "malformed",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -594,16 +594,16 @@
   {
     "Ab09An09Name": "ab09an09_volume_short",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -614,11 +614,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_malformed",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "malformed",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -631,16 +631,16 @@
   {
     "Ab09An09Name": "ab09an09_volume_long",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -651,11 +651,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_malformed",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "malformed",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -668,16 +668,16 @@
   {
     "Ab09An09Name": "ab09an09_minimumvolume_absent",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -688,11 +688,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_absent",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "absent",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -705,16 +705,16 @@
   {
     "Ab09An09Name": "ab09an09_minimumvolume_empty",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -725,11 +725,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -742,16 +742,16 @@
   {
     "Ab09An09Name": "ab09an09_minimumvolume_short",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -762,11 +762,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -779,16 +779,16 @@
   {
     "Ab09An09Name": "ab09an09_minimumvolume_long",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -799,11 +799,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -816,16 +816,16 @@
   {
     "Ab09An09Name": "ab09an09_maximumvolume_absent",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -836,11 +836,11 @@
       null
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_absent"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "absent"
     ],
     "Ab09An09Values": [
       -1,
@@ -853,16 +853,16 @@
   {
     "Ab09An09Name": "ab09an09_maximumvolume_empty",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -873,11 +873,11 @@
       ""
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -890,16 +890,16 @@
   {
     "Ab09An09Name": "ab09an09_maximumvolume_short",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -910,11 +910,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -927,16 +927,16 @@
   {
     "Ab09An09Name": "ab09an09_maximumvolume_long",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -947,11 +947,11 @@
       "010203"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -964,16 +964,16 @@
   {
     "Ab09An09Name": "ab09an09_identity_family_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_other_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_other_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -984,11 +984,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1001,16 +1001,16 @@
   {
     "Ab09An09Name": "ab09an09_selection_family_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_other_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_other_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1021,11 +1021,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1038,16 +1038,16 @@
   {
     "Ab09An09Name": "ab09an09_identity_variant_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_other_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_other_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1058,11 +1058,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1075,16 +1075,16 @@
   {
     "Ab09An09Name": "ab09an09_selection_variant_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_other_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_other_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1095,11 +1095,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1112,16 +1112,16 @@
   {
     "Ab09An09Name": "ab09an09_identity_operation_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 88,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 88,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1132,11 +1132,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1149,16 +1149,16 @@
   {
     "Ab09An09Name": "ab09an09_selection_operation_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 88,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 88,
+      "direction": "response"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1169,11 +1169,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1186,16 +1186,16 @@
   {
     "Ab09An09Name": "ab09an09_identity_direction_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_request"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "request"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1206,11 +1206,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1223,16 +1223,16 @@
   {
     "Ab09An09Name": "ab09an09_selection_direction_only",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_request"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "request"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1243,11 +1243,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1260,16 +1260,16 @@
   {
     "Ab09An09Name": "ab09an09_both_family_34",
     "Ab09An09Identity": {
-      "Ab09An09Family": "",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1280,11 +1280,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1297,16 +1297,16 @@
   {
     "Ab09An09Name": "ab09an09_both_variant_35",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1317,11 +1317,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1334,16 +1334,16 @@
   {
     "Ab09An09Name": "ab09an09_both_operation_36",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 88,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 88,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 88,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 88,
+      "direction": "response"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1354,11 +1354,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1371,16 +1371,16 @@
   {
     "Ab09An09Name": "ab09an09_both_direction_37",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": ""
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": ""
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": ""
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": ""
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1391,11 +1391,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1408,16 +1408,16 @@
   {
     "Ab09An09Name": "ab09an09_both_direction_38",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_unknown"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "ab09an09_unknown"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_unknown"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "ab09an09_unknown"
     },
     "Ab09An09Selected": false,
     "Ab09An09Raw": [
@@ -1428,11 +1428,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected",
-      "ab09an09_unselected"
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected",
+      "unselected"
     ],
     "Ab09An09Values": [
       null,
@@ -1445,16 +1445,16 @@
   {
     "Ab09An09Name": "ab09an09_explicit_request",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_request"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "request"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_synthetic_family",
-      "Ab09An09Variant": "ab09an09_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_request"
+      "family": "ab09an09_synthetic_family",
+      "variant": "ab09an09_synthetic_variant",
+      "operation": 89,
+      "direction": "request"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -1465,11 +1465,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,
@@ -1482,16 +1482,16 @@
   {
     "Ab09An09Name": "ab09an09_explicit_other_family_variant",
     "Ab09An09Identity": {
-      "Ab09An09Family": "ab09an09_other_synthetic_family",
-      "Ab09An09Variant": "ab09an09_other_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_other_synthetic_family",
+      "variant": "ab09an09_other_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selection": {
-      "Ab09An09Family": "ab09an09_other_synthetic_family",
-      "Ab09An09Variant": "ab09an09_other_synthetic_variant",
-      "Ab09An09Operation": 89,
-      "Ab09An09Direction": "ab09an09_response"
+      "family": "ab09an09_other_synthetic_family",
+      "variant": "ab09an09_other_synthetic_variant",
+      "operation": 89,
+      "direction": "response"
     },
     "Ab09An09Selected": true,
     "Ab09An09Raw": [
@@ -1502,11 +1502,11 @@
       "01"
     ],
     "Ab09An09States": [
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_candidate",
-      "ab09an09_opaque",
-      "ab09an09_opaque"
+      "candidate",
+      "candidate",
+      "candidate",
+      "opaque",
+      "opaque"
     ],
     "Ab09An09Values": [
       -1,

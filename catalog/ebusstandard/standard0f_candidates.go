@@ -45,7 +45,7 @@ type Standard0fCandidate struct {
 func Standard0fCandidates() []Standard0fCandidate {
 	var standard0fCandidateEntries []Standard0fCandidate
 	if standard0fCandidateErr := standard0fCandidateJSON.Unmarshal(standard0fCandidateCandidatesJSON, &standard0fCandidateEntries); standard0fCandidateErr != nil {
-		panic("ab81 embedded candidate metadata: " + standard0fCandidateErr.Error())
+		panic("standard0f embedded candidate metadata: " + standard0fCandidateErr.Error())
 	}
 	return standard0fCandidateEntries
 }

@@ -56,12 +56,12 @@ func TestAb21An21FiniteVectors(numericNarrowingT *numericNarrowingTesting.T) {
 			}
 			var numericNarrowingResult NumericNarrowingResult
 			switch numericNarrowingVector.NumericNarrowingPath {
-			case "ab21an21-integer64":
+			case "integer64":
 				numericNarrowingResult = NumericNarrowingNarrowInteger64(numericNarrowingContext, numericNarrowingVector.NumericNarrowingInteger)
 				if numericNarrowingResult.NumericNarrowingOriginalInteger64 == nil || *numericNarrowingResult.NumericNarrowingOriginalInteger64 != numericNarrowingVector.NumericNarrowingInteger || numericNarrowingResult.NumericNarrowingOriginalFloat64 != nil || numericNarrowingResult.NumericNarrowingRoundedFloat64 != nil || numericNarrowingResult.NumericNarrowingScaledFloat64 != nil || numericNarrowingResult.NumericNarrowingUnsigned32 != nil || numericNarrowingResult.NumericNarrowingRoundedClassification != "" || numericNarrowingResult.NumericNarrowingRawClassification != "finite-integer" || numericNarrowingResult.NumericNarrowingIntermediateStatus != "not-applicable" {
 					numericNarrowingT.Fatalf("integer evidence = %+v", numericNarrowingResult)
 				}
-			case "ab21an21-float64":
+			case "float64":
 				numericNarrowingResult = NumericNarrowingNarrowFloat64(numericNarrowingContext, numericNarrowingVector.NumericNarrowingFloat)
 				if numericNarrowingResult.NumericNarrowingOriginalFloat64 == nil || *numericNarrowingResult.NumericNarrowingOriginalFloat64 != numericNarrowingVector.NumericNarrowingFloat || numericNarrowingResult.NumericNarrowingOriginalInteger64 != nil || numericNarrowingResult.NumericNarrowingRoundedFloat64 == nil || *numericNarrowingResult.NumericNarrowingRoundedFloat64 != numericNarrowingVector.NumericNarrowingRounded || numericNarrowingResult.NumericNarrowingScaledFloat64 == nil || *numericNarrowingResult.NumericNarrowingScaledFloat64 != numericNarrowingVector.NumericNarrowingScaled || numericNarrowingResult.NumericNarrowingUnsigned32 == nil || *numericNarrowingResult.NumericNarrowingUnsigned32 != numericNarrowingVector.NumericNarrowingUnsigned32 || numericNarrowingResult.NumericNarrowingIntermediateStatus != "converted" {
 					numericNarrowingT.Fatalf("float evidence = %+v", numericNarrowingResult)
@@ -109,7 +109,7 @@ func TestAb21An21Unresolved(numericNarrowingT *numericNarrowingTesting.T) {
 			if numericNarrowingResult.NumericNarrowingStatus != "unresolved" || numericNarrowingResult.NumericNarrowingLow16 != nil || numericNarrowingResult.NumericNarrowingUnsigned32 != nil || numericNarrowingResult.NumericNarrowingOriginalInteger64 != nil || numericNarrowingResult.NumericNarrowingOriginalFloat64 == nil || numericNarrowingResult.NumericNarrowingRoundedFloat64 == nil || numericNarrowingResult.NumericNarrowingScaledFloat64 == nil {
 				numericNarrowingT.Fatalf("fabricated or lost evidence: %+v", numericNarrowingResult)
 			}
-			if numericNarrowingMath.Float64bits(*numericNarrowingResult.NumericNarrowingOriginalFloat64) != numericNarrowingMath.Float64bits(numericNarrowingCase.NumericNarrowingValue) || numericNarrowingResult.NumericNarrowingRawClassification != numericNarrowingCase.NumericNarrowingClass || numericNarrowingResult.NumericNarrowingRoundedClassification != numericNarrowingCase.NumericNarrowingRoundedClass || numericNarrowingResult.NumericNarrowingIntermediateStatus != numericNarrowingCase.NumericNarrowingIntermediate || numericNarrowingResult.NumericNarrowingContext != numericNarrowingContext || numericNarrowingResult.NumericNarrowingPath != "ab21an21-float64" {
+			if numericNarrowingMath.Float64bits(*numericNarrowingResult.NumericNarrowingOriginalFloat64) != numericNarrowingMath.Float64bits(numericNarrowingCase.NumericNarrowingValue) || numericNarrowingResult.NumericNarrowingRawClassification != numericNarrowingCase.NumericNarrowingClass || numericNarrowingResult.NumericNarrowingRoundedClassification != numericNarrowingCase.NumericNarrowingRoundedClass || numericNarrowingResult.NumericNarrowingIntermediateStatus != numericNarrowingCase.NumericNarrowingIntermediate || numericNarrowingResult.NumericNarrowingContext != numericNarrowingContext || numericNarrowingResult.NumericNarrowingPath != "float64" {
 				numericNarrowingT.Fatalf("unresolved evidence = %+v", numericNarrowingResult)
 			}
 			numericNarrowingCheckKnowledge(numericNarrowingT, numericNarrowingResult)
@@ -149,7 +149,7 @@ func TestAb21An21ContextAndCallerIsolation(numericNarrowingT *numericNarrowingTe
 		if numericNarrowingChangedIntegerResult.NumericNarrowingContext != numericNarrowingContext || numericNarrowingChangedFloatResult.NumericNarrowingContext != numericNarrowingContext || *numericNarrowingChangedIntegerResult.NumericNarrowingOriginalInteger64 != 99 || *numericNarrowingChangedFloatResult.NumericNarrowingOriginalFloat64 != 99 || *numericNarrowingChangedIntegerResult.NumericNarrowingLow16 != 99 || *numericNarrowingChangedFloatResult.NumericNarrowingLow16 != 990 {
 			numericNarrowingT.Fatal("changed caller context or input not reflected in new results")
 		}
-		if numericNarrowingIntegerResult.NumericNarrowingContext != numericNarrowingSaved || numericNarrowingFloatResult.NumericNarrowingContext != numericNarrowingSaved || *numericNarrowingIntegerResult.NumericNarrowingOriginalInteger64 != 1 || *numericNarrowingFloatResult.NumericNarrowingOriginalFloat64 != 1 || *numericNarrowingIntegerResult.NumericNarrowingLow16 != 1 || *numericNarrowingFloatResult.NumericNarrowingLow16 != 10 || numericNarrowingIntegerResult.NumericNarrowingPath != "ab21an21-integer64" || numericNarrowingFloatResult.NumericNarrowingPath != "ab21an21-float64" {
+		if numericNarrowingIntegerResult.NumericNarrowingContext != numericNarrowingSaved || numericNarrowingFloatResult.NumericNarrowingContext != numericNarrowingSaved || *numericNarrowingIntegerResult.NumericNarrowingOriginalInteger64 != 1 || *numericNarrowingFloatResult.NumericNarrowingOriginalFloat64 != 1 || *numericNarrowingIntegerResult.NumericNarrowingLow16 != 1 || *numericNarrowingFloatResult.NumericNarrowingLow16 != 10 || numericNarrowingIntegerResult.NumericNarrowingPath != "integer64" || numericNarrowingFloatResult.NumericNarrowingPath != "float64" {
 			numericNarrowingT.Fatal("context, input or selection not retained independently")
 		}
 		*numericNarrowingFloatResult.NumericNarrowingLow16 = 999

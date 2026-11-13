@@ -7,15 +7,15 @@ import (
 )
 
 type B524DescriptionSpanContext struct {
-	B524DescriptionSpanFamily      *string `json:"Ab44Family"`
-	B524DescriptionSpanSoftware    *uint16 `json:"Ab44Software"`
-	B524DescriptionSpanHardware    *uint16 `json:"Ab44Hardware"`
-	B524DescriptionSpanAPIVersion  *byte   `json:"Ab44APIVersion"`
-	B524DescriptionSpanAPIRevision *byte   `json:"Ab44APIRevision"`
-	B524DescriptionSpanOP          *byte   `json:"Ab44OP"`
-	B524DescriptionSpanGG          *byte   `json:"Ab44GG"`
-	B524DescriptionSpanII          *byte   `json:"Ab44II"`
-	B524DescriptionSpanRR          *uint16 `json:"Ab44RR"`
+	B524DescriptionSpanFamily      *string `json:"family"`
+	B524DescriptionSpanSoftware    *uint16 `json:"software"`
+	B524DescriptionSpanHardware    *uint16 `json:"hardware"`
+	B524DescriptionSpanAPIVersion  *byte   `json:"api_version"`
+	B524DescriptionSpanAPIRevision *byte   `json:"api_revision"`
+	B524DescriptionSpanOP          *byte   `json:"op"`
+	B524DescriptionSpanGG          *byte   `json:"gg"`
+	B524DescriptionSpanII          *byte   `json:"ii"`
+	B524DescriptionSpanRR          *uint16 `json:"rr"`
 }
 
 type B524DescriptionSpanGrade string
@@ -37,26 +37,26 @@ const (
 )
 
 type B524DescriptionSpanLimits struct {
-	B524DescriptionSpanMinimum float64 `json:"Ab44Minimum"`
-	B524DescriptionSpanMaximum float64 `json:"Ab44Maximum"`
-	B524DescriptionSpanStep    float64 `json:"Ab44Step"`
+	B524DescriptionSpanMinimum float64 `json:"minimum"`
+	B524DescriptionSpanMaximum float64 `json:"maximum"`
+	B524DescriptionSpanStep    float64 `json:"step"`
 }
 
 type B524Description struct {
-	B524DescriptionSpanContext             B524DescriptionSpanContext `json:"Ab44Context"`
-	B524DescriptionSpanCodec               B524DescriptionSpanCodec   `json:"Ab44Codec"`
-	B524DescriptionSpanWidth               int                        `json:"Ab44Width"`
-	B524DescriptionSpanGrade               B524DescriptionSpanGrade   `json:"Ab44Grade"`
-	B524DescriptionSpanRaw                 []byte                     `json:"Ab44Raw"`
-	B524DescriptionSpanMinimumRaw          []byte                     `json:"Ab44MinimumRaw"`
-	B524DescriptionSpanMaximumRaw          []byte                     `json:"Ab44MaximumRaw"`
-	B524DescriptionSpanStepRaw             []byte                     `json:"Ab44StepRaw"`
-	B524DescriptionSpanMetadataOP          *byte                      `json:"Ab44MetadataOP"`
-	B524DescriptionSpanLimits              *B524DescriptionSpanLimits `json:"Ab44Limits"`
-	B524DescriptionSpanImplementationValid bool                       `json:"Ab44ImplementationValid"`
-	B524DescriptionSpanNumericValid        bool                       `json:"Ab44NumericValid"`
-	B524DescriptionSpanStepMeaning         B524DescriptionSpanGrade   `json:"Ab44StepMeaning"`
-	B524DescriptionSpanReason              string                     `json:"Ab44Reason"`
+	B524DescriptionSpanContext             B524DescriptionSpanContext `json:"context"`
+	B524DescriptionSpanCodec               B524DescriptionSpanCodec   `json:"codec"`
+	B524DescriptionSpanWidth               int                        `json:"width"`
+	B524DescriptionSpanGrade               B524DescriptionSpanGrade   `json:"grade"`
+	B524DescriptionSpanRaw                 []byte                     `json:"raw"`
+	B524DescriptionSpanMinimumRaw          []byte                     `json:"minimum_raw"`
+	B524DescriptionSpanMaximumRaw          []byte                     `json:"maximum_raw"`
+	B524DescriptionSpanStepRaw             []byte                     `json:"step_raw"`
+	B524DescriptionSpanMetadataOP          *byte                      `json:"metadata_op"`
+	B524DescriptionSpanLimits              *B524DescriptionSpanLimits `json:"limits"`
+	B524DescriptionSpanImplementationValid bool                       `json:"implementation_valid"`
+	B524DescriptionSpanNumericValid        bool                       `json:"numeric_valid"`
+	B524DescriptionSpanStepMeaning         B524DescriptionSpanGrade   `json:"step_meaning"`
+	B524DescriptionSpanReason              string                     `json:"reason"`
 }
 
 func b524DescriptionSpanCopy[b524DescriptionSpanT any](b524DescriptionSpanValue *b524DescriptionSpanT) *b524DescriptionSpanT {
@@ -80,10 +80,10 @@ func b524DescriptionSpanContextReason(b524DescriptionSpanContext B524Description
 	if b524DescriptionSpanContext.B524DescriptionSpanFamily == nil || *b524DescriptionSpanContext.B524DescriptionSpanFamily == "" || b524DescriptionSpanContext.B524DescriptionSpanSoftware == nil ||
 		b524DescriptionSpanContext.B524DescriptionSpanHardware == nil || b524DescriptionSpanContext.B524DescriptionSpanAPIVersion == nil || b524DescriptionSpanContext.B524DescriptionSpanAPIRevision == nil ||
 		b524DescriptionSpanContext.B524DescriptionSpanOP == nil || b524DescriptionSpanContext.B524DescriptionSpanGG == nil || b524DescriptionSpanContext.B524DescriptionSpanII == nil || b524DescriptionSpanContext.B524DescriptionSpanRR == nil {
-		return "ab44_incomplete_context"
+		return "incomplete_context"
 	}
 	if *b524DescriptionSpanContext.B524DescriptionSpanOP != 0x01 && *b524DescriptionSpanContext.B524DescriptionSpanOP != 0x07 {
-		return "ab44_unsupported_op"
+		return "unsupported_op"
 	}
 	return ""
 }
@@ -101,11 +101,11 @@ func B524DecodeDescription(b524DescriptionSpanContext B524DescriptionSpanContext
 		B524DescriptionSpanGrade: b524DescriptionSpanGrade, B524DescriptionSpanRaw: append([]byte(nil), b524DescriptionSpanRaw...), B524DescriptionSpanStepMeaning: B524DescriptionSpanUnknown,
 	}
 	if b524DescriptionSpanExplicitWidth < 1 || b524DescriptionSpanExplicitWidth > 4 {
-		b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_bad_width"
+		b524DescriptionSpanResult.B524DescriptionSpanReason = "bad_width"
 		return b524DescriptionSpanResult
 	}
 	if len(b524DescriptionSpanRaw) != 3+3*b524DescriptionSpanExplicitWidth {
-		b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_malformed_length"
+		b524DescriptionSpanResult.B524DescriptionSpanReason = "malformed_length"
 		return b524DescriptionSpanResult
 	}
 	b524DescriptionSpanResult.B524DescriptionSpanMinimumRaw = append([]byte(nil), b524DescriptionSpanRaw[3:3+b524DescriptionSpanExplicitWidth]...)
@@ -116,7 +116,7 @@ func B524DecodeDescription(b524DescriptionSpanContext B524DescriptionSpanContext
 		return b524DescriptionSpanResult
 	}
 	if b524DescriptionSpanRaw[0] != *b524DescriptionSpanContext.B524DescriptionSpanGG || b524DescriptionSpanBinary.LittleEndian.Uint16(b524DescriptionSpanRaw[1:3]) != *b524DescriptionSpanContext.B524DescriptionSpanRR {
-		b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_echo_mismatch"
+		b524DescriptionSpanResult.B524DescriptionSpanReason = "echo_mismatch"
 		return b524DescriptionSpanResult
 	}
 	b524DescriptionSpanMetadataOP := byte(0x02)
@@ -135,20 +135,20 @@ func B524DecodeDescription(b524DescriptionSpanContext B524DescriptionSpanContext
 	case B524DescriptionSpanDate, B524DescriptionSpanTime:
 		b524DescriptionSpanExpectedWidth = 3
 	default:
-		b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_unsupported_codec"
+		b524DescriptionSpanResult.B524DescriptionSpanReason = "unsupported_codec"
 		return b524DescriptionSpanResult
 	}
 	if b524DescriptionSpanExplicitWidth != b524DescriptionSpanExpectedWidth {
-		b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_codec_width_mismatch"
+		b524DescriptionSpanResult.B524DescriptionSpanReason = "codec_width_mismatch"
 		return b524DescriptionSpanResult
 	}
 	if b524DescriptionSpanGrade != B524DescriptionSpanHypothesis && b524DescriptionSpanGrade != B524DescriptionSpanProven {
-		b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_codec_grade_required"
+		b524DescriptionSpanResult.B524DescriptionSpanReason = "codec_grade_required"
 		return b524DescriptionSpanResult
 	}
 	if b524DescriptionSpanExplicitCodec == B524DescriptionSpanDate || b524DescriptionSpanExplicitCodec == B524DescriptionSpanTime {
 		b524DescriptionSpanResult.B524DescriptionSpanImplementationValid = true
-		b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_date_time_raw_only"
+		b524DescriptionSpanResult.B524DescriptionSpanReason = "date_time_raw_only"
 		return b524DescriptionSpanResult
 	}
 	b524DescriptionSpanNumber := func(b524DescriptionSpanSpan []byte) float64 {
@@ -164,21 +164,21 @@ func B524DecodeDescription(b524DescriptionSpanContext B524DescriptionSpanContext
 	b524DescriptionSpanLimits := B524DescriptionSpanLimits{b524DescriptionSpanNumber(b524DescriptionSpanResult.B524DescriptionSpanMinimumRaw), b524DescriptionSpanNumber(b524DescriptionSpanResult.B524DescriptionSpanMaximumRaw), b524DescriptionSpanNumber(b524DescriptionSpanResult.B524DescriptionSpanStepRaw)}
 	for _, b524DescriptionSpanValue := range []float64{b524DescriptionSpanLimits.B524DescriptionSpanMinimum, b524DescriptionSpanLimits.B524DescriptionSpanMaximum, b524DescriptionSpanLimits.B524DescriptionSpanStep} {
 		if b524DescriptionSpanMath.IsNaN(b524DescriptionSpanValue) || b524DescriptionSpanMath.IsInf(b524DescriptionSpanValue, 0) {
-			b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_nonfinite_limits"
+			b524DescriptionSpanResult.B524DescriptionSpanReason = "nonfinite_limits"
 			return b524DescriptionSpanResult
 		}
 	}
 	if b524DescriptionSpanLimits.B524DescriptionSpanMinimum > b524DescriptionSpanLimits.B524DescriptionSpanMaximum {
-		b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_reversed_limits"
+		b524DescriptionSpanResult.B524DescriptionSpanReason = "reversed_limits"
 		return b524DescriptionSpanResult
 	}
 	if b524DescriptionSpanLimits.B524DescriptionSpanStep < 0 {
-		b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_negative_step"
+		b524DescriptionSpanResult.B524DescriptionSpanReason = "negative_step"
 		return b524DescriptionSpanResult
 	}
 	b524DescriptionSpanResult.B524DescriptionSpanLimits = &b524DescriptionSpanLimits
 	b524DescriptionSpanResult.B524DescriptionSpanImplementationValid = true
 	b524DescriptionSpanResult.B524DescriptionSpanNumericValid = true
-	b524DescriptionSpanResult.B524DescriptionSpanReason = "ab44_numeric_limits"
+	b524DescriptionSpanResult.B524DescriptionSpanReason = "numeric_limits"
 	return b524DescriptionSpanResult
 }

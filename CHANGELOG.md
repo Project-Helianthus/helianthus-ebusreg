@@ -2,6 +2,282 @@
 
 ## Unreleased
 
+- Rename the work-item-coded JSON tags, string values and error texts of
+  `catalog/ebusstandard`, `vaillant/system` and `vaillant/b555` to behavior
+  names. The strings are replaced directly: there is no alias and no dual
+  acceptance, so consumers move in the same wave. A JSON tag or value keeps
+  the part after the code in snake_case (`Ab76Family` -> `family`,
+  `ab09an09_absent` -> `absent`), because that part is already unique
+  within its type; an error text names its behavior in words
+  (`ab24: missing family` -> `event plan: missing family`). Inputs follow
+  the same table: `B509QuantityViews` selects only the directions `request`
+  and `response`, and JSON with a coded key no longer decodes into the
+  renamed fields. Testdata fixtures follow where they decode into catalog
+  types; the tags of test-local structs, test function names, testdata file
+  names and the row identifiers of the embedded catalog data are unchanged.
+  The coded JSON tags of the remaining `vaillant/system` and `vaillant/b555`
+  types and the coded strings of `catalog/vaillant` are renamed in a later
+  change. `scripts/rename_catalog_strings.py` reproduces the change; gateway
+  adoption and release bill of materials reconciliation remain required.
+
+  | Previous string | Current string |
+  | --- | --- |
+  | `Ab08Address` | `address` |
+  | `Ab08Channel` | `channel` |
+  | `Ab08Day` | `day` |
+  | `Ab08Family` | `family` |
+  | `Ab08Identity` | `identity` |
+  | `Ab08Instance` | `instance` |
+  | `Ab08Raw` | `raw` |
+  | `Ab08Start` | `start` |
+  | `Ab08Stop` | `stop` |
+  | `Ab08SystemType` | `system_type` |
+  | `Ab09An09ContractGrade` | `contract_grade` |
+  | `Ab09An09Direction` | `direction` |
+  | `Ab09An09Family` | `family` |
+  | `Ab09An09Flow` | `flow` |
+  | `Ab09An09Identity` | `identity` |
+  | `Ab09An09MaximumVolume` | `maximum_volume` |
+  | `Ab09An09MinimumVolume` | `minimum_volume` |
+  | `Ab09An09NativeQualification` | `native_qualification` |
+  | `Ab09An09Operation` | `operation` |
+  | `Ab09An09Raw` | `raw` |
+  | `Ab09An09Selected` | `selected` |
+  | `Ab09An09Selection` | `selection` |
+  | `Ab09An09SemanticGrade` | `semantic_grade` |
+  | `Ab09An09State` | `state` |
+  | `Ab09An09Temperature` | `temperature` |
+  | `Ab09An09Unit` | `unit` |
+  | `Ab09An09Value` | `value` |
+  | `Ab09An09Variant` | `variant` |
+  | `Ab09An09Volume` | `volume` |
+  | `Ab21An21Availability` | `availability` |
+  | `Ab21An21Context` | `context` |
+  | `Ab21An21Conversion` | `conversion` |
+  | `Ab21An21CountMaterialization` | `count_materialization` |
+  | `Ab21An21Execution` | `execution` |
+  | `Ab21An21Family` | `family` |
+  | `Ab21An21Freshness` | `freshness` |
+  | `Ab21An21IntermediateStatus` | `intermediate_status` |
+  | `Ab21An21Knowledge` | `knowledge` |
+  | `Ab21An21LocalCarrier` | `local_carrier` |
+  | `Ab21An21Low16` | `low16` |
+  | `Ab21An21OriginalFloat64` | `original_float64` |
+  | `Ab21An21OriginalInteger64` | `original_integer64` |
+  | `Ab21An21Path` | `path` |
+  | `Ab21An21Persistence` | `persistence` |
+  | `Ab21An21PhysicalQualification` | `physical_qualification` |
+  | `Ab21An21Presence` | `presence` |
+  | `Ab21An21RawClassification` | `raw_classification` |
+  | `Ab21An21RoundedClassification` | `rounded_classification` |
+  | `Ab21An21RoundedFloat64` | `rounded_float64` |
+  | `Ab21An21ScaledFloat64` | `scaled_float64` |
+  | `Ab21An21SoftwareVariant` | `software_variant` |
+  | `Ab21An21Status` | `status` |
+  | `Ab21An21TimerKind` | `timer_kind` |
+  | `Ab21An21TimerKindEffects` | `timer_kind_effects` |
+  | `Ab21An21Units` | `units` |
+  | `Ab21An21Unsigned32` | `unsigned32` |
+  | `Ab21An21WriteAdmission` | `write_admission` |
+  | `Ab24Address` | `address` |
+  | `Ab24Code` | `code` |
+  | `Ab24Family` | `family` |
+  | `Ab24Identity` | `identity` |
+  | `Ab24Instance` | `instance` |
+  | `Ab24OP09` | `op09` |
+  | `Ab24OP0B` | `op0b` |
+  | `Ab24Opcode` | `opcode` |
+  | `Ab24Payload` | `payload` |
+  | `Ab24Raw` | `raw` |
+  | `Ab24Success` | `success` |
+  | `Ab24SystemType` | `system_type` |
+  | `Ab24Values` | `values` |
+  | `Ab25APIRevision` | `api_revision` |
+  | `Ab25APIVersion` | `api_version` |
+  | `Ab25An25CandidateMaximum` | `candidate_maximum` |
+  | `Ab25An25Conflict` | `conflict` |
+  | `Ab25An25ContractGrade` | `contract_grade` |
+  | `Ab25An25Data` | `data` |
+  | `Ab25An25Direction` | `direction` |
+  | `Ab25An25ExecutionGrade` | `execution_grade` |
+  | `Ab25An25Family` | `family` |
+  | `Ab25An25High` | `high` |
+  | `Ab25An25Key` | `key` |
+  | `Ab25An25LE` | `le` |
+  | `Ab25An25Low` | `low` |
+  | `Ab25An25MeaningGrade` | `meaning_grade` |
+  | `Ab25An25PhysicalOffsetsGrade` | `physical_offsets_grade` |
+  | `Ab25An25PhysicalSupportGrade` | `physical_support_grade` |
+  | `Ab25An25PositivePrefixRelevanceGrade` | `positive_prefix_relevance_grade` |
+  | `Ab25An25Profile` | `profile` |
+  | `Ab25An25Raw` | `raw` |
+  | `Ab25An25Service` | `service` |
+  | `Ab25An25State` | `state` |
+  | `Ab25An25UnresolvedTail` | `unresolved_tail` |
+  | `Ab25An25Value` | `value` |
+  | `Ab25Codec` | `codec` |
+  | `Ab25Family` | `family` |
+  | `Ab25Group` | `group` |
+  | `Ab25HardwareIdentity` | `hardware_identity` |
+  | `Ab25Key` | `key` |
+  | `Ab25Opcode` | `opcode` |
+  | `Ab25RawDescription` | `raw_description` |
+  | `Ab25Register` | `register` |
+  | `Ab25RequestedInstance` | `requested_instance` |
+  | `Ab25SoftwareIdentity` | `software_identity` |
+  | `Ab25State` | `state` |
+  | `Ab25Width` | `width` |
+  | `Ab42APIRevision` | `api_revision` |
+  | `Ab42APIVersion` | `api_version` |
+  | `Ab42Capacity` | `capacity` |
+  | `Ab42Context` | `context` |
+  | `Ab42EligibilityGrade` | `eligibility_grade` |
+  | `Ab42Family` | `family` |
+  | `Ab42Hardware` | `hardware` |
+  | `Ab42HeatPumpCount` | `heat_pump_count` |
+  | `Ab42Identifier` | `identifier` |
+  | `Ab42InvalidReason` | `invalid_reason` |
+  | `Ab42LayoutGrade` | `layout_grade` |
+  | `Ab42Meaning` | `meaning` |
+  | `Ab42PresenceGrade` | `presence_grade` |
+  | `Ab42QualificationGrade` | `qualification_grade` |
+  | `Ab42Raw` | `raw` |
+  | `Ab42RepresentationGrade` | `representation_grade` |
+  | `Ab42Software` | `software` |
+  | `Ab42Valid` | `valid` |
+  | `Ab42Value` | `value` |
+  | `Ab44APIRevision` | `api_revision` |
+  | `Ab44APIVersion` | `api_version` |
+  | `Ab44Codec` | `codec` |
+  | `Ab44Context` | `context` |
+  | `Ab44Family` | `family` |
+  | `Ab44GG` | `gg` |
+  | `Ab44Grade` | `grade` |
+  | `Ab44Hardware` | `hardware` |
+  | `Ab44II` | `ii` |
+  | `Ab44ImplementationValid` | `implementation_valid` |
+  | `Ab44Limits` | `limits` |
+  | `Ab44Maximum` | `maximum` |
+  | `Ab44MaximumRaw` | `maximum_raw` |
+  | `Ab44MetadataOP` | `metadata_op` |
+  | `Ab44Minimum` | `minimum` |
+  | `Ab44MinimumRaw` | `minimum_raw` |
+  | `Ab44NumericValid` | `numeric_valid` |
+  | `Ab44OP` | `op` |
+  | `Ab44RR` | `rr` |
+  | `Ab44Raw` | `raw` |
+  | `Ab44Reason` | `reason` |
+  | `Ab44Software` | `software` |
+  | `Ab44Step` | `step` |
+  | `Ab44StepMeaning` | `step_meaning` |
+  | `Ab44StepRaw` | `step_raw` |
+  | `Ab44Width` | `width` |
+  | `Ab76Components` | `components` |
+  | `Ab76Default` | `default` |
+  | `Ab76Direction` | `direction` |
+  | `Ab76Encoding` | `encoding` |
+  | `Ab76Family` | `family` |
+  | `Ab76Function` | `function` |
+  | `Ab76ImplementationGrade` | `implementation_grade` |
+  | `Ab76LocalCounter` | `local_counter` |
+  | `Ab76LocalHours` | `local_hours` |
+  | `Ab76LocalMinute` | `local_minute` |
+  | `Ab76Maximum` | `maximum` |
+  | `Ab76MeaningGrade` | `meaning_grade` |
+  | `Ab76Name` | `name` |
+  | `Ab76NativeProperties` | `native_properties` |
+  | `Ab76Operation` | `operation` |
+  | `Ab76Raw` | `raw` |
+  | `Ab76Remainder` | `remainder` |
+  | `Ab76Selection` | `selection` |
+  | `Ab76Selector` | `selector` |
+  | `Ab76State` | `state` |
+  | `Ab76Value` | `value` |
+  | `Ab76Variant` | `variant` |
+  | `Ab76Width` | `width` |
+  | `Ab78APIGrade` | `api_grade` |
+  | `Ab78Complete` | `complete` |
+  | `Ab78Default` | `default` |
+  | `Ab78Direction` | `direction` |
+  | `Ab78Domain` | `domain` |
+  | `Ab78Family` | `family` |
+  | `Ab78Fields` | `fields` |
+  | `Ab78Interpretation` | `interpretation` |
+  | `Ab78Key` | `key` |
+  | `Ab78Label` | `label` |
+  | `Ab78Maximum` | `maximum` |
+  | `Ab78MeaningGrade` | `meaning_grade` |
+  | `Ab78Minimum` | `minimum` |
+  | `Ab78Name` | `name` |
+  | `Ab78NativeGrade` | `native_grade` |
+  | `Ab78Operation` | `operation` |
+  | `Ab78Primary` | `primary` |
+  | `Ab78Raw` | `raw` |
+  | `Ab78Remainder` | `remainder` |
+  | `Ab78Secondary` | `secondary` |
+  | `Ab78Selector` | `selector` |
+  | `Ab78State` | `state` |
+  | `Ab78Unknowns` | `unknowns` |
+  | `Ab78Value` | `value` |
+  | `Ab78Variant` | `variant` |
+  | `ab07_parameter_configuration` | `parameter_configuration` |
+  | `ab07_raw_pair` | `raw_pair` |
+  | `ab07_slots` | `slots` |
+  | `ab07_start_minutes` | `start_minutes` |
+  | `ab07_stop_minutes` | `stop_minutes` |
+  | `ab07_unused` | `unused` |
+  | `ab08 baseline identity mismatch: %w` | `timer plan baseline identity mismatch: %w` |
+  | `ab08 invalid explicit identity: %w` | `timer plan invalid explicit identity: %w` |
+  | `ab08 requires seven baseline bytes and three slots: %w` | `timer plan requires seven baseline bytes and three slots: %w` |
+  | `ab08 slot %d invalid raw ten-minute pair: %w` | `timer plan slot %d invalid raw ten-minute pair: %w` |
+  | `ab08 slot %d outside byte range: %w` | `timer plan slot %d outside byte range: %w` |
+  | `ab08 unsupported raw selector or non-zone instance: %w` | `timer plan unsupported raw selector or non-zone instance: %w` |
+  | `ab09an09_absent` | `absent` |
+  | `ab09an09_candidate` | `candidate` |
+  | `ab09an09_malformed` | `malformed` |
+  | `ab09an09_opaque` | `opaque` |
+  | `ab09an09_request` | `request` |
+  | `ab09an09_response` | `response` |
+  | `ab09an09_unselected` | `unselected` |
+  | `ab21an21-float64` | `float64` |
+  | `ab21an21-integer64` | `integer64` |
+  | `ab24: exactly seven raw values required` | `event plan: exactly seven raw values required` |
+  | `ab24: field outside raw u8 range` | `event plan: field outside raw u8 range` |
+  | `ab24: invalid address` | `event plan: invalid address` |
+  | `ab24: invalid edit opcode` | `event plan: invalid edit opcode` |
+  | `ab24: missing family` | `event plan: missing family` |
+  | `ab24: missing, failed or uncorrelated baseline %02x` | `event plan: missing, failed or uncorrelated baseline %02x` |
+  | `ab24: unsupported system type` | `event plan: unsupported system type` |
+  | `ab24: value outside raw u8 range` | `event plan: value outside raw u8 range` |
+  | `ab25 conflicting description records` | `description index: conflicting description records` |
+  | `ab28: duplicate key` | `standard07 residual fields: duplicate key` |
+  | `ab28: expected JSON array` | `standard07 residual fields: expected JSON array` |
+  | `ab28: incomplete identity` | `standard07 residual fields: incomplete identity` |
+  | `ab28: missing axis %s` | `standard07 residual fields: missing axis %s` |
+  | `ab28: missing key` | `standard07 residual fields: missing key` |
+  | `ab42 non-finite binary32` | `b524 system information non-finite binary32` |
+  | `ab42 requires exactly four normalized bytes` | `b524 system information requires exactly four normalized bytes` |
+  | `ab44_bad_width` | `bad_width` |
+  | `ab44_codec_grade_required` | `codec_grade_required` |
+  | `ab44_codec_width_mismatch` | `codec_width_mismatch` |
+  | `ab44_date_time_raw_only` | `date_time_raw_only` |
+  | `ab44_echo_mismatch` | `echo_mismatch` |
+  | `ab44_incomplete_context` | `incomplete_context` |
+  | `ab44_malformed_length` | `malformed_length` |
+  | `ab44_negative_step` | `negative_step` |
+  | `ab44_nonfinite_limits` | `nonfinite_limits` |
+  | `ab44_numeric_limits` | `numeric_limits` |
+  | `ab44_reversed_limits` | `reversed_limits` |
+  | `ab44_unsupported_codec` | `unsupported_codec` |
+  | `ab44_unsupported_op` | `unsupported_op` |
+  | `ab54: duplicate JSON member` | `standardff body states: duplicate JSON member` |
+  | `ab54: duplicate key` | `standardff body states: duplicate key` |
+  | `ab54: expected JSON array` | `standardff body states: expected JSON array` |
+  | `ab54: incomplete key; use none for non-applicable string axes` | `standardff body states: incomplete key; use none for non-applicable string axes` |
+  | `ab54: unknown key axis` | `standardff body states: unknown key axis` |
+  | `ab81 embedded candidate metadata: ` | `standard0f embedded candidate metadata: ` |
+  | `ab83 counter metadata: ` | `standard03 counter body metadata: ` |
+
 - Remove work-item codes from the `vaillant/system` and `vaillant/b555`
   file names and Go identifiers; after this change no Go production file
   name and no exported identifier starts with a work-item code. Each

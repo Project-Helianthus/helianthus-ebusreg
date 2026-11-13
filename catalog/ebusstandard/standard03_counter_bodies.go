@@ -56,7 +56,7 @@ var standard03CounterBodyCounterJSON string
 func Standard03CounterBodies() []Standard03CounterBody {
 	var standard03CounterBodyBodies []Standard03CounterBody
 	if standard03CounterBodyErr := standard03CounterBodyJSON.Unmarshal([]byte(standard03CounterBodyCounterJSON), &standard03CounterBodyBodies); standard03CounterBodyErr != nil {
-		panic("ab83 counter metadata: " + standard03CounterBodyErr.Error())
+		panic("standard03 counter body metadata: " + standard03CounterBodyErr.Error())
 	}
 	return standard03CounterBodyBodies
 }

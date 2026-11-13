@@ -29,7 +29,7 @@ func standard07ResidualValidate(standard07ResidualData []byte) ([]standard07Resi
 		return nil, standard07ResidualErr
 	}
 	if standard07ResidualRows == nil {
-		return nil, standard07ResidualFmt.Errorf("ab28: expected JSON array")
+		return nil, standard07ResidualFmt.Errorf("standard07 residual fields: expected JSON array")
 	}
 	standard07ResidualSeen := make(map[string]bool)
 	for _, standard07ResidualRow := range standard07ResidualRows {
@@ -40,7 +40,7 @@ func standard07ResidualValidate(standard07ResidualData []byte) ([]standard07Resi
 			return nil, standard07ResidualErr
 		}
 		if standard07ResidualEnvelope.Standard07ResidualKey == nil {
-			return nil, standard07ResidualFmt.Errorf("ab28: missing key")
+			return nil, standard07ResidualFmt.Errorf("standard07 residual fields: missing key")
 		}
 		var standard07ResidualObject map[string]standard07ResidualJSON.RawMessage
 		if standard07ResidualErr := standard07ResidualJSON.Unmarshal(standard07ResidualRow, &standard07ResidualObject); standard07ResidualErr != nil {
@@ -52,19 +52,19 @@ func standard07ResidualValidate(standard07ResidualData []byte) ([]standard07Resi
 		}
 		for _, standard07ResidualAxis := range []string{"family", "variant", "primary", "secondary", "operation", "direction", "field", "alternative", "group", "instance_scope", "register"} {
 			if _, standard07ResidualOK := standard07ResidualAxes[standard07ResidualAxis]; !standard07ResidualOK {
-				return nil, standard07ResidualFmt.Errorf("ab28: missing axis %s", standard07ResidualAxis)
+				return nil, standard07ResidualFmt.Errorf("standard07 residual fields: missing axis %s", standard07ResidualAxis)
 			}
 		}
 		standard07ResidualKey := *standard07ResidualEnvelope.Standard07ResidualKey
 		if standard07ResidualKey.Standard07ResidualFamily == "" || standard07ResidualKey.Standard07ResidualVariant == "" || standard07ResidualKey.Standard07ResidualDirection == "" || standard07ResidualKey.Standard07ResidualField == "" || standard07ResidualKey.Standard07ResidualAlternative == "" || standard07ResidualKey.Standard07ResidualInstanceScope == "" || string(standard07ResidualAxes["primary"]) == "null" {
-			return nil, standard07ResidualFmt.Errorf("ab28: incomplete identity")
+			return nil, standard07ResidualFmt.Errorf("standard07 residual fields: incomplete identity")
 		}
 		standard07ResidualIdentity, standard07ResidualErr := standard07ResidualJSON.Marshal(standard07ResidualKey)
 		if standard07ResidualErr != nil {
 			return nil, standard07ResidualErr
 		}
 		if standard07ResidualSeen[string(standard07ResidualIdentity)] {
-			return nil, standard07ResidualFmt.Errorf("ab28: duplicate key")
+			return nil, standard07ResidualFmt.Errorf("standard07 residual fields: duplicate key")
 		}
 		standard07ResidualSeen[string(standard07ResidualIdentity)] = true
 	}

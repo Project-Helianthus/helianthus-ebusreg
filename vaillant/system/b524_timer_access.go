@@ -101,10 +101,10 @@ func (template rawReadTemplate) Build(params map[string]any) ([]byte, error) {
 }
 
 type B524TimerSlot struct {
-	B524TimerAccessRawPair      [2]byte `json:"ab07_raw_pair"`
-	B524TimerAccessStartMinutes *int    `json:"ab07_start_minutes,omitempty"`
-	B524TimerAccessStopMinutes  *int    `json:"ab07_stop_minutes,omitempty"`
-	B524TimerAccessUnused       bool    `json:"ab07_unused"`
+	B524TimerAccessRawPair      [2]byte `json:"raw_pair"`
+	B524TimerAccessStartMinutes *int    `json:"start_minutes,omitempty"`
+	B524TimerAccessStopMinutes  *int    `json:"stop_minutes,omitempty"`
+	B524TimerAccessUnused       bool    `json:"unused"`
 }
 
 func decodeTimerResponse(sel1, sel2, sel3, weekday byte, payload []byte) map[string]types.Value {
@@ -139,8 +139,8 @@ func decodeTimerResponse(sel1, sel2, sel3, weekday byte, payload []byte) map[str
 		}
 	}
 	values["slot_count"] = types.Value{Value: 3, Valid: true}
-	values["ab07_parameter_configuration"] = types.Value{Value: payload[0], Valid: true}
-	values["ab07_slots"] = types.Value{Value: b524TimerAccessSlots, Valid: true}
+	values["parameter_configuration"] = types.Value{Value: payload[0], Valid: true}
+	values["slots"] = types.Value{Value: b524TimerAccessSlots, Valid: true}
 	return values
 }
 

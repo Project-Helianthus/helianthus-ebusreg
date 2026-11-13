@@ -3,9 +3,9 @@
 // per-weekday slot counts and single slots, and writing a single slot.
 //
 // Matching. The provider matches on the manufacturer name only. It does
-// not decide whether a device implements B555: the public B555
-// specification limits the service to one controller family and names
-// another family that keeps its timers in B524, so callers check the
+// not decide whether a device implements B555: the service is
+// limited to one controller family, and another family keeps its timers
+// in B524, so callers check the
 // device family before choosing the timer transport.
 //
 // Requests and replies. The plane implements the router's plane contract

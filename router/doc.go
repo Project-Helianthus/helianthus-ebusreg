@@ -5,11 +5,13 @@
 //
 // Invocation. A method is invoked by name on one plane. Mutating methods
 // always go to the bus. Read-only invocations are coalesced: concurrent
-// calls with the same plane, method and parameters share one bus
+// calls with the same plane name, method and parameters share one bus
 // transaction, and a successful reply frame is reused for later identical
 // calls until it is older than the refresh interval of its class (state or
-// configuration; per-router options and per-call parameters can override
-// the class and the intervals, or disable coalescing). Only the raw reply
+// configuration). The key uses the plane name, not the plane instance, so
+// planes of different devices that share a name must differ in a parameter
+// to stay apart. A call can only select the class through its parameters;
+// the intervals and disabling coalescing are per-router options. Only the raw reply
 // frame is cached; every caller decodes it again, and failed transactions
 // are never cached. A caller waiting on another caller's transaction
 // returns early when its own context ends.

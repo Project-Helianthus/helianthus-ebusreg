@@ -19,7 +19,7 @@
 // cross-address identity, and a contradictory observation does not
 // overwrite an identity that is already published. A static seed enters a
 // face as a candidate and a passive observation as corroborated; only
-// active registration confirms a face's identity, and that confirmation
+// qualified active registration confirms a face's identity, and that confirmation
 // spreads to other faces only along explicit source-target or companion
 // topology, never through shared identity membership alone. A partial
 // observation for a known address keeps the last-known-good values of the

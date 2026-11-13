@@ -2,6 +2,255 @@
 
 ## Unreleased
 
+- Remove work-item codes from the remaining `catalog/vaillant` files,
+  whose code number is 30 to 99, and from the Go identifiers that
+  start with their codes; no `catalog/vaillant` file name carries a
+  code any more. Each production file and its test twin is renamed;
+  embedded data and testdata fixtures keep their names. The mirror
+  field catalog takes the plain name `b51a_mirror_fields.go` next to
+  `b51a_mirror_fields_evaluator.go`:
+  - `ab30_b524_family_codebooks.go` -> `b524_family_codebooks.go`
+  - `ab31_pump_roles.go` -> `pump_roles.go`
+  - `ab32_b524_component_selectors.go` -> `b524_component_selectors.go`
+  - `ab33_appliance_info.go` -> `appliance_info.go`
+  - `ab34_b501_legacy_sequence.go` -> `b501_legacy_sequence.go`
+  - `ab35_legacy_timer.go` -> `legacy_timer.go`
+  - `ab36_b524_name_annotations.go` -> `b524_name_annotations.go`
+  - `ab37_tunnel.go` -> `tunnel.go`
+  - `ab38_b513_symbolic_dictionary.go` -> `b513_symbolic_dictionary.go`
+  - `ab39_opaque_programming.go` -> `opaque_programming.go`
+  - `ab40_b509_symbolic_annotations.go` -> `b509_symbolic_annotations.go`
+  - `ab41_program_blocks.go` -> `program_blocks.go`
+  - `ab43_simulator_adc.go` -> `simulator_adc.go`
+  - `ab45_outdoor_module.go` -> `outdoor_module.go`
+  - `ab46_b509_identity_shapes.go` -> `b509_identity_shapes.go`
+  - `ab47_fan_demand.go` -> `fan_demand.go`
+  - `ab48_b510_operating_defaults.go` -> `b510_operating_defaults.go`
+  - `ab50_b511_class_candidates.go` -> `b511_class_candidates.go`
+  - `ab51_b516_residual_fields.go` -> `b516_residual_fields.go`
+  - `ab53_b504_candidates.go` -> `b504_candidates.go`
+  - `ab55_b505_candidates.go` -> `b505_candidates.go`
+  - `ab56_b524_numeric_candidates.go` -> `b524_numeric_candidates.go`
+  - `ab57_b506_candidates.go` -> `b506_candidates.go`
+  - `ab59_b509_candidates.go` -> `b509_candidates.go`
+  - `ab61_b50e_candidates.go` -> `b50e_candidates.go`
+  - `ab63_b50f_candidates.go` -> `b50f_candidates.go`
+  - `ab65_b510_candidates.go` -> `b510_candidates.go`
+  - `ab67_b511_candidates.go` -> `b511_candidates.go`
+  - `ab68_b509_boiler_codec_dictionary.go` -> `b509_boiler_codec_dictionary.go`
+  - `ab69_b512_candidates.go` -> `b512_candidates.go`
+  - `ab70_b509_heatpump_codec_dictionary.go` -> `b509_heatpump_codec_dictionary.go`
+  - `ab71_b523_candidates.go` -> `b523_candidates.go`
+  - `ab72_b516_statistics_directions.go` -> `b516_statistics_directions.go`
+  - `ab73_b525_candidates.go` -> `b525_candidates.go`
+  - `ab74_b50e_rule_value_rows.go` -> `b50e_rule_value_rows.go`
+  - `ab75_b531_candidates.go` -> `b531_candidates.go`
+  - `ab80_b514_activation_vectors.go` -> `b514_activation_vectors.go`
+  - `ab82_b525_spectrum_blocks.go` -> `b525_spectrum_blocks.go`
+  - `ab85_b524_scalar_shapes.go` -> `b524_scalar_shapes.go`
+  - `ab86_b503_history_flags.go` -> `b503_history_flags.go`
+  - `ab87_b509_diagnostic_shapes.go` -> `b509_diagnostic_shapes.go`
+  - `ab88_b512_air_fields.go` -> `b512_air_fields.go`
+  - `ab89_b514_menu_feedback.go` -> `b514_menu_feedback.go`
+  - `ab90_b51a_mirror_fields.go` -> `b51a_mirror_fields.go`
+  - `ab91_b51cd_partial_labels.go` -> `b51cd_partial_labels.go`
+  - `ab92_b520_blocks.go` -> `b520_blocks.go`
+  - `ab93_b523_sensor_fields.go` -> `b523_sensor_fields.go`
+  - `ab94_b555_numeric_units.go` -> `b555_numeric_units.go`
+  - `ab95_b524_energy_roles.go` -> `b524_energy_roles.go`
+  - `ab96_b503_text_categories.go` -> `b503_text_categories.go`
+  - `ab97_b512_dhw_stepper.go` -> `b512_dhw_stepper.go`
+  - `ab98_b51a_diagnostic_variants.go` -> `b51a_diagnostic_variants.go`
+  - `ab99_b523_config_mixer.go` -> `b523_config_mixer.go`
+  Identifiers that start with a code (1542 exported, 3093 unexported)
+  take the stem of their destination file; `Ab<code>X` becomes
+  `<Stem>X` and `ab<code>X` becomes `<stem>X`:
+  - `Ab30...` -> `B524FamilyCodebook...`
+  - `Ab31...` -> `PumpRole...`
+  - `Ab32...` -> `B524ComponentSelector...`
+  - `Ab33...` -> `ApplianceInfo...`
+  - `Ab34...` -> `B501LegacySequence...`
+  - `Ab35...` -> `LegacyTimer...`
+  - `Ab36...` -> `B524NameAnnotation...`
+  - `Ab37...` -> `Tunnel...`
+  - `Ab38...` -> `B513SymbolicDictionary...`
+  - `Ab39...` -> `OpaqueProgramming...`
+  - `Ab40...` -> `B509SymbolicAnnotation...`
+  - `Ab41...` -> `ProgramBlock...`
+  - `Ab43...` -> `SimulatorADC...`
+  - `Ab45...` -> `OutdoorModule...`
+  - `Ab46...` -> `B509IdentityShape...`
+  - `Ab47...` -> `FanDemand...`
+  - `Ab48...` -> `B510OperatingDefault...`
+  - `Ab50...` -> `B511ClassCandidate...`
+  - `Ab51...` -> `B516ResidualField...`
+  - `Ab53...` -> `B504Candidate...`
+  - `Ab55...` -> `B505Candidate...`
+  - `Ab56...` -> `B524NumericCandidate...`
+  - `Ab57...` -> `B506Candidate...`
+  - `Ab59...` -> `B509Candidate...`
+  - `Ab61...` -> `B50ECandidate...`
+  - `Ab63...` -> `B50FCandidate...`
+  - `Ab65...` -> `B510Candidate...`
+  - `Ab67...` -> `B511Candidate...`
+  - `Ab68...` -> `B509BoilerCodecDictionary...`
+  - `Ab69...` -> `B512Candidate...`
+  - `Ab70...` -> `B509HeatpumpCodecDictionary...`
+  - `Ab71...` -> `B523Candidate...`
+  - `Ab72...` -> `B516StatisticsDirection...`
+  - `Ab73...` -> `B525Candidate...`
+  - `Ab74...` -> `B50ERuleValueRow...`
+  - `Ab75...` -> `B531Candidate...`
+  - `Ab80...` -> `B514ActivationVector...`
+  - `Ab82...` -> `B525SpectrumBlock...`
+  - `Ab85...` -> `B524ScalarShape...`
+  - `Ab86...` -> `B503HistoryFlag...`
+  - `Ab87...` -> `B509DiagnosticShape...`
+  - `Ab88...` -> `B512AirField...`
+  - `Ab89...` -> `B514MenuFeedback...`
+  - `Ab90...` -> `B51AMirrorField...`
+  - `Ab91...` -> `B51CDPartialLabel...`
+  - `Ab92...` -> `B520Block...`
+  - `Ab93...` -> `B523SensorField...`
+  - `Ab94...` -> `B555NumericUnit...`
+  - `Ab95...` -> `B524EnergyRole...`
+  - `Ab96...` -> `B503TextCategory...`
+  - `Ab97...` -> `B512DHWStepper...`
+  - `Ab98...` -> `B51ADiagnosticVariant...`
+  - `Ab99...` -> `B523ConfigMixer...`
+  Exported names whose remainder repeats a stem word keep the stem's
+  service, cut the stem before the first repeated word and drop a
+  service the remainder repeats. Where two renamed names would meet,
+  one keeps `<Stem><remainder>`: `Ab67B511Key` ->
+  `B511CandidateB511Key` and `Ab92B520Field` -> `B520BlockB520Field`,
+  whose short form is the name of a struct field, the type
+  `Ab91PartialLabels` -> `B51CDPartialLabelPartialLabels` next to the
+  accessor `B51CDPartialLabels`, and nine struct fields such as
+  `Ab88Field` -> `B512AirFieldField`:
+  - `Ab30Family` -> `B524Family`
+  - `Ab31PumpRoles` -> `PumpRoles`
+  - `Ab32Components` -> `B524Components`
+  - `Ab33ApplianceInfoCatalog` -> `ApplianceInfoCatalog`
+  - `Ab35LegacyTimerCatalog` -> `LegacyTimerCatalog`
+  - `Ab37TunnelCatalog` -> `TunnelCatalog`
+  - `Ab38DictionaryClass` -> `B513SymbolicDictionaryClass`
+  - `Ab38DictionaryNamespace` -> `B513SymbolicDictionaryNamespace`
+  - `Ab39OpaqueProgramming` -> `OpaqueProgramming`
+  - `Ab41ProgramBlocks` -> `ProgramBlocks`
+  - `Ab43SimulatorADC` -> `SimulatorADC`
+  - `Ab45OutdoorModuleCatalog` -> `OutdoorModuleCatalog`
+  - `Ab47FanDemandCatalog` -> `FanDemandCatalog`
+  - `Ab51Field` -> `B516ResidualField`
+  - `Ab53B504Candidates` -> `B504Candidates`
+  - `Ab53LookupB504Candidate` -> `B504LookupCandidate`
+  - `Ab55B505Candidates` -> `B505Candidates`
+  - `Ab56CandidateSet` -> `B524NumericCandidateSet`
+  - `Ab57B506Candidates` -> `B506Candidates`
+  - `Ab57B506Lookup` -> `B506CandidateLookup`
+  - `Ab59B509Candidates` -> `B509Candidates`
+  - `Ab61AllRulesCandidate` -> `B50EAllRulesCandidate`
+  - `Ab61B50ECandidates` -> `B50ECandidates`
+  - `Ab61LookupB50ECandidate` -> `B50ELookupCandidate`
+  - `Ab63B50FCandidates` -> `B50FCandidates`
+  - `Ab63B50FLookup` -> `B50FCandidateLookup`
+  - `Ab65B510Candidates` -> `B510Candidates`
+  - `Ab67B511Catalog` -> `B511CandidateCatalog`
+  - `Ab67B511Declarations` -> `B511CandidateDeclarations`
+  - `Ab67B511Entry` -> `B511CandidateEntry`
+  - `Ab67B511Lookup` -> `B511CandidateLookup`
+  - `Ab68CodecDeclaration` -> `B509BoilerCodecDeclaration`
+  - `Ab69B512Candidates` -> `B512Candidates`
+  - `Ab69Candidate` -> `B512Candidate`
+  - `Ab70CodecDeclaration` -> `B509HeatpumpCodecDeclaration`
+  - `Ab71B523Candidates` -> `B523Candidates`
+  - `Ab72Direction` -> `B516StatisticsDirection`
+  - `Ab73B525Candidates` -> `B525Candidates`
+  - `Ab74Value` -> `B50ERuleValue`
+  - `Ab75B531Candidates` -> `B531Candidates`
+  - `Ab75LookupB531` -> `B531CandidateLookup`
+  - `Ab80Vector` -> `B514ActivationVector`
+  - `Ab82Block` -> `B525SpectrumBlock`
+  - `Ab82BlockLength` -> `B525SpectrumBlockLength`
+  - `Ab82Blocks` -> `B525SpectrumBlocks`
+  - `Ab82JoinBlock` -> `B525SpectrumJoinBlock`
+  - `Ab85ScalarShape` -> `B524ScalarShape`
+  - `Ab85ScalarShapes` -> `B524ScalarShapes`
+  - `Ab86HistoryCatalog` -> `B503HistoryCatalog`
+  - `Ab86HistoryField` -> `B503HistoryField`
+  - `Ab86HistoryLookup` -> `B503HistoryLookup`
+  - `Ab86HistoryMetadata` -> `B503HistoryMetadata`
+  - `Ab87B509DiagnosticShapes` -> `B509DiagnosticShapes`
+  - `Ab87DiagnosticCatalog` -> `B509DiagnosticCatalog`
+  - `Ab87DiagnosticField` -> `B509DiagnosticField`
+  - `Ab87DiagnosticKey` -> `B509DiagnosticKey`
+  - `Ab87LookupB509DiagnosticField` -> `B509LookupDiagnosticField`
+  - `Ab88AirField` -> `B512AirField`
+  - `Ab88AirKey` -> `B512AirKey`
+  - `Ab88AirMetadata` -> `B512AirMetadata`
+  - `Ab88AirOperation` -> `B512AirOperation`
+  - `Ab88B512AirFields` -> `B512AirFields`
+  - `Ab88LookupB512AirField` -> `B512LookupAirField`
+  - `Ab89MenuFeedback` -> `B514MenuFeedback`
+  - `Ab90B51AMirrorFields` -> `B51AMirrorFields`
+  - `Ab90LookupB51AMirrorField` -> `B51ALookupMirrorField`
+  - `Ab90MirrorAlternative` -> `B51AMirrorAlternative`
+  - `Ab90MirrorBit` -> `B51AMirrorBit`
+  - `Ab90MirrorField` -> `B51AMirrorField`
+  - `Ab90MirrorKey` -> `B51AMirrorKey`
+  - `Ab90MirrorMetadata` -> `B51AMirrorMetadata`
+  - `Ab91B51CDPartialLabels` -> `B51CDPartialLabels`
+  - `Ab91LookupB51CDPartialLabel` -> `B51CDLookupPartialLabel`
+  - `Ab91PartialField` -> `B51CDPartialField`
+  - `Ab91PartialKey` -> `B51CDPartialKey`
+  - `Ab91PartialLabel` -> `B51CDPartialLabel`
+  - `Ab92B520Blocks` -> `B520Blocks`
+  - `Ab92B520Catalog` -> `B520BlockCatalog`
+  - `Ab92LookupB520` -> `B520BlockLookup`
+  - `Ab93B523SensorFields` -> `B523SensorFields`
+  - `Ab93LookupB523SensorField` -> `B523LookupSensorField`
+  - `Ab93SensorBranch` -> `B523SensorBranch`
+  - `Ab93SensorCatalog` -> `B523SensorCatalog`
+  - `Ab93SensorField` -> `B523SensorField`
+  - `Ab93SensorKey` -> `B523SensorKey`
+  - `Ab93Sensors` -> `B523Sensors`
+  - `Ab94B555NumericUnits` -> `B555NumericUnits`
+  - `Ab94LookupB555NumericUnits` -> `B555LookupNumericUnits`
+  - `Ab94NumericField` -> `B555NumericField`
+  - `Ab94NumericMax` -> `B555NumericMax`
+  - `Ab94NumericMetadata` -> `B555NumericMetadata`
+  - `Ab94NumericMin` -> `B555NumericMin`
+  - `Ab94Unit` -> `B555NumericUnit`
+  - `Ab94UnitCode` -> `B555NumericUnitCode`
+  - `Ab95CommandRole` -> `B524EnergyCommandRole`
+  - `Ab98Variant` -> `B51ADiagnosticVariant`
+  Import aliases and test locals that would equal another name take
+  a `Package` or `Value` suffix:
+  - `ab32bytes` -> `b524ComponentSelectorBytesPackage`
+  - `ab33json` -> `applianceInfoJSONPackage`
+  - `ab41expected` -> `programBlockExpectedValue`
+  - `ab41field` -> `programBlockFieldValue`
+  - `ab68json` -> `b509BoilerCodecDictionaryJSONPackage`
+  - `ab70json` -> `b509HeatpumpCodecDictionaryJSONPackage`
+  - `ab95bytes` -> `b524EnergyRoleBytesPackage`
+  - `ab96bytes` -> `b503TextCategoryBytesPackage`
+  - `ab97bytes` -> `b512DHWStepperBytesPackage`
+  The closure parameter of the symbolic dictionary test takes a short
+  name so the file stays within its size baseline:
+  - `ab38K` -> `key`
+  `canonical_names_test.go` follows the `B524NameAnnotation...` names.
+  Embedded struct fields keep no JSON key of their own; renamed
+  exported struct fields that had no JSON tag carry an explicit tag
+  with the unchanged key, and `TestRenamedCatalogFieldJSONKeys` pins
+  every key. Test strings that name a renamed field or function for
+  reflection or `go/ast` checks, and the production file name the
+  partial label test parses, follow the rename. Consumers must update
+  references; there are no aliases. JSON tags, string values, error
+  texts, `go:embed` paths, data and fixture names and test function
+  names are unchanged.
+  `scripts/rename_catalog_names.py --slice vaillant-30-99` reproduces
+  the change. Gateway adoption and release bill of materials
+  reconciliation remain required.
+
 - Remove work-item codes from the `catalog/vaillant` files whose code
   number is 01 to 29 and from the Go identifiers that start with their
   codes. Each production file and its test twin is renamed; embedded

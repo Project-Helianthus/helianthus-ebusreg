@@ -364,8 +364,8 @@ func TestAb07TimerRequestedIdentity(ab07T *testing.T) {
 		if ab07Got := ab07Values["slot_count"]; !ab07Got.Valid || ab07Got.Value != 3 {
 			ab07T.Fatalf("slot_count = %+v", ab07Got)
 		}
-		ab07Slots, ab07OK := ab07Values["ab07_slots"].Value.([]system.Ab07TimerSlot)
-		if !ab07Values["ab07_slots"].Valid || !ab07OK || len(ab07Slots) != 3 || ab07Slots[0].Ab07RawPair != [2]byte{6, 12} || !ab07Slots[1].Ab07Unused || ab07Slots[2].Ab07RawPair != [2]byte{0x8F, 0x90} {
+		ab07Slots, ab07OK := ab07Values["ab07_slots"].Value.([]system.B524TimerSlot)
+		if !ab07Values["ab07_slots"].Valid || !ab07OK || len(ab07Slots) != 3 || ab07Slots[0].B524TimerAccessRawPair != [2]byte{6, 12} || !ab07Slots[1].B524TimerAccessUnused || ab07Slots[2].B524TimerAccessRawPair != [2]byte{0x8F, 0x90} {
 			ab07T.Fatalf("routed slots = %+v", ab07Values["ab07_slots"])
 		}
 	}

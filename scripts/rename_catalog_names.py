@@ -10,6 +10,9 @@ still holds its coded files (--slice selects it):
   Files with higher codes that use these identifiers are edited in place.
 - vaillant-30-99: the remaining catalog/vaillant files, whose code number is
   30 to 99, and canonical_names_test.go, which uses their identifiers.
+- vaillant-system-b555: the coded files of vaillant/system and vaillant/b555,
+  checked as a whole before the first write, and the timer slot projection
+  names of b524_timer_access.go with the two tests that use them.
 
 Production and test Go files lose their code prefix and keep the behavior part
 of their name. Go identifiers that start with a code prefix of the slice are
@@ -716,7 +719,265 @@ VAILLANT_30_99 = SimpleNamespace(
 )
 
 
-SLICES = {cfg.name: cfg for cfg in (EBUSSTANDARD, VAILLANT_01_29, VAILLANT_30_99)}
+VAILLANT_SYSTEM = SimpleNamespace(
+    name="vaillant-system",
+    package_dir="vaillant/system",
+    # The work-item code is dropped and the rest of the name kept.
+    file_moves=(
+        ("ab01an01_b524_calendar_views", "b524_calendar_views"),
+        ("ab03_discovery_catalog", "discovery_catalog"),
+        ("ab03an03_b524_codebook_views", "b524_codebook_views"),
+        ("ab07an07_b509_constraint_word_views", "b509_constraint_word_views"),
+        ("ab08_timer_plan", "timer_plan"),
+        ("ab09an09_b509_quantity_views", "b509_quantity_views"),
+        ("ab11_value_codec", "value_codec"),
+        ("ab22_status", "status"),
+        ("ab23_event_decode", "event_decode"),
+        ("ab24_event_plan", "event_plan"),
+        ("ab25_description_index", "description_index"),
+        ("ab42_b524_system_information", "b524_system_information"),
+        ("ab44_b524_description_spans", "b524_description_spans"),
+        ("ab58_b524_system_scalars", "b524_system_scalars"),
+        ("ab60_b524_dhw_ventilation_scalars", "b524_dhw_ventilation_scalars"),
+        ("ab62_b524_circuit_scalars", "b524_circuit_scalars"),
+        ("ab64_b524_zone_scalars", "b524_zone_scalars"),
+        ("ab66_b524_unscoped_hints", "b524_unscoped_hints"),
+    ),
+    # Stem: the destination file name in UpperCamelCase, the service in
+    # upper-case hex, initialisms in Go form and the last word singular.
+    # The ab07 stem names b524_timer_access.go, which keeps its name.
+    stems={
+        "ab01an01": "B524CalendarView",
+        "ab03": "DiscoveryCatalog",
+        "ab03an03": "B524CodebookView",
+        "ab07": "B524TimerAccess",
+        "ab07an07": "B509ConstraintWordView",
+        "ab08": "TimerPlan",
+        "ab09an09": "B509QuantityView",
+        "ab11": "ValueCodec",
+        "ab22": "Status",
+        "ab23": "EventDecode",
+        "ab24": "EventPlan",
+        "ab25": "DescriptionIndex",
+        "ab42": "B524SystemInformation",
+        "ab44": "B524DescriptionSpan",
+        "ab58": "B524SystemScalar",
+        "ab60": "B524DHWVentilationScalar",
+        "ab62": "B524CircuitScalar",
+        "ab64": "B524ZoneScalar",
+        "ab66": "B524UnscopedHint",
+    },
+    # Exported names whose remainder repeats a stem word: the stem keeps its
+    # service and is cut before the first repeated word, the remainder
+    # follows, and a service the remainder repeats is dropped from it (as in
+    # the vaillant-30-99 slice). Ab11Value and Ab22Status keep the default
+    # (ValueCodecValue, StatusStatus) because their short forms, Value and
+    # Status, are names the package already uses. Four types keep the
+    # default because their short form is the default of a struct field:
+    # Ab22StatusFields (field Ab22Fields), Ab42InformationContext (field
+    # Ab42Context), Ab66B524HintKey (field Ab66Key) and Ab66B524HintStatus
+    # (field Ab66Status).
+    exported_overrides={
+        "Ab03DiscoveryWindow": "DiscoveryWindow",
+        "Ab03DiscoveryWindows": "DiscoveryWindows",
+        "Ab03LookupDiscoveryWindow": "LookupDiscoveryWindow",
+        "Ab03PresentDiscoveryInstances": "PresentDiscoveryInstances",
+        "Ab07An07View": "B509ConstraintWordView",
+        "Ab07An07Word": "B509ConstraintWord",
+        "Ab07TimerSlot": "B524TimerSlot",
+        "Ab08BuildTimerPlan": "BuildTimerPlan",
+        "Ab08TimerBaseline": "TimerBaseline",
+        "Ab08TimerIdentity": "TimerIdentity",
+        "Ab08TimerPlan": "TimerPlan",
+        "Ab08TimerSlot": "TimerSlot",
+        "Ab09An09B509QuantityViews": "B509QuantityViews",
+        "Ab09An09QuantityView": "B509QuantityView",
+        "Ab11Codec": "ValueCodec",
+        "Ab11DecodeValue": "DecodeValue",
+        "Ab22DecodeStatus": "DecodeStatus",
+        "Ab22SpecialFunctionStatus": "SpecialFunctionStatus",
+        "Ab22StatusInfo": "StatusInfo",
+        "Ab23DecodeEvent": "DecodeEvent",
+        "Ab23Event": "Event",
+        "Ab23EventPair": "EventPair",
+        "Ab23PairEvents": "PairEvents",
+        "Ab24BuildEventPlan": "BuildEventPlan",
+        "Ab24EventBaseline": "EventBaseline",
+        "Ab24EventEdit": "EventEdit",
+        "Ab24EventIdentity": "EventIdentity",
+        "Ab24EventPlan": "EventPlan",
+        "Ab25DescriptionIndex": "DescriptionIndex",
+        "Ab25DescriptionKey": "DescriptionKey",
+        "Ab25DescriptionRecord": "DescriptionRecord",
+        "Ab25DescriptionState": "DescriptionState",
+        "Ab25NewDescriptionIndex": "NewDescriptionIndex",
+        "Ab25RawDescription": "RawDescription",
+        "Ab42BuildInformation": "B524SystemBuildInformation",
+        "Ab42DecodeInformation": "B524SystemDecodeInformation",
+        "Ab42InformationResult": "B524SystemInformationResult",
+        "Ab44BuildDescription": "B524BuildDescription",
+        "Ab44DecodeDescription": "B524DecodeDescription",
+        "Ab44Description": "B524Description",
+        "Ab58InterpretB524Scalars": "B524SystemInterpretScalars",
+        "Ab58Scalar": "B524SystemScalar",
+        "Ab60InterpretB524Scalars": "B524DHWVentilationInterpretScalars",
+        "Ab60Scalar": "B524DHWVentilationScalar",
+        "Ab62InterpretCircuitScalar": "B524InterpretCircuitScalar",
+        "Ab66B524ApplicabilityUnknown": "B524UnscopedHintApplicabilityUnknown",
+        "Ab66B524HintAbsent": "B524UnscopedHintAbsent",
+        "Ab66B524HintGrade": "B524UnscopedHintGrade",
+        "Ab66B524HintProperties": "B524UnscopedHintProperties",
+        "Ab66B524HintResult": "B524UnscopedHintResult",
+        "Ab66B524HintUnscoped": "B524HintUnscoped",
+        "Ab66B524UnscopedHints": "B524UnscopedHints",
+        "Ab66Hint": "B524UnscopedHint",
+        "Ab66LookupB524UnscopedHint": "B524LookupUnscopedHint",
+    },
+    # Resolved collision: the encoding/hex import alias of the quantity view
+    # test (ab09an09hex) would equal its hex string parameter (ab09an09Hex)
+    # and takes a Package suffix.
+    collision_overrides={
+        "ab09an09hex": "b509QuantityViewHexPackage",
+    },
+    initialisms={"json": "JSON", "id": "ID", "io": "IO", "utf8": "UTF8",
+                 "ascii": "ASCII"},
+    fixture_bound={},
+    # Test string literals that name a renamed struct field for reflection
+    # (FieldByName, StructField.Name); they follow the field rename. Test
+    # labels that only name a case (ab08Instance, ab44Family) and JSON keys
+    # stay unchanged.
+    reflect_names={
+        "ab03an03_b524_codebook_views_test.go": (
+            "Ab03An03Software", "Ab03An03Hardware", "Ab03An03APIVersion",
+            "Ab03An03APIRevision", "Ab03An03Context", "Ab03An03Integer",
+            "Ab03An03CandidateLabel", "Ab03An03Applicable",
+            "Ab03An03MalformedWidth", "Ab03An03Grade",
+            "Ab03An03NativeQualification"),
+        "ab07an07_b509_constraint_word_views_test.go": (
+            "Ab07An07SoftwareContract", "Ab07An07Interpretation",
+            "Ab07An07NativeEchoRules", "Ab07An07PhysicalQualification",
+            "Ab07An07PacketAssociation", "Ab07An07FamilyApplicability",
+            "Ab07An07FactorAlgorithm", "Ab07An07Writability",
+            "Ab07An07PeerEnforcement", "Ab07An07Freshness", "Ab07An07Execution",
+            "Ab07An07RequestedAddress", "Ab07An07ReturnedAddress",
+            "Ab07An07Minimum", "Ab07An07Maximum", "Ab07An07Default",
+            "Ab07An07Step", "Ab07An07Factor"),
+        "ab24_event_plan_test.go": (
+            "Ab24Family", "Ab24SystemType", "Ab24Instance", "Ab24Address",
+            "Ab24Code", "Ab24Opcode"),
+        "ab42_b524_system_information_test.go": (
+            "Ab42Family", "Ab42Software", "Ab42Hardware", "Ab42APIVersion",
+            "Ab42APIRevision", "Ab42Identifier"),
+        "ab58_b524_system_scalars_test.go": (
+            "Ab58Context", "Ab58Present", "Ab58Software", "Ab58Hardware",
+            "Ab58APIVersion", "Ab58APIRevision", "Ab58Value"),
+        "ab60_b524_dhw_ventilation_scalars_test.go": (
+            "Ab60Context", "Ab60Present", "Ab60Software", "Ab60Hardware",
+            "Ab60APIVersion", "Ab60APIRevision", "Ab60Value"),
+        "ab62_b524_circuit_scalars_test.go": (
+            "Ab62Family", "Ab62Software", "Ab62Hardware", "Ab62APIVersion",
+            "Ab62APIRevision", "Ab62Opcode", "Ab62Group", "Ab62Instance",
+            "Ab62Register", "Ab62ReplyKind", "Ab62ReturnedGroup",
+            "Ab62ReturnedRegister", "Ab62CodecGrade", "Ab62Value",
+            "Ab62Present"),
+        "ab64_b524_zone_scalars_test.go": ("Ab64Present", "Ab64Value"),
+        "ab66_b524_unscoped_hints_test.go": (
+            "Ab66Opcode", "Ab66Group", "Ab66Register", "Ab66Type", "Ab66Min",
+            "Ab66Max", "Ab66Step", "Ab66Key", "Ab66Status", "Ab66Qualified",
+            "Ab66Applicability", "Ab66Hint"),
+    },
+    source_paths={},
+    import_unaliases={},
+    size_overrides={},
+    prune_absent=True,
+    tag_fields=True,
+    golden=None,
+    # The codebook view test imports encoding/json, reflect and testing
+    # under their own names and stays far below its size budgets.
+    regression=("ab03an03_b524_codebook_views_test.go",
+                lambda tagged, mapping: field_json_keys_test(
+                    tagged, mapping, generic=VAILLANT_SYSTEM.generic_structs)),
+    # Generic struct types of the package (one type parameter, any); the
+    # regression test instantiates them with any.
+    generic_structs=("Ab58Field", "Ab60Field", "Ab62Field", "Ab64Field"),
+    internal_dir=None,
+    # One-line fixture structs, which tag_struct_fields does not read: the
+    # renamed field takes an explicit tag with its old name, the key the
+    # discovery window fixture decodes through.
+    inline_tags={
+        "ab03_discovery_catalog_test.go": (
+            "\tvar ab03Fixture struct{ Ab03Windows []Ab03DiscoveryWindow }\n",
+            "\tvar ab03Fixture struct{ Ab03Windows []Ab03DiscoveryWindow `json:\"Ab03Windows\"` }\n"),
+    },
+    # Codes renamed only for the listed names. The ab07 names of the timer
+    # slot projection are declared in b524_timer_access.go; the test locals
+    # that share the code keep it (test renames are out of scope).
+    scoped_codes={
+        "ab07": ("Ab07RawPair", "Ab07StartMinutes", "Ab07StopMinutes",
+                 "Ab07TimerSlot", "Ab07Unused"),
+    },
+    # Unexported names renamed only in the file that declares them.
+    local_names={
+        "b524_timer_access.go": ("ab07Index", "ab07Slots", "ab07Start",
+                                 "ab07StartMinutes", "ab07Stop",
+                                 "ab07StopMinutes"),
+    },
+    # Exported names that carry a code after a leading word; the same rule
+    # drops the stem words the remainder repeats.
+    infix_overrides={
+        "ErrAb25DescriptionConflict": "ErrDescriptionConflict",
+    },
+    # Files outside the package that use its renamed exported names; they
+    # follow the rename and keep their own coded test locals.
+    consumers=("router/vaillant_timer_access_test.go",),
+)
+
+
+VAILLANT_B555 = SimpleNamespace(
+    name="vaillant-b555",
+    package_dir="vaillant/b555",
+    file_moves=(
+        ("ab21an21_b555_numeric_narrowing", "b555_numeric_narrowing"),
+        ("ab52_b555_extent_views", "b555_extent_views"),
+    ),
+    # The stems leave out the B555 service the package name already
+    # carries: b555.B555ExtentView... would stutter (revive/exported).
+    stems={
+        "ab21an21": "NumericNarrowing",
+        "ab52": "ExtentView",
+    },
+    # Exported names whose remainder repeats a stem word drop it, as in
+    # vaillant/system.
+    exported_overrides={
+        "Ab52A4View": "ExtentA4View",
+        "Ab52A5View": "ExtentA5View",
+        "Ab52Extent": "Extent",
+    },
+    collision_overrides={},
+    initialisms={"json": "JSON", "id": "ID", "io": "IO", "utf8": "UTF8",
+                 "ascii": "ASCII"},
+    fixture_bound={},
+    reflect_names={},
+    source_paths={},
+    import_unaliases={},
+    size_overrides={},
+    prune_absent=True,
+    tag_fields=True,
+    golden=None,
+    # The extent view test imports encoding/json, reflect and testing under
+    # their own names.
+    regression=("ab52_b555_extent_views_test.go",
+                lambda tagged, mapping: field_json_keys_test(tagged, mapping)),
+    generic_structs=(),
+    internal_dir=None,
+    consumers=(),
+)
+
+
+SLICES ={cfg.name: cfg for cfg in (EBUSSTANDARD, VAILLANT_01_29, VAILLANT_30_99)}
+# The last slice covers two packages and the timer slot projection; it is
+# reproduced in one run with one changelog entry.
+SLICES["vaillant-system-b555"] = (VAILLANT_SYSTEM, VAILLANT_B555)
 
 
 def lex(source):
@@ -762,6 +1023,9 @@ def lex(source):
 def coded(name, cfg):
     match = CODE.fullmatch(name)
     if match and match.group(1).lower() in cfg.stems:
+        scoped = getattr(cfg, "scoped_codes", {})
+        if match.group(1).lower() in scoped and name not in scoped[match.group(1).lower()]:
+            return None
         return match.group(1).lower(), match.group(2)
     return None
 
@@ -775,7 +1039,10 @@ def new_name(name, cfg):
         return cfg.exported_overrides[name]
     if name in cfg.collision_overrides:
         return cfg.collision_overrides[name]
-    code, rest = coded(name, cfg)
+    if name in getattr(cfg, "infix_overrides", {}):
+        return cfg.infix_overrides[name]
+    match = CODE.fullmatch(name)
+    code, rest = match.group(1).lower(), match.group(2)
     if rest[:1].islower():
         rest = cfg.initialisms.get(rest, rest[:1].upper() + rest[1:])
     stem = cfg.stems[code]
@@ -816,11 +1083,18 @@ def build_map(root, cfg):
                   if kind == "ident"}
         if users != [file_name] or target in idents or target in KEYWORDS:
             raise SystemExit(f"size override {name} -> {target} is not local to {file_name}")
+    for name in getattr(cfg, "infix_overrides", {}):
+        if name in other:
+            other.discard(name)
+            old.add(name)
     for table in (cfg.exported_overrides, cfg.collision_overrides, cfg.import_unaliases,
-                  cfg.size_overrides):
+                  cfg.size_overrides, getattr(cfg, "infix_overrides", {})):
         unused = sorted(set(table) - old)
         if unused:
             raise SystemExit(f"override for an absent identifier: {unused}")
+    for code, names in getattr(cfg, "scoped_codes", {}).items():
+        if not set(names) <= old:
+            raise SystemExit(f"scoped names of {code} not found: {sorted(set(names) - old)}")
     mapping = {name: new_name(name, cfg) for name in sorted(old)}
     seen = {}
     for name, target in mapping.items():
@@ -836,7 +1110,59 @@ def build_map(root, cfg):
     return mapping
 
 
+def local_maps(root, cfg, mapping):
+    """Per-file maps of the unexported names renamed only where declared."""
+    result = {}
+    targets = set(mapping.values())
+    for file_name, names in getattr(cfg, "local_names", {}).items():
+        idents = file_idents(root / cfg.package_dir / file_name)
+        local = {}
+        for name in names:
+            target = new_name(name, cfg)
+            if name not in idents or name in mapping or not name[:1].islower():
+                raise SystemExit(f"local name {name} is not an unexported name of {file_name}")
+            if target in idents or target in targets or target in KEYWORDS \
+                    or target in local.values():
+                raise SystemExit(f"collision with an existing name: {name} -> {target}")
+            local[name] = target
+        result[file_name] = local
+    return result
+
+
+def file_mapping(rel, mapping, cfg, locals_by_file):
+    """The map that applies to a repository-relative path, or None."""
+    if rel in getattr(cfg, "consumers", ()):
+        return {name: target for name, target in mapping.items() if name[:1].isupper()}
+    prefix = cfg.package_dir + "/"
+    if not rel.startswith(prefix):
+        return None
+    local = locals_by_file.get(rel[len(prefix):])
+    return {**mapping, **local} if local else mapping
+
+
+def check_exported_users(root, mapping, cfg):
+    """Fail when a file outside the package and its consumers names an export."""
+    exported = {name for name in mapping if name[:1].isupper()}
+    consumers = set(cfg.consumers)
+    for path in sorted(root.rglob("*.go")):
+        rel = path.relative_to(root)
+        if rel.parts[0].startswith(".") or rel.parent.as_posix() == cfg.package_dir:
+            continue
+        used = exported & file_idents(path)
+        if rel.as_posix() in consumers:
+            if not used:
+                raise SystemExit(f"consumer {rel} uses no renamed name")
+            consumers.discard(rel.as_posix())
+        elif used:
+            raise SystemExit(f"consumer {rel} uses {sorted(used)}")
+    if consumers:
+        raise SystemExit(f"consumer files missing: {sorted(consumers)}")
+
+
 def check_consumers(root, mapping, cfg):
+    if hasattr(cfg, "consumers"):
+        check_exported_users(root, mapping, cfg)
+        return
     import_path = MODULE + cfg.package_dir
     default_alias = cfg.package_dir.rsplit("/", 1)[1]
     for path in sorted(root.rglob("*.go")):
@@ -899,11 +1225,14 @@ def preserve_projection_json_keys(source, cfg):
 
 
 STRUCT_OPEN = re.compile(r".*\bstruct \{")
-NAMED_STRUCT = re.compile(r"type ([A-Za-z_]\w*) struct \{")
+# A named struct may declare type parameters (type X[T any] struct {).
+NAMED_STRUCT = re.compile(r"type ([A-Za-z_]\w*)(?:\[[^\]]*\])? struct \{")
 NESTED_FIELD = re.compile(r"([A-Za-z_]\w*) +[\[\]*.\w]*struct \{")
 FIELD_LINE = re.compile(r"([A-Za-z_]\w*(?:, [A-Za-z_]\w*)*)( +)([^`]*?)( +`.*`)?")
 EMBEDDED_LINE = re.compile(r"\*?[A-Za-z_][\w.]*( +`.*`)?")
-NAMED_STRUCT_DECL = re.compile(r"^type ([A-Za-z_]\w*) struct \{", re.M)
+GENERIC_STRUCT_DECL = re.compile(r"^type ([A-Za-z_]\w*)\[[A-Za-z_]\w* any\] struct \{", re.M)
+ANY_GENERIC_DECL = re.compile(r"^type ([A-Za-z_]\w*)\[", re.M)
+NAMED_STRUCT_DECL = re.compile(r"^type ([A-Za-z_]\w*)(?:\[[^\]]*\])? struct \{", re.M)
 
 
 def json_tag(name):
@@ -1016,12 +1345,17 @@ def fixture_keys(root, cfg):
     return keys
 
 
-def field_json_keys_test(tagged, mapping, name="TestRenamedFieldJSONKeys"):
-    """Regression test that pins the JSON key of every tagged field."""
+def field_json_keys_test(tagged, mapping, name="TestRenamedFieldJSONKeys", generic=()):
+    """Regression test that pins the JSON key of every tagged field.
+
+    Generic struct types (old names in generic, each with one type
+    parameter constrained by any) are instantiated with any.
+    """
     rows = []
     for type_name, fields in tagged:
         pairs = ", ".join(f'"{mapping[name]}": "{name}"' for name in fields)
-        rows.append(f"\t\t{{{mapping.get(type_name, type_name)}{{}}, "
+        args = "[any]" if type_name in generic else ""
+        rows.append(f"\t\t{{{mapping.get(type_name, type_name)}{args}{{}}, "
                     f"map[string]string{{{pairs}}}}},\n")
     return (
         f"func {name}(t *testing.T) {{\n"
@@ -1121,8 +1455,8 @@ def file_idents(path):
     return {text for kind, text in lex(path.read_text()) if kind == "ident"}
 
 
-def update_baselines(root, mapping, moves, cfg):
-    prefix = cfg.package_dir + "/"
+def update_baselines(root, mapping, moves, cfg, locals_by_file=None):
+    locals_by_file = locals_by_file or {}
     module, vocabulary = behavior_tokens(root)
     path = root / "scripts/behavior-name-baseline.json"
     data = load_json(path)
@@ -1133,8 +1467,9 @@ def update_baselines(root, mapping, moves, cfg):
             row = dict(row, path=moves[row["path"]])
             if row["category"] == "filename":
                 row["symbol"] = row["path"].rsplit("/", 1)[1]
-        if row["path"].startswith(prefix) and row["category"] == "identifier":
-            row = dict(row, symbol=mapping.get(row["symbol"], row["symbol"]))
+        names = file_mapping(row["path"], mapping, cfg, locals_by_file)
+        if names is not None and row["category"] == "identifier":
+            row = dict(row, symbol=names.get(row["symbol"], row["symbol"]))
             # A coded identifier the moved file no longer declares or uses is
             # a removed name: its entry is deleted, not re-keyed.
             if moved and cfg.prune_absent:
@@ -1150,36 +1485,39 @@ def update_baselines(root, mapping, moves, cfg):
     path = root / "scripts/go-lint-baseline.json"
     data = load_json(path)
     for row in data["entries"]:
-        if row["path"].startswith(prefix):
-            row["path"] = moves.get(row["path"], row["path"])
-            row["symbol"] = rename_symbol(row["symbol"], mapping)
+        row["path"] = moves.get(row["path"], row["path"])
+        names = file_mapping(row["path"], mapping, cfg, locals_by_file)
+        if names is not None:
+            row["symbol"] = rename_symbol(row["symbol"], names)
     data["entries"].sort(key=lambda r: (r["path"], r["symbol"], r["rule"]))
     dump_json(path, data, True)
 
     path = root / "scripts/size-baseline.json"
     data = load_json(path)
     for row in data["debt"]:
-        if row["path"].startswith(prefix):
-            row["path"] = moves.get(row["path"], row["path"])
-            row["symbol"] = rename_symbol(row["symbol"], mapping)
+        row["path"] = moves.get(row["path"], row["path"])
+        names = file_mapping(row["path"], mapping, cfg, locals_by_file)
+        if names is not None:
+            row["symbol"] = rename_symbol(row["symbol"], names)
     data["debt"].sort(key=lambda r: (r["path"], r["symbol"], r["metric"]))
     dump_json(path, data, True)
 
 
-def update_inventories(root, mapping, moves, cfg):
+def update_inventories(root, mapping, moves, cfg, locals_by_file=None):
+    locals_by_file = locals_by_file or {}
     path = root / "naming-inventory.json"
     data = load_json(path)
     data = replace_paths(data, moves)
     data["source_files"] = sorted(data["source_files"])
     for row in data["rows"]:
-        if (row["owning_file"].startswith(cfg.package_dir + "/")
-                and row["kind"] in ("go_identifier", "go_field_candidate")):
-            row["current_name"] = mapping.get(row["current_name"], row["current_name"])
+        names = file_mapping(row["owning_file"], mapping, cfg, locals_by_file)
+        if names is not None and row["kind"] in ("go_identifier", "go_field_candidate"):
+            row["current_name"] = names.get(row["current_name"], row["current_name"])
             if "target" in row:
-                row["target"] = mapping.get(row["target"], row["target"])
+                row["target"] = names.get(row["target"], row["target"])
             for key in ("declaration", "field_candidate"):
                 if key in row["identity"]:
-                    row["identity"][key] = mapping.get(row["identity"][key], row["identity"][key])
+                    row["identity"][key] = names.get(row["identity"][key], row["identity"][key])
     dump_json(path, data, False)
 
     path = root / "naming-consumers.json"
@@ -1293,6 +1631,66 @@ def changelog_entry(mapping, cfg):
         "  reconciliation remain required.\n")
 
 
+def system_b555_changelog_entry(results):
+    """One entry for the vaillant/system and vaillant/b555 slice."""
+    text = (
+        "- Remove work-item codes from the `vaillant/system` and `vaillant/b555`\n"
+        "  file names and Go identifiers; after this change no Go production file\n"
+        "  name and no exported identifier starts with a work-item code. Each\n"
+        "  production file and its test twin is renamed; testdata fixtures and\n"
+        "  test-only files whose name carries a code keep their names:\n")
+    for cfg, mapping, locals_by_file, _, _ in results:
+        text += "".join(f"  - `{cfg.package_dir}/{old}.go` -> `{new}.go`\n"
+                        for old, new in cfg.file_moves)
+    for cfg, mapping, locals_by_file, _, _ in results:
+        exported = sum(1 for name in mapping if name[0].isupper())
+        text += (f"  In `{cfg.package_dir}`, identifiers that start with a code "
+                 f"({exported} exported,\n  {len(mapping) - exported} unexported) "
+                 "take the stem of their destination file;\n"
+                 "  `Ab<code>X` becomes `<Stem>X` and `ab<code>X` becomes `<stem>X`:\n")
+        text += "".join(f"  - `{code_label(code)}...` -> `{stem}...`\n"
+                        for code, stem in cfg.stems.items())
+        text += ("  Exported names whose remainder repeats a stem word keep the\n"
+                 "  stem's service, cut the stem before the first repeated word and\n"
+                 "  drop a service the remainder repeats:\n")
+        text += "".join(f"  - `{old}` -> `{new}`\n"
+                        for old, new in sorted(cfg.exported_overrides.items()))
+        for old, new in sorted(getattr(cfg, "infix_overrides", {}).items()):
+            text += f"  - `{old}` -> `{new}`\n"
+        for old, new in sorted(cfg.collision_overrides.items()):
+            text += (f"  The import alias `{old}` would equal another name and "
+                     f"takes\n  `{new}`.\n")
+        for code, names in getattr(cfg, "scoped_codes", {}).items():
+            text += (f"  Only the timer slot projection names of `{code_label(code)}` are renamed\n"
+                     "  (`b524_timer_access.go` keeps its name):\n")
+            text += "".join(f"  - `{name}` -> `{mapping[name]}`\n" for name in names)
+        for file_name, local in locals_by_file.items():
+            text += f"  The locals of `{file_name}` follow:\n"
+            text += "".join(f"  - `{old}` -> `{new}`\n" for old, new in local.items())
+    text += (
+        "  The b555 stems leave out the service the package name carries, so no\n"
+        "  name stutters. Four types keep `<Stem><remainder>` because their short\n"
+        "  form is the default name of a struct field: `StatusStatusFields`,\n"
+        "  `B524SystemInformationInformationContext`,\n"
+        "  `B524UnscopedHintB524HintKey` and `B524UnscopedHintB524HintStatus`;\n"
+        "  `ValueCodecValue` and `StatusStatus` keep it because `Value` and\n"
+        "  `Status` are names the package already uses.\n"
+        "  `router/vaillant_timer_access_test.go` and\n"
+        "  `vaillant/system/ab07_timer_decode_test.go` follow the timer slot names.\n"
+        "  Renamed exported struct fields that had no JSON tag carry an explicit\n"
+        "  tag with the unchanged key, and `TestRenamedFieldJSONKeys` of each\n"
+        "  package pins every key. Test strings that name a renamed field for\n"
+        "  reflection follow the rename. Consumers must update\n"
+        "  references; there are no aliases. JSON tags (including\n"
+        "  `ab07_start_minutes`, `ab07_stop_minutes`, `ab07_raw_pair` and\n"
+        "  `ab07_unused`), string values, error texts, testdata names and test\n"
+        "  function names are unchanged.\n"
+        "  `scripts/rename_catalog_names.py --slice vaillant-system-b555`\n"
+        "  reproduces the change. Gateway adoption and release bill of materials\n"
+        "  reconciliation remain required.\n")
+    return text
+
+
 def append_test(source, text):
     name = text.split("(", 1)[0]
     if name in source:
@@ -1300,7 +1698,8 @@ def append_test(source, text):
     return source.rstrip() + "\n\n" + text
 
 
-def run(root, print_map, cfg):
+def prepare(root, cfg):
+    """Check every precondition of one package and return its maps."""
     moves = moved_paths(cfg)
     for old, new in moves.items():
         if not (root / old).is_file():
@@ -1308,11 +1707,32 @@ def run(root, print_map, cfg):
         if (root / new).exists():
             raise SystemExit(f"target already exists: {new}")
     mapping = build_map(root, cfg)
+    locals_by_file = local_maps(root, cfg, mapping)
     check_consumers(root, mapping, cfg)
-    if print_map:
-        for name, target in mapping.items():
-            print(f"{name} {target}")
-        return
+    for name, names in cfg.reflect_names.items():
+        found = {text[1:-1] for kind, text in lex((root / cfg.package_dir / name).read_text())
+                 if kind == "string"}
+        words = {word for item in names for word in item.split(" ")}
+        if not set(names) <= found or not words <= set(mapping):
+            raise SystemExit(f"reflection names not found in {name}")
+    file_names = {old + ".go": new + ".go" for old, new in cfg.file_moves}
+    for name, olds in cfg.source_paths.items():
+        found = {text[1:-1] for kind, text in lex((root / cfg.package_dir / name).read_text())
+                 if kind == "string"}
+        if not set(olds) <= found or not set(olds) <= set(file_names):
+            raise SystemExit(f"source file names not found in {name}")
+    if hasattr(cfg, "generic_structs"):
+        production = [path.read_text() for path in package_files(root, cfg)
+                      if not path.name.endswith("_test.go")]
+        generic = {name for text in production for name in GENERIC_STRUCT_DECL.findall(text)}
+        declared = {name for text in production for name in ANY_GENERIC_DECL.findall(text)}
+        if generic != set(cfg.generic_structs) or declared != generic:
+            raise SystemExit(f"generic struct types differ: {sorted(declared)}")
+    return mapping, locals_by_file
+
+
+def rewrite_sources(root, cfg, mapping, locals_by_file):
+    """Return the rewritten sources of one package and the tagged fields."""
     keys = fixture_keys(root, cfg) if cfg.tag_fields else set()
     flattened = frozenset(
         name for path in package_files(root, cfg) if not path.name.endswith("_test.go")
@@ -1333,29 +1753,34 @@ def run(root, print_map, cfg):
             source = preserve_projection_json_keys(source, cfg)
         if path.name in cfg.fixture_bound:
             source = add_fixture_tags(source, *cfg.fixture_bound[path.name])
+        if path.name in getattr(cfg, "inline_tags", {}):
+            line, tagged_line = cfg.inline_tags[path.name]
+            if source.count(line) != 1:
+                raise SystemExit(f"inline fixture struct not found exactly once in {path.name}")
+            source = source.replace(line, tagged_line)
         for alias, (file_names, import_path) in cfg.import_unaliases.items():
             if path.name in file_names:
                 source = drop_import_alias(source, alias, import_path)
         sources[path] = (source, original)
-    regression_file, regression = cfg.regression
-    for name, names in cfg.reflect_names.items():
-        found = {text[1:-1] for kind, text in lex((root / cfg.package_dir / name).read_text())
-                 if kind == "string"}
-        words = {word for item in names for word in item.split(" ")}
-        if not set(names) <= found or not words <= set(mapping):
-            raise SystemExit(f"reflection names not found in {name}")
+    for rel in getattr(cfg, "consumers", ()):
+        source = (root / rel).read_text()
+        sources[root / rel] = (source, source)
+    regression_file, regression = cfg.regression or (None, None)
     file_names = {old + ".go": new + ".go" for old, new in cfg.file_moves}
-    for name, olds in cfg.source_paths.items():
-        found = {text[1:-1] for kind, text in lex((root / cfg.package_dir / name).read_text())
-                 if kind == "string"}
-        if not set(olds) <= found or not set(olds) <= set(file_names):
-            raise SystemExit(f"source file names not found in {name}")
     for path, (source, original) in sources.items():
+        rel = path.relative_to(root).as_posix()
         paths = {old: file_names[old] for old in cfg.source_paths.get(path.name, ())}
-        source = rewrite_go(source, mapping, cfg.reflect_names.get(path.name, ()), paths)
+        names = file_mapping(rel, mapping, cfg, locals_by_file)
+        source = rewrite_go(source, names, cfg.reflect_names.get(path.name, ()), paths)
         if path.name == regression_file:
             source = append_test(source, regression(tagged, mapping))
         sources[path] = (source, original)
+    return sources, tagged
+
+
+def write_sources(root, cfg, mapping, locals_by_file, sources):
+    """Write, move and re-key one package."""
+    moves = moved_paths(cfg)
     changed = []
     for path, (source, original) in sources.items():
         rel = path.relative_to(root).as_posix()
@@ -1368,14 +1793,39 @@ def run(root, print_map, cfg):
     subprocess.run(["gofmt", "-w", *map(str, changed)], check=True)
     if cfg.golden:
         update_golden(root, cfg)
-    update_baselines(root, mapping, moves, cfg)
-    update_inventories(root, mapping, moves, cfg)
+    update_baselines(root, mapping, moves, cfg, locals_by_file)
+    update_inventories(root, mapping, moves, cfg, locals_by_file)
+
+
+def run(root, print_map, cfg):
+    parts = cfg if isinstance(cfg, tuple) else (cfg,)
+    prepared = [prepare(root, part) for part in parts]
+    if print_map:
+        for part, (mapping, locals_by_file) in zip(parts, prepared):
+            label = f"{part.package_dir} " if len(parts) > 1 else ""
+            for name, target in mapping.items():
+                print(f"{label}{name} {target}")
+            for file_name, local in locals_by_file.items():
+                for name, target in local.items():
+                    print(f"{part.package_dir}/{file_name} {name} {target}")
+        return
     changelog = root / "CHANGELOG.md"
     text = changelog.read_text()
     heading = "## Unreleased\n\n"
     if heading not in text:
         raise SystemExit("CHANGELOG.md has no Unreleased section")
-    changelog.write_text(text.replace(heading, heading + changelog_entry(mapping, cfg) + "\n", 1))
+    # Every package is rewritten in memory before the first file is written.
+    results = []
+    for part, (mapping, locals_by_file) in zip(parts, prepared):
+        sources, tagged = rewrite_sources(root, part, mapping, locals_by_file)
+        results.append((part, mapping, locals_by_file, sources, tagged))
+    for part, mapping, locals_by_file, sources, _ in results:
+        write_sources(root, part, mapping, locals_by_file, sources)
+    if isinstance(cfg, tuple):
+        entry = system_b555_changelog_entry(results)
+    else:
+        entry = changelog_entry(results[0][1], cfg)
+    changelog.write_text(text.replace(heading, heading + entry + "\n", 1))
 
 
 def test_inventory_targets(tmp_path):
@@ -1566,6 +2016,62 @@ def test_prune_absent_identifier_rows(tmp_path):
     update_baselines(tmp_path, {}, {old: new}, cfg)
     rows = json.loads((tmp_path / "scripts/behavior-name-baseline.json").read_text())["baseline"]
     assert rows == [{"path": new, "symbol": "ab36Rows", "category": "identifier"}]
+
+
+def test_vaillant_system_b555_names():
+    system, b555 = SLICES["vaillant-system-b555"]
+    assert new_name("Ab01An01Cell", system) == "B524CalendarViewCell"
+    assert new_name("ab09an09hex", system) == "b509QuantityViewHexPackage"
+    assert new_name("Ab22Status", system) == "StatusStatus"
+    assert new_name("Ab42InformationContext", system) == \
+        "B524SystemInformationInformationContext"
+    assert new_name("ErrAb25DescriptionConflict", system) == "ErrDescriptionConflict"
+    assert new_name("Ab07TimerSlot", system) == "B524TimerSlot"
+    assert new_name("Ab07RawPair", system) == "B524TimerAccessRawPair"
+    assert coded("Ab07RawPair", system) == ("ab07", "RawPair")
+    assert coded("ab07Slots", system) is None and coded("ab01Key", system) is None
+    assert coded("Ab10Key", system) is None
+    assert new_name("Ab52DecodeA4", b555) == "ExtentViewDecodeA4"
+    assert new_name("Ab52Extent", b555) == "Extent"
+    assert all(not stem.startswith("B555") for stem in b555.stems.values())
+    assert len(moved_paths(system)) == 36 and len(moved_paths(b555)) == 4
+    assert set(system.stems) == {old.split("_", 1)[0] for old, _ in system.file_moves} | {"ab07"}
+    assert set(b555.stems) == {old.split("_", 1)[0] for old, _ in b555.file_moves}
+
+
+def test_local_names_and_consumers(tmp_path):
+    system = SLICES["vaillant-system-b555"][0]
+    package = tmp_path / system.package_dir
+    package.mkdir(parents=True)
+    (package / "b524_timer_access.go").write_text(
+        "package system\n\nfunc f() {\n\tab07Index, ab07Slots, ab07Start, ab07Stop := 0, 0, 0, 0\n"
+        "\tab07StartMinutes, ab07StopMinutes := ab07Start, ab07Stop\n"
+        "\t_, _, _, _ = ab07Index, ab07Slots, ab07StartMinutes, ab07StopMinutes\n}\n")
+    local = local_maps(tmp_path, system, {"Ab07RawPair": "B524TimerAccessRawPair"})
+    assert local["b524_timer_access.go"]["ab07Slots"] == "b524TimerAccessSlots"
+    names = file_mapping("vaillant/system/b524_timer_access.go",
+                         {"Ab07RawPair": "B524TimerAccessRawPair"}, system, local)
+    assert names["ab07Index"] == "b524TimerAccessIndex"
+    assert "ab07Index" not in file_mapping(
+        "vaillant/system/ab07_timer_decode_test.go", {}, system, local)
+    consumer = file_mapping("router/vaillant_timer_access_test.go",
+                            {"Ab07RawPair": "B524TimerAccessRawPair", "ab07x": "b"}, system, local)
+    assert consumer == {"Ab07RawPair": "B524TimerAccessRawPair"}
+    assert file_mapping("router/router.go", {}, system, local) is None
+
+
+def test_generic_field_json_keys_test():
+    text = field_json_keys_test([("Ab58Field", ["Ab58Present"])],
+                                {"Ab58Field": "B524SystemScalarField",
+                                 "Ab58Present": "B524SystemScalarPresent"},
+                                generic=("Ab58Field",))
+    assert '{B524SystemScalarField[any]{}, map[string]string{"B524SystemScalarPresent": ' \
+        '"Ab58Present"}},' in text
+    source = "type Ab58Field[Ab58T any] struct {\n\tAb58Present bool\n}\n"
+    result, tagged = tag_struct_fields(source, SLICES["vaillant-system-b555"][0],
+                                       lambda names: True)
+    assert '\tAb58Present bool `json:"Ab58Present"`\n' in result
+    assert tagged == [("Ab58Field", ["Ab58Present"])]
 
 
 if __name__ == "__main__":

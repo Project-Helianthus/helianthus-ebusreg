@@ -15,22 +15,22 @@ func TestAb07TimerCompleteReply(ab07T *testing.T) {
 	if ab07Got := ab07Values["ab07_parameter_configuration"]; !ab07Got.Valid || ab07Got.Value != byte(0xA5) {
 		ab07T.Fatalf("raw parameter configuration = %+v", ab07Got)
 	}
-	ab07Slots, ab07OK := ab07Values["ab07_slots"].Value.([]Ab07TimerSlot)
+	ab07Slots, ab07OK := ab07Values["ab07_slots"].Value.([]B524TimerSlot)
 	if !ab07Values["ab07_slots"].Valid || !ab07OK || len(ab07Slots) != 3 {
 		ab07T.Fatalf("slots = %+v", ab07Values["ab07_slots"])
 	}
 	ab07Pairs := [][2]byte{{6, 12}, {0x90, 0x90}, {0x8F, 0x90}}
 	for ab07Index, ab07Slot := range ab07Slots {
-		if ab07Slot.Ab07RawPair != ab07Pairs[ab07Index] || ab07Slot.Ab07Unused != (ab07Index == 1) {
+		if ab07Slot.B524TimerAccessRawPair != ab07Pairs[ab07Index] || ab07Slot.B524TimerAccessUnused != (ab07Index == 1) {
 			ab07T.Fatalf("slot %d = %+v", ab07Index, ab07Slot)
 		}
 		if ab07Index == 1 {
-			if ab07Slot.Ab07StartMinutes != nil || ab07Slot.Ab07StopMinutes != nil {
+			if ab07Slot.B524TimerAccessStartMinutes != nil || ab07Slot.B524TimerAccessStopMinutes != nil {
 				ab07T.Fatal("unused slot has minute projections")
 			}
-		} else if ab07Slot.Ab07StartMinutes == nil || ab07Slot.Ab07StopMinutes == nil ||
-			*ab07Slot.Ab07StartMinutes != int(ab07Pairs[ab07Index][0])*10 ||
-			*ab07Slot.Ab07StopMinutes != int(ab07Pairs[ab07Index][1])*10 {
+		} else if ab07Slot.B524TimerAccessStartMinutes == nil || ab07Slot.B524TimerAccessStopMinutes == nil ||
+			*ab07Slot.B524TimerAccessStartMinutes != int(ab07Pairs[ab07Index][0])*10 ||
+			*ab07Slot.B524TimerAccessStopMinutes != int(ab07Pairs[ab07Index][1])*10 {
 			ab07T.Fatalf("slot %d minute projections = %+v", ab07Index, ab07Slot)
 		}
 	}
@@ -46,17 +46,17 @@ func TestAb07TimerPairBoundaries(ab07T *testing.T) {
 				if ab07Got := ab07Values["slot_count"]; !ab07Got.Valid || ab07Got.Value != 3 {
 					ab07T.Fatalf("complete width lost slot count: %+v", ab07Got)
 				}
-				ab07Slots := ab07Values["ab07_slots"].Value.([]Ab07TimerSlot)
+				ab07Slots := ab07Values["ab07_slots"].Value.([]B524TimerSlot)
 				for ab07Index, ab07Slot := range ab07Slots {
 					ab07Start, ab07Stop := ab07Payload[1+2*ab07Index], ab07Payload[2+2*ab07Index]
-					if ab07Slot.Ab07RawPair != [2]byte{ab07Start, ab07Stop} || ab07Slot.Ab07Unused != (ab07Start == 0x90 && ab07Stop == 0x90) {
+					if ab07Slot.B524TimerAccessRawPair != [2]byte{ab07Start, ab07Stop} || ab07Slot.B524TimerAccessUnused != (ab07Start == 0x90 && ab07Stop == 0x90) {
 						ab07T.Fatalf("slot %d = %+v", ab07Index, ab07Slot)
 					}
 					if ab07Start < ab07Stop && ab07Stop <= 0x90 {
-						if ab07Slot.Ab07StartMinutes == nil || ab07Slot.Ab07StopMinutes == nil || *ab07Slot.Ab07StartMinutes != int(ab07Start)*10 || *ab07Slot.Ab07StopMinutes != int(ab07Stop)*10 {
+						if ab07Slot.B524TimerAccessStartMinutes == nil || ab07Slot.B524TimerAccessStopMinutes == nil || *ab07Slot.B524TimerAccessStartMinutes != int(ab07Start)*10 || *ab07Slot.B524TimerAccessStopMinutes != int(ab07Stop)*10 {
 							ab07T.Fatalf("valid slot %d lost minutes: %+v", ab07Index, ab07Slot)
 						}
-					} else if ab07Slot.Ab07StartMinutes != nil || ab07Slot.Ab07StopMinutes != nil {
+					} else if ab07Slot.B524TimerAccessStartMinutes != nil || ab07Slot.B524TimerAccessStopMinutes != nil {
 						ab07T.Fatalf("invalid or unused slot %d invented minutes: %+v", ab07Index, ab07Slot)
 					}
 				}
@@ -102,11 +102,11 @@ func TestAb07TimerRawOwnership(ab07T *testing.T) {
 		ab07T.Fatal("raw value aliases raw payload")
 	}
 	ab07Values["payload"].Value.([]byte)[2] = 0
-	ab07Slots := ab07Values["ab07_slots"].Value.([]Ab07TimerSlot)
-	if ab07Slots[0].Ab07RawPair != [2]byte{6, 12} || *ab07Slots[0].Ab07StartMinutes != 60 || *ab07Slots[0].Ab07StopMinutes != 120 || ab07Values["ab07_parameter_configuration"].Value != byte(0xA5) {
+	ab07Slots := ab07Values["ab07_slots"].Value.([]B524TimerSlot)
+	if ab07Slots[0].B524TimerAccessRawPair != [2]byte{6, 12} || *ab07Slots[0].B524TimerAccessStartMinutes != 60 || *ab07Slots[0].B524TimerAccessStopMinutes != 120 || ab07Values["ab07_parameter_configuration"].Value != byte(0xA5) {
 		ab07T.Fatal("structured slot or parameter configuration aliases raw storage")
 	}
-	ab07Slots[0].Ab07RawPair[0] = 1
+	ab07Slots[0].B524TimerAccessRawPair[0] = 1
 	if ab07Values["payload"].Value.([]byte)[1] != 6 {
 		ab07T.Fatal("structured raw pair aliases payload")
 	}

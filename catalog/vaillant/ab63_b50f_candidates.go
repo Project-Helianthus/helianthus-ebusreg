@@ -21,7 +21,7 @@ type Ab63Key struct {
 
 type Ab63Entry struct {
 	Ab63Key            Ab63Key         `json:"key"`
-	Ab63Field          Ab05Field       `json:"metadata"`
+	Ab63Field          SchemaField     `json:"metadata"`
 	Ab63Masks          map[string]byte `json:"demand_masks"`
 	Ab63Reserved       *byte           `json:"reserved_mask"`
 	Ab63Divisor        *int            `json:"divisor"`
@@ -32,9 +32,9 @@ type Ab63Entry struct {
 }
 
 type Ab63Catalog struct {
-	Ab63Presence      Ab05Grade   `json:"metadata_presence"`
-	Ab63Qualification Ab05Grade   `json:"physical_qualification"`
-	Ab63Invocation    Ab05Grade   `json:"routable_invocation"`
+	Ab63Presence      SchemaGrade `json:"metadata_presence"`
+	Ab63Qualification SchemaGrade `json:"physical_qualification"`
+	Ab63Invocation    SchemaGrade `json:"routable_invocation"`
 	Ab63Limitations   []string    `json:"limitations"`
 	Ab63Entries       []Ab63Entry `json:"entries"`
 }

@@ -21,10 +21,10 @@ type Ab94Key struct {
 }
 
 type Ab94Replacement struct {
-	Ab94Raw     uint64    `json:"raw"`
-	Ab94Role    string    `json:"role"`
-	Ab94Context string    `json:"context"`
-	Ab94Grade   Ab05Grade `json:"grade"`
+	Ab94Raw     uint64      `json:"raw"`
+	Ab94Role    string      `json:"role"`
+	Ab94Context string      `json:"context"`
+	Ab94Grade   SchemaGrade `json:"grade"`
 }
 
 type Ab94NumericField struct {
@@ -45,21 +45,21 @@ type Ab94NumericField struct {
 	Ab94Enumeration     map[uint64]string `json:"enumeration"`
 	Ab94Replacement     []Ab94Replacement `json:"replacement"`
 	Ab94Reserved        []uint64          `json:"reserved"`
-	Ab94Grade           Ab05Grade         `json:"grade"`
-	Ab94ConversionGrade Ab05Grade         `json:"conversion_grade"`
-	Ab94UnitGrade       Ab05Grade         `json:"unit_grade"`
+	Ab94Grade           SchemaGrade       `json:"grade"`
+	Ab94ConversionGrade SchemaGrade       `json:"conversion_grade"`
+	Ab94UnitGrade       SchemaGrade       `json:"unit_grade"`
 	Ab94RawFallback     string            `json:"raw_fallback"`
-	Ab94Enforcement     Ab05Grade         `json:"enforcement"`
-	Ab94PeerEffects     Ab05Grade         `json:"peer_effects"`
+	Ab94Enforcement     SchemaGrade       `json:"enforcement"`
+	Ab94PeerEffects     SchemaGrade       `json:"peer_effects"`
 }
 
 type Ab94NumericMetadata struct {
-	Ab94RepresentationGrade   Ab05Grade          `json:"representation_grade"`
-	Ab94PhysicalQualification Ab05Grade          `json:"physical_qualification"`
-	Ab94NativeSupport         Ab05Grade          `json:"native_support"`
-	Ab94Freshness             Ab05Grade          `json:"freshness"`
-	Ab94Persistence           Ab05Grade          `json:"persistence"`
-	Ab94Execution             Ab05Grade          `json:"execution"`
+	Ab94RepresentationGrade   SchemaGrade        `json:"representation_grade"`
+	Ab94PhysicalQualification SchemaGrade        `json:"physical_qualification"`
+	Ab94NativeSupport         SchemaGrade        `json:"native_support"`
+	Ab94Freshness             SchemaGrade        `json:"freshness"`
+	Ab94Persistence           SchemaGrade        `json:"persistence"`
+	Ab94Execution             SchemaGrade        `json:"execution"`
 	Ab94Complete              bool               `json:"complete"`
 	Ab94SourceContract        string             `json:"source_contract"`
 	Ab94Limitations           []string           `json:"limitations"`

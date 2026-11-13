@@ -35,7 +35,7 @@ func ab59Lookup(ab59T *ab59testing.T, ab59Key Ab59Key) Ab59Entry {
 
 func TestAb59FiniteContract(ab59T *ab59testing.T) {
 	ab59Catalog := ab59Catalog(ab59T)
-	if ab59Catalog.Ab59MetadataPresence != Ab05Proven || ab59Catalog.Ab59WireAdaptation != Ab05Unknown || ab59Catalog.Ab59InstalledSupport != Ab05Unknown || ab59Catalog.Ab59Invocation != Ab05Unknown {
+	if ab59Catalog.Ab59MetadataPresence != SchemaProven || ab59Catalog.Ab59WireAdaptation != SchemaUnknown || ab59Catalog.Ab59InstalledSupport != SchemaUnknown || ab59Catalog.Ab59Invocation != SchemaUnknown {
 		ab59T.Fatal("ab59 evidence boundaries changed")
 	}
 	ab59Limitations := []string{
@@ -55,7 +55,7 @@ func TestAb59FiniteContract(ab59T *ab59testing.T) {
 			Ab59WidthBits: ab59Width, Ab59Signedness: ab59Signedness, Ab59ByteOrder: ab59Order,
 			Ab59Conversion: ab59Conversion, Ab59Divisor: ab59Divisor, Ab59Unit: ab59Unit,
 			Ab59Default: ab59Default, Ab59Lower: ab59Lower, Ab59Upper: ab59Upper,
-			Ab59Mappings: ab59Mappings, Ab59OtherFeedback: ab59Other, Ab59State: ab59State, Ab59Grade: Ab05Hypothesis,
+			Ab59Mappings: ab59Mappings, Ab59OtherFeedback: ab59Other, Ab59State: ab59State, Ab59Grade: SchemaHypothesis,
 		})
 	}
 	ab59Add(0x07, "selector", "selector", ab59Pointer("request"), ab59Pointer(8), "unsigned", "not_applicable", "raw", nil, nil, nil, nil, nil, map[string]string{}, nil, "raw")

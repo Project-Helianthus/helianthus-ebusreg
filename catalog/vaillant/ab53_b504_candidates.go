@@ -25,7 +25,7 @@ type Ab53Domain struct {
 
 type Ab53Entry struct {
 	Ab53Key           Ab53Key        `json:"key"`
-	Ab53Grade         Ab05Grade      `json:"grade"`
+	Ab53Grade         SchemaGrade    `json:"grade"`
 	Ab53Position      *int           `json:"position"`
 	Ab53Width         *int           `json:"width_bytes"`
 	Ab53Signedness    string         `json:"signedness"`
@@ -39,11 +39,11 @@ type Ab53Entry struct {
 }
 
 type Ab53Catalog struct {
-	Ab53MetadataPresence   Ab05Grade   `json:"metadata_presence"`
-	Ab53PhysicalAdaptation Ab05Grade   `json:"physical_adaptation"`
-	Ab53InstalledSupport   Ab05Grade   `json:"installed_support"`
-	Ab53PollingPermission  Ab05Grade   `json:"polling_permission"`
-	Ab53RoutableInvocation Ab05Grade   `json:"routable_invocation"`
+	Ab53MetadataPresence   SchemaGrade `json:"metadata_presence"`
+	Ab53PhysicalAdaptation SchemaGrade `json:"physical_adaptation"`
+	Ab53InstalledSupport   SchemaGrade `json:"installed_support"`
+	Ab53PollingPermission  SchemaGrade `json:"polling_permission"`
+	Ab53RoutableInvocation SchemaGrade `json:"routable_invocation"`
 	Ab53Limitations        []string    `json:"limitations"`
 	Ab53Entries            []Ab53Entry `json:"entries"`
 }

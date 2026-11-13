@@ -6,7 +6,9 @@
 // Invocation. A method is invoked by name on one plane. Mutating methods
 // always go to the bus. Read-only invocations are coalesced: concurrent
 // calls with the same plane name, method and parameters share one bus
-// transaction, and a successful reply frame is reused for later identical
+// transaction while it succeeds. When the leading call fails, only that
+// caller receives the error; each waiter then starts its own transaction.
+// A successful reply frame is reused for later identical
 // calls until it is older than the refresh interval of its class (state or
 // configuration). The key uses the plane name, not the plane instance, so
 // planes of different devices that share a name must differ in a parameter

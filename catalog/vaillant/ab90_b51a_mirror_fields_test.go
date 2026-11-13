@@ -14,7 +14,7 @@ func ab90ExpectedField(ab90Operation uint8, ab90Direction, ab90Name string, ab90
 		Ab90Key:             Ab90MirrorKey{Ab90Family: "vaillant", Ab90Variant: "mirror-diagnosis", Ab90Primary: 181, Ab90Secondary: ab90Ptr(uint8(26)), Ab90Operation: ab90Ptr(ab90Operation), Ab90Direction: ab90Direction, Ab90Field: ab90Name},
 		Ab90LogicalPosition: ab90Ptr(ab90Position), Ab90WidthBytes: ab90Ptr(ab90Width), Ab90Signedness: "unsigned", Ab90ByteOrder: "not_applicable", Ab90Conversion: "identity",
 		Ab90FormalMin: ab90Ptr(int64(0)), Ab90FormalMax: ab90Ptr(ab90Maximum), Ab90Enumeration: map[int64]string{}, Ab90Bits: []Ab90MirrorBit{}, Ab90Alternatives: []Ab90MirrorAlternative{}, Ab90Reserved: []int{},
-		Ab90Grade: Ab05Hypothesis, Ab90RawFallback: "preserve original bytes including unnamed and reserved bits", Ab90Correlation: "Unknown", Ab90Unmapped: "Unknown",
+		Ab90Grade: SchemaHypothesis, Ab90RawFallback: "preserve original bytes including unnamed and reserved bits", Ab90Correlation: "Unknown", Ab90Unmapped: "Unknown",
 	}
 	if ab90Width == 2 {
 		ab90Field.Ab90ByteOrder = "little_endian"
@@ -23,13 +23,13 @@ func ab90ExpectedField(ab90Operation uint8, ab90Direction, ab90Name string, ab90
 }
 
 func ab90ExpectedBit(ab90Index int, ab90Name string, ab90Role string) Ab90MirrorBit {
-	ab90Bit := Ab90MirrorBit{Ab90Index: ab90Index, Ab90Role: ab90Role, Ab90Default: ab90Ptr(false), Ab90Grade: Ab05Hypothesis}
+	ab90Bit := Ab90MirrorBit{Ab90Index: ab90Index, Ab90Role: ab90Role, Ab90Default: ab90Ptr(false), Ab90Grade: SchemaHypothesis}
 	if ab90Name != "" {
 		ab90Bit.Ab90Name = ab90Ptr(ab90Name)
 	}
 	if ab90Role == "unnamed" {
 		ab90Bit.Ab90Default = nil
-		ab90Bit.Ab90Grade = Ab05Unknown
+		ab90Bit.Ab90Grade = SchemaUnknown
 	}
 	return ab90Bit
 }
@@ -68,7 +68,7 @@ func ab90ExpectedFields() []Ab90MirrorField {
 	ab90Field = ab90ExpectedField(2, "positive", "positive", 4, 1, 255)
 	ab90Field.Ab90Enumeration = map[int64]string{0: "false", 1: "true"}
 	ab90Field.Ab90Unmapped = "2..255 unresolved"
-	ab90Field.Ab90Alternatives = []Ab90MirrorAlternative{{Ab90Name: "competing out-of-area bit", Ab90WidthBytes: ab90Ptr(1), Ab90Condition: "unresolved alternative to whole-u8 boolean", Ab90Enumeration: map[int64]string{}, Ab90Bits: []Ab90MirrorBit{ab90ExpectedBit(0, "out-of-area", "named")}, Ab90Grade: Ab05Hypothesis}}
+	ab90Field.Ab90Alternatives = []Ab90MirrorAlternative{{Ab90Name: "competing out-of-area bit", Ab90WidthBytes: ab90Ptr(1), Ab90Condition: "unresolved alternative to whole-u8 boolean", Ab90Enumeration: map[int64]string{}, Ab90Bits: []Ab90MirrorBit{ab90ExpectedBit(0, "out-of-area", "named")}, Ab90Grade: SchemaHypothesis}}
 	ab90Field.Ab90Alternatives[0].Ab90Bits[0].Ab90Default = nil
 	ab90Fields = append(ab90Fields, ab90Field)
 	for _, ab90Operation := range []uint8{2, 3} {
@@ -129,7 +129,7 @@ func ab90ExpectedFields() []Ab90MirrorField {
 	ab90Field = ab90ExpectedField(6, "positive", "value", 9, 2, 65535)
 	ab90Field.Ab90WidthBytes = nil
 	for ab90Index, ab90Name := range []string{"formal-u16", "display-one-byte", "display-two-byte"} {
-		ab90Field.Ab90Alternatives = append(ab90Field.Ab90Alternatives, Ab90MirrorAlternative{Ab90Name: ab90Name, Ab90WidthBytes: ab90Ptr([]int{2, 1, 2}[ab90Index]), Ab90Condition: []string{"formal description", "display type selects one byte", "display type selects two bytes"}[ab90Index], Ab90Enumeration: map[int64]string{}, Ab90Bits: []Ab90MirrorBit{}, Ab90Grade: Ab05Hypothesis})
+		ab90Field.Ab90Alternatives = append(ab90Field.Ab90Alternatives, Ab90MirrorAlternative{Ab90Name: ab90Name, Ab90WidthBytes: ab90Ptr([]int{2, 1, 2}[ab90Index]), Ab90Condition: []string{"formal description", "display type selects one byte", "display type selects two bytes"}[ab90Index], Ab90Enumeration: map[int64]string{}, Ab90Bits: []Ab90MirrorBit{}, Ab90Grade: SchemaHypothesis})
 	}
 	return append(ab90Fields, ab90Field)
 }
@@ -155,7 +155,7 @@ func ab90Get(ab90T *ab90Testing.T, ab90Operation uint8, ab90Direction, ab90Name 
 
 func TestAb90ExactProductionMetadata(ab90T *ab90Testing.T) {
 	ab90Got := ab90Catalog(ab90T)
-	ab90Want := Ab90MirrorMetadata{Ab90RepresentationGrade: Ab05Proven, Ab90SemanticsGrade: Ab05Hypothesis, Ab90PhysicalAdaptation: Ab05Unknown, Ab90StorageDurability: Ab05Unknown, Ab90SuccessSemantics: Ab05Unknown, Ab90Complete: false, Ab90NativeContract: "protocols/vaillant/ebus-vaillant-B51A.md#candidate-mirror-and-diagnosis-layouts", Ab90Limitations: []string{
+	ab90Want := Ab90MirrorMetadata{Ab90RepresentationGrade: SchemaProven, Ab90SemanticsGrade: SchemaHypothesis, Ab90PhysicalAdaptation: SchemaUnknown, Ab90StorageDurability: SchemaUnknown, Ab90SuccessSemantics: SchemaUnknown, Ab90Complete: false, Ab90NativeContract: "protocols/vaillant/ebus-vaillant-B51A.md#candidate-mirror-and-diagnosis-layouts", Ab90Limitations: []string{
 		"Finite supplemental mirror/diagnosis declarations; configured-register tables remain separate.",
 		"Logical positions include service prefix; physical response adaptation is Unknown.",
 		"Sequence equality for reset/01 is candidate correlation only; no retry or freshness policy.",
@@ -234,7 +234,7 @@ func TestAb90SyntheticSequenceAndReset(ab90T *ab90Testing.T) {
 	}
 	ab90Ack := ab90Get(ab90T, 0, "positive", "acknowledgement")
 	ab90Raw := ab90Read(ab90T, ab90Ack, []byte{0, 0, 0, 0, 2}, "")
-	if ab90Raw&(1<<ab90Ack.Ab90Bits[0].Ab90Index) != 0 || ab90Raw&(1<<ab90Ack.Ab90Bits[1].Ab90Index) == 0 || ab90Ack.Ab90Bits[1].Ab90Grade != Ab05Unknown || ab90Ack.Ab90Bits[1].Ab90Name != nil {
+	if ab90Raw&(1<<ab90Ack.Ab90Bits[0].Ab90Index) != 0 || ab90Raw&(1<<ab90Ack.Ab90Bits[1].Ab90Index) == 0 || ab90Ack.Ab90Bits[1].Ab90Grade != SchemaUnknown || ab90Ack.Ab90Bits[1].Ab90Name != nil {
 		ab90T.Fatal("ab90 reset02 is unnamed, not denied")
 	}
 }
@@ -262,7 +262,7 @@ func TestAb90SyntheticReadAndWrite(ab90T *ab90Testing.T) {
 		ab90T.Fatal("ab90 mirror/symbol swapped")
 	}
 	ab90Opaque := ab90Get(ab90T, 3, "request", "data")
-	if len(ab90Write[*ab90Opaque.Ab90LogicalPosition:]) != 0 || ab90Opaque.Ab90Conversion != "opaque" || ab90Opaque.Ab90WidthBytes != nil || *ab90Opaque.Ab90LogicalMin != 0 || ab90Catalog(ab90T).Ab90SuccessSemantics != Ab05Unknown {
+	if len(ab90Write[*ab90Opaque.Ab90LogicalPosition:]) != 0 || ab90Opaque.Ab90Conversion != "opaque" || ab90Opaque.Ab90WidthBytes != nil || *ab90Opaque.Ab90LogicalMin != 0 || ab90Catalog(ab90T).Ab90SuccessSemantics != SchemaUnknown {
 		ab90T.Fatal("ab90 empty write inferred acceptance")
 	}
 }

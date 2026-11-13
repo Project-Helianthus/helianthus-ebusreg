@@ -84,21 +84,21 @@ func TestAb57UnionPermutation(ab57T *ab57Testing.T) {
 			if !ab57OK {
 				continue
 			}
-			if ab57Parameter.Ab57Selector != byte(ab57Selector) || ab57Parameter.Ab57Representation != ab57Want || ab57Parameter.Ab57Metadata.Ab05Codec != ab57Want || ab57Parameter.Ab57Metadata.Ab05Grade != Ab05Hypothesis || ab57Parameter.Ab57Metadata.Ab05Position != nil || ab57Parameter.Ab57MinimumBytes != nil || ab57Parameter.Ab57MaximumBytes != nil {
+			if ab57Parameter.Ab57Selector != byte(ab57Selector) || ab57Parameter.Ab57Representation != ab57Want || ab57Parameter.Ab57Metadata.SchemaCodec != ab57Want || ab57Parameter.Ab57Metadata.SchemaGrade != SchemaHypothesis || ab57Parameter.Ab57Metadata.SchemaPosition != nil || ab57Parameter.Ab57MinimumBytes != nil || ab57Parameter.Ab57MaximumBytes != nil {
 				ab57T.Fatalf("selector %d declaration", ab57Selector)
 			}
 			if ab57Want == "opaque-through-end" {
-				if ab57Parameter.Ab57Metadata.Ab05Width != nil {
+				if ab57Parameter.Ab57Metadata.SchemaWidth != nil {
 					ab57T.Fatal("opaque width invented")
 				}
-			} else if ab57Parameter.Ab57Metadata.Ab05Width == nil || *ab57Parameter.Ab57Metadata.Ab05Width != 1 {
+			} else if ab57Parameter.Ab57Metadata.SchemaWidth == nil || *ab57Parameter.Ab57Metadata.SchemaWidth != 1 {
 				ab57T.Fatal("one byte width missing")
 			}
 		}
 		ab57Production.Ab57Parameters = append(ab57Production.Ab57Parameters[1:], ab57Production.Ab57Parameters[0])
 	}
 	ab57Boolean, _ := Ab57ParameterLookup(ab57Production, 10)
-	if !ab57Reflect.DeepEqual(ab57Boolean.Ab57Metadata.Ab05Enum, map[int64]string{0: "no", 1: "yes"}) {
+	if !ab57Reflect.DeepEqual(ab57Boolean.Ab57Metadata.SchemaEnum, map[int64]string{0: "no", 1: "yes"}) {
 		ab57T.Fatal("Boolean meaning must cover exactly 0 and 1")
 	}
 	for _, ab57Selector := range []byte{0, 1, 2, 4, 5} {
@@ -135,7 +135,7 @@ func TestAb57OutputAlternatives(ab57T *ab57Testing.T) {
 
 func TestAb57ChecksumScalar(ab57T *ab57Testing.T) {
 	ab57Value := ab57Entry(ab57T, ab57Key("eeprom-checksum", nil, "checksum_type"))
-	if ab57Value.Ab57ChecksumInterpretation != "scalar, not flags" || len(ab57Value.Ab57ChecksumValues) != 128 || ab57Value.Ab57ChecksumWidth != nil || ab57Value.Ab57Algorithm != Ab05Unknown || ab57Value.Ab57Completion != Ab05Unknown || ab57Value.Ab57ChecksumData != Ab05Unknown {
+	if ab57Value.Ab57ChecksumInterpretation != "scalar, not flags" || len(ab57Value.Ab57ChecksumValues) != 128 || ab57Value.Ab57ChecksumWidth != nil || ab57Value.Ab57Algorithm != SchemaUnknown || ab57Value.Ab57Completion != SchemaUnknown || ab57Value.Ab57ChecksumData != SchemaUnknown {
 		ab57T.Fatal("checksum properties conflated")
 	}
 	for ab57Raw := 0; ab57Raw < 256; ab57Raw++ {
@@ -156,8 +156,8 @@ func TestAb57FreshCopies(ab57T *ab57Testing.T) {
 	ab57Changed.Ab57Limitations[0] = "ab57_changed"
 	*ab57Changed.Ab57Entries[0].Ab57Key.Ab57Secondary = 0
 	*ab57Changed.Ab57Entries[0].Ab57Key.Ab57Operation = 0
-	*ab57Changed.Ab57Entries[0].Ab57Parameters[5].Ab57Metadata.Ab05Width = 99
-	ab57Changed.Ab57Entries[0].Ab57Parameters[16].Ab57Metadata.Ab05Enum[0] = "ab57_changed"
+	*ab57Changed.Ab57Entries[0].Ab57Parameters[5].Ab57Metadata.SchemaWidth = 99
+	ab57Changed.Ab57Entries[0].Ab57Parameters[16].Ab57Metadata.SchemaEnum[0] = "ab57_changed"
 	*ab57Changed.Ab57Entries[1].Ab57OutputMask = 255
 	ab57Changed.Ab57Entries[3].Ab57ChecksumValues[3] = "flags"
 	if !ab57Reflect.DeepEqual(Ab57B506Candidates(), ab57Before) {
@@ -165,7 +165,7 @@ func TestAb57FreshCopies(ab57T *ab57Testing.T) {
 	}
 	ab57Lookup := ab57Entry(ab57T, ab57Key("production-test", ab57Byte(0x11), "parameter"))
 	*ab57Lookup.Ab57Key.Ab57Secondary = 0
-	ab57Lookup.Ab57Parameters[16].Ab57Metadata.Ab05Enum[1] = "ab57_changed"
+	ab57Lookup.Ab57Parameters[16].Ab57Metadata.SchemaEnum[1] = "ab57_changed"
 	if !ab57Reflect.DeepEqual(ab57Entry(ab57T, ab57Key("production-test", ab57Byte(0x11), "parameter")), ab57Before.Ab57Entries[0]) {
 		ab57T.Fatal("lookup shared storage")
 	}
@@ -173,11 +173,11 @@ func TestAb57FreshCopies(ab57T *ab57Testing.T) {
 
 func TestAb57ClaimBoundaries(ab57T *ab57Testing.T) {
 	ab57Catalog := Ab57B506Candidates()
-	if ab57Catalog.Ab57Presence != Ab05Proven || ab57Catalog.Ab57Qualification != Ab05Unknown || len(ab57Catalog.Ab57Limitations) != 6 {
+	if ab57Catalog.Ab57Presence != SchemaProven || ab57Catalog.Ab57Qualification != SchemaUnknown || len(ab57Catalog.Ab57Limitations) != 6 {
 		ab57T.Fatal("claim boundaries")
 	}
 	for _, ab57Value := range ab57Catalog.Ab57Entries {
-		if ab57Value.Ab57Grade != Ab05Hypothesis || ab57Value.Ab57Key.Ab57Direction != nil || ab57Value.Ab57ChecksumWidth != nil || ab57Value.Ab57Algorithm != Ab05Unknown || ab57Value.Ab57Completion != Ab05Unknown || ab57Value.Ab57ChecksumData != Ab05Unknown {
+		if ab57Value.Ab57Grade != SchemaHypothesis || ab57Value.Ab57Key.Ab57Direction != nil || ab57Value.Ab57ChecksumWidth != nil || ab57Value.Ab57Algorithm != SchemaUnknown || ab57Value.Ab57Completion != SchemaUnknown || ab57Value.Ab57ChecksumData != SchemaUnknown {
 			ab57T.Fatal("unknown properties promoted")
 		}
 	}

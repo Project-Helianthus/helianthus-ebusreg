@@ -22,7 +22,7 @@ func ab63Get(ab63T *ab63testing.T, ab63Operation *byte, ab63Name string) Ab63Ent
 
 func TestAb63FiniteCatalog(ab63T *ab63testing.T) {
 	ab63Catalog := Ab63B50FCandidates()
-	if ab63Catalog.Ab63Presence != Ab05Proven || ab63Catalog.Ab63Qualification != Ab05Unknown || ab63Catalog.Ab63Invocation != Ab05Unknown || len(ab63Catalog.Ab63Entries) != 21 {
+	if ab63Catalog.Ab63Presence != SchemaProven || ab63Catalog.Ab63Qualification != SchemaUnknown || ab63Catalog.Ab63Invocation != SchemaUnknown || len(ab63Catalog.Ab63Entries) != 21 {
 		ab63T.Fatal("finite catalog or grade separation")
 	}
 	ab63Expected := map[string]int{"demand": 1, "stack-voltage": 1, "feedback": 1, "temperature_1": 2, "temperature_1_error": 2, "temperature_2": 2, "temperature_2_error": 2, "temperature_3": 1, "temperature_3_error": 1, "integrity_1": 4, "integrity_2": 4}
@@ -31,21 +31,21 @@ func TestAb63FiniteCatalog(ab63T *ab63testing.T) {
 		if ab63Entry.Ab63Key.Ab63Family != "vaillant" || ab63Entry.Ab63Key.Ab63Variant != "B50F" || ab63Entry.Ab63Key.Ab63Primary != 0xB5 || ab63Entry.Ab63Key.Ab63Secondary == nil || *ab63Entry.Ab63Key.Ab63Secondary != 0x0F {
 			ab63T.Fatal("native key axes")
 		}
-		if ab63Entry.Ab63Field.Ab05Position == nil && ab63Entry.Ab63Coordinates != "Unknown" {
+		if ab63Entry.Ab63Field.SchemaPosition == nil && ab63Entry.Ab63Coordinates != "Unknown" {
 			ab63T.Fatal("unknown scalar coordinates")
 		}
-		if ab63Entry.Ab63Field.Ab05Width == nil {
+		if ab63Entry.Ab63Field.SchemaWidth == nil {
 			ab63T.Fatal("known carrier width lost")
 		}
 		if ab63Entry.Ab63Key.Ab63Field == "demand" || ab63Entry.Ab63Key.Ab63Field == "feedback" {
-			if *ab63Entry.Ab63Field.Ab05Width != 1 || ab63Entry.Ab63Field.Ab05Position != nil || ab63Entry.Ab63Field.Ab05Codec != "raw" {
+			if *ab63Entry.Ab63Field.SchemaWidth != 1 || ab63Entry.Ab63Field.SchemaPosition != nil || ab63Entry.Ab63Field.SchemaCodec != "raw" {
 				ab63T.Fatal("raw byte metadata")
 			}
 		}
-		if ab63Entry.Ab63Key.Ab63Field == "stack-voltage" && *ab63Entry.Ab63Field.Ab05Width != 2 {
+		if ab63Entry.Ab63Key.Ab63Field == "stack-voltage" && *ab63Entry.Ab63Field.SchemaWidth != 2 {
 			ab63T.Fatal("stack raw width")
 		}
-		if ab63Entry.Ab63Field.Ab05Grade != Ab05Hypothesis || ab63Entry.Ab63Field.Ab05Name != ab63Entry.Ab63Key.Ab63Field || ab63Entry.Ab63Key.Ab63Direction != nil || ab63Entry.Ab63Field.Ab05RawFallback != nil {
+		if ab63Entry.Ab63Field.SchemaGrade != SchemaHypothesis || ab63Entry.Ab63Field.SchemaName != ab63Entry.Ab63Key.Ab63Field || ab63Entry.Ab63Key.Ab63Direction != nil || ab63Entry.Ab63Field.SchemaRawFallback != nil {
 			ab63T.Fatal("grade, name, unknown direction or native fallback")
 		}
 		ab63Found, ab63OK := Ab63B50FLookup(ab63Entry.Ab63Key)
@@ -128,10 +128,10 @@ func TestAb63TemperatureAndConflict(ab63T *ab63testing.T) {
 			ab63Name := ab63fmt.Sprintf("temperature_%d", ab63Number)
 			ab63Entry := ab63Get(ab63T, ab63Byte(ab63Op), ab63Name)
 			ab63Error := ab63Get(ab63T, ab63Byte(ab63Op), ab63Name+"_error")
-			if ab63Entry.Ab63Field.Ab05Position != nil || ab63Entry.Ab63Field.Ab05Width == nil || *ab63Entry.Ab63Field.Ab05Width != 2 || ab63Entry.Ab63Field.Ab05Codec != "signed little-endian int16" || ab63Entry.Ab63Field.Ab05Unit != "degrees Celsius" || ab63Entry.Ab63Divisor == nil || *ab63Entry.Ab63Divisor != 16 {
+			if ab63Entry.Ab63Field.SchemaPosition != nil || ab63Entry.Ab63Field.SchemaWidth == nil || *ab63Entry.Ab63Field.SchemaWidth != 2 || ab63Entry.Ab63Field.SchemaCodec != "signed little-endian int16" || ab63Entry.Ab63Field.SchemaUnit != "degrees Celsius" || ab63Entry.Ab63Divisor == nil || *ab63Entry.Ab63Divisor != 16 {
 				ab63T.Fatal("temperature metadata")
 			}
-			if ab63Error.Ab63Field.Ab05Position != nil || ab63Error.Ab63Field.Ab05Width == nil || *ab63Error.Ab63Field.Ab05Width != 1 || ab63Error.Ab63Field.Ab05Codec != "raw" || ab63Error.Ab63Divisor != nil || ab63Error.Ab63Interpretation != "raw error byte immediately following "+ab63Name || !ab63reflect.DeepEqual(ab63Error.Ab63Exclusions, []string{"temperature conversion"}) {
+			if ab63Error.Ab63Field.SchemaPosition != nil || ab63Error.Ab63Field.SchemaWidth == nil || *ab63Error.Ab63Field.SchemaWidth != 1 || ab63Error.Ab63Field.SchemaCodec != "raw" || ab63Error.Ab63Divisor != nil || ab63Error.Ab63Interpretation != "raw error byte immediately following "+ab63Name || !ab63reflect.DeepEqual(ab63Error.Ab63Exclusions, []string{"temperature conversion"}) {
 				ab63T.Fatal("error byte independence")
 			}
 			for ab63Index, ab63Pair := range [][2]byte{{240, 255}, {0, 0}, {16, 0}} {
@@ -147,14 +147,14 @@ func TestAb63TemperatureAndConflict(ab63T *ab63testing.T) {
 	}
 	ab63Stack := ab63Get(ab63T, ab63Byte(1), "stack-voltage")
 	ab63Raw := [2]byte{16, 0}
-	if ab63Stack.Ab63Field.Ab05Codec != "raw" || ab63Stack.Ab63Field.Ab05Unit != "" || ab63Stack.Ab63Divisor != nil || ab63Stack.Ab63Field.Ab05Position != nil || !ab63reflect.DeepEqual(ab63Stack.Ab63Conflict, []string{"stack-voltage label", "temperature conversion metadata"}) || !ab63reflect.DeepEqual(ab63Stack.Ab63Exclusions, []string{"voltage scale", "selected temperature conversion"}) || ab63Raw != [2]byte{16, 0} {
+	if ab63Stack.Ab63Field.SchemaCodec != "raw" || ab63Stack.Ab63Field.SchemaUnit != "" || ab63Stack.Ab63Divisor != nil || ab63Stack.Ab63Field.SchemaPosition != nil || !ab63reflect.DeepEqual(ab63Stack.Ab63Conflict, []string{"stack-voltage label", "temperature conversion metadata"}) || !ab63reflect.DeepEqual(ab63Stack.Ab63Exclusions, []string{"voltage scale", "selected temperature conversion"}) || ab63Raw != [2]byte{16, 0} {
 		ab63T.Fatal("stack conversion conflict resolved or raw changed")
 	}
 }
 
 func TestAb63IntegrityAndFeedback(ab63T *ab63testing.T) {
 	ab63Feedback := ab63Get(ab63T, nil, "feedback")
-	if ab63Feedback.Ab63Interpretation != "acceptance feedback only" || !ab63reflect.DeepEqual(ab63Feedback.Ab63Exclusions, []string{"integrity validation", "physical effect"}) || len(ab63Feedback.Ab63Field.Ab05Enum) != 256 {
+	if ab63Feedback.Ab63Interpretation != "acceptance feedback only" || !ab63reflect.DeepEqual(ab63Feedback.Ab63Exclusions, []string{"integrity validation", "physical effect"}) || len(ab63Feedback.Ab63Field.SchemaEnum) != 256 {
 		ab63T.Fatal("feedback boundaries")
 	}
 	for ab63Value := 0; ab63Value < 256; ab63Value++ {
@@ -162,7 +162,7 @@ func TestAb63IntegrityAndFeedback(ab63T *ab63testing.T) {
 		if ab63Value == 1 {
 			ab63Want = "accepted"
 		}
-		if ab63Feedback.Ab63Field.Ab05Enum[int64(ab63Value)] != ab63Want {
+		if ab63Feedback.Ab63Field.SchemaEnum[int64(ab63Value)] != ab63Want {
 			ab63T.Fatal("feedback domain")
 		}
 	}
@@ -170,7 +170,7 @@ func TestAb63IntegrityAndFeedback(ab63T *ab63testing.T) {
 		ab63First := ab63Get(ab63T, ab63Byte(ab63Op), "integrity_1")
 		ab63Second := ab63Get(ab63T, ab63Byte(ab63Op), "integrity_2")
 		for ab63Index, ab63Entry := range []Ab63Entry{ab63First, ab63Second} {
-			if ab63Entry.Ab63Field.Ab05Position == nil || *ab63Entry.Ab63Field.Ab05Position != ab63Positions[ab63Index] || ab63Entry.Ab63Field.Ab05Width == nil || *ab63Entry.Ab63Field.Ab05Width != 1 || ab63Entry.Ab63Field.Ab05Codec != "raw" || ab63Entry.Ab63Interpretation != "independent raw integrity byte" || ab63Entry.Ab63Coordinates != "abstract logical byte position; not established wire offset" || !ab63reflect.DeepEqual(ab63Entry.Ab63Exclusions, []string{"word byte order: Unknown", "polynomial: Unknown", "initialization: Unknown", "reflection: Unknown", "final transform: Unknown"}) {
+			if ab63Entry.Ab63Field.SchemaPosition == nil || *ab63Entry.Ab63Field.SchemaPosition != ab63Positions[ab63Index] || ab63Entry.Ab63Field.SchemaWidth == nil || *ab63Entry.Ab63Field.SchemaWidth != 1 || ab63Entry.Ab63Field.SchemaCodec != "raw" || ab63Entry.Ab63Interpretation != "independent raw integrity byte" || ab63Entry.Ab63Coordinates != "abstract logical byte position; not established wire offset" || !ab63reflect.DeepEqual(ab63Entry.Ab63Exclusions, []string{"word byte order: Unknown", "polynomial: Unknown", "initialization: Unknown", "reflection: Unknown", "final transform: Unknown"}) {
 				ab63T.Fatal("integrity interpretation")
 			}
 		}
@@ -179,11 +179,11 @@ func TestAb63IntegrityAndFeedback(ab63T *ab63testing.T) {
 				var ab63Raw [14]byte
 				ab63Raw[ab63Positions[0]] = ab63Left
 				ab63Raw[ab63Positions[1]] = ab63Right
-				if [2]byte{ab63Raw[*ab63First.Ab63Field.Ab05Position], ab63Raw[*ab63Second.Ab63Field.Ab05Position]} != [2]byte{ab63Left, ab63Right} {
+				if [2]byte{ab63Raw[*ab63First.Ab63Field.SchemaPosition], ab63Raw[*ab63Second.Ab63Field.SchemaPosition]} != [2]byte{ab63Left, ab63Right} {
 					ab63T.Fatal("ordered independent bytes")
 				}
 				for ab63Index, ab63Value := range []int64{0, 1, 2, 255} {
-					if ab63Feedback.Ab63Field.Ab05Enum[ab63Value] != []string{"rejected", "accepted", "rejected", "rejected"}[ab63Index] {
+					if ab63Feedback.Ab63Field.SchemaEnum[ab63Value] != []string{"rejected", "accepted", "rejected", "rejected"}[ab63Index] {
 						ab63T.Fatal("feedback coupled to integrity")
 					}
 				}
@@ -204,11 +204,11 @@ func TestAb63DeepCopy(ab63T *ab63testing.T) {
 		if ab63Entry.Ab63Key.Ab63Operation != nil {
 			*ab63Entry.Ab63Key.Ab63Operation = 255
 		}
-		if ab63Entry.Ab63Field.Ab05Position != nil {
-			*ab63Entry.Ab63Field.Ab05Position = 99
+		if ab63Entry.Ab63Field.SchemaPosition != nil {
+			*ab63Entry.Ab63Field.SchemaPosition = 99
 		}
-		if ab63Entry.Ab63Field.Ab05Width != nil {
-			*ab63Entry.Ab63Field.Ab05Width = 99
+		if ab63Entry.Ab63Field.SchemaWidth != nil {
+			*ab63Entry.Ab63Field.SchemaWidth = 99
 		}
 		if ab63Entry.Ab63Divisor != nil {
 			*ab63Entry.Ab63Divisor = 99
@@ -219,8 +219,8 @@ func TestAb63DeepCopy(ab63T *ab63testing.T) {
 		for ab63Name := range ab63Entry.Ab63Masks {
 			ab63Entry.Ab63Masks[ab63Name] = 0
 		}
-		for ab63Value := range ab63Entry.Ab63Field.Ab05Enum {
-			ab63Entry.Ab63Field.Ab05Enum[ab63Value] = "ab63_mutated"
+		for ab63Value := range ab63Entry.Ab63Field.SchemaEnum {
+			ab63Entry.Ab63Field.SchemaEnum[ab63Value] = "ab63_mutated"
 		}
 		if len(ab63Entry.Ab63Conflict) > 0 {
 			ab63Entry.Ab63Conflict[0] = "ab63_mutated"
@@ -234,7 +234,7 @@ func TestAb63DeepCopy(ab63T *ab63testing.T) {
 	}
 	for _, ab63Entry := range ab63Before.Ab63Entries {
 		ab63Returned := ab63Get(ab63T, ab63Entry.Ab63Key.Ab63Operation, ab63Entry.Ab63Key.Ab63Field)
-		*ab63Returned.Ab63Field.Ab05Width = 99
+		*ab63Returned.Ab63Field.SchemaWidth = 99
 		if ab63Again, ab63OK := Ab63B50FLookup(ab63Entry.Ab63Key); !ab63OK || !ab63reflect.DeepEqual(ab63Again, ab63Entry) {
 			ab63T.Fatal("lookup aliases state")
 		}

@@ -34,15 +34,15 @@ type Ab59Entry struct {
 	Ab59Mappings      map[string]string `json:"mappings"`
 	Ab59OtherFeedback *string           `json:"other_feedback"`
 	Ab59State         string            `json:"state"`
-	Ab59Grade         Ab05Grade         `json:"grade"`
+	Ab59Grade         SchemaGrade       `json:"grade"`
 	Ab59Notes         []string          `json:"notes"`
 }
 
 type Ab59Catalog struct {
-	Ab59MetadataPresence Ab05Grade   `json:"metadata_presence"`
-	Ab59WireAdaptation   Ab05Grade   `json:"wire_adaptation"`
-	Ab59InstalledSupport Ab05Grade   `json:"installed_support"`
-	Ab59Invocation       Ab05Grade   `json:"invocation"`
+	Ab59MetadataPresence SchemaGrade `json:"metadata_presence"`
+	Ab59WireAdaptation   SchemaGrade `json:"wire_adaptation"`
+	Ab59InstalledSupport SchemaGrade `json:"installed_support"`
+	Ab59Invocation       SchemaGrade `json:"invocation"`
 	Ab59Limitations      []string    `json:"limitations"`
 	Ab59Entries          []Ab59Entry `json:"entries"`
 }

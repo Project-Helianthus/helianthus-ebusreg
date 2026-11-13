@@ -24,11 +24,11 @@ type Ab90MirrorKey struct {
 }
 
 type Ab90MirrorBit struct {
-	Ab90Index   int       `json:"index"`
-	Ab90Name    *string   `json:"name"`
-	Ab90Role    string    `json:"role"`
-	Ab90Default *bool     `json:"default"`
-	Ab90Grade   Ab05Grade `json:"grade"`
+	Ab90Index   int         `json:"index"`
+	Ab90Name    *string     `json:"name"`
+	Ab90Role    string      `json:"role"`
+	Ab90Default *bool       `json:"default"`
+	Ab90Grade   SchemaGrade `json:"grade"`
 }
 
 type Ab90MirrorAlternative struct {
@@ -37,7 +37,7 @@ type Ab90MirrorAlternative struct {
 	Ab90Condition   string           `json:"condition"`
 	Ab90Enumeration map[int64]string `json:"enumeration"`
 	Ab90Bits        []Ab90MirrorBit  `json:"bits"`
-	Ab90Grade       Ab05Grade        `json:"grade"`
+	Ab90Grade       SchemaGrade      `json:"grade"`
 }
 
 type Ab90MirrorField struct {
@@ -59,18 +59,18 @@ type Ab90MirrorField struct {
 	Ab90Alternatives    []Ab90MirrorAlternative `json:"alternatives"`
 	Ab90Replacement     *string                 `json:"replacement"`
 	Ab90Reserved        []int                   `json:"reserved"`
-	Ab90Grade           Ab05Grade               `json:"grade"`
+	Ab90Grade           SchemaGrade             `json:"grade"`
 	Ab90RawFallback     string                  `json:"raw_fallback"`
 	Ab90Correlation     string                  `json:"correlation"`
 	Ab90Unmapped        string                  `json:"unmapped"`
 }
 
 type Ab90MirrorMetadata struct {
-	Ab90RepresentationGrade Ab05Grade         `json:"representation_grade"`
-	Ab90SemanticsGrade      Ab05Grade         `json:"semantics_grade"`
-	Ab90PhysicalAdaptation  Ab05Grade         `json:"physical_adaptation"`
-	Ab90StorageDurability   Ab05Grade         `json:"storage_durability"`
-	Ab90SuccessSemantics    Ab05Grade         `json:"success_semantics"`
+	Ab90RepresentationGrade SchemaGrade       `json:"representation_grade"`
+	Ab90SemanticsGrade      SchemaGrade       `json:"semantics_grade"`
+	Ab90PhysicalAdaptation  SchemaGrade       `json:"physical_adaptation"`
+	Ab90StorageDurability   SchemaGrade       `json:"storage_durability"`
+	Ab90SuccessSemantics    SchemaGrade       `json:"success_semantics"`
 	Ab90Complete            bool              `json:"complete"`
 	Ab90NativeContract      string            `json:"native_contract"`
 	Ab90Limitations         []string          `json:"limitations"`

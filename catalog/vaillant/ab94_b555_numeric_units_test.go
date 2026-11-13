@@ -16,8 +16,8 @@ func ab94ExpectedField(ab94Name string, ab94Width int, ab94Order, ab94Conversion
 		Ab94Conversion: ab94Conversion, Ab94RawMin: ab94Pointer(uint64(0)), Ab94RawMax: ab94Pointer(ab94RawMax),
 		Ab94NumericMin: ab94Pointer(float64(0)), Ab94NumericMax: ab94Pointer(ab94NumericMax),
 		Ab94Enumeration: map[uint64]string{}, Ab94Replacement: []Ab94Replacement{}, Ab94Reserved: []uint64{},
-		Ab94Grade: Ab05Hypothesis, Ab94ConversionGrade: Ab05Hypothesis, Ab94UnitGrade: Ab05Unknown,
-		Ab94RawFallback: "preserve original bytes; no implicit sentinel selection", Ab94Enforcement: Ab05Unknown, Ab94PeerEffects: Ab05Unknown,
+		Ab94Grade: SchemaHypothesis, Ab94ConversionGrade: SchemaHypothesis, Ab94UnitGrade: SchemaUnknown,
+		Ab94RawFallback: "preserve original bytes; no implicit sentinel selection", Ab94Enforcement: SchemaUnknown, Ab94PeerEffects: SchemaUnknown,
 	}
 }
 
@@ -26,7 +26,7 @@ func ab94Expected() []Ab94NumericField {
 	ab94Numeric.Ab94Divisor = ab94Pointer(float64(10))
 	ab94Context := ab94Numeric
 	ab94Context.Ab94Key.Ab94Variant = "synthetic-contextual-replacement"
-	ab94Context.Ab94Replacement = []Ab94Replacement{{Ab94Raw: 65535, Ab94Role: "contextual replacement", Ab94Context: "synthetic-only qualified condition", Ab94Grade: Ab05Hypothesis}}
+	ab94Context.Ab94Replacement = []Ab94Replacement{{Ab94Raw: 65535, Ab94Role: "contextual replacement", Ab94Context: "synthetic-only qualified condition", Ab94Grade: SchemaHypothesis}}
 	ab94Min := ab94ExpectedField("minimum_setpoint", 8, "not_applicable", "identity", 255, 255)
 	ab94Min.Ab94Key.Ab94Secondary = ab94Pointer(uint8(0xA3))
 	ab94Max := ab94Min
@@ -34,8 +34,8 @@ func ab94Expected() []Ab94NumericField {
 	ab94Celsius := ab94Min
 	ab94Celsius.Ab94Key.Ab94Variant = "synthetic-qualified-celsius"
 	ab94Celsius.Ab94Unit = ab94Pointer("degrees C")
-	ab94Celsius.Ab94UnitGrade = Ab05Hypothesis
-	ab94Celsius.Ab94Replacement = []Ab94Replacement{{Ab94Raw: 255, Ab94Role: "unavailable", Ab94Context: "synthetic-only qualified condition", Ab94Grade: Ab05Hypothesis}}
+	ab94Celsius.Ab94UnitGrade = SchemaHypothesis
+	ab94Celsius.Ab94Replacement = []Ab94Replacement{{Ab94Raw: 255, Ab94Role: "unavailable", Ab94Context: "synthetic-only qualified condition", Ab94Grade: SchemaHypothesis}}
 	ab94Unit := ab94ExpectedField("raw_numeric", 0, "Unknown", "Unknown", 0, 0)
 	ab94Unit.Ab94Key.Ab94Variant = "unqualified-unit-2"
 	ab94Unit.Ab94WidthBits = nil
@@ -45,8 +45,8 @@ func ab94Expected() []Ab94NumericField {
 	ab94Unit.Ab94RawMax = nil
 	ab94Unit.Ab94NumericMin = nil
 	ab94Unit.Ab94NumericMax = nil
-	ab94Unit.Ab94Grade = Ab05Unknown
-	ab94Unit.Ab94ConversionGrade = Ab05Unknown
+	ab94Unit.Ab94Grade = SchemaUnknown
+	ab94Unit.Ab94ConversionGrade = SchemaUnknown
 	return []Ab94NumericField{ab94Numeric, ab94Context, ab94Min, ab94Max, ab94Celsius, ab94Unit}
 }
 
@@ -56,8 +56,8 @@ func TestAb94ProductionMetadata(ab94T *testing.T) {
 		ab94T.Fatal(ab94Error)
 	}
 	ab94Want := Ab94NumericMetadata{
-		Ab94RepresentationGrade: Ab05Proven, Ab94PhysicalQualification: Ab05Unknown, Ab94NativeSupport: Ab05Unknown,
-		Ab94Freshness: Ab05Unknown, Ab94Persistence: Ab05Unknown, Ab94Execution: Ab05Unknown,
+		Ab94RepresentationGrade: SchemaProven, Ab94PhysicalQualification: SchemaUnknown, Ab94NativeSupport: SchemaUnknown,
+		Ab94Freshness: SchemaUnknown, Ab94Persistence: SchemaUnknown, Ab94Execution: SchemaUnknown,
 		Ab94SourceContract: "AI23 supplied functional facts; supplemental declarations only",
 		Ab94Limitations:    []string{"Logical positions are unknown; no physical layout is asserted.", "Synthetic contextual variants are examples, not identified device variants.", "No invocation, transport, group/day mapping, persistence or admission is enabled.", "Unit-code 2 has raw numeric material but no qualified semantic conversion."},
 		Ab94Entries:        ab94Expected(),
@@ -141,7 +141,7 @@ func TestAb94SyntheticNumbersAndContexts(ab94T *testing.T) {
 	if _, ab94OK := ab94Evaluate(ab94Rows[5], ab94Raw); ab94OK {
 		ab94T.Fatal("ab94 unit 2 inherited conversion")
 	}
-	if !reflect.DeepEqual(ab94Raw, ab94Before) || ab94Rows[5].Ab94Unit != nil || ab94Rows[5].Ab94ConversionGrade != Ab05Unknown || *ab94Rows[5].Ab94UnitCode != 2 {
+	if !reflect.DeepEqual(ab94Raw, ab94Before) || ab94Rows[5].Ab94Unit != nil || ab94Rows[5].Ab94ConversionGrade != SchemaUnknown || *ab94Rows[5].Ab94UnitCode != 2 {
 		ab94T.Fatal("ab94 unit 2 raw/unknown lost")
 	}
 }

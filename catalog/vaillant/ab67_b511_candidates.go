@@ -23,7 +23,7 @@ type Ab67B511Entry struct {
 	Ab67Position         *int             `json:"position"`
 	Ab67WidthBits        *int             `json:"width_bits"`
 	Ab67Extent           *int             `json:"extent"`
-	Ab67Grade            Ab05Grade        `json:"grade"`
+	Ab67Grade            SchemaGrade      `json:"grade"`
 	Ab67Default          *int             `json:"default"`
 	Ab67Values           map[uint8]string `json:"values"`
 	Ab67Bits             map[uint8]string `json:"bits"`
@@ -32,15 +32,15 @@ type Ab67B511Entry struct {
 	Ab67RawDomain        []int            `json:"raw_domain"`
 	Ab67Scale            *float64         `json:"scale"`
 	Ab67Unit             *string          `json:"unit"`
-	Ab67ClockValidation  Ab05Grade        `json:"clock_validation"`
-	Ab67PhysicalPrefix   Ab05Grade        `json:"physical_prefix"`
-	Ab67InstalledSupport Ab05Grade        `json:"installed_support"`
+	Ab67ClockValidation  SchemaGrade      `json:"clock_validation"`
+	Ab67PhysicalPrefix   SchemaGrade      `json:"physical_prefix"`
+	Ab67InstalledSupport SchemaGrade      `json:"installed_support"`
 	Ab67RawPolicy        string           `json:"raw_policy"`
 }
 
 type Ab67B511Declarations struct {
-	Ab67MetadataPresence      Ab05Grade       `json:"metadata_presence"`
-	Ab67PhysicalQualification Ab05Grade       `json:"physical_qualification"`
+	Ab67MetadataPresence      SchemaGrade     `json:"metadata_presence"`
+	Ab67PhysicalQualification SchemaGrade     `json:"physical_qualification"`
 	Ab67NativeContract        string          `json:"native_contract"`
 	Ab67Limitations           []string        `json:"limitations"`
 	Ab67Entries               []Ab67B511Entry `json:"entries"`

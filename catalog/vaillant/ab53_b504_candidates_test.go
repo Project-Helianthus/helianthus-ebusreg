@@ -82,7 +82,7 @@ func TestAb53TemperatureAlternatives(ab53T *ab53Testing.T) {
 		})
 	}
 	ab53Tail := ab53Get(ab53T, ab53Key("unused-tail", ab53Byte(0x16), "unused_tail"))
-	if ab53Tail.Ab53Position != nil || ab53Tail.Ab53Width != nil || ab53Tail.Ab53Grade != Ab05Unknown {
+	if ab53Tail.Ab53Position != nil || ab53Tail.Ab53Width != nil || ab53Tail.Ab53Grade != SchemaUnknown {
 		ab53T.Fatal("tail acquired an extent or semantics")
 	}
 }
@@ -169,7 +169,7 @@ func TestAb53SolarDomains(ab53T *ab53Testing.T) {
 		ab53T.Fatal("code 2 admitted into two-value table")
 	}
 	ab53Bits := ab53Get(ab53T, ab53Key("solar-bits", nil, "solar_state"))
-	if ab53Bits.Ab53Domain != nil || ab53Bits.Ab53Grade != Ab05Unknown {
+	if ab53Bits.Ab53Domain != nil || ab53Bits.Ab53Grade != SchemaUnknown {
 		ab53T.Fatal("bit descriptions promoted to scalar domain")
 	}
 }
@@ -197,16 +197,16 @@ func TestAb53CatalogBoundariesAndCopies(ab53T *ab53Testing.T) {
 	if ab53Error != nil {
 		ab53T.Fatal(ab53Error)
 	}
-	if len(ab53Before.Ab53Entries) != 12 || ab53Before.Ab53MetadataPresence != Ab05Proven || ab53Before.Ab53PhysicalAdaptation != Ab05Unknown || ab53Before.Ab53InstalledSupport != Ab05Unknown || ab53Before.Ab53PollingPermission != Ab05Unknown || ab53Before.Ab53RoutableInvocation != Ab05Unknown {
+	if len(ab53Before.Ab53Entries) != 12 || ab53Before.Ab53MetadataPresence != SchemaProven || ab53Before.Ab53PhysicalAdaptation != SchemaUnknown || ab53Before.Ab53InstalledSupport != SchemaUnknown || ab53Before.Ab53PollingPermission != SchemaUnknown || ab53Before.Ab53RoutableInvocation != SchemaUnknown {
 		ab53T.Fatal("catalog boundary changed")
 	}
 	for ab53Index, ab53Entry := range ab53Before.Ab53Entries {
 		if ab53Entry.Ab53Position != nil {
 			ab53T.Fatal("unprovided coordinate invented")
 		}
-		ab53ExpectedGrade := Ab05Hypothesis
+		ab53ExpectedGrade := SchemaHypothesis
 		if ab53Entry.Ab53Key.Ab53Variant == "unused-tail" || ab53Entry.Ab53Key.Ab53Variant == "solar-bits" {
-			ab53ExpectedGrade = Ab05Unknown
+			ab53ExpectedGrade = SchemaUnknown
 		}
 		if ab53Entry.Ab53Grade != ab53ExpectedGrade {
 			ab53T.Fatal("semantic grade promoted")

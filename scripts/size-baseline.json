@@ -2,136 +2,136 @@
   "version": 1,
   "debt": [
     {
-      "path": "catalog/vaillant/ab01ap01_b531_capability_state.go",
-      "symbol": "Ab01Ap01Evaluate",
-      "metric": "function_lines",
-      "value": 156
-    },
-    {
-      "path": "catalog/vaillant/ab01aq01_b504_candidate_fields.go",
-      "symbol": "Ab01Aq01Evaluate",
-      "metric": "function_lines",
-      "value": 182
-    },
-    {
-      "path": "catalog/vaillant/ab03ap03_b531_ordinary_limit.go",
-      "symbol": "Ab03Ap03Evaluate",
-      "metric": "function_lines",
-      "value": 165
-    },
-    {
-      "path": "catalog/vaillant/ab03aq03_b505_override_fields.go",
-      "symbol": "Ab03Aq03Evaluate",
-      "metric": "function_lines",
-      "value": 152
-    },
-    {
-      "path": "catalog/vaillant/ab05ap05_b516_cycle_reducer.go",
-      "symbol": "Ab05Ap05Evaluate",
-      "metric": "function_lines",
-      "value": 179
-    },
-    {
-      "path": "catalog/vaillant/ab05aq05_b505_conditional_roles.go",
-      "symbol": "Ab05Aq05Evaluate",
-      "metric": "function_lines",
-      "value": 214
-    },
-    {
-      "path": "catalog/vaillant/ab07ao07_b50e_row_spans.go",
-      "symbol": "Ab07Ao07Interpret",
-      "metric": "function_lines",
-      "value": 159
-    },
-    {
-      "path": "catalog/vaillant/ab07ap07_b555_weekly_refresh.go",
-      "symbol": "Ab07Ap07Evaluate",
-      "metric": "function_lines",
-      "value": 199
-    },
-    {
-      "path": "catalog/vaillant/ab07aq07_b503_control_fields.go",
-      "symbol": "Ab07Aq07Evaluate",
-      "metric": "function_lines",
-      "value": 163
-    },
-    {
-      "path": "catalog/vaillant/ab09ao09_b50f_field_views.go",
-      "symbol": "Ab09Ao09Interpret",
-      "metric": "function_lines",
-      "value": 171
-    },
-    {
-      "path": "catalog/vaillant/ab09aq09_b515_period_fields.go",
-      "symbol": "Ab09Aq09Evaluate",
-      "metric": "function_lines",
-      "value": 166
-    },
-    {
-      "path": "catalog/vaillant/ab11ap11_b512_fan_fields.go",
-      "symbol": "Ab11Ap11Evaluate",
-      "metric": "function_lines",
-      "value": 166
-    },
-    {
-      "path": "catalog/vaillant/ab13ap13_b512_heatpump_io.go",
-      "symbol": "Ab13Ap13Evaluate",
-      "metric": "function_lines",
-      "value": 184
-    },
-    {
-      "path": "catalog/vaillant/ab19ao19_b514_menu_views.go",
-      "symbol": "Ab19Ao19Interpret",
-      "metric": "function_lines",
-      "value": 157
-    },
-    {
-      "path": "catalog/vaillant/ab19aq19_b51a_handshake_fields.go",
-      "symbol": "Ab19Aq19Evaluate",
-      "metric": "function_lines",
-      "value": 156
-    },
-    {
-      "path": "catalog/vaillant/ab21ap21_b523_actuator_fields.go",
-      "symbol": "Ab21Ap21Evaluate",
-      "metric": "function_lines",
-      "value": 216
-    },
-    {
-      "path": "catalog/vaillant/ab21aq21_b51a_diagnostic_fields.go",
-      "symbol": "Ab21Aq21Evaluate",
-      "metric": "function_lines",
-      "value": 175
-    },
-    {
-      "path": "catalog/vaillant/ab23ao23_b520_actuator_views.go",
-      "symbol": "Ab23Ao23Interpret",
-      "metric": "function_lines",
-      "value": 156
-    },
-    {
-      "path": "catalog/vaillant/ab23aq23_b512_valve_pump_fields.go",
-      "symbol": "Ab23Aq23Evaluate",
-      "metric": "function_lines",
-      "value": 209
-    },
-    {
-      "path": "catalog/vaillant/ab25aq25_b512_power_stepper_fields.go",
-      "symbol": "Ab25Aq25Evaluate",
-      "metric": "function_lines",
-      "value": 153
-    },
-    {
-      "path": "catalog/vaillant/ab27ao27_b523_sensor_views.go",
-      "symbol": "Ab27Ao27Interpret",
-      "metric": "function_lines",
-      "value": 160
-    },
-    {
       "path": "catalog/vaillant/ab38_b513_symbolic_dictionary_test.go",
       "symbol": "<file>",
       "metric": "file_lines",
       "value": 1630
+    },
+    {
+      "path": "catalog/vaillant/b503_control_fields.go",
+      "symbol": "B503ControlFieldEvaluate",
+      "metric": "function_lines",
+      "value": 163
+    },
+    {
+      "path": "catalog/vaillant/b504_candidate_fields.go",
+      "symbol": "B504CandidateFieldEvaluate",
+      "metric": "function_lines",
+      "value": 182
+    },
+    {
+      "path": "catalog/vaillant/b505_conditional_roles.go",
+      "symbol": "B505ConditionalRoleEvaluate",
+      "metric": "function_lines",
+      "value": 214
+    },
+    {
+      "path": "catalog/vaillant/b505_override_fields.go",
+      "symbol": "B505OverrideFieldEvaluate",
+      "metric": "function_lines",
+      "value": 152
+    },
+    {
+      "path": "catalog/vaillant/b50e_row_spans.go",
+      "symbol": "B50ERowSpanInterpret",
+      "metric": "function_lines",
+      "value": 159
+    },
+    {
+      "path": "catalog/vaillant/b50f_field_views.go",
+      "symbol": "B50FFieldViewInterpret",
+      "metric": "function_lines",
+      "value": 171
+    },
+    {
+      "path": "catalog/vaillant/b512_fan_fields.go",
+      "symbol": "B512FanFieldEvaluate",
+      "metric": "function_lines",
+      "value": 166
+    },
+    {
+      "path": "catalog/vaillant/b512_heatpump_io_evaluator.go",
+      "symbol": "B512HeatpumpIOEvaluate",
+      "metric": "function_lines",
+      "value": 184
+    },
+    {
+      "path": "catalog/vaillant/b512_power_stepper_fields.go",
+      "symbol": "B512PowerStepperFieldEvaluate",
+      "metric": "function_lines",
+      "value": 153
+    },
+    {
+      "path": "catalog/vaillant/b512_valve_pump_fields.go",
+      "symbol": "B512ValvePumpFieldEvaluate",
+      "metric": "function_lines",
+      "value": 209
+    },
+    {
+      "path": "catalog/vaillant/b514_menu_views.go",
+      "symbol": "B514MenuViewInterpret",
+      "metric": "function_lines",
+      "value": 157
+    },
+    {
+      "path": "catalog/vaillant/b515_period_fields.go",
+      "symbol": "B515PeriodFieldEvaluate",
+      "metric": "function_lines",
+      "value": 166
+    },
+    {
+      "path": "catalog/vaillant/b516_cycle_reducer.go",
+      "symbol": "B516CycleReducerEvaluate",
+      "metric": "function_lines",
+      "value": 179
+    },
+    {
+      "path": "catalog/vaillant/b51a_diagnostic_fields.go",
+      "symbol": "B51ADiagnosticFieldEvaluate",
+      "metric": "function_lines",
+      "value": 175
+    },
+    {
+      "path": "catalog/vaillant/b51a_handshake_fields.go",
+      "symbol": "B51AHandshakeFieldEvaluate",
+      "metric": "function_lines",
+      "value": 156
+    },
+    {
+      "path": "catalog/vaillant/b520_actuator_views.go",
+      "symbol": "B520ActuatorViewInterpret",
+      "metric": "function_lines",
+      "value": 156
+    },
+    {
+      "path": "catalog/vaillant/b523_actuator_fields.go",
+      "symbol": "B523ActuatorFieldEvaluate",
+      "metric": "function_lines",
+      "value": 216
+    },
+    {
+      "path": "catalog/vaillant/b523_sensor_views.go",
+      "symbol": "B523SensorViewInterpret",
+      "metric": "function_lines",
+      "value": 160
+    },
+    {
+      "path": "catalog/vaillant/b531_capability_state.go",
+      "symbol": "B531CapabilityStateEvaluate",
+      "metric": "function_lines",
+      "value": 156
+    },
+    {
+      "path": "catalog/vaillant/b531_ordinary_limit.go",
+      "symbol": "B531OrdinaryLimitEvaluate",
+      "metric": "function_lines",
+      "value": 165
+    },
+    {
+      "path": "catalog/vaillant/b555_weekly_refresh.go",
+      "symbol": "B555WeeklyRefreshEvaluate",
+      "metric": "function_lines",
+      "value": 199
     },
     {
       "path": "registry/scan.go",

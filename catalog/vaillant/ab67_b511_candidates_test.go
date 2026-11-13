@@ -133,7 +133,7 @@ func TestAb67SpecialFunctions(ab67T *ab67testing.T) {
 		}
 		for _, ab67Field := range []string{"quick_veto_hour", "quick_veto_minute", "event_end_hour", "event_end_minute"} {
 			ab67Clock := ab67Entry(ab67T, ab67Variant, ab67Byte(15), "request", ab67Field)
-			if !ab67reflect.DeepEqual(ab67Clock.Ab67RawDomain, []int{0, 255}) || ab67Clock.Ab67ClockValidation != Ab05Unknown || ab67Clock.Ab67Scale != nil || ab67Clock.Ab67Unit != nil {
+			if !ab67reflect.DeepEqual(ab67Clock.Ab67RawDomain, []int{0, 255}) || ab67Clock.Ab67ClockValidation != SchemaUnknown || ab67Clock.Ab67Scale != nil || ab67Clock.Ab67Unit != nil {
 				ab67T.Fatal("raw 255 promoted to clock")
 			}
 		}
@@ -174,11 +174,11 @@ func TestAb67PartialAndAdmission(ab67T *ab67testing.T) {
 	if ab67Error != nil {
 		ab67T.Fatal(ab67Error)
 	}
-	if len(ab67Catalog.Ab67Entries) != 47 || ab67Catalog.Ab67MetadataPresence != Ab05Proven || ab67Catalog.Ab67PhysicalQualification != Ab05Unknown {
+	if len(ab67Catalog.Ab67Entries) != 47 || ab67Catalog.Ab67MetadataPresence != SchemaProven || ab67Catalog.Ab67PhysicalQualification != SchemaUnknown {
 		ab67T.Fatalf("finite catalog or grade changed: %d", len(ab67Catalog.Ab67Entries))
 	}
 	for ab67Index, ab67Row := range ab67Catalog.Ab67Entries {
-		if ab67Row.Ab67Grade != Ab05Hypothesis || ab67Row.Ab67InstalledSupport != Ab05Unknown || ab67Row.Ab67PhysicalPrefix != Ab05Unknown || ab67Row.Ab67Default != nil || ab67Row.Ab67RawPolicy != "preserve original carrier" || ab67Row.Ab67Key.Ab67Secondary != nil {
+		if ab67Row.Ab67Grade != SchemaHypothesis || ab67Row.Ab67InstalledSupport != SchemaUnknown || ab67Row.Ab67PhysicalPrefix != SchemaUnknown || ab67Row.Ab67Default != nil || ab67Row.Ab67RawPolicy != "preserve original carrier" || ab67Row.Ab67Key.Ab67Secondary != nil {
 			ab67T.Fatal("claim/default/raw boundary changed")
 		}
 		if ab67Row.Ab67Key.Ab67Variant != "10" && ab67Row.Ab67Key.Ab67Variant != "11" && ab67Row.Ab67Key.Ab67Primary != nil {

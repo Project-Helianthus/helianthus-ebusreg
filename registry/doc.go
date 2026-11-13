@@ -18,9 +18,12 @@
 // explicit alias. Partial or model-only evidence never creates
 // cross-address identity, and a contradictory observation does not
 // overwrite an identity that is already published. A static seed enters a
-// face as a candidate and a passive observation as corroborated; only
-// qualified active registration confirms a face's identity, and that confirmation
-// spreads to other faces only along explicit source-target or companion
+// face as a candidate and a passive observation as corroborated; active
+// registration confirms a face's identity when the identity is qualified,
+// and a valid directed 07 04 response during Scan also confirms the
+// responding face even when the optional serial read returns nothing, so a
+// scan-created entry can be confirmed without a qualified triple. That
+// confirmation spreads to other faces only along explicit source-target or companion
 // topology, never through shared identity membership alone. A partial
 // observation for a known address keeps the last-known-good values of the
 // fields it omits instead of replacing the entry.

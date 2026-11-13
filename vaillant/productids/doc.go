@@ -16,7 +16,8 @@
 //
 // Static seeds. The seed table is returned only when explicitly enabled.
 // Its entries name the addresses a known device family is expected to
-// occupy, each with candidate confidence; registering them lets the
-// registry join those faces before traffic is seen, but a seed never
-// confirms identity on its own.
+// occupy, each with candidate confidence. The records carry only manufacturer
+// and device ID, so registering each address does not join faces of one
+// physical device; the caller must alias the addresses explicitly. A seed
+// never confirms identity on its own.
 package productids

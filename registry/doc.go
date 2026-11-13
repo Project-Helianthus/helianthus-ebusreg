@@ -19,8 +19,9 @@
 // cross-address identity, and a conflicting candidate from another address
 // does not overwrite an identity that is already published. Re-registering
 // the same address with a different complete qualified identity is a
-// correction: the address leaves its old entry and publishes the new
-// identity. A static seed enters a
+// correction: when the serial number or MAC conflicts with the old entry the
+// address leaves it and publishes the new identity, otherwise the correction
+// is applied to the same entry in place. A static seed enters a
 // face as a candidate and a passive observation as corroborated; active
 // registration confirms a face's identity when the identity is qualified,
 // and a valid directed 07 04 response during Scan also confirms the

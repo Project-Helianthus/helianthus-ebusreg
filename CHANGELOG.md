@@ -2,6 +2,159 @@
 
 ## Unreleased
 
+- Remove work-item codes from the `vaillant/system` and `vaillant/b555`
+  file names and Go identifiers; after this change no Go production file
+  name and no exported identifier starts with a work-item code. Each
+  production file and its test twin is renamed; testdata fixtures and
+  test-only files whose name carries a code keep their names:
+  - `vaillant/system/ab01an01_b524_calendar_views.go` -> `b524_calendar_views.go`
+  - `vaillant/system/ab03_discovery_catalog.go` -> `discovery_catalog.go`
+  - `vaillant/system/ab03an03_b524_codebook_views.go` -> `b524_codebook_views.go`
+  - `vaillant/system/ab07an07_b509_constraint_word_views.go` -> `b509_constraint_word_views.go`
+  - `vaillant/system/ab08_timer_plan.go` -> `timer_plan.go`
+  - `vaillant/system/ab09an09_b509_quantity_views.go` -> `b509_quantity_views.go`
+  - `vaillant/system/ab11_value_codec.go` -> `value_codec.go`
+  - `vaillant/system/ab22_status.go` -> `status.go`
+  - `vaillant/system/ab23_event_decode.go` -> `event_decode.go`
+  - `vaillant/system/ab24_event_plan.go` -> `event_plan.go`
+  - `vaillant/system/ab25_description_index.go` -> `description_index.go`
+  - `vaillant/system/ab42_b524_system_information.go` -> `b524_system_information.go`
+  - `vaillant/system/ab44_b524_description_spans.go` -> `b524_description_spans.go`
+  - `vaillant/system/ab58_b524_system_scalars.go` -> `b524_system_scalars.go`
+  - `vaillant/system/ab60_b524_dhw_ventilation_scalars.go` -> `b524_dhw_ventilation_scalars.go`
+  - `vaillant/system/ab62_b524_circuit_scalars.go` -> `b524_circuit_scalars.go`
+  - `vaillant/system/ab64_b524_zone_scalars.go` -> `b524_zone_scalars.go`
+  - `vaillant/system/ab66_b524_unscoped_hints.go` -> `b524_unscoped_hints.go`
+  - `vaillant/b555/ab21an21_b555_numeric_narrowing.go` -> `b555_numeric_narrowing.go`
+  - `vaillant/b555/ab52_b555_extent_views.go` -> `b555_extent_views.go`
+  In `vaillant/system`, identifiers that start with a code (530 exported,
+  643 unexported) take the stem of their destination file;
+  `Ab<code>X` becomes `<Stem>X` and `ab<code>X` becomes `<stem>X`:
+  - `Ab01An01...` -> `B524CalendarView...`
+  - `Ab03...` -> `DiscoveryCatalog...`
+  - `Ab03An03...` -> `B524CodebookView...`
+  - `Ab07...` -> `B524TimerAccess...`
+  - `Ab07An07...` -> `B509ConstraintWordView...`
+  - `Ab08...` -> `TimerPlan...`
+  - `Ab09An09...` -> `B509QuantityView...`
+  - `Ab11...` -> `ValueCodec...`
+  - `Ab22...` -> `Status...`
+  - `Ab23...` -> `EventDecode...`
+  - `Ab24...` -> `EventPlan...`
+  - `Ab25...` -> `DescriptionIndex...`
+  - `Ab42...` -> `B524SystemInformation...`
+  - `Ab44...` -> `B524DescriptionSpan...`
+  - `Ab58...` -> `B524SystemScalar...`
+  - `Ab60...` -> `B524DHWVentilationScalar...`
+  - `Ab62...` -> `B524CircuitScalar...`
+  - `Ab64...` -> `B524ZoneScalar...`
+  - `Ab66...` -> `B524UnscopedHint...`
+  Exported names whose remainder repeats a stem word keep the
+  stem's service, cut the stem before the first repeated word and
+  drop a service the remainder repeats:
+  - `Ab03DiscoveryWindow` -> `DiscoveryWindow`
+  - `Ab03DiscoveryWindows` -> `DiscoveryWindows`
+  - `Ab03LookupDiscoveryWindow` -> `LookupDiscoveryWindow`
+  - `Ab03PresentDiscoveryInstances` -> `PresentDiscoveryInstances`
+  - `Ab07An07View` -> `B509ConstraintWordView`
+  - `Ab07An07Word` -> `B509ConstraintWord`
+  - `Ab07TimerSlot` -> `B524TimerSlot`
+  - `Ab08BuildTimerPlan` -> `BuildTimerPlan`
+  - `Ab08TimerBaseline` -> `TimerBaseline`
+  - `Ab08TimerIdentity` -> `TimerIdentity`
+  - `Ab08TimerPlan` -> `TimerPlan`
+  - `Ab08TimerSlot` -> `TimerSlot`
+  - `Ab09An09B509QuantityViews` -> `B509QuantityViews`
+  - `Ab09An09QuantityView` -> `B509QuantityView`
+  - `Ab11Codec` -> `ValueCodec`
+  - `Ab11DecodeValue` -> `DecodeValue`
+  - `Ab22DecodeStatus` -> `DecodeStatus`
+  - `Ab22SpecialFunctionStatus` -> `SpecialFunctionStatus`
+  - `Ab22StatusInfo` -> `StatusInfo`
+  - `Ab23DecodeEvent` -> `DecodeEvent`
+  - `Ab23Event` -> `Event`
+  - `Ab23EventPair` -> `EventPair`
+  - `Ab23PairEvents` -> `PairEvents`
+  - `Ab24BuildEventPlan` -> `BuildEventPlan`
+  - `Ab24EventBaseline` -> `EventBaseline`
+  - `Ab24EventEdit` -> `EventEdit`
+  - `Ab24EventIdentity` -> `EventIdentity`
+  - `Ab24EventPlan` -> `EventPlan`
+  - `Ab25DescriptionIndex` -> `DescriptionIndex`
+  - `Ab25DescriptionKey` -> `DescriptionKey`
+  - `Ab25DescriptionRecord` -> `DescriptionRecord`
+  - `Ab25DescriptionState` -> `DescriptionState`
+  - `Ab25NewDescriptionIndex` -> `NewDescriptionIndex`
+  - `Ab25RawDescription` -> `RawDescription`
+  - `Ab42BuildInformation` -> `B524SystemBuildInformation`
+  - `Ab42DecodeInformation` -> `B524SystemDecodeInformation`
+  - `Ab42InformationResult` -> `B524SystemInformationResult`
+  - `Ab44BuildDescription` -> `B524BuildDescription`
+  - `Ab44DecodeDescription` -> `B524DecodeDescription`
+  - `Ab44Description` -> `B524Description`
+  - `Ab58InterpretB524Scalars` -> `B524SystemInterpretScalars`
+  - `Ab58Scalar` -> `B524SystemScalar`
+  - `Ab60InterpretB524Scalars` -> `B524DHWVentilationInterpretScalars`
+  - `Ab60Scalar` -> `B524DHWVentilationScalar`
+  - `Ab62InterpretCircuitScalar` -> `B524InterpretCircuitScalar`
+  - `Ab66B524ApplicabilityUnknown` -> `B524UnscopedHintApplicabilityUnknown`
+  - `Ab66B524HintAbsent` -> `B524UnscopedHintAbsent`
+  - `Ab66B524HintGrade` -> `B524UnscopedHintGrade`
+  - `Ab66B524HintProperties` -> `B524UnscopedHintProperties`
+  - `Ab66B524HintResult` -> `B524UnscopedHintResult`
+  - `Ab66B524HintUnscoped` -> `B524HintUnscoped`
+  - `Ab66B524UnscopedHints` -> `B524UnscopedHints`
+  - `Ab66Hint` -> `B524UnscopedHint`
+  - `Ab66LookupB524UnscopedHint` -> `B524LookupUnscopedHint`
+  - `ErrAb25DescriptionConflict` -> `ErrDescriptionConflict`
+  The import alias `ab09an09hex` would equal another name and takes
+  `b509QuantityViewHexPackage`.
+  Only the timer slot projection names of `Ab07` are renamed
+  (`b524_timer_access.go` keeps its name):
+  - `Ab07RawPair` -> `B524TimerAccessRawPair`
+  - `Ab07StartMinutes` -> `B524TimerAccessStartMinutes`
+  - `Ab07StopMinutes` -> `B524TimerAccessStopMinutes`
+  - `Ab07TimerSlot` -> `B524TimerSlot`
+  - `Ab07Unused` -> `B524TimerAccessUnused`
+  The locals of `b524_timer_access.go` follow:
+  - `ab07Index` -> `b524TimerAccessIndex`
+  - `ab07Slots` -> `b524TimerAccessSlots`
+  - `ab07Start` -> `b524TimerAccessStart`
+  - `ab07StartMinutes` -> `b524TimerAccessStartMinutes`
+  - `ab07Stop` -> `b524TimerAccessStop`
+  - `ab07StopMinutes` -> `b524TimerAccessStopMinutes`
+  In `vaillant/b555`, identifiers that start with a code (79 exported,
+  92 unexported) take the stem of their destination file;
+  `Ab<code>X` becomes `<Stem>X` and `ab<code>X` becomes `<stem>X`:
+  - `Ab21An21...` -> `NumericNarrowing...`
+  - `Ab52...` -> `ExtentView...`
+  Exported names whose remainder repeats a stem word keep the
+  stem's service, cut the stem before the first repeated word and
+  drop a service the remainder repeats:
+  - `Ab52A4View` -> `ExtentA4View`
+  - `Ab52A5View` -> `ExtentA5View`
+  - `Ab52Extent` -> `Extent`
+  The b555 stems leave out the service the package name carries, so no
+  name stutters. Four types keep `<Stem><remainder>` because their short
+  form is the default name of a struct field: `StatusStatusFields`,
+  `B524SystemInformationInformationContext`,
+  `B524UnscopedHintB524HintKey` and `B524UnscopedHintB524HintStatus`;
+  `ValueCodecValue` and `StatusStatus` keep it because `Value` and
+  `Status` are names the package already uses.
+  `router/vaillant_timer_access_test.go` and
+  `vaillant/system/ab07_timer_decode_test.go` follow the timer slot names.
+  Renamed exported struct fields that had no JSON tag carry an explicit
+  tag with the unchanged key, and `TestRenamedFieldJSONKeys` of each
+  package pins every key. Test strings that name a renamed field for
+  reflection follow the rename. Consumers must update
+  references; there are no aliases. JSON tags (including
+  `ab07_start_minutes`, `ab07_stop_minutes`, `ab07_raw_pair` and
+  `ab07_unused`), string values, error texts, testdata names and test
+  function names are unchanged.
+  `scripts/rename_catalog_names.py --slice vaillant-system-b555`
+  reproduces the change. Gateway adoption and release bill of materials
+  reconciliation remain required.
+
 - Remove work-item codes from the remaining `catalog/vaillant` files,
   whose code number is 30 to 99, and from the Go identifiers that
   start with their codes; no `catalog/vaillant` file name carries a

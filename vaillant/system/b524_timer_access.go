@@ -100,11 +100,11 @@ func (template rawReadTemplate) Build(params map[string]any) ([]byte, error) {
 	return append([]byte(nil), payload...), nil
 }
 
-type Ab07TimerSlot struct {
-	Ab07RawPair      [2]byte `json:"ab07_raw_pair"`
-	Ab07StartMinutes *int    `json:"ab07_start_minutes,omitempty"`
-	Ab07StopMinutes  *int    `json:"ab07_stop_minutes,omitempty"`
-	Ab07Unused       bool    `json:"ab07_unused"`
+type B524TimerSlot struct {
+	B524TimerAccessRawPair      [2]byte `json:"ab07_raw_pair"`
+	B524TimerAccessStartMinutes *int    `json:"ab07_start_minutes,omitempty"`
+	B524TimerAccessStopMinutes  *int    `json:"ab07_stop_minutes,omitempty"`
+	B524TimerAccessUnused       bool    `json:"ab07_unused"`
 }
 
 func decodeTimerResponse(sel1, sel2, sel3, weekday byte, payload []byte) map[string]types.Value {
@@ -127,20 +127,20 @@ func decodeTimerResponse(sel1, sel2, sel3, weekday byte, payload []byte) map[str
 		return values
 	}
 
-	ab07Slots := make([]Ab07TimerSlot, 3)
-	for ab07Index := range ab07Slots {
-		ab07Start, ab07Stop := payload[1+2*ab07Index], payload[2+2*ab07Index]
-		ab07Slots[ab07Index].Ab07RawPair = [2]byte{ab07Start, ab07Stop}
-		ab07Slots[ab07Index].Ab07Unused = ab07Start == 0x90 && ab07Stop == 0x90
-		if ab07Start < ab07Stop && ab07Stop <= 0x90 {
-			ab07StartMinutes, ab07StopMinutes := int(ab07Start)*10, int(ab07Stop)*10
-			ab07Slots[ab07Index].Ab07StartMinutes = &ab07StartMinutes
-			ab07Slots[ab07Index].Ab07StopMinutes = &ab07StopMinutes
+	b524TimerAccessSlots := make([]B524TimerSlot, 3)
+	for b524TimerAccessIndex := range b524TimerAccessSlots {
+		b524TimerAccessStart, b524TimerAccessStop := payload[1+2*b524TimerAccessIndex], payload[2+2*b524TimerAccessIndex]
+		b524TimerAccessSlots[b524TimerAccessIndex].B524TimerAccessRawPair = [2]byte{b524TimerAccessStart, b524TimerAccessStop}
+		b524TimerAccessSlots[b524TimerAccessIndex].B524TimerAccessUnused = b524TimerAccessStart == 0x90 && b524TimerAccessStop == 0x90
+		if b524TimerAccessStart < b524TimerAccessStop && b524TimerAccessStop <= 0x90 {
+			b524TimerAccessStartMinutes, b524TimerAccessStopMinutes := int(b524TimerAccessStart)*10, int(b524TimerAccessStop)*10
+			b524TimerAccessSlots[b524TimerAccessIndex].B524TimerAccessStartMinutes = &b524TimerAccessStartMinutes
+			b524TimerAccessSlots[b524TimerAccessIndex].B524TimerAccessStopMinutes = &b524TimerAccessStopMinutes
 		}
 	}
 	values["slot_count"] = types.Value{Value: 3, Valid: true}
 	values["ab07_parameter_configuration"] = types.Value{Value: payload[0], Valid: true}
-	values["ab07_slots"] = types.Value{Value: ab07Slots, Valid: true}
+	values["ab07_slots"] = types.Value{Value: b524TimerAccessSlots, Valid: true}
 	return values
 }
 

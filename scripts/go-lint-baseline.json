@@ -3117,72 +3117,6 @@
       "count": 1
     },
     {
-      "path": "vaillant/b555/ab21an21_b555_numeric_narrowing.go",
-      "symbol": "Ab21An21Context",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/b555/ab21an21_b555_numeric_narrowing.go",
-      "symbol": "Ab21An21Knowledge",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/b555/ab21an21_b555_numeric_narrowing.go",
-      "symbol": "Ab21An21NarrowFloat64",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/b555/ab21an21_b555_numeric_narrowing.go",
-      "symbol": "Ab21An21NarrowInteger64",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/b555/ab21an21_b555_numeric_narrowing.go",
-      "symbol": "Ab21An21Result",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/b555/ab52_b555_extent_views.go",
-      "symbol": "Ab52A4View",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/b555/ab52_b555_extent_views.go",
-      "symbol": "Ab52A5View",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/b555/ab52_b555_extent_views.go",
-      "symbol": "Ab52Byte",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/b555/ab52_b555_extent_views.go",
-      "symbol": "Ab52DecodeA4",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/b555/ab52_b555_extent_views.go",
-      "symbol": "Ab52DecodeA5",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/b555/ab52_b555_extent_views.go",
-      "symbol": "Ab52GradeProven",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
       "path": "vaillant/b555/b555.go",
       "symbol": "NewProvider",
       "rule": "revive/exported",
@@ -3203,6 +3137,72 @@
     {
       "path": "vaillant/b555/b555.go",
       "symbol": "Provider.Name",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_extent_views.go",
+      "symbol": "ExtentA4View",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_extent_views.go",
+      "symbol": "ExtentA5View",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_extent_views.go",
+      "symbol": "ExtentViewByte",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_extent_views.go",
+      "symbol": "ExtentViewDecodeA4",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_extent_views.go",
+      "symbol": "ExtentViewDecodeA5",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_extent_views.go",
+      "symbol": "ExtentViewGradeProven",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_numeric_narrowing.go",
+      "symbol": "NumericNarrowingContext",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_numeric_narrowing.go",
+      "symbol": "NumericNarrowingKnowledge",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_numeric_narrowing.go",
+      "symbol": "NumericNarrowingNarrowFloat64",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_numeric_narrowing.go",
+      "symbol": "NumericNarrowingNarrowInteger64",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/b555/b555_numeric_narrowing.go",
+      "symbol": "NumericNarrowingResult",
       "rule": "revive/exported",
       "count": 1
     },
@@ -3357,698 +3357,164 @@
       "count": 1
     },
     {
-      "path": "vaillant/system/ab01an01_b524_calendar_views.go",
-      "symbol": "Ab01An01Cell",
+      "path": "vaillant/system/b509_constraint_word_views.go",
+      "symbol": "B509ConstraintWord",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab01an01_b524_calendar_views.go",
-      "symbol": "Ab01An01Component",
+      "path": "vaillant/system/b509_constraint_word_views.go",
+      "symbol": "B509ConstraintWordView",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab01an01_b524_calendar_views.go",
-      "symbol": "Ab01An01Input",
+      "path": "vaillant/system/b509_constraint_word_views.go",
+      "symbol": "B509ConstraintWordViewInput",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab01an01_b524_calendar_views.go",
-      "symbol": "Ab01An01Interpret",
+      "path": "vaillant/system/b509_constraint_word_views.go",
+      "symbol": "B509ConstraintWordViewInterpret",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab01an01_b524_calendar_views.go",
-      "symbol": "Ab01An01Result",
+      "path": "vaillant/system/b509_constraint_word_views.go",
+      "symbol": "B509ConstraintWordViewPositiveResponse",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab03_discovery_catalog.go",
-      "symbol": "Ab03InstanceInterval",
+      "path": "vaillant/system/b509_quantity_views.go",
+      "symbol": "B509QuantityView",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab03an03_b524_codebook_views.go",
-      "symbol": "Ab03An03Input",
+      "path": "vaillant/system/b509_quantity_views.go",
+      "symbol": "B509QuantityViewCandidate",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab03an03_b524_codebook_views.go",
-      "symbol": "Ab03An03Interpret",
+      "path": "vaillant/system/b509_quantity_views.go",
+      "symbol": "B509QuantityViewFields",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab03an03_b524_codebook_views.go",
-      "symbol": "Ab03An03Result",
+      "path": "vaillant/system/b509_quantity_views.go",
+      "symbol": "B509QuantityViewSelection",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab07an07_b509_constraint_word_views.go",
-      "symbol": "Ab07An07Input",
+      "path": "vaillant/system/b509_quantity_views.go",
+      "symbol": "B509QuantityViews",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab07an07_b509_constraint_word_views.go",
-      "symbol": "Ab07An07Interpret",
+      "path": "vaillant/system/b524_calendar_views.go",
+      "symbol": "B524CalendarViewCell",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab07an07_b509_constraint_word_views.go",
-      "symbol": "Ab07An07PositiveResponse",
+      "path": "vaillant/system/b524_calendar_views.go",
+      "symbol": "B524CalendarViewComponent",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab07an07_b509_constraint_word_views.go",
-      "symbol": "Ab07An07View",
+      "path": "vaillant/system/b524_calendar_views.go",
+      "symbol": "B524CalendarViewInput",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab07an07_b509_constraint_word_views.go",
-      "symbol": "Ab07An07Word",
+      "path": "vaillant/system/b524_calendar_views.go",
+      "symbol": "B524CalendarViewInterpret",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab08_timer_plan.go",
-      "symbol": "Ab08BuildTimerPlan",
+      "path": "vaillant/system/b524_calendar_views.go",
+      "symbol": "B524CalendarViewResult",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab08_timer_plan.go",
-      "symbol": "Ab08TimerBaseline",
+      "path": "vaillant/system/b524_circuit_scalars.go",
+      "symbol": "B524CircuitScalarContext",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab08_timer_plan.go",
-      "symbol": "Ab08TimerIdentity",
+      "path": "vaillant/system/b524_circuit_scalars.go",
+      "symbol": "B524CircuitScalarField",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab08_timer_plan.go",
-      "symbol": "Ab08TimerPlan",
+      "path": "vaillant/system/b524_circuit_scalars.go",
+      "symbol": "B524CircuitScalarGrade",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab08_timer_plan.go",
-      "symbol": "Ab08TimerPlan.Ab08Baseline",
+      "path": "vaillant/system/b524_circuit_scalars.go",
+      "symbol": "B524CircuitScalarInput",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab08_timer_plan.go",
-      "symbol": "Ab08TimerPlan.Ab08Identity",
+      "path": "vaillant/system/b524_circuit_scalars.go",
+      "symbol": "B524CircuitScalarRawOnly",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab08_timer_plan.go",
-      "symbol": "Ab08TimerPlan.Ab08NativeWriteAdmission",
+      "path": "vaillant/system/b524_circuit_scalars.go",
+      "symbol": "B524CircuitScalarResult",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab08_timer_plan.go",
-      "symbol": "Ab08TimerPlan.Ab08Payload",
+      "path": "vaillant/system/b524_circuit_scalars.go",
+      "symbol": "B524CircuitScalarState",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab08_timer_plan.go",
-      "symbol": "Ab08TimerSlot",
+      "path": "vaillant/system/b524_circuit_scalars.go",
+      "symbol": "B524CircuitScalarUnknown",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab09an09_b509_quantity_views.go",
-      "symbol": "Ab09An09B509QuantityViews",
+      "path": "vaillant/system/b524_circuit_scalars.go",
+      "symbol": "B524InterpretCircuitScalar",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab09an09_b509_quantity_views.go",
-      "symbol": "Ab09An09Candidate",
+      "path": "vaillant/system/b524_codebook_views.go",
+      "symbol": "B524CodebookViewInput",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab09an09_b509_quantity_views.go",
-      "symbol": "Ab09An09Fields",
+      "path": "vaillant/system/b524_codebook_views.go",
+      "symbol": "B524CodebookViewInterpret",
       "rule": "revive/exported",
       "count": 1
     },
     {
-      "path": "vaillant/system/ab09an09_b509_quantity_views.go",
-      "symbol": "Ab09An09QuantityView",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab09an09_b509_quantity_views.go",
-      "symbol": "Ab09An09Selection",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab11_value_codec.go",
-      "symbol": "Ab11BOOL",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab11_value_codec.go",
-      "symbol": "Ab11Codec",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab11_value_codec.go",
-      "symbol": "Ab11Date",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab11_value_codec.go",
-      "symbol": "Ab11Grade",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab11_value_codec.go",
-      "symbol": "Ab11Time",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab11_value_codec.go",
-      "symbol": "Ab11Unknown",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23Event.Ab23Configuration",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23Event.Ab23Failure",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23Event.Ab23Family",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23Event.Ab23Raw",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23Event.Ab23Request",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23Event.Ab23Response",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23Event.Ab23Valid",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23EventPair.Ab23Complete",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23EventPair.Ab23First",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23EventPair.Ab23Second",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab23_event_decode.go",
-      "symbol": "Ab23PairEvents",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab24_event_plan.go",
-      "symbol": "Ab24BuildEventPlan",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab24_event_plan.go",
-      "symbol": "Ab24EventBaseline",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab24_event_plan.go",
-      "symbol": "Ab24EventEdit",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab24_event_plan.go",
-      "symbol": "Ab24EventIdentity",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab24_event_plan.go",
-      "symbol": "Ab24EventPlan",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab25_description_index.go",
-      "symbol": "Ab25DescriptionIndex",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab25_description_index.go",
-      "symbol": "Ab25DescriptionIndex.Ab25Lookup",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab25_description_index.go",
-      "symbol": "Ab25DescriptionIndex.Ab25Records",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab25_description_index.go",
-      "symbol": "Ab25DescriptionKey",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab25_description_index.go",
-      "symbol": "Ab25DescriptionRecord",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab25_description_index.go",
-      "symbol": "Ab25DescriptionRecord.Ab25Presence",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab25_description_index.go",
-      "symbol": "Ab25DescriptionState",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab25_description_index.go",
-      "symbol": "Ab25NewDescriptionIndex",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab25_description_index.go",
-      "symbol": "Ab25Unknown",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab25_description_index.go",
-      "symbol": "ErrAb25DescriptionConflict",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab42_b524_system_information.go",
-      "symbol": "Ab42BuildInformation",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab42_b524_system_information.go",
-      "symbol": "Ab42DecodeInformation",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab42_b524_system_information.go",
-      "symbol": "Ab42InformationContext",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab42_b524_system_information.go",
-      "symbol": "Ab42InformationResult",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab44_b524_description_spans.go",
-      "symbol": "Ab44BuildDescription",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab44_b524_description_spans.go",
-      "symbol": "Ab44Codec",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab44_b524_description_spans.go",
-      "symbol": "Ab44Context",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab44_b524_description_spans.go",
-      "symbol": "Ab44DecodeDescription",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab44_b524_description_spans.go",
-      "symbol": "Ab44Description",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab44_b524_description_spans.go",
-      "symbol": "Ab44Grade",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab44_b524_description_spans.go",
-      "symbol": "Ab44Limits",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab44_b524_description_spans.go",
-      "symbol": "Ab44UCH",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab44_b524_description_spans.go",
-      "symbol": "Ab44Unknown",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab58_b524_system_scalars.go",
-      "symbol": "Ab58Context",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab58_b524_system_scalars.go",
-      "symbol": "Ab58Field",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab58_b524_system_scalars.go",
-      "symbol": "Ab58Input",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab58_b524_system_scalars.go",
-      "symbol": "Ab58InterpretB524Scalars",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab58_b524_system_scalars.go",
-      "symbol": "Ab58RawOnly",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab58_b524_system_scalars.go",
-      "symbol": "Ab58Result",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab58_b524_system_scalars.go",
-      "symbol": "Ab58Scalar",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab58_b524_system_scalars.go",
-      "symbol": "Ab58State",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab60_b524_dhw_ventilation_scalars.go",
-      "symbol": "Ab60Context",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab60_b524_dhw_ventilation_scalars.go",
-      "symbol": "Ab60Field",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab60_b524_dhw_ventilation_scalars.go",
-      "symbol": "Ab60Input",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab60_b524_dhw_ventilation_scalars.go",
-      "symbol": "Ab60InterpretB524Scalars",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab60_b524_dhw_ventilation_scalars.go",
-      "symbol": "Ab60RawOnly",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab60_b524_dhw_ventilation_scalars.go",
-      "symbol": "Ab60Result",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab60_b524_dhw_ventilation_scalars.go",
-      "symbol": "Ab60Scalar",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab60_b524_dhw_ventilation_scalars.go",
-      "symbol": "Ab60State",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab62_b524_circuit_scalars.go",
-      "symbol": "Ab62Context",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab62_b524_circuit_scalars.go",
-      "symbol": "Ab62Field",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab62_b524_circuit_scalars.go",
-      "symbol": "Ab62Grade",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab62_b524_circuit_scalars.go",
-      "symbol": "Ab62Input",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab62_b524_circuit_scalars.go",
-      "symbol": "Ab62InterpretCircuitScalar",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab62_b524_circuit_scalars.go",
-      "symbol": "Ab62RawOnly",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab62_b524_circuit_scalars.go",
-      "symbol": "Ab62Result",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab62_b524_circuit_scalars.go",
-      "symbol": "Ab62State",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab62_b524_circuit_scalars.go",
-      "symbol": "Ab62Unknown",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab64_b524_zone_scalars.go",
-      "symbol": "Ab64Context",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab64_b524_zone_scalars.go",
-      "symbol": "Ab64Field",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab64_b524_zone_scalars.go",
-      "symbol": "Ab64Grade",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab64_b524_zone_scalars.go",
-      "symbol": "Ab64Input",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab64_b524_zone_scalars.go",
-      "symbol": "Ab64Interpret",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab64_b524_zone_scalars.go",
-      "symbol": "Ab64RawOnly",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab64_b524_zone_scalars.go",
-      "symbol": "Ab64Result",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab64_b524_zone_scalars.go",
-      "symbol": "Ab64State",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab64_b524_zone_scalars.go",
-      "symbol": "Ab64Unknown",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab66_b524_unscoped_hints.go",
-      "symbol": "Ab66B524ApplicabilityUnknown",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab66_b524_unscoped_hints.go",
-      "symbol": "Ab66B524HintAbsent",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab66_b524_unscoped_hints.go",
-      "symbol": "Ab66B524HintGrade",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab66_b524_unscoped_hints.go",
-      "symbol": "Ab66B524HintKey",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab66_b524_unscoped_hints.go",
-      "symbol": "Ab66B524HintProperties",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab66_b524_unscoped_hints.go",
-      "symbol": "Ab66B524HintResult",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab66_b524_unscoped_hints.go",
-      "symbol": "Ab66B524HintStatus",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab66_b524_unscoped_hints.go",
-      "symbol": "Ab66B524UnscopedHints",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "vaillant/system/ab66_b524_unscoped_hints.go",
-      "symbol": "Ab66LookupB524UnscopedHint",
+      "path": "vaillant/system/b524_codebook_views.go",
+      "symbol": "B524CodebookViewResult",
       "rule": "revive/exported",
       "count": 1
     },
@@ -4071,6 +3537,108 @@
       "count": 1
     },
     {
+      "path": "vaillant/system/b524_description_spans.go",
+      "symbol": "B524BuildDescription",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_description_spans.go",
+      "symbol": "B524DecodeDescription",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_description_spans.go",
+      "symbol": "B524Description",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_description_spans.go",
+      "symbol": "B524DescriptionSpanCodec",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_description_spans.go",
+      "symbol": "B524DescriptionSpanContext",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_description_spans.go",
+      "symbol": "B524DescriptionSpanGrade",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_description_spans.go",
+      "symbol": "B524DescriptionSpanLimits",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_description_spans.go",
+      "symbol": "B524DescriptionSpanUCH",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_description_spans.go",
+      "symbol": "B524DescriptionSpanUnknown",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_dhw_ventilation_scalars.go",
+      "symbol": "B524DHWVentilationInterpretScalars",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_dhw_ventilation_scalars.go",
+      "symbol": "B524DHWVentilationScalar",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_dhw_ventilation_scalars.go",
+      "symbol": "B524DHWVentilationScalarContext",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_dhw_ventilation_scalars.go",
+      "symbol": "B524DHWVentilationScalarField",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_dhw_ventilation_scalars.go",
+      "symbol": "B524DHWVentilationScalarInput",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_dhw_ventilation_scalars.go",
+      "symbol": "B524DHWVentilationScalarRawOnly",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_dhw_ventilation_scalars.go",
+      "symbol": "B524DHWVentilationScalarResult",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_dhw_ventilation_scalars.go",
+      "symbol": "B524DHWVentilationScalarState",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
       "path": "vaillant/system/b524_profile.go",
       "symbol": "B524GroupProfile",
       "rule": "revive/exported",
@@ -4083,8 +3651,350 @@
       "count": 1
     },
     {
+      "path": "vaillant/system/b524_system_information.go",
+      "symbol": "B524SystemBuildInformation",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_information.go",
+      "symbol": "B524SystemDecodeInformation",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_information.go",
+      "symbol": "B524SystemInformationInformationContext",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_information.go",
+      "symbol": "B524SystemInformationResult",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_scalars.go",
+      "symbol": "B524SystemInterpretScalars",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_scalars.go",
+      "symbol": "B524SystemScalar",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_scalars.go",
+      "symbol": "B524SystemScalarContext",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_scalars.go",
+      "symbol": "B524SystemScalarField",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_scalars.go",
+      "symbol": "B524SystemScalarInput",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_scalars.go",
+      "symbol": "B524SystemScalarRawOnly",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_scalars.go",
+      "symbol": "B524SystemScalarResult",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_system_scalars.go",
+      "symbol": "B524SystemScalarState",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
       "path": "vaillant/system/b524_timer_access.go",
-      "symbol": "Ab07TimerSlot",
+      "symbol": "B524TimerSlot",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_unscoped_hints.go",
+      "symbol": "B524LookupUnscopedHint",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_unscoped_hints.go",
+      "symbol": "B524UnscopedHintAbsent",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_unscoped_hints.go",
+      "symbol": "B524UnscopedHintApplicabilityUnknown",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_unscoped_hints.go",
+      "symbol": "B524UnscopedHintB524HintKey",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_unscoped_hints.go",
+      "symbol": "B524UnscopedHintB524HintStatus",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_unscoped_hints.go",
+      "symbol": "B524UnscopedHintGrade",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_unscoped_hints.go",
+      "symbol": "B524UnscopedHintProperties",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_unscoped_hints.go",
+      "symbol": "B524UnscopedHintResult",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_unscoped_hints.go",
+      "symbol": "B524UnscopedHints",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_zone_scalars.go",
+      "symbol": "B524ZoneScalarContext",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_zone_scalars.go",
+      "symbol": "B524ZoneScalarField",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_zone_scalars.go",
+      "symbol": "B524ZoneScalarGrade",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_zone_scalars.go",
+      "symbol": "B524ZoneScalarInput",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_zone_scalars.go",
+      "symbol": "B524ZoneScalarInterpret",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_zone_scalars.go",
+      "symbol": "B524ZoneScalarRawOnly",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_zone_scalars.go",
+      "symbol": "B524ZoneScalarResult",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_zone_scalars.go",
+      "symbol": "B524ZoneScalarState",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/b524_zone_scalars.go",
+      "symbol": "B524ZoneScalarUnknown",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/description_index.go",
+      "symbol": "DescriptionIndex",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/description_index.go",
+      "symbol": "DescriptionIndex.DescriptionIndexLookup",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/description_index.go",
+      "symbol": "DescriptionIndex.DescriptionIndexRecords",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/description_index.go",
+      "symbol": "DescriptionIndexUnknown",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/description_index.go",
+      "symbol": "DescriptionKey",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/description_index.go",
+      "symbol": "DescriptionRecord",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/description_index.go",
+      "symbol": "DescriptionRecord.DescriptionIndexPresence",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/description_index.go",
+      "symbol": "DescriptionState",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/description_index.go",
+      "symbol": "ErrDescriptionConflict",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/description_index.go",
+      "symbol": "NewDescriptionIndex",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/discovery_catalog.go",
+      "symbol": "DiscoveryCatalogInstanceInterval",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "Event.EventDecodeConfiguration",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "Event.EventDecodeFailure",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "Event.EventDecodeFamily",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "Event.EventDecodeRaw",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "Event.EventDecodeRequest",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "Event.EventDecodeResponse",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "Event.EventDecodeValid",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "EventPair.EventDecodeComplete",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "EventPair.EventDecodeFirst",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "EventPair.EventDecodeSecond",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_decode.go",
+      "symbol": "PairEvents",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_plan.go",
+      "symbol": "BuildEventPlan",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_plan.go",
+      "symbol": "EventBaseline",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_plan.go",
+      "symbol": "EventEdit",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_plan.go",
+      "symbol": "EventIdentity",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/event_plan.go",
+      "symbol": "EventPlan",
       "rule": "revive/exported",
       "count": 1
     },
@@ -4121,6 +4031,96 @@
     {
       "path": "vaillant/system/system.go",
       "symbol": "Provider.Name",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/timer_plan.go",
+      "symbol": "BuildTimerPlan",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/timer_plan.go",
+      "symbol": "TimerBaseline",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/timer_plan.go",
+      "symbol": "TimerIdentity",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/timer_plan.go",
+      "symbol": "TimerPlan",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/timer_plan.go",
+      "symbol": "TimerPlan.TimerPlanBaseline",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/timer_plan.go",
+      "symbol": "TimerPlan.TimerPlanIdentity",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/timer_plan.go",
+      "symbol": "TimerPlan.TimerPlanNativeWriteAdmission",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/timer_plan.go",
+      "symbol": "TimerPlan.TimerPlanPayload",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/timer_plan.go",
+      "symbol": "TimerSlot",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/value_codec.go",
+      "symbol": "ValueCodec",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/value_codec.go",
+      "symbol": "ValueCodecBOOL",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/value_codec.go",
+      "symbol": "ValueCodecDate",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/value_codec.go",
+      "symbol": "ValueCodecGrade",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/value_codec.go",
+      "symbol": "ValueCodecTime",
+      "rule": "revive/exported",
+      "count": 1
+    },
+    {
+      "path": "vaillant/system/value_codec.go",
+      "symbol": "ValueCodecUnknown",
       "rule": "revive/exported",
       "count": 1
     }

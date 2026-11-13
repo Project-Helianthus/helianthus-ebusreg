@@ -16,8 +16,11 @@
 // entry only on a complete qualified identity (manufacturer, device ID and a
 // serial number that is not a known placeholder value) or through an
 // explicit alias. Partial or model-only evidence never creates
-// cross-address identity, and a contradictory observation does not
-// overwrite an identity that is already published. A static seed enters a
+// cross-address identity, and a conflicting candidate from another address
+// does not overwrite an identity that is already published. Re-registering
+// the same address with a different complete qualified identity is a
+// correction: the address leaves its old entry and publishes the new
+// identity. A static seed enters a
 // face as a candidate and a passive observation as corroborated; active
 // registration confirms a face's identity when the identity is qualified,
 // and a valid directed 07 04 response during Scan also confirms the

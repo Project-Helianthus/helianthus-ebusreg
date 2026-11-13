@@ -10,8 +10,9 @@
 // calls until it is older than the refresh interval of its class (state or
 // configuration). The key uses the plane name, not the plane instance, so
 // planes of different devices that share a name must differ in a parameter
-// to stay apart. A call can only select the class through its parameters;
-// the intervals and disabling coalescing are per-router options. Only the raw reply
+// to stay apart. The class is inferred from the method name, may be overridden by
+// the router's classification option, and a call's own parameters take final
+// precedence; the intervals and disabling coalescing are per-router options. Only the raw reply
 // frame is cached; every caller decodes it again, and failed transactions
 // are never cached. A caller waiting on another caller's transaction
 // returns early when its own context ends.

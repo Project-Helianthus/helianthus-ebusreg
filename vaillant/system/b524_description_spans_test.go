@@ -73,7 +73,7 @@ func TestAb44Fixtures(b524DescriptionSpanT *b524DescriptionSpanTesting.T) {
 					if b524DescriptionSpanResult.B524DescriptionSpanLimits == nil || *b524DescriptionSpanResult.B524DescriptionSpanLimits != b524DescriptionSpanExpected {
 						b524DescriptionSpanT.Fatalf("ab44 limits: %+v", b524DescriptionSpanResult.B524DescriptionSpanLimits)
 					}
-				} else if b524DescriptionSpanResult.B524DescriptionSpanLimits != nil || b524DescriptionSpanResult.B524DescriptionSpanStepMeaning != B524DescriptionSpanUnknown || b524DescriptionSpanResult.B524DescriptionSpanReason != "ab44_date_time_raw_only" {
+				} else if b524DescriptionSpanResult.B524DescriptionSpanLimits != nil || b524DescriptionSpanResult.B524DescriptionSpanStepMeaning != B524DescriptionSpanUnknown || b524DescriptionSpanResult.B524DescriptionSpanReason != "date_time_raw_only" {
 					b524DescriptionSpanT.Fatal("ab44 date/time numeric permission")
 				}
 			}
@@ -174,17 +174,17 @@ func TestAb44RejectRawOnly(b524DescriptionSpanT *b524DescriptionSpanTesting.T) {
 		B524DescriptionSpanGrade  B524DescriptionSpanGrade
 		B524DescriptionSpanReason string
 	}{
-		{"ab44_absent_codec", "", 2, B524DescriptionSpanProven, "ab44_unsupported_codec"},
-		{"ab44_unknown_codec", "ab44_future", 2, B524DescriptionSpanProven, "ab44_unsupported_codec"},
-		{"ab44_wrong_codec", B524DescriptionSpanEXP, 2, B524DescriptionSpanProven, "ab44_codec_width_mismatch"},
-		{"ab44_uch_width", B524DescriptionSpanUCH, 2, B524DescriptionSpanProven, "ab44_codec_width_mismatch"},
-		{"ab44_wrong_width", B524DescriptionSpanUIN, 1, B524DescriptionSpanProven, "ab44_malformed_length"},
-		{"ab44_absent_width", B524DescriptionSpanUIN, 0, B524DescriptionSpanProven, "ab44_bad_width"},
-		{"ab44_negative_width", B524DescriptionSpanUIN, -1, B524DescriptionSpanProven, "ab44_bad_width"},
-		{"ab44_large_width", B524DescriptionSpanUIN, int(^uint(0) >> 1), B524DescriptionSpanProven, "ab44_bad_width"},
-		{"ab44_absent_grade", B524DescriptionSpanUIN, 2, "", "ab44_codec_grade_required"},
-		{"ab44_unknown_grade", B524DescriptionSpanUIN, 2, B524DescriptionSpanUnknown, "ab44_codec_grade_required"},
-		{"ab44_other_grade", B524DescriptionSpanUIN, 2, "ab44_other", "ab44_codec_grade_required"},
+		{"ab44_absent_codec", "", 2, B524DescriptionSpanProven, "unsupported_codec"},
+		{"ab44_unknown_codec", "ab44_future", 2, B524DescriptionSpanProven, "unsupported_codec"},
+		{"ab44_wrong_codec", B524DescriptionSpanEXP, 2, B524DescriptionSpanProven, "codec_width_mismatch"},
+		{"ab44_uch_width", B524DescriptionSpanUCH, 2, B524DescriptionSpanProven, "codec_width_mismatch"},
+		{"ab44_wrong_width", B524DescriptionSpanUIN, 1, B524DescriptionSpanProven, "malformed_length"},
+		{"ab44_absent_width", B524DescriptionSpanUIN, 0, B524DescriptionSpanProven, "bad_width"},
+		{"ab44_negative_width", B524DescriptionSpanUIN, -1, B524DescriptionSpanProven, "bad_width"},
+		{"ab44_large_width", B524DescriptionSpanUIN, int(^uint(0) >> 1), B524DescriptionSpanProven, "bad_width"},
+		{"ab44_absent_grade", B524DescriptionSpanUIN, 2, "", "codec_grade_required"},
+		{"ab44_unknown_grade", B524DescriptionSpanUIN, 2, B524DescriptionSpanUnknown, "codec_grade_required"},
+		{"ab44_other_grade", B524DescriptionSpanUIN, 2, "ab44_other", "codec_grade_required"},
 	}
 	for _, b524DescriptionSpanCase := range b524DescriptionSpanCases {
 		b524DescriptionSpanT.Run(b524DescriptionSpanCase.B524DescriptionSpanID, func(b524DescriptionSpanT *b524DescriptionSpanTesting.T) {
@@ -206,7 +206,7 @@ func TestAb44RejectRawOnly(b524DescriptionSpanT *b524DescriptionSpanTesting.T) {
 			b524DescriptionSpanWrong := make([]byte, 3+3*b524DescriptionSpanWidth)
 			copy(b524DescriptionSpanWrong, []byte{2, 2, 0})
 			b524DescriptionSpanResult := B524DecodeDescription(b524DescriptionSpanTestContext(), b524DescriptionSpanCodec, b524DescriptionSpanWidth, B524DescriptionSpanProven, b524DescriptionSpanWrong)
-			if b524DescriptionSpanResult.B524DescriptionSpanReason != "ab44_codec_width_mismatch" || b524DescriptionSpanResult.B524DescriptionSpanImplementationValid {
+			if b524DescriptionSpanResult.B524DescriptionSpanReason != "codec_width_mismatch" || b524DescriptionSpanResult.B524DescriptionSpanImplementationValid {
 				b524DescriptionSpanT.Fatal("ab44 codec width inferred", b524DescriptionSpanCodec, b524DescriptionSpanWidth)
 			}
 		}
@@ -219,7 +219,7 @@ func TestAb44MalformedAndEcho(b524DescriptionSpanT *b524DescriptionSpanTesting.T
 		b524DescriptionSpanChanged := append([]byte(nil), b524DescriptionSpanRaw...)
 		b524DescriptionSpanChanged[b524DescriptionSpanIndex] ^= 1
 		b524DescriptionSpanResult := B524DecodeDescription(b524DescriptionSpanTestContext(), B524DescriptionSpanEXP, 4, B524DescriptionSpanProven, b524DescriptionSpanChanged)
-		if b524DescriptionSpanResult.B524DescriptionSpanReason != "ab44_echo_mismatch" || b524DescriptionSpanResult.B524DescriptionSpanNumericValid || b524DescriptionSpanResult.B524DescriptionSpanLimits != nil || !b524DescriptionSpanReflect.DeepEqual(b524DescriptionSpanResult.B524DescriptionSpanRaw, b524DescriptionSpanChanged) || !b524DescriptionSpanReflect.DeepEqual(b524DescriptionSpanResult.B524DescriptionSpanStepRaw, b524DescriptionSpanRaw[11:]) {
+		if b524DescriptionSpanResult.B524DescriptionSpanReason != "echo_mismatch" || b524DescriptionSpanResult.B524DescriptionSpanNumericValid || b524DescriptionSpanResult.B524DescriptionSpanLimits != nil || !b524DescriptionSpanReflect.DeepEqual(b524DescriptionSpanResult.B524DescriptionSpanRaw, b524DescriptionSpanChanged) || !b524DescriptionSpanReflect.DeepEqual(b524DescriptionSpanResult.B524DescriptionSpanStepRaw, b524DescriptionSpanRaw[11:]) {
 			b524DescriptionSpanT.Fatal("ab44 echo", b524DescriptionSpanIndex, b524DescriptionSpanResult)
 		}
 	}
@@ -230,7 +230,7 @@ func TestAb44MalformedAndEcho(b524DescriptionSpanT *b524DescriptionSpanTesting.T
 		b524DescriptionSpanMalformed := make([]byte, b524DescriptionSpanLength)
 		copy(b524DescriptionSpanMalformed, b524DescriptionSpanRaw)
 		b524DescriptionSpanResult := B524DecodeDescription(b524DescriptionSpanTestContext(), B524DescriptionSpanEXP, 4, B524DescriptionSpanProven, b524DescriptionSpanMalformed)
-		if b524DescriptionSpanResult.B524DescriptionSpanReason != "ab44_malformed_length" || b524DescriptionSpanResult.B524DescriptionSpanImplementationValid || b524DescriptionSpanResult.B524DescriptionSpanLimits != nil || len(b524DescriptionSpanResult.B524DescriptionSpanRaw) != b524DescriptionSpanLength {
+		if b524DescriptionSpanResult.B524DescriptionSpanReason != "malformed_length" || b524DescriptionSpanResult.B524DescriptionSpanImplementationValid || b524DescriptionSpanResult.B524DescriptionSpanLimits != nil || len(b524DescriptionSpanResult.B524DescriptionSpanRaw) != b524DescriptionSpanLength {
 			b524DescriptionSpanT.Fatal("ab44 malformed", b524DescriptionSpanLength)
 		}
 	}
@@ -238,7 +238,7 @@ func TestAb44MalformedAndEcho(b524DescriptionSpanT *b524DescriptionSpanTesting.T
 	b524DescriptionSpanLegacy := []byte{1, 2, 2, 0}
 	for _, b524DescriptionSpanMalformed := range [][]byte{nil, b524DescriptionSpanDuplicate, b524DescriptionSpanLegacy} {
 		b524DescriptionSpanResult := B524DecodeDescription(b524DescriptionSpanTestContext(), B524DescriptionSpanEXP, 4, B524DescriptionSpanProven, b524DescriptionSpanMalformed)
-		if b524DescriptionSpanResult.B524DescriptionSpanImplementationValid || b524DescriptionSpanResult.B524DescriptionSpanReason != "ab44_malformed_length" {
+		if b524DescriptionSpanResult.B524DescriptionSpanImplementationValid || b524DescriptionSpanResult.B524DescriptionSpanReason != "malformed_length" {
 			b524DescriptionSpanT.Fatal("ab44 duplicate/legacy")
 		}
 	}
@@ -246,7 +246,7 @@ func TestAb44MalformedAndEcho(b524DescriptionSpanT *b524DescriptionSpanTesting.T
 		b524DescriptionSpanContext := b524DescriptionSpanTestContext()
 		*b524DescriptionSpanContext.B524DescriptionSpanOP = b524DescriptionSpanOP
 		b524DescriptionSpanResult := B524DecodeDescription(b524DescriptionSpanContext, B524DescriptionSpanEXP, 4, B524DescriptionSpanProven, b524DescriptionSpanRaw)
-		if b524DescriptionSpanResult.B524DescriptionSpanReason != "ab44_unsupported_op" || b524DescriptionSpanResult.B524DescriptionSpanImplementationValid {
+		if b524DescriptionSpanResult.B524DescriptionSpanReason != "unsupported_op" || b524DescriptionSpanResult.B524DescriptionSpanImplementationValid {
 			b524DescriptionSpanT.Fatal("ab44 reply direction", b524DescriptionSpanOP)
 		}
 	}
@@ -264,8 +264,8 @@ func TestAb44NumericSpans(b524DescriptionSpanT *b524DescriptionSpanTesting.T) {
 		B524DescriptionSpanRaw    []byte
 		B524DescriptionSpanReason string
 	}{
-		{b524DescriptionSpanTestEXP(-20, 20, -1), "ab44_negative_step"},
-		{b524DescriptionSpanTestEXP(21, 20, 1), "ab44_reversed_limits"},
+		{b524DescriptionSpanTestEXP(-20, 20, -1), "negative_step"},
+		{b524DescriptionSpanTestEXP(21, 20, 1), "reversed_limits"},
 	}
 	for b524DescriptionSpanIndex := 0; b524DescriptionSpanIndex < 3; b524DescriptionSpanIndex++ {
 		for _, b524DescriptionSpanNonfinite := range []float32{float32(b524DescriptionSpanMath.NaN()), float32(b524DescriptionSpanMath.Inf(1)), float32(b524DescriptionSpanMath.Inf(-1))} {
@@ -274,7 +274,7 @@ func TestAb44NumericSpans(b524DescriptionSpanT *b524DescriptionSpanTesting.T) {
 			b524DescriptionSpanCases = append(b524DescriptionSpanCases, struct {
 				B524DescriptionSpanRaw    []byte
 				B524DescriptionSpanReason string
-			}{b524DescriptionSpanRaw, "ab44_nonfinite_limits"})
+			}{b524DescriptionSpanRaw, "nonfinite_limits"})
 		}
 	}
 	for _, b524DescriptionSpanCase := range b524DescriptionSpanCases {

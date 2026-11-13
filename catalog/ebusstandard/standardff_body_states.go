@@ -42,7 +42,7 @@ func standardFFBodyStateUniqueFields(standardFFBodyStateDecoder *standardFFBodyS
 			}
 			standardFFBodyStateName, standardFFBodyStateOK := standardFFBodyStateNameToken.(string)
 			if !standardFFBodyStateOK || standardFFBodyStateSeen[standardFFBodyStateName] {
-				return standardFFBodyStateFmt.Errorf("ab54: duplicate JSON member")
+				return standardFFBodyStateFmt.Errorf("standardff body states: duplicate JSON member")
 			}
 			standardFFBodyStateSeen[standardFFBodyStateName] = true
 		}
@@ -57,7 +57,7 @@ func standardFFBodyStateUniqueFields(standardFFBodyStateDecoder *standardFFBodyS
 func standardFFBodyStateValidate(standardFFBodyStateData []byte) (standardFFBodyStateJSON.RawMessage, map[string]standardFFBodyStateJSON.RawMessage, error) {
 	standardFFBodyStateData = standardFFBodyStateBytes.TrimSpace(standardFFBodyStateData)
 	if len(standardFFBodyStateData) == 0 || standardFFBodyStateData[0] != '[' {
-		return nil, nil, standardFFBodyStateFmt.Errorf("ab54: expected JSON array")
+		return nil, nil, standardFFBodyStateFmt.Errorf("standardff body states: expected JSON array")
 	}
 	var standardFFBodyStateRows []standardFFBodyStateJSON.RawMessage
 	if standardFFBodyStateErr := standardFFBodyStateJSON.Unmarshal(standardFFBodyStateData, &standardFFBodyStateRows); standardFFBodyStateErr != nil {
@@ -86,7 +86,7 @@ func standardFFBodyStateValidate(standardFFBodyStateData []byte) (standardFFBody
 			switch standardFFBodyStateName {
 			case "family", "variant", "primary", "secondary", "operation", "direction", "field", "alternative", "group", "instance_scope", "register":
 			default:
-				return nil, nil, standardFFBodyStateFmt.Errorf("ab54: unknown key axis")
+				return nil, nil, standardFFBodyStateFmt.Errorf("standardff body states: unknown key axis")
 			}
 		}
 		if len(standardFFBodyStateFields["primary"]) == 0 || standardFFBodyStateBytes.Equal(standardFFBodyStateFields["primary"], []byte("null")) ||
@@ -94,14 +94,14 @@ func standardFFBodyStateValidate(standardFFBodyStateData []byte) (standardFFBody
 			len(standardFFBodyStateFields["group"]) == 0 || len(standardFFBodyStateFields["register"]) == 0 ||
 			standardFFBodyStateKey.StandardFFBodyStateFamily == "" || standardFFBodyStateKey.StandardFFBodyStateVariant == "" || standardFFBodyStateKey.StandardFFBodyStateDirection == "" ||
 			standardFFBodyStateKey.StandardFFBodyStateField == "" || standardFFBodyStateKey.StandardFFBodyStateAlternative == "" || standardFFBodyStateKey.StandardFFBodyStateInstanceScope == "" {
-			return nil, nil, standardFFBodyStateFmt.Errorf("ab54: incomplete key; use none for non-applicable string axes")
+			return nil, nil, standardFFBodyStateFmt.Errorf("standardff body states: incomplete key; use none for non-applicable string axes")
 		}
 		standardFFBodyStateIdentity, standardFFBodyStateErr := standardFFBodyStateJSON.Marshal(standardFFBodyStateKey)
 		if standardFFBodyStateErr != nil {
 			return nil, nil, standardFFBodyStateErr
 		}
 		if _, standardFFBodyStateExists := standardFFBodyStateIndex[string(standardFFBodyStateIdentity)]; standardFFBodyStateExists {
-			return nil, nil, standardFFBodyStateFmt.Errorf("ab54: duplicate key")
+			return nil, nil, standardFFBodyStateFmt.Errorf("standardff body states: duplicate key")
 		}
 		standardFFBodyStateIndex[string(standardFFBodyStateIdentity)] = append(standardFFBodyStateJSON.RawMessage(nil), standardFFBodyStateRow...)
 	}

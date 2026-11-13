@@ -3,40 +3,40 @@ package b555
 import numericNarrowingMath "math"
 
 type NumericNarrowingContext struct {
-	NumericNarrowingTimerKind       string `json:"Ab21An21TimerKind"`
-	NumericNarrowingFamily          string `json:"Ab21An21Family"`
-	NumericNarrowingSoftwareVariant string `json:"Ab21An21SoftwareVariant"`
+	NumericNarrowingTimerKind       string `json:"timer_kind"`
+	NumericNarrowingFamily          string `json:"family"`
+	NumericNarrowingSoftwareVariant string `json:"software_variant"`
 }
 
 type NumericNarrowingKnowledge struct {
-	NumericNarrowingConversion            string `json:"Ab21An21Conversion"`
-	NumericNarrowingLocalCarrier          string `json:"Ab21An21LocalCarrier"`
-	NumericNarrowingUnits                 string `json:"Ab21An21Units"`
-	NumericNarrowingTimerKindEffects      string `json:"Ab21An21TimerKindEffects"`
-	NumericNarrowingPersistence           string `json:"Ab21An21Persistence"`
-	NumericNarrowingAvailability          string `json:"Ab21An21Availability"`
-	NumericNarrowingCountMaterialization  string `json:"Ab21An21CountMaterialization"`
-	NumericNarrowingWriteAdmission        string `json:"Ab21An21WriteAdmission"`
-	NumericNarrowingPhysicalQualification string `json:"Ab21An21PhysicalQualification"`
-	NumericNarrowingPresence              string `json:"Ab21An21Presence"`
-	NumericNarrowingFreshness             string `json:"Ab21An21Freshness"`
-	NumericNarrowingExecution             string `json:"Ab21An21Execution"`
+	NumericNarrowingConversion            string `json:"conversion"`
+	NumericNarrowingLocalCarrier          string `json:"local_carrier"`
+	NumericNarrowingUnits                 string `json:"units"`
+	NumericNarrowingTimerKindEffects      string `json:"timer_kind_effects"`
+	NumericNarrowingPersistence           string `json:"persistence"`
+	NumericNarrowingAvailability          string `json:"availability"`
+	NumericNarrowingCountMaterialization  string `json:"count_materialization"`
+	NumericNarrowingWriteAdmission        string `json:"write_admission"`
+	NumericNarrowingPhysicalQualification string `json:"physical_qualification"`
+	NumericNarrowingPresence              string `json:"presence"`
+	NumericNarrowingFreshness             string `json:"freshness"`
+	NumericNarrowingExecution             string `json:"execution"`
 }
 
 type NumericNarrowingResult struct {
-	NumericNarrowingContext               NumericNarrowingContext   `json:"Ab21An21Context"`
-	NumericNarrowingPath                  string                    `json:"Ab21An21Path"`
-	NumericNarrowingOriginalInteger64     *int64                    `json:"Ab21An21OriginalInteger64"`
-	NumericNarrowingOriginalFloat64       *float64                  `json:"Ab21An21OriginalFloat64"`
-	NumericNarrowingRoundedFloat64        *float64                  `json:"Ab21An21RoundedFloat64"`
-	NumericNarrowingScaledFloat64         *float64                  `json:"Ab21An21ScaledFloat64"`
-	NumericNarrowingRawClassification     string                    `json:"Ab21An21RawClassification"`
-	NumericNarrowingRoundedClassification string                    `json:"Ab21An21RoundedClassification"`
-	NumericNarrowingIntermediateStatus    string                    `json:"Ab21An21IntermediateStatus"`
-	NumericNarrowingUnsigned32            *uint32                   `json:"Ab21An21Unsigned32"`
-	NumericNarrowingLow16                 *uint16                   `json:"Ab21An21Low16"`
-	NumericNarrowingStatus                string                    `json:"Ab21An21Status"`
-	NumericNarrowingKnowledge             NumericNarrowingKnowledge `json:"Ab21An21Knowledge"`
+	NumericNarrowingContext               NumericNarrowingContext   `json:"context"`
+	NumericNarrowingPath                  string                    `json:"path"`
+	NumericNarrowingOriginalInteger64     *int64                    `json:"original_integer64"`
+	NumericNarrowingOriginalFloat64       *float64                  `json:"original_float64"`
+	NumericNarrowingRoundedFloat64        *float64                  `json:"rounded_float64"`
+	NumericNarrowingScaledFloat64         *float64                  `json:"scaled_float64"`
+	NumericNarrowingRawClassification     string                    `json:"raw_classification"`
+	NumericNarrowingRoundedClassification string                    `json:"rounded_classification"`
+	NumericNarrowingIntermediateStatus    string                    `json:"intermediate_status"`
+	NumericNarrowingUnsigned32            *uint32                   `json:"unsigned32"`
+	NumericNarrowingLow16                 *uint16                   `json:"low16"`
+	NumericNarrowingStatus                string                    `json:"status"`
+	NumericNarrowingKnowledge             NumericNarrowingKnowledge `json:"knowledge"`
 }
 
 func numericNarrowingCandidate(numericNarrowingContext NumericNarrowingContext, numericNarrowingPath string) NumericNarrowingResult {
@@ -62,7 +62,7 @@ func numericNarrowingCandidate(numericNarrowingContext NumericNarrowingContext, 
 }
 
 func NumericNarrowingNarrowInteger64(numericNarrowingContext NumericNarrowingContext, numericNarrowingValue int64) NumericNarrowingResult {
-	numericNarrowingResult := numericNarrowingCandidate(numericNarrowingContext, "ab21an21-integer64")
+	numericNarrowingResult := numericNarrowingCandidate(numericNarrowingContext, "integer64")
 	numericNarrowingResult.NumericNarrowingOriginalInteger64 = &numericNarrowingValue
 	numericNarrowingResult.NumericNarrowingRawClassification = "finite-integer"
 	numericNarrowingResult.NumericNarrowingIntermediateStatus = "not-applicable"
@@ -73,7 +73,7 @@ func NumericNarrowingNarrowInteger64(numericNarrowingContext NumericNarrowingCon
 }
 
 func NumericNarrowingNarrowFloat64(numericNarrowingContext NumericNarrowingContext, numericNarrowingValue float64) NumericNarrowingResult {
-	numericNarrowingResult := numericNarrowingCandidate(numericNarrowingContext, "ab21an21-float64")
+	numericNarrowingResult := numericNarrowingCandidate(numericNarrowingContext, "float64")
 	numericNarrowingResult.NumericNarrowingOriginalFloat64 = &numericNarrowingValue
 	numericNarrowingResult.NumericNarrowingRawClassification = numericNarrowingClassify(numericNarrowingValue)
 	numericNarrowingRounded := float64(float32(numericNarrowingValue))

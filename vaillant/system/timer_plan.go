@@ -7,22 +7,22 @@ import (
 )
 
 type TimerIdentity struct {
-	TimerPlanFamily     string `json:"Ab08Family"`
-	TimerPlanChannel    string `json:"Ab08Channel"`
-	TimerPlanSystemType int    `json:"Ab08SystemType"`
-	TimerPlanInstance   int    `json:"Ab08Instance"`
-	TimerPlanAddress    int    `json:"Ab08Address"`
-	TimerPlanDay        int    `json:"Ab08Day"`
+	TimerPlanFamily     string `json:"family"`
+	TimerPlanChannel    string `json:"channel"`
+	TimerPlanSystemType int    `json:"system_type"`
+	TimerPlanInstance   int    `json:"instance"`
+	TimerPlanAddress    int    `json:"address"`
+	TimerPlanDay        int    `json:"day"`
 }
 
 type TimerBaseline struct {
-	TimerPlanIdentity TimerIdentity `json:"Ab08Identity"`
-	TimerPlanRaw      []byte        `json:"Ab08Raw"`
+	TimerPlanIdentity TimerIdentity `json:"identity"`
+	TimerPlanRaw      []byte        `json:"raw"`
 }
 
 type TimerSlot struct {
-	TimerPlanStart int `json:"Ab08Start"`
-	TimerPlanStop  int `json:"Ab08Stop"`
+	TimerPlanStart int `json:"start"`
+	TimerPlanStop  int `json:"stop"`
 }
 
 type TimerPlan struct {
@@ -57,21 +57,21 @@ func BuildTimerPlan(timerPlanIdentity TimerIdentity, timerPlanBaseline TimerBase
 		timerPlanIdentity.TimerPlanInstance != timerPlanBaseline.TimerPlanIdentity.TimerPlanInstance ||
 		timerPlanIdentity.TimerPlanAddress != timerPlanBaseline.TimerPlanIdentity.TimerPlanAddress ||
 		timerPlanIdentity.TimerPlanDay != timerPlanBaseline.TimerPlanIdentity.TimerPlanDay {
-		return TimerPlan{}, fmt.Errorf("ab08 baseline identity mismatch: %w", ebuserrors.ErrInvalidPayload)
+		return TimerPlan{}, fmt.Errorf("timer plan baseline identity mismatch: %w", ebuserrors.ErrInvalidPayload)
 	}
 	if len(timerPlanBaseline.TimerPlanRaw) != 7 || len(timerPlanSlots) != 3 {
-		return TimerPlan{}, fmt.Errorf("ab08 requires seven baseline bytes and three slots: %w", ebuserrors.ErrInvalidPayload)
+		return TimerPlan{}, fmt.Errorf("timer plan requires seven baseline bytes and three slots: %w", ebuserrors.ErrInvalidPayload)
 	}
 	timerPlanPlan := TimerPlan{timerPlanIdentity: timerPlanIdentity}
 	copy(timerPlanPlan.timerPlanBaseline[:], timerPlanBaseline.TimerPlanRaw)
 	timerPlanPlan.timerPlanPayload = [11]byte{0x04, byte(timerPlanIdentity.TimerPlanSystemType), byte(timerPlanIdentity.TimerPlanInstance), byte(timerPlanIdentity.TimerPlanAddress), byte(timerPlanIdentity.TimerPlanDay)}
 	for timerPlanIndex, timerPlanSlot := range timerPlanSlots {
 		if !timerPlanByte(timerPlanSlot.TimerPlanStart) || !timerPlanByte(timerPlanSlot.TimerPlanStop) {
-			return TimerPlan{}, fmt.Errorf("ab08 slot %d outside byte range: %w", timerPlanIndex, ebuserrors.ErrInvalidPayload)
+			return TimerPlan{}, fmt.Errorf("timer plan slot %d outside byte range: %w", timerPlanIndex, ebuserrors.ErrInvalidPayload)
 		}
 		if (timerPlanSlot.TimerPlanStart != 0x90 || timerPlanSlot.TimerPlanStop != 0x90) &&
 			(timerPlanSlot.TimerPlanStart > 143 || timerPlanSlot.TimerPlanStart >= timerPlanSlot.TimerPlanStop || timerPlanSlot.TimerPlanStop > 144) {
-			return TimerPlan{}, fmt.Errorf("ab08 slot %d invalid raw ten-minute pair: %w", timerPlanIndex, ebuserrors.ErrInvalidPayload)
+			return TimerPlan{}, fmt.Errorf("timer plan slot %d invalid raw ten-minute pair: %w", timerPlanIndex, ebuserrors.ErrInvalidPayload)
 		}
 		timerPlanPlan.timerPlanPayload[5+2*timerPlanIndex] = byte(timerPlanSlot.TimerPlanStart)
 		timerPlanPlan.timerPlanPayload[6+2*timerPlanIndex] = byte(timerPlanSlot.TimerPlanStop)
@@ -87,7 +87,7 @@ func timerPlanValidateIdentity(timerPlanIdentity TimerIdentity) error {
 	if timerPlanIdentity.TimerPlanFamily == "" || timerPlanIdentity.TimerPlanChannel == "" ||
 		!timerPlanByte(timerPlanIdentity.TimerPlanSystemType) || !timerPlanByte(timerPlanIdentity.TimerPlanInstance) ||
 		!timerPlanByte(timerPlanIdentity.TimerPlanAddress) || !timerPlanByte(timerPlanIdentity.TimerPlanDay) || timerPlanIdentity.TimerPlanDay > 6 {
-		return fmt.Errorf("ab08 invalid explicit identity: %w", ebuserrors.ErrInvalidPayload)
+		return fmt.Errorf("timer plan invalid explicit identity: %w", ebuserrors.ErrInvalidPayload)
 	}
 	timerPlanKnown := false
 	switch timerPlanIdentity.TimerPlanSystemType {
@@ -97,7 +97,7 @@ func timerPlanValidateIdentity(timerPlanIdentity TimerIdentity) error {
 		timerPlanKnown = timerPlanIdentity.TimerPlanAddress == 1 || timerPlanIdentity.TimerPlanAddress == 2
 	}
 	if !timerPlanKnown || (timerPlanIdentity.TimerPlanSystemType != 0x03 && timerPlanIdentity.TimerPlanInstance != 0) {
-		return fmt.Errorf("ab08 unsupported raw selector or non-zone instance: %w", ebuserrors.ErrInvalidPayload)
+		return fmt.Errorf("timer plan unsupported raw selector or non-zone instance: %w", ebuserrors.ErrInvalidPayload)
 	}
 	return nil
 }

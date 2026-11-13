@@ -6,28 +6,28 @@ import (
 )
 
 type B524SystemInformationInformationContext struct {
-	B524SystemInformationFamily      *string `json:"Ab42Family"`
-	B524SystemInformationSoftware    *string `json:"Ab42Software"`
-	B524SystemInformationHardware    *string `json:"Ab42Hardware"`
-	B524SystemInformationAPIVersion  *uint16 `json:"Ab42APIVersion"`
-	B524SystemInformationAPIRevision *uint16 `json:"Ab42APIRevision"`
-	B524SystemInformationIdentifier  uint16  `json:"Ab42Identifier"`
+	B524SystemInformationFamily      *string `json:"family"`
+	B524SystemInformationSoftware    *string `json:"software"`
+	B524SystemInformationHardware    *string `json:"hardware"`
+	B524SystemInformationAPIVersion  *uint16 `json:"api_version"`
+	B524SystemInformationAPIRevision *uint16 `json:"api_revision"`
+	B524SystemInformationIdentifier  uint16  `json:"identifier"`
 }
 
 type B524SystemInformationResult struct {
-	B524SystemInformationContext             B524SystemInformationInformationContext `json:"Ab42Context"`
-	B524SystemInformationRaw                 []byte                                  `json:"Ab42Raw"`
-	B524SystemInformationValid               bool                                    `json:"Ab42Valid"`
-	B524SystemInformationInvalidReason       string                                  `json:"Ab42InvalidReason"`
-	B524SystemInformationValue               float32                                 `json:"Ab42Value"`
-	B524SystemInformationMeaning             string                                  `json:"Ab42Meaning"`
-	B524SystemInformationCapacity            *float32                                `json:"Ab42Capacity"`
-	B524SystemInformationHeatPumpCount       *float32                                `json:"Ab42HeatPumpCount"`
-	B524SystemInformationRepresentationGrade string                                  `json:"Ab42RepresentationGrade"`
-	B524SystemInformationLayoutGrade         string                                  `json:"Ab42LayoutGrade"`
-	B524SystemInformationQualificationGrade  string                                  `json:"Ab42QualificationGrade"`
-	B524SystemInformationPresenceGrade       string                                  `json:"Ab42PresenceGrade"`
-	B524SystemInformationEligibilityGrade    string                                  `json:"Ab42EligibilityGrade"`
+	B524SystemInformationContext             B524SystemInformationInformationContext `json:"context"`
+	B524SystemInformationRaw                 []byte                                  `json:"raw"`
+	B524SystemInformationValid               bool                                    `json:"valid"`
+	B524SystemInformationInvalidReason       string                                  `json:"invalid_reason"`
+	B524SystemInformationValue               float32                                 `json:"value"`
+	B524SystemInformationMeaning             string                                  `json:"meaning"`
+	B524SystemInformationCapacity            *float32                                `json:"capacity"`
+	B524SystemInformationHeatPumpCount       *float32                                `json:"heat_pump_count"`
+	B524SystemInformationRepresentationGrade string                                  `json:"representation_grade"`
+	B524SystemInformationLayoutGrade         string                                  `json:"layout_grade"`
+	B524SystemInformationQualificationGrade  string                                  `json:"qualification_grade"`
+	B524SystemInformationPresenceGrade       string                                  `json:"presence_grade"`
+	B524SystemInformationEligibilityGrade    string                                  `json:"eligibility_grade"`
 }
 
 func B524SystemBuildInformation(b524SystemInformationIdentifier uint16) []byte {
@@ -69,12 +69,12 @@ func B524SystemDecodeInformation(b524SystemInformationRequestContext B524SystemI
 		b524SystemInformationResult.B524SystemInformationMeaning = "heat-pump count"
 	}
 	if len(b524SystemInformationRaw) != 4 {
-		b524SystemInformationResult.B524SystemInformationInvalidReason = "ab42 requires exactly four normalized bytes"
+		b524SystemInformationResult.B524SystemInformationInvalidReason = "b524 system information requires exactly four normalized bytes"
 		return b524SystemInformationResult
 	}
 	b524SystemInformationValue := b524SystemInformationMath.Float32frombits(b524SystemInformationBinary.LittleEndian.Uint32(b524SystemInformationRaw))
 	if b524SystemInformationMath.IsNaN(float64(b524SystemInformationValue)) || b524SystemInformationMath.IsInf(float64(b524SystemInformationValue), 0) {
-		b524SystemInformationResult.B524SystemInformationInvalidReason = "ab42 non-finite binary32"
+		b524SystemInformationResult.B524SystemInformationInvalidReason = "b524 system information non-finite binary32"
 		return b524SystemInformationResult
 	}
 	b524SystemInformationResult.B524SystemInformationValid = true

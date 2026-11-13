@@ -15,28 +15,28 @@ const (
 )
 
 type DescriptionKey struct {
-	DescriptionIndexFamily            string `json:"Ab25Family"`
-	DescriptionIndexSoftwareIdentity  string `json:"Ab25SoftwareIdentity"`
-	DescriptionIndexHardwareIdentity  string `json:"Ab25HardwareIdentity"`
-	DescriptionIndexAPIVersion        uint16 `json:"Ab25APIVersion"`
-	DescriptionIndexAPIRevision       uint16 `json:"Ab25APIRevision"`
-	DescriptionIndexOpcode            byte   `json:"Ab25Opcode"`
-	DescriptionIndexGroup             byte   `json:"Ab25Group"`
-	DescriptionIndexRequestedInstance byte   `json:"Ab25RequestedInstance"`
-	DescriptionIndexRegister          uint16 `json:"Ab25Register"`
+	DescriptionIndexFamily            string `json:"family"`
+	DescriptionIndexSoftwareIdentity  string `json:"software_identity"`
+	DescriptionIndexHardwareIdentity  string `json:"hardware_identity"`
+	DescriptionIndexAPIVersion        uint16 `json:"api_version"`
+	DescriptionIndexAPIRevision       uint16 `json:"api_revision"`
+	DescriptionIndexOpcode            byte   `json:"opcode"`
+	DescriptionIndexGroup             byte   `json:"group"`
+	DescriptionIndexRequestedInstance byte   `json:"requested_instance"`
+	DescriptionIndexRegister          uint16 `json:"register"`
 }
 
 type DescriptionRecord struct {
-	DescriptionIndexKey   DescriptionKey   `json:"Ab25Key"`
-	DescriptionIndexState DescriptionState `json:"Ab25State"`
-	RawDescription        []byte           `json:"Ab25RawDescription"`
-	DescriptionIndexCodec *string          `json:"Ab25Codec"`
-	DescriptionIndexWidth *uint16          `json:"Ab25Width"`
+	DescriptionIndexKey   DescriptionKey   `json:"key"`
+	DescriptionIndexState DescriptionState `json:"state"`
+	RawDescription        []byte           `json:"raw_description"`
+	DescriptionIndexCodec *string          `json:"codec"`
+	DescriptionIndexWidth *uint16          `json:"width"`
 }
 
 func (descriptionIndexRecord DescriptionRecord) DescriptionIndexPresence() string { return "unknown" }
 
-var ErrDescriptionConflict = descriptionIndexErrors.New("ab25 conflicting description records")
+var ErrDescriptionConflict = descriptionIndexErrors.New("description index: conflicting description records")
 
 type DescriptionIndex struct {
 	descriptionIndexRecords   map[DescriptionKey][]DescriptionRecord

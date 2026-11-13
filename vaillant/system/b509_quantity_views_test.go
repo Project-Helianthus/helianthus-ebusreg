@@ -80,7 +80,7 @@ func TestAb09An09IndependentVectors(b509QuantityViewT *b509QuantityViewTesting.T
 }
 
 func TestAb09An09Ownership(b509QuantityViewT *b509QuantityViewTesting.T) {
-	b509QuantityViewIdentity := B509QuantityViewSelection{"ab09an09_synthetic_family", "ab09an09_synthetic_variant", 0x59, "ab09an09_response"}
+	b509QuantityViewIdentity := B509QuantityViewSelection{"ab09an09_synthetic_family", "ab09an09_synthetic_variant", 0x59, "response"}
 	b509QuantityViewShared := []byte{0x10, 0}
 	b509QuantityViewInput := B509QuantityViewFields{b509QuantityViewShared, b509QuantityViewShared, b509QuantityViewShared, b509QuantityViewShared, b509QuantityViewShared}
 	b509QuantityViewFirst := B509QuantityViews(b509QuantityViewIdentity, b509QuantityViewIdentity, b509QuantityViewInput)

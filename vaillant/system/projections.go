@@ -197,8 +197,7 @@ func shouldCreateProjections(planes []registry.Plane) bool {
 // address and device segment. Node identifiers derived from these paths are
 // native-only snapshot locators: they change when the device is re-addressed
 // and repeat when another unit of the same model answers at the same address,
-// so the gateway, the Portal and the semantic registry must not store them as
-// resource identity.
+// so they are not a resource identity.
 func projectionBaseSegments(info registry.DeviceInfo) []registry.PathSegment {
 	addr := fmt.Sprintf("%02X", info.Address)
 	deviceID := strings.TrimSpace(info.DeviceID)

@@ -111,8 +111,8 @@ func TestProjectionLocatorRepeatsWhenTheSameModelIsSwappedInAtOneAddress(t *test
 	}
 }
 
-// The exported locator API must say what the value is, so that the gateway,
-// the Portal and the semantic registry do not persist it as resource identity.
+// The exported locator API must say what the value is: a native-only snapshot
+// locator, not a resource identity.
 func TestProjectionLocatorDocumentationNamesASnapshotLocator(t *testing.T) {
 	fileSet := token.NewFileSet()
 	file, err := parser.ParseFile(fileSet, "projection.go", nil, parser.ParseComments)

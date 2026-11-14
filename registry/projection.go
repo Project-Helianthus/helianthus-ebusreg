@@ -82,9 +82,7 @@ func (path ProjectionPath) Validate() error {
 // the node. The value is the canonical Service path, which is built from
 // native addressing, so it changes when a device is re-addressed and repeats
 // when another unit of the same model takes over the same address. It is
-// native-only and is not resource identity: the gateway, the Portal and the
-// semantic registry must not store it as one. Resource identity follows the
-// identity anchors of the common semantic contract.
+// native-only and is not a resource identity.
 type NodeID string
 type EdgeID string
 
@@ -97,8 +95,7 @@ type Node struct {
 // StableNodeID derives the snapshot locator of a node from its canonical
 // Service path. The result is stable only in that the same path always gives
 // the same value inside a snapshot; it carries no qualified device identity.
-// It is native-only and must not be stored as resource identity by the
-// gateway, the Portal or the semantic registry.
+// It is native-only and is not a resource identity.
 func StableNodeID(canonical ProjectionPath) (NodeID, error) {
 	if err := canonical.Validate(); err != nil {
 		return "", fmt.Errorf("canonical path: %w", err)

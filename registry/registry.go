@@ -6,6 +6,11 @@ import (
 	"github.com/Project-Helianthus/helianthus-ebusreg/schema"
 )
 
+// DeviceInfo is one identification observation for a bus address, as parsed
+// from an identification response or supplied by a seed. An empty string
+// means the field was not observed: Register keeps the stored value for that
+// field instead of clearing it. Only a complete manufacturer, device and
+// serial identity may join or split entries across addresses.
 type DeviceInfo struct {
 	Address         byte
 	Manufacturer    string
@@ -16,6 +21,11 @@ type DeviceInfo struct {
 	HardwareVersion string
 }
 
+// DeviceEntry is the read view of one device known to the registry, which
+// may answer on several aliased addresses. Entries returned by a
+// DeviceRegistry read through to live registry state, so consecutive calls
+// are not a consistent snapshot; use the registry snapshot APIs for that.
+// Identity accessors return "" for fields not yet observed.
 type DeviceEntry interface {
 	// AddressByRole returns the first BusFace address whose Role
 	// matches the requested SlotRole. Returns (0, false) when no face
@@ -46,21 +56,39 @@ type DeviceEntry interface {
 	Projections() []Projection
 }
 
+// Plane is a named group of methods that a provider exposes for one device.
 type Plane interface {
 	Name() string
 	Methods() []Method
 }
 
+// PlaneProvider attaches planes to the devices it recognises. For each
+// registration that updates an entry, the registry calls Match and then
+// CreatePlanes while holding its write lock, with the merged DeviceInfo of
+// the entry; implementations must be fast and must not call back into the
+// registry. A registration whose qualified identity conflicts with one bound
+// elsewhere, at an address that already has an entry, leaves that entry
+// unchanged and calls neither. Name identifies the provider.
 type PlaneProvider interface {
 	Name() string
 	Match(info DeviceInfo) bool
 	CreatePlanes(info DeviceInfo) []Plane
 }
 
+// ProjectionProvider is an optional interface of a PlaneProvider. For every
+// matched provider that implements it, the registry passes the planes of all
+// matched providers and keeps the returned projections only when together
+// they build a valid canonical index; otherwise the entry has no projections
+// and CanonicalIndexForEntry reports the index error.
 type ProjectionProvider interface {
 	CreateProjections(info DeviceInfo, planes []Plane) []Projection
 }
 
+// Method is one invocable operation of a plane. ReadOnly reports whether it
+// leaves device state unchanged; Template gives the primary and secondary
+// command bytes of its request, and ResponseSchema selects the schema that
+// decodes its response. See ResolveMethodMetadata for the optional safety
+// and routing overrides.
 type Method interface {
 	Name() string
 	ReadOnly() bool
@@ -68,11 +96,20 @@ type Method interface {
 	ResponseSchema() schema.SchemaSelector
 }
 
+// FrameTemplate carries the primary and secondary command bytes of a request.
 type FrameTemplate interface {
 	Primary() byte
 	Secondary() byte
 }
 
+// DeviceRegistry stores the devices seen on one bus, keyed by address, with
+// per-address slots, alias groups and the identity index that joins
+// addresses of the same physical device. Its methods may be called from
+// several goroutines, but a live DeviceEntry returned by Lookup or passed
+// to Iterate reads its identity fields without the registry lock: while
+// another goroutine may register or alias devices, read entries through
+// LookupEntrySnapshot or IterateSnapshots instead. The zero value is not
+// usable; create one with NewDeviceRegistry.
 type DeviceRegistry struct {
 	mu                    sync.RWMutex
 	observationGeneration uint64
@@ -90,6 +127,9 @@ type DeviceRegistry struct {
 	order    []*deviceEntry
 }
 
+// NewDeviceRegistry returns an empty registry that matches registrations
+// against providers in slice order. The slice is copied, so the caller may
+// reuse it.
 func NewDeviceRegistry(providers []PlaneProvider) *DeviceRegistry {
 	providerCopy := make([]PlaneProvider, len(providers))
 	copy(providerCopy, providers)
@@ -101,6 +141,9 @@ func NewDeviceRegistry(providers []PlaneProvider) *DeviceRegistry {
 	}
 }
 
+// RegisterProvider appends a provider and advances the observation
+// generation. The provider applies to later registrations only: entries
+// already stored keep their planes until their address is registered again.
 func (r *DeviceRegistry) RegisterProvider(provider PlaneProvider) {
 	r.mu.Lock()
 	r.providers = append(r.providers, provider)

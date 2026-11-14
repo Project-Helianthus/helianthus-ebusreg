@@ -3,6 +3,8 @@ package registry
 // MethodMutability describes whether a method has side effects.
 type MethodMutability string
 
+// MethodMutability values. Unknown is never inferred by MethodMutabilityOf
+// for a non-nil method; it only reports a nil method.
 const (
 	MethodMutabilityUnknown  MethodMutability = "unknown"
 	MethodMutabilityReadOnly MethodMutability = "read_only"
@@ -12,6 +14,8 @@ const (
 // MethodDanger describes risk level for invoke safety controls.
 type MethodDanger string
 
+// MethodDanger values. Unknown is not a resolved result: MethodDangerOf
+// replaces it by the mutability-based default.
 const (
 	MethodDangerUnknown   MethodDanger = "unknown"
 	MethodDangerSafe      MethodDanger = "safe"

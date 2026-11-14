@@ -1,5 +1,9 @@
 package productids
 
+// StaticSeedEntry is one device known before any bus traffic: its
+// identity, the bus addresses (faces) associated with it, and a Source
+// label naming the seed table. A seeded address is not a promise that the
+// device answers active probes there.
 type StaticSeedEntry struct {
 	Manufacturer string
 	DeviceID     string
@@ -7,6 +11,9 @@ type StaticSeedEntry struct {
 	Source       string
 }
 
+// SeedAddressEntry is one associated address of a seeded device. Role is
+// "initiator" or "target" and Confidence is "candidate"; a seed never claims
+// confirmation.
 type SeedAddressEntry struct {
 	Addr       byte
 	Role       string
@@ -15,6 +22,8 @@ type SeedAddressEntry struct {
 
 const staticSeedSource = "vaillant_static_seed_w19_26"
 
+// LoadSeedTable returns a newly built copy of the static seed table, or nil
+// when enabled is false.
 func LoadSeedTable(enabled bool) []StaticSeedEntry {
 	if !enabled {
 		return nil

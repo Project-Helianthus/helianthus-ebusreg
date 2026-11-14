@@ -1,5 +1,10 @@
 package registry
 
+// CanonicalIndexForEntry returns the canonical projection index of entry.
+// For registry entries it returns the index built at registration together
+// with any error that building it produced; for other implementations it
+// builds the index from entry.Projections(). A nil entry yields
+// ErrProjectionInvalidNode.
 func CanonicalIndexForEntry(entry DeviceEntry) (CanonicalIndex, error) {
 	if entry == nil {
 		return CanonicalIndex{}, ErrProjectionInvalidNode

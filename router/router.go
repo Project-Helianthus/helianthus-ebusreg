@@ -16,25 +16,39 @@ import (
 	"github.com/Project-Helianthus/helianthus-ebusreg/registry"
 )
 
+// Subscription selects broadcast frames by their primary and secondary
+// command bytes.
 type Subscription struct {
 	Primary   byte
 	Secondary byte
 }
 
+// ErrBroadcastEventOverflow is reported by HandleBroadcast when the events
+// channel is full. The decoded event is dropped, the plane's own handling
+// has already run, and the overflow counter is incremented.
 var ErrBroadcastEventOverflow = errors.New("router broadcast event queue full")
 
 var routerBroadcastEventOverflowTotal = expvar.NewInt("router_broadcast_event_overflow_total")
 
+// BroadcastEvent is one decoded broadcast delivered on Events: the plane
+// that decoded it, the frame and the decoded values by name.
 type BroadcastEvent struct {
 	Plane  string
 	Frame  protocol.Frame
 	Values map[string]types.Value
 }
 
+// BroadcastDecoder is an optional interface of a Plane. DecodeBroadcast
+// returns handled false for frames it does not turn into an event; an error
+// is reported by HandleBroadcast and no event is emitted.
 type BroadcastDecoder interface {
 	DecodeBroadcast(frame protocol.Frame) (map[string]types.Value, bool, error)
 }
 
+// Plane is a registry plane that the router can drive: it names the
+// broadcasts it subscribes to, receives them through OnBroadcast, and builds
+// requests and decodes responses for its methods. DecodeResponse receives
+// a private copy of the response frame on every call.
 type Plane interface {
 	Name() string
 	Methods() []registry.Method
@@ -44,10 +58,18 @@ type Plane interface {
 	DecodeResponse(method registry.Method, response protocol.Frame, params map[string]any) (any, error)
 }
 
+// Bus sends one request frame and returns its response; a nil response
+// without an error is treated as an invalid payload.
 type Bus interface {
 	Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error)
 }
 
+// BusEventRouter fans broadcasts out to subscribed planes and invokes plane
+// methods over a Bus. Concurrent read-only invocations with the same plane,
+// method and parameters share one bus request, and a successful response is
+// reused for the refresh interval of its class. Methods are safe for
+// concurrent use; create a router with NewBusEventRouter or
+// NewBusEventRouterWithOptions.
 type BusEventRouter struct {
 	bus           Bus
 	mu            sync.RWMutex
@@ -65,8 +87,11 @@ type subscriptionKey struct {
 	secondary byte
 }
 
+// RefreshClass selects how long a read-only invocation result may be reused.
 type RefreshClass string
 
+// RefreshClass values: state data uses StateRefreshInterval and
+// configuration data uses ConfigRefreshInterval.
 const (
 	RefreshClassState  RefreshClass = "state"
 	RefreshClassConfig RefreshClass = "config"
@@ -77,12 +102,18 @@ const (
 	defaultConfigRefreshInterval = 5 * time.Minute
 )
 
+// ClassifyInvocationFunc overrides the refresh class that the router infers
+// from a method name. Returning "" keeps the inferred class; a cache_class
+// or refresh_class parameter of "state" or "config" still takes precedence.
 type ClassifyInvocationFunc func(
 	planeName string,
 	methodName string,
 	params map[string]any,
 ) RefreshClass
 
+// RouterOptions configures invocation coalescing. Non-positive intervals
+// select the defaults of one minute for state and five minutes for
+// configuration. DisableCoalescing sends every invocation to the bus.
 type RouterOptions struct {
 	StateRefreshInterval  time.Duration
 	ConfigRefreshInterval time.Duration
@@ -99,10 +130,14 @@ type invokeEntry struct {
 	hasLastFrame bool
 }
 
+// NewBusEventRouter returns a router over bus with default options.
 func NewBusEventRouter(bus Bus) *BusEventRouter {
 	return NewBusEventRouterWithOptions(bus, RouterOptions{})
 }
 
+// NewBusEventRouterWithOptions returns a router over bus with options,
+// replacing non-positive refresh intervals by their defaults. The events
+// channel buffers 64 events.
 func NewBusEventRouterWithOptions(bus Bus, options RouterOptions) *BusEventRouter {
 	if options.StateRefreshInterval <= 0 {
 		options.StateRefreshInterval = defaultStateRefreshInterval
@@ -121,6 +156,9 @@ func NewBusEventRouterWithOptions(bus Bus, options RouterOptions) *BusEventRoute
 	}
 }
 
+// Events returns the channel of decoded broadcast events, or nil for a nil
+// router. The channel is never closed; a consumer that falls behind loses
+// events with ErrBroadcastEventOverflow.
 func (router *BusEventRouter) Events() <-chan BroadcastEvent {
 	if router == nil {
 		return nil
@@ -128,6 +166,9 @@ func (router *BusEventRouter) Events() <-chan BroadcastEvent {
 	return router.events
 }
 
+// SetPlanes replaces all broadcast subscriptions with those of planes. A
+// plane subscribed to the same command bytes more than once receives such
+// a frame once per subscription.
 func (router *BusEventRouter) SetPlanes(planes []Plane) {
 	subscriptions := make(map[subscriptionKey][]Plane)
 	for _, plane := range planes {
@@ -142,6 +183,10 @@ func (router *BusEventRouter) SetPlanes(planes []Plane) {
 	router.mu.Unlock()
 }
 
+// HandleBroadcast passes frame to every plane subscribed to its command
+// bytes, in SetPlanes order, and queues a BroadcastEvent for each plane that
+// decodes it. Queueing never blocks; every plane error, decode error and
+// queue overflow is returned, and an empty result means none occurred.
 func (router *BusEventRouter) HandleBroadcast(frame protocol.Frame) []error {
 	key := subscriptionKey{primary: frame.Primary, secondary: frame.Secondary}
 
@@ -187,6 +232,14 @@ func (router *BusEventRouter) HandleBroadcast(frame protocol.Frame) []error {
 	return errs
 }
 
+// Invoke builds the request of the named method of plane, sends it on the
+// bus and returns the decoded response. Mutating methods are always sent.
+// Read-only methods are coalesced: callers with the same plane name, method
+// name and JSON-encoded params wait for one in-flight request, and a
+// successful response is decoded again for later callers until the refresh
+// interval of its class has passed. Failures are not cached. A nil plane or
+// unknown method wraps the ebusgo ErrInvalidPayload; a cancelled ctx stops
+// waiting for another caller's request.
 func (router *BusEventRouter) Invoke(ctx context.Context, plane Plane, methodName string, params map[string]any) (any, error) {
 	if plane == nil {
 		return nil, fmt.Errorf("router.Invoke missing plane: %w", ebuserrors.ErrInvalidPayload)

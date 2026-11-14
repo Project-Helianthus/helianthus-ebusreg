@@ -6,6 +6,10 @@ import (
 	"reflect"
 )
 
+// Sentinel errors returned by PortalIndexForEntry, NewPortalIndex and the
+// plane indexes it builds.
+// Duplicate errors are wrapped with the offending plane, node or edge
+// identifier, so callers match them with errors.Is.
 var (
 	ErrPortalDuplicatePlane = errors.New("portal: duplicate plane")
 	ErrPortalDuplicateNode  = errors.New("portal: duplicate node")

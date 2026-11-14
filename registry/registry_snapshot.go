@@ -6,6 +6,9 @@ import (
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
 )
 
+// Lookup returns the entry that address resolves to, including through an
+// alias, or (nil, false) when no device occupies the address. The entry reads
+// through to live registry state; see DeviceEntry.
 func (r *DeviceRegistry) Lookup(address byte) (DeviceEntry, bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()

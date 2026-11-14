@@ -3,9 +3,9 @@ package system
 import b524UnscopedHintSort "sort"
 
 type B524UnscopedHintB524HintKey struct {
-	B524UnscopedHintOpcode   byte   `json:"Ab66Opcode"`
-	B524UnscopedHintGroup    byte   `json:"Ab66Group"`
-	B524UnscopedHintRegister uint16 `json:"Ab66Register"`
+	B524UnscopedHintOpcode   byte   `json:"opcode"`
+	B524UnscopedHintGroup    byte   `json:"group"`
+	B524UnscopedHintRegister uint16 `json:"register"`
 }
 
 type B524UnscopedHintB524HintStatus string
@@ -20,18 +20,18 @@ type B524UnscopedHintGrade string
 const B524UnscopedHintApplicabilityUnknown B524UnscopedHintGrade = "Unknown"
 
 type B524UnscopedHintProperties struct {
-	B524UnscopedHintType string  `json:"Ab66Type"`
-	B524UnscopedHintMin  float64 `json:"Ab66Min"`
-	B524UnscopedHintMax  float64 `json:"Ab66Max"`
-	B524UnscopedHintStep float64 `json:"Ab66Step"`
+	B524UnscopedHintType string  `json:"type"`
+	B524UnscopedHintMin  float64 `json:"min"`
+	B524UnscopedHintMax  float64 `json:"max"`
+	B524UnscopedHintStep float64 `json:"step"`
 }
 
 type B524UnscopedHintResult struct {
-	B524UnscopedHintKey           B524UnscopedHintB524HintKey    `json:"Ab66Key"`
-	B524UnscopedHintStatus        B524UnscopedHintB524HintStatus `json:"Ab66Status"`
-	B524UnscopedHintQualified     bool                           `json:"Ab66Qualified"`
-	B524UnscopedHintApplicability B524UnscopedHintGrade          `json:"Ab66Applicability"`
-	B524UnscopedHint              B524UnscopedHintProperties     `json:"Ab66Hint"`
+	B524UnscopedHintKey           B524UnscopedHintB524HintKey    `json:"key"`
+	B524UnscopedHintStatus        B524UnscopedHintB524HintStatus `json:"status"`
+	B524UnscopedHintQualified     bool                           `json:"qualified"`
+	B524UnscopedHintApplicability B524UnscopedHintGrade          `json:"applicability"`
+	B524UnscopedHint              B524UnscopedHintProperties     `json:"hint"`
 }
 
 func B524LookupUnscopedHint(b524UnscopedHintKey B524UnscopedHintB524HintKey) B524UnscopedHintResult {

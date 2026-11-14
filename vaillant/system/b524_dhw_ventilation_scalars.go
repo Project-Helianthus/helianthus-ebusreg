@@ -6,29 +6,29 @@ import (
 )
 
 type B524DHWVentilationScalarField[B524DHWVentilationScalarT any] struct {
-	B524DHWVentilationScalarPresent bool                      `json:"Ab60Present"`
-	B524DHWVentilationScalarValue   B524DHWVentilationScalarT `json:"Ab60Value"`
+	B524DHWVentilationScalarPresent bool                      `json:"present"`
+	B524DHWVentilationScalarValue   B524DHWVentilationScalarT `json:"value"`
 }
 
 type B524DHWVentilationScalarContext struct {
-	B524DHWVentilationScalarFamily      B524DHWVentilationScalarField[string] `json:"Ab60Family"`
-	B524DHWVentilationScalarSoftware    B524DHWVentilationScalarField[string] `json:"Ab60Software"`
-	B524DHWVentilationScalarHardware    B524DHWVentilationScalarField[string] `json:"Ab60Hardware"`
-	B524DHWVentilationScalarAPIVersion  B524DHWVentilationScalarField[string] `json:"Ab60APIVersion"`
-	B524DHWVentilationScalarAPIRevision B524DHWVentilationScalarField[string] `json:"Ab60APIRevision"`
-	B524DHWVentilationScalarOpcode      B524DHWVentilationScalarField[byte]   `json:"Ab60Opcode"`
-	B524DHWVentilationScalarGroup       B524DHWVentilationScalarField[byte]   `json:"Ab60Group"`
-	B524DHWVentilationScalarInstance    B524DHWVentilationScalarField[byte]   `json:"Ab60Instance"`
-	B524DHWVentilationScalarRegister    B524DHWVentilationScalarField[uint16] `json:"Ab60Register"`
+	B524DHWVentilationScalarFamily      B524DHWVentilationScalarField[string] `json:"family"`
+	B524DHWVentilationScalarSoftware    B524DHWVentilationScalarField[string] `json:"software"`
+	B524DHWVentilationScalarHardware    B524DHWVentilationScalarField[string] `json:"hardware"`
+	B524DHWVentilationScalarAPIVersion  B524DHWVentilationScalarField[string] `json:"api_version"`
+	B524DHWVentilationScalarAPIRevision B524DHWVentilationScalarField[string] `json:"api_revision"`
+	B524DHWVentilationScalarOpcode      B524DHWVentilationScalarField[byte]   `json:"opcode"`
+	B524DHWVentilationScalarGroup       B524DHWVentilationScalarField[byte]   `json:"group"`
+	B524DHWVentilationScalarInstance    B524DHWVentilationScalarField[byte]   `json:"instance"`
+	B524DHWVentilationScalarRegister    B524DHWVentilationScalarField[uint16] `json:"register"`
 }
 
 type B524DHWVentilationScalarInput struct {
-	B524DHWVentilationScalarContext          B524DHWVentilationScalarContext       `json:"Ab60Context"`
-	B524DHWVentilationScalarReplyKind        B524DHWVentilationScalarField[string] `json:"Ab60ReplyKind"`
-	B524DHWVentilationScalarReturnedGroup    B524DHWVentilationScalarField[byte]   `json:"Ab60ReturnedGroup"`
-	B524DHWVentilationScalarReturnedRegister B524DHWVentilationScalarField[uint16] `json:"Ab60ReturnedRegister"`
-	B524DHWVentilationScalarCodecGrade       B524DHWVentilationScalarField[string] `json:"Ab60CodecGrade"`
-	B524DHWVentilationScalarRaw              []byte                                `json:"Ab60Raw"`
+	B524DHWVentilationScalarContext          B524DHWVentilationScalarContext       `json:"context"`
+	B524DHWVentilationScalarReplyKind        B524DHWVentilationScalarField[string] `json:"reply_kind"`
+	B524DHWVentilationScalarReturnedGroup    B524DHWVentilationScalarField[byte]   `json:"returned_group"`
+	B524DHWVentilationScalarReturnedRegister B524DHWVentilationScalarField[uint16] `json:"returned_register"`
+	B524DHWVentilationScalarCodecGrade       B524DHWVentilationScalarField[string] `json:"codec_grade"`
+	B524DHWVentilationScalarRaw              []byte                                `json:"raw"`
 }
 
 type B524DHWVentilationScalarState string
@@ -39,24 +39,24 @@ const (
 )
 
 type B524DHWVentilationScalar struct {
-	B524DHWVentilationScalarFloat32 float32 `json:"Ab60Float32"`
-	B524DHWVentilationScalarUint16  uint16  `json:"Ab60Uint16"`
+	B524DHWVentilationScalarFloat32 float32 `json:"float32"`
+	B524DHWVentilationScalarUint16  uint16  `json:"uint16"`
 }
 
 type B524DHWVentilationScalarResult struct {
-	B524DHWVentilationScalarInput        B524DHWVentilationScalarInput `json:"Ab60Input"`
-	B524DHWVentilationScalarState        B524DHWVentilationScalarState `json:"Ab60State"`
-	B524DHWVentilationScalarCodec        string                        `json:"Ab60Codec"`
-	B524DHWVentilationScalarDeclaredUnit string                        `json:"Ab60DeclaredUnit"`
-	B524DHWVentilationScalarGrade        string                        `json:"Ab60Grade"`
-	B524DHWVentilationScalarPresence     string                        `json:"Ab60Presence"`
-	B524DHWVentilationScalarFreshness    string                        `json:"Ab60Freshness"`
-	B524DHWVentilationScalarExecution    string                        `json:"Ab60Execution"`
-	B524DHWVentilationScalarSupport      string                        `json:"Ab60Support"`
-	B524DHWVentilationScalarEffects      string                        `json:"Ab60Effects"`
-	B524DHWVentilationScalarPersistence  string                        `json:"Ab60Persistence"`
-	B524DHWVentilationScalarDelivery     string                        `json:"Ab60Delivery"`
-	B524DHWVentilationScalarValue        *B524DHWVentilationScalar     `json:"Ab60Value"`
+	B524DHWVentilationScalarInput        B524DHWVentilationScalarInput `json:"input"`
+	B524DHWVentilationScalarState        B524DHWVentilationScalarState `json:"state"`
+	B524DHWVentilationScalarCodec        string                        `json:"codec"`
+	B524DHWVentilationScalarDeclaredUnit string                        `json:"declared_unit"`
+	B524DHWVentilationScalarGrade        string                        `json:"grade"`
+	B524DHWVentilationScalarPresence     string                        `json:"presence"`
+	B524DHWVentilationScalarFreshness    string                        `json:"freshness"`
+	B524DHWVentilationScalarExecution    string                        `json:"execution"`
+	B524DHWVentilationScalarSupport      string                        `json:"support"`
+	B524DHWVentilationScalarEffects      string                        `json:"effects"`
+	B524DHWVentilationScalarPersistence  string                        `json:"persistence"`
+	B524DHWVentilationScalarDelivery     string                        `json:"delivery"`
+	B524DHWVentilationScalarValue        *B524DHWVentilationScalar     `json:"value"`
 }
 
 func B524DHWVentilationInterpretScalars(b524DHWVentilationScalarInput B524DHWVentilationScalarInput) B524DHWVentilationScalarResult {

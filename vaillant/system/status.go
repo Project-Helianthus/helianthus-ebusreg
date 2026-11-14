@@ -3,20 +3,20 @@ package system
 // StatusRequestContext is caller-supplied request context, not a response echo.
 // StatusFamily records a family label only; it does not qualify a codec or device.
 type StatusRequestContext struct {
-	StatusFamily string `json:"Ab22Family"`
-	StatusOpcode byte   `json:"Ab22Opcode"`
+	StatusFamily string `json:"family"`
+	StatusOpcode byte   `json:"opcode"`
 }
 
 // StatusStatusFields preserves the eight OP08 bytes without interpreting them.
 type StatusStatusFields struct {
-	StatusBindingZone           byte `json:"Ab22BindingZone"`
-	SpecialFunctionStatus       byte `json:"Ab22SpecialFunctionStatus"`
-	StatusHeatingOperatingMode  byte `json:"Ab22HeatingOperatingMode"`
-	StatusCoolingOperatingMode  byte `json:"Ab22CoolingOperatingMode"`
-	StatusInfo                  byte `json:"Ab22StatusInfo"`
-	StatusFrostProtection       byte `json:"Ab22FrostProtection"`
-	StatusHeatingTemperatureRaw byte `json:"Ab22HeatingTemperatureRaw"`
-	StatusCoolingTemperatureRaw byte `json:"Ab22CoolingTemperatureRaw"`
+	StatusBindingZone           byte `json:"binding_zone"`
+	SpecialFunctionStatus       byte `json:"special_function_status"`
+	StatusHeatingOperatingMode  byte `json:"heating_operating_mode"`
+	StatusCoolingOperatingMode  byte `json:"cooling_operating_mode"`
+	StatusInfo                  byte `json:"status_info"`
+	StatusFrostProtection       byte `json:"frost_protection"`
+	StatusHeatingTemperatureRaw byte `json:"heating_temperature_raw"`
+	StatusCoolingTemperatureRaw byte `json:"cooling_temperature_raw"`
 }
 
 // StatusStatus retains owned native bytes and their explicit request context.
@@ -25,9 +25,9 @@ type StatusStatusFields struct {
 // Fields are raw structure only for every family, including unknown families.
 // Semantic units, enum meanings, presence and control authority remain Unknown.
 type StatusStatus struct {
-	StatusContext StatusRequestContext `json:"Ab22Context"`
-	StatusPayload []byte               `json:"Ab22Payload"`
-	StatusFields  *StatusStatusFields  `json:"Ab22Fields"`
+	StatusContext StatusRequestContext `json:"context"`
+	StatusPayload []byte               `json:"payload"`
+	StatusFields  *StatusStatusFields  `json:"fields"`
 }
 
 // DecodeStatus is an explicitly called, pure B524 OP08 raw decoder.

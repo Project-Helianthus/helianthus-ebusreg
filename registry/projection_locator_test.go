@@ -5,6 +5,8 @@ import (
 	"go/ast"
 	"go/parser"
 	"go/token"
+	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 )
@@ -183,5 +185,40 @@ func TestProjectionLocatorPackageDocumentationQualifiesTheAddressBehaviour(t *te
 	}
 	if strings.Contains(text, "The canonical path is built from native addressing") {
 		t.Errorf("package documentation must not present the address behaviour as universal to every canonical path; got %q", text)
+	}
+}
+
+// The release note must give the same bounded guarantee as the API and package
+// documentation: the address behaviour is limited to the address-anchored paths
+// the native providers build, and the gateway and Portal follow-up is named.
+func TestProjectionLocatorChangelogQualifiesTheAddressBehaviour(t *testing.T) {
+	raw, err := os.ReadFile(filepath.Join("..", "CHANGELOG.md"))
+	if err != nil {
+		t.Fatalf("read CHANGELOG.md: %v", err)
+	}
+	var entry string
+	for _, paragraph := range strings.Split(string(raw), "\n\n") {
+		if strings.Contains(paragraph, "snapshot") && strings.Contains(paragraph, "StableNodeID") {
+			entry = strings.Join(strings.Fields(paragraph), " ")
+			break
+		}
+	}
+	if entry == "" {
+		t.Fatal("CHANGELOG.md carries no snapshot locator entry")
+	}
+	for _, phrase := range []string{
+		"snapshot locator",
+		"native-only",
+		"resource identity",
+		"native providers build are anchored",
+		"without an address gives no such guarantee",
+		"gateway and the Portal",
+	} {
+		if !strings.Contains(entry, phrase) {
+			t.Errorf("changelog entry must mention %q; got %q", phrase, entry)
+		}
+	}
+	if strings.Contains(entry, "canonical Service path, which changes when a device is re-addressed") {
+		t.Errorf("changelog entry must not present the address behaviour as universal to every canonical path; got %q", entry)
 	}
 }

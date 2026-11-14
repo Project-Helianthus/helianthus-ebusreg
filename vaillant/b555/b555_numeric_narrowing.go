@@ -2,12 +2,18 @@ package b555
 
 import numericNarrowingMath "math"
 
+// NumericNarrowingContext names the timer kind, device family and software
+// variant a narrowed value belongs to; it is carried through unchanged.
 type NumericNarrowingContext struct {
 	NumericNarrowingTimerKind       string `json:"timer_kind"`
 	NumericNarrowingFamily          string `json:"family"`
 	NumericNarrowingSoftwareVariant string `json:"software_variant"`
 }
 
+// NumericNarrowingKnowledge grades each aspect of a narrowed value as
+// Proven, Hypothesis or Unknown. Only the arithmetic conversion is proven;
+// the local carrier is a hypothesis, and units, persistence, write
+// admission and the remaining aspects are unknown.
 type NumericNarrowingKnowledge struct {
 	NumericNarrowingConversion            string `json:"conversion"`
 	NumericNarrowingLocalCarrier          string `json:"local_carrier"`
@@ -23,6 +29,10 @@ type NumericNarrowingKnowledge struct {
 	NumericNarrowingExecution             string `json:"execution"`
 }
 
+// NumericNarrowingResult records how a numeric input narrows to a 16-bit
+// wire value. It keeps the original input, every intermediate step and its
+// classification. Status is "candidate" when a low 16-bit value was produced
+// and "unresolved" otherwise; even a candidate has unknown write admission.
 type NumericNarrowingResult struct {
 	NumericNarrowingContext               NumericNarrowingContext   `json:"context"`
 	NumericNarrowingPath                  string                    `json:"path"`
@@ -61,6 +71,8 @@ func numericNarrowingCandidate(numericNarrowingContext NumericNarrowingContext, 
 	}
 }
 
+// NumericNarrowingNarrowInteger64 narrows an integer to its low 16 bits,
+// truncating without range checks, and returns the graded candidate.
 func NumericNarrowingNarrowInteger64(numericNarrowingContext NumericNarrowingContext, numericNarrowingValue int64) NumericNarrowingResult {
 	numericNarrowingResult := numericNarrowingCandidate(numericNarrowingContext, "integer64")
 	numericNarrowingResult.NumericNarrowingOriginalInteger64 = &numericNarrowingValue
@@ -72,6 +84,10 @@ func NumericNarrowingNarrowInteger64(numericNarrowingContext NumericNarrowingCon
 	return numericNarrowingResult
 }
 
+// NumericNarrowingNarrowFloat64 rounds a value to single precision, scales it
+// by ten, truncates it to an unsigned 32-bit value and keeps the low 16
+// bits. Non-finite, negative or out-of-range inputs yield an unresolved
+// result whose intermediate status names the reason; nothing is clamped.
 func NumericNarrowingNarrowFloat64(numericNarrowingContext NumericNarrowingContext, numericNarrowingValue float64) NumericNarrowingResult {
 	numericNarrowingResult := numericNarrowingCandidate(numericNarrowingContext, "float64")
 	numericNarrowingResult.NumericNarrowingOriginalFloat64 = &numericNarrowingValue

@@ -5,19 +5,26 @@ import (
 	b524ZoneScalarMath "math"
 )
 
+// B524ZoneScalarField is an optional value; Present distinguishes an absent
+// value from a zero value.
 type B524ZoneScalarField[B524ZoneScalarT any] struct {
 	B524ZoneScalarPresent bool            `json:"present"`
 	B524ZoneScalarValue   B524ZoneScalarT `json:"value"`
 }
 
+// B524ZoneScalarGrade is the qualification grade of a zone scalar aspect.
 type B524ZoneScalarGrade string
 
+// Zone scalar grades, from unqualified to proven.
 const (
 	B524ZoneScalarUnknown    B524ZoneScalarGrade = "Unknown"
 	B524ZoneScalarHypothesis B524ZoneScalarGrade = "Hypothesis"
 	B524ZoneScalarProven     B524ZoneScalarGrade = "Proven"
 )
 
+// B524ZoneScalarContext is the controller identity and the opcode, group,
+// instance and register of a zone scalar read; every field must be
+// present.
 type B524ZoneScalarContext struct {
 	B524ZoneScalarFamily      B524ZoneScalarField[string] `json:"family"`
 	B524ZoneScalarSoftware    B524ZoneScalarField[string] `json:"software"`
@@ -30,6 +37,9 @@ type B524ZoneScalarContext struct {
 	B524ZoneScalarRegister    B524ZoneScalarField[uint16] `json:"register"`
 }
 
+// B524ZoneScalarInput is one observed zone scalar read: its context, the
+// reply kind, the returned group and register, the caller's codec grade and
+// the raw reply value.
 type B524ZoneScalarInput struct {
 	B524ZoneScalarContext          B524ZoneScalarContext       `json:"context"`
 	B524ZoneScalarReplyKind        string                      `json:"reply_kind"`
@@ -39,13 +49,21 @@ type B524ZoneScalarInput struct {
 	B524ZoneScalarRaw              []byte                      `json:"raw"`
 }
 
+// B524ZoneScalarState says whether a zone scalar was decoded.
 type B524ZoneScalarState string
 
+// Zone scalar states: raw-only keeps just the input, candidate adds a
+// decoded value.
 const (
 	B524ZoneScalarRawOnly   B524ZoneScalarState = "raw_only"
 	B524ZoneScalarCandidate B524ZoneScalarState = "candidate"
 )
 
+// B524ZoneScalarResult is the graded interpretation of a zone scalar. The
+// grade is at most Hypothesis, the unit is degrees Celsius, percent or
+// "Unknown", and native support, qualification, presence, freshness,
+// execution, effects, persistence and delivery stay Unknown. Value is
+// present only for a candidate.
 type B524ZoneScalarResult struct {
 	B524ZoneScalarInput         B524ZoneScalarInput          `json:"input"`
 	B524ZoneScalarState         B524ZoneScalarState          `json:"state"`
@@ -64,6 +82,12 @@ type B524ZoneScalarResult struct {
 	B524ZoneScalarDelivery      B524ZoneScalarGrade          `json:"delivery"`
 }
 
+// B524ZoneScalarInterpret decodes a known zone register (group 0x03, local
+// opcode, any instance) as a little-endian float32 for a supported
+// controller family. It yields a Hypothesis candidate only for a complete
+// identity, a codec grade of Hypothesis or Proven, an echo of the requested
+// group and register with exactly four bytes and a finite value; otherwise
+// the result stays raw-only. It never fails and copies the raw bytes.
 func B524ZoneScalarInterpret(b524ZoneScalarInput B524ZoneScalarInput) B524ZoneScalarResult {
 	b524ZoneScalarInput.B524ZoneScalarRaw = append([]byte(nil), b524ZoneScalarInput.B524ZoneScalarRaw...)
 	b524ZoneScalarResult := B524ZoneScalarResult{

@@ -5,19 +5,26 @@ import (
 	b524CircuitScalarMath "math"
 )
 
+// B524CircuitScalarField is an optional value; Present distinguishes an absent
+// value from a zero value.
 type B524CircuitScalarField[B524CircuitScalarT any] struct {
 	B524CircuitScalarPresent bool               `json:"present"`
 	B524CircuitScalarValue   B524CircuitScalarT `json:"value"`
 }
 
+// B524CircuitScalarGrade is the qualification grade of a circuit scalar.
 type B524CircuitScalarGrade string
 
+// Circuit scalar grades, from unqualified to proven.
 const (
 	B524CircuitScalarUnknown    B524CircuitScalarGrade = "Unknown"
 	B524CircuitScalarHypothesis B524CircuitScalarGrade = "Hypothesis"
 	B524CircuitScalarProven     B524CircuitScalarGrade = "Proven"
 )
 
+// B524CircuitScalarContext is the controller identity (family, software,
+// hardware, API version and revision) and the opcode, group, instance and
+// register of a circuit scalar read; every field must be present.
 type B524CircuitScalarContext struct {
 	B524CircuitScalarFamily      B524CircuitScalarField[string] `json:"family"`
 	B524CircuitScalarSoftware    B524CircuitScalarField[string] `json:"software"`
@@ -30,6 +37,9 @@ type B524CircuitScalarContext struct {
 	B524CircuitScalarRegister    B524CircuitScalarField[uint16] `json:"register"`
 }
 
+// B524CircuitScalarInput is one observed circuit scalar read: its context,
+// the reply kind, the returned group and register, the caller's grade of
+// the codec and the raw reply value.
 type B524CircuitScalarInput struct {
 	B524CircuitScalarContext          B524CircuitScalarContext                       `json:"context"`
 	B524CircuitScalarReplyKind        B524CircuitScalarField[string]                 `json:"reply_kind"`
@@ -39,13 +49,20 @@ type B524CircuitScalarInput struct {
 	B524CircuitScalarRaw              []byte                                         `json:"raw"`
 }
 
+// B524CircuitScalarState says whether a circuit scalar was decoded.
 type B524CircuitScalarState string
 
+// Circuit scalar states: raw-only keeps just the input, candidate adds a
+// decoded value.
 const (
 	B524CircuitScalarRawOnly   B524CircuitScalarState = "raw_only"
 	B524CircuitScalarCandidate B524CircuitScalarState = "candidate"
 )
 
+// B524CircuitScalarResult is the graded interpretation of a circuit scalar:
+// the copied input, the state, the grade, the declared unit ("Unknown" when
+// none is declared), the codec and the value, which is present only for a
+// candidate.
 type B524CircuitScalarResult struct {
 	B524CircuitScalarInput        B524CircuitScalarInput          `json:"input"`
 	B524CircuitScalarState        B524CircuitScalarState          `json:"state"`
@@ -55,6 +72,13 @@ type B524CircuitScalarResult struct {
 	B524CircuitScalarValue        B524CircuitScalarField[float32] `json:"value"`
 }
 
+// B524InterpretCircuitScalar decodes a known circuit register (group 0x02,
+// read opcode) as a little-endian float32 for a supported controller
+// family. It yields a Hypothesis candidate only when the identity is
+// complete, the codec grade is Hypothesis or Proven, the reply is an echo
+// of the requested group and register with exactly four bytes, and the
+// value is finite; otherwise the result stays raw-only and Unknown. It
+// never fails and copies the raw bytes.
 func B524InterpretCircuitScalar(b524CircuitScalarInput B524CircuitScalarInput) B524CircuitScalarResult {
 	if b524CircuitScalarInput.B524CircuitScalarRaw != nil {
 		b524CircuitScalarRaw := make([]byte, len(b524CircuitScalarInput.B524CircuitScalarRaw))

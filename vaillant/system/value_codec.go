@@ -6,8 +6,14 @@ import (
 	"math"
 )
 
+// ValueCodec names the wire codec DecodeValue applies to a raw value.
 type ValueCodec string
 
+// Value codecs, all little-endian: BOOL (one byte, 0 or 1), UCH and I8
+// (one byte), UIN and I16 (two bytes), U32, I32 and EXP (four bytes, EXP a
+// finite float32), DATE (day, month, year) and TIME (hour, minute, second)
+// as three raw bytes, FW (three BCD bytes) and FWU (three plain bytes), and
+// STR and HEX with a caller-given width.
 const (
 	ValueCodecBOOL ValueCodec = "BOOL"
 	ValueCodecUCH  ValueCodec = "UCH"
@@ -25,8 +31,11 @@ const (
 	ValueCodecHEX  ValueCodec = "HEX"
 )
 
+// ValueCodecGrade is the caller's evidence grade for a codec.
 type ValueCodecGrade string
 
+// Codec grades. DecodeValue interprets a value only for Hypothesis or
+// Proven and marks it qualified only for Proven.
 const (
 	ValueCodecUnknown    ValueCodecGrade = "Unknown"
 	ValueCodecHypothesis ValueCodecGrade = "Hypothesis"
@@ -43,12 +52,16 @@ type ValueCodecValue struct {
 	ValueCodecQualified      bool            `json:"qualified"`
 }
 
+// ValueCodecDate is the DATE interpretation: the raw day, month and year
+// bytes, not range-checked.
 type ValueCodecDate struct {
 	ValueCodecDay   uint8 `json:"day"`
 	ValueCodecMonth uint8 `json:"month"`
 	ValueCodecYear  uint8 `json:"year"`
 }
 
+// ValueCodecTime is the TIME interpretation: the raw hour, minute and second
+// bytes, not range-checked.
 type ValueCodecTime struct {
 	ValueCodecHour   uint8 `json:"hour"`
 	ValueCodecMinute uint8 `json:"minute"`

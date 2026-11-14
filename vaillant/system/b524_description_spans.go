@@ -6,6 +6,10 @@ import (
 	b524DescriptionSpanMath "math"
 )
 
+// B524DescriptionSpanContext identifies a B524 description read: the
+// controller identity and the opcode, group, instance and register. A nil
+// field is unknown; building or decoding needs every field and opcode 0x01
+// or 0x07.
 type B524DescriptionSpanContext struct {
 	B524DescriptionSpanFamily      *string `json:"family"`
 	B524DescriptionSpanSoftware    *uint16 `json:"software"`
@@ -18,16 +22,22 @@ type B524DescriptionSpanContext struct {
 	B524DescriptionSpanRR          *uint16 `json:"rr"`
 }
 
+// B524DescriptionSpanGrade is the qualification grade of a description codec.
 type B524DescriptionSpanGrade string
 
+// Description codec grades, from unqualified to proven.
 const (
 	B524DescriptionSpanUnknown    B524DescriptionSpanGrade = "Unknown"
 	B524DescriptionSpanHypothesis B524DescriptionSpanGrade = "Hypothesis"
 	B524DescriptionSpanProven     B524DescriptionSpanGrade = "Proven"
 )
 
+// B524DescriptionSpanCodec names the codec of a description's limit spans.
 type B524DescriptionSpanCodec string
 
+// Description span codecs: UCH is one unsigned byte, UIN an unsigned
+// little-endian word, EXP a little-endian float32, and DATE and TIME three
+// bytes that stay raw.
 const (
 	B524DescriptionSpanUCH  B524DescriptionSpanCodec = "UCH"
 	B524DescriptionSpanUIN  B524DescriptionSpanCodec = "UIN"
@@ -36,12 +46,20 @@ const (
 	B524DescriptionSpanTime B524DescriptionSpanCodec = "TIME"
 )
 
+// B524DescriptionSpanLimits holds the decoded minimum, maximum and step of a
+// numeric description; the step's meaning stays unknown.
 type B524DescriptionSpanLimits struct {
 	B524DescriptionSpanMinimum float64 `json:"minimum"`
 	B524DescriptionSpanMaximum float64 `json:"maximum"`
 	B524DescriptionSpanStep    float64 `json:"step"`
 }
 
+// B524Description is the decoded description reply of one register: the
+// copied context, the caller's codec, width and grade, the raw reply and its
+// minimum, maximum and step spans, the opcode the described value is read
+// with, and the limits when they are numeric and consistent. Reason names
+// the outcome; ImplementationValid and NumericValid say how far decoding
+// got.
 type B524Description struct {
 	B524DescriptionSpanContext             B524DescriptionSpanContext `json:"context"`
 	B524DescriptionSpanCodec               B524DescriptionSpanCodec   `json:"codec"`
@@ -88,6 +106,11 @@ func b524DescriptionSpanContextReason(b524DescriptionSpanContext B524Description
 	return ""
 }
 
+// B524BuildDescription returns the request payload of a description read:
+// opcode, group, instance and the little-endian register. It fails with
+// "incomplete_context" when a context field is missing and with
+// "unsupported_op" for an opcode other than 0x01 or 0x07; it sends
+// nothing.
 func B524BuildDescription(b524DescriptionSpanContext B524DescriptionSpanContext) ([]byte, error) {
 	if b524DescriptionSpanReason := b524DescriptionSpanContextReason(b524DescriptionSpanContext); b524DescriptionSpanReason != "" {
 		return nil, b524DescriptionSpanErrors.New(b524DescriptionSpanReason)
@@ -95,6 +118,16 @@ func B524BuildDescription(b524DescriptionSpanContext B524DescriptionSpanContext)
 	return []byte{*b524DescriptionSpanContext.B524DescriptionSpanOP, *b524DescriptionSpanContext.B524DescriptionSpanGG, *b524DescriptionSpanContext.B524DescriptionSpanII, byte(*b524DescriptionSpanContext.B524DescriptionSpanRR), byte(*b524DescriptionSpanContext.B524DescriptionSpanRR >> 8)}, nil
 }
 
+// B524DecodeDescription splits a description reply (group and register echo
+// followed by three spans of the given width) and decodes the limits. It
+// never fails: a width outside 1-4, a wrong length, an incomplete context,
+// an echo mismatch, a codec that does not match the width, a codec grade
+// below Hypothesis, or non-finite, reversed or negative-step limits each
+// stop decoding with Reason set. The whole reply is always kept in Raw; the
+// split minimum, maximum and step spans are kept for every failure except a
+// bad width or a wrong length, where they stay empty. DATE and TIME stay
+// raw. Opcode 0x01 describes a value read with 0x02 and 0x07 one read with
+// 0x06. The result copies all input data.
 func B524DecodeDescription(b524DescriptionSpanContext B524DescriptionSpanContext, b524DescriptionSpanExplicitCodec B524DescriptionSpanCodec, b524DescriptionSpanExplicitWidth int, b524DescriptionSpanGrade B524DescriptionSpanGrade, b524DescriptionSpanRaw []byte) B524Description {
 	b524DescriptionSpanResult := B524Description{
 		B524DescriptionSpanContext: b524DescriptionSpanCloneContext(b524DescriptionSpanContext), B524DescriptionSpanCodec: b524DescriptionSpanExplicitCodec, B524DescriptionSpanWidth: b524DescriptionSpanExplicitWidth,

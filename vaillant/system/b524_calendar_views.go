@@ -1,10 +1,16 @@
 package system
 
+// B524CalendarViewCell is one raw calendar byte and its read state (present,
+// missing or failed).
 type B524CalendarViewCell struct {
 	B524CalendarViewRaw   byte   `json:"raw"`
 	B524CalendarViewState string `json:"state"`
 }
 
+// B524CalendarViewInput is one observed B524 read of a calendar register:
+// the controller identity, the requested and returned group and register,
+// the instance, the expected alternative (date or time), the response state
+// and the three raw cells (day, month, year or the time components).
 type B524CalendarViewInput struct {
 	B524CalendarViewFamily        string                  `json:"family"`
 	B524CalendarViewSoftware      string                  `json:"software"`
@@ -23,12 +29,18 @@ type B524CalendarViewInput struct {
 	B524CalendarViewRaw           []byte                  `json:"raw"`
 }
 
+// B524CalendarViewComponent is the graded state of one calendar cell;
+// Candidate is set only when the cell is present and within its domain.
 type B524CalendarViewComponent struct {
 	B524CalendarViewCell      B524CalendarViewCell `json:"cell"`
 	B524CalendarViewState     string               `json:"state"`
 	B524CalendarViewCandidate *byte                `json:"candidate"`
 }
 
+// B524CalendarViewResult is the graded view of one calendar read. The
+// contract is proven, the reading is at most a hypothesis, and native
+// qualification, the combined timestamp and edit validation stay unknown.
+// CompleteCandidate is set only when all three cells are candidates.
 type B524CalendarViewResult struct {
 	B524CalendarViewContext             B524CalendarViewInput        `json:"context"`
 	B524CalendarViewComponents          [3]B524CalendarViewComponent `json:"components"`
@@ -40,6 +52,13 @@ type B524CalendarViewResult struct {
 	B524CalendarViewEditValidation      string                       `json:"edit_validation"`
 }
 
+// B524CalendarViewInterpret grades a calendar read. Only a read-opcode echo
+// from a supported controller family with a complete identity, whose
+// returned group and register equal the requested ones and whose register
+// is a known date or time register of the given alternative, yields
+// candidates; date cells outside day 1-31, month 1-12 or year 0-99 are
+// out of domain. Anything else stays Unknown. It never fails and copies
+// the input slices and pointers.
 func B524CalendarViewInterpret(b524CalendarViewInput B524CalendarViewInput) B524CalendarViewResult {
 	b524CalendarViewInput.B524CalendarViewRaw = append([]byte(nil), b524CalendarViewInput.B524CalendarViewRaw...)
 	if b524CalendarViewInput.B524CalendarViewII != nil {

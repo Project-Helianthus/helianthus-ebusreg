@@ -2,8 +2,14 @@ package system
 
 import b509ConstraintWordViewBytes "bytes"
 
+// B509ConstraintWordViewPositiveResponse is the direction value that, together
+// with operation 0x33, selects a constraint-word reply for decoding.
 const B509ConstraintWordViewPositiveResponse = "positive-response"
 
+// B509ConstraintWordViewInput is one observed B509 constraint exchange: its
+// family and variant, operation and direction, the requested and returned
+// register addresses and the raw minimum, maximum, default, step and factor
+// words.
 type B509ConstraintWordViewInput struct {
 	B509ConstraintWordViewFamily           string `json:"family"`
 	B509ConstraintWordViewVariant          string `json:"variant"`
@@ -18,12 +24,20 @@ type B509ConstraintWordViewInput struct {
 	B509ConstraintWordViewFactor           []byte `json:"factor"`
 }
 
+// B509ConstraintWord is one raw constraint word and its decoding state:
+// missing, malformed (not two bytes), unselected, or decoded as a signed
+// little-endian value.
 type B509ConstraintWord struct {
 	B509ConstraintWordViewRaw   []byte `json:"raw"`
 	B509ConstraintWordViewState string `json:"state"`
 	B509ConstraintWordViewValue int    `json:"value"`
 }
 
+// B509ConstraintWordView is the graded interpretation of a constraint
+// exchange. Only the software contract is proven and the word
+// interpretation is a hypothesis; echo rules, physical qualification,
+// writability, freshness and the other aspects stay unknown. A matching
+// returned address is reported, not required.
 type B509ConstraintWordView struct {
 	B509ConstraintWordViewContext                     B509ConstraintWordViewInput `json:"context"`
 	B509ConstraintWordViewSelected                    bool                        `json:"selected"`
@@ -72,6 +86,10 @@ func b509ConstraintWordViewWord(b509ConstraintWordViewRaw []byte, b509Constraint
 	return b509ConstraintWordViewResult
 }
 
+// B509ConstraintWordViewInterpret decodes the constraint words of a positive
+// reply to operation 0x33 and leaves any other exchange unselected. It never
+// fails and copies every input slice, so the view shares no memory with the
+// caller.
 func B509ConstraintWordViewInterpret(b509ConstraintWordViewInput B509ConstraintWordViewInput) B509ConstraintWordView {
 	b509ConstraintWordViewSelected := b509ConstraintWordViewInput.B509ConstraintWordViewOperation == 0x33 && b509ConstraintWordViewInput.B509ConstraintWordViewDirection == B509ConstraintWordViewPositiveResponse
 	b509ConstraintWordViewInput.B509ConstraintWordViewRequestedAddress = b509ConstraintWordViewClone(b509ConstraintWordViewInput.B509ConstraintWordViewRequestedAddress)

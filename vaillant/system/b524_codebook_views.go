@@ -1,5 +1,9 @@
 package system
 
+// B524CodebookViewInput is one observed B524 read of an enumerated register:
+// the controller identity, the opcode, group, instance and register, the
+// caller's width (u8, signed8 or u16-le), the requested and returned group
+// and register, the response state and the raw value.
 type B524CodebookViewInput struct {
 	B524CodebookViewFamily        string `json:"family"`
 	B524CodebookViewSoftware      string `json:"software"`
@@ -19,6 +23,11 @@ type B524CodebookViewInput struct {
 	B524CodebookViewRaw           []byte `json:"raw"`
 }
 
+// B524CodebookViewResult is the graded reading of an enumerated register.
+// Integer is set whenever the raw value fits the width, even when the
+// register is not applicable; CandidateLabel is set only for an applicable
+// register and a value the family's codebook names. The grade is at most
+// Hypothesis and native qualification stays unknown.
 type B524CodebookViewResult struct {
 	B524CodebookViewContext             B524CodebookViewInput `json:"context"`
 	B524CodebookViewInteger             *int                  `json:"integer"`
@@ -29,6 +38,12 @@ type B524CodebookViewResult struct {
 	B524CodebookViewNativeQualification string                `json:"native_qualification"`
 }
 
+// B524CodebookViewInterpret decodes the raw value at the given width and,
+// for a read-opcode echo of a known enumerated register from a supported
+// controller family, looks up the family's candidate label. A raw length
+// that differs from the width sets MalformedWidth; an unknown width or a
+// mismatched echo leaves the result Unknown. It never fails and copies the
+// input slices and pointers.
 func B524CodebookViewInterpret(b524CodebookViewInput B524CodebookViewInput) B524CodebookViewResult {
 	b524CodebookViewInput.B524CodebookViewRaw = append([]byte(nil), b524CodebookViewInput.B524CodebookViewRaw...)
 	if b524CodebookViewInput.B524CodebookViewII != nil {

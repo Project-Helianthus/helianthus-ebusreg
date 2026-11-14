@@ -2,6 +2,8 @@ package system
 
 import b509QuantityViewBinary "encoding/binary"
 
+// B509QuantityViewSelection identifies a B509 exchange by family, variant,
+// operation and direction.
 type B509QuantityViewSelection struct {
 	B509QuantityViewFamily    string `json:"family"`
 	B509QuantityViewVariant   string `json:"variant"`
@@ -9,6 +11,8 @@ type B509QuantityViewSelection struct {
 	B509QuantityViewDirection string `json:"direction"`
 }
 
+// B509QuantityViewFields holds the raw quantity words of one exchange; a nil
+// field is absent.
 type B509QuantityViewFields struct {
 	B509QuantityViewTemperature   []byte `json:"temperature"`
 	B509QuantityViewFlow          []byte `json:"flow"`
@@ -17,6 +21,10 @@ type B509QuantityViewFields struct {
 	B509QuantityViewMaximumVolume []byte `json:"maximum_volume"`
 }
 
+// B509QuantityViewCandidate is one quantity with its raw bytes, state
+// (absent, unselected, opaque, malformed or candidate), decoded value and
+// unit. The value is set only for a candidate, its meaning is a hypothesis
+// and its native qualification unknown.
 type B509QuantityViewCandidate struct {
 	B509QuantityViewRaw                 []byte   `json:"raw"`
 	B509QuantityViewState               string   `json:"state"`
@@ -26,6 +34,7 @@ type B509QuantityViewCandidate struct {
 	B509QuantityViewNativeQualification string   `json:"native_qualification"`
 }
 
+// B509QuantityView is the set of quantity candidates of one selected exchange.
 type B509QuantityView struct {
 	B509QuantityViewIdentity      B509QuantityViewSelection `json:"identity"`
 	B509QuantityViewSelection     B509QuantityViewSelection `json:"selection"`
@@ -76,6 +85,12 @@ func b509QuantityViewCandidate(b509QuantityViewRaw []byte, b509QuantityViewSelec
 	return b509QuantityViewResult
 }
 
+// B509QuantityViews decodes the quantities of an operation 0x59 request or
+// response whose identity equals the selection and names a family and
+// variant; anything else stays unselected. Temperature is in degrees
+// Celsius (signed, sixteenths), flow in litres per minute (hundredths) and
+// volume in litres (tenths); the volume limits stay opaque. Raw bytes are
+// copied.
 func B509QuantityViews(b509QuantityViewIdentity, b509QuantityViewSelection B509QuantityViewSelection, b509QuantityViewFields B509QuantityViewFields) B509QuantityView {
 	b509QuantityViewSelected := b509QuantityViewIdentity == b509QuantityViewSelection &&
 		b509QuantityViewSelection.B509QuantityViewFamily != "" && b509QuantityViewSelection.B509QuantityViewVariant != "" &&

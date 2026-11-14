@@ -1,5 +1,8 @@
 package system
 
+// B524GroupProfile bounds register discovery for one B524 group and opcode:
+// the highest instance and register to explore. The bounds are exploration
+// limits, not proof that a register exists.
 type B524GroupProfile struct {
 	Group       byte
 	Opcode      byte
@@ -7,6 +10,8 @@ type B524GroupProfile struct {
 	RegisterMax uint16
 }
 
+// B524 opcodes: local reads the controller's own registers, remote reads
+// the registers of remote device slots.
 const (
 	B524OpcodeLocal  = byte(0x02)
 	B524OpcodeRemote = byte(0x06)

@@ -61,7 +61,7 @@ func b50ERuleValueRowDecode(b50ERuleValueRowInput []byte) ([]B50ERuleValueRowEnt
 		return nil, b50ERuleValueRowError
 	}
 	if b50ERuleValueRowError := b50ERuleValueRowDecoder.Decode(new(any)); b50ERuleValueRowError != b50ERuleValueRowIO.EOF {
-		return nil, b50ERuleValueRowFmt.Errorf("ab74 trailing JSON: %v", b50ERuleValueRowError)
+		return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: trailing JSON: %v", b50ERuleValueRowError)
 	}
 	b50ERuleValueRowCanonical, b50ERuleValueRowError := b50ERuleValueRowJSON.Marshal(b50ERuleValueRowEntries)
 	if b50ERuleValueRowError != nil {
@@ -75,45 +75,45 @@ func b50ERuleValueRowDecode(b50ERuleValueRowInput []byte) ([]B50ERuleValueRowEnt
 		return nil, b50ERuleValueRowError
 	}
 	if !b50ERuleValueRowCompleteShape(b50ERuleValueRowRawShape, b50ERuleValueRowTypedShape) {
-		return nil, b50ERuleValueRowFmt.Errorf("ab74 missing explicit metadata field")
+		return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: missing explicit metadata field")
 	}
 	if len(b50ERuleValueRowEntries) != 19 {
-		return nil, b50ERuleValueRowFmt.Errorf("ab74 expected nineteen rows")
+		return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: expected nineteen rows")
 	}
 	b50ERuleValueRowSeen := make(map[byte]bool)
 	for _, b50ERuleValueRowEntry := range b50ERuleValueRowEntries {
 		b50ERuleValueRowKey := b50ERuleValueRowEntry.B50ERuleValueRowKey
 		if b50ERuleValueRowKey.B50ERuleValueRowFamily == nil || *b50ERuleValueRowKey.B50ERuleValueRowFamily != "vaillant" || b50ERuleValueRowKey.B50ERuleValueRowVariant == nil || *b50ERuleValueRowKey.B50ERuleValueRowVariant != "B50E" || b50ERuleValueRowKey.B50ERuleValueRowPrimary == nil || *b50ERuleValueRowKey.B50ERuleValueRowPrimary != 0xB5 || b50ERuleValueRowKey.B50ERuleValueRowSecondary == nil || *b50ERuleValueRowKey.B50ERuleValueRowSecondary != 0x0E || b50ERuleValueRowKey.B50ERuleValueRowOperation == nil || *b50ERuleValueRowKey.B50ERuleValueRowOperation != 2 || b50ERuleValueRowKey.B50ERuleValueRowDirection == nil || *b50ERuleValueRowKey.B50ERuleValueRowDirection != "positive" || b50ERuleValueRowKey.B50ERuleValueRowField == nil || *b50ERuleValueRowKey.B50ERuleValueRowField != "rule_value_row" || b50ERuleValueRowKey.B50ERuleValueRowSelector == nil || *b50ERuleValueRowKey.B50ERuleValueRowSelector > 18 {
-			return nil, b50ERuleValueRowFmt.Errorf("ab74 invalid row identity")
+			return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: invalid row identity")
 		}
 		b50ERuleValueRowSelector := *b50ERuleValueRowKey.B50ERuleValueRowSelector
 		if b50ERuleValueRowSeen[b50ERuleValueRowSelector] {
-			return nil, b50ERuleValueRowFmt.Errorf("ab74 duplicate row key")
+			return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: duplicate row key")
 		}
 		b50ERuleValueRowSeen[b50ERuleValueRowSelector] = true
 		if b50ERuleValueRowEntry.B50ERuleValueRowBase != "row-relative" || b50ERuleValueRowEntry.B50ERuleValueRowGrade != "Hypothesis" || b50ERuleValueRowEntry.B50ERuleValueRowMetadataPresence != "Proven" || b50ERuleValueRowEntry.B50ERuleValueRowPhysicalSupport != "Unknown" || b50ERuleValueRowEntry.B50ERuleValueRowEffects != "Unknown" || b50ERuleValueRowEntry.B50ERuleValueRowPersistence != "Unknown" || b50ERuleValueRowEntry.B50ERuleValueRowDelivery != "Unknown" || b50ERuleValueRowEntry.B50ERuleValueRowDefaultQualification != "Unknown" || b50ERuleValueRowEntry.B50ERuleValueRowRawFallback == "" {
-			return nil, b50ERuleValueRowFmt.Errorf("ab74 incomplete qualification")
+			return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: incomplete qualification")
 		}
 		if b50ERuleValueRowEntry.B50ERuleValue.B50ERuleValueRowOffset == nil || *b50ERuleValueRowEntry.B50ERuleValue.B50ERuleValueRowOffset != 0 {
-			return nil, b50ERuleValueRowFmt.Errorf("ab74 invalid value base")
+			return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: invalid value base")
 		}
 		for _, b50ERuleValueRowField := range []*B50ERuleValueRowField{&b50ERuleValueRowEntry.B50ERuleValue, b50ERuleValueRowEntry.B50ERuleValueRowCompanion} {
 			if b50ERuleValueRowField == nil {
 				continue
 			}
 			if b50ERuleValueRowField.B50ERuleValueRowOffset == nil || *b50ERuleValueRowField.B50ERuleValueRowOffset < 0 || b50ERuleValueRowField.B50ERuleValueRowEncoding == "" || b50ERuleValueRowField.B50ERuleValueRowByteOrder != "Unknown" || b50ERuleValueRowField.B50ERuleValueRowDefault != nil || (b50ERuleValueRowField.B50ERuleValueRowWidth != nil && *b50ERuleValueRowField.B50ERuleValueRowWidth <= 0) {
-				return nil, b50ERuleValueRowFmt.Errorf("ab74 invalid field declaration")
+				return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: invalid field declaration")
 			}
 		}
 		if b50ERuleValueRowSelector == 0 || b50ERuleValueRowSelector == 15 || b50ERuleValueRowSelector == 16 {
 			if b50ERuleValueRowEntry.B50ERuleValue.B50ERuleValueRowWidth != nil || b50ERuleValueRowEntry.B50ERuleValue.B50ERuleValueRowEncoding != "opaque" {
-				return nil, b50ERuleValueRowFmt.Errorf("ab74 opaque width must remain absent")
+				return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: opaque width must remain absent")
 			}
 		} else if b50ERuleValueRowEntry.B50ERuleValue.B50ERuleValueRowWidth == nil {
-			return nil, b50ERuleValueRowFmt.Errorf("ab74 missing known width")
+			return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: missing known width")
 		}
 		if (b50ERuleValueRowSelector >= 9 && b50ERuleValueRowSelector <= 14 || b50ERuleValueRowSelector >= 17) != (b50ERuleValueRowEntry.B50ERuleValueRowCompanion != nil) {
-			return nil, b50ERuleValueRowFmt.Errorf("ab74 missing or extra companion")
+			return nil, b50ERuleValueRowFmt.Errorf("b50e rule value rows: missing or extra companion")
 		}
 	}
 	return b50ERuleValueRowEntries, nil

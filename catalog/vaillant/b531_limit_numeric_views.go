@@ -7,30 +7,30 @@ const (
 )
 
 type B531LimitNumericViewField struct {
-	B531LimitNumericViewRaw       []byte `json:"Ab19An19Raw"`
-	B531LimitNumericViewState     string `json:"Ab19An19State"`
-	B531LimitNumericViewAvailable bool   `json:"Ab19An19Available"`
-	B531LimitNumericViewValue     uint32 `json:"Ab19An19Value"`
-	B531LimitNumericViewFresh     bool   `json:"Ab19An19Fresh"`
+	B531LimitNumericViewRaw       []byte `json:"raw"`
+	B531LimitNumericViewState     string `json:"state"`
+	B531LimitNumericViewAvailable bool   `json:"available"`
+	B531LimitNumericViewValue     uint32 `json:"value"`
+	B531LimitNumericViewFresh     bool   `json:"fresh"`
 }
 
 type B531LimitNumericViewPair struct {
-	B531LimitNumericViewMinimum B531LimitNumericViewField `json:"Ab19An19Minimum"`
-	B531LimitNumericViewMaximum B531LimitNumericViewField `json:"Ab19An19Maximum"`
-	B531LimitNumericViewFresh   bool                      `json:"Ab19An19Fresh"`
+	B531LimitNumericViewMinimum B531LimitNumericViewField `json:"minimum"`
+	B531LimitNumericViewMaximum B531LimitNumericViewField `json:"maximum"`
+	B531LimitNumericViewFresh   bool                      `json:"fresh"`
 }
 
 type B531LimitNumericViewResult struct {
-	B531LimitNumericViewAdmitted            bool                     `json:"Ab19An19Admitted"`
-	B531LimitNumericViewAttempt             B531LimitNumericViewPair `json:"Ab19An19Attempt"`
-	B531LimitNumericViewPrior               B531LimitNumericViewPair `json:"Ab19An19Prior"`
-	B531LimitNumericViewLastKnown           B531LimitNumericViewPair `json:"Ab19An19LastKnown"`
-	B531LimitNumericViewContractGrade       string                   `json:"Ab19An19ContractGrade"`
-	B531LimitNumericViewInterpretationGrade string                   `json:"Ab19An19InterpretationGrade"`
-	B531LimitNumericViewNativeUnit          string                   `json:"Ab19An19NativeUnit"`
-	B531LimitNumericViewQualification       string                   `json:"Ab19An19Qualification"`
-	B531LimitNumericViewPresence            string                   `json:"Ab19An19Presence"`
-	B531LimitNumericViewExecution           string                   `json:"Ab19An19Execution"`
+	B531LimitNumericViewAdmitted            bool                     `json:"admitted"`
+	B531LimitNumericViewAttempt             B531LimitNumericViewPair `json:"attempt"`
+	B531LimitNumericViewPrior               B531LimitNumericViewPair `json:"prior"`
+	B531LimitNumericViewLastKnown           B531LimitNumericViewPair `json:"last_known"`
+	B531LimitNumericViewContractGrade       string                   `json:"contract_grade"`
+	B531LimitNumericViewInterpretationGrade string                   `json:"interpretation_grade"`
+	B531LimitNumericViewNativeUnit          string                   `json:"native_unit"`
+	B531LimitNumericViewQualification       string                   `json:"qualification"`
+	B531LimitNumericViewPresence            string                   `json:"presence"`
+	B531LimitNumericViewExecution           string                   `json:"execution"`
 }
 
 func b531LimitNumericViewClone(b531LimitNumericViewField B531LimitNumericViewField) B531LimitNumericViewField {

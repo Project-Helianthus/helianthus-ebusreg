@@ -1,11 +1,11 @@
 [
   {
     "Ab11An11Label": "ab11an11-ab11an11-op00-reserved-complete",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op00-reserved",
-      "Ab11An11Operation": 0,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op00-reserved",
+      "operation": 0,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       17,
@@ -22,13 +22,13 @@
       0
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op00-reserved",
-        "Ab11An11Operation": 0,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op00-reserved",
+        "operation": 0,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         17,
         34,
         51,
@@ -42,28 +42,28 @@
         0,
         0
       ],
-      "Ab11An11AvailableExtent": 12,
-      "Ab11An11RequiredExtent": 12,
-      "Ab11An11CompleteLogicalExtent": true,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": 128,
-      "Ab11An11FanRunning": null,
-      "Ab11An11RawOverlay": null,
-      "Ab11An11RoomSetpointCelsius": null,
-      "Ab11An11RawPressure": null,
-      "Ab11An11PressurePercent": null,
-      "Ab11An11PressureDomain": "Unknown",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 12,
+      "required_extent": 12,
+      "complete_logical_extent": true,
+      "selected": true,
+      "raw_flag": 128,
+      "fan_running": null,
+      "raw_overlay": null,
+      "room_setpoint_celsius": null,
+      "raw_pressure": null,
+      "pressure_percent": null,
+      "pressure_domain": "Unknown",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   },
   {
     "Ab11An11Label": "ab11an11-ab11an11-op00-reserved-partial",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op00-reserved",
-      "Ab11An11Operation": 0,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op00-reserved",
+      "operation": 0,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       17,
@@ -77,13 +77,13 @@
       128
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op00-reserved",
-        "Ab11An11Operation": 0,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op00-reserved",
+        "operation": 0,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         17,
         34,
         51,
@@ -94,28 +94,28 @@
         64,
         128
       ],
-      "Ab11An11AvailableExtent": 9,
-      "Ab11An11RequiredExtent": 12,
-      "Ab11An11CompleteLogicalExtent": false,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": 128,
-      "Ab11An11FanRunning": null,
-      "Ab11An11RawOverlay": null,
-      "Ab11An11RoomSetpointCelsius": null,
-      "Ab11An11RawPressure": null,
-      "Ab11An11PressurePercent": null,
-      "Ab11An11PressureDomain": "Unknown",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 9,
+      "required_extent": 12,
+      "complete_logical_extent": false,
+      "selected": true,
+      "raw_flag": 128,
+      "fan_running": null,
+      "raw_overlay": null,
+      "room_setpoint_celsius": null,
+      "raw_pressure": null,
+      "pressure_percent": null,
+      "pressure_domain": "Unknown",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   },
   {
     "Ab11An11Label": "ab11an11-ab11an11-op00-fan-complete",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op00-fan",
-      "Ab11An11Operation": 0,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op00-fan",
+      "operation": 0,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       17,
@@ -132,13 +132,13 @@
       0
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op00-fan",
-        "Ab11An11Operation": 0,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op00-fan",
+        "operation": 0,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         17,
         34,
         51,
@@ -152,28 +152,28 @@
         0,
         0
       ],
-      "Ab11An11AvailableExtent": 12,
-      "Ab11An11RequiredExtent": 12,
-      "Ab11An11CompleteLogicalExtent": true,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": 128,
-      "Ab11An11FanRunning": true,
-      "Ab11An11RawOverlay": null,
-      "Ab11An11RoomSetpointCelsius": null,
-      "Ab11An11RawPressure": null,
-      "Ab11An11PressurePercent": null,
-      "Ab11An11PressureDomain": "Unknown",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 12,
+      "required_extent": 12,
+      "complete_logical_extent": true,
+      "selected": true,
+      "raw_flag": 128,
+      "fan_running": true,
+      "raw_overlay": null,
+      "room_setpoint_celsius": null,
+      "raw_pressure": null,
+      "pressure_percent": null,
+      "pressure_domain": "Unknown",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   },
   {
     "Ab11An11Label": "ab11an11-ab11an11-op00-fan-partial",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op00-fan",
-      "Ab11An11Operation": 0,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op00-fan",
+      "operation": 0,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       17,
@@ -187,13 +187,13 @@
       128
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op00-fan",
-        "Ab11An11Operation": 0,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op00-fan",
+        "operation": 0,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         17,
         34,
         51,
@@ -204,28 +204,28 @@
         64,
         128
       ],
-      "Ab11An11AvailableExtent": 9,
-      "Ab11An11RequiredExtent": 12,
-      "Ab11An11CompleteLogicalExtent": false,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": 128,
-      "Ab11An11FanRunning": true,
-      "Ab11An11RawOverlay": null,
-      "Ab11An11RoomSetpointCelsius": null,
-      "Ab11An11RawPressure": null,
-      "Ab11An11PressurePercent": null,
-      "Ab11An11PressureDomain": "Unknown",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 9,
+      "required_extent": 12,
+      "complete_logical_extent": false,
+      "selected": true,
+      "raw_flag": 128,
+      "fan_running": true,
+      "raw_overlay": null,
+      "room_setpoint_celsius": null,
+      "raw_pressure": null,
+      "pressure_percent": null,
+      "pressure_domain": "Unknown",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   },
   {
     "Ab11An11Label": "ab11an11-fan-clear",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op00-fan",
-      "Ab11An11Operation": 0,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op00-fan",
+      "operation": 0,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       0,
@@ -242,13 +242,13 @@
       0
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op00-fan",
-        "Ab11An11Operation": 0,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op00-fan",
+        "operation": 0,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         0,
         0,
         0,
@@ -262,28 +262,28 @@
         0,
         0
       ],
-      "Ab11An11AvailableExtent": 12,
-      "Ab11An11RequiredExtent": 12,
-      "Ab11An11CompleteLogicalExtent": true,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": 127,
-      "Ab11An11FanRunning": false,
-      "Ab11An11RawOverlay": null,
-      "Ab11An11RoomSetpointCelsius": null,
-      "Ab11An11RawPressure": null,
-      "Ab11An11PressurePercent": null,
-      "Ab11An11PressureDomain": "Unknown",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 12,
+      "required_extent": 12,
+      "complete_logical_extent": true,
+      "selected": true,
+      "raw_flag": 127,
+      "fan_running": false,
+      "raw_overlay": null,
+      "room_setpoint_celsius": null,
+      "raw_pressure": null,
+      "pressure_percent": null,
+      "pressure_domain": "Unknown",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   },
   {
     "Ab11An11Label": "ab11an11-base-eight",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op07-base",
-      "Ab11An11Operation": 7,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op07-base",
+      "operation": 7,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       17,
@@ -296,13 +296,13 @@
       64
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op07-base",
-        "Ab11An11Operation": 7,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op07-base",
+        "operation": 7,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         17,
         34,
         51,
@@ -312,28 +312,28 @@
         0,
         64
       ],
-      "Ab11An11AvailableExtent": 8,
-      "Ab11An11RequiredExtent": 8,
-      "Ab11An11CompleteLogicalExtent": true,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": null,
-      "Ab11An11FanRunning": null,
-      "Ab11An11RawOverlay": 64,
-      "Ab11An11RoomSetpointCelsius": null,
-      "Ab11An11RawPressure": null,
-      "Ab11An11PressurePercent": null,
-      "Ab11An11PressureDomain": "Unknown",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 8,
+      "required_extent": 8,
+      "complete_logical_extent": true,
+      "selected": true,
+      "raw_flag": null,
+      "fan_running": null,
+      "raw_overlay": 64,
+      "room_setpoint_celsius": null,
+      "raw_pressure": null,
+      "pressure_percent": null,
+      "pressure_domain": "Unknown",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   },
   {
     "Ab11An11Label": "ab11an11-base-extra",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op07-base",
-      "Ab11An11Operation": 7,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op07-base",
+      "operation": 7,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       17,
@@ -347,13 +347,13 @@
       100
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op07-base",
-        "Ab11An11Operation": 7,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op07-base",
+        "operation": 7,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         17,
         34,
         51,
@@ -364,28 +364,28 @@
         64,
         100
       ],
-      "Ab11An11AvailableExtent": 9,
-      "Ab11An11RequiredExtent": 8,
-      "Ab11An11CompleteLogicalExtent": true,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": null,
-      "Ab11An11FanRunning": null,
-      "Ab11An11RawOverlay": 64,
-      "Ab11An11RoomSetpointCelsius": null,
-      "Ab11An11RawPressure": null,
-      "Ab11An11PressurePercent": null,
-      "Ab11An11PressureDomain": "Unknown",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 9,
+      "required_extent": 8,
+      "complete_logical_extent": true,
+      "selected": true,
+      "raw_flag": null,
+      "fan_running": null,
+      "raw_overlay": 64,
+      "room_setpoint_celsius": null,
+      "raw_pressure": null,
+      "pressure_percent": null,
+      "pressure_domain": "Unknown",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   },
   {
     "Ab11An11Label": "ab11an11-extended-eight",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op07-extended-room",
-      "Ab11An11Operation": 7,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op07-extended-room",
+      "operation": 7,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       17,
@@ -398,13 +398,13 @@
       64
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op07-extended-room",
-        "Ab11An11Operation": 7,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op07-extended-room",
+        "operation": 7,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         17,
         34,
         51,
@@ -414,28 +414,28 @@
         0,
         64
       ],
-      "Ab11An11AvailableExtent": 8,
-      "Ab11An11RequiredExtent": 9,
-      "Ab11An11CompleteLogicalExtent": false,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": null,
-      "Ab11An11FanRunning": null,
-      "Ab11An11RawOverlay": 64,
-      "Ab11An11RoomSetpointCelsius": 32,
-      "Ab11An11RawPressure": null,
-      "Ab11An11PressurePercent": null,
-      "Ab11An11PressureDomain": "unavailable",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 8,
+      "required_extent": 9,
+      "complete_logical_extent": false,
+      "selected": true,
+      "raw_flag": null,
+      "fan_running": null,
+      "raw_overlay": 64,
+      "room_setpoint_celsius": 32,
+      "raw_pressure": null,
+      "pressure_percent": null,
+      "pressure_domain": "unavailable",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   },
   {
     "Ab11An11Label": "ab11an11-extended-hundred",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op07-extended-room",
-      "Ab11An11Operation": 7,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op07-extended-room",
+      "operation": 7,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       17,
@@ -449,13 +449,13 @@
       100
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op07-extended-room",
-        "Ab11An11Operation": 7,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op07-extended-room",
+        "operation": 7,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         17,
         34,
         51,
@@ -466,28 +466,28 @@
         64,
         100
       ],
-      "Ab11An11AvailableExtent": 9,
-      "Ab11An11RequiredExtent": 9,
-      "Ab11An11CompleteLogicalExtent": true,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": null,
-      "Ab11An11FanRunning": null,
-      "Ab11An11RawOverlay": 64,
-      "Ab11An11RoomSetpointCelsius": 32,
-      "Ab11An11RawPressure": 100,
-      "Ab11An11PressurePercent": 100,
-      "Ab11An11PressureDomain": "in-domain",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 9,
+      "required_extent": 9,
+      "complete_logical_extent": true,
+      "selected": true,
+      "raw_flag": null,
+      "fan_running": null,
+      "raw_overlay": 64,
+      "room_setpoint_celsius": 32,
+      "raw_pressure": 100,
+      "pressure_percent": 100,
+      "pressure_domain": "in-domain",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   },
   {
     "Ab11An11Label": "ab11an11-extended-invalid",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op07-extended-room",
-      "Ab11An11Operation": 7,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op07-extended-room",
+      "operation": 7,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       17,
@@ -501,13 +501,13 @@
       101
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op07-extended-room",
-        "Ab11An11Operation": 7,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op07-extended-room",
+        "operation": 7,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         17,
         34,
         51,
@@ -518,28 +518,28 @@
         64,
         101
       ],
-      "Ab11An11AvailableExtent": 9,
-      "Ab11An11RequiredExtent": 9,
-      "Ab11An11CompleteLogicalExtent": true,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": null,
-      "Ab11An11FanRunning": null,
-      "Ab11An11RawOverlay": 64,
-      "Ab11An11RoomSetpointCelsius": 32,
-      "Ab11An11RawPressure": 101,
-      "Ab11An11PressurePercent": null,
-      "Ab11An11PressureDomain": "out-of-domain",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 9,
+      "required_extent": 9,
+      "complete_logical_extent": true,
+      "selected": true,
+      "raw_flag": null,
+      "fan_running": null,
+      "raw_overlay": 64,
+      "room_setpoint_celsius": 32,
+      "raw_pressure": 101,
+      "pressure_percent": null,
+      "pressure_domain": "out-of-domain",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   },
   {
     "Ab11An11Label": "ab11an11-extended-half",
-    "Ab11An11Selection": {
-      "Ab11An11Family": "ab11an11-b511-family",
-      "Ab11An11Variant": "ab11an11-op07-extended-room",
-      "Ab11An11Operation": 7,
-      "Ab11An11Direction": "positive"
+    "selection": {
+      "family": "b511-family",
+      "variant": "op07-extended-room",
+      "operation": 7,
+      "direction": "positive"
     },
     "Ab11An11Image": [
       0,
@@ -553,13 +553,13 @@
       0
     ],
     "Ab11An11Expected": {
-      "Ab11An11Selection": {
-        "Ab11An11Family": "ab11an11-b511-family",
-        "Ab11An11Variant": "ab11an11-op07-extended-room",
-        "Ab11An11Operation": 7,
-        "Ab11An11Direction": "positive"
+      "selection": {
+        "family": "b511-family",
+        "variant": "op07-extended-room",
+        "operation": 7,
+        "direction": "positive"
       },
-      "Ab11An11Raw": [
+      "raw": [
         0,
         0,
         0,
@@ -570,19 +570,19 @@
         65,
         0
       ],
-      "Ab11An11AvailableExtent": 9,
-      "Ab11An11RequiredExtent": 9,
-      "Ab11An11CompleteLogicalExtent": true,
-      "Ab11An11Selected": true,
-      "Ab11An11RawFlag": null,
-      "Ab11An11FanRunning": null,
-      "Ab11An11RawOverlay": 65,
-      "Ab11An11RoomSetpointCelsius": 32.5,
-      "Ab11An11RawPressure": 0,
-      "Ab11An11PressurePercent": 0,
-      "Ab11An11PressureDomain": "in-domain",
-      "Ab11An11CandidateGrade": "Hypothesis",
-      "Ab11An11PhysicalQualification": "Unknown"
+      "available_extent": 9,
+      "required_extent": 9,
+      "complete_logical_extent": true,
+      "selected": true,
+      "raw_flag": null,
+      "fan_running": null,
+      "raw_overlay": 65,
+      "room_setpoint_celsius": 32.5,
+      "raw_pressure": 0,
+      "pressure_percent": 0,
+      "pressure_domain": "in-domain",
+      "candidate_grade": "Hypothesis",
+      "physical_qualification": "Unknown"
     }
   }
 ]

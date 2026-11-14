@@ -54,23 +54,23 @@ func b509HeatpumpCodecDictionaryParse(b509HeatpumpCodecDictionaryData []byte) ([
 		return nil, b509HeatpumpCodecDictionaryError
 	}
 	if b509HeatpumpCodecDictionaryError := b509HeatpumpCodecDictionaryDecoder.Decode(new(any)); b509HeatpumpCodecDictionaryError != b509HeatpumpCodecDictionaryIO.EOF {
-		return nil, b509HeatpumpCodecDictionaryFmt.Errorf("ab70: trailing data")
+		return nil, b509HeatpumpCodecDictionaryFmt.Errorf("b509 heatpump codec dictionary: trailing data")
 	}
 	if len(b509HeatpumpCodecDictionaryEntries) == 0 {
-		return nil, b509HeatpumpCodecDictionaryFmt.Errorf("ab70: empty dictionary")
+		return nil, b509HeatpumpCodecDictionaryFmt.Errorf("b509 heatpump codec dictionary: empty dictionary")
 	}
 	b509HeatpumpCodecDictionarySeen := make(map[string]bool)
 	for _, b509HeatpumpCodecDictionaryEntry := range b509HeatpumpCodecDictionaryEntries {
 		b509HeatpumpCodecDictionaryKey := b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionaryKey
 		if b509HeatpumpCodecDictionaryKey.B509HeatpumpCodecDictionaryFamily == "" || b509HeatpumpCodecDictionaryKey.B509HeatpumpCodecDictionaryVariant == "" || b509HeatpumpCodecDictionaryKey.B509HeatpumpCodecDictionaryPrimary == nil || b509HeatpumpCodecDictionaryKey.B509HeatpumpCodecDictionarySecondary == nil || b509HeatpumpCodecDictionaryKey.B509HeatpumpCodecDictionaryOperation == nil || b509HeatpumpCodecDictionaryKey.B509HeatpumpCodecDictionaryDirection == "" || len(b509HeatpumpCodecDictionaryKey.B509HeatpumpCodecDictionarySelector) != 2 || b509HeatpumpCodecDictionaryKey.B509HeatpumpCodecDictionarySelector[0] > 255 || b509HeatpumpCodecDictionaryKey.B509HeatpumpCodecDictionarySelector[1] > 255 || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionaryQuantity == "" || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDeclaration == "" || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionaryGrade != "Hypothesis" || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionarySoftwareContract != "Proven" || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionaryQualification != "Unknown" || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionaryPresence != "Unknown" || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionaryFreshness != "Unknown" || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionaryExecution != "Unknown" || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionaryPhysicalEffects != "Unknown" || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionaryPersistence != "Unknown" || b509HeatpumpCodecDictionaryEntry.B509HeatpumpCodecDictionaryDelivery != "Unknown" {
-			return nil, b509HeatpumpCodecDictionaryFmt.Errorf("ab70: incomplete or invalid entry")
+			return nil, b509HeatpumpCodecDictionaryFmt.Errorf("b509 heatpump codec dictionary: incomplete or invalid entry")
 		}
 		b509HeatpumpCodecDictionaryEncoded, b509HeatpumpCodecDictionaryError := b509HeatpumpCodecDictionaryJSONPackage.Marshal(b509HeatpumpCodecDictionaryKey)
 		if b509HeatpumpCodecDictionaryError != nil {
 			return nil, b509HeatpumpCodecDictionaryError
 		}
 		if b509HeatpumpCodecDictionarySeen[string(b509HeatpumpCodecDictionaryEncoded)] {
-			return nil, b509HeatpumpCodecDictionaryFmt.Errorf("ab70: duplicate key")
+			return nil, b509HeatpumpCodecDictionaryFmt.Errorf("b509 heatpump codec dictionary: duplicate key")
 		}
 		b509HeatpumpCodecDictionarySeen[string(b509HeatpumpCodecDictionaryEncoded)] = true
 	}

@@ -60,11 +60,11 @@ func TestAb17FiniteMetadata(b506RFSequenceT *b506RFSequenceTesting.T) {
 		b506RFSequenceObject := b506RFSequenceDecode(b506RFSequenceT, b506RFSequenceLookup)
 		b506RFSequenceWant(b506RFSequenceT, b506RFSequenceObject, "grade", `"Hypothesis"`)
 		b506RFSequenceWant(b506RFSequenceT, b506RFSequenceObject, "qualification", `"Unknown"`)
-		b506RFSequenceWant(b506RFSequenceT, b506RFSequenceObject, "ab17_raw_form", `"retain-original-bytes"`)
-		for _, b506RFSequenceField := range []string{"ab17_extent_bytes", "ab17_minimum_bytes", "ab17_maximum_bytes", "ab17_field_position"} {
+		b506RFSequenceWant(b506RFSequenceT, b506RFSequenceObject, "raw_form", `"retain-original-bytes"`)
+		for _, b506RFSequenceField := range []string{"extent_bytes", "minimum_bytes", "maximum_bytes", "field_position"} {
 			b506RFSequenceWant(b506RFSequenceT, b506RFSequenceObject, b506RFSequenceField, "null")
 		}
-		b506RFSequenceUnknown := b506RFSequenceDecode(b506RFSequenceT, b506RFSequenceObject["ab17_unknown"])
+		b506RFSequenceUnknown := b506RFSequenceDecode(b506RFSequenceT, b506RFSequenceObject["unknown"])
 		for _, b506RFSequenceField := range []string{"native_support", "physical_effects", "persistence", "delivery"} {
 			b506RFSequenceWant(b506RFSequenceT, b506RFSequenceUnknown, b506RFSequenceField, `"Unknown"`)
 		}
@@ -78,11 +78,11 @@ func TestAb17FiniteMetadata(b506RFSequenceT *b506RFSequenceTesting.T) {
 			b506RFSequenceT.Fatal("RF metadata operation")
 		}
 	}
-	b506RFSequenceCount := b506RFSequenceDecode(b506RFSequenceT, b506RFSequenceDecode(b506RFSequenceT, b506RFSequenceEntries[0])["ab17_count"])
-	b506RFSequenceWant(b506RFSequenceT, b506RFSequenceCount, "ab17_zero_meaning", `"unlimited"`)
-	b506RFSequenceWant(b506RFSequenceT, b506RFSequenceCount, "ab17_finite_minimum", "1")
-	b506RFSequenceWant(b506RFSequenceT, b506RFSequenceCount, "ab17_finite_maximum", "255")
-	b506RFSequenceWant(b506RFSequenceT, b506RFSequenceCount, "ab17_finite_meaning", `"count-value"`)
+	b506RFSequenceCount := b506RFSequenceDecode(b506RFSequenceT, b506RFSequenceDecode(b506RFSequenceT, b506RFSequenceEntries[0])["count"])
+	b506RFSequenceWant(b506RFSequenceT, b506RFSequenceCount, "zero_meaning", `"unlimited"`)
+	b506RFSequenceWant(b506RFSequenceT, b506RFSequenceCount, "finite_minimum", "1")
+	b506RFSequenceWant(b506RFSequenceT, b506RFSequenceCount, "finite_maximum", "255")
+	b506RFSequenceWant(b506RFSequenceT, b506RFSequenceCount, "finite_meaning", `"count-value"`)
 	for _, b506RFSequenceCase := range []struct {
 		b506RFSequenceCount    int
 		b506RFSequenceExpected string
@@ -93,7 +93,7 @@ func TestAb17FiniteMetadata(b506RFSequenceT *b506RFSequenceTesting.T) {
 			for _, b506RFSequenceDecodeCase := range []struct {
 				b506RFSequenceName   string
 				b506RFSequenceTarget any
-			}{{"ab17_finite_minimum", &b506RFSequenceMinimum}, {"ab17_finite_maximum", &b506RFSequenceMaximum}, {"ab17_zero_meaning", &b506RFSequenceZero}, {"ab17_finite_meaning", &b506RFSequenceMeaning}} {
+			}{{"finite_minimum", &b506RFSequenceMinimum}, {"finite_maximum", &b506RFSequenceMaximum}, {"zero_meaning", &b506RFSequenceZero}, {"finite_meaning", &b506RFSequenceMeaning}} {
 				if b506RFSequenceError := b506RFSequenceJSON.Unmarshal(b506RFSequenceCount[b506RFSequenceDecodeCase.b506RFSequenceName], b506RFSequenceDecodeCase.b506RFSequenceTarget); b506RFSequenceError != nil {
 					b506RFSequenceT.Fatal(b506RFSequenceError)
 				}
@@ -118,11 +118,11 @@ func TestAb17FiniteMetadata(b506RFSequenceT *b506RFSequenceTesting.T) {
 			b506RFSequenceT.Fatalf("sequence %d: %v", b506RFSequenceSequence, b506RFSequenceError)
 		}
 		b506RFSequenceObject := b506RFSequenceDecode(b506RFSequenceT, b506RFSequenceRaw)
-		b506RFSequenceWant(b506RFSequenceT, b506RFSequenceObject, "ab17_extent_class", b506RFSequenceExpected)
+		b506RFSequenceWant(b506RFSequenceT, b506RFSequenceObject, "extent_class", b506RFSequenceExpected)
 		for _, b506RFSequencePayload := range [][]byte{{}, {0x23, 0x45}} {
 			b506RFSequenceT.Run(b506RFSequenceFmt.Sprintf("ab17-sequence-%d-payload-length-%d", b506RFSequenceSequence, len(b506RFSequencePayload)), func(b506RFSequenceT *b506RFSequenceTesting.T) {
 				b506RFSequenceWant(b506RFSequenceT, b506RFSequenceObject, "qualification", `"Unknown"`)
-				b506RFSequenceWant(b506RFSequenceT, b506RFSequenceObject, "ab17_extent_bytes", "null")
+				b506RFSequenceWant(b506RFSequenceT, b506RFSequenceObject, "extent_bytes", "null")
 			})
 		}
 	}
@@ -139,16 +139,16 @@ func TestAb17FiniteMetadata(b506RFSequenceT *b506RFSequenceTesting.T) {
 		b506RFSequenceT.Fatal("stop identity")
 	}
 	var b506RFSequenceRelated []int
-	if b506RFSequenceError := b506RFSequenceJSON.Unmarshal(b506RFSequenceStop["ab17_related_operations"], &b506RFSequenceRelated); b506RFSequenceError != nil {
+	if b506RFSequenceError := b506RFSequenceJSON.Unmarshal(b506RFSequenceStop["related_operations"], &b506RFSequenceRelated); b506RFSequenceError != nil {
 		b506RFSequenceT.Fatal(b506RFSequenceError)
 	}
 	if !b506RFSequenceReflect.DeepEqual(b506RFSequenceRelated, []int{12, 13}) {
 		b506RFSequenceT.Fatal("stop associations")
 	}
-	for _, b506RFSequenceField := range []string{"ab17_activation_order", "ab17_delivery_guarantee", "ab17_completed_stop"} {
+	for _, b506RFSequenceField := range []string{"activation_order", "delivery_guarantee", "completed_stop"} {
 		b506RFSequenceWant(b506RFSequenceT, b506RFSequenceStop, b506RFSequenceField, `"Unknown"`)
 	}
-	for _, b506RFSequenceField := range []string{"ab17_retry_count", "ab17_timeout"} {
+	for _, b506RFSequenceField := range []string{"retry_count", "timeout"} {
 		b506RFSequenceWant(b506RFSequenceT, b506RFSequenceStop, b506RFSequenceField, "null")
 	}
 }
@@ -212,7 +212,7 @@ func TestAb17IndependentAxes(b506RFSequenceT *b506RFSequenceTesting.T) {
 					b506RFSequenceT.Fatal(b506RFSequenceError)
 				}
 				b506RFSequenceObjects[b506RFSequenceIndex]["key"] = b506RFSequenceKeyJSON
-				b506RFSequenceObjects[b506RFSequenceIndex]["ab17_id"] = b506RFSequenceJSON.RawMessage(b506RFSequenceFmt.Sprintf(`"ab17-control-%d"`, b506RFSequenceIndex))
+				b506RFSequenceObjects[b506RFSequenceIndex]["id"] = b506RFSequenceJSON.RawMessage(b506RFSequenceFmt.Sprintf(`"ab17-control-%d"`, b506RFSequenceIndex))
 			}
 			b506RFSequenceData, b506RFSequenceError := b506RFSequenceJSON.Marshal(b506RFSequenceObjects)
 			if b506RFSequenceError != nil {
@@ -226,7 +226,7 @@ func TestAb17IndependentAxes(b506RFSequenceT *b506RFSequenceTesting.T) {
 				if b506RFSequenceError != nil || !b506RFSequenceFound {
 					b506RFSequenceT.Fatalf("valid control: %v", b506RFSequenceError)
 				}
-				b506RFSequenceWant(b506RFSequenceT, b506RFSequenceDecode(b506RFSequenceT, b506RFSequenceRaw), "ab17_id", b506RFSequenceFmt.Sprintf(`"ab17-control-%d"`, b506RFSequenceIndex))
+				b506RFSequenceWant(b506RFSequenceT, b506RFSequenceDecode(b506RFSequenceT, b506RFSequenceRaw), "id", b506RFSequenceFmt.Sprintf(`"ab17-control-%d"`, b506RFSequenceIndex))
 			}
 		})
 	}

@@ -32,13 +32,13 @@ func b509IdentityShapeValidate(b509IdentityShapeSource []byte) ([]b509IdentitySh
 		return nil, nil, b509IdentityShapeError
 	}
 	if b509IdentityShapeRows == nil {
-		return nil, nil, b509IdentityShapeFmt.Errorf("ab46: expected an array")
+		return nil, nil, b509IdentityShapeFmt.Errorf("b509 identity shapes: expected an array")
 	}
 	b509IdentityShapeKeys := make([]B509IdentityShapeKey, 0, len(b509IdentityShapeRows))
 	for b509IdentityShapeIndex, b509IdentityShapeRaw := range b509IdentityShapeRows {
 		var b509IdentityShapeObject map[string]b509IdentityShapeJSON.RawMessage
 		if b509IdentityShapeError := b509IdentityShapeJSON.Unmarshal(b509IdentityShapeRaw, &b509IdentityShapeObject); b509IdentityShapeError != nil || b509IdentityShapeObject == nil {
-			return nil, nil, b509IdentityShapeFmt.Errorf("ab46: row %d must be an object", b509IdentityShapeIndex)
+			return nil, nil, b509IdentityShapeFmt.Errorf("b509 identity shapes: row %d must be an object", b509IdentityShapeIndex)
 		}
 		var b509IdentityShapeKey B509IdentityShapeKey
 		b509IdentityShapeDecoder := b509IdentityShapeJSON.NewDecoder(b509IdentityShapeBytes.NewReader(b509IdentityShapeObject["key"]))
@@ -47,14 +47,14 @@ func b509IdentityShapeValidate(b509IdentityShapeSource []byte) ([]b509IdentitySh
 			return nil, nil, b509IdentityShapeError
 		}
 		if b509IdentityShapeError := b509IdentityShapeDecoder.Decode(new(any)); b509IdentityShapeError != b509IdentityShapeIO.EOF {
-			return nil, nil, b509IdentityShapeFmt.Errorf("ab46: invalid key")
+			return nil, nil, b509IdentityShapeFmt.Errorf("b509 identity shapes: invalid key")
 		}
 		if b509IdentityShapeKey.B509IdentityShapeFamily == "" || b509IdentityShapeKey.B509IdentityShapeVariant == "" || b509IdentityShapeKey.B509IdentityShapePrimary == nil || b509IdentityShapeKey.B509IdentityShapeDirection == "" || b509IdentityShapeKey.B509IdentityShapeField == "" || b509IdentityShapeKey.B509IdentityShapeAlternative == "" || b509IdentityShapeKey.B509IdentityShapeInstanceScope == "" {
-			return nil, nil, b509IdentityShapeFmt.Errorf("ab46: incomplete key at row %d", b509IdentityShapeIndex)
+			return nil, nil, b509IdentityShapeFmt.Errorf("b509 identity shapes: incomplete key at row %d", b509IdentityShapeIndex)
 		}
 		for _, b509IdentityShapePrevious := range b509IdentityShapeKeys {
 			if b509IdentityShapeReflect.DeepEqual(b509IdentityShapePrevious, b509IdentityShapeKey) {
-				return nil, nil, b509IdentityShapeFmt.Errorf("ab46: duplicate key at row %d", b509IdentityShapeIndex)
+				return nil, nil, b509IdentityShapeFmt.Errorf("b509 identity shapes: duplicate key at row %d", b509IdentityShapeIndex)
 			}
 		}
 		b509IdentityShapeKeys = append(b509IdentityShapeKeys, b509IdentityShapeKey)

@@ -15,14 +15,14 @@ const (
 )
 
 type SchemaKey struct {
-	SchemaFamily      string `json:"ab05_family"`
-	SchemaVariant     string `json:"ab05_variant"`
-	SchemaDirection   string `json:"ab05_direction"`
-	SchemaOpcode      uint8  `json:"ab05_opcode"`
-	SchemaGroup       uint8  `json:"ab05_group"`
-	SchemaInstance    uint8  `json:"ab05_instance"`
-	SchemaRegister    uint16 `json:"ab05_register"`
-	SchemaAlternative string `json:"ab05_alternative"`
+	SchemaFamily      string `json:"family"`
+	SchemaVariant     string `json:"variant"`
+	SchemaDirection   string `json:"direction"`
+	SchemaOpcode      uint8  `json:"opcode"`
+	SchemaGroup       uint8  `json:"group"`
+	SchemaInstance    uint8  `json:"instance"`
+	SchemaRegister    uint16 `json:"register"`
+	SchemaAlternative string `json:"alternative"`
 }
 
 // UnmarshalJSON requires explicit numeric selectors, including explicit zero,
@@ -31,10 +31,10 @@ func (schemaKey *SchemaKey) UnmarshalJSON(schemaData []byte) error {
 	type schemaKeyValue SchemaKey
 	var schemaWire struct {
 		schemaKeyValue
-		SchemaOpcode   *uint8  `json:"ab05_opcode"`
-		SchemaGroup    *uint8  `json:"ab05_group"`
-		SchemaInstance *uint8  `json:"ab05_instance"`
-		SchemaRegister *uint16 `json:"ab05_register"`
+		SchemaOpcode   *uint8  `json:"opcode"`
+		SchemaGroup    *uint8  `json:"group"`
+		SchemaInstance *uint8  `json:"instance"`
+		SchemaRegister *uint16 `json:"register"`
 	}
 	schemaDecoder := json.NewDecoder(bytes.NewReader(schemaData))
 	schemaDecoder.DisallowUnknownFields()
@@ -42,7 +42,7 @@ func (schemaKey *SchemaKey) UnmarshalJSON(schemaData []byte) error {
 		return schemaError
 	}
 	if schemaWire.SchemaOpcode == nil || schemaWire.SchemaGroup == nil || schemaWire.SchemaInstance == nil || schemaWire.SchemaRegister == nil {
-		return fmt.Errorf("ab05 key: opcode, group, instance and register must be supplied and non-null")
+		return fmt.Errorf("schema key: opcode, group, instance and register must be supplied and non-null")
 	}
 	schemaValue := SchemaKey(schemaWire.schemaKeyValue)
 	schemaValue.SchemaOpcode = *schemaWire.SchemaOpcode
@@ -54,23 +54,23 @@ func (schemaKey *SchemaKey) UnmarshalJSON(schemaData []byte) error {
 }
 
 type SchemaField struct {
-	SchemaName        string           `json:"ab05_name"`
-	SchemaPosition    *int             `json:"ab05_position,omitempty"`
-	SchemaWidth       *int             `json:"ab05_width,omitempty"`
-	SchemaCodec       string           `json:"ab05_codec"`
-	SchemaUnit        string           `json:"ab05_unit,omitempty"`
-	SchemaEnum        map[int64]string `json:"ab05_enum,omitempty"`
-	SchemaSentinel    []byte           `json:"ab05_sentinel,omitempty"`
-	SchemaGrade       SchemaGrade      `json:"ab05_grade,omitempty"`
-	SchemaRawFallback []byte           `json:"ab05_raw_fallback"`
+	SchemaName        string           `json:"name"`
+	SchemaPosition    *int             `json:"position,omitempty"`
+	SchemaWidth       *int             `json:"width,omitempty"`
+	SchemaCodec       string           `json:"codec"`
+	SchemaUnit        string           `json:"unit,omitempty"`
+	SchemaEnum        map[int64]string `json:"enum,omitempty"`
+	SchemaSentinel    []byte           `json:"sentinel,omitempty"`
+	SchemaGrade       SchemaGrade      `json:"grade,omitempty"`
+	SchemaRawFallback []byte           `json:"raw_fallback"`
 }
 
 type SchemaRecord struct {
-	SchemaKey         SchemaKey     `json:"ab05_key"`
-	SchemaBodyWidth   *int          `json:"ab05_body_width,omitempty"`
-	SchemaGrade       SchemaGrade   `json:"ab05_grade,omitempty"`
-	SchemaRawFallback []byte        `json:"ab05_raw_fallback"`
-	SchemaFields      []SchemaField `json:"ab05_fields,omitempty"`
+	SchemaKey         SchemaKey     `json:"key"`
+	SchemaBodyWidth   *int          `json:"body_width,omitempty"`
+	SchemaGrade       SchemaGrade   `json:"grade,omitempty"`
+	SchemaRawFallback []byte        `json:"raw_fallback"`
+	SchemaFields      []SchemaField `json:"fields,omitempty"`
 }
 
 func schemaValidGrade(schemaGrade SchemaGrade) bool {
@@ -82,32 +82,32 @@ func SchemaValidate(schemaRecords []SchemaRecord) error {
 	for schemaIndex, schemaRecord := range schemaRecords {
 		schemaKey := schemaRecord.SchemaKey
 		if schemaKey.SchemaFamily == "" || schemaKey.SchemaVariant == "" || schemaKey.SchemaAlternative == "" || (schemaKey.SchemaDirection != "request" && schemaKey.SchemaDirection != "response") {
-			return fmt.Errorf("ab05 record %d: invalid key dimension", schemaIndex)
+			return fmt.Errorf("schema record %d: invalid key dimension", schemaIndex)
 		}
 		if schemaSeen[schemaRecord.SchemaKey] {
-			return fmt.Errorf("ab05 record %d: duplicate alternative key", schemaIndex)
+			return fmt.Errorf("schema record %d: duplicate alternative key", schemaIndex)
 		}
 		schemaSeen[schemaRecord.SchemaKey] = true
 		if !schemaValidGrade(schemaRecord.SchemaGrade) {
-			return fmt.Errorf("ab05 record %d: invalid grade", schemaIndex)
+			return fmt.Errorf("schema record %d: invalid grade", schemaIndex)
 		}
 		if schemaRecord.SchemaBodyWidth != nil && *schemaRecord.SchemaBodyWidth < 0 {
-			return fmt.Errorf("ab05 record %d: negative body width", schemaIndex)
+			return fmt.Errorf("schema record %d: negative body width", schemaIndex)
 		}
 		for schemaFieldIndex, schemaField := range schemaRecord.SchemaFields {
 			if !schemaValidGrade(schemaField.SchemaGrade) {
-				return fmt.Errorf("ab05 record %d field %d: invalid grade", schemaIndex, schemaFieldIndex)
+				return fmt.Errorf("schema record %d field %d: invalid grade", schemaIndex, schemaFieldIndex)
 			}
 			if (schemaField.SchemaPosition != nil && *schemaField.SchemaPosition < 0) || (schemaField.SchemaWidth != nil && *schemaField.SchemaWidth <= 0) {
-				return fmt.Errorf("ab05 record %d field %d: invalid extent", schemaIndex, schemaFieldIndex)
+				return fmt.Errorf("schema record %d field %d: invalid extent", schemaIndex, schemaFieldIndex)
 			}
 			if schemaRecord.SchemaBodyWidth != nil && schemaField.SchemaPosition != nil {
 				schemaRemaining := *schemaRecord.SchemaBodyWidth - *schemaField.SchemaPosition
 				if schemaRemaining <= 0 || (schemaField.SchemaWidth != nil && *schemaField.SchemaWidth > schemaRemaining) {
-					return fmt.Errorf("ab05 record %d field %d: extent exceeds body", schemaIndex, schemaFieldIndex)
+					return fmt.Errorf("schema record %d field %d: extent exceeds body", schemaIndex, schemaFieldIndex)
 				}
 			} else if schemaRecord.SchemaBodyWidth != nil && schemaField.SchemaWidth != nil && *schemaField.SchemaWidth > *schemaRecord.SchemaBodyWidth {
-				return fmt.Errorf("ab05 record %d field %d: width exceeds body", schemaIndex, schemaFieldIndex)
+				return fmt.Errorf("schema record %d field %d: width exceeds body", schemaIndex, schemaFieldIndex)
 			}
 		}
 	}

@@ -24,7 +24,7 @@ var b522DemandViewModeLabels = map[int]string{
 
 func b522DemandViewParse(b522DemandViewDec *json.Decoder, b522DemandViewDepth int) (any, error) {
 	if b522DemandViewDepth > b522DemandViewMaxDepth {
-		return nil, errors.New("ab25ao25: nesting too deep")
+		return nil, errors.New("b522 demand views: nesting too deep")
 	}
 	b522DemandViewTok, b522DemandViewErr := b522DemandViewDec.Token()
 	if b522DemandViewErr != nil {
@@ -43,10 +43,10 @@ func b522DemandViewParse(b522DemandViewDec *json.Decoder, b522DemandViewDepth in
 			}
 			b522DemandViewKey, b522DemandViewKeyOK := b522DemandViewKeyTok.(string)
 			if !b522DemandViewKeyOK {
-				return nil, errors.New("ab25ao25: object key is not a string")
+				return nil, errors.New("b522 demand views: object key is not a string")
 			}
 			if _, b522DemandViewDup := b522DemandViewMap[b522DemandViewKey]; b522DemandViewDup {
-				return nil, fmt.Errorf("ab25ao25: duplicate key %q", b522DemandViewKey)
+				return nil, fmt.Errorf("b522 demand views: duplicate key %q", b522DemandViewKey)
 			}
 			b522DemandViewVal, b522DemandViewValErr := b522DemandViewParse(b522DemandViewDec, b522DemandViewDepth+1)
 			if b522DemandViewValErr != nil {
@@ -102,17 +102,17 @@ func b522DemandViewInteger(b522DemandViewValue any) (string, bool) {
 func b522DemandViewBytes(b522DemandViewName string, b522DemandViewValue any) ([]int, error) {
 	b522DemandViewList, b522DemandViewOK := b522DemandViewValue.([]any)
 	if !b522DemandViewOK {
-		return nil, fmt.Errorf("ab25ao25: field %q is not an array", b522DemandViewName)
+		return nil, fmt.Errorf("b522 demand views: field %q is not an array", b522DemandViewName)
 	}
 	b522DemandViewOut := make([]int, 0, len(b522DemandViewList))
 	for _, b522DemandViewItem := range b522DemandViewList {
 		b522DemandViewText, b522DemandViewIntOK := b522DemandViewInteger(b522DemandViewItem)
 		if !b522DemandViewIntOK {
-			return nil, fmt.Errorf("ab25ao25: field %q has a non-integer element", b522DemandViewName)
+			return nil, fmt.Errorf("b522 demand views: field %q has a non-integer element", b522DemandViewName)
 		}
 		b522DemandViewN, b522DemandViewErr := strconv.Atoi(b522DemandViewText)
 		if b522DemandViewErr != nil || b522DemandViewN < 0 || b522DemandViewN > 255 {
-			return nil, fmt.Errorf("ab25ao25: field %q has an element outside 0..255", b522DemandViewName)
+			return nil, fmt.Errorf("b522 demand views: field %q has an element outside 0..255", b522DemandViewName)
 		}
 		b522DemandViewOut = append(b522DemandViewOut, b522DemandViewN)
 	}
@@ -194,18 +194,18 @@ func B522DemandViewInterpret(b522DemandViewInput json.RawMessage) (json.RawMessa
 	b522DemandViewDec.UseNumber()
 	b522DemandViewRoot, b522DemandViewErr := b522DemandViewParse(b522DemandViewDec, 0)
 	if b522DemandViewErr != nil {
-		return nil, fmt.Errorf("ab25ao25: invalid input: %w", b522DemandViewErr)
+		return nil, fmt.Errorf("b522 demand views: invalid input: %w", b522DemandViewErr)
 	}
 	if _, b522DemandViewTailErr := b522DemandViewDec.Token(); !errors.Is(b522DemandViewTailErr, io.EOF) {
-		return nil, errors.New("ab25ao25: trailing data after input")
+		return nil, errors.New("b522 demand views: trailing data after input")
 	}
 	b522DemandViewObj, b522DemandViewObjOK := b522DemandViewRoot.(map[string]any)
 	if !b522DemandViewObjOK {
-		return nil, errors.New("ab25ao25: input is not an object")
+		return nil, errors.New("b522 demand views: input is not an object")
 	}
 	b522DemandViewCtx, b522DemandViewCtxOK := b522DemandViewObj["context"].(map[string]any)
 	if !b522DemandViewCtxOK {
-		return nil, errors.New("ab25ao25: context missing or not an object")
+		return nil, errors.New("b522 demand views: context missing or not an object")
 	}
 	b522DemandViewPrimary, b522DemandViewPrimaryOK := b522DemandViewInteger(b522DemandViewCtx["primary"])
 	b522DemandViewSecondary, b522DemandViewSecondaryOK := b522DemandViewInteger(b522DemandViewCtx["secondary"])
@@ -213,11 +213,11 @@ func B522DemandViewInterpret(b522DemandViewInput json.RawMessage) (json.RawMessa
 	b522DemandViewDirection, b522DemandViewDirectionOK := b522DemandViewCtx["direction"].(string)
 	b522DemandViewView, b522DemandViewViewOK := b522DemandViewCtx["view"].(string)
 	if !b522DemandViewPrimaryOK || !b522DemandViewSecondaryOK || !b522DemandViewOperationOK || !b522DemandViewDirectionOK || !b522DemandViewViewOK {
-		return nil, errors.New("ab25ao25: context requires integer primary, secondary, operation and string direction, view")
+		return nil, errors.New("b522 demand views: context requires integer primary, secondary, operation and string direction, view")
 	}
 	b522DemandViewFieldsIn, b522DemandViewFieldsOK := b522DemandViewObj["fields"].(map[string]any)
 	if !b522DemandViewFieldsOK {
-		return nil, errors.New("ab25ao25: fields missing or not an object")
+		return nil, errors.New("b522 demand views: fields missing or not an object")
 	}
 	b522DemandViewRaw := map[string]any{}
 	b522DemandViewByteMap := map[string][]int{}
@@ -238,12 +238,12 @@ func B522DemandViewInterpret(b522DemandViewInput json.RawMessage) (json.RawMessa
 	if b522DemandViewArgsIn, b522DemandViewArgsPresent := b522DemandViewObj["arguments"]; b522DemandViewArgsPresent {
 		b522DemandViewArgs, b522DemandViewArgsOK := b522DemandViewArgsIn.(map[string]any)
 		if !b522DemandViewArgsOK {
-			return nil, errors.New("ab25ao25: arguments is not an object")
+			return nil, errors.New("b522 demand views: arguments is not an object")
 		}
 		for b522DemandViewName, b522DemandViewValue := range b522DemandViewArgs {
 			if _, b522DemandViewIsInt := b522DemandViewInteger(b522DemandViewValue); !b522DemandViewIsInt {
 				if _, b522DemandViewIsBool := b522DemandViewValue.(bool); !b522DemandViewIsBool {
-					return nil, fmt.Errorf("ab25ao25: argument %q is not a boolean or integer", b522DemandViewName)
+					return nil, fmt.Errorf("b522 demand views: argument %q is not a boolean or integer", b522DemandViewName)
 				}
 			}
 		}

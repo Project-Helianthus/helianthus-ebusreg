@@ -28,7 +28,7 @@ func TestAb19An19Vectors(b531LimitNumericViewT *b531LimitNumericViewTesting.T) {
 		} `json:"Ab19An19Limits"`
 		B531LimitNumericViewGetters []struct {
 			B531LimitNumericViewLabel    string `json:"Ab19An19Label"`
-			B531LimitNumericViewRaw      uint32 `json:"Ab19An19Raw"`
+			B531LimitNumericViewRaw      uint32 `json:"raw"`
 			B531LimitNumericViewExpected uint16 `json:"Ab19An19Expected"`
 		} `json:"Ab19An19Getters"`
 	}

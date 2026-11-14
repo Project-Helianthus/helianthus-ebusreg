@@ -63,7 +63,7 @@ func b504CircuitRoleEntries(b504CircuitRoleData []byte) (b504CircuitRoleJSON.Raw
 		return nil, b504CircuitRoleErr
 	}
 	if len(b504CircuitRoleRows) == 0 {
-		return nil, b504CircuitRoleFmt.Errorf("ab15: empty catalog")
+		return nil, b504CircuitRoleFmt.Errorf("b504 circuit roles: empty catalog")
 	}
 	b504CircuitRoleKeys := make([]B504CircuitRoleKey, 0, len(b504CircuitRoleRows))
 	b504CircuitRoleIDs := map[string]bool{}
@@ -83,22 +83,22 @@ func b504CircuitRoleEntries(b504CircuitRoleData []byte) (b504CircuitRoleJSON.Raw
 		for _, b504CircuitRoleAxis := range []string{"family", "variant", "primary", "secondary", "operation", "direction", "field", "alternative", "group", "instance_scope", "register"} {
 			b504CircuitRoleValue, b504CircuitRolePresent := b504CircuitRoleIdentity[b504CircuitRoleAxis]
 			if !b504CircuitRolePresent || (string(b504CircuitRoleValue) == "null" && b504CircuitRoleAxis != "secondary" && b504CircuitRoleAxis != "operation" && b504CircuitRoleAxis != "group" && b504CircuitRoleAxis != "register") {
-				return nil, b504CircuitRoleFmt.Errorf("ab15: missing identity axis %s", b504CircuitRoleAxis)
+				return nil, b504CircuitRoleFmt.Errorf("b504 circuit roles: missing identity axis %s", b504CircuitRoleAxis)
 			}
 		}
 		if len(b504CircuitRoleIdentity) != 11 || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleFamily == "" || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleVariant == "" || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleDirection == "" || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleField == "" || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleAlternative == "" || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleInstanceScope == "" {
-			return nil, b504CircuitRoleFmt.Errorf("ab15: incomplete identity")
+			return nil, b504CircuitRoleFmt.Errorf("b504 circuit roles: incomplete identity")
 		}
 		if !b504CircuitRoleStrings.HasPrefix(b504CircuitRoleEntry.B504CircuitRoleID, "ab15-") || b504CircuitRoleIDs[b504CircuitRoleEntry.B504CircuitRoleID] {
-			return nil, b504CircuitRoleFmt.Errorf("ab15: invalid or duplicate id")
+			return nil, b504CircuitRoleFmt.Errorf("b504 circuit roles: invalid or duplicate id")
 		}
 		b504CircuitRoleIDs[b504CircuitRoleEntry.B504CircuitRoleID] = true
 		if b504CircuitRoleEntry.B504CircuitRoleGrade != "Hypothesis" || b504CircuitRoleEntry.B504CircuitRoleMetadataPresence != "Proven" || b504CircuitRoleEntry.B504CircuitRolePhysicalQualification != "Unknown" || b504CircuitRoleEntry.B504CircuitRoleNativeContract == "" || b504CircuitRoleEntry.B504CircuitRole == "" || len(b504CircuitRoleEntry.B504CircuitRoleAppliesTo) == 0 || len(b504CircuitRoleEntry.B504CircuitRoleRelations) == 0 || len(b504CircuitRoleEntry.B504CircuitRoleUnknown) == 0 || len(b504CircuitRoleEntry.B504CircuitRoleRaw) == 0 || string(b504CircuitRoleEntry.B504CircuitRoleRaw) == "null" {
-			return nil, b504CircuitRoleFmt.Errorf("ab15: incomplete evidence boundary")
+			return nil, b504CircuitRoleFmt.Errorf("b504 circuit roles: incomplete evidence boundary")
 		}
 		for _, b504CircuitRolePrevious := range b504CircuitRoleKeys {
 			if b504CircuitRoleReflect.DeepEqual(b504CircuitRolePrevious, b504CircuitRoleEntry.B504CircuitRoleKey) {
-				return nil, b504CircuitRoleFmt.Errorf("ab15: duplicate key")
+				return nil, b504CircuitRoleFmt.Errorf("b504 circuit roles: duplicate key")
 			}
 		}
 		b504CircuitRoleKeys = append(b504CircuitRoleKeys, b504CircuitRoleEntry.B504CircuitRoleKey)

@@ -29,7 +29,7 @@ func b512FeedbackFallbackValidate(b512FeedbackFallbackInput []byte) (map[string]
 		return nil, b512FeedbackFallbackError
 	}
 	if b512FeedbackFallbackRows == nil {
-		return nil, b512FeedbackFallbackFmt.Errorf("ab18: expected JSON array")
+		return nil, b512FeedbackFallbackFmt.Errorf("b512 feedback fallback: expected JSON array")
 	}
 	b512FeedbackFallbackIndex := make(map[string]b512FeedbackFallbackJSON.RawMessage, len(b512FeedbackFallbackRows))
 	for _, b512FeedbackFallbackRow := range b512FeedbackFallbackRows {
@@ -45,25 +45,25 @@ func b512FeedbackFallbackValidate(b512FeedbackFallbackInput []byte) (map[string]
 		}
 		for _, b512FeedbackFallbackAxis := range []string{"family", "variant", "primary", "secondary", "operation", "direction", "field", "alternative", "group", "instance_scope", "register"} {
 			if _, b512FeedbackFallbackPresent := b512FeedbackFallbackAxes[b512FeedbackFallbackAxis]; !b512FeedbackFallbackPresent {
-				return nil, b512FeedbackFallbackFmt.Errorf("ab18: missing identity axis %s", b512FeedbackFallbackAxis)
+				return nil, b512FeedbackFallbackFmt.Errorf("b512 feedback fallback: missing identity axis %s", b512FeedbackFallbackAxis)
 			}
 		}
 		if len(b512FeedbackFallbackAxes) != 11 {
-			return nil, b512FeedbackFallbackFmt.Errorf("ab18: unexpected identity axes")
+			return nil, b512FeedbackFallbackFmt.Errorf("b512 feedback fallback: unexpected identity axes")
 		}
 		var b512FeedbackFallbackKey B512FeedbackFallbackKey
 		if b512FeedbackFallbackError := b512FeedbackFallbackJSON.Unmarshal(b512FeedbackFallbackEnvelope.B512FeedbackFallbackKey, &b512FeedbackFallbackKey); b512FeedbackFallbackError != nil {
 			return nil, b512FeedbackFallbackError
 		}
 		if b512FeedbackFallbackKey.B512FeedbackFallbackFamily == "" || b512FeedbackFallbackKey.B512FeedbackFallbackVariant == "" || b512FeedbackFallbackKey.B512FeedbackFallbackDirection == "" || b512FeedbackFallbackKey.B512FeedbackFallbackField == "" || b512FeedbackFallbackKey.B512FeedbackFallbackAlternative == "" || b512FeedbackFallbackKey.B512FeedbackFallbackInstanceScope == "" || string(b512FeedbackFallbackAxes["primary"]) == "null" {
-			return nil, b512FeedbackFallbackFmt.Errorf("ab18: incomplete identity")
+			return nil, b512FeedbackFallbackFmt.Errorf("b512 feedback fallback: incomplete identity")
 		}
 		b512FeedbackFallbackIdentity, b512FeedbackFallbackError := b512FeedbackFallbackJSON.Marshal(b512FeedbackFallbackKey)
 		if b512FeedbackFallbackError != nil {
 			return nil, b512FeedbackFallbackError
 		}
 		if _, b512FeedbackFallbackDuplicate := b512FeedbackFallbackIndex[string(b512FeedbackFallbackIdentity)]; b512FeedbackFallbackDuplicate {
-			return nil, b512FeedbackFallbackFmt.Errorf("ab18: duplicate identity")
+			return nil, b512FeedbackFallbackFmt.Errorf("b512 feedback fallback: duplicate identity")
 		}
 		b512FeedbackFallbackIndex[string(b512FeedbackFallbackIdentity)] = append(b512FeedbackFallbackJSON.RawMessage(nil), b512FeedbackFallbackRow...)
 	}

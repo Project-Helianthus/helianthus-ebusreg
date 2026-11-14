@@ -45,31 +45,31 @@ func b509BoilerCodecDictionaryParse(b509BoilerCodecDictionaryData []byte) ([]B50
 		return nil, b509BoilerCodecDictionaryError
 	}
 	if b509BoilerCodecDictionaryError := b509BoilerCodecDictionaryDecoder.Decode(new(any)); b509BoilerCodecDictionaryError != b509BoilerCodecDictionaryIO.EOF {
-		return nil, b509BoilerCodecDictionaryFmt.Errorf("ab68: trailing JSON: %v", b509BoilerCodecDictionaryError)
+		return nil, b509BoilerCodecDictionaryFmt.Errorf("b509 boiler codec dictionary: trailing JSON: %v", b509BoilerCodecDictionaryError)
 	}
 	if len(b509BoilerCodecDictionaryEntries) == 0 {
-		return nil, b509BoilerCodecDictionaryFmt.Errorf("ab68: empty dictionary")
+		return nil, b509BoilerCodecDictionaryFmt.Errorf("b509 boiler codec dictionary: empty dictionary")
 	}
 	b509BoilerCodecDictionarySeen := make(map[string]bool)
 	for b509BoilerCodecDictionaryIndex, b509BoilerCodecDictionaryEntry := range b509BoilerCodecDictionaryEntries {
 		b509BoilerCodecDictionaryKey := b509BoilerCodecDictionaryEntry.B509BoilerCodecDictionaryKey
 		if b509BoilerCodecDictionaryKey.B509BoilerCodecDictionaryFamily == "" || b509BoilerCodecDictionaryKey.B509BoilerCodecDictionaryVariant == "" || b509BoilerCodecDictionaryKey.B509BoilerCodecDictionaryPrimary == nil || b509BoilerCodecDictionaryKey.B509BoilerCodecDictionarySecondary == nil || b509BoilerCodecDictionaryKey.B509BoilerCodecDictionaryOperation == nil || b509BoilerCodecDictionaryKey.B509BoilerCodecDictionaryDirection == "" || len(b509BoilerCodecDictionaryKey.B509BoilerCodecDictionarySelector) != 2 {
-			return nil, b509BoilerCodecDictionaryFmt.Errorf("ab68: incomplete key at row %d", b509BoilerCodecDictionaryIndex)
+			return nil, b509BoilerCodecDictionaryFmt.Errorf("b509 boiler codec dictionary: incomplete key at row %d", b509BoilerCodecDictionaryIndex)
 		}
 		for _, b509BoilerCodecDictionaryByte := range b509BoilerCodecDictionaryKey.B509BoilerCodecDictionarySelector {
 			if b509BoilerCodecDictionaryByte > 255 {
-				return nil, b509BoilerCodecDictionaryFmt.Errorf("ab68: selector byte out of range at row %d", b509BoilerCodecDictionaryIndex)
+				return nil, b509BoilerCodecDictionaryFmt.Errorf("b509 boiler codec dictionary: selector byte out of range at row %d", b509BoilerCodecDictionaryIndex)
 			}
 		}
 		if b509BoilerCodecDictionaryEntry.B509BoilerCodecDictionaryQuantity == "" || b509BoilerCodecDictionaryEntry.B509BoilerCodecDeclaration == "" || b509BoilerCodecDictionaryEntry.B509BoilerCodecDictionaryGrade != "Hypothesis" {
-			return nil, b509BoilerCodecDictionaryFmt.Errorf("ab68: incomplete declaration at row %d", b509BoilerCodecDictionaryIndex)
+			return nil, b509BoilerCodecDictionaryFmt.Errorf("b509 boiler codec dictionary: incomplete declaration at row %d", b509BoilerCodecDictionaryIndex)
 		}
 		if b509BoilerCodecDictionaryEntry.B509BoilerCodecDictionaryEvidence["metadata"] != "Proven" {
-			return nil, b509BoilerCodecDictionaryFmt.Errorf("ab68: missing metadata grade at row %d", b509BoilerCodecDictionaryIndex)
+			return nil, b509BoilerCodecDictionaryFmt.Errorf("b509 boiler codec dictionary: missing metadata grade at row %d", b509BoilerCodecDictionaryIndex)
 		}
 		for _, b509BoilerCodecDictionaryAxis := range []string{"qualification", "physical_support", "presence", "freshness", "effects", "persistence", "delivery", "execution"} {
 			if b509BoilerCodecDictionaryEntry.B509BoilerCodecDictionaryEvidence[b509BoilerCodecDictionaryAxis] != "Unknown" {
-				return nil, b509BoilerCodecDictionaryFmt.Errorf("ab68: invalid %s grade at row %d", b509BoilerCodecDictionaryAxis, b509BoilerCodecDictionaryIndex)
+				return nil, b509BoilerCodecDictionaryFmt.Errorf("b509 boiler codec dictionary: invalid %s grade at row %d", b509BoilerCodecDictionaryAxis, b509BoilerCodecDictionaryIndex)
 			}
 		}
 		b509BoilerCodecDictionaryEncoded, b509BoilerCodecDictionaryError := b509BoilerCodecDictionaryJSONPackage.Marshal(b509BoilerCodecDictionaryKey)
@@ -77,7 +77,7 @@ func b509BoilerCodecDictionaryParse(b509BoilerCodecDictionaryData []byte) ([]B50
 			return nil, b509BoilerCodecDictionaryError
 		}
 		if b509BoilerCodecDictionarySeen[string(b509BoilerCodecDictionaryEncoded)] {
-			return nil, b509BoilerCodecDictionaryFmt.Errorf("ab68: duplicate key at row %d", b509BoilerCodecDictionaryIndex)
+			return nil, b509BoilerCodecDictionaryFmt.Errorf("b509 boiler codec dictionary: duplicate key at row %d", b509BoilerCodecDictionaryIndex)
 		}
 		b509BoilerCodecDictionarySeen[string(b509BoilerCodecDictionaryEncoded)] = true
 	}

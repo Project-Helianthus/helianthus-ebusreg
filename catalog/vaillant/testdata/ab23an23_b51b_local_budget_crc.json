@@ -2,128 +2,128 @@
   "ab23an23Budgets": [
     {
       "ab23an23Label": "ab23an23_grouped_1024_0",
-      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "procedure": "grouped_1024",
       "ab23an23Length": 0,
-      "ab23an23Chunks": [],
-      "ab23an23Consumed": 0,
-      "ab23an23Unplanned": 0
+      "chunks": [],
+      "consumed": 0,
+      "unplanned": 0
     },
     {
       "ab23an23Label": "ab23an23_grouped_1024_1",
-      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "procedure": "grouped_1024",
       "ab23an23Length": 1,
-      "ab23an23Chunks": [
+      "chunks": [
         1
       ],
-      "ab23an23Consumed": 1,
-      "ab23an23Unplanned": 0
+      "consumed": 1,
+      "unplanned": 0
     },
     {
       "ab23an23Label": "ab23an23_grouped_1024_824",
-      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "procedure": "grouped_1024",
       "ab23an23Length": 824,
-      "ab23an23Chunks": [
+      "chunks": [
         206,
         206,
         206,
         206
       ],
-      "ab23an23Consumed": 824,
-      "ab23an23Unplanned": 0
+      "consumed": 824,
+      "unplanned": 0
     },
     {
       "ab23an23Label": "ab23an23_grouped_1024_825",
-      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "procedure": "grouped_1024",
       "ab23an23Length": 825,
-      "ab23an23Chunks": [
+      "chunks": [
         206,
         206,
         206,
         206,
         1
       ],
-      "ab23an23Consumed": 825,
-      "ab23an23Unplanned": 0
+      "consumed": 825,
+      "unplanned": 0
     },
     {
       "ab23an23Label": "ab23an23_grouped_1024_1024",
-      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "procedure": "grouped_1024",
       "ab23an23Length": 1024,
-      "ab23an23Chunks": [
+      "chunks": [
         206,
         206,
         206,
         206,
         200
       ],
-      "ab23an23Consumed": 1024,
-      "ab23an23Unplanned": 0
+      "consumed": 1024,
+      "unplanned": 0
     },
     {
       "ab23an23Label": "ab23an23_grouped_1024_1025",
-      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "procedure": "grouped_1024",
       "ab23an23Length": 1025,
-      "ab23an23Chunks": [
+      "chunks": [
         206,
         206,
         206,
         206,
         200
       ],
-      "ab23an23Consumed": 1024,
-      "ab23an23Unplanned": 1
+      "consumed": 1024,
+      "unplanned": 1
     },
     {
       "ab23an23Label": "ab23an23_grouped_1024_2048",
-      "ab23an23Procedure": "ab23an23_grouped_1024",
+      "procedure": "grouped_1024",
       "ab23an23Length": 2048,
-      "ab23an23Chunks": [
+      "chunks": [
         206,
         206,
         206,
         206,
         200
       ],
-      "ab23an23Consumed": 1024,
-      "ab23an23Unplanned": 1024
+      "consumed": 1024,
+      "unplanned": 1024
     },
     {
       "ab23an23Label": "ab23an23_single_205_0",
-      "ab23an23Procedure": "ab23an23_single_205",
+      "procedure": "single_205",
       "ab23an23Length": 0,
-      "ab23an23Chunks": [],
-      "ab23an23Consumed": 0,
-      "ab23an23Unplanned": 0
+      "chunks": [],
+      "consumed": 0,
+      "unplanned": 0
     },
     {
       "ab23an23Label": "ab23an23_single_205_205",
-      "ab23an23Procedure": "ab23an23_single_205",
+      "procedure": "single_205",
       "ab23an23Length": 205,
-      "ab23an23Chunks": [
+      "chunks": [
         205
       ],
-      "ab23an23Consumed": 205,
-      "ab23an23Unplanned": 0
+      "consumed": 205,
+      "unplanned": 0
     },
     {
       "ab23an23Label": "ab23an23_single_205_206",
-      "ab23an23Procedure": "ab23an23_single_205",
+      "procedure": "single_205",
       "ab23an23Length": 206,
-      "ab23an23Chunks": [
+      "chunks": [
         205
       ],
-      "ab23an23Consumed": 205,
-      "ab23an23Unplanned": 1
+      "consumed": 205,
+      "unplanned": 1
     },
     {
       "ab23an23Label": "ab23an23_single_205_1025",
-      "ab23an23Procedure": "ab23an23_single_205",
+      "procedure": "single_205",
       "ab23an23Length": 1025,
-      "ab23an23Chunks": [
+      "chunks": [
         205
       ],
-      "ab23an23Consumed": 205,
-      "ab23an23Unplanned": 820
+      "consumed": 205,
+      "unplanned": 820
     }
   ],
   "ab23an23CRCs": [

@@ -88,7 +88,7 @@ func b524NumericCandidateUniqueJSON(b524NumericCandidateSource []byte) error {
 			return nil
 		}
 		if b524NumericCandidateDelimiter != '{' && b524NumericCandidateDelimiter != '[' {
-			return b524NumericCandidateFmt.Errorf("ab56: unexpected delimiter")
+			return b524NumericCandidateFmt.Errorf("b524 numeric candidates: unexpected delimiter")
 		}
 		b524NumericCandidateSeen := make(map[string]bool)
 		for b524NumericCandidateDecoder.More() {
@@ -99,7 +99,7 @@ func b524NumericCandidateUniqueJSON(b524NumericCandidateSource []byte) error {
 				}
 				b524NumericCandidateName, b524NumericCandidateOK := b524NumericCandidateNameToken.(string)
 				if !b524NumericCandidateOK || b524NumericCandidateSeen[b524NumericCandidateName] {
-					return b524NumericCandidateFmt.Errorf("ab56: duplicate or invalid JSON member")
+					return b524NumericCandidateFmt.Errorf("b524 numeric candidates: duplicate or invalid JSON member")
 				}
 				b524NumericCandidateSeen[b524NumericCandidateName] = true
 			}
@@ -122,13 +122,13 @@ func b524NumericCandidateValidate(b524NumericCandidateSource []byte) ([]b524Nume
 		return nil, nil, b524NumericCandidateError
 	}
 	if b524NumericCandidateRows == nil {
-		return nil, nil, b524NumericCandidateFmt.Errorf("ab56: expected a tuple array")
+		return nil, nil, b524NumericCandidateFmt.Errorf("b524 numeric candidates: expected a tuple array")
 	}
 	b524NumericCandidateKeys := make([]B524NumericCandidateKey, 0, len(b524NumericCandidateRows))
 	for b524NumericCandidateIndex, b524NumericCandidateRow := range b524NumericCandidateRows {
 		var b524NumericCandidateObject map[string]b524NumericCandidateJSON.RawMessage
 		if b524NumericCandidateError := b524NumericCandidateJSON.Unmarshal(b524NumericCandidateRow, &b524NumericCandidateObject); b524NumericCandidateError != nil || b524NumericCandidateObject == nil {
-			return nil, nil, b524NumericCandidateFmt.Errorf("ab56: row %d must be an object", b524NumericCandidateIndex)
+			return nil, nil, b524NumericCandidateFmt.Errorf("b524 numeric candidates: row %d must be an object", b524NumericCandidateIndex)
 		}
 		var b524NumericCandidateMetadataValue b524NumericCandidateMetadata
 		if b524NumericCandidateError := b524NumericCandidateJSON.Unmarshal(b524NumericCandidateRow, &b524NumericCandidateMetadataValue); b524NumericCandidateError != nil {
@@ -154,7 +154,7 @@ func b524NumericCandidateValidate(b524NumericCandidateSource []byte) ([]b524Nume
 			b524NumericCandidateMetadataValue.B524NumericCandidateRawForm == "" ||
 			b524NumericCandidateMetadataValue.B524NumericCandidateRawFallback == "" ||
 			b524NumericCandidateObject["writable"] != nil {
-			return nil, nil, b524NumericCandidateFmt.Errorf("ab56: invalid or promoted metadata at row %d", b524NumericCandidateIndex)
+			return nil, nil, b524NumericCandidateFmt.Errorf("b524 numeric candidates: invalid or promoted metadata at row %d", b524NumericCandidateIndex)
 		}
 		var b524NumericCandidateKey B524NumericCandidateKey
 		b524NumericCandidateDecoder := b524NumericCandidateJSON.NewDecoder(b524NumericCandidateBytes.NewReader(b524NumericCandidateObject["key"]))
@@ -163,11 +163,11 @@ func b524NumericCandidateValidate(b524NumericCandidateSource []byte) ([]b524Nume
 			return nil, nil, b524NumericCandidateError
 		}
 		if b524NumericCandidateIdentity(b524NumericCandidateKey) != (B524NumericCandidateContext{}) || b524NumericCandidateKey.B524NumericCandidateVariant == "" || b524NumericCandidateKey.B524NumericCandidateSet == "" || b524NumericCandidateKey.B524NumericCandidatePrimary == nil || b524NumericCandidateKey.B524NumericCandidateDirection == "" || b524NumericCandidateKey.B524NumericCandidateField == "" || b524NumericCandidateKey.B524NumericCandidateAlternative == "" || b524NumericCandidateKey.B524NumericCandidateInstanceScope == "" {
-			return nil, nil, b524NumericCandidateFmt.Errorf("ab56: row %d has an incomplete or identity-qualified tuple key", b524NumericCandidateIndex)
+			return nil, nil, b524NumericCandidateFmt.Errorf("b524 numeric candidates: row %d has an incomplete or identity-qualified tuple key", b524NumericCandidateIndex)
 		}
 		for _, b524NumericCandidatePrevious := range b524NumericCandidateKeys {
 			if b524NumericCandidateReflect.DeepEqual(b524NumericCandidatePrevious, b524NumericCandidateKey) {
-				return nil, nil, b524NumericCandidateFmt.Errorf("ab56: duplicate tuple key at row %d", b524NumericCandidateIndex)
+				return nil, nil, b524NumericCandidateFmt.Errorf("b524 numeric candidates: duplicate tuple key at row %d", b524NumericCandidateIndex)
 			}
 		}
 		b524NumericCandidateKeys = append(b524NumericCandidateKeys, b524NumericCandidateKey)
@@ -184,7 +184,7 @@ func B524NumericCandidateEntries() (b524NumericCandidateJSON.RawMessage, error) 
 
 func b524NumericCandidateNewView(b524NumericCandidateContext B524NumericCandidateContext, b524NumericCandidateSource []byte) (B524NumericCandidateView, error) {
 	if !b524NumericCandidateComplete(b524NumericCandidateContext) {
-		return B524NumericCandidateView{}, b524NumericCandidateFmt.Errorf("ab56: all caller identity strings are required")
+		return B524NumericCandidateView{}, b524NumericCandidateFmt.Errorf("b524 numeric candidates: all caller identity strings are required")
 	}
 	b524NumericCandidateRows, b524NumericCandidateKeys, b524NumericCandidateError := b524NumericCandidateValidate(b524NumericCandidateSource)
 	if b524NumericCandidateError != nil {

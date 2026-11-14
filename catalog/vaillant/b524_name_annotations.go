@@ -47,7 +47,7 @@ func b524NameAnnotationValidate(b524NameAnnotationSource []byte) ([]b524NameAnno
 		return nil, nil, b524NameAnnotationError
 	}
 	if b524NameAnnotationRows == nil {
-		return nil, nil, b524NameAnnotationFmt.Errorf("ab36: expected an array")
+		return nil, nil, b524NameAnnotationFmt.Errorf("b524 name annotations: expected an array")
 	}
 	b524NameAnnotationIndex := make(map[string]b524NameAnnotationJSON.RawMessage, len(b524NameAnnotationRows))
 	for _, b524NameAnnotationRow := range b524NameAnnotationRows {
@@ -57,12 +57,12 @@ func b524NameAnnotationValidate(b524NameAnnotationSource []byte) ([]b524NameAnno
 		}
 		for _, documentaryField := range []string{"legacy_name", "display_alias", "previous_name"} {
 			if _, b524NameAnnotationPresent := b524NameAnnotationObject[documentaryField]; b524NameAnnotationPresent {
-				return nil, nil, b524NameAnnotationFmt.Errorf("ab36: documentary name field is not runtime data")
+				return nil, nil, b524NameAnnotationFmt.Errorf("b524 name annotations: documentary name field is not runtime data")
 			}
 		}
 		b524NameAnnotationRawKey, b524NameAnnotationPresent := b524NameAnnotationObject["key"]
 		if !b524NameAnnotationPresent || b524NameAnnotationBytes.Equal(b524NameAnnotationBytes.TrimSpace(b524NameAnnotationRawKey), []byte("null")) {
-			return nil, nil, b524NameAnnotationFmt.Errorf("ab36: missing key")
+			return nil, nil, b524NameAnnotationFmt.Errorf("b524 name annotations: missing key")
 		}
 		var b524NameAnnotationKey B524NameAnnotationKey
 		b524NameAnnotationDecoder := b524NameAnnotationJSON.NewDecoder(b524NameAnnotationBytes.NewReader(b524NameAnnotationRawKey))
@@ -76,14 +76,14 @@ func b524NameAnnotationValidate(b524NameAnnotationSource []byte) ([]b524NameAnno
 		}
 		b524NameAnnotationRawPrimary, b524NameAnnotationPresent := b524NameAnnotationFields["primary"]
 		if !b524NameAnnotationPresent || b524NameAnnotationKey.B524NameAnnotationFamily == "" || b524NameAnnotationKey.B524NameAnnotationVariant == "" || b524NameAnnotationKey.B524NameAnnotationDirection == "" || b524NameAnnotationKey.B524NameAnnotationField == "" || b524NameAnnotationKey.B524NameAnnotationAlternative == "" || b524NameAnnotationKey.B524NameAnnotationInstanceScope == "" || b524NameAnnotationBytes.Equal(b524NameAnnotationBytes.TrimSpace(b524NameAnnotationRawPrimary), []byte("null")) {
-			return nil, nil, b524NameAnnotationFmt.Errorf("ab36: incomplete key")
+			return nil, nil, b524NameAnnotationFmt.Errorf("b524 name annotations: incomplete key")
 		}
 		b524NameAnnotationEncoded, b524NameAnnotationError := b524NameAnnotationJSON.Marshal(b524NameAnnotationKey)
 		if b524NameAnnotationError != nil {
 			return nil, nil, b524NameAnnotationError
 		}
 		if _, b524NameAnnotationPresent := b524NameAnnotationIndex[string(b524NameAnnotationEncoded)]; b524NameAnnotationPresent {
-			return nil, nil, b524NameAnnotationFmt.Errorf("ab36: duplicate key")
+			return nil, nil, b524NameAnnotationFmt.Errorf("b524 name annotations: duplicate key")
 		}
 		b524NameAnnotationIndex[string(b524NameAnnotationEncoded)] = b524NameAnnotationRow
 	}

@@ -31,7 +31,7 @@ func b510OperatingDefaultValidate(b510OperatingDefaultSource []byte) ([]b510Oper
 		return nil, nil, b510OperatingDefaultErr
 	}
 	if b510OperatingDefaultRows == nil {
-		return nil, nil, b510OperatingDefaultFmt.Errorf("ab48 catalog: expected array")
+		return nil, nil, b510OperatingDefaultFmt.Errorf("b510 operating defaults catalog: expected array")
 	}
 	b510OperatingDefaultKeys := make([]B510OperatingDefaultKey, len(b510OperatingDefaultRows))
 	for b510OperatingDefaultIndex, b510OperatingDefaultRaw := range b510OperatingDefaultRows {
@@ -45,7 +45,7 @@ func b510OperatingDefaultValidate(b510OperatingDefaultSource []byte) ([]b510Oper
 		}
 		for _, b510OperatingDefaultName := range []string{"family", "variant", "primary", "direction", "field", "alternative", "instance_scope"} {
 			if b510OperatingDefaultValue, b510OperatingDefaultOK := b510OperatingDefaultMembers[b510OperatingDefaultName]; !b510OperatingDefaultOK || b510OperatingDefaultBytes.Equal(b510OperatingDefaultBytes.TrimSpace(b510OperatingDefaultValue), []byte("null")) {
-				return nil, nil, b510OperatingDefaultFmt.Errorf("ab48 catalog: missing key axis %s", b510OperatingDefaultName)
+				return nil, nil, b510OperatingDefaultFmt.Errorf("b510 operating defaults catalog: missing key axis %s", b510OperatingDefaultName)
 			}
 		}
 		b510OperatingDefaultDecoder := b510OperatingDefaultJSON.NewDecoder(b510OperatingDefaultBytes.NewReader(b510OperatingDefaultObject["key"]))
@@ -55,11 +55,11 @@ func b510OperatingDefaultValidate(b510OperatingDefaultSource []byte) ([]b510Oper
 		}
 		b510OperatingDefaultKey := b510OperatingDefaultKeys[b510OperatingDefaultIndex]
 		if b510OperatingDefaultKey.B510OperatingDefaultFamily == "" || b510OperatingDefaultKey.B510OperatingDefaultVariant == "" || b510OperatingDefaultKey.B510OperatingDefaultDirection == "" || b510OperatingDefaultKey.B510OperatingDefaultField == "" || b510OperatingDefaultKey.B510OperatingDefaultAlternative == "" || b510OperatingDefaultKey.B510OperatingDefaultInstanceScope == "" {
-			return nil, nil, b510OperatingDefaultFmt.Errorf("ab48 catalog: empty key axis; use none for non-applicable strings")
+			return nil, nil, b510OperatingDefaultFmt.Errorf("b510 operating defaults catalog: empty key axis; use none for non-applicable strings")
 		}
 		for b510OperatingDefaultPrevious := 0; b510OperatingDefaultPrevious < b510OperatingDefaultIndex; b510OperatingDefaultPrevious++ {
 			if b510OperatingDefaultReflect.DeepEqual(b510OperatingDefaultKeys[b510OperatingDefaultPrevious], b510OperatingDefaultKey) {
-				return nil, nil, b510OperatingDefaultFmt.Errorf("ab48 catalog: duplicate key")
+				return nil, nil, b510OperatingDefaultFmt.Errorf("b510 operating defaults catalog: duplicate key")
 			}
 		}
 	}

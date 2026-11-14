@@ -14,7 +14,7 @@ func TestAb11An11IndependentVectors(b511OverlapViewT *b511OverlapViewTesting.T) 
 	}
 	var b511OverlapViewCases []struct {
 		B511OverlapViewLabel     string                   `json:"Ab11An11Label"`
-		B511OverlapViewSelection B511OverlapViewSelection `json:"Ab11An11Selection"`
+		B511OverlapViewSelection B511OverlapViewSelection `json:"selection"`
 		B511OverlapViewImage     []byte                   `json:"Ab11An11Image"`
 		B511OverlapViewExpected  B511OverlapView          `json:"Ab11An11Expected"`
 	}

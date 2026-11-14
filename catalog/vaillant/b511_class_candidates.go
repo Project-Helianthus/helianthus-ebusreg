@@ -30,7 +30,7 @@ func b511ClassCandidateValidate(b511ClassCandidateSource []byte) ([]b511ClassCan
 		return nil, nil, b511ClassCandidateError
 	}
 	if b511ClassCandidateRows == nil {
-		return nil, nil, b511ClassCandidateFmt.Errorf("ab50: expected array")
+		return nil, nil, b511ClassCandidateFmt.Errorf("b511 class candidates: expected array")
 	}
 	b511ClassCandidateKeys := make([]B511ClassCandidateKey, len(b511ClassCandidateRows))
 	b511ClassCandidateSeen := make(map[string]bool)
@@ -41,14 +41,14 @@ func b511ClassCandidateValidate(b511ClassCandidateSource []byte) ([]b511ClassCan
 		}
 		b511ClassCandidateKeyJSON, b511ClassCandidateOK := b511ClassCandidateObject["key"]
 		if !b511ClassCandidateOK {
-			return nil, nil, b511ClassCandidateFmt.Errorf("ab50: missing key")
+			return nil, nil, b511ClassCandidateFmt.Errorf("b511 class candidates: missing key")
 		}
 		var b511ClassCandidateAxes map[string]b511ClassCandidateJSON.RawMessage
 		if b511ClassCandidateError := b511ClassCandidateJSON.Unmarshal(b511ClassCandidateKeyJSON, &b511ClassCandidateAxes); b511ClassCandidateError != nil {
 			return nil, nil, b511ClassCandidateError
 		}
 		if b511ClassCandidatePrimary, b511ClassCandidateOK := b511ClassCandidateAxes["primary"]; !b511ClassCandidateOK || b511ClassCandidateBytes.Equal(b511ClassCandidateBytes.TrimSpace(b511ClassCandidatePrimary), []byte("null")) {
-			return nil, nil, b511ClassCandidateFmt.Errorf("ab50: missing primary")
+			return nil, nil, b511ClassCandidateFmt.Errorf("b511 class candidates: missing primary")
 		}
 		b511ClassCandidateDecoder := b511ClassCandidateJSON.NewDecoder(b511ClassCandidateBytes.NewReader(b511ClassCandidateKeyJSON))
 		b511ClassCandidateDecoder.DisallowUnknownFields()
@@ -57,14 +57,14 @@ func b511ClassCandidateValidate(b511ClassCandidateSource []byte) ([]b511ClassCan
 		}
 		b511ClassCandidateKey := b511ClassCandidateKeys[b511ClassCandidateIndex]
 		if b511ClassCandidateKey.B511ClassCandidateFamily == "" || b511ClassCandidateKey.B511ClassCandidateVariant == "" || b511ClassCandidateKey.B511ClassCandidateDirection == "" || b511ClassCandidateKey.B511ClassCandidateField == "" || b511ClassCandidateKey.B511ClassCandidateAlternative == "" || b511ClassCandidateKey.B511ClassCandidateInstanceScope == "" {
-			return nil, nil, b511ClassCandidateFmt.Errorf("ab50: incomplete key")
+			return nil, nil, b511ClassCandidateFmt.Errorf("b511 class candidates: incomplete key")
 		}
 		b511ClassCandidateCanonical, b511ClassCandidateError := b511ClassCandidateJSON.Marshal(b511ClassCandidateKey)
 		if b511ClassCandidateError != nil {
 			return nil, nil, b511ClassCandidateError
 		}
 		if b511ClassCandidateSeen[string(b511ClassCandidateCanonical)] {
-			return nil, nil, b511ClassCandidateFmt.Errorf("ab50: duplicate key")
+			return nil, nil, b511ClassCandidateFmt.Errorf("b511 class candidates: duplicate key")
 		}
 		b511ClassCandidateSeen[string(b511ClassCandidateCanonical)] = true
 	}

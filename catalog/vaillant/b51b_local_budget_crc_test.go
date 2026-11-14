@@ -10,11 +10,11 @@ import (
 type b51BLocalBudgetCRCVectors struct {
 	B51BLocalBudgetCRCBudgets []struct {
 		B51BLocalBudgetCRCLabel     string                      `json:"Ab23An23Label"`
-		B51BLocalBudgetCRCProcedure B51BLocalBudgetCRCProcedure `json:"Ab23An23Procedure"`
+		B51BLocalBudgetCRCProcedure B51BLocalBudgetCRCProcedure `json:"procedure"`
 		B51BLocalBudgetCRCLength    int                         `json:"Ab23An23Length"`
-		B51BLocalBudgetCRCChunks    []int                       `json:"Ab23An23Chunks"`
-		B51BLocalBudgetCRCConsumed  int                         `json:"Ab23An23Consumed"`
-		B51BLocalBudgetCRCUnplanned int                         `json:"Ab23An23Unplanned"`
+		B51BLocalBudgetCRCChunks    []int                       `json:"chunks"`
+		B51BLocalBudgetCRCConsumed  int                         `json:"consumed"`
+		B51BLocalBudgetCRCUnplanned int                         `json:"unplanned"`
 	} `json:"Ab23An23Budgets"`
 	B51BLocalBudgetCRCCRCs []struct {
 		B51BLocalBudgetCRCLabel    string `json:"Ab23An23Label"`

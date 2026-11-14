@@ -30,7 +30,7 @@ func b524FamilyCodebookValidate(b524FamilyCodebookData []byte) ([]b524FamilyCode
 		return nil, nil, b524FamilyCodebookError
 	}
 	if b524FamilyCodebookRows == nil {
-		return nil, nil, b524FamilyCodebookFmt.Errorf("ab30 entries must be an array")
+		return nil, nil, b524FamilyCodebookFmt.Errorf("b524 family codebooks: entries must be an array")
 	}
 	b524FamilyCodebookKeys := make([]B524FamilyCodebookKey, 0, len(b524FamilyCodebookRows))
 	for _, b524FamilyCodebookRow := range b524FamilyCodebookRows {
@@ -51,15 +51,15 @@ func b524FamilyCodebookValidate(b524FamilyCodebookData []byte) ([]b524FamilyCode
 		for _, b524FamilyCodebookAxis := range []string{"family", "variant", "primary", "secondary", "operation", "direction", "field", "alternative", "group", "instance_scope", "register"} {
 			b524FamilyCodebookValue, b524FamilyCodebookPresent := b524FamilyCodebookIdentity[b524FamilyCodebookAxis]
 			if !b524FamilyCodebookPresent || (string(b524FamilyCodebookValue) == "null" && b524FamilyCodebookAxis != "secondary" && b524FamilyCodebookAxis != "operation" && b524FamilyCodebookAxis != "group" && b524FamilyCodebookAxis != "register") {
-				return nil, nil, b524FamilyCodebookFmt.Errorf("ab30 missing identity axis %s", b524FamilyCodebookAxis)
+				return nil, nil, b524FamilyCodebookFmt.Errorf("b524 family codebooks: missing identity axis %s", b524FamilyCodebookAxis)
 			}
 		}
 		if b524FamilyCodebookEntry.B524FamilyCodebookKey.B524Family == "" || b524FamilyCodebookEntry.B524FamilyCodebookKey.B524FamilyCodebookVariant == "" || b524FamilyCodebookEntry.B524FamilyCodebookKey.B524FamilyCodebookDirection == "" || b524FamilyCodebookEntry.B524FamilyCodebookKey.B524FamilyCodebookField == "" || b524FamilyCodebookEntry.B524FamilyCodebookKey.B524FamilyCodebookAlternative == "" || b524FamilyCodebookEntry.B524FamilyCodebookKey.B524FamilyCodebookInstanceScope == "" {
-			return nil, nil, b524FamilyCodebookFmt.Errorf("ab30 string axes require explicit tokens")
+			return nil, nil, b524FamilyCodebookFmt.Errorf("b524 family codebooks: string axes require explicit tokens")
 		}
 		for _, b524FamilyCodebookPrior := range b524FamilyCodebookKeys {
 			if b524FamilyCodebookReflect.DeepEqual(b524FamilyCodebookPrior, b524FamilyCodebookEntry.B524FamilyCodebookKey) {
-				return nil, nil, b524FamilyCodebookFmt.Errorf("ab30 duplicate identity")
+				return nil, nil, b524FamilyCodebookFmt.Errorf("b524 family codebooks: duplicate identity")
 			}
 		}
 		b524FamilyCodebookKeys = append(b524FamilyCodebookKeys, b524FamilyCodebookEntry.B524FamilyCodebookKey)

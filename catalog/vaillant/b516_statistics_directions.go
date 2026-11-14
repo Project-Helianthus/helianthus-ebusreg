@@ -51,37 +51,37 @@ func b516StatisticsDirectionParse(b516StatisticsDirectionRaw []byte) ([]B516Stat
 	b516StatisticsDirectionDecoder := b516StatisticsDirectionJSON.NewDecoder(b516StatisticsDirectionBytes.NewReader(b516StatisticsDirectionRaw))
 	b516StatisticsDirectionDecoder.DisallowUnknownFields()
 	if b516StatisticsDirectionErr := b516StatisticsDirectionDecoder.Decode(&b516StatisticsDirectionEntries); b516StatisticsDirectionErr != nil {
-		return nil, b516StatisticsDirectionFmt.Errorf("ab72 catalog: %w", b516StatisticsDirectionErr)
+		return nil, b516StatisticsDirectionFmt.Errorf("b516 statistics directions catalog: %w", b516StatisticsDirectionErr)
 	}
 	if b516StatisticsDirectionErr := b516StatisticsDirectionDecoder.Decode(new(any)); b516StatisticsDirectionErr != b516StatisticsDirectionIO.EOF {
-		return nil, b516StatisticsDirectionFmt.Errorf("ab72 catalog: trailing input")
+		return nil, b516StatisticsDirectionFmt.Errorf("b516 statistics directions catalog: trailing input")
 	}
 	if len(b516StatisticsDirectionEntries) == 0 {
-		return nil, b516StatisticsDirectionFmt.Errorf("ab72 catalog: empty")
+		return nil, b516StatisticsDirectionFmt.Errorf("b516 statistics directions catalog: empty")
 	}
 	for b516StatisticsDirectionIndex, b516StatisticsDirectionEntry := range b516StatisticsDirectionEntries {
 		if b516StatisticsDirectionEntry.B516StatisticsDirectionKey.B516StatisticsDirectionFamily == "" || b516StatisticsDirectionEntry.B516StatisticsDirectionKey.B516StatisticsDirectionVariant == "" || b516StatisticsDirectionEntry.B516StatisticsDirectionKey.B516StatisticsDirectionField == "" || b516StatisticsDirectionEntry.B516StatisticsDirectionKey.B516StatisticsDirectionOperation == nil || (b516StatisticsDirectionEntry.B516StatisticsDirectionKey.B516StatisticsDirection != "request" && b516StatisticsDirectionEntry.B516StatisticsDirectionKey.B516StatisticsDirection != "positive") {
-			return nil, b516StatisticsDirectionFmt.Errorf("ab72 catalog: incomplete key")
+			return nil, b516StatisticsDirectionFmt.Errorf("b516 statistics directions catalog: incomplete key")
 		}
 		if b516StatisticsDirectionEntry.B516StatisticsDirectionGrade != "Hypothesis" || b516StatisticsDirectionEntry.B516StatisticsDirectionSoftwareContract != "Proven" || b516StatisticsDirectionEntry.B516StatisticsDirectionNativeContract != "https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-services/ebus-overview.md" {
-			return nil, b516StatisticsDirectionFmt.Errorf("ab72 catalog: invalid evidence")
+			return nil, b516StatisticsDirectionFmt.Errorf("b516 statistics directions catalog: invalid evidence")
 		}
 		for _, b516StatisticsDirectionGrade := range []string{b516StatisticsDirectionEntry.B516StatisticsDirectionPhysicalSupport, b516StatisticsDirectionEntry.B516StatisticsDirectionPresence, b516StatisticsDirectionEntry.B516StatisticsDirectionFreshness, b516StatisticsDirectionEntry.B516StatisticsDirectionExecution, b516StatisticsDirectionEntry.B516StatisticsDirectionEffects, b516StatisticsDirectionEntry.B516StatisticsDirectionPersistence, b516StatisticsDirectionEntry.B516StatisticsDirectionDelivery} {
 			if b516StatisticsDirectionGrade != "Unknown" {
-				return nil, b516StatisticsDirectionFmt.Errorf("ab72 catalog: invalid qualification")
+				return nil, b516StatisticsDirectionFmt.Errorf("b516 statistics directions catalog: invalid qualification")
 			}
 		}
 		for _, b516StatisticsDirectionBit := range b516StatisticsDirectionEntry.B516StatisticsDirectionBits {
 			if b516StatisticsDirectionBit > 7 {
-				return nil, b516StatisticsDirectionFmt.Errorf("ab72 catalog: invalid bit")
+				return nil, b516StatisticsDirectionFmt.Errorf("b516 statistics directions catalog: invalid bit")
 			}
 		}
 		if b516StatisticsDirectionEntry.B516StatisticsDirectionWidth != nil && (*b516StatisticsDirectionEntry.B516StatisticsDirectionWidth == 0 || *b516StatisticsDirectionEntry.B516StatisticsDirectionWidth > 32) {
-			return nil, b516StatisticsDirectionFmt.Errorf("ab72 catalog: invalid width")
+			return nil, b516StatisticsDirectionFmt.Errorf("b516 statistics directions catalog: invalid width")
 		}
 		for b516StatisticsDirectionPrevious := 0; b516StatisticsDirectionPrevious < b516StatisticsDirectionIndex; b516StatisticsDirectionPrevious++ {
 			if b516StatisticsDirectionReflect.DeepEqual(b516StatisticsDirectionEntries[b516StatisticsDirectionPrevious].B516StatisticsDirectionKey, b516StatisticsDirectionEntry.B516StatisticsDirectionKey) {
-				return nil, b516StatisticsDirectionFmt.Errorf("ab72 catalog: duplicate key")
+				return nil, b516StatisticsDirectionFmt.Errorf("b516 statistics directions catalog: duplicate key")
 			}
 		}
 	}

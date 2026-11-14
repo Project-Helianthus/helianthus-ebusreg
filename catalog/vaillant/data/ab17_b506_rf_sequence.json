@@ -1,6 +1,6 @@
 [
   {
-    "ab17_id": "ab17-rf-count-none",
+    "id": "ab17-rf-count-none",
     "key": {
       "family": "vaillant",
       "variant": "B506-RF",
@@ -16,26 +16,26 @@
     },
     "grade": "Hypothesis",
     "qualification": "Unknown",
-    "ab17_raw_form": "retain-original-bytes",
-    "ab17_unknown": {
+    "raw_form": "retain-original-bytes",
+    "unknown": {
       "native_support": "Unknown",
       "physical_effects": "Unknown",
       "persistence": "Unknown",
       "delivery": "Unknown"
     },
-    "ab17_extent_bytes": null,
-    "ab17_minimum_bytes": null,
-    "ab17_maximum_bytes": null,
-    "ab17_field_position": null,
-    "ab17_count": {
-      "ab17_zero_meaning": "unlimited",
-      "ab17_finite_minimum": 1,
-      "ab17_finite_maximum": 255,
-      "ab17_finite_meaning": "count-value"
+    "extent_bytes": null,
+    "minimum_bytes": null,
+    "maximum_bytes": null,
+    "field_position": null,
+    "count": {
+      "zero_meaning": "unlimited",
+      "finite_minimum": 1,
+      "finite_maximum": 255,
+      "finite_meaning": "count-value"
     }
   },
   {
-    "ab17_id": "ab17-rf-sequence-0",
+    "id": "ab17-rf-sequence-0",
     "key": {
       "family": "vaillant",
       "variant": "B506-RF",
@@ -51,21 +51,21 @@
     },
     "grade": "Hypothesis",
     "qualification": "Unknown",
-    "ab17_raw_form": "retain-original-bytes",
-    "ab17_unknown": {
+    "raw_form": "retain-original-bytes",
+    "unknown": {
       "native_support": "Unknown",
       "physical_effects": "Unknown",
       "persistence": "Unknown",
       "delivery": "Unknown"
     },
-    "ab17_extent_bytes": null,
-    "ab17_minimum_bytes": null,
-    "ab17_maximum_bytes": null,
-    "ab17_field_position": null,
-    "ab17_extent_class": "ab17-class-a"
+    "extent_bytes": null,
+    "minimum_bytes": null,
+    "maximum_bytes": null,
+    "field_position": null,
+    "extent_class": "ab17-class-a"
   },
   {
-    "ab17_id": "ab17-rf-sequence-1",
+    "id": "ab17-rf-sequence-1",
     "key": {
       "family": "vaillant",
       "variant": "B506-RF",
@@ -81,21 +81,21 @@
     },
     "grade": "Hypothesis",
     "qualification": "Unknown",
-    "ab17_raw_form": "retain-original-bytes",
-    "ab17_unknown": {
+    "raw_form": "retain-original-bytes",
+    "unknown": {
       "native_support": "Unknown",
       "physical_effects": "Unknown",
       "persistence": "Unknown",
       "delivery": "Unknown"
     },
-    "ab17_extent_bytes": null,
-    "ab17_minimum_bytes": null,
-    "ab17_maximum_bytes": null,
-    "ab17_field_position": null,
-    "ab17_extent_class": "ab17-class-a"
+    "extent_bytes": null,
+    "minimum_bytes": null,
+    "maximum_bytes": null,
+    "field_position": null,
+    "extent_class": "ab17-class-a"
   },
   {
-    "ab17_id": "ab17-rf-sequence-2",
+    "id": "ab17-rf-sequence-2",
     "key": {
       "family": "vaillant",
       "variant": "B506-RF",
@@ -111,21 +111,21 @@
     },
     "grade": "Hypothesis",
     "qualification": "Unknown",
-    "ab17_raw_form": "retain-original-bytes",
-    "ab17_unknown": {
+    "raw_form": "retain-original-bytes",
+    "unknown": {
       "native_support": "Unknown",
       "physical_effects": "Unknown",
       "persistence": "Unknown",
       "delivery": "Unknown"
     },
-    "ab17_extent_bytes": null,
-    "ab17_minimum_bytes": null,
-    "ab17_maximum_bytes": null,
-    "ab17_field_position": null,
-    "ab17_extent_class": "ab17-class-a"
+    "extent_bytes": null,
+    "minimum_bytes": null,
+    "maximum_bytes": null,
+    "field_position": null,
+    "extent_class": "ab17-class-a"
   },
   {
-    "ab17_id": "ab17-rf-sequence-3",
+    "id": "ab17-rf-sequence-3",
     "key": {
       "family": "vaillant",
       "variant": "B506-RF",
@@ -141,21 +141,21 @@
     },
     "grade": "Hypothesis",
     "qualification": "Unknown",
-    "ab17_raw_form": "retain-original-bytes",
-    "ab17_unknown": {
+    "raw_form": "retain-original-bytes",
+    "unknown": {
       "native_support": "Unknown",
       "physical_effects": "Unknown",
       "persistence": "Unknown",
       "delivery": "Unknown"
     },
-    "ab17_extent_bytes": null,
-    "ab17_minimum_bytes": null,
-    "ab17_maximum_bytes": null,
-    "ab17_field_position": null,
-    "ab17_extent_class": "ab17-class-b"
+    "extent_bytes": null,
+    "minimum_bytes": null,
+    "maximum_bytes": null,
+    "field_position": null,
+    "extent_class": "ab17-class-b"
   },
   {
-    "ab17_id": "ab17-rf-stop-none",
+    "id": "ab17-rf-stop-none",
     "key": {
       "family": "vaillant",
       "variant": "B506-RF",
@@ -171,25 +171,25 @@
     },
     "grade": "Hypothesis",
     "qualification": "Unknown",
-    "ab17_raw_form": "retain-original-bytes",
-    "ab17_unknown": {
+    "raw_form": "retain-original-bytes",
+    "unknown": {
       "native_support": "Unknown",
       "physical_effects": "Unknown",
       "persistence": "Unknown",
       "delivery": "Unknown"
     },
-    "ab17_extent_bytes": null,
-    "ab17_minimum_bytes": null,
-    "ab17_maximum_bytes": null,
-    "ab17_field_position": null,
-    "ab17_related_operations": [
+    "extent_bytes": null,
+    "minimum_bytes": null,
+    "maximum_bytes": null,
+    "field_position": null,
+    "related_operations": [
       12,
       13
     ],
-    "ab17_activation_order": "Unknown",
-    "ab17_retry_count": null,
-    "ab17_timeout": null,
-    "ab17_delivery_guarantee": "Unknown",
-    "ab17_completed_stop": "Unknown"
+    "activation_order": "Unknown",
+    "retry_count": null,
+    "timeout": null,
+    "delivery_guarantee": "Unknown",
+    "completed_stop": "Unknown"
   }
 ]

@@ -27929,7 +27929,7 @@
         "lexical_location": 18,
         "occurrence": 0
       },
-      "current_name": "ab05_family",
+      "current_name": "family",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -27967,7 +27967,7 @@
         "lexical_location": 19,
         "occurrence": 0
       },
-      "current_name": "ab05_variant",
+      "current_name": "variant",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28005,7 +28005,7 @@
         "lexical_location": 20,
         "occurrence": 0
       },
-      "current_name": "ab05_direction",
+      "current_name": "direction",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28043,7 +28043,7 @@
         "lexical_location": 21,
         "occurrence": 0
       },
-      "current_name": "ab05_opcode",
+      "current_name": "opcode",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28081,7 +28081,7 @@
         "lexical_location": 22,
         "occurrence": 0
       },
-      "current_name": "ab05_group",
+      "current_name": "group",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28119,7 +28119,7 @@
         "lexical_location": 23,
         "occurrence": 0
       },
-      "current_name": "ab05_instance",
+      "current_name": "instance",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28157,7 +28157,7 @@
         "lexical_location": 24,
         "occurrence": 0
       },
-      "current_name": "ab05_register",
+      "current_name": "register",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28195,7 +28195,7 @@
         "lexical_location": 25,
         "occurrence": 0
       },
-      "current_name": "ab05_alternative",
+      "current_name": "alternative",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28256,7 +28256,7 @@
         "lexical_location": 34,
         "occurrence": 0
       },
-      "current_name": "ab05_opcode",
+      "current_name": "opcode",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28294,7 +28294,7 @@
         "lexical_location": 35,
         "occurrence": 0
       },
-      "current_name": "ab05_group",
+      "current_name": "group",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28332,7 +28332,7 @@
         "lexical_location": 36,
         "occurrence": 0
       },
-      "current_name": "ab05_instance",
+      "current_name": "instance",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28370,7 +28370,7 @@
         "lexical_location": 37,
         "occurrence": 0
       },
-      "current_name": "ab05_register",
+      "current_name": "register",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28427,7 +28427,7 @@
         "lexical_location": 57,
         "occurrence": 0
       },
-      "current_name": "ab05_name",
+      "current_name": "name",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28503,7 +28503,7 @@
         "lexical_location": 60,
         "occurrence": 0
       },
-      "current_name": "ab05_codec",
+      "current_name": "codec",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28617,7 +28617,7 @@
         "lexical_location": 65,
         "occurrence": 0
       },
-      "current_name": "ab05_raw_fallback",
+      "current_name": "raw_fallback",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28674,7 +28674,7 @@
         "lexical_location": 69,
         "occurrence": 0
       },
-      "current_name": "ab05_key",
+      "current_name": "key",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -28750,7 +28750,7 @@
         "lexical_location": 72,
         "occurrence": 0
       },
-      "current_name": "ab05_raw_fallback",
+      "current_name": "raw_fallback",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -62646,7 +62646,7 @@
         "lexical_location": 29,
         "occurrence": 0
       },
-      "current_name": "ab17_id",
+      "current_name": "id",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -62798,7 +62798,7 @@
         "lexical_location": 33,
         "occurrence": 0
       },
-      "current_name": "ab17_raw_form",
+      "current_name": "raw_form",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -62836,7 +62836,7 @@
         "lexical_location": 34,
         "occurrence": 0
       },
-      "current_name": "ab17_unknown",
+      "current_name": "unknown",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -79195,7 +79195,7 @@
         "lexical_location": 8,
         "occurrence": 0
       },
-      "current_name": "ab23an23_grouped_1024",
+      "current_name": "grouped_1024",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -79233,7 +79233,7 @@
         "lexical_location": 9,
         "occurrence": 0
       },
-      "current_name": "ab23an23_single_205",
+      "current_name": "single_205",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92306,7 +92306,7 @@
         "lexical_location": 13,
         "occurrence": 0
       },
-      "current_name": "ab34_family",
+      "current_name": "family",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92344,7 +92344,7 @@
         "lexical_location": 14,
         "occurrence": 0
       },
-      "current_name": "ab34_variant",
+      "current_name": "variant",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92382,7 +92382,7 @@
         "lexical_location": 15,
         "occurrence": 0
       },
-      "current_name": "ab34_primary",
+      "current_name": "primary",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92420,7 +92420,7 @@
         "lexical_location": 16,
         "occurrence": 0
       },
-      "current_name": "ab34_secondary",
+      "current_name": "secondary",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92458,7 +92458,7 @@
         "lexical_location": 17,
         "occurrence": 0
       },
-      "current_name": "ab34_operation",
+      "current_name": "operation",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92496,7 +92496,7 @@
         "lexical_location": 18,
         "occurrence": 0
       },
-      "current_name": "ab34_direction",
+      "current_name": "direction",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92534,7 +92534,7 @@
         "lexical_location": 19,
         "occurrence": 0
       },
-      "current_name": "ab34_field",
+      "current_name": "field",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92572,7 +92572,7 @@
         "lexical_location": 20,
         "occurrence": 0
       },
-      "current_name": "ab34_alternative",
+      "current_name": "alternative",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92610,7 +92610,7 @@
         "lexical_location": 21,
         "occurrence": 0
       },
-      "current_name": "ab34_group",
+      "current_name": "group",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92648,7 +92648,7 @@
         "lexical_location": 22,
         "occurrence": 0
       },
-      "current_name": "ab34_instance_scope",
+      "current_name": "instance_scope",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92686,7 +92686,7 @@
         "lexical_location": 23,
         "occurrence": 0
       },
-      "current_name": "ab34_register",
+      "current_name": "register",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92705,7 +92705,7 @@
         "lexical_location": 41,
         "occurrence": 0
       },
-      "current_name": "ab34_identity",
+      "current_name": "identity",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92724,7 +92724,7 @@
         "lexical_location": 45,
         "occurrence": 0
       },
-      "current_name": "ab34_identity",
+      "current_name": "identity",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92743,7 +92743,7 @@
         "lexical_location": 61,
         "occurrence": 0
       },
-      "current_name": "ab34_primary",
+      "current_name": "primary",
       "target": null,
       "kind": "string_candidate",
       "roles": [],
@@ -92819,7 +92819,7 @@
         "lexical_location": 91,
         "occurrence": 0
       },
-      "current_name": "ab34_identity",
+      "current_name": "identity",
       "target": null,
       "kind": "string_candidate",
       "roles": [],

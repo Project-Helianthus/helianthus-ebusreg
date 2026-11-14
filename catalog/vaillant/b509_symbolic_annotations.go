@@ -36,7 +36,7 @@ func b509SymbolicAnnotationValidate(b509SymbolicAnnotationSource []byte) ([]json
 		return nil, nil, b509SymbolicAnnotationError
 	}
 	if b509SymbolicAnnotationRows == nil {
-		return nil, nil, fmt.Errorf("ab40: expected array")
+		return nil, nil, fmt.Errorf("b509 symbolic annotations: expected array")
 	}
 	b509SymbolicAnnotationIndex := make(map[string]json.RawMessage, len(b509SymbolicAnnotationRows))
 	for _, b509SymbolicAnnotationRaw := range b509SymbolicAnnotationRows {
@@ -50,20 +50,20 @@ func b509SymbolicAnnotationValidate(b509SymbolicAnnotationSource []byte) ([]json
 		}
 		for _, b509SymbolicAnnotationAxis := range []string{"family", "variant", "primary", "direction", "field", "alternative", "instance_scope", "class"} {
 			if b509SymbolicAnnotationValue, b509SymbolicAnnotationPresent := b509SymbolicAnnotationObject[b509SymbolicAnnotationAxis]; !b509SymbolicAnnotationPresent || string(b509SymbolicAnnotationValue) == "null" {
-				return nil, nil, fmt.Errorf("ab40: missing axis %s", b509SymbolicAnnotationAxis)
+				return nil, nil, fmt.Errorf("b509 symbolic annotations: missing axis %s", b509SymbolicAnnotationAxis)
 			}
 		}
 		for _, b509SymbolicAnnotationAxis := range []string{"secondary", "operation", "group", "register", "selector"} {
 			if b509SymbolicAnnotationValue, b509SymbolicAnnotationPresent := b509SymbolicAnnotationObject[b509SymbolicAnnotationAxis]; b509SymbolicAnnotationPresent && string(b509SymbolicAnnotationValue) == "null" {
-				return nil, nil, fmt.Errorf("ab40: null optional axis %s", b509SymbolicAnnotationAxis)
+				return nil, nil, fmt.Errorf("b509 symbolic annotations: null optional axis %s", b509SymbolicAnnotationAxis)
 			}
 		}
 		if b509SymbolicAnnotationKey.B509SymbolicAnnotationFamily == "" || b509SymbolicAnnotationKey.B509SymbolicAnnotationVariant == "" || b509SymbolicAnnotationKey.B509SymbolicAnnotationDirection == "" || b509SymbolicAnnotationKey.B509SymbolicAnnotationField == "" || b509SymbolicAnnotationKey.B509SymbolicAnnotationAlternative == "" || b509SymbolicAnnotationKey.B509SymbolicAnnotationInstanceScope == "" || b509SymbolicAnnotationKey.B509SymbolicAnnotationClass == "" {
-			return nil, nil, fmt.Errorf("ab40: empty string axis; use none when inapplicable")
+			return nil, nil, fmt.Errorf("b509 symbolic annotations: empty string axis; use none when inapplicable")
 		}
 		b509SymbolicAnnotationID := b509SymbolicAnnotationIdentity(b509SymbolicAnnotationKey)
 		if _, b509SymbolicAnnotationPresent := b509SymbolicAnnotationIndex[b509SymbolicAnnotationID]; b509SymbolicAnnotationPresent {
-			return nil, nil, fmt.Errorf("ab40: duplicate key")
+			return nil, nil, fmt.Errorf("b509 symbolic annotations: duplicate key")
 		}
 		b509SymbolicAnnotationIndex[b509SymbolicAnnotationID] = append(json.RawMessage(nil), b509SymbolicAnnotationRaw...)
 	}

@@ -67,17 +67,17 @@ func TestAb34Contract(b501LegacySequenceT *b501LegacySequenceTesting.T) {
 		}
 		b501LegacySequenceRow := b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceRaw)
 		b501LegacySequenceWant := map[string]any{
-			"ab34_id":                   "ab34_legacy_" + b501LegacySequenceRole,
-			"ab34_identity":             b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceMarshal(b501LegacySequenceT, b501LegacySequenceKey)),
-			"ab34_representation_grade": "Proven", "ab34_candidate_grade": "Hypothesis",
-			"ab34_service": b501LegacySequenceService, "ab34_service_role": b501LegacySequenceRole,
-			"ab34_raw_form": map[string]any{"ab34_service": b501LegacySequenceService, "ab34_payload": nil, "ab34_policy": "preserve complete native bytes and unaffected last-known-good fields"},
-			"ab34_unknown":  map[string]any{"ab34_synchronization_bytes": "Unknown", "ab34_state_order_beyond_wait": "Unknown", "ab34_timeout_duration": "Unknown", "ab34_segmentation": "Unknown", "ab34_retries": "Unknown", "ab34_return_codec": "Unknown", "ab34_transport_adaptation": "Unknown", "ab34_native_support": "Unknown", "ab34_physical_effects": "Unknown", "ab34_persistence": "Unknown", "ab34_delivery": "Unknown"},
+			"id":                   "ab34_legacy_" + b501LegacySequenceRole,
+			"identity":             b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceMarshal(b501LegacySequenceT, b501LegacySequenceKey)),
+			"representation_grade": "Proven", "candidate_grade": "Hypothesis",
+			"service": b501LegacySequenceService, "service_role": b501LegacySequenceRole,
+			"raw_form": map[string]any{"service": b501LegacySequenceService, "payload": nil, "policy": "preserve complete native bytes and unaffected last-known-good fields"},
+			"unknown":  map[string]any{"synchronization_bytes": "Unknown", "state_order_beyond_wait": "Unknown", "timeout_duration": "Unknown", "segmentation": "Unknown", "retries": "Unknown", "return_codec": "Unknown", "transport_adaptation": "Unknown", "native_support": "Unknown", "physical_effects": "Unknown", "persistence": "Unknown", "delivery": "Unknown"},
 		}
 		if b501LegacySequenceIndex == 0 {
-			b501LegacySequenceWant["ab34_sequence"] = b501LegacySequenceDecode(b501LegacySequenceT, []byte(`{"ab34_synchronization_required":true,"ab34_synchronization_token":null,"ab34_timeout_cooldown_min_ms":3500,"ab34_cooldown_event":"timeout","ab34_success_cooldown_required":false,"ab34_request_service":"B501","ab34_positive_status_service":"B501","ab34_return_data_service":"B502","ab34_status_is_return_data":false}`))
+			b501LegacySequenceWant["sequence"] = b501LegacySequenceDecode(b501LegacySequenceT, []byte(`{"synchronization_required":true,"synchronization_token":null,"timeout_cooldown_min_ms":3500,"cooldown_event":"timeout","success_cooldown_required":false,"request_service":"B501","positive_status_service":"B501","return_data_service":"B502","status_is_return_data":false}`))
 		} else {
-			b501LegacySequenceWant["ab34_context_only"] = true
+			b501LegacySequenceWant["context_only"] = true
 		}
 		if !b501LegacySequenceReflect.DeepEqual(b501LegacySequenceRow, b501LegacySequenceWant) {
 			b501LegacySequenceT.Errorf("ab34 %s differs: got %s want %s", b501LegacySequenceRole, b501LegacySequenceRaw, b501LegacySequenceMarshal(b501LegacySequenceT, b501LegacySequenceWant))
@@ -86,7 +86,7 @@ func TestAb34Contract(b501LegacySequenceT *b501LegacySequenceTesting.T) {
 }
 
 func TestAb34TimeoutBoundary(b501LegacySequenceT *b501LegacySequenceTesting.T) {
-	b501LegacySequenceSequence := b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceGet(b501LegacySequenceT, b501LegacySequenceBaseKey()))["ab34_sequence"].(map[string]any)
+	b501LegacySequenceSequence := b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceGet(b501LegacySequenceT, b501LegacySequenceBaseKey()))["sequence"].(map[string]any)
 	for _, b501LegacySequenceCase := range []struct {
 		b501LegacySequenceName    string
 		b501LegacySequenceEvent   string
@@ -100,13 +100,13 @@ func TestAb34TimeoutBoundary(b501LegacySequenceT *b501LegacySequenceTesting.T) {
 		{"ab34_success_3499", "successful-return", 3499, true},
 	} {
 		b501LegacySequenceT.Run(b501LegacySequenceCase.b501LegacySequenceName, func(b501LegacySequenceT *b501LegacySequenceTesting.T) {
-			b501LegacySequenceAllowed := b501LegacySequenceCase.b501LegacySequenceEvent != b501LegacySequenceSequence["ab34_cooldown_event"] || b501LegacySequenceCase.b501LegacySequenceElapsed >= int(b501LegacySequenceSequence["ab34_timeout_cooldown_min_ms"].(float64))
+			b501LegacySequenceAllowed := b501LegacySequenceCase.b501LegacySequenceEvent != b501LegacySequenceSequence["cooldown_event"] || b501LegacySequenceCase.b501LegacySequenceElapsed >= int(b501LegacySequenceSequence["timeout_cooldown_min_ms"].(float64))
 			if b501LegacySequenceAllowed != b501LegacySequenceCase.b501LegacySequenceWant {
 				b501LegacySequenceT.Fatal("ab34 timeout-only cooldown boundary differs")
 			}
 		})
 	}
-	for _, b501LegacySequenceName := range []string{"ab34_timeout_duration_ms", "ab34_timeout_duration", "ab34_synchronization_bytes"} {
+	for _, b501LegacySequenceName := range []string{"ab34_timeout_duration_ms", "timeout_duration", "synchronization_bytes"} {
 		if _, b501LegacySequencePresent := b501LegacySequenceSequence[b501LegacySequenceName]; b501LegacySequencePresent {
 			b501LegacySequenceT.Fatalf("ab34 invented %s", b501LegacySequenceName)
 		}
@@ -139,7 +139,7 @@ func TestAb34EveryIdentityAxis(b501LegacySequenceT *b501LegacySequenceTesting.T)
 				b501LegacySequenceT.Fatalf("ab34 changed axis matched: %v %v", b501LegacySequenceFound, b501LegacySequenceError)
 			}
 			b501LegacySequenceControl := b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceOriginal)
-			b501LegacySequenceControl["ab34_identity"] = b501LegacySequenceChanged
+			b501LegacySequenceControl["identity"] = b501LegacySequenceChanged
 			b501LegacySequenceData := b501LegacySequenceMarshal(b501LegacySequenceT, []any{b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceOriginal), b501LegacySequenceControl})
 			if _, b501LegacySequenceError = b501LegacySequenceValidate(b501LegacySequenceData); b501LegacySequenceError != nil {
 				b501LegacySequenceT.Fatalf("ab34 distinct-axis valid control rejected: %v", b501LegacySequenceError)
@@ -163,15 +163,15 @@ func TestAb34OptionalAbsentVersusZero(b501LegacySequenceT *b501LegacySequenceTes
 			b501LegacySequenceZeroField.Set(b501LegacySequenceReflect.New(b501LegacySequenceZeroField.Type().Elem()))
 			b501LegacySequenceRow := b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceGet(b501LegacySequenceT, b501LegacySequenceBaseKey()))
 			b501LegacySequenceOther := b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceGet(b501LegacySequenceT, b501LegacySequenceBaseKey()))
-			b501LegacySequenceRow["ab34_identity"], b501LegacySequenceOther["ab34_identity"] = b501LegacySequenceAbsent, b501LegacySequenceZero
-			b501LegacySequenceOther["ab34_id"] = "ab34_zero_control"
+			b501LegacySequenceRow["identity"], b501LegacySequenceOther["identity"] = b501LegacySequenceAbsent, b501LegacySequenceZero
+			b501LegacySequenceOther["id"] = "ab34_zero_control"
 			b501LegacySequenceData := b501LegacySequenceMarshal(b501LegacySequenceT, []any{b501LegacySequenceRow, b501LegacySequenceOther})
 			for _, b501LegacySequenceCase := range []struct {
 				b501LegacySequenceKey B501LegacySequenceKey
 				b501LegacySequenceID  string
 			}{{b501LegacySequenceAbsent, "ab34_legacy_request"}, {b501LegacySequenceZero, "ab34_zero_control"}} {
 				b501LegacySequenceGot, b501LegacySequenceFound, b501LegacySequenceError := b501LegacySequenceLookup(b501LegacySequenceData, b501LegacySequenceCase.b501LegacySequenceKey)
-				if b501LegacySequenceError != nil || !b501LegacySequenceFound || b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceGot)["ab34_id"] != b501LegacySequenceCase.b501LegacySequenceID {
+				if b501LegacySequenceError != nil || !b501LegacySequenceFound || b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceGot)["id"] != b501LegacySequenceCase.b501LegacySequenceID {
 					b501LegacySequenceT.Fatalf("ab34 absent/zero collision: %v", b501LegacySequenceError)
 				}
 			}
@@ -191,17 +191,17 @@ func TestAb34ValidationErrors(b501LegacySequenceT *b501LegacySequenceTesting.T) 
 		}
 	}
 	b501LegacySequenceObject := b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceRow)
-	for b501LegacySequenceAxis := range b501LegacySequenceObject["ab34_identity"].(map[string]any) {
+	for b501LegacySequenceAxis := range b501LegacySequenceObject["identity"].(map[string]any) {
 		b501LegacySequenceT.Run("ab34_missing_"+b501LegacySequenceAxis, func(b501LegacySequenceT *b501LegacySequenceTesting.T) {
 			b501LegacySequenceControl := b501LegacySequenceDecode(b501LegacySequenceT, b501LegacySequenceRow)
-			delete(b501LegacySequenceControl["ab34_identity"].(map[string]any), b501LegacySequenceAxis)
+			delete(b501LegacySequenceControl["identity"].(map[string]any), b501LegacySequenceAxis)
 			if _, b501LegacySequenceError := b501LegacySequenceValidate(b501LegacySequenceMarshal(b501LegacySequenceT, []any{b501LegacySequenceControl})); b501LegacySequenceError == nil {
 				b501LegacySequenceT.Fatal("ab34 incomplete identity admitted")
 			}
 		})
 	}
 	for _, b501LegacySequenceBad := range []string{"null", "-1", "256", `"B501"`} {
-		b501LegacySequenceData := b501LegacySequenceStrings.Replace(string(b501LegacySequenceRow), `"ab34_primary": 181`, `"ab34_primary": `+b501LegacySequenceBad, 1)
+		b501LegacySequenceData := b501LegacySequenceStrings.Replace(string(b501LegacySequenceRow), `"primary": 181`, `"primary": `+b501LegacySequenceBad, 1)
 		if _, b501LegacySequenceError := b501LegacySequenceValidate([]byte("[" + b501LegacySequenceData + "]")); b501LegacySequenceError == nil {
 			b501LegacySequenceT.Errorf("ab34 invalid primary admitted: %s", b501LegacySequenceBad)
 		}

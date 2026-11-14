@@ -27,14 +27,14 @@ func TestAb05KeyDimensions(schemaT *testing.T) {
 		schemaName   string
 		schemaChange func(*SchemaKey)
 	}{
-		{"ab05_family", func(schemaKey *SchemaKey) { schemaKey.SchemaFamily = "beta" }},
-		{"ab05_variant", func(schemaKey *SchemaKey) { schemaKey.SchemaVariant = "ab05_secondary" }},
-		{"ab05_direction", func(schemaKey *SchemaKey) { schemaKey.SchemaDirection = "request" }},
-		{"ab05_opcode", func(schemaKey *SchemaKey) { schemaKey.SchemaOpcode = 6 }},
-		{"ab05_group", func(schemaKey *SchemaKey) { schemaKey.SchemaGroup = 4 }},
-		{"ab05_instance", func(schemaKey *SchemaKey) { schemaKey.SchemaInstance = 2 }},
-		{"ab05_register", func(schemaKey *SchemaKey) { schemaKey.SchemaRegister = 35 }},
-		{"ab05_alternative", func(schemaKey *SchemaKey) { schemaKey.SchemaAlternative = "ab05_other" }},
+		{"family", func(schemaKey *SchemaKey) { schemaKey.SchemaFamily = "beta" }},
+		{"variant", func(schemaKey *SchemaKey) { schemaKey.SchemaVariant = "ab05_secondary" }},
+		{"direction", func(schemaKey *SchemaKey) { schemaKey.SchemaDirection = "request" }},
+		{"opcode", func(schemaKey *SchemaKey) { schemaKey.SchemaOpcode = 6 }},
+		{"group", func(schemaKey *SchemaKey) { schemaKey.SchemaGroup = 4 }},
+		{"instance", func(schemaKey *SchemaKey) { schemaKey.SchemaInstance = 2 }},
+		{"register", func(schemaKey *SchemaKey) { schemaKey.SchemaRegister = 35 }},
+		{"alternative", func(schemaKey *SchemaKey) { schemaKey.SchemaAlternative = "ab05_other" }},
 	}
 	for _, schemaCase := range schemaCases {
 		schemaT.Run(schemaCase.schemaName, func(schemaT *testing.T) {
@@ -185,13 +185,13 @@ func TestAb05QueryIsolation(schemaT *testing.T) {
 
 func TestAb05JSONNumericKeyPresence(schemaT *testing.T) {
 	schemaBase := map[string]any{
-		"ab05_family": "ab05_synthetic", "ab05_variant": "ab05_primary",
-		"ab05_direction": "request", "ab05_alternative": "ab05_candidate",
-		"ab05_opcode": 0, "ab05_group": 0, "ab05_instance": 0, "ab05_register": 0,
+		"family": "ab05_synthetic", "variant": "ab05_primary",
+		"direction": "request", "alternative": "ab05_candidate",
+		"opcode": 0, "group": 0, "instance": 0, "register": 0,
 	}
 	schemaDecode := func(schemaT *testing.T, schemaKey map[string]any) (SchemaRecord, error) {
 		schemaT.Helper()
-		schemaData, schemaError := json.Marshal(map[string]any{"ab05_key": schemaKey})
+		schemaData, schemaError := json.Marshal(map[string]any{"key": schemaKey})
 		if schemaError != nil {
 			schemaT.Fatal(schemaError)
 		}
@@ -208,7 +208,7 @@ func TestAb05JSONNumericKeyPresence(schemaT *testing.T) {
 	if schemaError != nil || !schemaFound || schemaGot.SchemaKey != schemaWant {
 		schemaT.Fatalf("ab05 explicit zero selectors rejected: %#v %v %v", schemaGot, schemaFound, schemaError)
 	}
-	for _, schemaName := range []string{"ab05_opcode", "ab05_group", "ab05_instance", "ab05_register"} {
+	for _, schemaName := range []string{"opcode", "group", "instance", "register"} {
 		for _, schemaMode := range []string{"absent", "null", "misspelled"} {
 			schemaT.Run(schemaName+"/"+schemaMode, func(schemaT *testing.T) {
 				schemaKey := make(map[string]any, len(schemaBase))
@@ -239,10 +239,10 @@ func TestAb05InvalidStringKeys(schemaT *testing.T) {
 		schemaName   string
 		schemaChange func(*SchemaKey)
 	}{
-		{"ab05_family", func(schemaKey *SchemaKey) { schemaKey.SchemaFamily = "" }},
-		{"ab05_variant", func(schemaKey *SchemaKey) { schemaKey.SchemaVariant = "" }},
-		{"ab05_direction", func(schemaKey *SchemaKey) { schemaKey.SchemaDirection = "" }},
-		{"ab05_alternative", func(schemaKey *SchemaKey) { schemaKey.SchemaAlternative = "" }},
+		{"family", func(schemaKey *SchemaKey) { schemaKey.SchemaFamily = "" }},
+		{"variant", func(schemaKey *SchemaKey) { schemaKey.SchemaVariant = "" }},
+		{"direction", func(schemaKey *SchemaKey) { schemaKey.SchemaDirection = "" }},
+		{"alternative", func(schemaKey *SchemaKey) { schemaKey.SchemaAlternative = "" }},
 		{"ab05_invalid_direction", func(schemaKey *SchemaKey) { schemaKey.SchemaDirection = "ab05_invalid" }},
 	}
 	for _, schemaCase := range schemaCases {

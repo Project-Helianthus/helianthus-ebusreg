@@ -28,13 +28,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": null,
-            "ab05_codec": "opaque-through-end",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": null,
+            "codec": "opaque-through-end",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -43,13 +43,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": null,
-            "ab05_codec": "opaque-through-end",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": null,
+            "codec": "opaque-through-end",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -58,13 +58,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": null,
-            "ab05_codec": "opaque-through-end",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": null,
+            "codec": "opaque-through-end",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -73,13 +73,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": null,
-            "ab05_codec": "opaque-through-end",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": null,
+            "codec": "opaque-through-end",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -88,13 +88,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": null,
-            "ab05_codec": "opaque-through-end",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": null,
+            "codec": "opaque-through-end",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -103,13 +103,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -118,13 +118,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -133,13 +133,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -148,13 +148,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -163,13 +163,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -178,13 +178,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -193,13 +193,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -208,13 +208,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -223,13 +223,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -238,13 +238,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -253,13 +253,13 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "raw-byte",
-            "ab05_enum": null,
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "raw-byte",
+            "enum": null,
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         },
         {
@@ -268,16 +268,16 @@
           "minimum_bytes": null,
           "maximum_bytes": null,
           "metadata": {
-            "ab05_name": "parameter",
-            "ab05_position": null,
-            "ab05_width": 1,
-            "ab05_codec": "boolean",
-            "ab05_enum": {
+            "name": "parameter",
+            "position": null,
+            "width": 1,
+            "codec": "boolean",
+            "enum": {
               "0": "no",
               "1": "yes"
             },
-            "ab05_grade": "Hypothesis",
-            "ab05_raw_fallback": null
+            "grade": "Hypothesis",
+            "raw_fallback": null
           }
         }
       ],

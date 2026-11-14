@@ -61,15 +61,15 @@ func B503TextCategoryEntries() ([]B503TextCategoryEntry, error) {
 		return nil, b503TextCategoryError
 	}
 	if b503TextCategoryError := b503TextCategoryDecoder.Decode(new(any)); b503TextCategoryError != b503TextCategoryIO.EOF {
-		return nil, b503TextCategoryFmt.Errorf("ab96: trailing embedded data: %v", b503TextCategoryError)
+		return nil, b503TextCategoryFmt.Errorf("b503 text categories: trailing embedded data: %v", b503TextCategoryError)
 	}
 	if len(b503TextCategoryDecoded) == 0 {
-		return nil, b503TextCategoryFmt.Errorf("ab96: empty embedded catalog")
+		return nil, b503TextCategoryFmt.Errorf("b503 text categories: empty embedded catalog")
 	}
 	b503TextCategoryEntries := make([]B503TextCategoryEntry, 0, len(b503TextCategoryDecoded))
 	for b503TextCategoryIndex, b503TextCategoryWire := range b503TextCategoryDecoded {
 		if b503TextCategoryWire.B503TextCategoryKey.B503TextCategoryPrimary == nil {
-			return nil, b503TextCategoryFmt.Errorf("ab96: missing embedded primary in entry %d", b503TextCategoryIndex)
+			return nil, b503TextCategoryFmt.Errorf("b503 text categories: missing embedded primary in entry %d", b503TextCategoryIndex)
 		}
 		b503TextCategoryEntry := b503TextCategoryWire.B503TextCategoryEntry
 		b503TextCategoryEntry.B503TextCategoryKey = b503TextCategoryWire.B503TextCategoryKey.B503TextCategoryKey
@@ -78,16 +78,16 @@ func B503TextCategoryEntries() ([]B503TextCategoryEntry, error) {
 			(b503TextCategoryEntry.B503TextCategoryGrade != "Hypothesis" && b503TextCategoryEntry.B503TextCategoryGrade != "Proven" && b503TextCategoryEntry.B503TextCategoryGrade != "Unknown") ||
 			b503TextCategoryEntry.B503TextCategoryMetadataPresence != "Proven" || b503TextCategoryEntry.B503TextCategoryPhysicalQualification != "Unknown" ||
 			b503TextCategoryEntry.B503TextCategoryRawPreservation == "" || len(b503TextCategoryEntry.B503TextCategoryUnknown) == 0 {
-			return nil, b503TextCategoryFmt.Errorf("ab96: invalid embedded entry %d", b503TextCategoryIndex)
+			return nil, b503TextCategoryFmt.Errorf("b503 text categories: invalid embedded entry %d", b503TextCategoryIndex)
 		}
 		if (b503TextCategoryEntry.B503TextCategoryWidthCharacters != nil && *b503TextCategoryEntry.B503TextCategoryWidthCharacters <= 0) ||
 			(b503TextCategoryEntry.B503TextCategoryWidthBits != nil && *b503TextCategoryEntry.B503TextCategoryWidthBits <= 0) ||
 			(b503TextCategoryEntry.B503TextCategoryPosition != nil && *b503TextCategoryEntry.B503TextCategoryPosition < 0) {
-			return nil, b503TextCategoryFmt.Errorf("ab96: invalid embedded width or position")
+			return nil, b503TextCategoryFmt.Errorf("b503 text categories: invalid embedded width or position")
 		}
 		for _, b503TextCategoryPrevious := range b503TextCategoryEntries {
 			if b503TextCategoryReflect.DeepEqual(b503TextCategoryPrevious.B503TextCategoryKey, b503TextCategoryEntry.B503TextCategoryKey) {
-				return nil, b503TextCategoryFmt.Errorf("ab96: duplicate embedded key")
+				return nil, b503TextCategoryFmt.Errorf("b503 text categories: duplicate embedded key")
 			}
 		}
 		b503TextCategoryEntries = append(b503TextCategoryEntries, b503TextCategoryEntry)

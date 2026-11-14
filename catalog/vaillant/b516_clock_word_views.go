@@ -6,54 +6,54 @@ const (
 )
 
 type B516ClockWordViewSelector struct {
-	B516ClockWordViewFamily    string `json:"Ab15An15Family"`
-	B516ClockWordViewVariant   string `json:"Ab15An15Variant"`
-	B516ClockWordViewOperation byte   `json:"Ab15An15Operation"`
-	B516ClockWordViewDirection string `json:"Ab15An15Direction"`
+	B516ClockWordViewFamily    string `json:"family"`
+	B516ClockWordViewVariant   string `json:"variant"`
+	B516ClockWordViewOperation byte   `json:"operation"`
+	B516ClockWordViewDirection string `json:"direction"`
 }
 
 type B516ClockWordViewCell struct {
-	B516ClockWordViewRaw    []byte `json:"Ab15An15Raw"`
-	B516ClockWordViewFailed bool   `json:"Ab15An15Failed"`
+	B516ClockWordViewRaw    []byte `json:"raw"`
+	B516ClockWordViewFailed bool   `json:"failed"`
 }
 
 type B516ClockWordViewField struct {
-	B516ClockWordViewState string  `json:"Ab15An15State"`
-	B516ClockWordViewValue *uint16 `json:"Ab15An15Value"`
+	B516ClockWordViewState string  `json:"state"`
+	B516ClockWordViewValue *uint16 `json:"value"`
 }
 
 type B516ClockWordViewCandidate struct {
-	B516ClockWordViewAdmitted           bool   `json:"Ab15An15Admitted"`
-	B516ClockWordViewContractGrade      string `json:"Ab15An15ContractGrade"`
-	B516ClockWordViewFieldGrade         string `json:"Ab15An15FieldGrade"`
-	B516ClockWordViewNativeSupport      string `json:"Ab15An15NativeSupport"`
-	B516ClockWordViewPhysicalAdaptation string `json:"Ab15An15PhysicalAdaptation"`
-	B516ClockWordViewPresence           string `json:"Ab15An15Presence"`
-	B516ClockWordViewFreshness          string `json:"Ab15An15Freshness"`
-	B516ClockWordViewExecution          string `json:"Ab15An15Execution"`
+	B516ClockWordViewAdmitted           bool   `json:"admitted"`
+	B516ClockWordViewContractGrade      string `json:"contract_grade"`
+	B516ClockWordViewFieldGrade         string `json:"field_grade"`
+	B516ClockWordViewNativeSupport      string `json:"native_support"`
+	B516ClockWordViewPhysicalAdaptation string `json:"physical_adaptation"`
+	B516ClockWordViewPresence           string `json:"presence"`
+	B516ClockWordViewFreshness          string `json:"freshness"`
+	B516ClockWordViewExecution          string `json:"execution"`
 }
 
 type B516ClockWordViewClockInput struct {
-	B516ClockWordViewClock           [5]B516ClockWordViewCell `json:"Ab15An15Clock"`
-	B516ClockWordViewSetpoint        *byte                    `json:"Ab15An15Setpoint"`
-	B516ClockWordViewMode            *byte                    `json:"Ab15An15Mode"`
-	B516ClockWordViewSpecialFunction *byte                    `json:"Ab15An15SpecialFunction"`
-	B516ClockWordViewMessages        [5]*byte                 `json:"Ab15An15Messages"`
+	B516ClockWordViewClock           [5]B516ClockWordViewCell `json:"clock"`
+	B516ClockWordViewSetpoint        *byte                    `json:"setpoint"`
+	B516ClockWordViewMode            *byte                    `json:"mode"`
+	B516ClockWordViewSpecialFunction *byte                    `json:"special_function"`
+	B516ClockWordViewMessages        [5]*byte                 `json:"messages"`
 }
 
 type B516ClockWordViewClockResult struct {
-	B516ClockWordViewCandidate       B516ClockWordViewCandidate  `json:"Ab15An15Candidate"`
-	B516ClockWordViewRaw             B516ClockWordViewClockInput `json:"Ab15An15Raw"`
-	B516ClockWordViewClock           *[5]B516ClockWordViewField  `json:"Ab15An15Clock"`
-	B516ClockWordViewSetpointCelsius *float64                    `json:"Ab15An15SetpointCelsius"`
-	B516ClockWordViewTablesGrade     string                      `json:"Ab15An15TablesGrade"`
+	B516ClockWordViewCandidate       B516ClockWordViewCandidate  `json:"candidate"`
+	B516ClockWordViewRaw             B516ClockWordViewClockInput `json:"raw"`
+	B516ClockWordViewClock           *[5]B516ClockWordViewField  `json:"clock"`
+	B516ClockWordViewSetpointCelsius *float64                    `json:"setpoint_celsius"`
+	B516ClockWordViewTablesGrade     string                      `json:"tables_grade"`
 }
 
 type B516ClockWordViewWordResult struct {
-	B516ClockWordViewCandidate      B516ClockWordViewCandidate `json:"Ab15An15Candidate"`
-	B516ClockWordViewRaw            [4]B516ClockWordViewCell   `json:"Ab15An15Raw"`
-	B516ClockWordViewWords          *[4]B516ClockWordViewField `json:"Ab15An15Words"`
-	B516ClockWordViewPositionsGrade string                     `json:"Ab15An15PositionsGrade"`
+	B516ClockWordViewCandidate      B516ClockWordViewCandidate `json:"candidate"`
+	B516ClockWordViewRaw            [4]B516ClockWordViewCell   `json:"raw"`
+	B516ClockWordViewWords          *[4]B516ClockWordViewField `json:"words"`
+	B516ClockWordViewPositionsGrade string                     `json:"positions_grade"`
 }
 
 func b516ClockWordViewCandidate(b516ClockWordViewSelector B516ClockWordViewSelector, b516ClockWordViewOperation byte) B516ClockWordViewCandidate {

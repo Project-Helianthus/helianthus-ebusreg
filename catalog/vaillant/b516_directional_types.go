@@ -29,10 +29,10 @@ type B516DirectionalTypeKey struct {
 func b516DirectionalTypeValidate(b516DirectionalTypeData []byte) ([]b516DirectionalTypeJSON.RawMessage, error) {
 	var b516DirectionalTypeRows []b516DirectionalTypeJSON.RawMessage
 	if b516DirectionalTypeErr := b516DirectionalTypeJSON.Unmarshal(b516DirectionalTypeData, &b516DirectionalTypeRows); b516DirectionalTypeErr != nil {
-		return nil, b516DirectionalTypeFmt.Errorf("ab20 catalog: %w", b516DirectionalTypeErr)
+		return nil, b516DirectionalTypeFmt.Errorf("b516 directional types catalog: %w", b516DirectionalTypeErr)
 	}
 	if len(b516DirectionalTypeRows) == 0 {
-		return nil, b516DirectionalTypeFmt.Errorf("ab20 catalog: empty array")
+		return nil, b516DirectionalTypeFmt.Errorf("b516 directional types catalog: empty array")
 	}
 	b516DirectionalTypeKeys := make([]B516DirectionalTypeKey, 0, len(b516DirectionalTypeRows))
 	b516DirectionalTypeIDs := make(map[string]bool)
@@ -42,7 +42,7 @@ func b516DirectionalTypeValidate(b516DirectionalTypeData []byte) ([]b516Directio
 			B516DirectionalTypeKey b516DirectionalTypeJSON.RawMessage `json:"key"`
 		}
 		if b516DirectionalTypeErr := b516DirectionalTypeJSON.Unmarshal(b516DirectionalTypeRow, &b516DirectionalTypeEntry); b516DirectionalTypeErr != nil {
-			return nil, b516DirectionalTypeFmt.Errorf("ab20 catalog: %w", b516DirectionalTypeErr)
+			return nil, b516DirectionalTypeFmt.Errorf("b516 directional types catalog: %w", b516DirectionalTypeErr)
 		}
 		var b516DirectionalTypeObject map[string]b516DirectionalTypeJSON.RawMessage
 		if b516DirectionalTypeErr := b516DirectionalTypeJSON.Unmarshal(b516DirectionalTypeRow, &b516DirectionalTypeObject); b516DirectionalTypeErr != nil {
@@ -53,20 +53,20 @@ func b516DirectionalTypeValidate(b516DirectionalTypeData []byte) ([]b516Directio
 			return nil, b516DirectionalTypeErr
 		}
 		if b516DirectionalTypePrimary, b516DirectionalTypePresent := b516DirectionalTypeIdentity["primary"]; !b516DirectionalTypePresent || string(b516DirectionalTypePrimary) == "null" {
-			return nil, b516DirectionalTypeFmt.Errorf("ab20 catalog: missing primary")
+			return nil, b516DirectionalTypeFmt.Errorf("b516 directional types catalog: missing primary")
 		}
 		var b516DirectionalTypeKey B516DirectionalTypeKey
 		b516DirectionalTypeDecoder := b516DirectionalTypeJSON.NewDecoder(b516DirectionalTypeBytes.NewReader(b516DirectionalTypeEntry.B516DirectionalTypeKey))
 		b516DirectionalTypeDecoder.DisallowUnknownFields()
 		if b516DirectionalTypeErr := b516DirectionalTypeDecoder.Decode(&b516DirectionalTypeKey); b516DirectionalTypeErr != nil {
-			return nil, b516DirectionalTypeFmt.Errorf("ab20 catalog: %w", b516DirectionalTypeErr)
+			return nil, b516DirectionalTypeFmt.Errorf("b516 directional types catalog: %w", b516DirectionalTypeErr)
 		}
 		if !b516DirectionalTypeStrings.HasPrefix(b516DirectionalTypeEntry.B516DirectionalTypeID, "ab20-") || b516DirectionalTypeIDs[b516DirectionalTypeEntry.B516DirectionalTypeID] || b516DirectionalTypeKey.B516DirectionalTypeFamily == "" || b516DirectionalTypeKey.B516DirectionalTypeVariant == "" || b516DirectionalTypeKey.B516DirectionalTypeDirection == "" || b516DirectionalTypeKey.B516DirectionalTypeField == "" || b516DirectionalTypeKey.B516DirectionalTypeAlternative == "" || b516DirectionalTypeKey.B516DirectionalTypeInstanceScope == "" {
-			return nil, b516DirectionalTypeFmt.Errorf("ab20 catalog: incomplete identity or duplicate id")
+			return nil, b516DirectionalTypeFmt.Errorf("b516 directional types catalog: incomplete identity or duplicate id")
 		}
 		for _, b516DirectionalTypePrevious := range b516DirectionalTypeKeys {
 			if b516DirectionalTypeReflect.DeepEqual(b516DirectionalTypePrevious, b516DirectionalTypeKey) {
-				return nil, b516DirectionalTypeFmt.Errorf("ab20 catalog: duplicate key")
+				return nil, b516DirectionalTypeFmt.Errorf("b516 directional types catalog: duplicate key")
 			}
 		}
 		b516DirectionalTypeIDs[b516DirectionalTypeEntry.B516DirectionalTypeID] = true

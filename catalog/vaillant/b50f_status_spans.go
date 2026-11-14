@@ -75,35 +75,35 @@ func B50FStatusSpanEntries() ([]B50FStatusSpanEntry, error) {
 		return nil, b50FStatusSpanError
 	}
 	if b50FStatusSpanError := b50FStatusSpanDecoder.Decode(new(any)); b50FStatusSpanError != b50FStatusSpanIO.EOF {
-		return nil, b50FStatusSpanFmt.Errorf("ab12: trailing data")
+		return nil, b50FStatusSpanFmt.Errorf("b50f status spans: trailing data")
 	}
 	if len(b50FStatusSpanEntries) != 8 {
-		return nil, b50FStatusSpanFmt.Errorf("ab12: incomplete finite catalog")
+		return nil, b50FStatusSpanFmt.Errorf("b50f status spans: incomplete finite catalog")
 	}
 	for b50FStatusSpanIndex, b50FStatusSpanEntry := range b50FStatusSpanEntries {
 		if b50FStatusSpanEntry.B50FStatusSpanKey.B50FStatusSpanPrimary == 0 || b50FStatusSpanEntry.B50FStatusSpanKey.B50FStatusSpanFamily == "" || b50FStatusSpanEntry.B50FStatusSpanKey.B50FStatusSpanVariant == "" || b50FStatusSpanEntry.B50FStatusSpanKey.B50FStatusSpanField == "" || b50FStatusSpanEntry.B50FStatusSpanWidthBits == nil || *b50FStatusSpanEntry.B50FStatusSpanWidthBits != 8 || b50FStatusSpanEntry.B50FStatusSpanGrade != "Hypothesis" || b50FStatusSpanEntry.B50FStatusSpanQualification != "Unknown" || b50FStatusSpanEntry.B50FStatusSpanCoordinateGrade != "Unknown" || b50FStatusSpanEntry.B50FStatusSpanPosition != nil || b50FStatusSpanEntry.B50FStatusSpanRawFallback == "" || len(b50FStatusSpanEntry.B50FStatusSpanUnknown) == 0 {
-			return nil, b50FStatusSpanFmt.Errorf("ab12: invalid entry %d", b50FStatusSpanIndex)
+			return nil, b50FStatusSpanFmt.Errorf("b50f status spans: invalid entry %d", b50FStatusSpanIndex)
 		}
 		for b50FStatusSpanPrevious := 0; b50FStatusSpanPrevious < b50FStatusSpanIndex; b50FStatusSpanPrevious++ {
 			if b50FStatusSpanKeyEqual(b50FStatusSpanEntries[b50FStatusSpanPrevious].B50FStatusSpanKey, b50FStatusSpanEntry.B50FStatusSpanKey) {
-				return nil, b50FStatusSpanFmt.Errorf("ab12: duplicate key")
+				return nil, b50FStatusSpanFmt.Errorf("b50f status spans: duplicate key")
 			}
 		}
 		if (b50FStatusSpanIndex < 6) != (b50FStatusSpanEntry.B50FStatusSpanAllocatedMask != nil && b50FStatusSpanEntry.B50FStatusSpanReservedMask != nil) {
-			return nil, b50FStatusSpanFmt.Errorf("ab12: invalid container/raw partition")
+			return nil, b50FStatusSpanFmt.Errorf("b50f status spans: invalid container/raw partition")
 		}
 		if b50FStatusSpanEntry.B50FStatusSpanAllocatedMask == nil || b50FStatusSpanEntry.B50FStatusSpanReservedMask == nil {
 			if b50FStatusSpanEntry.B50FStatusSpanAllocatedMask != nil || b50FStatusSpanEntry.B50FStatusSpanReservedMask != nil || len(b50FStatusSpanEntry.B50FStatusSpanBits) != 0 {
-				return nil, b50FStatusSpanFmt.Errorf("ab12: inconsistent raw byte")
+				return nil, b50FStatusSpanFmt.Errorf("b50f status spans: inconsistent raw byte")
 			}
 			continue
 		}
 		if len(b50FStatusSpanEntry.B50FStatusSpanBits) != 8 || *b50FStatusSpanEntry.B50FStatusSpanAllocatedMask&*b50FStatusSpanEntry.B50FStatusSpanReservedMask != 0 || *b50FStatusSpanEntry.B50FStatusSpanAllocatedMask|*b50FStatusSpanEntry.B50FStatusSpanReservedMask != 255 {
-			return nil, b50FStatusSpanFmt.Errorf("ab12: incomplete bit partition")
+			return nil, b50FStatusSpanFmt.Errorf("b50f status spans: incomplete bit partition")
 		}
 		for b50FStatusSpanIndex, b50FStatusSpanBit := range b50FStatusSpanEntry.B50FStatusSpanBits {
 			if int(b50FStatusSpanBit.B50FStatusSpanBit) != b50FStatusSpanIndex || b50FStatusSpanBit.B50FStatusSpanReserved != (*b50FStatusSpanEntry.B50FStatusSpanReservedMask&(1<<b50FStatusSpanIndex) != 0) || (b50FStatusSpanBit.B50FStatusSpanReserved && (b50FStatusSpanBit.B50FStatusSpanLabel != nil || b50FStatusSpanBit.B50FStatusSpanCategory != nil)) {
-				return nil, b50FStatusSpanFmt.Errorf("ab12: invalid bit")
+				return nil, b50FStatusSpanFmt.Errorf("b50f status spans: invalid bit")
 			}
 		}
 	}

@@ -25,8 +25,8 @@ func TestAb15An15ClockVectors(b516ClockWordViewT *b516ClockWordViewTesting.T) {
 	}
 	var b516ClockWordViewVectors []struct {
 		B516ClockWordViewLabel  string     `json:"Ab15An15Label"`
-		B516ClockWordViewClock  [5][]byte  `json:"Ab15An15Clock"`
-		B516ClockWordViewFailed [5]bool    `json:"Ab15An15Failed"`
+		B516ClockWordViewClock  [5][]byte  `json:"clock"`
+		B516ClockWordViewFailed [5]bool    `json:"failed"`
 		B516ClockWordViewStates [5]string  `json:"Ab15An15States"`
 		B516ClockWordViewValues [5]*uint16 `json:"Ab15An15Values"`
 	}

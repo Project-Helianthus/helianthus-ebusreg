@@ -1930,6 +1930,8 @@ def check_embedded(root, cfg=EMBEDDED_DATA):
     problems = []
     for package in cfg.package_dirs:
         for path in sorted((root / package).glob("*.go")):
+            if path.name.endswith("_test.go"):
+                continue
             for pattern in embed_patterns(path.read_text()):
                 directory, _, name = pattern.rpartition("/")
                 if CODED_FILE.match(name):
@@ -2089,6 +2091,17 @@ def test_embedded_data_slice(tmp_path):
             "`b509_op59_quantities.json`\n"
             "  - `catalog/vaillant/data/ab37_tunnel.csv` -> `tunnel.csv`\n") in changelog
     assert changelog.endswith("\n\n- Earlier entry.\n")
+
+
+def test_embedded_check_skips_test_files(tmp_path):
+    # A test file may embed a coded test-only fixture; the check ignores it,
+    # as the move does.
+    embedded_fixture(tmp_path)
+    cfg = SimpleNamespace(**dict(vars(EMBEDDED_DATA), expected=3))
+    run_embedded(tmp_path, False, cfg)
+    test_file = tmp_path / "catalog/ebusstandard/only_test.go"
+    test_file.write_text('package p\n\n//go:embed testdata/ab76_only_test.json\nvar t []byte\n')
+    assert check_embedded(tmp_path, cfg) == []
 
 
 def test_embedded_data_preconditions(tmp_path):

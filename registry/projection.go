@@ -77,6 +77,14 @@ func (path ProjectionPath) Validate() error {
 	return nil
 }
 
+// NodeID is a snapshot locator: it finds one projection node inside one
+// registry snapshot, and every plane of that snapshot uses the same value for
+// the node. The value is the canonical Service path. The paths the native
+// providers build are anchored at the bus address and the device segment, so
+// for those paths it changes when a device is re-addressed and repeats when
+// another unit of the same model takes over the same address; a provider that
+// builds a path without an address gives no such guarantee in either
+// direction. The value is native-only and is not a resource identity.
 type NodeID string
 type EdgeID string
 
@@ -86,6 +94,10 @@ type Node struct {
 	CanonicalPath ProjectionPath
 }
 
+// StableNodeID derives the snapshot locator of a node from its canonical
+// Service path. The result is stable only in that the same path always gives
+// the same value inside a snapshot; it carries no qualified device identity.
+// It is native-only and is not a resource identity.
 func StableNodeID(canonical ProjectionPath) (NodeID, error) {
 	if err := canonical.Validate(); err != nil {
 		return "", fmt.Errorf("canonical path: %w", err)

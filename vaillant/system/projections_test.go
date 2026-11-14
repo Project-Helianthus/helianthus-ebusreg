@@ -139,6 +139,84 @@ func TestCreateProjections_BuildCanonicalIndex(t *testing.T) {
 	}
 }
 
+func TestCreateProjectionsLocatorIsNotResourceIdentity(t *testing.T) {
+	t.Parallel()
+
+	original := registry.DeviceInfo{
+		Manufacturer:    "ExampleMaker",
+		DeviceID:        "UNIT0",
+		SerialNumber:    "SYNTHETIC-SERIAL-A",
+		MacAddress:      "SYNTHETIC-MAC-A",
+		SoftwareVersion: "0100",
+		HardwareVersion: "0200",
+		Address:         0x15,
+	}
+	originalLocators := serviceLocators(t, original)
+
+	t.Run("re-addressing moves every locator of the same device", func(t *testing.T) {
+		moved := original
+		moved.Address = 0x26
+		movedLocators := serviceLocators(t, moved)
+		if len(movedLocators) != len(originalLocators) {
+			t.Fatalf("re-addressed device has %d service nodes, want %d", len(movedLocators), len(originalLocators))
+		}
+		for method, locator := range originalLocators {
+			if movedLocators[method] == locator {
+				t.Fatalf("re-addressing kept locator %q for %s; the locator follows the address, so it is not resource identity", locator, method)
+			}
+		}
+	})
+
+	swaps := map[string]func(*registry.DeviceInfo){
+		"serial":           func(info *registry.DeviceInfo) { info.SerialNumber = "SYNTHETIC-SERIAL-B" },
+		"mac":              func(info *registry.DeviceInfo) { info.MacAddress = "SYNTHETIC-MAC-B" },
+		"manufacturer":     func(info *registry.DeviceInfo) { info.Manufacturer = "OtherMaker" },
+		"software version": func(info *registry.DeviceInfo) { info.SoftwareVersion = "0101" },
+		"hardware version": func(info *registry.DeviceInfo) { info.HardwareVersion = "0201" },
+	}
+	for field, mutate := range swaps {
+		t.Run("same-model swap changing "+field+" repeats every locator", func(t *testing.T) {
+			replacement := original
+			mutate(&replacement)
+			if replacement == original {
+				t.Fatalf("fixture must change %s", field)
+			}
+			replacementLocators := serviceLocators(t, replacement)
+			if len(replacementLocators) != len(originalLocators) {
+				t.Fatalf("replacement has %d service nodes, want %d", len(replacementLocators), len(originalLocators))
+			}
+			for method, locator := range originalLocators {
+				if replacementLocators[method] != locator {
+					t.Fatalf("swap changing %s gave locator %q for %s, want %q; the locator carries no identity", field, replacementLocators[method], method, locator)
+				}
+			}
+		})
+	}
+}
+
+func serviceLocators(t *testing.T, info registry.DeviceInfo) map[string]registry.NodeID {
+	t.Helper()
+	provider := NewProvider()
+	projections := provider.CreateProjections(info, provider.CreatePlanes(info))
+	if _, err := registry.BuildCanonicalIndex(projections); err != nil {
+		t.Fatalf("canonical index: %v", err)
+	}
+	locators := map[string]registry.NodeID{}
+	for _, projection := range projections {
+		if projection.Plane != registry.ServicePlane {
+			continue
+		}
+		for _, node := range projection.Nodes {
+			segments := node.CanonicalPath.Segments
+			locators[segments[len(segments)-1].Name] = node.ID
+		}
+	}
+	if len(locators) == 0 {
+		t.Fatalf("no service nodes for %+v", info)
+	}
+	return locators
+}
+
 func hasNodePath(projections []registry.Projection, plane string, path string) bool {
 	for _, projection := range projections {
 		if projection.Plane != plane {

@@ -193,6 +193,11 @@ func shouldCreateProjections(planes []registry.Plane) bool {
 	return len(planeNameSet(planes)) > 0
 }
 
+// projectionBaseSegments anchors the per-device projection graph at the bus
+// address and device segment. Node identifiers derived from these paths are
+// native-only snapshot locators: they change when the device is re-addressed
+// and repeat when another unit of the same model answers at the same address,
+// so they are not a resource identity.
 func projectionBaseSegments(info registry.DeviceInfo) []registry.PathSegment {
 	addr := fmt.Sprintf("%02X", info.Address)
 	deviceID := strings.TrimSpace(info.DeviceID)

@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- Document the projection node identifier as a native-only snapshot
+  locator. `NodeID` and `StableNodeID` keep their names and values: the
+  value is still the canonical Service path. The paths the native providers
+  build are anchored at the bus address and the device segment, so for those
+  paths the locator changes when a device is re-addressed and repeats when
+  another unit of the same model answers at the same address; a provider
+  that builds a path without an address gives no such guarantee in either
+  direction. The package documentation, the `NodeID` and `StableNodeID` doc
+  comments and the per-device projection comments now say that the value is
+  a native-only snapshot locator and is not a resource identity. New tests
+  cover re-addressing and a same-model swap.
+
 - Rename the work-item-coded JSON tags, string values and error texts of
   `catalog/ebusstandard`, `vaillant/system` and `vaillant/b555` to behavior
   names. The strings are replaced directly: there is no alias and no dual

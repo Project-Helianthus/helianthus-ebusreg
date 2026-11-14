@@ -2824,12 +2824,6 @@
     },
     {
       "path": "registry/projection.go",
-      "symbol": "NodeID",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "registry/projection.go",
       "symbol": "PathSegment",
       "rule": "revive/exported",
       "count": 1
@@ -2867,12 +2861,6 @@
     {
       "path": "registry/projection.go",
       "symbol": "StableEdgeID",
-      "rule": "revive/exported",
-      "count": 1
-    },
-    {
-      "path": "registry/projection.go",
-      "symbol": "StableNodeID",
       "rule": "revive/exported",
       "count": 1
     },

@@ -46,11 +46,17 @@
 // read-only.
 //
 // Projections. Projections describe a device's data as nodes and edges per
-// plane; node identifiers are derived from canonical paths, so the same
-// node keeps its identifier across planes. The portal and canonical
-// indexes give read-only lookups over them. When a device's projections do
-// not form one consistent canonical index, the entry carries no
-// projections rather than a partial set.
+// plane. A node identifier is a snapshot locator derived from the canonical
+// path, so inside one registry snapshot the same node has the same
+// identifier on every plane. The canonical path is built from native
+// addressing: it changes when a device is re-addressed and repeats when
+// another unit of the same model answers at the same address. The planes,
+// projections and locators are native-only; the gateway, the Portal and the
+// semantic registry must not store a locator as resource identity, which
+// follows the identity anchors of the common semantic contract. The portal
+// and canonical indexes give read-only lookups over the projections of one
+// snapshot. When a device's projections do not form one consistent canonical
+// index, the entry carries no projections rather than a partial set.
 //
 // Concurrency. All registry methods are safe for concurrent use. Lookups
 // that return pointers expose live state that may change after the call;

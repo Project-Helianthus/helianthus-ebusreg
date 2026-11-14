@@ -190,7 +190,7 @@ func TestProjectionLocatorPackageDocumentationQualifiesTheAddressBehaviour(t *te
 
 // The release note must give the same bounded guarantee as the API and package
 // documentation: the address behaviour is limited to the address-anchored paths
-// the native providers build, and the gateway and Portal follow-up is named.
+// the native providers build.
 func TestProjectionLocatorChangelogQualifiesTheAddressBehaviour(t *testing.T) {
 	raw, err := os.ReadFile(filepath.Join("..", "CHANGELOG.md"))
 	if err != nil {
@@ -212,7 +212,6 @@ func TestProjectionLocatorChangelogQualifiesTheAddressBehaviour(t *testing.T) {
 		"resource identity",
 		"native providers build are anchored",
 		"without an address gives no such guarantee",
-		"gateway and the Portal",
 	} {
 		if !strings.Contains(entry, phrase) {
 			t.Errorf("changelog entry must mention %q; got %q", phrase, entry)

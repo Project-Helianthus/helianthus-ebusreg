@@ -12,8 +12,7 @@
   direction. The package documentation, the `NodeID` and `StableNodeID` doc
   comments and the per-device projection comments now say that the value is
   a native-only snapshot locator and is not a resource identity. New tests
-  cover re-addressing and a same-model swap. The gateway and the Portal move
-  their stored references off the locator in a follow-up change.
+  cover re-addressing and a same-model swap.
 
 - Rename the work-item-coded JSON tags, string values and error texts of
   `catalog/ebusstandard`, `vaillant/system` and `vaillant/b555` to behavior

@@ -62,11 +62,13 @@ type Plane interface {
 	Methods() []Method
 }
 
-// PlaneProvider attaches planes to the devices it recognises. The registry
-// calls Match and then CreatePlanes for every registration while holding its
-// write lock, with the merged DeviceInfo of the entry; implementations must
-// be fast and must not call back into the registry. Name identifies the
-// provider.
+// PlaneProvider attaches planes to the devices it recognises. For each
+// registration that updates an entry, the registry calls Match and then
+// CreatePlanes while holding its write lock, with the merged DeviceInfo of
+// the entry; implementations must be fast and must not call back into the
+// registry. A registration whose qualified identity conflicts with one bound
+// elsewhere, at an address that already has an entry, leaves that entry
+// unchanged and calls neither. Name identifies the provider.
 type PlaneProvider interface {
 	Name() string
 	Match(info DeviceInfo) bool

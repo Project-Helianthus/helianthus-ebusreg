@@ -74,14 +74,16 @@ var b524ControllerProfiles = []B524ControllerProfile{
 type B524BoundStatus int
 
 const (
-	// B524BoundUnknownProfile: no seeded profile has exactly this identity.
+	// B524BoundUnknownProfile means no seeded profile has exactly this identity.
 	B524BoundUnknownProfile B524BoundStatus = iota
-	// B524BoundUnknownRegister: the profile is known but has no bound for the selector.
+	// B524BoundUnknownRegister means the profile is known but has no bound for the selector.
 	B524BoundUnknownRegister
-	// B524BoundFound: Bound is valid.
+	// B524BoundFound means Bound is valid.
 	B524BoundFound
 )
 
+// String returns the snake_case status name, or "invalid" for an undefined
+// value.
 func (status B524BoundStatus) String() string {
 	switch status {
 	case B524BoundUnknownProfile:

@@ -6,6 +6,10 @@ import (
 	ebuserrors "github.com/Project-Helianthus/helianthus-ebusgo/errors"
 )
 
+// TimerIdentity names one B524 timer day: the device family and channel,
+// the raw system type, instance and address, and the weekday (0-6). The
+// values are ints so that out-of-range input can be rejected rather than
+// truncated.
 type TimerIdentity struct {
 	TimerPlanFamily     string `json:"family"`
 	TimerPlanChannel    string `json:"channel"`
@@ -15,38 +19,57 @@ type TimerIdentity struct {
 	TimerPlanDay        int    `json:"day"`
 }
 
+// TimerBaseline is the prior seven-byte read of the timer day a plan
+// replaces, with the identity it was read for.
 type TimerBaseline struct {
 	TimerPlanIdentity TimerIdentity `json:"identity"`
 	TimerPlanRaw      []byte        `json:"raw"`
 }
 
+// TimerSlot is one raw start and stop pair in units of ten minutes after
+// midnight (0-144); 0x90 for both marks an unused slot.
 type TimerSlot struct {
 	TimerPlanStart int `json:"start"`
 	TimerPlanStop  int `json:"stop"`
 }
 
+// TimerPlan is a validated replacement of one timer day. It is built only
+// by BuildTimerPlan and is immutable; its accessors return copies.
 type TimerPlan struct {
 	timerPlanIdentity TimerIdentity
 	timerPlanBaseline [7]byte
 	timerPlanPayload  [11]byte
 }
 
+// TimerPlanIdentity returns the identity the plan was built for.
 func (timerPlanPlan TimerPlan) TimerPlanIdentity() TimerIdentity {
 	return timerPlanPlan.timerPlanIdentity
 }
 
+// TimerPlanBaseline returns the baseline read the plan was built against.
 func (timerPlanPlan TimerPlan) TimerPlanBaseline() [7]byte {
 	return timerPlanPlan.timerPlanBaseline
 }
 
+// TimerPlanPayload returns the write payload: opcode 0x04, system type,
+// instance, address, weekday and the three start and stop pairs.
 func (timerPlanPlan TimerPlan) TimerPlanPayload() [11]byte {
 	return timerPlanPlan.timerPlanPayload
 }
 
+// TimerPlanNativeWriteAdmission always returns "Unknown": a valid plan does
+// not establish that the device accepts the write.
 func (timerPlanPlan TimerPlan) TimerPlanNativeWriteAdmission() string {
 	return "Unknown"
 }
 
+// BuildTimerPlan validates a timer day replacement and builds its plan; it
+// sends nothing. It fails with the transport library's invalid-payload
+// error when the identity is incomplete, out of range or an unsupported
+// selector (a non-zero instance is allowed only for zones), when the
+// baseline was read for another identity or is not seven bytes, when there
+// are not exactly three slots, or when a slot is not an increasing pair
+// within the day and not the unused marker.
 func BuildTimerPlan(timerPlanIdentity TimerIdentity, timerPlanBaseline TimerBaseline, timerPlanSlots []TimerSlot) (TimerPlan, error) {
 	if timerPlanErr := timerPlanValidateIdentity(timerPlanIdentity); timerPlanErr != nil {
 		return TimerPlan{}, timerPlanErr

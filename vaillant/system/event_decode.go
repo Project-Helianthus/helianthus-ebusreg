@@ -42,16 +42,31 @@ func DecodeEvent(eventDecodeFamily string, eventDecodeRequest, eventDecodeRespon
 	return eventDecodeResult
 }
 
+// EventDecodeFamily returns the device family the event was recorded for.
 func (eventDecodeEvent Event) EventDecodeFamily() string { return eventDecodeEvent.eventDecodeFamily }
+
+// EventDecodeRequest returns a copy of the raw request bytes.
 func (eventDecodeEvent Event) EventDecodeRequest() []byte {
 	return []byte(eventDecodeEvent.eventDecodeRequest)
 }
+
+// EventDecodeResponse returns a copy of the raw reply bytes, even when the
+// event is not valid.
 func (eventDecodeEvent Event) EventDecodeResponse() []byte {
 	return []byte(eventDecodeEvent.eventDecodeResponse)
 }
-func (eventDecodeEvent Event) EventDecodeFailure() string { return eventDecodeEvent.eventDecodeFailure }
-func (eventDecodeEvent Event) EventDecodeValid() bool     { return eventDecodeEvent.eventDecodeValid }
 
+// EventDecodeFailure returns the text of the exchange error, or "" when the
+// exchange did not fail.
+func (eventDecodeEvent Event) EventDecodeFailure() string { return eventDecodeEvent.eventDecodeFailure }
+
+// EventDecodeValid reports whether the exchange succeeded with a five-byte
+// request (read opcode 0x09 or 0x0B, a known system type and an address in
+// its range) and an eight-byte reply.
+func (eventDecodeEvent Event) EventDecodeValid() bool { return eventDecodeEvent.eventDecodeValid }
+
+// EventDecodeConfiguration returns the first reply byte, uninterpreted, and
+// true; it returns false for an event that is not valid.
 func (eventDecodeEvent Event) EventDecodeConfiguration() (byte, bool) {
 	if !eventDecodeEvent.eventDecodeValid {
 		return 0, false
@@ -59,6 +74,8 @@ func (eventDecodeEvent Event) EventDecodeConfiguration() (byte, bool) {
 	return eventDecodeEvent.eventDecodeResponse[0], true
 }
 
+// EventDecodeRaw returns the seven reply bytes after the first one and true;
+// it returns false for an event that is not valid.
 func (eventDecodeEvent Event) EventDecodeRaw() ([7]byte, bool) {
 	var eventDecodeRaw [7]byte
 	if !eventDecodeEvent.eventDecodeValid {
@@ -76,13 +93,22 @@ type EventPair struct {
 	eventDecodeSecond Event
 }
 
+// PairEvents keeps two events as one pair without checking them; use
+// EventDecodeComplete to test the pair.
 func PairEvents(eventDecodeFirst, eventDecodeSecond Event) EventPair {
 	return EventPair{eventDecodeFirst: eventDecodeFirst, eventDecodeSecond: eventDecodeSecond}
 }
 
-func (eventDecodePair EventPair) EventDecodeFirst() Event  { return eventDecodePair.eventDecodeFirst }
+// EventDecodeFirst returns the first member, a zero Event when it is missing.
+func (eventDecodePair EventPair) EventDecodeFirst() Event { return eventDecodePair.eventDecodeFirst }
+
+// EventDecodeSecond returns the second member, a zero Event when it is
+// missing.
 func (eventDecodePair EventPair) EventDecodeSecond() Event { return eventDecodePair.eventDecodeSecond }
 
+// EventDecodeComplete reports whether both members are valid, share the
+// family and every request byte after the opcode, and were read with
+// different opcodes.
 func (eventDecodePair EventPair) EventDecodeComplete() bool {
 	eventDecodeFirst, eventDecodeSecond := eventDecodePair.eventDecodeFirst, eventDecodePair.eventDecodeSecond
 	return eventDecodeFirst.eventDecodeValid && eventDecodeSecond.eventDecodeValid &&

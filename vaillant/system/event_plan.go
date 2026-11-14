@@ -2,6 +2,9 @@ package system
 
 import "fmt"
 
+// EventIdentity names one event record: the device family and the raw
+// system type, instance, address and code bytes. The values are ints so that
+// out-of-range input can be rejected rather than truncated.
 type EventIdentity struct {
 	EventPlanFamily     string `json:"family"`
 	EventPlanSystemType int    `json:"system_type"`
@@ -10,6 +13,8 @@ type EventIdentity struct {
 	EventPlanCode       int    `json:"code"`
 }
 
+// EventBaseline is a prior read of an event record: its identity, the read
+// opcode, whether the read succeeded and the raw reply.
 type EventBaseline struct {
 	EventPlanIdentity EventIdentity `json:"identity"`
 	EventPlanOpcode   int           `json:"opcode"`
@@ -17,6 +22,9 @@ type EventBaseline struct {
 	EventPlanRaw      []byte        `json:"raw"`
 }
 
+// EventEdit is a requested change to an event record: its identity, the
+// edit opcode, the seven raw values and the baselines read with opcodes
+// 0x09 and 0x0B.
 type EventEdit struct {
 	EventPlanIdentity EventIdentity  `json:"identity"`
 	EventPlanOpcode   int            `json:"opcode"`
@@ -25,6 +33,9 @@ type EventEdit struct {
 	EventPlanOP0B     *EventBaseline `json:"op0b"`
 }
 
+// EventPlan is a validated edit: the twelve-byte request payload (opcode,
+// system type, instance, address, code and the seven values), the values,
+// and both eight-byte baselines it was planned against.
 type EventPlan struct {
 	EventPlanIdentity EventIdentity `json:"identity"`
 	EventPlanPayload  [12]byte      `json:"payload"`
@@ -33,6 +44,12 @@ type EventPlan struct {
 	EventPlanOP0B     [8]byte       `json:"op0b"`
 }
 
+// BuildEventPlan validates an edit and builds its plan; it sends nothing.
+// It fails when the family is missing, a field or value is outside 0-255,
+// the system type is unsupported, the address is outside the system type's
+// range, the opcode is not 0x0A or 0x0C, there are not exactly seven
+// values, or either baseline is missing, failed, read with the wrong opcode,
+// for another identity or not eight bytes long.
 func BuildEventPlan(eventPlanEdit EventEdit) (*EventPlan, error) {
 	eventPlanIdentity := eventPlanEdit.EventPlanIdentity
 	if eventPlanIdentity.EventPlanFamily == "" {

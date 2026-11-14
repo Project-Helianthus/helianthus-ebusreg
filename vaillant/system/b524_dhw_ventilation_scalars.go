@@ -5,11 +5,16 @@ import (
 	b524DHWVentilationScalarMath "math"
 )
 
+// B524DHWVentilationScalarField is an optional value; Present distinguishes an
+// absent value from a zero value.
 type B524DHWVentilationScalarField[B524DHWVentilationScalarT any] struct {
 	B524DHWVentilationScalarPresent bool                      `json:"present"`
 	B524DHWVentilationScalarValue   B524DHWVentilationScalarT `json:"value"`
 }
 
+// B524DHWVentilationScalarContext is the controller identity and the
+// opcode, group, instance and register of a DHW or ventilation scalar read;
+// every field must be present.
 type B524DHWVentilationScalarContext struct {
 	B524DHWVentilationScalarFamily      B524DHWVentilationScalarField[string] `json:"family"`
 	B524DHWVentilationScalarSoftware    B524DHWVentilationScalarField[string] `json:"software"`
@@ -22,6 +27,9 @@ type B524DHWVentilationScalarContext struct {
 	B524DHWVentilationScalarRegister    B524DHWVentilationScalarField[uint16] `json:"register"`
 }
 
+// B524DHWVentilationScalarInput is one observed DHW or ventilation scalar
+// read: its context, the reply kind, the returned group and register, the
+// caller's codec grade and the raw reply value.
 type B524DHWVentilationScalarInput struct {
 	B524DHWVentilationScalarContext          B524DHWVentilationScalarContext       `json:"context"`
 	B524DHWVentilationScalarReplyKind        B524DHWVentilationScalarField[string] `json:"reply_kind"`
@@ -31,18 +39,28 @@ type B524DHWVentilationScalarInput struct {
 	B524DHWVentilationScalarRaw              []byte                                `json:"raw"`
 }
 
+// B524DHWVentilationScalarState says whether a DHW or ventilation scalar was
+// decoded.
 type B524DHWVentilationScalarState string
 
+// DHW and ventilation scalar states: raw-only keeps just the input,
+// candidate adds a decoded value.
 const (
 	B524DHWVentilationScalarRawOnly   B524DHWVentilationScalarState = "raw_only"
 	B524DHWVentilationScalarCandidate B524DHWVentilationScalarState = "candidate"
 )
 
+// B524DHWVentilationScalar is a decoded value; only the field that matches
+// the result's codec is meaningful.
 type B524DHWVentilationScalar struct {
 	B524DHWVentilationScalarFloat32 float32 `json:"float32"`
 	B524DHWVentilationScalarUint16  uint16  `json:"uint16"`
 }
 
+// B524DHWVentilationScalarResult is the graded interpretation of a DHW or
+// ventilation scalar. The grade is at most Hypothesis; presence, freshness,
+// execution, support, effects, persistence and delivery stay Unknown, and
+// Value is set only for a candidate.
 type B524DHWVentilationScalarResult struct {
 	B524DHWVentilationScalarInput        B524DHWVentilationScalarInput `json:"input"`
 	B524DHWVentilationScalarState        B524DHWVentilationScalarState `json:"state"`
@@ -59,6 +77,14 @@ type B524DHWVentilationScalarResult struct {
 	B524DHWVentilationScalarValue        *B524DHWVentilationScalar     `json:"value"`
 }
 
+// B524DHWVentilationInterpretScalars decodes the known DHW temperatures
+// (group 0x01, float32 in degrees Celsius) and, for the controller family
+// that has them, the ventilation words (group 0x09, uint16) read with the
+// local opcode at instance 0. It yields a Hypothesis candidate only for a
+// complete identity, an echo of the requested group and register, a codec
+// grade of Hypothesis or Proven, the exact width and a finite value;
+// otherwise the result stays raw-only. It never fails and copies the raw
+// bytes.
 func B524DHWVentilationInterpretScalars(b524DHWVentilationScalarInput B524DHWVentilationScalarInput) B524DHWVentilationScalarResult {
 	b524DHWVentilationScalarResult := B524DHWVentilationScalarResult{
 		B524DHWVentilationScalarInput: b524DHWVentilationScalarInput, B524DHWVentilationScalarState: B524DHWVentilationScalarRawOnly,

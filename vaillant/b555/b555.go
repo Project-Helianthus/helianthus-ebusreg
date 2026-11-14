@@ -45,14 +45,18 @@ const (
 // Provider creates B555 timer/schedule planes for Vaillant controllers.
 type Provider struct{}
 
+// NewProvider returns the B555 timer provider; the zero value is equally usable.
 func NewProvider() Provider {
 	return Provider{}
 }
 
+// Name returns the stable provider name, vaillant_b555.
 func (Provider) Name() string {
 	return "vaillant_b555"
 }
 
+// Match reports whether the manufacturer name contains a Vaillant-group
+// brand, ignoring case. A match does not mean the device implements B555.
 func (Provider) Match(info registry.DeviceInfo) bool {
 	manufacturer := strings.TrimSpace(info.Manufacturer)
 	if manufacturer == "" {
@@ -64,6 +68,7 @@ func (Provider) Match(info registry.DeviceInfo) bool {
 		strings.Contains(normalized, "awb")
 }
 
+// CreatePlanes returns the single timer plane, bound to the device's address.
 func (Provider) CreatePlanes(info registry.DeviceInfo) []registry.Plane {
 	return []registry.Plane{
 		newTimerPlane(info),

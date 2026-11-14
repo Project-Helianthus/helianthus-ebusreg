@@ -16,6 +16,13 @@ const (
 	projectionPlaneSolar         = "Solar"
 )
 
+// CreateProjections builds the device's Service, Observability and Debug
+// projections, plus a root projection for each System, Heating, DHW or
+// Solar plane the device has (plane names compared without case). It
+// returns nil when no plane has a name or a node cannot be built, and skips
+// any projection or edge the registry rejects. Node paths are anchored at
+// the bus address and device ID, so they are per-snapshot locators, not a
+// resource identity.
 func (Provider) CreateProjections(info registry.DeviceInfo, planes []registry.Plane) []registry.Projection {
 	if !shouldCreateProjections(planes) {
 		return nil

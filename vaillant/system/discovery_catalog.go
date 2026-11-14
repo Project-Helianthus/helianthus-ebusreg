@@ -1,5 +1,6 @@
 package system
 
+// DiscoveryCatalogInstanceInterval is an inclusive range of instance numbers.
 type DiscoveryCatalogInstanceInterval struct {
 	DiscoveryCatalogMinimum byte `json:"minimum"`
 	DiscoveryCatalogMaximum byte `json:"maximum"`

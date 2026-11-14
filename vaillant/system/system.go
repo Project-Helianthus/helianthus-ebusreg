@@ -8,16 +8,23 @@ import (
 	"github.com/Project-Helianthus/helianthus-ebusreg/schema"
 )
 
+// Provider creates the system plane and projections for Vaillant-group
+// devices; it is stateless and safe for concurrent use.
 type Provider struct{}
 
+// NewProvider returns the system provider; the zero value is equally usable.
 func NewProvider() Provider {
 	return Provider{}
 }
 
+// Name returns the stable provider name, vaillant_system.
 func (Provider) Name() string {
 	return "vaillant_system"
 }
 
+// Match reports whether the manufacturer name contains a Vaillant-group
+// brand, ignoring case. A match does not mean any register or opcode
+// exists on the device.
 func (Provider) Match(info registry.DeviceInfo) bool {
 	manufacturer := strings.TrimSpace(info.Manufacturer)
 	if manufacturer == "" {
@@ -29,6 +36,8 @@ func (Provider) Match(info registry.DeviceInfo) bool {
 		strings.Contains(normalized, "awb")
 }
 
+// CreatePlanes returns the single system plane, bound to the device's
+// address.
 func (Provider) CreatePlanes(info registry.DeviceInfo) []registry.Plane {
 	return []registry.Plane{
 		newSystemPlane(info),

@@ -5,8 +5,11 @@ import (
 	descriptionIndexReflect "reflect"
 )
 
+// DescriptionState says how far a retained description record was decoded.
 type DescriptionState string
 
+// Description states. NewDescriptionIndex stores any state outside this
+// set as unknown.
 const (
 	DescriptionIndexUnknown           DescriptionState = "unknown"
 	DescriptionIndexSelectorQualified DescriptionState = "selector_qualified"
@@ -14,6 +17,10 @@ const (
 	DescriptionIndexUndecoded         DescriptionState = "undecoded"
 )
 
+// DescriptionKey identifies a description record exactly: the controller
+// identity (family, software and hardware identity, API version and
+// revision) and the opcode, group, requested instance and register. There
+// is no wildcard or fallback matching.
 type DescriptionKey struct {
 	DescriptionIndexFamily            string `json:"family"`
 	DescriptionIndexSoftwareIdentity  string `json:"software_identity"`
@@ -26,6 +33,8 @@ type DescriptionKey struct {
 	DescriptionIndexRegister          uint16 `json:"register"`
 }
 
+// DescriptionRecord is one retained description: its key, decoding state,
+// raw description bytes and, when known, the codec name and width.
 type DescriptionRecord struct {
 	DescriptionIndexKey   DescriptionKey   `json:"key"`
 	DescriptionIndexState DescriptionState `json:"state"`
@@ -34,10 +43,16 @@ type DescriptionRecord struct {
 	DescriptionIndexWidth *uint16          `json:"width"`
 }
 
+// DescriptionIndexPresence always returns "unknown": a description record
+// says nothing about whether the register is present on a device.
 func (descriptionIndexRecord DescriptionRecord) DescriptionIndexPresence() string { return "unknown" }
 
+// ErrDescriptionConflict reports that one key has records that differ.
 var ErrDescriptionConflict = descriptionIndexErrors.New("description index: conflicting description records")
 
+// DescriptionIndex is an immutable index of description records by exact
+// key. It holds its own copies of the records and hands out copies, so it is
+// safe for concurrent reads; a nil index behaves as empty.
 type DescriptionIndex struct {
 	descriptionIndexRecords   map[DescriptionKey][]DescriptionRecord
 	descriptionIndexConflicts map[DescriptionKey]bool
@@ -58,6 +73,10 @@ func descriptionIndexCopyDescription(descriptionIndexRecord DescriptionRecord) D
 	return descriptionIndexRecord
 }
 
+// NewDescriptionIndex builds an index from copies of the records. When two
+// records for one key differ it still returns the index, with that key
+// marked as conflicting, together with ErrDescriptionConflict; identical
+// duplicates are kept without error.
 func NewDescriptionIndex(descriptionIndexRecords []DescriptionRecord) (*DescriptionIndex, error) {
 	descriptionIndexIndex := &DescriptionIndex{
 		descriptionIndexRecords:   make(map[DescriptionKey][]DescriptionRecord),
@@ -81,6 +100,9 @@ func NewDescriptionIndex(descriptionIndexRecords []DescriptionRecord) (*Descript
 	return descriptionIndexIndex, descriptionIndexErr
 }
 
+// DescriptionIndexLookup returns a copy of the record for a key and true.
+// It returns false for a missing key and ErrDescriptionConflict for a
+// conflicting key, never picking one of the conflicting records.
 func (descriptionIndexIndex *DescriptionIndex) DescriptionIndexLookup(descriptionIndexKey DescriptionKey) (DescriptionRecord, bool, error) {
 	if descriptionIndexIndex == nil {
 		return DescriptionRecord{}, false, nil
@@ -95,6 +117,8 @@ func (descriptionIndexIndex *DescriptionIndex) DescriptionIndexLookup(descriptio
 	return descriptionIndexCopyDescription(descriptionIndexRecords[0]), true, nil
 }
 
+// DescriptionIndexRecords returns copies of every record for a key in input
+// order, including conflicting ones.
 func (descriptionIndexIndex *DescriptionIndex) DescriptionIndexRecords(descriptionIndexKey DescriptionKey) []DescriptionRecord {
 	if descriptionIndexIndex == nil {
 		return nil

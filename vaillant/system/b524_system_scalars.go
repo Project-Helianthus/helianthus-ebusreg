@@ -5,11 +5,16 @@ import (
 	b524SystemScalarMath "math"
 )
 
+// B524SystemScalarField is an optional value; Present distinguishes an absent
+// value from a zero value.
 type B524SystemScalarField[B524SystemScalarT any] struct {
 	B524SystemScalarPresent bool              `json:"present"`
 	B524SystemScalarValue   B524SystemScalarT `json:"value"`
 }
 
+// B524SystemScalarContext is the controller identity and the opcode, group,
+// instance and register of a system scalar read; every field must be
+// present.
 type B524SystemScalarContext struct {
 	B524SystemScalarFamily      B524SystemScalarField[string] `json:"family"`
 	B524SystemScalarSoftware    B524SystemScalarField[string] `json:"software"`
@@ -22,6 +27,9 @@ type B524SystemScalarContext struct {
 	B524SystemScalarRegister    B524SystemScalarField[uint16] `json:"register"`
 }
 
+// B524SystemScalarInput is one observed system scalar read: its context, the
+// reply kind, the returned group and register, the caller's codec grade and
+// the raw reply value.
 type B524SystemScalarInput struct {
 	B524SystemScalarContext          B524SystemScalarContext       `json:"context"`
 	B524SystemScalarReplyKind        B524SystemScalarField[string] `json:"reply_kind"`
@@ -31,18 +39,28 @@ type B524SystemScalarInput struct {
 	B524SystemScalarRaw              []byte                        `json:"raw"`
 }
 
+// B524SystemScalarState says whether a system scalar was decoded.
 type B524SystemScalarState string
 
+// System scalar states: raw-only keeps just the input, candidate adds a
+// decoded value.
 const (
 	B524SystemScalarRawOnly   B524SystemScalarState = "raw_only"
 	B524SystemScalarCandidate B524SystemScalarState = "candidate"
 )
 
+// B524SystemScalar is a decoded value; only the field that matches the
+// result's codec is meaningful.
 type B524SystemScalar struct {
 	B524SystemScalarFloat32 float32 `json:"float32"`
 	B524SystemScalarUint16  uint16  `json:"uint16"`
 }
 
+// B524SystemScalarResult is the graded interpretation of a system scalar.
+// The declared unit is one of degrees Celsius, kelvin, minutes or bar, or
+// "Unknown"; the grade is at most Hypothesis; presence, freshness,
+// execution, support, effects, persistence and delivery stay Unknown, and
+// Value is set only for a candidate.
 type B524SystemScalarResult struct {
 	B524SystemScalarInput        B524SystemScalarInput `json:"input"`
 	B524SystemScalarState        B524SystemScalarState `json:"state"`
@@ -59,6 +77,13 @@ type B524SystemScalarResult struct {
 	B524SystemScalarValue        *B524SystemScalar     `json:"value"`
 }
 
+// B524SystemInterpretScalars decodes a known system register (group 0x00,
+// local opcode, instance 0 unless the register is instance-dependent) as a
+// little-endian float32 or uint16, per supported controller family. It
+// yields a Hypothesis candidate only for a complete identity, an echo of the
+// requested group and register, a codec grade of Hypothesis or Proven, the
+// exact width and a finite value; otherwise the result stays raw-only. It
+// never fails and copies the raw bytes.
 func B524SystemInterpretScalars(b524SystemScalarInput B524SystemScalarInput) B524SystemScalarResult {
 	b524SystemScalarResult := B524SystemScalarResult{
 		B524SystemScalarInput: b524SystemScalarInput, B524SystemScalarState: B524SystemScalarRawOnly,

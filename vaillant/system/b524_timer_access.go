@@ -100,6 +100,10 @@ func (template rawReadTemplate) Build(params map[string]any) ([]byte, error) {
 	return append([]byte(nil), payload...), nil
 }
 
+// B524TimerSlot is one of the three slots of a decoded B524 timer reply: the
+// raw start and stop pair in units of ten minutes, the start and stop in
+// minutes after midnight when start precedes stop and stop is at most 24:00,
+// and Unused when both bytes are the 24:00 marker.
 type B524TimerSlot struct {
 	B524TimerAccessRawPair      [2]byte `json:"raw_pair"`
 	B524TimerAccessStartMinutes *int    `json:"start_minutes,omitempty"`

@@ -5,6 +5,8 @@ import (
 	b524SystemInformationMath "math"
 )
 
+// B524SystemInformationInformationContext is the controller identity (nil
+// when unknown) and the identifier of a system information read.
 type B524SystemInformationInformationContext struct {
 	B524SystemInformationFamily      *string `json:"family"`
 	B524SystemInformationSoftware    *string `json:"software"`
@@ -14,6 +16,12 @@ type B524SystemInformationInformationContext struct {
 	B524SystemInformationIdentifier  uint16  `json:"identifier"`
 }
 
+// B524SystemInformationResult is the graded decoding of a system
+// information reply. Value holds the float32 only when Valid is set;
+// otherwise InvalidReason says why. Capacity or HeatPumpCount is set only
+// for its identifier and a non-negative whole value. The representation is
+// proven for a valid reply, the layout is a hypothesis, and qualification,
+// presence and eligibility stay unknown.
 type B524SystemInformationResult struct {
 	B524SystemInformationContext             B524SystemInformationInformationContext `json:"context"`
 	B524SystemInformationRaw                 []byte                                  `json:"raw"`
@@ -30,6 +38,8 @@ type B524SystemInformationResult struct {
 	B524SystemInformationEligibilityGrade    string                                  `json:"eligibility_grade"`
 }
 
+// B524SystemBuildInformation returns the request payload for a system
+// information identifier: a zero byte and the little-endian identifier.
 func B524SystemBuildInformation(b524SystemInformationIdentifier uint16) []byte {
 	return []byte{0, byte(b524SystemInformationIdentifier), byte(b524SystemInformationIdentifier >> 8)}
 }
@@ -42,6 +52,10 @@ func b524SystemInformationCopy[B524SystemInformationType any](b524SystemInformat
 	return &b524SystemInformationValue
 }
 
+// B524SystemDecodeInformation decodes a four-byte little-endian float32
+// reply for the given request context and names the identifiers it knows.
+// A different length or a non-finite value yields an invalid result with a
+// reason, never an error. The result copies the context and raw bytes.
 func B524SystemDecodeInformation(b524SystemInformationRequestContext B524SystemInformationInformationContext, b524SystemInformationRaw []byte) B524SystemInformationResult {
 	b524SystemInformationResult := B524SystemInformationResult{
 		B524SystemInformationContext: B524SystemInformationInformationContext{

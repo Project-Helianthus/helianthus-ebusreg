@@ -1,5 +1,8 @@
 package b555
 
+// Grades and issue codes of the extent views. A grade says how far a
+// decoded cell is qualified; an issue names one way in which the declared
+// byte count, the available bytes and the expected layout disagree.
 const (
 	ExtentViewGradeProven     = "proven"
 	ExtentViewGradeHypothesis = "hypothesis"
@@ -20,11 +23,19 @@ const (
 	extentViewA4StatusUnavailableValue = 3
 )
 
+// ExtentViewByte is one optional byte cell; Present is false when the cell lies
+// beyond the extent.
 type ExtentViewByte struct {
 	Present bool
 	Value   byte
 }
 
+// ExtentA4View is the graded view of a slot-count (A4) reply: a status byte,
+// the seven per-weekday slot counts and an optional eighth count. The raw
+// bytes, the cells and the day counts are bounded by the extent, the smaller
+// of the declared and the available byte count; Issues lists every mismatch,
+// and Incomplete is set when the full week was not delivered or fewer bytes
+// arrived than declared.
 type ExtentA4View struct {
 	ExtentViewRaw               []byte         `json:"raw"`
 	ExtentViewDeclaredCount     int            `json:"declared_count"`
@@ -44,6 +55,11 @@ type ExtentA4View struct {
 	ExtentViewEighthCountGrade  string         `json:"eighth_count_grade"`
 }
 
+// ExtentA5View is the graded view of a single-slot (A5) reply: a status
+// byte, start and end hour and minute, and an optional little-endian
+// setpoint in tenths. The setpoint's meaning stays a hypothesis and its
+// qualification unknown; Incomplete is set when the setpoint is missing or
+// fewer bytes arrived than declared.
 type ExtentA5View struct {
 	ExtentViewRaw               []byte         `json:"raw"`
 	ExtentViewDeclaredCount     int            `json:"declared_count"`
@@ -87,6 +103,10 @@ func extentViewCell(raw []byte, index int) ExtentViewByte {
 	return ExtentViewByte{}
 }
 
+// ExtentViewDecodeA4 bounds a slot-count reply to its extent and decodes it.
+// It never fails: a negative declared count yields an empty view with an
+// issue, and day counts above the per-day limit mark the week invalid. The
+// result holds a copy of the bytes, never the caller's slice.
 func ExtentViewDecodeA4(declaredCount int, availableRaw []byte) ExtentA4View {
 	extent, issues := extentViewExtent(declaredCount, availableRaw)
 	raw := append([]byte{}, availableRaw[:extent]...)
@@ -131,6 +151,9 @@ func ExtentViewDecodeA4(declaredCount int, availableRaw []byte) ExtentA4View {
 	return view
 }
 
+// ExtentViewDecodeA5 bounds a single-slot reply to its extent and decodes
+// it. It never fails; cells beyond the extent are reported as absent, and the
+// result holds a copy of the bytes, never the caller's slice.
 func ExtentViewDecodeA5(declaredCount int, availableRaw []byte) ExtentA5View {
 	extent, issues := extentViewExtent(declaredCount, availableRaw)
 	raw := append([]byte{}, availableRaw[:extent]...)

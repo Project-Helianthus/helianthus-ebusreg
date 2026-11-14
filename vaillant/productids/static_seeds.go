@@ -1,8 +1,9 @@
 package productids
 
 // StaticSeedEntry is one device known before any bus traffic: its
-// identity, the addresses it is expected to answer on, and a Source label
-// naming the seed table.
+// identity, the bus addresses (faces) associated with it, and a Source
+// label naming the seed table. A seeded address is not a promise that the
+// device answers active probes there.
 type StaticSeedEntry struct {
 	Manufacturer string
 	DeviceID     string
@@ -10,7 +11,7 @@ type StaticSeedEntry struct {
 	Source       string
 }
 
-// SeedAddressEntry is one expected address of a seeded device. Role is
+// SeedAddressEntry is one associated address of a seeded device. Role is
 // "initiator" or "target" and Confidence is "candidate"; a seed never claims
 // confirmation.
 type SeedAddressEntry struct {

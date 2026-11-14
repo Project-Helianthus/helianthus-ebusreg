@@ -104,9 +104,12 @@ type FrameTemplate interface {
 
 // DeviceRegistry stores the devices seen on one bus, keyed by address, with
 // per-address slots, alias groups and the identity index that joins
-// addresses of the same physical device. All methods are safe for
-// concurrent use. The zero value is not usable; create one with
-// NewDeviceRegistry.
+// addresses of the same physical device. Its methods may be called from
+// several goroutines, but a live DeviceEntry returned by Lookup or passed
+// to Iterate reads its identity fields without the registry lock: while
+// another goroutine may register or alias devices, read entries through
+// LookupEntrySnapshot or IterateSnapshots instead. The zero value is not
+// usable; create one with NewDeviceRegistry.
 type DeviceRegistry struct {
 	mu                    sync.RWMutex
 	observationGeneration uint64

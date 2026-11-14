@@ -9,10 +9,10 @@ import (
 	b507EnergyCandidateReflect "reflect"
 )
 
-//go:embed data/ab13_b507_energy_candidates.json
+//go:embed data/b507_energy_candidates.json
 var b507EnergyCandidateFiles b507EnergyCandidateEmbed.FS
 
-var b507EnergyCandidateData, b507EnergyCandidateReadError = b507EnergyCandidateFiles.ReadFile("data/ab13_b507_energy_candidates.json")
+var b507EnergyCandidateData, b507EnergyCandidateReadError = b507EnergyCandidateFiles.ReadFile("data/b507_energy_candidates.json")
 
 type B507EnergyCandidateKey struct {
 	B507EnergyCandidateFamily            string  `json:"family"`

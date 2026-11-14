@@ -40,7 +40,7 @@ type Standard09CandidateCatalog struct {
 	Standard09CandidateEntries        []Standard09CandidateEntry `json:"entries"`
 }
 
-//go:embed testdata/ab79_09_candidates.json
+//go:embed testdata/standard09_candidates.json
 var standard09CandidateCandidatesJSON []byte
 
 func Standard09Candidates() Standard09CandidateCatalog {

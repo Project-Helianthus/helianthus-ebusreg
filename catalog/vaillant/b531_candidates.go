@@ -60,7 +60,7 @@ type B531CandidateCatalog struct {
 	B531CandidateEntries            []B531CandidateEntry `json:"entries"`
 }
 
-//go:embed data/ab75_b531_candidates.json
+//go:embed data/b531_candidates.json
 var b531CandidateB531JSON []byte
 
 func B531Candidates() (B531CandidateCatalog, error) {

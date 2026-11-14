@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-//go:embed data/ab37_tunnel.json
+//go:embed data/tunnel.json
 var tunnelTunnel []byte
 
 func TunnelCatalog() json.RawMessage {

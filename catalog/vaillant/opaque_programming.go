@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-//go:embed data/ab39_opaque_programming.json
+//go:embed data/opaque_programming.json
 var opaqueProgrammingOpaqueProgramming []byte
 
 func OpaqueProgramming() json.RawMessage {

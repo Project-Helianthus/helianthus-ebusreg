@@ -8,7 +8,7 @@ import (
 	b516ResidualFieldReflect "reflect"
 )
 
-//go:embed data/ab51_b516_residual_fields.json
+//go:embed data/b516_residual_fields.json
 var b516ResidualFieldData string
 
 type B516ResidualFieldKey struct {

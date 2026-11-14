@@ -6,7 +6,7 @@ import (
 	"reflect"
 )
 
-//go:embed data/ab91_b51cd_partial_labels.json
+//go:embed data/b51cd_partial_labels.json
 var b51CDPartialLabelPartialLabelsJSON string
 
 type B51CDPartialKey struct {

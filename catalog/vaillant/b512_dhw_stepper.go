@@ -12,7 +12,7 @@ import (
 	b512DHWStepperSync "sync"
 )
 
-//go:embed data/ab97_b512_dhw_stepper.json
+//go:embed data/b512_dhw_stepper.json
 var b512DHWStepperData []byte
 
 type B512DHWStepperKey struct {

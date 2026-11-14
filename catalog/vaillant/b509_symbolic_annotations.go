@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-//go:embed data/ab40_b509_symbolic_annotations.json
+//go:embed data/b509_symbolic_annotations.json
 var b509SymbolicAnnotationData []byte
 
 type B509SymbolicAnnotationKey struct {

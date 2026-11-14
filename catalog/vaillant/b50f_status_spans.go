@@ -8,7 +8,7 @@ import (
 	b50FStatusSpanIO "io"
 )
 
-//go:embed data/ab12_b50f_status_spans.json
+//go:embed data/b50f_status_spans.json
 var b50FStatusSpanStatusJSON string
 
 type B50FStatusSpanKey struct {

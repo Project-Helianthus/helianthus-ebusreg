@@ -7,7 +7,7 @@ import (
 	b506RFSequenceFmt "fmt"
 )
 
-//go:embed data/ab17_b506_rf_sequence.json
+//go:embed data/b506_rf_sequence.json
 var b506RFSequenceCatalog string
 
 type B506RFSequenceKey struct {

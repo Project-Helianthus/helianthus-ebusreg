@@ -5,7 +5,7 @@ import (
 	roomActionJSON "encoding/json"
 )
 
-//go:embed data/ab29_room_actions.json
+//go:embed data/room_actions.json
 var roomActionRoomActionsJSON []byte
 
 func RoomActions() roomActionJSON.RawMessage {

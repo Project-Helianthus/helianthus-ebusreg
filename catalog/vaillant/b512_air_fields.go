@@ -62,7 +62,7 @@ type B512AirMetadata struct {
 	B512AirFieldFields          []B512AirField     `json:"fields"`
 }
 
-//go:embed data/ab88_b512_air_fields.json
+//go:embed data/b512_air_fields.json
 var b512AirFieldAirJSON []byte
 
 func B512AirFields() B512AirMetadata {

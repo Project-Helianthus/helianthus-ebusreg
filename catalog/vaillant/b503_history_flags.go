@@ -48,7 +48,7 @@ type B503HistoryMetadata struct {
 	B503HistoryFlagFields         []B503HistoryField `json:"fields"`
 }
 
-//go:embed data/ab86_b503_history_flags.json
+//go:embed data/b503_history_flags.json
 var b503HistoryFlagHistoryJSON []byte
 
 func B503HistoryCatalog() (B503HistoryMetadata, error) {

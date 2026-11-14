@@ -7,7 +7,7 @@ import (
 	b504CircuitRoleReflect "reflect"
 )
 
-//go:embed data/ab15_b504_circuit_roles.json
+//go:embed data/b504_circuit_roles.json
 var b504CircuitRoleFiles b504CircuitRoleEmbed.FS
 
 type B504CircuitRoleKey struct {
@@ -41,7 +41,7 @@ type b504CircuitRoleRow struct {
 }
 
 func B504CircuitRoleEntries() (b504CircuitRoleJSON.RawMessage, error) {
-	b504CircuitRoleData, b504CircuitRoleErr := b504CircuitRoleFiles.ReadFile("data/ab15_b504_circuit_roles.json")
+	b504CircuitRoleData, b504CircuitRoleErr := b504CircuitRoleFiles.ReadFile("data/b504_circuit_roles.json")
 	if b504CircuitRoleErr != nil {
 		return nil, b504CircuitRoleErr
 	}
@@ -49,7 +49,7 @@ func B504CircuitRoleEntries() (b504CircuitRoleJSON.RawMessage, error) {
 }
 
 func B504CircuitRoleLookup(b504CircuitRoleKey B504CircuitRoleKey) (b504CircuitRoleJSON.RawMessage, bool, error) {
-	b504CircuitRoleData, b504CircuitRoleErr := b504CircuitRoleFiles.ReadFile("data/ab15_b504_circuit_roles.json")
+	b504CircuitRoleData, b504CircuitRoleErr := b504CircuitRoleFiles.ReadFile("data/b504_circuit_roles.json")
 	if b504CircuitRoleErr != nil {
 		return nil, false, b504CircuitRoleErr
 	}

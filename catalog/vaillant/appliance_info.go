@@ -5,7 +5,7 @@ import (
 	applianceInfoJSONPackage "encoding/json"
 )
 
-//go:embed data/ab33_appliance_info.json
+//go:embed data/appliance_info.json
 var applianceInfoApplianceInfo []byte
 
 func ApplianceInfoCatalog() applianceInfoJSONPackage.RawMessage {

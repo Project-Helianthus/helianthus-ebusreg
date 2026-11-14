@@ -6,7 +6,7 @@ import (
 	b520BlockReflect "reflect"
 )
 
-//go:embed data/ab92_b520_blocks.json
+//go:embed data/b520_blocks.json
 var b520BlockB520Data []byte
 
 type B520BlockKey struct {

@@ -8,7 +8,7 @@ import (
 	b510OperatingDefaultReflect "reflect"
 )
 
-//go:embed data/ab48_b510_operating_defaults.json
+//go:embed data/b510_operating_defaults.json
 var b510OperatingDefaultData string
 
 type B510OperatingDefaultKey struct {

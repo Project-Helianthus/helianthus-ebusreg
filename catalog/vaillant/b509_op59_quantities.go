@@ -9,7 +9,7 @@ import (
 	b509Op59QuantityReflect "reflect"
 )
 
-//go:embed data/ab14_b509_op59_quantities.json
+//go:embed data/b509_op59_quantities.json
 var b509Op59QuantityData string
 
 type B509Op59QuantityKey struct {

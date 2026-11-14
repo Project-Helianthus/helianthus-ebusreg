@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-//go:embed data/ab45_outdoor_module.json
+//go:embed data/outdoor_module.json
 var outdoorModuleOutdoorModule []byte
 
 func OutdoorModuleCatalog() json.RawMessage {

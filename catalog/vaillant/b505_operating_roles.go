@@ -6,7 +6,7 @@ import (
 	b505OperatingRoleFmt "fmt"
 )
 
-//go:embed data/ab16_b505_operating_roles.json
+//go:embed data/b505_operating_roles.json
 var b505OperatingRoleData string
 
 type B505OperatingRoleKey struct {

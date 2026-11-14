@@ -6,7 +6,7 @@ import (
 	b523SensorFieldReflect "reflect"
 )
 
-//go:embed data/ab93_b523_sensor_fields.json
+//go:embed data/b523_sensor_fields.json
 var b523SensorFieldB523SensorJSON string
 
 type B523SensorKey struct {

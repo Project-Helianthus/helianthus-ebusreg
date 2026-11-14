@@ -6,7 +6,7 @@ import (
 	b509CandidateReflect "reflect"
 )
 
-//go:embed data/ab59_b509_candidates.json
+//go:embed data/b509_candidates.json
 var b509CandidateB509CandidatesJSON string
 
 type B509CandidateKey struct {

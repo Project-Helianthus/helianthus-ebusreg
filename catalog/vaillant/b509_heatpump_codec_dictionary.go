@@ -43,7 +43,7 @@ type B509HeatpumpCodecDictionaryEntry struct {
 	B509HeatpumpCodecDictionaryNotes            []string                       `json:"notes"`
 }
 
-//go:embed data/ab70_b509_heatpump_codec_dictionary.json
+//go:embed data/b509_heatpump_codec_dictionary.json
 var b509HeatpumpCodecDictionaryJSON []byte
 
 func b509HeatpumpCodecDictionaryParse(b509HeatpumpCodecDictionaryData []byte) ([]B509HeatpumpCodecDictionaryEntry, error) {

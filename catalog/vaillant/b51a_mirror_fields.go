@@ -6,7 +6,7 @@ import (
 	b51AMirrorFieldReflect "reflect"
 )
 
-//go:embed data/ab90_b51a_mirror_fields.json
+//go:embed data/b51a_mirror_fields.json
 var b51AMirrorFieldMirrorJSON string
 
 type B51AMirrorKey struct {

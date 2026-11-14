@@ -5,7 +5,7 @@ import (
 	standard0fCandidateJSON "encoding/json"
 )
 
-//go:embed testdata/ab81_0f_candidates.json
+//go:embed testdata/standard0f_candidates.json
 var standard0fCandidateCandidatesJSON []byte
 
 type Standard0fCandidateKey struct {

@@ -21,7 +21,7 @@ type StandardFFBodyStateKey struct {
 	StandardFFBodyStateRegister      *uint16 `json:"register"`
 }
 
-//go:embed testdata/ab54_standard_ff_body_states.json
+//go:embed testdata/standardff_body_states.json
 var standardFFBodyStateBodyStatesJSON []byte
 
 func standardFFBodyStateUniqueFields(standardFFBodyStateDecoder *standardFFBodyStateJSON.Decoder) error {

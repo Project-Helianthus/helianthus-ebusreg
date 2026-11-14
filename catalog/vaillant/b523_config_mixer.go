@@ -9,7 +9,7 @@ import (
 	b523ConfigMixerReflect "reflect"
 )
 
-//go:embed data/ab99_b523_config_mixer.json
+//go:embed data/b523_config_mixer.json
 var b523ConfigMixerData []byte
 
 type B523ConfigMixerKey struct {

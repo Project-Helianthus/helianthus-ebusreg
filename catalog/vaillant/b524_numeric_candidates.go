@@ -64,7 +64,7 @@ type B524NumericCandidateView struct {
 	b524NumericCandidateKeys []B524NumericCandidateKey
 }
 
-//go:embed data/ab56_b524_numeric_candidates.json
+//go:embed data/b524_numeric_candidates.json
 var b524NumericCandidateData string
 
 func b524NumericCandidateIdentity(b524NumericCandidateKey B524NumericCandidateKey) B524NumericCandidateContext {

@@ -63,7 +63,7 @@ type B514MenuFeedbackCatalog struct {
 	B514MenuFeedbackFields              []B514MenuFeedbackField `json:"fields"`
 }
 
-//go:embed data/ab89_b514_menu_feedback.json
+//go:embed data/b514_menu_feedback.json
 var b514MenuFeedbackMenuFeedbackJSON string
 
 func B514MenuFeedback() (B514MenuFeedbackCatalog, error) {

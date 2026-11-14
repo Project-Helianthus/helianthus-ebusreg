@@ -137,7 +137,9 @@ func (c ControllerCapability) String() string {
 // ControllerCapability classifies the trimmed partNumber from its catalog
 // role: ControllerPresent for a regulator or thermostat, ControllerNone for
 // any other role. It returns ControllerUnknown for an empty or unknown part
-// number, an empty role, or duplicate rows whose roles disagree. A Catalog
+// number, an empty role, or duplicate rows whose controller classifications
+// disagree; duplicates with different roles that classify the same (for
+// example Regulator and Thermostat) keep that classification. A Catalog
 // with an empty All falls back to ByPartNumber.
 func (c Catalog) ControllerCapability(partNumber string) ControllerCapability {
 	partNumber = strings.TrimSpace(partNumber)

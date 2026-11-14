@@ -105,7 +105,8 @@ func ProjectDeviceEntry(entry DeviceEntry) (ServiceDeviceView, error) {
 }
 
 // ProjectPlane copies plane into a ServicePlaneView with its methods sorted
-// by case-folded name and then by command bytes. A nil plane or any method
+// by case-folded name, then by exact name, then by command bytes (primary,
+// then secondary). A nil plane or any method
 // that fails ProjectMethod is an error.
 func ProjectPlane(plane Plane) (ServicePlaneView, error) {
 	if plane == nil {

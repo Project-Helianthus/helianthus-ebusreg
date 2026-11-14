@@ -7,7 +7,8 @@ import "time"
 type SlotRole int
 
 // SlotRole values. SlotRoleUnknown is the zero value and means the role has
-// not been established; AddressByRole never matches it on a known face.
+// not been established; it is not a guard value, and AddressByRole called
+// with it matches faces whose role is still unknown.
 const (
 	SlotRoleUnknown SlotRole = iota
 	SlotRoleMaster

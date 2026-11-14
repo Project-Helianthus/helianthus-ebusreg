@@ -6,7 +6,6 @@ import (
 	b516DirectionalTypeJSON "encoding/json"
 	b516DirectionalTypeFmt "fmt"
 	b516DirectionalTypeReflect "reflect"
-	b516DirectionalTypeStrings "strings"
 )
 
 //go:embed data/ab20_b516_directional_types.json
@@ -61,7 +60,7 @@ func b516DirectionalTypeValidate(b516DirectionalTypeData []byte) ([]b516Directio
 		if b516DirectionalTypeErr := b516DirectionalTypeDecoder.Decode(&b516DirectionalTypeKey); b516DirectionalTypeErr != nil {
 			return nil, b516DirectionalTypeFmt.Errorf("b516 directional types catalog: %w", b516DirectionalTypeErr)
 		}
-		if !b516DirectionalTypeStrings.HasPrefix(b516DirectionalTypeEntry.B516DirectionalTypeID, "ab20-") || b516DirectionalTypeIDs[b516DirectionalTypeEntry.B516DirectionalTypeID] || b516DirectionalTypeKey.B516DirectionalTypeFamily == "" || b516DirectionalTypeKey.B516DirectionalTypeVariant == "" || b516DirectionalTypeKey.B516DirectionalTypeDirection == "" || b516DirectionalTypeKey.B516DirectionalTypeField == "" || b516DirectionalTypeKey.B516DirectionalTypeAlternative == "" || b516DirectionalTypeKey.B516DirectionalTypeInstanceScope == "" {
+		if b516DirectionalTypeEntry.B516DirectionalTypeID == "" || b516DirectionalTypeIDs[b516DirectionalTypeEntry.B516DirectionalTypeID] || b516DirectionalTypeKey.B516DirectionalTypeFamily == "" || b516DirectionalTypeKey.B516DirectionalTypeVariant == "" || b516DirectionalTypeKey.B516DirectionalTypeDirection == "" || b516DirectionalTypeKey.B516DirectionalTypeField == "" || b516DirectionalTypeKey.B516DirectionalTypeAlternative == "" || b516DirectionalTypeKey.B516DirectionalTypeInstanceScope == "" {
 			return nil, b516DirectionalTypeFmt.Errorf("b516 directional types catalog: incomplete identity or duplicate id")
 		}
 		for _, b516DirectionalTypePrevious := range b516DirectionalTypeKeys {

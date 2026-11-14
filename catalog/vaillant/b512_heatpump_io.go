@@ -64,7 +64,7 @@ func b512HeatpumpIOValidate(b512HeatpumpIOInput string) ([]b512HeatpumpIOJSON.Ra
 		if b512HeatpumpIOErr := b512HeatpumpIOJSON.Unmarshal(b512HeatpumpIOFields["id"], &b512HeatpumpIOID); b512HeatpumpIOErr != nil {
 			return nil, nil, b512HeatpumpIOErr
 		}
-		if len(b512HeatpumpIOID) < 5 || b512HeatpumpIOID[:5] != "ab19_" || b512HeatpumpIOIDs[b512HeatpumpIOID] {
+		if b512HeatpumpIOID == "" || b512HeatpumpIOIDs[b512HeatpumpIOID] {
 			return nil, nil, b512HeatpumpIOFmt.Errorf("b512 heatpump io catalog: invalid ID")
 		}
 		b512HeatpumpIOIDs[b512HeatpumpIOID] = true

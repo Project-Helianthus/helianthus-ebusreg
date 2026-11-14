@@ -5,7 +5,6 @@ import (
 	b504CircuitRoleJSON "encoding/json"
 	b504CircuitRoleFmt "fmt"
 	b504CircuitRoleReflect "reflect"
-	b504CircuitRoleStrings "strings"
 )
 
 //go:embed data/ab15_b504_circuit_roles.json
@@ -89,7 +88,7 @@ func b504CircuitRoleEntries(b504CircuitRoleData []byte) (b504CircuitRoleJSON.Raw
 		if len(b504CircuitRoleIdentity) != 11 || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleFamily == "" || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleVariant == "" || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleDirection == "" || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleField == "" || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleAlternative == "" || b504CircuitRoleEntry.B504CircuitRoleKey.B504CircuitRoleInstanceScope == "" {
 			return nil, b504CircuitRoleFmt.Errorf("b504 circuit roles: incomplete identity")
 		}
-		if !b504CircuitRoleStrings.HasPrefix(b504CircuitRoleEntry.B504CircuitRoleID, "ab15-") || b504CircuitRoleIDs[b504CircuitRoleEntry.B504CircuitRoleID] {
+		if b504CircuitRoleEntry.B504CircuitRoleID == "" || b504CircuitRoleIDs[b504CircuitRoleEntry.B504CircuitRoleID] {
 			return nil, b504CircuitRoleFmt.Errorf("b504 circuit roles: invalid or duplicate id")
 		}
 		b504CircuitRoleIDs[b504CircuitRoleEntry.B504CircuitRoleID] = true

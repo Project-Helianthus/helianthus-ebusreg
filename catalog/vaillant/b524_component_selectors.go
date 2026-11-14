@@ -5,7 +5,6 @@ import (
 	b524ComponentSelectorJSON "encoding/json"
 	b524ComponentSelectorFmt "fmt"
 	b524ComponentSelectorReflect "reflect"
-	b524ComponentSelectorStrings "strings"
 )
 
 //go:embed data/ab32_b524_component_selectors.json
@@ -43,7 +42,7 @@ func b524ComponentSelectorValidate(b524ComponentSelectorData []byte) ([]b524Comp
 		if b524ComponentSelectorError := b524ComponentSelectorJSON.Unmarshal(b524ComponentSelectorRow, &b524ComponentSelectorEnvelope); b524ComponentSelectorError != nil {
 			return nil, nil, b524ComponentSelectorError
 		}
-		if !b524ComponentSelectorStrings.HasPrefix(b524ComponentSelectorEnvelope.B524ComponentSelectorID, "ab32-") || b524ComponentSelectorIDs[b524ComponentSelectorEnvelope.B524ComponentSelectorID] {
+		if b524ComponentSelectorEnvelope.B524ComponentSelectorID == "" || b524ComponentSelectorIDs[b524ComponentSelectorEnvelope.B524ComponentSelectorID] {
 			return nil, nil, b524ComponentSelectorFmt.Errorf("b524 component selectors: invalid or duplicate id")
 		}
 		b524ComponentSelectorIDs[b524ComponentSelectorEnvelope.B524ComponentSelectorID] = true

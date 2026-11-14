@@ -19,9 +19,8 @@
   are replaced directly: there is no alias and no dual acceptance, so JSON
   with a coded key no longer decodes into the renamed fields. Go
   identifiers, embedded data file names and the row identifiers inside the
-  data are unchanged; so are the row-identifier prefixes the loaders check
-  (`ab15-`, `ab17-`, `ab19_`, `ab20-`, `ab32-`), which move with the row
-  identifiers in a later change. The test fixtures and test-local tags that
+  data are unchanged. The loaders no longer require a coded prefix on a row
+  identifier; the non-empty and unique checks stay. The test fixtures and test-local tags that
   decode into the renamed types follow, and the `naming-inventory.json` rows
   follow one-to-one. The consumer step is the gateway re-pin onto this
   revision; release bill of materials reconciliation remains required.

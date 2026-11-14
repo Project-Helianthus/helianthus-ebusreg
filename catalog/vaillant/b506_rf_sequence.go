@@ -5,7 +5,6 @@ import (
 	_ "embed"
 	b506RFSequenceJSON "encoding/json"
 	b506RFSequenceFmt "fmt"
-	b506RFSequenceStrings "strings"
 )
 
 //go:embed data/ab17_b506_rf_sequence.json
@@ -69,7 +68,7 @@ func b506RFSequenceEntriesFrom(b506RFSequenceData string) ([]b506RFSequenceJSON.
 		if b506RFSequenceError := b506RFSequenceDecoder.Decode(&b506RFSequenceEntry.B506RFSequenceKey); b506RFSequenceError != nil {
 			return nil, b506RFSequenceError
 		}
-		if !b506RFSequenceStrings.HasPrefix(b506RFSequenceEntry.B506RFSequenceID, "ab17-") || b506RFSequenceEntry.B506RFSequenceGrade != "Hypothesis" || b506RFSequenceEntry.B506RFSequenceQualification != "Unknown" || b506RFSequenceEntry.B506RFSequenceRawForm == "" || len(b506RFSequenceEntry.B506RFSequenceUnknown) == 0 || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceFamily == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceVariant == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceDirection == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceField == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceAlternative == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceInstanceScope == "" {
+		if b506RFSequenceEntry.B506RFSequenceID == "" || b506RFSequenceEntry.B506RFSequenceGrade != "Hypothesis" || b506RFSequenceEntry.B506RFSequenceQualification != "Unknown" || b506RFSequenceEntry.B506RFSequenceRawForm == "" || len(b506RFSequenceEntry.B506RFSequenceUnknown) == 0 || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceFamily == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceVariant == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceDirection == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceField == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceAlternative == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceInstanceScope == "" {
 			return nil, b506RFSequenceFmt.Errorf("b506 rf sequence: incomplete metadata")
 		}
 		b506RFSequenceIdentity, b506RFSequenceError := b506RFSequenceJSON.Marshal(b506RFSequenceEntry.B506RFSequenceKey)

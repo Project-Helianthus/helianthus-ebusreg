@@ -54,8 +54,6 @@ The catalog-vaillant slice applies the same naming rule to catalog/vaillant:
   takes them only as whole JSON values.
 - VAILLANT_TEXTS: per production file, an error text whose code becomes the
   behavior of the file in words.
-- VAILLANT_KEPT: the row-identifier prefixes the loaders check; they stay
-  with the row identifiers of the data.
 
 Every string literal of the Go files of catalog/vaillant, tests included,
 takes every token, so a test-local tag and the fixture it reads change
@@ -1627,7 +1625,6 @@ VAILLANT_TEXTS = {
     },
 }
 
-VAILLANT_KEPT = ["ab15-", "ab17-", "ab19_", "ab20-", "ab32-"]
 
 VAILLANT_ROOT = "catalog/vaillant"
 GO_STRING = re.compile(r'//[^\n]*|/\*.*?\*/|\'(?:\\.|[^\'\\])*\'|"(?:\\.|[^"\\\n])*"|`[^`]*`', re.S)
@@ -1706,7 +1703,7 @@ def vaillant_scope(root):
     production = {rel for rel, _ in vaillant_go_files(root, False)}
     listed = set(VAILLANT_TEXTS)
     for rel, path in vaillant_go_files(root, False):
-        hits = set(CODED_LITERAL.findall(path.read_text())) - set(VAILLANT_KEPT)
+        hits = set(CODED_LITERAL.findall(path.read_text()))
         texts = VAILLANT_TEXTS.get(rel, {})
         unlisted = {h for h in hits if h not in texts and h.split(",")[0] not in VAILLANT_TOKENS}
         if unlisted:
@@ -1763,7 +1760,7 @@ def vaillant_inventory(root):
 def vaillant_check(root):
     remaining = []
     for rel, path in vaillant_go_files(root, False):
-        hits = set(CODED_LITERAL.findall(path.read_text())) - set(VAILLANT_KEPT)
+        hits = set(CODED_LITERAL.findall(path.read_text()))
         remaining += [f"{rel}: {hit}" for hit in sorted(hits)]
     for path in sorted((root / VAILLANT_ROOT / "data").glob("*.json")):
         for m in JSON_STRING.finditer(path.read_text()):

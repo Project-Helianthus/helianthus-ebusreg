@@ -29,7 +29,7 @@ func b519ReplyPolicyValidate(b519ReplyPolicyData []byte) ([]b519ReplyPolicyJSON.
 		return nil, b519ReplyPolicyError
 	}
 	if len(b519ReplyPolicyRows) == 0 {
-		return nil, b519ReplyPolicyFmt.Errorf("ab21: empty catalog")
+		return nil, b519ReplyPolicyFmt.Errorf("b519 reply policy: empty catalog")
 	}
 	b519ReplyPolicySeen := make(map[string]bool)
 	for b519ReplyPolicyIndex, b519ReplyPolicyRow := range b519ReplyPolicyRows {
@@ -42,11 +42,11 @@ func b519ReplyPolicyValidate(b519ReplyPolicyData []byte) ([]b519ReplyPolicyJSON.
 			return nil, b519ReplyPolicyError
 		}
 		if len(b519ReplyPolicyAxes) != 11 {
-			return nil, b519ReplyPolicyFmt.Errorf("ab21: incomplete identity at %d", b519ReplyPolicyIndex)
+			return nil, b519ReplyPolicyFmt.Errorf("b519 reply policy: incomplete identity at %d", b519ReplyPolicyIndex)
 		}
 		for _, b519ReplyPolicyAxis := range []string{"family", "variant", "primary", "secondary", "operation", "direction", "field", "alternative", "group", "instance_scope", "register"} {
 			if _, b519ReplyPolicyPresent := b519ReplyPolicyAxes[b519ReplyPolicyAxis]; !b519ReplyPolicyPresent {
-				return nil, b519ReplyPolicyFmt.Errorf("ab21: missing axis %s", b519ReplyPolicyAxis)
+				return nil, b519ReplyPolicyFmt.Errorf("b519 reply policy: missing axis %s", b519ReplyPolicyAxis)
 			}
 		}
 		var b519ReplyPolicyKey B519ReplyPolicyKey
@@ -54,14 +54,14 @@ func b519ReplyPolicyValidate(b519ReplyPolicyData []byte) ([]b519ReplyPolicyJSON.
 			return nil, b519ReplyPolicyError
 		}
 		if b519ReplyPolicyKey.B519ReplyPolicyFamily == "" || b519ReplyPolicyKey.B519ReplyPolicyVariant == "" || b519ReplyPolicyKey.B519ReplyPolicyDirection == "" || b519ReplyPolicyKey.B519ReplyPolicyField == "" || b519ReplyPolicyKey.B519ReplyPolicyAlternative == "" || b519ReplyPolicyKey.B519ReplyPolicyInstanceScope == "" || string(b519ReplyPolicyAxes["primary"]) == "null" {
-			return nil, b519ReplyPolicyFmt.Errorf("ab21: invalid identity at %d", b519ReplyPolicyIndex)
+			return nil, b519ReplyPolicyFmt.Errorf("b519 reply policy: invalid identity at %d", b519ReplyPolicyIndex)
 		}
 		b519ReplyPolicyIdentity, b519ReplyPolicyError := b519ReplyPolicyJSON.Marshal(b519ReplyPolicyKey)
 		if b519ReplyPolicyError != nil {
 			return nil, b519ReplyPolicyError
 		}
 		if b519ReplyPolicySeen[string(b519ReplyPolicyIdentity)] {
-			return nil, b519ReplyPolicyFmt.Errorf("ab21: duplicate identity at %d", b519ReplyPolicyIndex)
+			return nil, b519ReplyPolicyFmt.Errorf("b519 reply policy: duplicate identity at %d", b519ReplyPolicyIndex)
 		}
 		b519ReplyPolicySeen[string(b519ReplyPolicyIdentity)] = true
 	}

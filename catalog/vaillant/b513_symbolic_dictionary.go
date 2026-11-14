@@ -69,10 +69,10 @@ type b513SymbolicDictionaryRow struct {
 func b513SymbolicDictionaryValidate(b513SymbolicDictionarySource []byte) ([]b513SymbolicDictionaryJSON.RawMessage, map[string]b513SymbolicDictionaryJSON.RawMessage, error) {
 	var b513SymbolicDictionaryRows []b513SymbolicDictionaryJSON.RawMessage
 	if b513SymbolicDictionaryErr := b513SymbolicDictionaryJSON.Unmarshal(b513SymbolicDictionarySource, &b513SymbolicDictionaryRows); b513SymbolicDictionaryErr != nil {
-		return nil, nil, b513SymbolicDictionaryFmt.Errorf("ab38 dictionary: %w", b513SymbolicDictionaryErr)
+		return nil, nil, b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary: %w", b513SymbolicDictionaryErr)
 	}
 	if len(b513SymbolicDictionaryRows) == 0 {
-		return nil, nil, b513SymbolicDictionaryFmt.Errorf("ab38 dictionary: expected nonempty array")
+		return nil, nil, b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary: expected nonempty array")
 	}
 	b513SymbolicDictionaryIndex := make(map[string]b513SymbolicDictionaryJSON.RawMessage)
 	for _, b513SymbolicDictionaryRaw := range b513SymbolicDictionaryRows {
@@ -83,16 +83,16 @@ func b513SymbolicDictionaryValidate(b513SymbolicDictionarySource []byte) ([]b513
 		b513SymbolicDictionaryDecoder := b513SymbolicDictionaryJSON.NewDecoder(b513SymbolicDictionaryBytes.NewReader(b513SymbolicDictionaryRaw))
 		b513SymbolicDictionaryDecoder.DisallowUnknownFields()
 		if b513SymbolicDictionaryErr := b513SymbolicDictionaryDecoder.Decode(&b513SymbolicDictionaryEntry); b513SymbolicDictionaryErr != nil {
-			return nil, nil, b513SymbolicDictionaryFmt.Errorf("ab38 row: %w", b513SymbolicDictionaryErr)
+			return nil, nil, b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary row: %w", b513SymbolicDictionaryErr)
 		}
 		if b513SymbolicDictionaryErr := b513SymbolicDictionaryDecoder.Decode(new(any)); b513SymbolicDictionaryErr != b513SymbolicDictionaryIO.EOF {
-			return nil, nil, b513SymbolicDictionaryFmt.Errorf("ab38 row: trailing data")
+			return nil, nil, b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary row: trailing data")
 		}
 		if b513SymbolicDictionaryEntry.B513SymbolicDictionaryFamily == "" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryVariant == "" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryDirection == "" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryField == "" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryAlternative == "" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryInstanceScope == "" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryNamespace == "" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryClass == "" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryRawAddress == nil || b513SymbolicDictionaryEntry.B513SymbolicDictionaryBusFamily != "" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryNativeLabel == "" {
-			return nil, nil, b513SymbolicDictionaryFmt.Errorf("ab38 row: incomplete dictionary identity")
+			return nil, nil, b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary row: incomplete dictionary identity")
 		}
 		if b513SymbolicDictionaryEntry.B513SymbolicDictionaryGrade != "Hypothesis" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryPhysicalQualification != "Unknown" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryValueCodec != nil || b513SymbolicDictionaryEntry.B513SymbolicDictionaryValueWidthBits != nil || b513SymbolicDictionaryEntry.B513SymbolicDictionaryExecutableCapability || b513SymbolicDictionaryEntry.B513SymbolicDictionaryAddressWidthBits != 16 || len(b513SymbolicDictionaryEntry.B513SymbolicDictionaryBusFamilies) != 2 || b513SymbolicDictionaryEntry.B513SymbolicDictionaryBusFamilies[0] != "eBUS" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryBusFamilies[1] != "PeBUS" || b513SymbolicDictionaryEntry.B513SymbolicDictionaryRawForm != b513SymbolicDictionaryFmt.Sprintf("%04X|%s", *b513SymbolicDictionaryEntry.B513SymbolicDictionaryRawAddress, b513SymbolicDictionaryEntry.B513SymbolicDictionaryNativeLabel) {
-			return nil, nil, b513SymbolicDictionaryFmt.Errorf("ab38 row: invalid candidate boundary or raw form")
+			return nil, nil, b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary row: invalid candidate boundary or raw form")
 		}
 		for _, b513SymbolicDictionaryBusFamily := range b513SymbolicDictionaryEntry.B513SymbolicDictionaryBusFamilies {
 			b513SymbolicDictionaryEntry.B513SymbolicDictionaryBusFamily = b513SymbolicDictionaryBusFamily
@@ -101,7 +101,7 @@ func b513SymbolicDictionaryValidate(b513SymbolicDictionarySource []byte) ([]b513
 				return nil, nil, b513SymbolicDictionaryErr
 			}
 			if _, b513SymbolicDictionaryExists := b513SymbolicDictionaryIndex[string(b513SymbolicDictionaryEncoded)]; b513SymbolicDictionaryExists {
-				return nil, nil, b513SymbolicDictionaryFmt.Errorf("ab38 dictionary: duplicate key")
+				return nil, nil, b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary: duplicate key")
 			}
 			b513SymbolicDictionaryIndex[string(b513SymbolicDictionaryEncoded)] = b513SymbolicDictionaryBytes.Clone(b513SymbolicDictionaryRaw)
 		}
@@ -134,7 +134,7 @@ func b513SymbolicDictionaryValidateObject(b513SymbolicDictionaryRaw []byte) erro
 	b513SymbolicDictionaryDecoder := b513SymbolicDictionaryJSON.NewDecoder(b513SymbolicDictionaryBytes.NewReader(b513SymbolicDictionaryRaw))
 	b513SymbolicDictionaryToken, b513SymbolicDictionaryErr := b513SymbolicDictionaryDecoder.Token()
 	if b513SymbolicDictionaryErr != nil || b513SymbolicDictionaryToken != b513SymbolicDictionaryJSON.Delim('{') {
-		return b513SymbolicDictionaryFmt.Errorf("ab38 row: expected object")
+		return b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary row: expected object")
 	}
 	b513SymbolicDictionarySeen := map[string]bool{}
 	for b513SymbolicDictionaryDecoder.More() {
@@ -144,7 +144,7 @@ func b513SymbolicDictionaryValidateObject(b513SymbolicDictionaryRaw []byte) erro
 		}
 		b513SymbolicDictionaryName, b513SymbolicDictionaryOK := b513SymbolicDictionaryToken.(string)
 		if !b513SymbolicDictionaryOK || b513SymbolicDictionarySeen[b513SymbolicDictionaryName] {
-			return b513SymbolicDictionaryFmt.Errorf("ab38 row: duplicate member")
+			return b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary row: duplicate member")
 		}
 		b513SymbolicDictionarySeen[b513SymbolicDictionaryName] = true
 		var b513SymbolicDictionaryValue b513SymbolicDictionaryJSON.RawMessage
@@ -152,12 +152,12 @@ func b513SymbolicDictionaryValidateObject(b513SymbolicDictionaryRaw []byte) erro
 			return b513SymbolicDictionaryErr
 		}
 		if b513SymbolicDictionaryBytes.Equal(b513SymbolicDictionaryValue, []byte("null")) && b513SymbolicDictionaryName != "secondary" && b513SymbolicDictionaryName != "operation" && b513SymbolicDictionaryName != "group" && b513SymbolicDictionaryName != "register" && b513SymbolicDictionaryName != "value_codec" && b513SymbolicDictionaryName != "value_width_bits" {
-			return b513SymbolicDictionaryFmt.Errorf("ab38 row: null required member")
+			return b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary row: null required member")
 		}
 	}
 	for _, b513SymbolicDictionaryName := range []string{"family", "variant", "primary", "direction", "field", "alternative", "instance_scope", "dictionary_namespace", "dictionary_class", "raw_address", "native_label", "raw_form", "bus_families", "grade", "physical_qualification", "value_codec", "executable_capability", "address_width_bits", "value_width_bits", "unknown", "unknown_address", "label_meaning", "native_contract"} {
 		if !b513SymbolicDictionarySeen[b513SymbolicDictionaryName] {
-			return b513SymbolicDictionaryFmt.Errorf("ab38 row: missing member %s", b513SymbolicDictionaryName)
+			return b513SymbolicDictionaryFmt.Errorf("b513 symbolic dictionary row: missing member %s", b513SymbolicDictionaryName)
 		}
 	}
 	return nil

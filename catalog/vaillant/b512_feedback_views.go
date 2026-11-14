@@ -14,7 +14,7 @@ func B512FeedbackViewInterpret(b512FeedbackViewInput b512FeedbackViewJSON.RawMes
 		return nil, b512FeedbackViewErr
 	}
 	if _, b512FeedbackViewErr := b512FeedbackViewDecoder.Token(); b512FeedbackViewErr != b512FeedbackViewIO.EOF {
-		return nil, b512FeedbackViewFmt.Errorf("ab15ao15 trailing JSON")
+		return nil, b512FeedbackViewFmt.Errorf("b512 feedback views: trailing JSON")
 	}
 	b512FeedbackViewRoot, b512FeedbackViewErr := b512FeedbackViewObject(b512FeedbackViewInput)
 	if b512FeedbackViewErr != nil {
@@ -22,7 +22,7 @@ func B512FeedbackViewInterpret(b512FeedbackViewInput b512FeedbackViewJSON.RawMes
 	}
 	for b512FeedbackViewKey := range b512FeedbackViewRoot {
 		if b512FeedbackViewKey != "context" && b512FeedbackViewKey != "fields" && b512FeedbackViewKey != "arguments" {
-			return nil, b512FeedbackViewFmt.Errorf("ab15ao15 unknown input key")
+			return nil, b512FeedbackViewFmt.Errorf("b512 feedback views: unknown input key")
 		}
 	}
 	b512FeedbackViewContext, b512FeedbackViewErr := b512FeedbackViewObject(b512FeedbackViewRoot["context"])
@@ -36,7 +36,7 @@ func B512FeedbackViewInterpret(b512FeedbackViewInput b512FeedbackViewJSON.RawMes
 	b512FeedbackViewBytes := make(map[string][]int)
 	for b512FeedbackViewKey, b512FeedbackViewValue := range b512FeedbackViewRaw {
 		if len(b512FeedbackViewBytesPackage.TrimSpace(b512FeedbackViewValue)) == 0 || b512FeedbackViewBytesPackage.TrimSpace(b512FeedbackViewValue)[0] != '[' {
-			return nil, b512FeedbackViewFmt.Errorf("ab15ao15 field must be byte array")
+			return nil, b512FeedbackViewFmt.Errorf("b512 feedback views: field must be byte array")
 		}
 		var b512FeedbackViewElements []b512FeedbackViewJSON.RawMessage
 		if b512FeedbackViewErr := b512FeedbackViewJSON.Unmarshal(b512FeedbackViewValue, &b512FeedbackViewElements); b512FeedbackViewErr != nil {
@@ -45,10 +45,10 @@ func B512FeedbackViewInterpret(b512FeedbackViewInput b512FeedbackViewJSON.RawMes
 		b512FeedbackViewValues := make([]int, len(b512FeedbackViewElements))
 		for b512FeedbackViewIndex, b512FeedbackViewElement := range b512FeedbackViewElements {
 			if b512FeedbackViewBytesPackage.Equal(b512FeedbackViewElement, []byte("null")) {
-				return nil, b512FeedbackViewFmt.Errorf("ab15ao15 null byte")
+				return nil, b512FeedbackViewFmt.Errorf("b512 feedback views: null byte")
 			}
 			if b512FeedbackViewErr := b512FeedbackViewJSON.Unmarshal(b512FeedbackViewElement, &b512FeedbackViewValues[b512FeedbackViewIndex]); b512FeedbackViewErr != nil || b512FeedbackViewValues[b512FeedbackViewIndex] < 0 || b512FeedbackViewValues[b512FeedbackViewIndex] > 255 {
-				return nil, b512FeedbackViewFmt.Errorf("ab15ao15 invalid byte")
+				return nil, b512FeedbackViewFmt.Errorf("b512 feedback views: invalid byte")
 			}
 		}
 		b512FeedbackViewBytes[b512FeedbackViewKey] = b512FeedbackViewValues
@@ -62,7 +62,7 @@ func B512FeedbackViewInterpret(b512FeedbackViewInput b512FeedbackViewJSON.RawMes
 		}
 		var b512FeedbackViewNumber int
 		if b512FeedbackViewBytesPackage.Equal(b512FeedbackViewValue, []byte("null")) {
-			return nil, b512FeedbackViewFmt.Errorf("ab15ao15 null identity")
+			return nil, b512FeedbackViewFmt.Errorf("b512 feedback views: null identity")
 		}
 		if b512FeedbackViewErr := b512FeedbackViewJSON.Unmarshal(b512FeedbackViewValue, &b512FeedbackViewNumber); b512FeedbackViewErr != nil {
 			return nil, b512FeedbackViewErr
@@ -80,7 +80,7 @@ func B512FeedbackViewInterpret(b512FeedbackViewInput b512FeedbackViewJSON.RawMes
 		}
 		var b512FeedbackViewText string
 		if b512FeedbackViewBytesPackage.Equal(b512FeedbackViewValue, []byte("null")) {
-			return nil, b512FeedbackViewFmt.Errorf("ab15ao15 null selector")
+			return nil, b512FeedbackViewFmt.Errorf("b512 feedback views: null selector")
 		}
 		if b512FeedbackViewErr := b512FeedbackViewJSON.Unmarshal(b512FeedbackViewValue, &b512FeedbackViewText); b512FeedbackViewErr != nil {
 			return nil, b512FeedbackViewErr
@@ -102,7 +102,7 @@ func B512FeedbackViewInterpret(b512FeedbackViewInput b512FeedbackViewJSON.RawMes
 		}
 		for b512FeedbackViewKey, b512FeedbackViewValue := range b512FeedbackViewFlags {
 			if b512FeedbackViewKey != "actual_signal" || (string(b512FeedbackViewValue) != "true" && string(b512FeedbackViewValue) != "false") {
-				return nil, b512FeedbackViewFmt.Errorf("ab15ao15 invalid argument")
+				return nil, b512FeedbackViewFmt.Errorf("b512 feedback views: invalid argument")
 			}
 			if string(b512FeedbackViewValue) == "true" {
 				b512FeedbackViewOrigin = "actual-input-candidate"
@@ -156,7 +156,7 @@ func B512FeedbackViewInterpret(b512FeedbackViewInput b512FeedbackViewJSON.RawMes
 
 func b512FeedbackViewObject(b512FeedbackViewRaw b512FeedbackViewJSON.RawMessage) (map[string]b512FeedbackViewJSON.RawMessage, error) {
 	if len(b512FeedbackViewBytesPackage.TrimSpace(b512FeedbackViewRaw)) == 0 || b512FeedbackViewBytesPackage.TrimSpace(b512FeedbackViewRaw)[0] != '{' {
-		return nil, b512FeedbackViewFmt.Errorf("ab15ao15 expected object")
+		return nil, b512FeedbackViewFmt.Errorf("b512 feedback views: expected object")
 	}
 	var b512FeedbackViewObject map[string]b512FeedbackViewJSON.RawMessage
 	b512FeedbackViewErr := b512FeedbackViewJSON.Unmarshal(b512FeedbackViewRaw, &b512FeedbackViewObject)
@@ -182,7 +182,7 @@ func b512FeedbackViewValidate(b512FeedbackViewDecoder *b512FeedbackViewJSON.Deco
 			}
 			b512FeedbackViewKey, b512FeedbackViewOK := b512FeedbackViewKeyToken.(string)
 			if !b512FeedbackViewOK || b512FeedbackViewSeen[b512FeedbackViewKey] {
-				return b512FeedbackViewFmt.Errorf("ab15ao15 duplicate or invalid key")
+				return b512FeedbackViewFmt.Errorf("b512 feedback views: duplicate or invalid key")
 			}
 			b512FeedbackViewSeen[b512FeedbackViewKey] = true
 			if b512FeedbackViewErr := b512FeedbackViewValidate(b512FeedbackViewDecoder); b512FeedbackViewErr != nil {
@@ -196,7 +196,7 @@ func b512FeedbackViewValidate(b512FeedbackViewDecoder *b512FeedbackViewJSON.Deco
 			}
 		}
 	default:
-		return b512FeedbackViewFmt.Errorf("ab15ao15 unexpected delimiter")
+		return b512FeedbackViewFmt.Errorf("b512 feedback views: unexpected delimiter")
 	}
 	_, b512FeedbackViewErr = b512FeedbackViewDecoder.Token()
 	return b512FeedbackViewErr

@@ -75,13 +75,13 @@ func B51ADiagnosticVariantEntries() ([]B51ADiagnosticVariantEntry, error) {
 	b51ADiagnosticVariantDecoder := b51ADiagnosticVariantJSON.NewDecoder(b51ADiagnosticVariantBytes.NewReader(b51ADiagnosticVariantData))
 	b51ADiagnosticVariantDecoder.DisallowUnknownFields()
 	if b51ADiagnosticVariantErr := b51ADiagnosticVariantDecoder.Decode(&b51ADiagnosticVariantEntries); b51ADiagnosticVariantErr != nil {
-		return nil, b51ADiagnosticVariantFmt.Errorf("ab98 catalog: %w", b51ADiagnosticVariantErr)
+		return nil, b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: %w", b51ADiagnosticVariantErr)
 	}
 	if b51ADiagnosticVariantErr := b51ADiagnosticVariantDecoder.Decode(new(any)); b51ADiagnosticVariantErr != b51ADiagnosticVariantIO.EOF {
-		return nil, b51ADiagnosticVariantFmt.Errorf("ab98 catalog: trailing data")
+		return nil, b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: trailing data")
 	}
 	if len(b51ADiagnosticVariantEntries) == 0 {
-		return nil, b51ADiagnosticVariantFmt.Errorf("ab98 catalog: empty entries")
+		return nil, b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: empty entries")
 	}
 	for b51ADiagnosticVariantIndex, b51ADiagnosticVariantEntry := range b51ADiagnosticVariantEntries {
 		if b51ADiagnosticVariantErr := b51ADiagnosticVariantValidate(b51ADiagnosticVariantEntry); b51ADiagnosticVariantErr != nil {
@@ -89,7 +89,7 @@ func B51ADiagnosticVariantEntries() ([]B51ADiagnosticVariantEntry, error) {
 		}
 		for b51ADiagnosticVariantPrevious := 0; b51ADiagnosticVariantPrevious < b51ADiagnosticVariantIndex; b51ADiagnosticVariantPrevious++ {
 			if b51ADiagnosticVariantReflect.DeepEqual(b51ADiagnosticVariantEntries[b51ADiagnosticVariantPrevious].B51ADiagnosticVariantKey, b51ADiagnosticVariantEntry.B51ADiagnosticVariantKey) {
-				return nil, b51ADiagnosticVariantFmt.Errorf("ab98 catalog: duplicate key")
+				return nil, b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: duplicate key")
 			}
 		}
 	}
@@ -98,27 +98,27 @@ func B51ADiagnosticVariantEntries() ([]B51ADiagnosticVariantEntry, error) {
 
 func b51ADiagnosticVariantValidate(b51ADiagnosticVariantEntry B51ADiagnosticVariantEntry) error {
 	if b51ADiagnosticVariantEntry.B51ADiagnosticVariantKey.B51ADiagnosticVariantFamily == "" || b51ADiagnosticVariantEntry.B51ADiagnosticVariantKey.B51ADiagnosticVariant == "" || b51ADiagnosticVariantEntry.B51ADiagnosticVariantKey.B51ADiagnosticVariantField == "" || (b51ADiagnosticVariantEntry.B51ADiagnosticVariantKey.B51ADiagnosticVariantDirection != "request" && b51ADiagnosticVariantEntry.B51ADiagnosticVariantKey.B51ADiagnosticVariantDirection != "positive") {
-		return b51ADiagnosticVariantFmt.Errorf("ab98 catalog: incomplete key")
+		return b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: incomplete key")
 	}
 	if b51ADiagnosticVariantEntry.B51ADiagnosticVariantGrade != "Hypothesis" || b51ADiagnosticVariantEntry.B51ADiagnosticVariantMetadataPresence != "Proven" || b51ADiagnosticVariantEntry.B51ADiagnosticVariantPhysicalQualification != "Unknown" || b51ADiagnosticVariantEntry.B51ADiagnosticVariantInvocation != "Unknown" || b51ADiagnosticVariantEntry.B51ADiagnosticVariantNativeContract == "" {
-		return b51ADiagnosticVariantFmt.Errorf("ab98 catalog: invalid evidence boundary")
+		return b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: invalid evidence boundary")
 	}
 	if len(b51ADiagnosticVariantEntry.B51ADiagnosticVariantDomain) != 0 && (len(b51ADiagnosticVariantEntry.B51ADiagnosticVariantDomain) != 2 || b51ADiagnosticVariantEntry.B51ADiagnosticVariantDomain[0] > b51ADiagnosticVariantEntry.B51ADiagnosticVariantDomain[1]) {
-		return b51ADiagnosticVariantFmt.Errorf("ab98 catalog: invalid domain")
+		return b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: invalid domain")
 	}
 	if b51ADiagnosticVariantEntry.B51ADiagnosticVariantDefault != nil && len(b51ADiagnosticVariantEntry.B51ADiagnosticVariantDomain) == 2 && (*b51ADiagnosticVariantEntry.B51ADiagnosticVariantDefault < b51ADiagnosticVariantEntry.B51ADiagnosticVariantDomain[0] || *b51ADiagnosticVariantEntry.B51ADiagnosticVariantDefault > b51ADiagnosticVariantEntry.B51ADiagnosticVariantDomain[1]) {
-		return b51ADiagnosticVariantFmt.Errorf("ab98 catalog: default outside domain")
+		return b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: default outside domain")
 	}
 	if b51ADiagnosticVariantEntry.B51ADiagnosticVariantWidthBits != nil && (*b51ADiagnosticVariantEntry.B51ADiagnosticVariantWidthBits == 0 || *b51ADiagnosticVariantEntry.B51ADiagnosticVariantWidthBits > 64) {
-		return b51ADiagnosticVariantFmt.Errorf("ab98 catalog: invalid width")
+		return b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: invalid width")
 	}
 	if b51ADiagnosticVariantEntry.B51ADiagnosticVariantByteOrder != nil && *b51ADiagnosticVariantEntry.B51ADiagnosticVariantByteOrder != "little-endian" {
-		return b51ADiagnosticVariantFmt.Errorf("ab98 catalog: invalid byte order")
+		return b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: invalid byte order")
 	}
 	b51ADiagnosticVariantSeenBits := map[uint8]bool{}
 	for _, b51ADiagnosticVariantBit := range b51ADiagnosticVariantEntry.B51ADiagnosticVariantBits {
 		if b51ADiagnosticVariantBit.B51ADiagnosticVariantBit > 7 || b51ADiagnosticVariantSeenBits[b51ADiagnosticVariantBit.B51ADiagnosticVariantBit] {
-			return b51ADiagnosticVariantFmt.Errorf("ab98 catalog: invalid bit")
+			return b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: invalid bit")
 		}
 		b51ADiagnosticVariantSeenBits[b51ADiagnosticVariantBit.B51ADiagnosticVariantBit] = true
 	}
@@ -132,7 +132,7 @@ func b51ADiagnosticVariantValidate(b51ADiagnosticVariantEntry B51ADiagnosticVari
 	}
 	for _, b51ADiagnosticVariantAlternative := range b51ADiagnosticVariantEntry.B51ADiagnosticVariantAlternatives {
 		if b51ADiagnosticVariantAlternative.B51ADiagnosticVariantLabel == "" || len(b51ADiagnosticVariantAlternative.B51ADiagnosticVariantFields) == 0 {
-			return b51ADiagnosticVariantFmt.Errorf("ab98 catalog: invalid alternative")
+			return b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: invalid alternative")
 		}
 		for _, b51ADiagnosticVariantField := range b51ADiagnosticVariantAlternative.B51ADiagnosticVariantFields {
 			if b51ADiagnosticVariantErr := b51ADiagnosticVariantValidate(b51ADiagnosticVariantField); b51ADiagnosticVariantErr != nil {
@@ -146,7 +146,7 @@ func b51ADiagnosticVariantValidate(b51ADiagnosticVariantEntry B51ADiagnosticVari
 func b51ADiagnosticVariantValidateConditions(b51ADiagnosticVariantConditions []B51ADiagnosticVariantCondition) error {
 	for _, b51ADiagnosticVariantCondition := range b51ADiagnosticVariantConditions {
 		if b51ADiagnosticVariantCondition.B51ADiagnosticVariantBit > 7 || b51ADiagnosticVariantCondition.B51ADiagnosticVariantField == "" {
-			return b51ADiagnosticVariantFmt.Errorf("ab98 catalog: invalid condition")
+			return b51ADiagnosticVariantFmt.Errorf("b51a diagnostic variants catalog: invalid condition")
 		}
 	}
 	return nil

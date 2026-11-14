@@ -10,10 +10,10 @@ import (
 type b505OperatingRoleCatalogRow struct {
 	B505OperatingRoleID        string               `json:"id"`
 	B505OperatingRoleIdentity  B505OperatingRoleKey `json:"identity"`
-	B505OperatingRole          string               `json:"ab16Role"`
-	B505OperatingRoleRelations map[string]any       `json:"ab16Relations"`
+	B505OperatingRole          string               `json:"role"`
+	B505OperatingRoleRelations map[string]any       `json:"relations"`
 	B505OperatingRoleGrade     string               `json:"grade"`
-	B505OperatingRoleUnknown   map[string]string    `json:"ab16Unknown"`
+	B505OperatingRoleUnknown   map[string]string    `json:"unknown"`
 	B505OperatingRoleRaw       string               `json:"raw_fallback"`
 }
 
@@ -53,55 +53,55 @@ func b505OperatingRoleFind(b505OperatingRoleT *b505OperatingRoleTesting.T, b505O
 
 func TestAb16Associations(b505OperatingRoleT *b505OperatingRoleTesting.T) {
 	b505OperatingRoleExpected := []struct{ b505OperatingRoleID, b505OperatingRoleRole, b505OperatingRoleRelations string }{
-		{"5A_unchanged_setpoint", "room_day_night", `{"ab16Replacement":true,"ab16ReplacementRaw":"Unknown","ab16ReplacementAction":"retain_prior_token","ab16NumericBranch":"numeric_candidate_without_scale","ab16BranchOrder":"replacement_before_numeric"}`},
-		{"3D_unchanged_setpoint", "room_day_night", `{"ab16Replacement":true,"ab16ReplacementRaw":"Unknown","ab16ReplacementAction":"retain_prior_token","ab16NumericBranch":"numeric_candidate_without_scale","ab16BranchOrder":"replacement_before_numeric"}`},
-		{"47_heating_night", "inverter_indoor_circuit", `{"ab16Mode":"heating","ab16Period":"night","ab16Quantity":"room_setpoint"}`},
-		{"47_cooling_night", "inverter_indoor_circuit", `{"ab16Mode":"cooling","ab16Period":"night","ab16Quantity":"room_setpoint"}`},
-		{"48_heating_holiday", "inverter_indoor_circuit", `{"ab16Mode":"heating","ab16Period":"holiday","ab16Quantity":"room_setpoint"}`},
-		{"48_cooling_holiday", "inverter_indoor_circuit", `{"ab16Mode":"cooling","ab16Period":"holiday","ab16Quantity":"room_setpoint"}`},
-		{"41_frost_protection", "solar", `{"ab16ReplacementAction":"off","ab16ReplacementRaw":"Unknown"}`},
+		{"5A_unchanged_setpoint", "room_day_night", `{"replacement":true,"replacement_raw":"Unknown","replacement_action":"retain_prior_token","numeric_branch":"numeric_candidate_without_scale","branch_order":"replacement_before_numeric"}`},
+		{"3D_unchanged_setpoint", "room_day_night", `{"replacement":true,"replacement_raw":"Unknown","replacement_action":"retain_prior_token","numeric_branch":"numeric_candidate_without_scale","branch_order":"replacement_before_numeric"}`},
+		{"47_heating_night", "inverter_indoor_circuit", `{"mode":"heating","period":"night","quantity":"room_setpoint"}`},
+		{"47_cooling_night", "inverter_indoor_circuit", `{"mode":"cooling","period":"night","quantity":"room_setpoint"}`},
+		{"48_heating_holiday", "inverter_indoor_circuit", `{"mode":"heating","period":"holiday","quantity":"room_setpoint"}`},
+		{"48_cooling_holiday", "inverter_indoor_circuit", `{"mode":"cooling","period":"holiday","quantity":"room_setpoint"}`},
+		{"41_frost_protection", "solar", `{"replacement_action":"off","replacement_raw":"Unknown"}`},
 		{"40_minimum_temperature", "second_solar_circuit_or_solid_fuel_boiler", `{}`},
-		{"10_maximum_preheat_time", "heating", `{"ab16Action":"advance_before_first_period"}`},
-		{"3F_maximum_preheat_time", "heating", `{"ab16Action":"advance_before_first_period"}`},
-		{"15_early_cutoff", "heating", `{"ab16Action":"stop_demand_before_reduction_period"}`},
-		{"2B_early_cutoff", "heating", `{"ab16Action":"stop_demand_before_reduction_period"}`},
-		{"3C_uncorrected_room_temperature", "room", `{"ab16SelfHeating":true,"ab16UserCorrection":false}`},
-		{"3C_corrected_room_temperature", "room", `{"ab16SelfHeating":true,"ab16UserCorrection":true}`},
-		{"1B_switch_on_cutoff_difference", "solar_tank_one", `{"ab16Tank":"one"}`},
-		{"1E_switch_on_cutoff_difference", "solar_tank_two", `{"ab16Tank":"two"}`},
-		{"38_switch_on_cutoff_difference", "solar_tank_three", `{"ab16Tank":"three"}`},
-		{"1A_maximum_loading_temperature", "solar_tank_one", `{"ab16Tank":"one"}`},
-		{"1D_maximum_loading_temperature", "solar_tank_two", `{"ab16Tank":"two"}`},
-		{"37_maximum_loading_temperature", "solar_tank_three", `{"ab16Tank":"three"}`},
-		{"31_ordinary_dhw", "dhw", `{"ab16EnabledValue":1,"ab16EnabledEligibility":"ordinary_dhw","ab16BlockedEligibility":"frost_only"}`},
-		{"19_charging_enable", "dhw_tank_charging", `{"ab16EnabledValue":1}`},
-		{"27_charging_enable", "dhw_tank_charging", `{"ab16EnabledValue":1}`},
-		{"18_charging_disable", "circuit_charging", `{"ab16DisabledValue":1,"ab16Action":"suppress_without_parallel","ab16ExceptionRole":"mixer"}`},
-		{"27_charging_disable", "circuit_charging", `{"ab16DisabledValue":1,"ab16Action":"suppress_without_parallel","ab16ExceptionRole":"mixer"}`},
-		{"14_parallel_charging", "mixer", `{"ab16ExceptionRole":"mixer"}`},
+		{"10_maximum_preheat_time", "heating", `{"action":"advance_before_first_period"}`},
+		{"3F_maximum_preheat_time", "heating", `{"action":"advance_before_first_period"}`},
+		{"15_early_cutoff", "heating", `{"action":"stop_demand_before_reduction_period"}`},
+		{"2B_early_cutoff", "heating", `{"action":"stop_demand_before_reduction_period"}`},
+		{"3C_uncorrected_room_temperature", "room", `{"self_heating":true,"user_correction":false}`},
+		{"3C_corrected_room_temperature", "room", `{"self_heating":true,"user_correction":true}`},
+		{"1B_switch_on_cutoff_difference", "solar_tank_one", `{"tank":"one"}`},
+		{"1E_switch_on_cutoff_difference", "solar_tank_two", `{"tank":"two"}`},
+		{"38_switch_on_cutoff_difference", "solar_tank_three", `{"tank":"three"}`},
+		{"1A_maximum_loading_temperature", "solar_tank_one", `{"tank":"one"}`},
+		{"1D_maximum_loading_temperature", "solar_tank_two", `{"tank":"two"}`},
+		{"37_maximum_loading_temperature", "solar_tank_three", `{"tank":"three"}`},
+		{"31_ordinary_dhw", "dhw", `{"enabled_value":1,"enabled_eligibility":"ordinary_dhw","blocked_eligibility":"frost_only"}`},
+		{"19_charging_enable", "dhw_tank_charging", `{"enabled_value":1}`},
+		{"27_charging_enable", "dhw_tank_charging", `{"enabled_value":1}`},
+		{"18_charging_disable", "circuit_charging", `{"disabled_value":1,"action":"suppress_without_parallel","exception_role":"mixer"}`},
+		{"27_charging_disable", "circuit_charging", `{"disabled_value":1,"action":"suppress_without_parallel","exception_role":"mixer"}`},
+		{"14_parallel_charging", "mixer", `{"exception_role":"mixer"}`},
 		{"27_tank_flow_temperature", "dhw_flow", `{}`},
 		{"2F_external_storage_sensor_temperature", "external_storage_sensor", `{}`},
 		{"1C_outside_correction", "outside", `{}`},
 		{"26_hydraulic_schema", "solar_controller", `{}`},
 		{"23_duty_control", "collector_pumps", `{}`},
 		{"21_flow", "collector_water", `{}`},
-		{"22_reset", "solar", `{"ab16RequestValue":1,"ab16Intent":"clear_solar_pump_hours","ab16Accepted":"Unknown","ab16Persistent":"Unknown"}`},
-		{"20_reset", "solar", `{"ab16RequestValue":1,"ab16Intent":"clear_yield","ab16Accepted":"Unknown","ab16Persistent":"Unknown"}`},
-		{"17_flow_excess", "flow_demand", `{"ab16Action":"add_to_demanded_flow","ab16Encoding":"Unknown"}`},
-		{"0F_maximum_flow", "flow_demand", `{"ab16Action":"maximum"}`},
-		{"0E_minimum_flow", "flow_demand", `{"ab16Zero":"off","ab16Nonzero":"minimum_candidate"}`},
-		{"12_overrun", "charging", `{"ab16Action":"retain_pump_after_charging","ab16Boiler":"inhibited"}`},
-		{"11_recharge_delay", "solar_charging", `{"ab16Action":"limit_recharge_delay"}`},
-		{"0D_pump_idle", "pump", `{"ab16Action":"energy_saving_interval_after_flow_exceeds_desired"}`},
-		{"0C_outside_cutoff", "heating", `{"ab16Action":"select_summer_heating_operation"}`},
-		{"01_day_setpoint_heating", "room", `{"ab16CircuitClass":"heating"}`},
-		{"01_day_setpoint_fixed_value", "flow", `{"ab16CircuitClass":"fixed_value"}`},
-		{"01_day_setpoint_dhw", "tank", `{"ab16CircuitClass":"dhw"}`},
-		{"0A_reduction_heating", "room", `{"ab16CircuitClass":"heating"}`},
-		{"0A_reduction_fixed_value", "fixed_flow", `{"ab16CircuitClass":"fixed_value"}`},
-		{"09_first_period_start", "programming", `{"ab16ProgrammingMode":0,"ab16OtherModes":"ignored"}`},
-		{"07_saving", "heating", `{"ab16Zero":"off"}`},
-		{"03_drying_day", "drying", `{"ab16Zero":"disabled"}`},
+		{"22_reset", "solar", `{"request_value":1,"intent":"clear_solar_pump_hours","accepted":"Unknown","persistent":"Unknown"}`},
+		{"20_reset", "solar", `{"request_value":1,"intent":"clear_yield","accepted":"Unknown","persistent":"Unknown"}`},
+		{"17_flow_excess", "flow_demand", `{"action":"add_to_demanded_flow","encoding":"Unknown"}`},
+		{"0F_maximum_flow", "flow_demand", `{"action":"maximum"}`},
+		{"0E_minimum_flow", "flow_demand", `{"zero":"off","nonzero":"minimum_candidate"}`},
+		{"12_overrun", "charging", `{"action":"retain_pump_after_charging","boiler":"inhibited"}`},
+		{"11_recharge_delay", "solar_charging", `{"action":"limit_recharge_delay"}`},
+		{"0D_pump_idle", "pump", `{"action":"energy_saving_interval_after_flow_exceeds_desired"}`},
+		{"0C_outside_cutoff", "heating", `{"action":"select_summer_heating_operation"}`},
+		{"01_day_setpoint_heating", "room", `{"circuit_class":"heating"}`},
+		{"01_day_setpoint_fixed_value", "flow", `{"circuit_class":"fixed_value"}`},
+		{"01_day_setpoint_dhw", "tank", `{"circuit_class":"dhw"}`},
+		{"0A_reduction_heating", "room", `{"circuit_class":"heating"}`},
+		{"0A_reduction_fixed_value", "fixed_flow", `{"circuit_class":"fixed_value"}`},
+		{"09_first_period_start", "programming", `{"programming_mode":0,"other_modes":"ignored"}`},
+		{"07_saving", "heating", `{"zero":"off"}`},
+		{"03_drying_day", "drying", `{"zero":"disabled"}`},
 	}
 	if len(b505OperatingRoleRows(b505OperatingRoleT)) != len(b505OperatingRoleExpected) {
 		b505OperatingRoleT.Fatal("finite area changed")
@@ -287,11 +287,11 @@ func TestAb16SyntheticCandidates(b505OperatingRoleT *b505OperatingRoleTesting.T)
 		{"1A_maximum_loading_temperature", "ab16_alpha"}, {"1D_maximum_loading_temperature", "ab16_beta"}, {"37_maximum_loading_temperature", "ab16_gamma"},
 	} {
 		b505OperatingRoleRow := b505OperatingRoleFind(b505OperatingRoleT, b505OperatingRoleCase.b505OperatingRoleID)
-		if b505OperatingRoleTanks[b505OperatingRoleRow.B505OperatingRoleRelations["ab16Tank"].(string)] != b505OperatingRoleCase.b505OperatingRoleExpected {
+		if b505OperatingRoleTanks[b505OperatingRoleRow.B505OperatingRoleRelations["tank"].(string)] != b505OperatingRoleCase.b505OperatingRoleExpected {
 			b505OperatingRoleT.Fatal("tank token misrouted")
 		}
 		for _, b505OperatingRoleOther := range []string{"one", "two", "three"} {
-			if b505OperatingRoleOther != b505OperatingRoleRow.B505OperatingRoleRelations["ab16Tank"] && b505OperatingRoleTanks[b505OperatingRoleOther] == b505OperatingRoleCase.b505OperatingRoleExpected {
+			if b505OperatingRoleOther != b505OperatingRoleRow.B505OperatingRoleRelations["tank"] && b505OperatingRoleTanks[b505OperatingRoleOther] == b505OperatingRoleCase.b505OperatingRoleExpected {
 				b505OperatingRoleT.Fatal("tank controls not distinct")
 			}
 		}
@@ -302,7 +302,7 @@ func TestAb16SyntheticCandidates(b505OperatingRoleT *b505OperatingRoleTesting.T)
 		b505OperatingRoleWant float64
 	}{{"47_heating_night", 17}, {"47_cooling_night", 23}, {"48_heating_holiday", 13}, {"48_cooling_holiday", 29}} {
 		b505OperatingRoleRow := b505OperatingRoleFind(b505OperatingRoleT, b505OperatingRoleCase.b505OperatingRoleID)
-		b505OperatingRoleField := b505OperatingRoleRow.B505OperatingRoleRelations["ab16Mode"].(string) + "_" + b505OperatingRoleRow.B505OperatingRoleRelations["ab16Period"].(string)
+		b505OperatingRoleField := b505OperatingRoleRow.B505OperatingRoleRelations["mode"].(string) + "_" + b505OperatingRoleRow.B505OperatingRoleRelations["period"].(string)
 		if b505OperatingRoleInputs[b505OperatingRoleField] != b505OperatingRoleCase.b505OperatingRoleWant {
 			b505OperatingRoleT.Fatal("setpoints merged")
 		}
@@ -314,21 +314,21 @@ func TestAb16SyntheticCandidates(b505OperatingRoleT *b505OperatingRoleTesting.T)
 			b505OperatingRoleWant := any(float64(21))
 			if b505OperatingRoleReplacement {
 				b505OperatingRoleWant = "ab16_prior"
-				if b505OperatingRoleRow.B505OperatingRoleRelations["ab16ReplacementAction"] == "retain_prior_token" && b505OperatingRoleRow.B505OperatingRoleRelations["ab16BranchOrder"] == "replacement_before_numeric" {
+				if b505OperatingRoleRow.B505OperatingRoleRelations["replacement_action"] == "retain_prior_token" && b505OperatingRoleRow.B505OperatingRoleRelations["branch_order"] == "replacement_before_numeric" {
 					b505OperatingRoleCandidate = "ab16_prior"
 				}
 			}
-			if b505OperatingRoleCandidate != b505OperatingRoleWant || b505OperatingRoleRow.B505OperatingRoleRelations["ab16ReplacementRaw"] != "Unknown" || b505OperatingRoleRow.B505OperatingRoleRelations["ab16NumericBranch"] != "numeric_candidate_without_scale" {
+			if b505OperatingRoleCandidate != b505OperatingRoleWant || b505OperatingRoleRow.B505OperatingRoleRelations["replacement_raw"] != "Unknown" || b505OperatingRoleRow.B505OperatingRoleRelations["numeric_branch"] != "numeric_candidate_without_scale" {
 				b505OperatingRoleT.Fatal("replacement or numeric branch changed")
 			}
 		}
 	}
 	b505OperatingRoleDHW := b505OperatingRoleFind(b505OperatingRoleT, "31_ordinary_dhw")
 	for _, b505OperatingRoleEnabled := range []bool{false, true} {
-		b505OperatingRoleAxis := "ab16BlockedEligibility"
+		b505OperatingRoleAxis := "blocked_eligibility"
 		b505OperatingRoleWant := "frost_only"
 		if b505OperatingRoleEnabled {
-			b505OperatingRoleAxis = "ab16EnabledEligibility"
+			b505OperatingRoleAxis = "enabled_eligibility"
 			b505OperatingRoleWant = "ordinary_dhw"
 		}
 		if b505OperatingRoleDHW.B505OperatingRoleRelations[b505OperatingRoleAxis] != b505OperatingRoleWant {
@@ -341,7 +341,7 @@ func TestAb16SyntheticCandidates(b505OperatingRoleT *b505OperatingRoleTesting.T)
 			b505OperatingRoleRole                                  string
 			b505OperatingRoleParallel, b505OperatingRoleSuppressed bool
 		}{{"mixer", false, true}, {"mixer", true, false}, {"heating", false, true}, {"heating", true, true}} {
-			b505OperatingRoleSuppressed := !b505OperatingRoleCase.b505OperatingRoleParallel || b505OperatingRoleCase.b505OperatingRoleRole != b505OperatingRoleRow.B505OperatingRoleRelations["ab16ExceptionRole"]
+			b505OperatingRoleSuppressed := !b505OperatingRoleCase.b505OperatingRoleParallel || b505OperatingRoleCase.b505OperatingRoleRole != b505OperatingRoleRow.B505OperatingRoleRelations["exception_role"]
 			if b505OperatingRoleSuppressed != b505OperatingRoleCase.b505OperatingRoleSuppressed || b505OperatingRoleFind(b505OperatingRoleT, "14_parallel_charging").B505OperatingRole != "mixer" {
 				b505OperatingRoleT.Fatal("parallel exception broadened")
 			}
@@ -349,19 +349,19 @@ func TestAb16SyntheticCandidates(b505OperatingRoleT *b505OperatingRoleTesting.T)
 	}
 	b505OperatingRoleExcess := b505OperatingRoleFind(b505OperatingRoleT, "17_flow_excess")
 	b505OperatingRoleCandidate := 40
-	if b505OperatingRoleExcess.B505OperatingRoleRelations["ab16Action"] == "add_to_demanded_flow" {
+	if b505OperatingRoleExcess.B505OperatingRoleRelations["action"] == "add_to_demanded_flow" {
 		b505OperatingRoleCandidate += 5
 	}
-	if b505OperatingRoleCandidate != 45 || b505OperatingRoleExcess.B505OperatingRoleRelations["ab16Encoding"] != "Unknown" {
+	if b505OperatingRoleCandidate != 45 || b505OperatingRoleExcess.B505OperatingRoleRelations["encoding"] != "Unknown" {
 		b505OperatingRoleT.Fatal("semantic addition changed")
 	}
 	for _, b505OperatingRoleID := range []string{"22_reset", "20_reset"} {
 		b505OperatingRoleRow := b505OperatingRoleFind(b505OperatingRoleT, b505OperatingRoleID)
-		if b505OperatingRoleRow.B505OperatingRoleRelations["ab16Accepted"] != "Unknown" || b505OperatingRoleRow.B505OperatingRoleRelations["ab16Persistent"] != "Unknown" {
+		if b505OperatingRoleRow.B505OperatingRoleRelations["accepted"] != "Unknown" || b505OperatingRoleRow.B505OperatingRoleRelations["persistent"] != "Unknown" {
 			b505OperatingRoleT.Fatal("request promoted to acceptance")
 		}
 	}
-	if b505OperatingRoleFind(b505OperatingRoleT, "0E_minimum_flow").B505OperatingRoleRelations["ab16Zero"] != "off" {
+	if b505OperatingRoleFind(b505OperatingRoleT, "0E_minimum_flow").B505OperatingRoleRelations["zero"] != "off" {
 		b505OperatingRoleT.Fatal("zero became positive minimum")
 	}
 	for _, b505OperatingRoleCase := range []struct{ b505OperatingRoleClass, b505OperatingRoleWant string }{{"heating", "room"}, {"fixed_value", "flow"}, {"dhw", "tank"}} {
@@ -371,14 +371,14 @@ func TestAb16SyntheticCandidates(b505OperatingRoleT *b505OperatingRoleTesting.T)
 		for _, b505OperatingRoleMode := range []float64{0, 1} {
 			b505OperatingRoleRow := b505OperatingRoleFind(b505OperatingRoleT, "09_first_period_start")
 			b505OperatingRoleResult := "ignored"
-			if b505OperatingRoleMode == b505OperatingRoleRow.B505OperatingRoleRelations["ab16ProgrammingMode"] {
+			if b505OperatingRoleMode == b505OperatingRoleRow.B505OperatingRoleRelations["programming_mode"] {
 				b505OperatingRoleResult = "ab16_same_start"
 			}
 			b505OperatingRoleWant := "ignored"
 			if b505OperatingRoleMode == 0 {
 				b505OperatingRoleWant = "ab16_same_start"
 			}
-			if b505OperatingRoleResult != b505OperatingRoleWant || b505OperatingRoleRow.B505OperatingRoleRelations["ab16OtherModes"] != "ignored" {
+			if b505OperatingRoleResult != b505OperatingRoleWant || b505OperatingRoleRow.B505OperatingRoleRelations["other_modes"] != "ignored" {
 				b505OperatingRoleT.Fatal("programming mode changed")
 			}
 		}

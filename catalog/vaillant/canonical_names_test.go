@@ -86,15 +86,15 @@ func TestRenamedCatalogFieldJSONKeys(t *testing.T) {
 		value any
 		keys  map[string]string
 	}{
-		{B514ActivationVectorIdentity{}, map[string]string{"B514ActivationVectorFamily": "Ab80Family", "B514ActivationVectorVariant": "Ab80Variant", "B514ActivationVectorOperation": "Ab80Operation", "B514ActivationVectorDirection": "Ab80Direction"}},
-		{B514ActivationVectorBit{}, map[string]string{"B514ActivationVectorPresent": "Ab80Present", "B514ActivationVectorValue": "Ab80Value"}},
-		{B514ActivationVectorScalar{}, map[string]string{"B514ActivationVectorPresent": "Ab80Present", "B514ActivationVectorRaw": "Ab80Raw", "B514ActivationVectorInterpretation": "Ab80Interpretation"}},
-		{B525SpectrumBlockContext{}, map[string]string{"B525SpectrumBlockPrimary": "Ab82Primary", "B525SpectrumBlockSecondary": "Ab82Secondary", "B525SpectrumBlockFamily": "Ab82Family", "B525SpectrumBlockVariant": "Ab82Variant", "B525SpectrumBlockOperation": "Ab82Operation", "B525SpectrumBlockDirection": "Ab82Direction", "B525SpectrumBlockSelector": "Ab82Selector"}},
-		{B525SpectrumBlockInput{}, map[string]string{"B525SpectrumBlockContext": "Ab82Context", "B525SpectrumBlockValues": "Ab82Values"}},
-		{B525SpectrumBlockEntry{}, map[string]string{"B525SpectrumBlockIndex": "Ab82Index", "B525SpectrumBlockRawByte": "Ab82RawByte", "B525SpectrumBlockSigned": "Ab82Signed"}},
-		{B525SpectrumBlock{}, map[string]string{"B525SpectrumBlockContext": "Ab82Context", "B525SpectrumBlockState": "Ab82State", "B525SpectrumBlockGrade": "Ab82Grade", "B525SpectrumBlockStart": "Ab82Start", "B525SpectrumBlockRaw": "Ab82Raw", "B525SpectrumBlockEntries": "Ab82Entries", "B525SpectrumBlockMask": "Ab82Mask", "B525SpectrumBlockIncomplete": "Ab82Incomplete", "B525SpectrumBlockExtra": "Ab82Extra", "B525SpectrumBlockRemainder": "Ab82Remainder"}},
-		{B525SpectrumJoinBlock{}, map[string]string{"B525SpectrumBlockSelector": "Ab82Selector", "B525SpectrumBlockState": "Ab82State", "B525SpectrumBlockContributed": "Ab82Contributed", "B525SpectrumBlockConflict": "Ab82Conflict"}},
-		{B525SpectrumBlockJoined{}, map[string]string{"B525SpectrumBlockState": "Ab82State", "B525SpectrumBlockGrade": "Ab82Grade", "B525SpectrumBlockComplete": "Ab82Complete", "B525SpectrumBlocks": "Ab82Blocks", "B525SpectrumBlockEntries": "Ab82Entries", "B525SpectrumBlockMask": "Ab82Mask", "B525SpectrumBlockMissing": "Ab82Missing", "B525SpectrumBlockConflicts": "Ab82Conflicts"}},
+		{B514ActivationVectorIdentity{}, map[string]string{"B514ActivationVectorFamily": "family", "B514ActivationVectorVariant": "variant", "B514ActivationVectorOperation": "operation", "B514ActivationVectorDirection": "direction"}},
+		{B514ActivationVectorBit{}, map[string]string{"B514ActivationVectorPresent": "present", "B514ActivationVectorValue": "value"}},
+		{B514ActivationVectorScalar{}, map[string]string{"B514ActivationVectorPresent": "present", "B514ActivationVectorRaw": "raw", "B514ActivationVectorInterpretation": "interpretation"}},
+		{B525SpectrumBlockContext{}, map[string]string{"B525SpectrumBlockPrimary": "primary", "B525SpectrumBlockSecondary": "secondary", "B525SpectrumBlockFamily": "family", "B525SpectrumBlockVariant": "variant", "B525SpectrumBlockOperation": "operation", "B525SpectrumBlockDirection": "direction", "B525SpectrumBlockSelector": "selector"}},
+		{B525SpectrumBlockInput{}, map[string]string{"B525SpectrumBlockContext": "context", "B525SpectrumBlockValues": "values"}},
+		{B525SpectrumBlockEntry{}, map[string]string{"B525SpectrumBlockIndex": "index", "B525SpectrumBlockRawByte": "raw_byte", "B525SpectrumBlockSigned": "signed"}},
+		{B525SpectrumBlock{}, map[string]string{"B525SpectrumBlockContext": "context", "B525SpectrumBlockState": "state", "B525SpectrumBlockGrade": "grade", "B525SpectrumBlockStart": "start", "B525SpectrumBlockRaw": "raw", "B525SpectrumBlockEntries": "entries", "B525SpectrumBlockMask": "mask", "B525SpectrumBlockIncomplete": "incomplete", "B525SpectrumBlockExtra": "extra", "B525SpectrumBlockRemainder": "remainder"}},
+		{B525SpectrumJoinBlock{}, map[string]string{"B525SpectrumBlockSelector": "selector", "B525SpectrumBlockState": "state", "B525SpectrumBlockContributed": "contributed", "B525SpectrumBlockConflict": "conflict"}},
+		{B525SpectrumBlockJoined{}, map[string]string{"B525SpectrumBlockState": "state", "B525SpectrumBlockGrade": "grade", "B525SpectrumBlockComplete": "complete", "B525SpectrumBlocks": "blocks", "B525SpectrumBlockEntries": "entries", "B525SpectrumBlockMask": "mask", "B525SpectrumBlockMissing": "missing", "B525SpectrumBlockConflicts": "conflicts"}},
 	}
 	for _, tc := range cases {
 		data, err := json.Marshal(tc.value)

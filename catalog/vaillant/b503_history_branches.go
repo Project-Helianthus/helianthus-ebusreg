@@ -1,43 +1,43 @@
 package vaillant
 
 type B503HistoryBranchContext struct {
-	B503HistoryBranchFamily    string `json:"Ab05An05Family"`
-	B503HistoryBranchVariant   string `json:"Ab05An05Variant"`
-	B503HistoryBranchOperation uint8  `json:"Ab05An05Operation"`
-	B503HistoryBranchDirection string `json:"Ab05An05Direction"`
+	B503HistoryBranchFamily    string `json:"family"`
+	B503HistoryBranchVariant   string `json:"variant"`
+	B503HistoryBranchOperation uint8  `json:"operation"`
+	B503HistoryBranchDirection string `json:"direction"`
 }
 
 type B503HistoryBranchCell struct {
-	B503HistoryBranchRawPresent        bool   `json:"Ab05An05RawPresent"`
-	B503HistoryBranchRaw               uint8  `json:"Ab05An05Raw"`
-	B503HistoryBranchNormalizedPresent bool   `json:"Ab05An05NormalizedPresent"`
-	B503HistoryBranchValue             uint64 `json:"Ab05An05Value"`
+	B503HistoryBranchRawPresent        bool   `json:"raw_present"`
+	B503HistoryBranchRaw               uint8  `json:"raw"`
+	B503HistoryBranchNormalizedPresent bool   `json:"normalized_present"`
+	B503HistoryBranchValue             uint64 `json:"value"`
 }
 
 type B503HistoryBranchFields struct {
-	B503HistoryBranchContext          B503HistoryBranchContext `json:"Ab05An05Context"`
-	B503HistoryBranchMarkerPresent    bool                     `json:"Ab05An05MarkerPresent"`
-	B503HistoryBranchMarker           uint8                    `json:"Ab05An05Marker"`
-	B503HistoryBranchRemainderPresent bool                     `json:"Ab05An05RemainderPresent"`
-	B503HistoryBranchRemainder        [7]uint8                 `json:"Ab05An05Remainder"`
-	B503HistoryBranchErrorPresent     bool                     `json:"Ab05An05ErrorPresent"`
-	B503HistoryBranchError            uint64                   `json:"Ab05An05Error"`
-	B503HistoryBranchCalendar         [5]B503HistoryBranchCell `json:"Ab05An05Calendar"`
+	B503HistoryBranchContext          B503HistoryBranchContext `json:"context"`
+	B503HistoryBranchMarkerPresent    bool                     `json:"marker_present"`
+	B503HistoryBranchMarker           uint8                    `json:"marker"`
+	B503HistoryBranchRemainderPresent bool                     `json:"remainder_present"`
+	B503HistoryBranchRemainder        [7]uint8                 `json:"remainder"`
+	B503HistoryBranchErrorPresent     bool                     `json:"error_present"`
+	B503HistoryBranchError            uint64                   `json:"error"`
+	B503HistoryBranchCalendar         [5]B503HistoryBranchCell `json:"calendar"`
 }
 
 type B503HistoryBranchComponent struct {
-	B503HistoryBranchCell  B503HistoryBranchCell `json:"Ab05An05Cell"`
-	B503HistoryBranchState string                `json:"Ab05An05State"`
+	B503HistoryBranchCell  B503HistoryBranchCell `json:"cell"`
+	B503HistoryBranchState string                `json:"state"`
 }
 
 type B503HistoryBranchView struct {
-	B503HistoryBranchFields        B503HistoryBranchFields       `json:"Ab05An05Fields"`
-	B503HistoryBranchState         string                        `json:"Ab05An05State"`
-	B503HistoryBranchComponents    [5]B503HistoryBranchComponent `json:"Ab05An05Components"`
-	B503HistoryBranchComplete      bool                          `json:"Ab05An05Complete"`
-	B503HistoryBranchContract      string                        `json:"Ab05An05Contract"`
-	B503HistoryBranchMeaning       string                        `json:"Ab05An05Meaning"`
-	B503HistoryBranchQualification string                        `json:"Ab05An05Qualification"`
+	B503HistoryBranchFields        B503HistoryBranchFields       `json:"fields"`
+	B503HistoryBranchState         string                        `json:"state"`
+	B503HistoryBranchComponents    [5]B503HistoryBranchComponent `json:"components"`
+	B503HistoryBranchComplete      bool                          `json:"complete"`
+	B503HistoryBranchContract      string                        `json:"contract"`
+	B503HistoryBranchMeaning       string                        `json:"meaning"`
+	B503HistoryBranchQualification string                        `json:"qualification"`
 }
 
 func B503HistoryBranchHistory(b503HistoryBranchFields B503HistoryBranchFields) B503HistoryBranchView {

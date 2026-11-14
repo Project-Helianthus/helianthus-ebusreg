@@ -5,7 +5,6 @@ import (
 	b524ComponentSelectorJSON "encoding/json"
 	b524ComponentSelectorFmt "fmt"
 	b524ComponentSelectorReflect "reflect"
-	b524ComponentSelectorStrings "strings"
 )
 
 //go:embed data/ab32_b524_component_selectors.json
@@ -31,7 +30,7 @@ func b524ComponentSelectorValidate(b524ComponentSelectorData []byte) ([]b524Comp
 		return nil, nil, b524ComponentSelectorError
 	}
 	if b524ComponentSelectorRows == nil {
-		return nil, nil, b524ComponentSelectorFmt.Errorf("ab32: expected array")
+		return nil, nil, b524ComponentSelectorFmt.Errorf("b524 component selectors: expected array")
 	}
 	b524ComponentSelectorKeys := make([]B524ComponentSelectorKey, 0, len(b524ComponentSelectorRows))
 	b524ComponentSelectorIDs := make(map[string]bool)
@@ -43,8 +42,8 @@ func b524ComponentSelectorValidate(b524ComponentSelectorData []byte) ([]b524Comp
 		if b524ComponentSelectorError := b524ComponentSelectorJSON.Unmarshal(b524ComponentSelectorRow, &b524ComponentSelectorEnvelope); b524ComponentSelectorError != nil {
 			return nil, nil, b524ComponentSelectorError
 		}
-		if !b524ComponentSelectorStrings.HasPrefix(b524ComponentSelectorEnvelope.B524ComponentSelectorID, "ab32-") || b524ComponentSelectorIDs[b524ComponentSelectorEnvelope.B524ComponentSelectorID] {
-			return nil, nil, b524ComponentSelectorFmt.Errorf("ab32: invalid or duplicate id")
+		if b524ComponentSelectorEnvelope.B524ComponentSelectorID == "" || b524ComponentSelectorIDs[b524ComponentSelectorEnvelope.B524ComponentSelectorID] {
+			return nil, nil, b524ComponentSelectorFmt.Errorf("b524 component selectors: invalid or duplicate id")
 		}
 		b524ComponentSelectorIDs[b524ComponentSelectorEnvelope.B524ComponentSelectorID] = true
 		var b524ComponentSelectorFields map[string]b524ComponentSelectorJSON.RawMessage
@@ -53,15 +52,15 @@ func b524ComponentSelectorValidate(b524ComponentSelectorData []byte) ([]b524Comp
 		}
 		b524ComponentSelectorAxes := []string{"family", "variant", "primary", "secondary", "operation", "direction", "field", "alternative", "group", "instance_scope", "register"}
 		if len(b524ComponentSelectorFields) != len(b524ComponentSelectorAxes) {
-			return nil, nil, b524ComponentSelectorFmt.Errorf("ab32: incomplete identity")
+			return nil, nil, b524ComponentSelectorFmt.Errorf("b524 component selectors: incomplete identity")
 		}
 		for _, b524ComponentSelectorAxis := range b524ComponentSelectorAxes {
 			if _, b524ComponentSelectorPresent := b524ComponentSelectorFields[b524ComponentSelectorAxis]; !b524ComponentSelectorPresent {
-				return nil, nil, b524ComponentSelectorFmt.Errorf("ab32: missing %s", b524ComponentSelectorAxis)
+				return nil, nil, b524ComponentSelectorFmt.Errorf("b524 component selectors: missing %s", b524ComponentSelectorAxis)
 			}
 		}
 		if string(b524ComponentSelectorFields["primary"]) == "null" {
-			return nil, nil, b524ComponentSelectorFmt.Errorf("ab32: null primary")
+			return nil, nil, b524ComponentSelectorFmt.Errorf("b524 component selectors: null primary")
 		}
 		var b524ComponentSelectorKey B524ComponentSelectorKey
 		if b524ComponentSelectorError := b524ComponentSelectorJSON.Unmarshal(b524ComponentSelectorEnvelope.B524ComponentSelectorKey, &b524ComponentSelectorKey); b524ComponentSelectorError != nil {
@@ -69,12 +68,12 @@ func b524ComponentSelectorValidate(b524ComponentSelectorData []byte) ([]b524Comp
 		}
 		for _, b524ComponentSelectorText := range []string{b524ComponentSelectorKey.B524ComponentSelectorFamily, b524ComponentSelectorKey.B524ComponentSelectorVariant, b524ComponentSelectorKey.B524ComponentSelectorDirection, b524ComponentSelectorKey.B524ComponentSelectorField, b524ComponentSelectorKey.B524ComponentSelectorAlternative, b524ComponentSelectorKey.B524ComponentSelectorInstanceScope} {
 			if b524ComponentSelectorText == "" {
-				return nil, nil, b524ComponentSelectorFmt.Errorf("ab32: empty identity string")
+				return nil, nil, b524ComponentSelectorFmt.Errorf("b524 component selectors: empty identity string")
 			}
 		}
 		for _, b524ComponentSelectorPrevious := range b524ComponentSelectorKeys {
 			if b524ComponentSelectorReflect.DeepEqual(b524ComponentSelectorPrevious, b524ComponentSelectorKey) {
-				return nil, nil, b524ComponentSelectorFmt.Errorf("ab32: duplicate key")
+				return nil, nil, b524ComponentSelectorFmt.Errorf("b524 component selectors: duplicate key")
 			}
 		}
 		b524ComponentSelectorKeys = append(b524ComponentSelectorKeys, b524ComponentSelectorKey)

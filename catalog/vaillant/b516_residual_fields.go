@@ -31,7 +31,7 @@ func b516ResidualFieldValidate(b516ResidualFieldSource []byte) ([]b516ResidualFi
 		return nil, nil, b516ResidualFieldError
 	}
 	if b516ResidualFieldRows == nil {
-		return nil, nil, b516ResidualFieldFmt.Errorf("ab51: expected array")
+		return nil, nil, b516ResidualFieldFmt.Errorf("b516 residual fields: expected array")
 	}
 	b516ResidualFieldKeys := make([]B516ResidualFieldKey, 0, len(b516ResidualFieldRows))
 	for _, b516ResidualFieldRow := range b516ResidualFieldRows {
@@ -45,7 +45,7 @@ func b516ResidualFieldValidate(b516ResidualFieldSource []byte) ([]b516ResidualFi
 		}
 		for _, b516ResidualFieldName := range []string{"family", "variant", "primary", "direction", "field", "alternative", "instance_scope"} {
 			if len(b516ResidualFieldMembers[b516ResidualFieldName]) == 0 || b516ResidualFieldBytes.Equal(b516ResidualFieldBytes.TrimSpace(b516ResidualFieldMembers[b516ResidualFieldName]), []byte("null")) {
-				return nil, nil, b516ResidualFieldFmt.Errorf("ab51: missing key axis %s", b516ResidualFieldName)
+				return nil, nil, b516ResidualFieldFmt.Errorf("b516 residual fields: missing key axis %s", b516ResidualFieldName)
 			}
 		}
 		var b516ResidualFieldKey B516ResidualFieldKey
@@ -55,11 +55,11 @@ func b516ResidualFieldValidate(b516ResidualFieldSource []byte) ([]b516ResidualFi
 			return nil, nil, b516ResidualFieldError
 		}
 		if b516ResidualFieldKey.B516ResidualFieldFamily == "" || b516ResidualFieldKey.B516ResidualFieldVariant == "" || b516ResidualFieldKey.B516ResidualFieldDirection == "" || b516ResidualFieldKey.B516ResidualField == "" || b516ResidualFieldKey.B516ResidualFieldAlternative == "" || b516ResidualFieldKey.B516ResidualFieldInstanceScope == "" {
-			return nil, nil, b516ResidualFieldFmt.Errorf("ab51: empty string axis; use none when not applicable")
+			return nil, nil, b516ResidualFieldFmt.Errorf("b516 residual fields: empty string axis; use none when not applicable")
 		}
 		for _, b516ResidualFieldPrevious := range b516ResidualFieldKeys {
 			if b516ResidualFieldReflect.DeepEqual(b516ResidualFieldPrevious, b516ResidualFieldKey) {
-				return nil, nil, b516ResidualFieldFmt.Errorf("ab51: duplicate key")
+				return nil, nil, b516ResidualFieldFmt.Errorf("b516 residual fields: duplicate key")
 			}
 		}
 		b516ResidualFieldKeys = append(b516ResidualFieldKeys, b516ResidualFieldKey)

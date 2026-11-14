@@ -27,10 +27,10 @@ type B512HeatpumpIOKey struct {
 func b512HeatpumpIOValidate(b512HeatpumpIOInput string) ([]b512HeatpumpIOJSON.RawMessage, []B512HeatpumpIOKey, error) {
 	var b512HeatpumpIORows []b512HeatpumpIOJSON.RawMessage
 	if b512HeatpumpIOErr := b512HeatpumpIOJSON.Unmarshal([]byte(b512HeatpumpIOInput), &b512HeatpumpIORows); b512HeatpumpIOErr != nil {
-		return nil, nil, b512HeatpumpIOFmt.Errorf("ab19 catalog: %w", b512HeatpumpIOErr)
+		return nil, nil, b512HeatpumpIOFmt.Errorf("b512 heatpump io catalog: %w", b512HeatpumpIOErr)
 	}
 	if len(b512HeatpumpIORows) == 0 {
-		return nil, nil, b512HeatpumpIOFmt.Errorf("ab19 catalog: empty array")
+		return nil, nil, b512HeatpumpIOFmt.Errorf("b512 heatpump io catalog: empty array")
 	}
 	b512HeatpumpIOKeys := make([]B512HeatpumpIOKey, 0, len(b512HeatpumpIORows))
 	b512HeatpumpIOIDs := make(map[string]bool)
@@ -45,7 +45,7 @@ func b512HeatpumpIOValidate(b512HeatpumpIOInput string) ([]b512HeatpumpIOJSON.Ra
 		}
 		for _, b512HeatpumpIOAxis := range []string{"family", "variant", "primary", "secondary", "operation", "direction", "field", "alternative", "group", "instance_scope", "register"} {
 			if _, b512HeatpumpIOPresent := b512HeatpumpIOKeyFields[b512HeatpumpIOAxis]; !b512HeatpumpIOPresent {
-				return nil, nil, b512HeatpumpIOFmt.Errorf("ab19 catalog: missing %s", b512HeatpumpIOAxis)
+				return nil, nil, b512HeatpumpIOFmt.Errorf("b512 heatpump io catalog: missing %s", b512HeatpumpIOAxis)
 			}
 		}
 		var b512HeatpumpIOKey B512HeatpumpIOKey
@@ -53,19 +53,19 @@ func b512HeatpumpIOValidate(b512HeatpumpIOInput string) ([]b512HeatpumpIOJSON.Ra
 			return nil, nil, b512HeatpumpIOErr
 		}
 		if len(b512HeatpumpIOKeyFields) != 11 || b512HeatpumpIOKey.B512HeatpumpIOFamily == "" || b512HeatpumpIOKey.B512HeatpumpIOVariant == "" || b512HeatpumpIOKey.B512HeatpumpIODirection == "" || b512HeatpumpIOKey.B512HeatpumpIOField == "" || b512HeatpumpIOKey.B512HeatpumpIOAlternative == "" || b512HeatpumpIOKey.B512HeatpumpIOInstanceScope == "" || string(b512HeatpumpIOKeyFields["primary"]) == "null" {
-			return nil, nil, b512HeatpumpIOFmt.Errorf("ab19 catalog: incomplete identity")
+			return nil, nil, b512HeatpumpIOFmt.Errorf("b512 heatpump io catalog: incomplete identity")
 		}
 		for _, b512HeatpumpIOPrevious := range b512HeatpumpIOKeys {
 			if b512HeatpumpIOReflect.DeepEqual(b512HeatpumpIOPrevious, b512HeatpumpIOKey) {
-				return nil, nil, b512HeatpumpIOFmt.Errorf("ab19 catalog: duplicate key")
+				return nil, nil, b512HeatpumpIOFmt.Errorf("b512 heatpump io catalog: duplicate key")
 			}
 		}
 		var b512HeatpumpIOID string
 		if b512HeatpumpIOErr := b512HeatpumpIOJSON.Unmarshal(b512HeatpumpIOFields["id"], &b512HeatpumpIOID); b512HeatpumpIOErr != nil {
 			return nil, nil, b512HeatpumpIOErr
 		}
-		if len(b512HeatpumpIOID) < 5 || b512HeatpumpIOID[:5] != "ab19_" || b512HeatpumpIOIDs[b512HeatpumpIOID] {
-			return nil, nil, b512HeatpumpIOFmt.Errorf("ab19 catalog: invalid ID")
+		if b512HeatpumpIOID == "" || b512HeatpumpIOIDs[b512HeatpumpIOID] {
+			return nil, nil, b512HeatpumpIOFmt.Errorf("b512 heatpump io catalog: invalid ID")
 		}
 		b512HeatpumpIOIDs[b512HeatpumpIOID] = true
 		b512HeatpumpIOKeys = append(b512HeatpumpIOKeys, b512HeatpumpIOKey)

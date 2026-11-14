@@ -30,7 +30,7 @@ func b555AdditionalFormValidate(b555AdditionalFormData []byte) ([]json.RawMessag
 		return nil, nil, b555AdditionalFormError
 	}
 	if b555AdditionalFormRows == nil {
-		return nil, nil, fmt.Errorf("ab26: expected JSON array")
+		return nil, nil, fmt.Errorf("b555 additional forms: expected JSON array")
 	}
 	b555AdditionalFormKeys := make([]B555AdditionalFormKey, len(b555AdditionalFormRows))
 	for b555AdditionalFormIndex, b555AdditionalFormRow := range b555AdditionalFormRows {
@@ -51,16 +51,16 @@ func b555AdditionalFormValidate(b555AdditionalFormData []byte) ([]json.RawMessag
 		for _, b555AdditionalFormAxis := range []string{"family", "variant", "primary", "secondary", "operation", "direction", "field", "alternative", "group", "instance_scope", "register"} {
 			b555AdditionalFormValue, b555AdditionalFormPresent := b555AdditionalFormIdentity[b555AdditionalFormAxis]
 			if !b555AdditionalFormPresent || (string(b555AdditionalFormValue) == "null" && b555AdditionalFormAxis != "secondary" && b555AdditionalFormAxis != "operation" && b555AdditionalFormAxis != "group" && b555AdditionalFormAxis != "register") {
-				return nil, nil, fmt.Errorf("ab26: missing identity axis %s", b555AdditionalFormAxis)
+				return nil, nil, fmt.Errorf("b555 additional forms: missing identity axis %s", b555AdditionalFormAxis)
 			}
 		}
 		b555AdditionalFormKey := b555AdditionalFormEnvelope.B555AdditionalFormKey
 		if b555AdditionalFormKey.B555AdditionalFormFamily == "" || b555AdditionalFormKey.B555AdditionalFormVariant == "" || b555AdditionalFormKey.B555AdditionalFormDirection == "" || b555AdditionalFormKey.B555AdditionalFormField == "" || b555AdditionalFormKey.B555AdditionalFormAlternative == "" || b555AdditionalFormKey.B555AdditionalFormInstanceScope == "" {
-			return nil, nil, fmt.Errorf("ab26: incomplete identity at row %d", b555AdditionalFormIndex)
+			return nil, nil, fmt.Errorf("b555 additional forms: incomplete identity at row %d", b555AdditionalFormIndex)
 		}
 		for _, b555AdditionalFormPrevious := range b555AdditionalFormKeys[:b555AdditionalFormIndex] {
 			if reflect.DeepEqual(b555AdditionalFormPrevious, b555AdditionalFormKey) {
-				return nil, nil, fmt.Errorf("ab26: duplicate identity at row %d", b555AdditionalFormIndex)
+				return nil, nil, fmt.Errorf("b555 additional forms: duplicate identity at row %d", b555AdditionalFormIndex)
 			}
 		}
 		b555AdditionalFormKeys[b555AdditionalFormIndex] = b555AdditionalFormKey

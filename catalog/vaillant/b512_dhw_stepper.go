@@ -77,24 +77,24 @@ func b512DHWStepperLoadEntries() ([]B512DHWStepperEntry, error) {
 	}
 	var b512DHWStepperTail any
 	if b512DHWStepperErr := b512DHWStepperDecoder.Decode(&b512DHWStepperTail); b512DHWStepperErr != b512DHWStepperIO.EOF {
-		return nil, b512DHWStepperFmt.Errorf("ab97 trailing data")
+		return nil, b512DHWStepperFmt.Errorf("b512 dhw stepper: trailing data")
 	}
 	if len(b512DHWStepperEntries) == 0 {
-		return nil, b512DHWStepperFmt.Errorf("ab97 empty catalog")
+		return nil, b512DHWStepperFmt.Errorf("b512 dhw stepper: empty catalog")
 	}
 	for b512DHWStepperIndex, b512DHWStepperEntry := range b512DHWStepperEntries {
 		if b512DHWStepperEntry.B512DHWStepperKey.B512DHWStepperFamily == "" || b512DHWStepperEntry.B512DHWStepperKey.B512DHWStepperVariant == "" || b512DHWStepperEntry.B512DHWStepperKey.B512DHWStepperField == "" || (b512DHWStepperEntry.B512DHWStepperKey.B512DHWStepperDirection != "request" && b512DHWStepperEntry.B512DHWStepperKey.B512DHWStepperDirection != "positive") || b512DHWStepperEntry.B512DHWStepperGrade != "Hypothesis" || b512DHWStepperEntry.B512DHWStepperQualification != "Unknown" || b512DHWStepperEntry.B512DHWStepperRawPolicy == "" || b512DHWStepperEntry.B512DHWStepperNativeContract == "" || len(b512DHWStepperEntry.B512DHWStepperUnknown) == 0 {
-			return nil, b512DHWStepperFmt.Errorf("ab97 invalid entry %d", b512DHWStepperIndex)
+			return nil, b512DHWStepperFmt.Errorf("b512 dhw stepper: invalid entry %d", b512DHWStepperIndex)
 		}
 		if b512DHWStepperEntry.B512DHWStepperDivisor != nil && *b512DHWStepperEntry.B512DHWStepperDivisor <= 0 {
-			return nil, b512DHWStepperFmt.Errorf("ab97 invalid divisor")
+			return nil, b512DHWStepperFmt.Errorf("b512 dhw stepper: invalid divisor")
 		}
 		if b512DHWStepperEntry.B512DHWStepperBit != nil && (*b512DHWStepperEntry.B512DHWStepperBit > 7 || b512DHWStepperEntry.B512DHWStepperWidthBits == nil || *b512DHWStepperEntry.B512DHWStepperWidthBits != 1) {
-			return nil, b512DHWStepperFmt.Errorf("ab97 invalid bit")
+			return nil, b512DHWStepperFmt.Errorf("b512 dhw stepper: invalid bit")
 		}
 		for b512DHWStepperPrevious := 0; b512DHWStepperPrevious < b512DHWStepperIndex; b512DHWStepperPrevious++ {
 			if b512DHWStepperReflect.DeepEqual(b512DHWStepperEntry.B512DHWStepperKey, b512DHWStepperEntries[b512DHWStepperPrevious].B512DHWStepperKey) {
-				return nil, b512DHWStepperFmt.Errorf("ab97 duplicate key")
+				return nil, b512DHWStepperFmt.Errorf("b512 dhw stepper: duplicate key")
 			}
 		}
 	}

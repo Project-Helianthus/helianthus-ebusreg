@@ -25,10 +25,10 @@ func b505SentinelViewRead(b505SentinelViewDecoder *b505SentinelViewJSON.Decoder)
 				}
 				b505SentinelViewKey, b505SentinelViewOK := b505SentinelViewKeyToken.(string)
 				if !b505SentinelViewOK {
-					return nil, b505SentinelViewFmt.Errorf("ab01ao01: invalid object key")
+					return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: invalid object key")
 				}
 				if _, b505SentinelViewExists := b505SentinelViewObject[b505SentinelViewKey]; b505SentinelViewExists {
-					return nil, b505SentinelViewFmt.Errorf("ab01ao01: duplicate key %q", b505SentinelViewKey)
+					return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: duplicate key %q", b505SentinelViewKey)
 				}
 				b505SentinelViewValue, b505SentinelViewError := b505SentinelViewRead(b505SentinelViewDecoder)
 				if b505SentinelViewError != nil {
@@ -50,7 +50,7 @@ func b505SentinelViewRead(b505SentinelViewDecoder *b505SentinelViewJSON.Decoder)
 			_, b505SentinelViewError := b505SentinelViewDecoder.Token()
 			return b505SentinelViewArray, b505SentinelViewError
 		default:
-			return nil, b505SentinelViewFmt.Errorf("ab01ao01: unexpected delimiter")
+			return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: unexpected delimiter")
 		}
 	}
 	return b505SentinelViewToken, nil
@@ -64,56 +64,56 @@ func B505SentinelViewInterpret(b505SentinelViewInput b505SentinelViewJSON.RawMes
 		return nil, b505SentinelViewError
 	}
 	if _, b505SentinelViewError := b505SentinelViewDecoder.Token(); b505SentinelViewError != b505SentinelViewIO.EOF {
-		return nil, b505SentinelViewFmt.Errorf("ab01ao01: trailing JSON")
+		return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: trailing JSON")
 	}
 	b505SentinelViewRoot, b505SentinelViewOK := b505SentinelViewValue.(map[string]any)
 	if !b505SentinelViewOK {
-		return nil, b505SentinelViewFmt.Errorf("ab01ao01: input must be an object")
+		return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: input must be an object")
 	}
 	for b505SentinelViewKey := range b505SentinelViewRoot {
 		if b505SentinelViewKey != "context" && b505SentinelViewKey != "fields" && b505SentinelViewKey != "arguments" {
-			return nil, b505SentinelViewFmt.Errorf("ab01ao01: unknown input key %q", b505SentinelViewKey)
+			return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: unknown input key %q", b505SentinelViewKey)
 		}
 	}
 	b505SentinelViewContext, b505SentinelViewOK := b505SentinelViewRoot["context"].(map[string]any)
 	if !b505SentinelViewOK {
-		return nil, b505SentinelViewFmt.Errorf("ab01ao01: context must be an object")
+		return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: context must be an object")
 	}
 	for _, b505SentinelViewKey := range []string{"primary", "secondary", "operation"} {
 		if b505SentinelViewValue, b505SentinelViewPresent := b505SentinelViewContext[b505SentinelViewKey]; b505SentinelViewPresent {
 			b505SentinelViewNumber, b505SentinelViewOK := b505SentinelViewValue.(b505SentinelViewJSON.Number)
 			if !b505SentinelViewOK {
-				return nil, b505SentinelViewFmt.Errorf("ab01ao01: %s must be an integer", b505SentinelViewKey)
+				return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: %s must be an integer", b505SentinelViewKey)
 			}
 			if b505SentinelViewStrings.ContainsAny(string(b505SentinelViewNumber), ".eE") {
-				return nil, b505SentinelViewFmt.Errorf("ab01ao01: %s must be an integer", b505SentinelViewKey)
+				return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: %s must be an integer", b505SentinelViewKey)
 			}
 		}
 	}
 	for _, b505SentinelViewKey := range []string{"direction", "view"} {
 		if b505SentinelViewValue, b505SentinelViewPresent := b505SentinelViewContext[b505SentinelViewKey]; b505SentinelViewPresent {
 			if _, b505SentinelViewOK := b505SentinelViewValue.(string); !b505SentinelViewOK {
-				return nil, b505SentinelViewFmt.Errorf("ab01ao01: %s must be a string", b505SentinelViewKey)
+				return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: %s must be a string", b505SentinelViewKey)
 			}
 		}
 	}
 	b505SentinelViewRaw, b505SentinelViewOK := b505SentinelViewRoot["fields"].(map[string]any)
 	if !b505SentinelViewOK {
-		return nil, b505SentinelViewFmt.Errorf("ab01ao01: fields must be an object")
+		return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: fields must be an object")
 	}
 	for b505SentinelViewKey, b505SentinelViewValue := range b505SentinelViewRaw {
 		b505SentinelViewArray, b505SentinelViewOK := b505SentinelViewValue.([]any)
 		if !b505SentinelViewOK {
-			return nil, b505SentinelViewFmt.Errorf("ab01ao01: %s must be a byte array", b505SentinelViewKey)
+			return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: %s must be a byte array", b505SentinelViewKey)
 		}
 		for _, b505SentinelViewElement := range b505SentinelViewArray {
 			b505SentinelViewNumber, b505SentinelViewOK := b505SentinelViewElement.(b505SentinelViewJSON.Number)
 			if !b505SentinelViewOK {
-				return nil, b505SentinelViewFmt.Errorf("ab01ao01: invalid byte")
+				return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: invalid byte")
 			}
 			b505SentinelViewByte, b505SentinelViewError := b505SentinelViewStrconv.ParseInt(string(b505SentinelViewNumber), 10, 64)
 			if b505SentinelViewError != nil || b505SentinelViewByte < 0 || b505SentinelViewByte > 255 {
-				return nil, b505SentinelViewFmt.Errorf("ab01ao01: invalid byte")
+				return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: invalid byte")
 			}
 		}
 	}
@@ -122,7 +122,7 @@ func B505SentinelViewInterpret(b505SentinelViewInput b505SentinelViewJSON.RawMes
 	if b505SentinelViewArguments, b505SentinelViewPresent := b505SentinelViewRoot["arguments"]; b505SentinelViewPresent {
 		b505SentinelViewObject, b505SentinelViewOK := b505SentinelViewArguments.(map[string]any)
 		if !b505SentinelViewOK || len(b505SentinelViewObject) != 0 {
-			return nil, b505SentinelViewFmt.Errorf("ab01ao01: no arguments are defined for this view")
+			return nil, b505SentinelViewFmt.Errorf("b505 sentinel views: no arguments are defined for this view")
 		}
 		b505SentinelViewOutput["arguments"] = b505SentinelViewObject
 	}

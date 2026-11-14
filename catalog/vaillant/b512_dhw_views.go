@@ -6,51 +6,51 @@ const (
 )
 
 type B512DHWViewScalar struct {
-	B512DHWViewRaw          byte    `json:"Ab13An13Raw"`
-	B512DHWViewValue        float64 `json:"Ab13An13Value"`
-	B512DHWViewUnit         string  `json:"Ab13An13Unit"`
-	B512DHWViewUnitConflict bool    `json:"Ab13An13UnitConflict"`
-	B512DHWViewNamedDomain  bool    `json:"Ab13An13NamedDomain"`
+	B512DHWViewRaw          byte    `json:"raw"`
+	B512DHWViewValue        float64 `json:"value"`
+	B512DHWViewUnit         string  `json:"unit"`
+	B512DHWViewUnitConflict bool    `json:"unit_conflict"`
+	B512DHWViewNamedDomain  bool    `json:"named_domain"`
 }
 
 type B512DHWViewRequest struct {
-	B512DHWViewTaskActive          *bool                 `json:"Ab13An13TaskActive"`
-	B512DHWViewHeatDemand          *bool                 `json:"Ab13An13HeatDemand"`
-	B512DHWViewLoadingActive       *bool                 `json:"Ab13An13LoadingActive"`
-	B512DHWViewLoadingPumpFault    *bool                 `json:"Ab13An13LoadingPumpFault"`
-	B512DHWViewSensorConditionBits [4]*bool              `json:"Ab13An13SensorConditionBits"`
-	B512DHWViewModulation          *B512DHWViewScalar    `json:"Ab13An13Modulation"`
-	B512DHWViewFlow                *B512DHWViewScalar    `json:"Ab13An13Flow"`
-	B512DHWViewTemperatures        [3]*B512DHWViewScalar `json:"Ab13An13Temperatures"`
-	B512DHWViewInletConditionBits  [2]*bool              `json:"Ab13An13InletConditionBits"`
+	B512DHWViewTaskActive          *bool                 `json:"task_active"`
+	B512DHWViewHeatDemand          *bool                 `json:"heat_demand"`
+	B512DHWViewLoadingActive       *bool                 `json:"loading_active"`
+	B512DHWViewLoadingPumpFault    *bool                 `json:"loading_pump_fault"`
+	B512DHWViewSensorConditionBits [4]*bool              `json:"sensor_condition_bits"`
+	B512DHWViewModulation          *B512DHWViewScalar    `json:"modulation"`
+	B512DHWViewFlow                *B512DHWViewScalar    `json:"flow"`
+	B512DHWViewTemperatures        [3]*B512DHWViewScalar `json:"temperatures"`
+	B512DHWViewInletConditionBits  [2]*bool              `json:"inlet_condition_bits"`
 }
 
 type B512DHWViewPositive struct {
-	B512DHWViewLoadingDisabled       *bool              `json:"Ab13An13LoadingDisabled"`
-	B512DHWViewInternalTestActive    *bool              `json:"Ab13An13InternalTestActive"`
-	B512DHWViewReady                 *bool              `json:"Ab13An13Ready"`
-	B512DHWViewFrostProtectionActive *bool              `json:"Ab13An13FrostProtectionActive"`
-	B512DHWViewLegionellaDemand      *bool              `json:"Ab13An13LegionellaDemand"`
-	B512DHWViewReset                 *bool              `json:"Ab13An13Reset"`
-	B512DHWViewSetpoint              *B512DHWViewScalar `json:"Ab13An13Setpoint"`
-	B512DHWViewReturnTemperature     *B512DHWViewScalar `json:"Ab13An13ReturnTemperature"`
-	B512DHWViewAdjustment            *B512DHWViewScalar `json:"Ab13An13Adjustment"`
+	B512DHWViewLoadingDisabled       *bool              `json:"loading_disabled"`
+	B512DHWViewInternalTestActive    *bool              `json:"internal_test_active"`
+	B512DHWViewReady                 *bool              `json:"ready"`
+	B512DHWViewFrostProtectionActive *bool              `json:"frost_protection_active"`
+	B512DHWViewLegionellaDemand      *bool              `json:"legionella_demand"`
+	B512DHWViewReset                 *bool              `json:"reset"`
+	B512DHWViewSetpoint              *B512DHWViewScalar `json:"setpoint"`
+	B512DHWViewReturnTemperature     *B512DHWViewScalar `json:"return_temperature"`
+	B512DHWViewAdjustment            *B512DHWViewScalar `json:"adjustment"`
 }
 
 type B512DHWViewResult struct {
-	B512DHWViewRaw           []byte               `json:"Ab13An13Raw"`
-	B512DHWViewUnmodelled    map[int]byte         `json:"Ab13An13Unmodelled"`
-	B512DHWViewAdmitted      bool                 `json:"Ab13An13Admitted"`
-	B512DHWViewComplete      bool                 `json:"Ab13An13Complete"`
-	B512DHWViewContractGrade string               `json:"Ab13An13ContractGrade"`
-	B512DHWViewFieldGrade    string               `json:"Ab13An13FieldGrade"`
-	B512DHWViewQualification string               `json:"Ab13An13Qualification"`
-	B512DHWViewPresence      string               `json:"Ab13An13Presence"`
-	B512DHWViewFreshness     string               `json:"Ab13An13Freshness"`
-	B512DHWViewExecution     string               `json:"Ab13An13Execution"`
-	B512DHWViewDefaults      map[string]float64   `json:"Ab13An13Defaults"`
-	B512DHWViewRequest       *B512DHWViewRequest  `json:"Ab13An13Request"`
-	B512DHWViewPositive      *B512DHWViewPositive `json:"Ab13An13Positive"`
+	B512DHWViewRaw           []byte               `json:"raw"`
+	B512DHWViewUnmodelled    map[int]byte         `json:"unmodelled"`
+	B512DHWViewAdmitted      bool                 `json:"admitted"`
+	B512DHWViewComplete      bool                 `json:"complete"`
+	B512DHWViewContractGrade string               `json:"contract_grade"`
+	B512DHWViewFieldGrade    string               `json:"field_grade"`
+	B512DHWViewQualification string               `json:"qualification"`
+	B512DHWViewPresence      string               `json:"presence"`
+	B512DHWViewFreshness     string               `json:"freshness"`
+	B512DHWViewExecution     string               `json:"execution"`
+	B512DHWViewDefaults      map[string]float64   `json:"defaults"`
+	B512DHWViewRequest       *B512DHWViewRequest  `json:"request"`
+	B512DHWViewPositive      *B512DHWViewPositive `json:"positive"`
 }
 
 func b512DHWViewBit(b512DHWViewRaw byte, b512DHWViewIndex uint) *bool {
@@ -86,7 +86,7 @@ func B512DHWViewInterpret(b512DHWViewFamily, b512DHWViewVariant, b512DHWViewDire
 		b512DHWViewRequest := &B512DHWViewRequest{}
 		b512DHWViewResult.B512DHWViewRequest = b512DHWViewRequest
 		b512DHWViewResult.B512DHWViewComplete = len(b512DHWViewImage) >= 10
-		b512DHWViewResult.B512DHWViewDefaults = map[string]float64{"Ab13An13Flags": 0, "Ab13An13Scalars": 0}
+		b512DHWViewResult.B512DHWViewDefaults = map[string]float64{"flags": 0, "scalars": 0}
 		if len(b512DHWViewImage) > 3 {
 			b512DHWViewRequest.B512DHWViewTaskActive = b512DHWViewBit(b512DHWViewImage[3], 0)
 			b512DHWViewRequest.B512DHWViewHeatDemand = b512DHWViewBit(b512DHWViewImage[3], 1)
@@ -123,7 +123,7 @@ func B512DHWViewInterpret(b512DHWViewFamily, b512DHWViewVariant, b512DHWViewDire
 		b512DHWViewPositive := &B512DHWViewPositive{}
 		b512DHWViewResult.B512DHWViewPositive = b512DHWViewPositive
 		b512DHWViewResult.B512DHWViewComplete = len(b512DHWViewImage) >= 7
-		b512DHWViewResult.B512DHWViewDefaults = map[string]float64{"Ab13An13Flags": 0, "Ab13An13Scalars": 0, "Ab13An13Adjustment": -1}
+		b512DHWViewResult.B512DHWViewDefaults = map[string]float64{"flags": 0, "scalars": 0, "adjustment": -1}
 		if len(b512DHWViewImage) > 3 {
 			b512DHWViewPositive.B512DHWViewLoadingDisabled = b512DHWViewBit(b512DHWViewImage[3], 0)
 			b512DHWViewPositive.B512DHWViewInternalTestActive = b512DHWViewBit(b512DHWViewImage[3], 1)

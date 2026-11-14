@@ -33,55 +33,55 @@ const (
 )
 
 type B525SpectrumBlockContext struct {
-	B525SpectrumBlockPrimary   byte   `json:"Ab82Primary"`
-	B525SpectrumBlockSecondary byte   `json:"Ab82Secondary"`
-	B525SpectrumBlockFamily    string `json:"Ab82Family"`
-	B525SpectrumBlockVariant   string `json:"Ab82Variant"`
-	B525SpectrumBlockOperation int    `json:"Ab82Operation"`
-	B525SpectrumBlockDirection string `json:"Ab82Direction"`
-	B525SpectrumBlockSelector  int    `json:"Ab82Selector"`
+	B525SpectrumBlockPrimary   byte   `json:"primary"`
+	B525SpectrumBlockSecondary byte   `json:"secondary"`
+	B525SpectrumBlockFamily    string `json:"family"`
+	B525SpectrumBlockVariant   string `json:"variant"`
+	B525SpectrumBlockOperation int    `json:"operation"`
+	B525SpectrumBlockDirection string `json:"direction"`
+	B525SpectrumBlockSelector  int    `json:"selector"`
 }
 
 type B525SpectrumBlockInput struct {
-	B525SpectrumBlockContext B525SpectrumBlockContext `json:"Ab82Context"`
-	B525SpectrumBlockValues  []byte                   `json:"Ab82Values"`
+	B525SpectrumBlockContext B525SpectrumBlockContext `json:"context"`
+	B525SpectrumBlockValues  []byte                   `json:"values"`
 }
 
 type B525SpectrumBlockEntry struct {
-	B525SpectrumBlockIndex   int  `json:"Ab82Index"`
-	B525SpectrumBlockRawByte byte `json:"Ab82RawByte"`
-	B525SpectrumBlockSigned  int8 `json:"Ab82Signed"`
+	B525SpectrumBlockIndex   int  `json:"index"`
+	B525SpectrumBlockRawByte byte `json:"raw_byte"`
+	B525SpectrumBlockSigned  int8 `json:"signed"`
 }
 
 type B525SpectrumBlock struct {
-	B525SpectrumBlockContext    B525SpectrumBlockContext `json:"Ab82Context"`
-	B525SpectrumBlockState      B525SpectrumBlockState   `json:"Ab82State"`
-	B525SpectrumBlockGrade      string                   `json:"Ab82Grade"`
-	B525SpectrumBlockStart      int                      `json:"Ab82Start"`
-	B525SpectrumBlockRaw        []byte                   `json:"Ab82Raw"`
-	B525SpectrumBlockEntries    []B525SpectrumBlockEntry `json:"Ab82Entries"`
-	B525SpectrumBlockMask       [4]uint64                `json:"Ab82Mask"`
-	B525SpectrumBlockIncomplete bool                     `json:"Ab82Incomplete"`
-	B525SpectrumBlockExtra      bool                     `json:"Ab82Extra"`
-	B525SpectrumBlockRemainder  []byte                   `json:"Ab82Remainder"`
+	B525SpectrumBlockContext    B525SpectrumBlockContext `json:"context"`
+	B525SpectrumBlockState      B525SpectrumBlockState   `json:"state"`
+	B525SpectrumBlockGrade      string                   `json:"grade"`
+	B525SpectrumBlockStart      int                      `json:"start"`
+	B525SpectrumBlockRaw        []byte                   `json:"raw"`
+	B525SpectrumBlockEntries    []B525SpectrumBlockEntry `json:"entries"`
+	B525SpectrumBlockMask       [4]uint64                `json:"mask"`
+	B525SpectrumBlockIncomplete bool                     `json:"incomplete"`
+	B525SpectrumBlockExtra      bool                     `json:"extra"`
+	B525SpectrumBlockRemainder  []byte                   `json:"remainder"`
 }
 
 type B525SpectrumJoinBlock struct {
-	B525SpectrumBlockSelector    int                    `json:"Ab82Selector"`
-	B525SpectrumBlockState       B525SpectrumBlockState `json:"Ab82State"`
-	B525SpectrumBlockContributed bool                   `json:"Ab82Contributed"`
-	B525SpectrumBlockConflict    bool                   `json:"Ab82Conflict"`
+	B525SpectrumBlockSelector    int                    `json:"selector"`
+	B525SpectrumBlockState       B525SpectrumBlockState `json:"state"`
+	B525SpectrumBlockContributed bool                   `json:"contributed"`
+	B525SpectrumBlockConflict    bool                   `json:"conflict"`
 }
 
 type B525SpectrumBlockJoined struct {
-	B525SpectrumBlockState     B525SpectrumBlockJoinState `json:"Ab82State"`
-	B525SpectrumBlockGrade     string                     `json:"Ab82Grade"`
-	B525SpectrumBlockComplete  bool                       `json:"Ab82Complete"`
-	B525SpectrumBlocks         []B525SpectrumJoinBlock    `json:"Ab82Blocks"`
-	B525SpectrumBlockEntries   []B525SpectrumBlockEntry   `json:"Ab82Entries"`
-	B525SpectrumBlockMask      [4]uint64                  `json:"Ab82Mask"`
-	B525SpectrumBlockMissing   []int                      `json:"Ab82Missing"`
-	B525SpectrumBlockConflicts []int                      `json:"Ab82Conflicts"`
+	B525SpectrumBlockState     B525SpectrumBlockJoinState `json:"state"`
+	B525SpectrumBlockGrade     string                     `json:"grade"`
+	B525SpectrumBlockComplete  bool                       `json:"complete"`
+	B525SpectrumBlocks         []B525SpectrumJoinBlock    `json:"blocks"`
+	B525SpectrumBlockEntries   []B525SpectrumBlockEntry   `json:"entries"`
+	B525SpectrumBlockMask      [4]uint64                  `json:"mask"`
+	B525SpectrumBlockMissing   []int                      `json:"missing"`
+	B525SpectrumBlockConflicts []int                      `json:"conflicts"`
 }
 
 func b525SpectrumBlockBytes(b525SpectrumBlockSource []byte) []byte {

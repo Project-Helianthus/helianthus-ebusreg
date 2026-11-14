@@ -21,14 +21,14 @@
         "field": "demand"
       },
       "metadata": {
-        "ab05_name": "demand",
-        "ab05_position": null,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "demand",
+        "position": null,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": {
         "burner": 1,
@@ -57,14 +57,14 @@
         "field": "temperature_1"
       },
       "metadata": {
-        "ab05_name": "temperature_1",
-        "ab05_position": null,
-        "ab05_width": 2,
-        "ab05_codec": "signed little-endian int16",
-        "ab05_unit": "degrees Celsius",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "temperature_1",
+        "position": null,
+        "width": 2,
+        "codec": "signed little-endian int16",
+        "unit": "degrees Celsius",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -85,14 +85,14 @@
         "field": "temperature_1_error"
       },
       "metadata": {
-        "ab05_name": "temperature_1_error",
-        "ab05_position": null,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "temperature_1_error",
+        "position": null,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -115,14 +115,14 @@
         "field": "temperature_2"
       },
       "metadata": {
-        "ab05_name": "temperature_2",
-        "ab05_position": null,
-        "ab05_width": 2,
-        "ab05_codec": "signed little-endian int16",
-        "ab05_unit": "degrees Celsius",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "temperature_2",
+        "position": null,
+        "width": 2,
+        "codec": "signed little-endian int16",
+        "unit": "degrees Celsius",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -143,14 +143,14 @@
         "field": "temperature_2_error"
       },
       "metadata": {
-        "ab05_name": "temperature_2_error",
-        "ab05_position": null,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "temperature_2_error",
+        "position": null,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -173,14 +173,14 @@
         "field": "temperature_3"
       },
       "metadata": {
-        "ab05_name": "temperature_3",
-        "ab05_position": null,
-        "ab05_width": 2,
-        "ab05_codec": "signed little-endian int16",
-        "ab05_unit": "degrees Celsius",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "temperature_3",
+        "position": null,
+        "width": 2,
+        "codec": "signed little-endian int16",
+        "unit": "degrees Celsius",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -201,14 +201,14 @@
         "field": "temperature_3_error"
       },
       "metadata": {
-        "ab05_name": "temperature_3_error",
-        "ab05_position": null,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "temperature_3_error",
+        "position": null,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -231,14 +231,14 @@
         "field": "temperature_1"
       },
       "metadata": {
-        "ab05_name": "temperature_1",
-        "ab05_position": null,
-        "ab05_width": 2,
-        "ab05_codec": "signed little-endian int16",
-        "ab05_unit": "degrees Celsius",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "temperature_1",
+        "position": null,
+        "width": 2,
+        "codec": "signed little-endian int16",
+        "unit": "degrees Celsius",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -259,14 +259,14 @@
         "field": "temperature_1_error"
       },
       "metadata": {
-        "ab05_name": "temperature_1_error",
-        "ab05_position": null,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "temperature_1_error",
+        "position": null,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -289,14 +289,14 @@
         "field": "temperature_2"
       },
       "metadata": {
-        "ab05_name": "temperature_2",
-        "ab05_position": null,
-        "ab05_width": 2,
-        "ab05_codec": "signed little-endian int16",
-        "ab05_unit": "degrees Celsius",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "temperature_2",
+        "position": null,
+        "width": 2,
+        "codec": "signed little-endian int16",
+        "unit": "degrees Celsius",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -317,14 +317,14 @@
         "field": "temperature_2_error"
       },
       "metadata": {
-        "ab05_name": "temperature_2_error",
-        "ab05_position": null,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "temperature_2_error",
+        "position": null,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -347,14 +347,14 @@
         "field": "stack-voltage"
       },
       "metadata": {
-        "ab05_name": "stack-voltage",
-        "ab05_position": null,
-        "ab05_width": 2,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "stack-voltage",
+        "position": null,
+        "width": 2,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -381,14 +381,14 @@
         "field": "integrity_1"
       },
       "metadata": {
-        "ab05_name": "integrity_1",
-        "ab05_position": 12,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "integrity_1",
+        "position": 12,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -415,14 +415,14 @@
         "field": "integrity_2"
       },
       "metadata": {
-        "ab05_name": "integrity_2",
-        "ab05_position": 13,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "integrity_2",
+        "position": 13,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -449,14 +449,14 @@
         "field": "integrity_1"
       },
       "metadata": {
-        "ab05_name": "integrity_1",
-        "ab05_position": 12,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "integrity_1",
+        "position": 12,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -483,14 +483,14 @@
         "field": "integrity_2"
       },
       "metadata": {
-        "ab05_name": "integrity_2",
-        "ab05_position": 13,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "integrity_2",
+        "position": 13,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -517,14 +517,14 @@
         "field": "integrity_1"
       },
       "metadata": {
-        "ab05_name": "integrity_1",
-        "ab05_position": 11,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "integrity_1",
+        "position": 11,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -551,14 +551,14 @@
         "field": "integrity_2"
       },
       "metadata": {
-        "ab05_name": "integrity_2",
-        "ab05_position": 12,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "integrity_2",
+        "position": 12,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -585,14 +585,14 @@
         "field": "integrity_1"
       },
       "metadata": {
-        "ab05_name": "integrity_1",
-        "ab05_position": 4,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "integrity_1",
+        "position": 4,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -619,14 +619,14 @@
         "field": "integrity_2"
       },
       "metadata": {
-        "ab05_name": "integrity_2",
-        "ab05_position": 5,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": null,
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "name": "integrity_2",
+        "position": 5,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": null,
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,
@@ -653,12 +653,12 @@
         "field": "feedback"
       },
       "metadata": {
-        "ab05_name": "feedback",
-        "ab05_position": null,
-        "ab05_width": 1,
-        "ab05_codec": "raw",
-        "ab05_unit": "",
-        "ab05_enum": {
+        "name": "feedback",
+        "position": null,
+        "width": 1,
+        "codec": "raw",
+        "unit": "",
+        "enum": {
           "0": "rejected",
           "1": "accepted",
           "2": "rejected",
@@ -916,8 +916,8 @@
           "254": "rejected",
           "255": "rejected"
         },
-        "ab05_grade": "Hypothesis",
-        "ab05_raw_fallback": null
+        "grade": "Hypothesis",
+        "raw_fallback": null
       },
       "demand_masks": null,
       "reserved_mask": null,

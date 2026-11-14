@@ -20,21 +20,21 @@ const (
 )
 
 type B514ActivationVectorIdentity struct {
-	B514ActivationVectorFamily    string `json:"Ab80Family"`
-	B514ActivationVectorVariant   string `json:"Ab80Variant"`
-	B514ActivationVectorOperation uint8  `json:"Ab80Operation"`
-	B514ActivationVectorDirection string `json:"Ab80Direction"`
+	B514ActivationVectorFamily    string `json:"family"`
+	B514ActivationVectorVariant   string `json:"variant"`
+	B514ActivationVectorOperation uint8  `json:"operation"`
+	B514ActivationVectorDirection string `json:"direction"`
 }
 
 type B514ActivationVectorBit struct {
-	B514ActivationVectorPresent bool `json:"Ab80Present"`
-	B514ActivationVectorValue   bool `json:"Ab80Value"`
+	B514ActivationVectorPresent bool `json:"present"`
+	B514ActivationVectorValue   bool `json:"value"`
 }
 
 type B514ActivationVectorScalar struct {
-	B514ActivationVectorPresent        bool   `json:"Ab80Present"`
-	B514ActivationVectorRaw            byte   `json:"Ab80Raw"`
-	B514ActivationVectorInterpretation string `json:"Ab80Interpretation"`
+	B514ActivationVectorPresent        bool   `json:"present"`
+	B514ActivationVectorRaw            byte   `json:"raw"`
+	B514ActivationVectorInterpretation string `json:"interpretation"`
 }
 
 type B514ActivationVectorView struct {

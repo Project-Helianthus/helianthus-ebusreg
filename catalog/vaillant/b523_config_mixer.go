@@ -87,21 +87,21 @@ func B523ConfigMixerEntries() ([]B523ConfigMixerEntry, error) {
 	}
 	var b523ConfigMixerTrailing any
 	if b523ConfigMixerError := b523ConfigMixerDecoder.Decode(&b523ConfigMixerTrailing); b523ConfigMixerError != b523ConfigMixerIO.EOF {
-		return nil, b523ConfigMixerFmt.Errorf("ab99: trailing data")
+		return nil, b523ConfigMixerFmt.Errorf("b523 config mixer: trailing data")
 	}
 	if len(b523ConfigMixerEntries) == 0 {
-		return nil, b523ConfigMixerFmt.Errorf("ab99: empty catalog")
+		return nil, b523ConfigMixerFmt.Errorf("b523 config mixer: empty catalog")
 	}
 	for b523ConfigMixerIndex, b523ConfigMixerEntry := range b523ConfigMixerEntries {
 		if b523ConfigMixerEntry.B523ConfigMixerKey.B523ConfigMixerPrimary != 0xb5 || b523ConfigMixerEntry.B523ConfigMixerKey.B523ConfigMixerSecondary == nil || *b523ConfigMixerEntry.B523ConfigMixerKey.B523ConfigMixerSecondary != 0x23 || b523ConfigMixerEntry.B523ConfigMixerKey.B523ConfigMixerOperation == nil {
-			return nil, b523ConfigMixerFmt.Errorf("ab99: invalid key coordinates in entry %d", b523ConfigMixerIndex)
+			return nil, b523ConfigMixerFmt.Errorf("b523 config mixer: invalid key coordinates in entry %d", b523ConfigMixerIndex)
 		}
 		if b523ConfigMixerEntry.B523ConfigMixerKey.B523ConfigMixerFamily == "" || b523ConfigMixerEntry.B523ConfigMixerKey.B523ConfigMixerVariant == "" || b523ConfigMixerEntry.B523ConfigMixerKey.B523ConfigMixerDirection == "" || b523ConfigMixerEntry.B523ConfigMixerKey.B523ConfigMixerField == "" || b523ConfigMixerEntry.B523ConfigMixerGrade != "Hypothesis" || !b523ConfigMixerEntry.B523ConfigMixerPreserveRaw || b523ConfigMixerEntry.B523ConfigMixerPhysicalAdaptation != "Unknown" || b523ConfigMixerEntry.B523ConfigMixerSupport != "Unknown" || b523ConfigMixerEntry.B523ConfigMixerExecutedMovement != "Unknown" || b523ConfigMixerEntry.B523ConfigMixerSelectedInterpretation != "Unknown" || b523ConfigMixerEntry.B523ConfigMixerUnknownMetadata != "Unknown" {
-			return nil, b523ConfigMixerFmt.Errorf("ab99: invalid entry %d", b523ConfigMixerIndex)
+			return nil, b523ConfigMixerFmt.Errorf("b523 config mixer: invalid entry %d", b523ConfigMixerIndex)
 		}
 		for _, b523ConfigMixerPrevious := range b523ConfigMixerEntries[:b523ConfigMixerIndex] {
 			if b523ConfigMixerReflect.DeepEqual(b523ConfigMixerPrevious.B523ConfigMixerKey, b523ConfigMixerEntry.B523ConfigMixerKey) {
-				return nil, b523ConfigMixerFmt.Errorf("ab99: duplicate key")
+				return nil, b523ConfigMixerFmt.Errorf("b523 config mixer: duplicate key")
 			}
 		}
 	}

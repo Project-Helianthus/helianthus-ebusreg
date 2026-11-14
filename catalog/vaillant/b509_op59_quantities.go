@@ -53,29 +53,29 @@ func B509Op59QuantityEntries() ([]B509Op59QuantityEntry, error) {
 		return nil, b509Op59QuantityError
 	}
 	if b509Op59QuantityError := b509Op59QuantityDecoder.Decode(new(any)); b509Op59QuantityError != b509Op59QuantityIO.EOF {
-		return nil, b509Op59QuantityFmt.Errorf("ab14: trailing embedded data")
+		return nil, b509Op59QuantityFmt.Errorf("b509 op59 quantities: trailing embedded data")
 	}
 	if len(b509Op59QuantityEntries) != 5 {
-		return nil, b509Op59QuantityFmt.Errorf("ab14: expected five finite entries")
+		return nil, b509Op59QuantityFmt.Errorf("b509 op59 quantities: expected five finite entries")
 	}
 	for b509Op59QuantityIndex, b509Op59QuantityEntry := range b509Op59QuantityEntries {
 		if b509Op59QuantityEntry.B509Op59QuantityKey.B509Op59QuantityFamily == "" || b509Op59QuantityEntry.B509Op59QuantityKey.B509Op59QuantityVariant == "" || b509Op59QuantityEntry.B509Op59QuantityKey.B509Op59QuantityPrimary == 0 || b509Op59QuantityEntry.B509Op59QuantityKey.B509Op59QuantityField == "" || b509Op59QuantityEntry.B509Op59QuantityGrade != "Hypothesis" || b509Op59QuantityEntry.B509Op59QuantityMetadataPresence != "Proven" || b509Op59QuantityEntry.B509Op59QuantityPhysicalQualification != "Unknown" || !b509Op59QuantityEntry.B509Op59QuantityPreserveRaw || len(b509Op59QuantityEntry.B509Op59QuantityUnknown) == 0 {
-			return nil, b509Op59QuantityFmt.Errorf("ab14: invalid entry %d", b509Op59QuantityIndex)
+			return nil, b509Op59QuantityFmt.Errorf("b509 op59 quantities: invalid entry %d", b509Op59QuantityIndex)
 		}
 		if b509Op59QuantityEntry.B509Op59QuantityCodec == nil || (b509Op59QuantityEntry.B509Op59QuantityCodec.B509Op59QuantityRepresentation != "raw" && b509Op59QuantityEntry.B509Op59QuantityCodec.B509Op59QuantityRepresentation != "signedLE16" && b509Op59QuantityEntry.B509Op59QuantityCodec.B509Op59QuantityRepresentation != "unsignedLE16") || (b509Op59QuantityEntry.B509Op59QuantityCodec.B509Op59QuantityDivisor != nil && *b509Op59QuantityEntry.B509Op59QuantityCodec.B509Op59QuantityDivisor <= 0) {
-			return nil, b509Op59QuantityFmt.Errorf("ab14: invalid codec %d", b509Op59QuantityIndex)
+			return nil, b509Op59QuantityFmt.Errorf("b509 op59 quantities: invalid codec %d", b509Op59QuantityIndex)
 		}
 		b509Op59QuantityCodec := b509Op59QuantityEntry.B509Op59QuantityCodec
 		if b509Op59QuantityCodec.B509Op59QuantityRepresentation == "raw" {
 			if b509Op59QuantityCodec.B509Op59QuantityWidth != nil || b509Op59QuantityCodec.B509Op59QuantityDivisor != nil || b509Op59QuantityCodec.B509Op59QuantityUnit != nil {
-				return nil, b509Op59QuantityFmt.Errorf("ab14: raw limit has unprovided metadata")
+				return nil, b509Op59QuantityFmt.Errorf("b509 op59 quantities: raw limit has unprovided metadata")
 			}
 		} else if b509Op59QuantityCodec.B509Op59QuantityWidth == nil || *b509Op59QuantityCodec.B509Op59QuantityWidth != 16 || b509Op59QuantityCodec.B509Op59QuantityDivisor == nil || b509Op59QuantityCodec.B509Op59QuantityUnit == nil || *b509Op59QuantityCodec.B509Op59QuantityUnit == "" {
-			return nil, b509Op59QuantityFmt.Errorf("ab14: incomplete quantity codec")
+			return nil, b509Op59QuantityFmt.Errorf("b509 op59 quantities: incomplete quantity codec")
 		}
 		for _, b509Op59QuantityPrior := range b509Op59QuantityEntries[:b509Op59QuantityIndex] {
 			if b509Op59QuantityReflect.DeepEqual(b509Op59QuantityPrior.B509Op59QuantityKey, b509Op59QuantityEntry.B509Op59QuantityKey) {
-				return nil, b509Op59QuantityFmt.Errorf("ab14: duplicate key")
+				return nil, b509Op59QuantityFmt.Errorf("b509 op59 quantities: duplicate key")
 			}
 		}
 	}

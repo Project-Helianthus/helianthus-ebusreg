@@ -10,17 +10,17 @@ import (
 var b505OperatingRoleData string
 
 type B505OperatingRoleKey struct {
-	B505OperatingRoleFamily        string  `json:"Ab16Family"`
-	B505OperatingRoleVariant       string  `json:"Ab16Variant"`
-	B505OperatingRolePrimary       uint8   `json:"Ab16Primary"`
-	B505OperatingRoleSecondary     *uint8  `json:"Ab16Secondary"`
-	B505OperatingRoleOperation     *uint8  `json:"Ab16Operation"`
-	B505OperatingRoleDirection     string  `json:"Ab16Direction"`
-	B505OperatingRoleField         string  `json:"Ab16Field"`
-	B505OperatingRoleAlternative   string  `json:"Ab16Alternative"`
-	B505OperatingRoleGroup         *uint8  `json:"Ab16Group"`
-	B505OperatingRoleInstanceScope string  `json:"Ab16InstanceScope"`
-	B505OperatingRoleRegister      *uint16 `json:"Ab16Register"`
+	B505OperatingRoleFamily        string  `json:"family"`
+	B505OperatingRoleVariant       string  `json:"variant"`
+	B505OperatingRolePrimary       uint8   `json:"primary"`
+	B505OperatingRoleSecondary     *uint8  `json:"secondary"`
+	B505OperatingRoleOperation     *uint8  `json:"operation"`
+	B505OperatingRoleDirection     string  `json:"direction"`
+	B505OperatingRoleField         string  `json:"field"`
+	B505OperatingRoleAlternative   string  `json:"alternative"`
+	B505OperatingRoleGroup         *uint8  `json:"group"`
+	B505OperatingRoleInstanceScope string  `json:"instance_scope"`
+	B505OperatingRoleRegister      *uint16 `json:"register"`
 }
 
 func b505OperatingRoleValidate(b505OperatingRoleData []byte) (map[string]b505OperatingRoleJSON.RawMessage, error) {
@@ -29,7 +29,7 @@ func b505OperatingRoleValidate(b505OperatingRoleData []byte) (map[string]b505Ope
 		return nil, b505OperatingRoleErr
 	}
 	if b505OperatingRoleRows == nil {
-		return nil, b505OperatingRoleFmt.Errorf("ab16: expected array")
+		return nil, b505OperatingRoleFmt.Errorf("b505 operating roles: expected array")
 	}
 	b505OperatingRoleIndex := make(map[string]b505OperatingRoleJSON.RawMessage, len(b505OperatingRoleRows))
 	for _, b505OperatingRoleRow := range b505OperatingRoleRows {
@@ -40,18 +40,18 @@ func b505OperatingRoleValidate(b505OperatingRoleData []byte) (map[string]b505Ope
 			return nil, b505OperatingRoleErr
 		}
 		if b505OperatingRoleEnvelope.B505OperatingRoleIdentity == nil {
-			return nil, b505OperatingRoleFmt.Errorf("ab16: missing identity")
+			return nil, b505OperatingRoleFmt.Errorf("b505 operating roles: missing identity")
 		}
 		b505OperatingRoleKey := b505OperatingRoleEnvelope.B505OperatingRoleIdentity
 		if b505OperatingRoleKey.B505OperatingRoleFamily == "" || b505OperatingRoleKey.B505OperatingRoleVariant == "" || b505OperatingRoleKey.B505OperatingRoleDirection == "" || b505OperatingRoleKey.B505OperatingRoleField == "" || b505OperatingRoleKey.B505OperatingRoleAlternative == "" || b505OperatingRoleKey.B505OperatingRoleInstanceScope == "" {
-			return nil, b505OperatingRoleFmt.Errorf("ab16: incomplete string axes")
+			return nil, b505OperatingRoleFmt.Errorf("b505 operating roles: incomplete string axes")
 		}
 		b505OperatingRoleEncoded, b505OperatingRoleErr := b505OperatingRoleJSON.Marshal(b505OperatingRoleKey)
 		if b505OperatingRoleErr != nil {
 			return nil, b505OperatingRoleErr
 		}
 		if _, b505OperatingRoleFound := b505OperatingRoleIndex[string(b505OperatingRoleEncoded)]; b505OperatingRoleFound {
-			return nil, b505OperatingRoleFmt.Errorf("ab16: duplicate identity")
+			return nil, b505OperatingRoleFmt.Errorf("b505 operating roles: duplicate identity")
 		}
 		b505OperatingRoleIndex[string(b505OperatingRoleEncoded)] = append(b505OperatingRoleJSON.RawMessage(nil), b505OperatingRoleRow...)
 	}

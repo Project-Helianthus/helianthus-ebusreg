@@ -10,17 +10,17 @@ import (
 var b501LegacySequenceEmbedded string
 
 type B501LegacySequenceKey struct {
-	B501LegacySequenceFamily        string  `json:"ab34_family"`
-	B501LegacySequenceVariant       string  `json:"ab34_variant"`
-	B501LegacySequencePrimary       uint8   `json:"ab34_primary"`
-	B501LegacySequenceSecondary     *uint8  `json:"ab34_secondary"`
-	B501LegacySequenceOperation     *uint8  `json:"ab34_operation"`
-	B501LegacySequenceDirection     string  `json:"ab34_direction"`
-	B501LegacySequenceField         string  `json:"ab34_field"`
-	B501LegacySequenceAlternative   string  `json:"ab34_alternative"`
-	B501LegacySequenceGroup         *uint8  `json:"ab34_group"`
-	B501LegacySequenceInstanceScope string  `json:"ab34_instance_scope"`
-	B501LegacySequenceRegister      *uint16 `json:"ab34_register"`
+	B501LegacySequenceFamily        string  `json:"family"`
+	B501LegacySequenceVariant       string  `json:"variant"`
+	B501LegacySequencePrimary       uint8   `json:"primary"`
+	B501LegacySequenceSecondary     *uint8  `json:"secondary"`
+	B501LegacySequenceOperation     *uint8  `json:"operation"`
+	B501LegacySequenceDirection     string  `json:"direction"`
+	B501LegacySequenceField         string  `json:"field"`
+	B501LegacySequenceAlternative   string  `json:"alternative"`
+	B501LegacySequenceGroup         *uint8  `json:"group"`
+	B501LegacySequenceInstanceScope string  `json:"instance_scope"`
+	B501LegacySequenceRegister      *uint16 `json:"register"`
 }
 
 func b501LegacySequenceValidate(b501LegacySequenceData []byte) ([]b501LegacySequenceJSON.RawMessage, error) {
@@ -29,7 +29,7 @@ func b501LegacySequenceValidate(b501LegacySequenceData []byte) ([]b501LegacySequ
 		return nil, b501LegacySequenceError
 	}
 	if b501LegacySequenceRows == nil {
-		return nil, b501LegacySequenceFmt.Errorf("ab34 array required")
+		return nil, b501LegacySequenceFmt.Errorf("b501 legacy sequence: array required")
 	}
 	b501LegacySequenceSeen := make(map[string]bool)
 	for _, b501LegacySequenceRow := range b501LegacySequenceRows {
@@ -38,11 +38,11 @@ func b501LegacySequenceValidate(b501LegacySequenceData []byte) ([]b501LegacySequ
 			return nil, b501LegacySequenceError
 		}
 		var b501LegacySequenceKey B501LegacySequenceKey
-		if b501LegacySequenceError := b501LegacySequenceJSON.Unmarshal(b501LegacySequenceObject["ab34_identity"], &b501LegacySequenceKey); b501LegacySequenceError != nil {
+		if b501LegacySequenceError := b501LegacySequenceJSON.Unmarshal(b501LegacySequenceObject["identity"], &b501LegacySequenceKey); b501LegacySequenceError != nil {
 			return nil, b501LegacySequenceError
 		}
 		var b501LegacySequenceAxes map[string]b501LegacySequenceJSON.RawMessage
-		if b501LegacySequenceError := b501LegacySequenceJSON.Unmarshal(b501LegacySequenceObject["ab34_identity"], &b501LegacySequenceAxes); b501LegacySequenceError != nil {
+		if b501LegacySequenceError := b501LegacySequenceJSON.Unmarshal(b501LegacySequenceObject["identity"], &b501LegacySequenceAxes); b501LegacySequenceError != nil {
 			return nil, b501LegacySequenceError
 		}
 		b501LegacySequenceCanonical, b501LegacySequenceError := b501LegacySequenceJSON.Marshal(b501LegacySequenceKey)
@@ -55,14 +55,14 @@ func b501LegacySequenceValidate(b501LegacySequenceData []byte) ([]b501LegacySequ
 		}
 		for b501LegacySequenceAxis := range b501LegacySequenceRequired {
 			if _, b501LegacySequencePresent := b501LegacySequenceAxes[b501LegacySequenceAxis]; !b501LegacySequencePresent {
-				return nil, b501LegacySequenceFmt.Errorf("ab34 missing identity axis %s", b501LegacySequenceAxis)
+				return nil, b501LegacySequenceFmt.Errorf("b501 legacy sequence: missing identity axis %s", b501LegacySequenceAxis)
 			}
 		}
-		if len(b501LegacySequenceAxes) != len(b501LegacySequenceRequired) || string(b501LegacySequenceAxes["ab34_primary"]) == "null" || b501LegacySequenceKey.B501LegacySequenceFamily == "" || b501LegacySequenceKey.B501LegacySequenceVariant == "" || b501LegacySequenceKey.B501LegacySequenceDirection == "" || b501LegacySequenceKey.B501LegacySequenceField == "" || b501LegacySequenceKey.B501LegacySequenceAlternative == "" || b501LegacySequenceKey.B501LegacySequenceInstanceScope == "" {
-			return nil, b501LegacySequenceFmt.Errorf("ab34 incomplete identity")
+		if len(b501LegacySequenceAxes) != len(b501LegacySequenceRequired) || string(b501LegacySequenceAxes["primary"]) == "null" || b501LegacySequenceKey.B501LegacySequenceFamily == "" || b501LegacySequenceKey.B501LegacySequenceVariant == "" || b501LegacySequenceKey.B501LegacySequenceDirection == "" || b501LegacySequenceKey.B501LegacySequenceField == "" || b501LegacySequenceKey.B501LegacySequenceAlternative == "" || b501LegacySequenceKey.B501LegacySequenceInstanceScope == "" {
+			return nil, b501LegacySequenceFmt.Errorf("b501 legacy sequence: incomplete identity")
 		}
 		if b501LegacySequenceSeen[string(b501LegacySequenceCanonical)] {
-			return nil, b501LegacySequenceFmt.Errorf("ab34 duplicate identity")
+			return nil, b501LegacySequenceFmt.Errorf("b501 legacy sequence: duplicate identity")
 		}
 		b501LegacySequenceSeen[string(b501LegacySequenceCanonical)] = true
 	}
@@ -88,7 +88,7 @@ func b501LegacySequenceLookup(b501LegacySequenceData []byte, b501LegacySequenceK
 	}
 	for _, b501LegacySequenceRow := range b501LegacySequenceRows {
 		var b501LegacySequenceObject struct {
-			B501LegacySequenceIdentity B501LegacySequenceKey `json:"ab34_identity"`
+			B501LegacySequenceIdentity B501LegacySequenceKey `json:"identity"`
 		}
 		if b501LegacySequenceError = b501LegacySequenceJSON.Unmarshal(b501LegacySequenceRow, &b501LegacySequenceObject); b501LegacySequenceError != nil {
 			return nil, false, b501LegacySequenceError

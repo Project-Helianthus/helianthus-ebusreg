@@ -5,7 +5,6 @@ import (
 	_ "embed"
 	b506RFSequenceJSON "encoding/json"
 	b506RFSequenceFmt "fmt"
-	b506RFSequenceStrings "strings"
 )
 
 //go:embed data/ab17_b506_rf_sequence.json
@@ -26,12 +25,12 @@ type B506RFSequenceKey struct {
 }
 
 type b506RFSequenceRow struct {
-	B506RFSequenceID            string            `json:"ab17_id"`
+	B506RFSequenceID            string            `json:"id"`
 	B506RFSequenceKey           B506RFSequenceKey `json:"key"`
 	B506RFSequenceGrade         string            `json:"grade"`
 	B506RFSequenceQualification string            `json:"qualification"`
-	B506RFSequenceRawForm       string            `json:"ab17_raw_form"`
-	B506RFSequenceUnknown       map[string]string `json:"ab17_unknown"`
+	B506RFSequenceRawForm       string            `json:"raw_form"`
+	B506RFSequenceUnknown       map[string]string `json:"unknown"`
 }
 
 func b506RFSequenceEntriesFrom(b506RFSequenceData string) ([]b506RFSequenceJSON.RawMessage, error) {
@@ -40,7 +39,7 @@ func b506RFSequenceEntriesFrom(b506RFSequenceData string) ([]b506RFSequenceJSON.
 		return nil, b506RFSequenceError
 	}
 	if b506RFSequenceRows == nil {
-		return nil, b506RFSequenceFmt.Errorf("ab17: expected array")
+		return nil, b506RFSequenceFmt.Errorf("b506 rf sequence: expected array")
 	}
 	b506RFSequenceSeen := make(map[string]bool)
 	for _, b506RFSequenceRaw := range b506RFSequenceRows {
@@ -58,10 +57,10 @@ func b506RFSequenceEntriesFrom(b506RFSequenceData string) ([]b506RFSequenceJSON.
 		}
 		for _, b506RFSequenceAxis := range []string{"family", "variant", "primary", "secondary", "operation", "direction", "field", "alternative", "group", "instance_scope", "register"} {
 			if _, b506RFSequencePresent := b506RFSequenceAxes[b506RFSequenceAxis]; !b506RFSequencePresent {
-				return nil, b506RFSequenceFmt.Errorf("ab17: missing axis %s", b506RFSequenceAxis)
+				return nil, b506RFSequenceFmt.Errorf("b506 rf sequence: missing axis %s", b506RFSequenceAxis)
 			}
 			if b506RFSequenceAxis != "secondary" && b506RFSequenceAxis != "operation" && b506RFSequenceAxis != "group" && b506RFSequenceAxis != "register" && b506RFSequenceBytes.Equal(b506RFSequenceAxes[b506RFSequenceAxis], []byte("null")) {
-				return nil, b506RFSequenceFmt.Errorf("ab17: null axis %s", b506RFSequenceAxis)
+				return nil, b506RFSequenceFmt.Errorf("b506 rf sequence: null axis %s", b506RFSequenceAxis)
 			}
 		}
 		b506RFSequenceDecoder := b506RFSequenceJSON.NewDecoder(b506RFSequenceBytes.NewReader(b506RFSequenceObject["key"]))
@@ -69,15 +68,15 @@ func b506RFSequenceEntriesFrom(b506RFSequenceData string) ([]b506RFSequenceJSON.
 		if b506RFSequenceError := b506RFSequenceDecoder.Decode(&b506RFSequenceEntry.B506RFSequenceKey); b506RFSequenceError != nil {
 			return nil, b506RFSequenceError
 		}
-		if !b506RFSequenceStrings.HasPrefix(b506RFSequenceEntry.B506RFSequenceID, "ab17-") || b506RFSequenceEntry.B506RFSequenceGrade != "Hypothesis" || b506RFSequenceEntry.B506RFSequenceQualification != "Unknown" || b506RFSequenceEntry.B506RFSequenceRawForm == "" || len(b506RFSequenceEntry.B506RFSequenceUnknown) == 0 || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceFamily == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceVariant == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceDirection == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceField == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceAlternative == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceInstanceScope == "" {
-			return nil, b506RFSequenceFmt.Errorf("ab17: incomplete metadata")
+		if b506RFSequenceEntry.B506RFSequenceID == "" || b506RFSequenceEntry.B506RFSequenceGrade != "Hypothesis" || b506RFSequenceEntry.B506RFSequenceQualification != "Unknown" || b506RFSequenceEntry.B506RFSequenceRawForm == "" || len(b506RFSequenceEntry.B506RFSequenceUnknown) == 0 || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceFamily == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceVariant == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceDirection == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceField == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceAlternative == "" || b506RFSequenceEntry.B506RFSequenceKey.B506RFSequenceInstanceScope == "" {
+			return nil, b506RFSequenceFmt.Errorf("b506 rf sequence: incomplete metadata")
 		}
 		b506RFSequenceIdentity, b506RFSequenceError := b506RFSequenceJSON.Marshal(b506RFSequenceEntry.B506RFSequenceKey)
 		if b506RFSequenceError != nil {
 			return nil, b506RFSequenceError
 		}
 		if b506RFSequenceSeen[string(b506RFSequenceIdentity)] {
-			return nil, b506RFSequenceFmt.Errorf("ab17: duplicate key")
+			return nil, b506RFSequenceFmt.Errorf("b506 rf sequence: duplicate key")
 		}
 		b506RFSequenceSeen[string(b506RFSequenceIdentity)] = true
 	}

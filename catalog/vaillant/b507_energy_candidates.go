@@ -62,27 +62,27 @@ func B507EnergyCandidateEntries() ([]B507EnergyCandidateEntry, error) {
 	}
 	var b507EnergyCandidateExtra any
 	if b507EnergyCandidateError := b507EnergyCandidateDecoder.Decode(&b507EnergyCandidateExtra); b507EnergyCandidateError != b507EnergyCandidateIO.EOF {
-		return nil, b507EnergyCandidateFmt.Errorf("ab13: trailing embedded data")
+		return nil, b507EnergyCandidateFmt.Errorf("b507 energy candidates: trailing embedded data")
 	}
 	if len(b507EnergyCandidateEntries) == 0 {
-		return nil, b507EnergyCandidateFmt.Errorf("ab13: empty embedded catalog")
+		return nil, b507EnergyCandidateFmt.Errorf("b507 energy candidates: empty embedded catalog")
 	}
 	for b507EnergyCandidateIndex, b507EnergyCandidateEntry := range b507EnergyCandidateEntries {
 		if b507EnergyCandidateEntry.B507EnergyCandidateKey.B507EnergyCandidateFamily == "" || b507EnergyCandidateEntry.B507EnergyCandidateKey.B507EnergyCandidateVariant == "" || b507EnergyCandidateEntry.B507EnergyCandidateKey.B507EnergyCandidateField == "" ||
 			(b507EnergyCandidateEntry.B507EnergyCandidateGrade != "Proven" && b507EnergyCandidateEntry.B507EnergyCandidateGrade != "Hypothesis" && b507EnergyCandidateEntry.B507EnergyCandidateGrade != "Unknown") ||
 			b507EnergyCandidateEntry.B507EnergyCandidateMetadataPresence != "Proven" || b507EnergyCandidateEntry.B507EnergyCandidatePhysicalQualification != "Unknown" ||
 			b507EnergyCandidateEntry.B507EnergyCandidateInvocation != "Unknown" || b507EnergyCandidateEntry.B507EnergyCandidateNativeContract == "" || !b507EnergyCandidateEntry.B507EnergyCandidatePreserveRaw {
-			return nil, b507EnergyCandidateFmt.Errorf("ab13: invalid embedded entry %d", b507EnergyCandidateIndex)
+			return nil, b507EnergyCandidateFmt.Errorf("b507 energy candidates: invalid embedded entry %d", b507EnergyCandidateIndex)
 		}
 		if b507EnergyCandidateEntry.B507EnergyCandidateDivisor != nil && *b507EnergyCandidateEntry.B507EnergyCandidateDivisor <= 0 {
-			return nil, b507EnergyCandidateFmt.Errorf("ab13: invalid divisor at %d", b507EnergyCandidateIndex)
+			return nil, b507EnergyCandidateFmt.Errorf("b507 energy candidates: invalid divisor at %d", b507EnergyCandidateIndex)
 		}
 		if b507EnergyCandidateEntry.B507EnergyCandidateRawDomain != nil && (len(b507EnergyCandidateEntry.B507EnergyCandidateRawDomain) != 2 || b507EnergyCandidateEntry.B507EnergyCandidateRawDomain[0] > b507EnergyCandidateEntry.B507EnergyCandidateRawDomain[1]) {
-			return nil, b507EnergyCandidateFmt.Errorf("ab13: invalid domain at %d", b507EnergyCandidateIndex)
+			return nil, b507EnergyCandidateFmt.Errorf("b507 energy candidates: invalid domain at %d", b507EnergyCandidateIndex)
 		}
 		for _, b507EnergyCandidatePrevious := range b507EnergyCandidateEntries[:b507EnergyCandidateIndex] {
 			if b507EnergyCandidateReflect.DeepEqual(b507EnergyCandidatePrevious.B507EnergyCandidateKey, b507EnergyCandidateEntry.B507EnergyCandidateKey) {
-				return nil, b507EnergyCandidateFmt.Errorf("ab13: duplicate embedded key at %d", b507EnergyCandidateIndex)
+				return nil, b507EnergyCandidateFmt.Errorf("b507 energy candidates: duplicate embedded key at %d", b507EnergyCandidateIndex)
 			}
 		}
 	}

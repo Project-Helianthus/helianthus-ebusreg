@@ -1,7 +1,7 @@
 [
   {
     "Ab15An15Label": "ab15an15_clock_0_zero",
-    "Ab15An15Clock": [
+    "clock": [
       [
         0
       ],
@@ -18,7 +18,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -42,7 +42,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_0_max",
-    "Ab15An15Clock": [
+    "clock": [
       [
         153
       ],
@@ -59,7 +59,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -83,7 +83,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_0_replacement",
-    "Ab15An15Clock": [
+    "clock": [
       [
         255
       ],
@@ -100,7 +100,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -124,7 +124,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_0_high_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         250
       ],
@@ -141,7 +141,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -165,7 +165,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_0_low_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         26
       ],
@@ -182,7 +182,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -206,7 +206,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_0_high_only_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         161
       ],
@@ -223,7 +223,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -247,7 +247,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_0_missing",
-    "Ab15An15Clock": [
+    "clock": [
       [],
       [
         35
@@ -262,7 +262,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -286,7 +286,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_0_failed",
-    "Ab15An15Clock": [
+    "clock": [
       [
         35
       ],
@@ -303,7 +303,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       true,
       false,
       false,
@@ -327,7 +327,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_0_failed_empty",
-    "Ab15An15Clock": [
+    "clock": [
       [],
       [
         35
@@ -342,7 +342,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       true,
       false,
       false,
@@ -366,7 +366,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_0_oversize",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18,
         35
@@ -384,7 +384,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -408,7 +408,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_1_zero",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -425,7 +425,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -449,7 +449,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_1_max",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -466,7 +466,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -490,7 +490,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_1_replacement",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -507,7 +507,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -531,7 +531,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_1_high_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -548,7 +548,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -572,7 +572,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_1_low_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -589,7 +589,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -613,7 +613,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_1_high_only_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -630,7 +630,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -654,7 +654,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_1_missing",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -669,7 +669,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -693,7 +693,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_1_failed",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -710,7 +710,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       true,
       false,
@@ -734,7 +734,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_1_failed_empty",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -749,7 +749,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       true,
       false,
@@ -773,7 +773,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_1_oversize",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -791,7 +791,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -815,7 +815,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_2_zero",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -832,7 +832,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -856,7 +856,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_2_max",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -873,7 +873,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -897,7 +897,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_2_replacement",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -914,7 +914,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -938,7 +938,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_2_high_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -955,7 +955,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -979,7 +979,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_2_low_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -996,7 +996,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1020,7 +1020,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_2_high_only_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1037,7 +1037,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1061,7 +1061,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_2_missing",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1076,7 +1076,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1100,7 +1100,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_2_failed",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1117,7 +1117,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       true,
@@ -1141,7 +1141,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_2_failed_empty",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1156,7 +1156,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       true,
@@ -1180,7 +1180,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_2_oversize",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1198,7 +1198,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1222,7 +1222,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_3_zero",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1239,7 +1239,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1263,7 +1263,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_3_max",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1280,7 +1280,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1304,7 +1304,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_3_replacement",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1321,7 +1321,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1345,7 +1345,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_3_high_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1362,7 +1362,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1386,7 +1386,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_3_low_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1403,7 +1403,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1427,7 +1427,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_3_high_only_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1444,7 +1444,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1468,7 +1468,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_3_missing",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1483,7 +1483,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1507,7 +1507,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_3_failed",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1524,7 +1524,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1548,7 +1548,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_3_failed_empty",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1563,7 +1563,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1587,7 +1587,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_3_oversize",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1605,7 +1605,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1629,7 +1629,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_4_zero",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1646,7 +1646,7 @@
         0
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1670,7 +1670,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_4_max",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1687,7 +1687,7 @@
         153
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1711,7 +1711,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_4_replacement",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1728,7 +1728,7 @@
         255
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1752,7 +1752,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_4_high_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1769,7 +1769,7 @@
         250
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1793,7 +1793,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_4_low_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1810,7 +1810,7 @@
         26
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1834,7 +1834,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_4_high_only_invalid",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1851,7 +1851,7 @@
         161
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1875,7 +1875,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_4_missing",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1890,7 +1890,7 @@
       ],
       []
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1914,7 +1914,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_4_failed",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1931,7 +1931,7 @@
         35
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1955,7 +1955,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_4_failed_empty",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -1970,7 +1970,7 @@
       ],
       []
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,
@@ -1994,7 +1994,7 @@
   },
   {
     "Ab15An15Label": "ab15an15_clock_4_oversize",
-    "Ab15An15Clock": [
+    "clock": [
       [
         18
       ],
@@ -2012,7 +2012,7 @@
         35
       ]
     ],
-    "Ab15An15Failed": [
+    "failed": [
       false,
       false,
       false,

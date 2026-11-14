@@ -11,30 +11,30 @@ const (
 )
 
 type B516TwoWordViewResult struct {
-	B516TwoWordViewDeclaredCount       int      `json:"Ab17An17DeclaredCount"`
-	B516TwoWordViewAvailableExtent     int      `json:"Ab17An17AvailableExtent"`
-	B516TwoWordViewRaw                 []byte   `json:"Ab17An17Raw"`
-	B516TwoWordViewTrailing            []byte   `json:"Ab17An17Trailing"`
-	B516TwoWordViewAdmitted            bool     `json:"Ab17An17Admitted"`
-	B516TwoWordViewStatusAvailable     bool     `json:"Ab17An17StatusAvailable"`
-	B516TwoWordViewStatus              byte     `json:"Ab17An17Status"`
-	B516TwoWordViewWord0Available      bool     `json:"Ab17An17Word0Available"`
-	B516TwoWordViewWord0Raw            [4]byte  `json:"Ab17An17Word0Raw"`
-	B516TwoWordViewWord0Bits           uint32   `json:"Ab17An17Word0Bits"`
-	B516TwoWordViewWord0Finite         bool     `json:"Ab17An17Word0Finite"`
-	B516TwoWordViewWord0Value          *float32 `json:"Ab17An17Word0Value"`
-	B516TwoWordViewWord1Available      bool     `json:"Ab17An17Word1Available"`
-	B516TwoWordViewWord1Raw            [4]byte  `json:"Ab17An17Word1Raw"`
-	B516TwoWordViewCompleteTwoWord     bool     `json:"Ab17An17CompleteTwoWord"`
-	B516TwoWordViewContractGrade       string   `json:"Ab17An17ContractGrade"`
-	B516TwoWordViewInterpretationGrade string   `json:"Ab17An17InterpretationGrade"`
-	B516TwoWordViewStatusMeaning       string   `json:"Ab17An17StatusMeaning"`
-	B516TwoWordViewWord0NativeUnit     string   `json:"Ab17An17Word0NativeUnit"`
-	B516TwoWordViewWord0NativeSign     string   `json:"Ab17An17Word0NativeSign"`
-	B516TwoWordViewWord1Type           string   `json:"Ab17An17Word1Type"`
-	B516TwoWordViewWord1Scale          string   `json:"Ab17An17Word1Scale"`
-	B516TwoWordViewWord1Sign           string   `json:"Ab17An17Word1Sign"`
-	B516TwoWordViewQualification       string   `json:"Ab17An17Qualification"`
+	B516TwoWordViewDeclaredCount       int      `json:"declared_count"`
+	B516TwoWordViewAvailableExtent     int      `json:"available_extent"`
+	B516TwoWordViewRaw                 []byte   `json:"raw"`
+	B516TwoWordViewTrailing            []byte   `json:"trailing"`
+	B516TwoWordViewAdmitted            bool     `json:"admitted"`
+	B516TwoWordViewStatusAvailable     bool     `json:"status_available"`
+	B516TwoWordViewStatus              byte     `json:"status"`
+	B516TwoWordViewWord0Available      bool     `json:"word0_available"`
+	B516TwoWordViewWord0Raw            [4]byte  `json:"word0_raw"`
+	B516TwoWordViewWord0Bits           uint32   `json:"word0_bits"`
+	B516TwoWordViewWord0Finite         bool     `json:"word0_finite"`
+	B516TwoWordViewWord0Value          *float32 `json:"word0_value"`
+	B516TwoWordViewWord1Available      bool     `json:"word1_available"`
+	B516TwoWordViewWord1Raw            [4]byte  `json:"word1_raw"`
+	B516TwoWordViewCompleteTwoWord     bool     `json:"complete_two_word"`
+	B516TwoWordViewContractGrade       string   `json:"contract_grade"`
+	B516TwoWordViewInterpretationGrade string   `json:"interpretation_grade"`
+	B516TwoWordViewStatusMeaning       string   `json:"status_meaning"`
+	B516TwoWordViewWord0NativeUnit     string   `json:"word0_native_unit"`
+	B516TwoWordViewWord0NativeSign     string   `json:"word0_native_sign"`
+	B516TwoWordViewWord1Type           string   `json:"word1_type"`
+	B516TwoWordViewWord1Scale          string   `json:"word1_scale"`
+	B516TwoWordViewWord1Sign           string   `json:"word1_sign"`
+	B516TwoWordViewQualification       string   `json:"qualification"`
 }
 
 func B516TwoWordViewInterpret(b516TwoWordViewFamily, b516TwoWordViewVariant string, b516TwoWordViewOperation byte, b516TwoWordViewDirection string, b516TwoWordViewDeclaredCount int, b516TwoWordViewBody []byte) B516TwoWordViewResult {

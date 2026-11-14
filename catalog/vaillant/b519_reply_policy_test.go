@@ -8,27 +8,27 @@ import (
 )
 
 type b519ReplyPolicyEntry struct {
-	B519ReplyPolicyID        string             `json:"ab21_id"`
+	B519ReplyPolicyID        string             `json:"id"`
 	B519ReplyPolicyKey       B519ReplyPolicyKey `json:"key"`
-	B519ReplyPolicyGrade     string             `json:"ab21_grade"`
-	B519ReplyPolicyPresence  string             `json:"ab21_metadata_presence"`
-	B519ReplyPolicyContract  string             `json:"ab21_native_contract"`
-	B519ReplyPolicy          string             `json:"ab21_reply_policy"`
-	B519ReplyPolicyRecipient string             `json:"ab21_reply_recipient"`
-	B519ReplyPolicyInitiator string             `json:"ab21_initiator_relation"`
+	B519ReplyPolicyGrade     string             `json:"grade"`
+	B519ReplyPolicyPresence  string             `json:"metadata_presence"`
+	B519ReplyPolicyContract  string             `json:"native_contract"`
+	B519ReplyPolicy          string             `json:"reply_policy"`
+	B519ReplyPolicyRecipient string             `json:"reply_recipient"`
+	B519ReplyPolicyInitiator string             `json:"initiator_relation"`
 	B519ReplyPolicyData      *struct {
-		B519ReplyPolicyMinimum        int    `json:"ab21_minimum_length"`
-		B519ReplyPolicyCapacity       any    `json:"ab21_peer_capacity"`
-		B519ReplyPolicyBlock          bool   `json:"ab21_block_number_in_data"`
-		B519ReplyPolicyRepresentation string `json:"ab21_representation"`
-	} `json:"ab21_data"`
-	B519ReplyPolicyQuery *uint8 `json:"ab21_crc_query_operation"`
+		B519ReplyPolicyMinimum        int    `json:"minimum_length"`
+		B519ReplyPolicyCapacity       any    `json:"peer_capacity"`
+		B519ReplyPolicyBlock          bool   `json:"block_number_in_data"`
+		B519ReplyPolicyRepresentation string `json:"representation"`
+	} `json:"data"`
+	B519ReplyPolicyQuery *uint8 `json:"crc_query_operation"`
 	B519ReplyPolicyRaw   struct {
-		B519ReplyPolicyService    []uint8 `json:"ab21_service"`
-		B519ReplyPolicyPreserve   bool    `json:"ab21_preserve_raw"`
-		B519ReplyPolicyUnresolved string  `json:"ab21_unresolved_bytes"`
-	} `json:"ab21_raw_form"`
-	B519ReplyPolicyUnknown map[string]string `json:"ab21_unknown"`
+		B519ReplyPolicyService    []uint8 `json:"service"`
+		B519ReplyPolicyPreserve   bool    `json:"preserve_raw"`
+		B519ReplyPolicyUnresolved string  `json:"unresolved_bytes"`
+	} `json:"raw_form"`
+	B519ReplyPolicyUnknown map[string]string `json:"unknown"`
 }
 
 func b519ReplyPolicyPointer(b519ReplyPolicyValue uint8) *uint8 { return &b519ReplyPolicyValue }
@@ -130,7 +130,7 @@ func TestAb21AlternativesAndRaw(b519ReplyPolicyT *b519ReplyPolicyTesting.T) {
 		if b519ReplyPolicyActual.B519ReplyPolicyGrade != "Hypothesis" || b519ReplyPolicyActual.B519ReplyPolicyPresence != "Proven" || b519ReplyPolicyActual.B519ReplyPolicyContract != "protocols/vaillant/ebus-vaillant-B519.md" || !b519ReplyPolicyActual.B519ReplyPolicyRaw.B519ReplyPolicyPreserve || b519ReplyPolicyActual.B519ReplyPolicyRaw.B519ReplyPolicyUnresolved != "retained" || !b519ReplyPolicyReflect.DeepEqual(b519ReplyPolicyActual.B519ReplyPolicyRaw.B519ReplyPolicyService, []uint8{181, 25, *b519ReplyPolicyActual.B519ReplyPolicyKey.B519ReplyPolicyOperation}) {
 			b519ReplyPolicyT.Fatal("grade or raw retention changed")
 		}
-		for _, b519ReplyPolicyUnknown := range []string{"ab21_routing", "ab21_actual_acknowledgement", "ab21_storage_effects", "ab21_native_support", "ab21_physical_effects", "ab21_persistence", "ab21_delivery", "ab21_qualification"} {
+		for _, b519ReplyPolicyUnknown := range []string{"routing", "actual_acknowledgement", "storage_effects", "native_support", "physical_effects", "persistence", "delivery", "qualification"} {
 			if b519ReplyPolicyActual.B519ReplyPolicyUnknown[b519ReplyPolicyUnknown] != "Unknown" {
 				b519ReplyPolicyT.Fatalf("%s must remain Unknown", b519ReplyPolicyUnknown)
 			}

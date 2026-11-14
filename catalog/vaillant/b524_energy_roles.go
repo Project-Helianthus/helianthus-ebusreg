@@ -50,22 +50,22 @@ func B524EnergyRoleEntries() ([]B524EnergyRoleEntry, error) {
 	b524EnergyRoleDecoder := b524EnergyRoleJSON.NewDecoder(b524EnergyRoleBytesPackage.NewReader(b524EnergyRoleData))
 	b524EnergyRoleDecoder.DisallowUnknownFields()
 	if b524EnergyRoleError := b524EnergyRoleDecoder.Decode(&b524EnergyRoleEntries); b524EnergyRoleError != nil {
-		return nil, b524EnergyRoleFmt.Errorf("ab95 metadata: %w", b524EnergyRoleError)
+		return nil, b524EnergyRoleFmt.Errorf("b524 energy roles metadata: %w", b524EnergyRoleError)
 	}
 	var b524EnergyRoleTrailing any
 	if b524EnergyRoleError := b524EnergyRoleDecoder.Decode(&b524EnergyRoleTrailing); b524EnergyRoleError != b524EnergyRoleIO.EOF {
-		return nil, b524EnergyRoleFmt.Errorf("ab95 metadata: trailing data")
+		return nil, b524EnergyRoleFmt.Errorf("b524 energy roles metadata: trailing data")
 	}
 	if len(b524EnergyRoleEntries) != 5 {
-		return nil, b524EnergyRoleFmt.Errorf("ab95 metadata: expected five targets")
+		return nil, b524EnergyRoleFmt.Errorf("b524 energy roles metadata: expected five targets")
 	}
 	for b524EnergyRoleIndex, b524EnergyRoleEntry := range b524EnergyRoleEntries {
 		if b524EnergyRoleEntry.B524EnergyRoleKey.B524EnergyRoleFamily == "" || b524EnergyRoleEntry.B524EnergyRoleKey.B524EnergyRoleVariant == "" || b524EnergyRoleEntry.B524EnergyRoleKey.B524EnergyRoleDirection == "" || b524EnergyRoleEntry.B524EnergyRoleKey.B524EnergyRoleField == "" || b524EnergyRoleEntry.B524EnergyRoleKey.B524EnergyCommandRole == "" || b524EnergyRoleEntry.B524EnergyRoleGrade != "Hypothesis" || b524EnergyRoleEntry.B524EnergyRoleMetadataBoundaryGrade != "Proven" || b524EnergyRoleEntry.B524EnergyRolePhysicalQualification != "Unknown" || b524EnergyRoleEntry.B524EnergyRoleNativeContract == "" || b524EnergyRoleEntry.B524EnergyRoleMetadataBoundary == "" || b524EnergyRoleEntry.B524EnergyRoleRawPreservation == "" || len(b524EnergyRoleEntry.B524EnergyRoleUnknown) == 0 {
-			return nil, b524EnergyRoleFmt.Errorf("ab95 metadata: invalid entry %d", b524EnergyRoleIndex)
+			return nil, b524EnergyRoleFmt.Errorf("b524 energy roles metadata: invalid entry %d", b524EnergyRoleIndex)
 		}
 		for _, b524EnergyRolePrevious := range b524EnergyRoleEntries[:b524EnergyRoleIndex] {
 			if b524EnergyRoleReflect.DeepEqual(b524EnergyRoleEntry.B524EnergyRoleKey, b524EnergyRolePrevious.B524EnergyRoleKey) {
-				return nil, b524EnergyRoleFmt.Errorf("ab95 metadata: duplicate key at %d", b524EnergyRoleIndex)
+				return nil, b524EnergyRoleFmt.Errorf("b524 energy roles metadata: duplicate key at %d", b524EnergyRoleIndex)
 			}
 		}
 	}

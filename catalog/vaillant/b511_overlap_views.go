@@ -1,36 +1,36 @@
 package vaillant
 
 const (
-	B511OverlapViewFamily           = "ab11an11-b511-family"
-	B511OverlapViewOP00Reserved     = "ab11an11-op00-reserved"
-	B511OverlapViewOP00Fan          = "ab11an11-op00-fan"
-	B511OverlapViewOP07Base         = "ab11an11-op07-base"
-	B511OverlapViewOP07ExtendedRoom = "ab11an11-op07-extended-room"
+	B511OverlapViewFamily           = "b511-family"
+	B511OverlapViewOP00Reserved     = "op00-reserved"
+	B511OverlapViewOP00Fan          = "op00-fan"
+	B511OverlapViewOP07Base         = "op07-base"
+	B511OverlapViewOP07ExtendedRoom = "op07-extended-room"
 )
 
 type B511OverlapViewSelection struct {
-	B511OverlapViewFamily    string `json:"Ab11An11Family"`
-	B511OverlapViewVariant   string `json:"Ab11An11Variant"`
-	B511OverlapViewOperation *byte  `json:"Ab11An11Operation"`
-	B511OverlapViewDirection string `json:"Ab11An11Direction"`
+	B511OverlapViewFamily    string `json:"family"`
+	B511OverlapViewVariant   string `json:"variant"`
+	B511OverlapViewOperation *byte  `json:"operation"`
+	B511OverlapViewDirection string `json:"direction"`
 }
 
 type B511OverlapView struct {
-	B511OverlapViewSelection             B511OverlapViewSelection `json:"Ab11An11Selection"`
-	B511OverlapViewRaw                   []byte                   `json:"Ab11An11Raw"`
-	B511OverlapViewAvailableExtent       int                      `json:"Ab11An11AvailableExtent"`
-	B511OverlapViewRequiredExtent        int                      `json:"Ab11An11RequiredExtent"`
-	B511OverlapViewCompleteLogicalExtent bool                     `json:"Ab11An11CompleteLogicalExtent"`
-	B511OverlapViewSelected              bool                     `json:"Ab11An11Selected"`
-	B511OverlapViewRawFlag               *byte                    `json:"Ab11An11RawFlag"`
-	B511OverlapViewFanRunning            *bool                    `json:"Ab11An11FanRunning"`
-	B511OverlapViewRawOverlay            *byte                    `json:"Ab11An11RawOverlay"`
-	B511OverlapViewRoomSetpointCelsius   *float64                 `json:"Ab11An11RoomSetpointCelsius"`
-	B511OverlapViewRawPressure           *byte                    `json:"Ab11An11RawPressure"`
-	B511OverlapViewPressurePercent       *byte                    `json:"Ab11An11PressurePercent"`
-	B511OverlapViewPressureDomain        string                   `json:"Ab11An11PressureDomain"`
-	B511OverlapViewCandidateGrade        string                   `json:"Ab11An11CandidateGrade"`
-	B511OverlapViewPhysicalQualification string                   `json:"Ab11An11PhysicalQualification"`
+	B511OverlapViewSelection             B511OverlapViewSelection `json:"selection"`
+	B511OverlapViewRaw                   []byte                   `json:"raw"`
+	B511OverlapViewAvailableExtent       int                      `json:"available_extent"`
+	B511OverlapViewRequiredExtent        int                      `json:"required_extent"`
+	B511OverlapViewCompleteLogicalExtent bool                     `json:"complete_logical_extent"`
+	B511OverlapViewSelected              bool                     `json:"selected"`
+	B511OverlapViewRawFlag               *byte                    `json:"raw_flag"`
+	B511OverlapViewFanRunning            *bool                    `json:"fan_running"`
+	B511OverlapViewRawOverlay            *byte                    `json:"raw_overlay"`
+	B511OverlapViewRoomSetpointCelsius   *float64                 `json:"room_setpoint_celsius"`
+	B511OverlapViewRawPressure           *byte                    `json:"raw_pressure"`
+	B511OverlapViewPressurePercent       *byte                    `json:"pressure_percent"`
+	B511OverlapViewPressureDomain        string                   `json:"pressure_domain"`
+	B511OverlapViewCandidateGrade        string                   `json:"candidate_grade"`
+	B511OverlapViewPhysicalQualification string                   `json:"physical_qualification"`
 }
 
 func B511OverlapViewInterpret(b511OverlapViewSelection B511OverlapViewSelection, b511OverlapViewLogicalImage []byte) B511OverlapView {

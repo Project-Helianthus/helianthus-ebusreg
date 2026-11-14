@@ -52,10 +52,10 @@
 // addressing: it changes when a device is re-addressed and repeats when
 // another unit of the same model answers at the same address. The planes,
 // projections and locators are native-only and are not a resource identity.
-// The portal
-// and canonical indexes give read-only lookups over the projections of one
-// snapshot. When a device's projections do not form one consistent canonical
-// index, the entry carries no projections rather than a partial set.
+// The portal and canonical indexes give read-only lookups over the
+// projections of one snapshot. When a device's projections do not form one
+// consistent canonical index, the entry carries no projections rather than
+// a partial set.
 //
 // Concurrency. All registry methods are safe for concurrent use. Lookups
 // that return pointers expose live state that may change after the call;

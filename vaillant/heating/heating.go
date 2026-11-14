@@ -46,7 +46,9 @@ func (Provider) Match(info registry.DeviceInfo) bool {
 
 // CreatePlanes returns the single "heating" plane with get_status,
 // set_target_temp and get_parameters. get_energy_stats is added only when
-// the digits of the hardware version read as 7603 or higher.
+// the digits of the hardware version read as 7603 or higher and at most
+// 65535; a digit sequence above 65535 (for example 76030) does not match, so
+// the method is left out.
 func (Provider) CreatePlanes(info registry.DeviceInfo) []registry.Plane {
 	return []registry.Plane{
 		newHeatingPlane(info),

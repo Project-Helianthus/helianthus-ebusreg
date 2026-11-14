@@ -1,43 +1,43 @@
 package system
 
 type B524CalendarViewCell struct {
-	B524CalendarViewRaw   byte   `json:"Ab01An01Raw"`
-	B524CalendarViewState string `json:"Ab01An01State"`
+	B524CalendarViewRaw   byte   `json:"raw"`
+	B524CalendarViewState string `json:"state"`
 }
 
 type B524CalendarViewInput struct {
-	B524CalendarViewFamily        string                  `json:"Ab01An01Family"`
-	B524CalendarViewSoftware      string                  `json:"Ab01An01Software"`
-	B524CalendarViewHardware      string                  `json:"Ab01An01Hardware"`
-	B524CalendarViewAPIVersion    string                  `json:"Ab01An01APIVersion"`
-	B524CalendarViewAPIRevision   string                  `json:"Ab01An01APIRevision"`
-	B524CalendarViewOP            byte                    `json:"Ab01An01OP"`
-	B524CalendarViewRequestedGG   byte                    `json:"Ab01An01RequestedGG"`
-	B524CalendarViewII            *byte                   `json:"Ab01An01II"`
-	B524CalendarViewRequestedRR   uint16                  `json:"Ab01An01RequestedRR"`
-	B524CalendarViewAlternative   string                  `json:"Ab01An01Alternative"`
-	B524CalendarViewReturnedGG    byte                    `json:"Ab01An01ReturnedGG"`
-	B524CalendarViewReturnedRR    uint16                  `json:"Ab01An01ReturnedRR"`
-	B524CalendarViewResponseState string                  `json:"Ab01An01ResponseState"`
-	B524CalendarViewCells         [3]B524CalendarViewCell `json:"Ab01An01Cells"`
-	B524CalendarViewRaw           []byte                  `json:"Ab01An01Raw"`
+	B524CalendarViewFamily        string                  `json:"family"`
+	B524CalendarViewSoftware      string                  `json:"software"`
+	B524CalendarViewHardware      string                  `json:"hardware"`
+	B524CalendarViewAPIVersion    string                  `json:"api_version"`
+	B524CalendarViewAPIRevision   string                  `json:"api_revision"`
+	B524CalendarViewOP            byte                    `json:"op"`
+	B524CalendarViewRequestedGG   byte                    `json:"requested_gg"`
+	B524CalendarViewII            *byte                   `json:"ii"`
+	B524CalendarViewRequestedRR   uint16                  `json:"requested_rr"`
+	B524CalendarViewAlternative   string                  `json:"alternative"`
+	B524CalendarViewReturnedGG    byte                    `json:"returned_gg"`
+	B524CalendarViewReturnedRR    uint16                  `json:"returned_rr"`
+	B524CalendarViewResponseState string                  `json:"response_state"`
+	B524CalendarViewCells         [3]B524CalendarViewCell `json:"cells"`
+	B524CalendarViewRaw           []byte                  `json:"raw"`
 }
 
 type B524CalendarViewComponent struct {
-	B524CalendarViewCell      B524CalendarViewCell `json:"Ab01An01Cell"`
-	B524CalendarViewState     string               `json:"Ab01An01State"`
-	B524CalendarViewCandidate *byte                `json:"Ab01An01Candidate"`
+	B524CalendarViewCell      B524CalendarViewCell `json:"cell"`
+	B524CalendarViewState     string               `json:"state"`
+	B524CalendarViewCandidate *byte                `json:"candidate"`
 }
 
 type B524CalendarViewResult struct {
-	B524CalendarViewContext             B524CalendarViewInput        `json:"Ab01An01Context"`
-	B524CalendarViewComponents          [3]B524CalendarViewComponent `json:"Ab01An01Components"`
-	B524CalendarViewCompleteCandidate   bool                         `json:"Ab01An01CompleteCandidate"`
-	B524CalendarViewGrade               string                       `json:"Ab01An01Grade"`
-	B524CalendarViewContractGrade       string                       `json:"Ab01An01ContractGrade"`
-	B524CalendarViewNativeQualification string                       `json:"Ab01An01NativeQualification"`
-	B524CalendarViewCombinedTimestamp   string                       `json:"Ab01An01CombinedTimestamp"`
-	B524CalendarViewEditValidation      string                       `json:"Ab01An01EditValidation"`
+	B524CalendarViewContext             B524CalendarViewInput        `json:"context"`
+	B524CalendarViewComponents          [3]B524CalendarViewComponent `json:"components"`
+	B524CalendarViewCompleteCandidate   bool                         `json:"complete_candidate"`
+	B524CalendarViewGrade               string                       `json:"grade"`
+	B524CalendarViewContractGrade       string                       `json:"contract_grade"`
+	B524CalendarViewNativeQualification string                       `json:"native_qualification"`
+	B524CalendarViewCombinedTimestamp   string                       `json:"combined_timestamp"`
+	B524CalendarViewEditValidation      string                       `json:"edit_validation"`
 }
 
 func B524CalendarViewInterpret(b524CalendarViewInput B524CalendarViewInput) B524CalendarViewResult {

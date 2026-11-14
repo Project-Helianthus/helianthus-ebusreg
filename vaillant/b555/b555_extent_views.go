@@ -26,42 +26,42 @@ type ExtentViewByte struct {
 }
 
 type ExtentA4View struct {
-	ExtentViewRaw               []byte         `json:"Ab52Raw"`
-	ExtentViewDeclaredCount     int            `json:"Ab52DeclaredCount"`
-	ExtentViewAvailableCount    int            `json:"Ab52AvailableCount"`
-	Extent                      int            `json:"Ab52Extent"`
-	ExtentViewIncomplete        bool           `json:"Ab52Incomplete"`
-	ExtentViewIssues            []string       `json:"Ab52Issues"`
-	ExtentViewStatus            ExtentViewByte `json:"Ab52Status"`
-	ExtentViewStatusAccepted    bool           `json:"Ab52StatusAccepted"`
-	ExtentViewStatusUnavailable bool           `json:"Ab52StatusUnavailable"`
-	ExtentViewStatusGrade       string         `json:"Ab52StatusGrade"`
-	ExtentViewDayCounts         []byte         `json:"Ab52DayCounts"`
-	ExtentViewWeekComplete      bool           `json:"Ab52WeekComplete"`
-	ExtentViewWeekValid         bool           `json:"Ab52WeekValid"`
-	ExtentViewDayCountGrade     string         `json:"Ab52DayCountGrade"`
-	ExtentViewEighthCount       ExtentViewByte `json:"Ab52EighthCount"`
-	ExtentViewEighthCountGrade  string         `json:"Ab52EighthCountGrade"`
+	ExtentViewRaw               []byte         `json:"raw"`
+	ExtentViewDeclaredCount     int            `json:"declared_count"`
+	ExtentViewAvailableCount    int            `json:"available_count"`
+	Extent                      int            `json:"extent"`
+	ExtentViewIncomplete        bool           `json:"incomplete"`
+	ExtentViewIssues            []string       `json:"issues"`
+	ExtentViewStatus            ExtentViewByte `json:"status"`
+	ExtentViewStatusAccepted    bool           `json:"status_accepted"`
+	ExtentViewStatusUnavailable bool           `json:"status_unavailable"`
+	ExtentViewStatusGrade       string         `json:"status_grade"`
+	ExtentViewDayCounts         []byte         `json:"day_counts"`
+	ExtentViewWeekComplete      bool           `json:"week_complete"`
+	ExtentViewWeekValid         bool           `json:"week_valid"`
+	ExtentViewDayCountGrade     string         `json:"day_count_grade"`
+	ExtentViewEighthCount       ExtentViewByte `json:"eighth_count"`
+	ExtentViewEighthCountGrade  string         `json:"eighth_count_grade"`
 }
 
 type ExtentA5View struct {
-	ExtentViewRaw               []byte         `json:"Ab52Raw"`
-	ExtentViewDeclaredCount     int            `json:"Ab52DeclaredCount"`
-	ExtentViewAvailableCount    int            `json:"Ab52AvailableCount"`
-	Extent                      int            `json:"Ab52Extent"`
-	ExtentViewIncomplete        bool           `json:"Ab52Incomplete"`
-	ExtentViewIssues            []string       `json:"Ab52Issues"`
-	ExtentViewStatus            ExtentViewByte `json:"Ab52Status"`
-	ExtentViewStatusAccepted    bool           `json:"Ab52StatusAccepted"`
-	ExtentViewStartHour         ExtentViewByte `json:"Ab52StartHour"`
-	ExtentViewStartMinute       ExtentViewByte `json:"Ab52StartMinute"`
-	ExtentViewEndHour           ExtentViewByte `json:"Ab52EndHour"`
-	ExtentViewEndMinute         ExtentViewByte `json:"Ab52EndMinute"`
-	ExtentViewSetpointPresent   bool           `json:"Ab52SetpointPresent"`
-	ExtentViewSetpointRaw       uint16         `json:"Ab52SetpointRaw"`
-	ExtentViewSetpointTenths    float64        `json:"Ab52SetpointTenths"`
-	ExtentViewSetpointGrade     string         `json:"Ab52SetpointGrade"`
-	ExtentViewSetpointQualified string         `json:"Ab52SetpointQualified"`
+	ExtentViewRaw               []byte         `json:"raw"`
+	ExtentViewDeclaredCount     int            `json:"declared_count"`
+	ExtentViewAvailableCount    int            `json:"available_count"`
+	Extent                      int            `json:"extent"`
+	ExtentViewIncomplete        bool           `json:"incomplete"`
+	ExtentViewIssues            []string       `json:"issues"`
+	ExtentViewStatus            ExtentViewByte `json:"status"`
+	ExtentViewStatusAccepted    bool           `json:"status_accepted"`
+	ExtentViewStartHour         ExtentViewByte `json:"start_hour"`
+	ExtentViewStartMinute       ExtentViewByte `json:"start_minute"`
+	ExtentViewEndHour           ExtentViewByte `json:"end_hour"`
+	ExtentViewEndMinute         ExtentViewByte `json:"end_minute"`
+	ExtentViewSetpointPresent   bool           `json:"setpoint_present"`
+	ExtentViewSetpointRaw       uint16         `json:"setpoint_raw"`
+	ExtentViewSetpointTenths    float64        `json:"setpoint_tenths"`
+	ExtentViewSetpointGrade     string         `json:"setpoint_grade"`
+	ExtentViewSetpointQualified string         `json:"setpoint_qualified"`
 }
 
 func extentViewExtent(declared int, available []byte) (int, []string) {

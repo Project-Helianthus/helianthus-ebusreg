@@ -6,8 +6,8 @@ import (
 )
 
 type B524CircuitScalarField[B524CircuitScalarT any] struct {
-	B524CircuitScalarPresent bool               `json:"Ab62Present"`
-	B524CircuitScalarValue   B524CircuitScalarT `json:"Ab62Value"`
+	B524CircuitScalarPresent bool               `json:"present"`
+	B524CircuitScalarValue   B524CircuitScalarT `json:"value"`
 }
 
 type B524CircuitScalarGrade string
@@ -19,24 +19,24 @@ const (
 )
 
 type B524CircuitScalarContext struct {
-	B524CircuitScalarFamily      B524CircuitScalarField[string] `json:"Ab62Family"`
-	B524CircuitScalarSoftware    B524CircuitScalarField[string] `json:"Ab62Software"`
-	B524CircuitScalarHardware    B524CircuitScalarField[string] `json:"Ab62Hardware"`
-	B524CircuitScalarAPIVersion  B524CircuitScalarField[string] `json:"Ab62APIVersion"`
-	B524CircuitScalarAPIRevision B524CircuitScalarField[string] `json:"Ab62APIRevision"`
-	B524CircuitScalarOpcode      B524CircuitScalarField[byte]   `json:"Ab62Opcode"`
-	B524CircuitScalarGroup       B524CircuitScalarField[byte]   `json:"Ab62Group"`
-	B524CircuitScalarInstance    B524CircuitScalarField[byte]   `json:"Ab62Instance"`
-	B524CircuitScalarRegister    B524CircuitScalarField[uint16] `json:"Ab62Register"`
+	B524CircuitScalarFamily      B524CircuitScalarField[string] `json:"family"`
+	B524CircuitScalarSoftware    B524CircuitScalarField[string] `json:"software"`
+	B524CircuitScalarHardware    B524CircuitScalarField[string] `json:"hardware"`
+	B524CircuitScalarAPIVersion  B524CircuitScalarField[string] `json:"api_version"`
+	B524CircuitScalarAPIRevision B524CircuitScalarField[string] `json:"api_revision"`
+	B524CircuitScalarOpcode      B524CircuitScalarField[byte]   `json:"opcode"`
+	B524CircuitScalarGroup       B524CircuitScalarField[byte]   `json:"group"`
+	B524CircuitScalarInstance    B524CircuitScalarField[byte]   `json:"instance"`
+	B524CircuitScalarRegister    B524CircuitScalarField[uint16] `json:"register"`
 }
 
 type B524CircuitScalarInput struct {
-	B524CircuitScalarContext          B524CircuitScalarContext                       `json:"Ab62Context"`
-	B524CircuitScalarReplyKind        B524CircuitScalarField[string]                 `json:"Ab62ReplyKind"`
-	B524CircuitScalarReturnedGroup    B524CircuitScalarField[byte]                   `json:"Ab62ReturnedGroup"`
-	B524CircuitScalarReturnedRegister B524CircuitScalarField[uint16]                 `json:"Ab62ReturnedRegister"`
-	B524CircuitScalarCodecGrade       B524CircuitScalarField[B524CircuitScalarGrade] `json:"Ab62CodecGrade"`
-	B524CircuitScalarRaw              []byte                                         `json:"Ab62Raw"`
+	B524CircuitScalarContext          B524CircuitScalarContext                       `json:"context"`
+	B524CircuitScalarReplyKind        B524CircuitScalarField[string]                 `json:"reply_kind"`
+	B524CircuitScalarReturnedGroup    B524CircuitScalarField[byte]                   `json:"returned_group"`
+	B524CircuitScalarReturnedRegister B524CircuitScalarField[uint16]                 `json:"returned_register"`
+	B524CircuitScalarCodecGrade       B524CircuitScalarField[B524CircuitScalarGrade] `json:"codec_grade"`
+	B524CircuitScalarRaw              []byte                                         `json:"raw"`
 }
 
 type B524CircuitScalarState string
@@ -47,12 +47,12 @@ const (
 )
 
 type B524CircuitScalarResult struct {
-	B524CircuitScalarInput        B524CircuitScalarInput          `json:"Ab62Input"`
-	B524CircuitScalarState        B524CircuitScalarState          `json:"Ab62State"`
-	B524CircuitScalarGrade        B524CircuitScalarGrade          `json:"Ab62Grade"`
-	B524CircuitScalarDeclaredUnit string                          `json:"Ab62DeclaredUnit"`
-	B524CircuitScalarCodec        string                          `json:"Ab62Codec"`
-	B524CircuitScalarValue        B524CircuitScalarField[float32] `json:"Ab62Value"`
+	B524CircuitScalarInput        B524CircuitScalarInput          `json:"input"`
+	B524CircuitScalarState        B524CircuitScalarState          `json:"state"`
+	B524CircuitScalarGrade        B524CircuitScalarGrade          `json:"grade"`
+	B524CircuitScalarDeclaredUnit string                          `json:"declared_unit"`
+	B524CircuitScalarCodec        string                          `json:"codec"`
+	B524CircuitScalarValue        B524CircuitScalarField[float32] `json:"value"`
 }
 
 func B524InterpretCircuitScalar(b524CircuitScalarInput B524CircuitScalarInput) B524CircuitScalarResult {

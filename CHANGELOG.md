@@ -14,6 +14,294 @@
   a native-only snapshot locator and is not a resource identity. New tests
   cover re-addressing and a same-model swap.
 
+- Rename the work-item-coded JSON tags of the remaining `vaillant/system`
+  and `vaillant/b555` types to behavior names: the calendar, codebook,
+  constraint-word, discovery-window, value-codec, status, scalar, unscoped
+  hint and B555 extent views. A tag keeps the part after the code in
+  snake_case (`Ab52StatusAccepted` -> `status_accepted`,
+  `Ab07An07RequestedAddress` -> `requested_address`), because that part is
+  already unique within its type. The tags are replaced directly: there is
+  no alias and no dual acceptance, so JSON with a coded key no longer
+  decodes into the renamed fields and consumers move in the same wave. Go
+  identifiers are unchanged. The `TestRenamedFieldJSONKeys` pins and the
+  testdata keys that decode into these types follow (the discovery windows,
+  the constraint-word inputs and the unscoped hint keys and properties); the
+  tags of test-local structs, test function names and testdata file names
+  are unchanged. After this change no JSON tag of `vaillant/system` and
+  `vaillant/b555` carries a work-item code; the coded strings of
+  `catalog/vaillant` are renamed in a later change.
+  `scripts/rename_catalog_strings.py --slice system-b555-tags` reproduces
+  the change; gateway adoption and release bill of materials reconciliation
+  remain required.
+
+  | Previous string | Current string |
+  | --- | --- |
+  | `Ab01An01APIRevision` | `api_revision` |
+  | `Ab01An01APIVersion` | `api_version` |
+  | `Ab01An01Alternative` | `alternative` |
+  | `Ab01An01Candidate` | `candidate` |
+  | `Ab01An01Cell` | `cell` |
+  | `Ab01An01Cells` | `cells` |
+  | `Ab01An01CombinedTimestamp` | `combined_timestamp` |
+  | `Ab01An01CompleteCandidate` | `complete_candidate` |
+  | `Ab01An01Components` | `components` |
+  | `Ab01An01Context` | `context` |
+  | `Ab01An01ContractGrade` | `contract_grade` |
+  | `Ab01An01EditValidation` | `edit_validation` |
+  | `Ab01An01Family` | `family` |
+  | `Ab01An01Grade` | `grade` |
+  | `Ab01An01Hardware` | `hardware` |
+  | `Ab01An01II` | `ii` |
+  | `Ab01An01NativeQualification` | `native_qualification` |
+  | `Ab01An01OP` | `op` |
+  | `Ab01An01Raw` | `raw` |
+  | `Ab01An01RequestedGG` | `requested_gg` |
+  | `Ab01An01RequestedRR` | `requested_rr` |
+  | `Ab01An01ResponseState` | `response_state` |
+  | `Ab01An01ReturnedGG` | `returned_gg` |
+  | `Ab01An01ReturnedRR` | `returned_rr` |
+  | `Ab01An01Software` | `software` |
+  | `Ab01An01State` | `state` |
+  | `Ab03An03APIRevision` | `api_revision` |
+  | `Ab03An03APIVersion` | `api_version` |
+  | `Ab03An03Applicable` | `applicable` |
+  | `Ab03An03CandidateLabel` | `candidate_label` |
+  | `Ab03An03Context` | `context` |
+  | `Ab03An03Family` | `family` |
+  | `Ab03An03GG` | `gg` |
+  | `Ab03An03Grade` | `grade` |
+  | `Ab03An03Hardware` | `hardware` |
+  | `Ab03An03II` | `ii` |
+  | `Ab03An03Integer` | `integer` |
+  | `Ab03An03MalformedWidth` | `malformed_width` |
+  | `Ab03An03NativeQualification` | `native_qualification` |
+  | `Ab03An03OP` | `op` |
+  | `Ab03An03RR` | `rr` |
+  | `Ab03An03Raw` | `raw` |
+  | `Ab03An03RequestedGG` | `requested_gg` |
+  | `Ab03An03RequestedRR` | `requested_rr` |
+  | `Ab03An03ResponseState` | `response_state` |
+  | `Ab03An03ReturnedGG` | `returned_gg` |
+  | `Ab03An03ReturnedRR` | `returned_rr` |
+  | `Ab03An03Software` | `software` |
+  | `Ab03An03Width` | `width` |
+  | `Ab03AvailabilityOnly` | `availability_only` |
+  | `Ab03Family` | `family` |
+  | `Ab03Group` | `group` |
+  | `Ab03Instances` | `instances` |
+  | `Ab03Maximum` | `maximum` |
+  | `Ab03Minimum` | `minimum` |
+  | `Ab03Opcode` | `opcode` |
+  | `Ab03PredicateRegister` | `predicate_register` |
+  | `Ab03RegisterCeiling` | `register_ceiling` |
+  | `Ab03Virtual` | `virtual` |
+  | `Ab07An07Context` | `context` |
+  | `Ab07An07Default` | `default` |
+  | `Ab07An07Direction` | `direction` |
+  | `Ab07An07Execution` | `execution` |
+  | `Ab07An07Factor` | `factor` |
+  | `Ab07An07FactorAlgorithm` | `factor_algorithm` |
+  | `Ab07An07Family` | `family` |
+  | `Ab07An07FamilyApplicability` | `family_applicability` |
+  | `Ab07An07Freshness` | `freshness` |
+  | `Ab07An07Interpretation` | `interpretation` |
+  | `Ab07An07Maximum` | `maximum` |
+  | `Ab07An07Minimum` | `minimum` |
+  | `Ab07An07NativeEchoRules` | `native_echo_rules` |
+  | `Ab07An07Operation` | `operation` |
+  | `Ab07An07PacketAssociation` | `packet_association` |
+  | `Ab07An07PeerEnforcement` | `peer_enforcement` |
+  | `Ab07An07PhysicalQualification` | `physical_qualification` |
+  | `Ab07An07Raw` | `raw` |
+  | `Ab07An07RawAddressEqual` | `raw_address_equal` |
+  | `Ab07An07RequestedAddress` | `requested_address` |
+  | `Ab07An07RequestedEditBoundsAdmitted` | `requested_edit_bounds_admitted` |
+  | `Ab07An07ReturnedAddress` | `returned_address` |
+  | `Ab07An07Selected` | `selected` |
+  | `Ab07An07SoftwareContract` | `software_contract` |
+  | `Ab07An07State` | `state` |
+  | `Ab07An07Step` | `step` |
+  | `Ab07An07Value` | `value` |
+  | `Ab07An07Variant` | `variant` |
+  | `Ab07An07Writability` | `writability` |
+  | `Ab11Bytes` | `bytes` |
+  | `Ab11Day` | `day` |
+  | `Ab11Grade` | `grade` |
+  | `Ab11Hour` | `hour` |
+  | `Ab11Interpretation` | `interpretation` |
+  | `Ab11Latin1` | `latin1` |
+  | `Ab11Minute` | `minute` |
+  | `Ab11Month` | `month` |
+  | `Ab11Qualified` | `qualified` |
+  | `Ab11Raw` | `raw` |
+  | `Ab11Second` | `second` |
+  | `Ab11Year` | `year` |
+  | `Ab22BindingZone` | `binding_zone` |
+  | `Ab22Context` | `context` |
+  | `Ab22CoolingOperatingMode` | `cooling_operating_mode` |
+  | `Ab22CoolingTemperatureRaw` | `cooling_temperature_raw` |
+  | `Ab22Family` | `family` |
+  | `Ab22Fields` | `fields` |
+  | `Ab22FrostProtection` | `frost_protection` |
+  | `Ab22HeatingOperatingMode` | `heating_operating_mode` |
+  | `Ab22HeatingTemperatureRaw` | `heating_temperature_raw` |
+  | `Ab22Opcode` | `opcode` |
+  | `Ab22Payload` | `payload` |
+  | `Ab22SpecialFunctionStatus` | `special_function_status` |
+  | `Ab22StatusInfo` | `status_info` |
+  | `Ab52AvailableCount` | `available_count` |
+  | `Ab52DayCountGrade` | `day_count_grade` |
+  | `Ab52DayCounts` | `day_counts` |
+  | `Ab52DeclaredCount` | `declared_count` |
+  | `Ab52EighthCount` | `eighth_count` |
+  | `Ab52EighthCountGrade` | `eighth_count_grade` |
+  | `Ab52EndHour` | `end_hour` |
+  | `Ab52EndMinute` | `end_minute` |
+  | `Ab52Extent` | `extent` |
+  | `Ab52Incomplete` | `incomplete` |
+  | `Ab52Issues` | `issues` |
+  | `Ab52Raw` | `raw` |
+  | `Ab52SetpointGrade` | `setpoint_grade` |
+  | `Ab52SetpointPresent` | `setpoint_present` |
+  | `Ab52SetpointQualified` | `setpoint_qualified` |
+  | `Ab52SetpointRaw` | `setpoint_raw` |
+  | `Ab52SetpointTenths` | `setpoint_tenths` |
+  | `Ab52StartHour` | `start_hour` |
+  | `Ab52StartMinute` | `start_minute` |
+  | `Ab52Status` | `status` |
+  | `Ab52StatusAccepted` | `status_accepted` |
+  | `Ab52StatusGrade` | `status_grade` |
+  | `Ab52StatusUnavailable` | `status_unavailable` |
+  | `Ab52WeekComplete` | `week_complete` |
+  | `Ab52WeekValid` | `week_valid` |
+  | `Ab58APIRevision` | `api_revision` |
+  | `Ab58APIVersion` | `api_version` |
+  | `Ab58Codec` | `codec` |
+  | `Ab58CodecGrade` | `codec_grade` |
+  | `Ab58Context` | `context` |
+  | `Ab58DeclaredUnit` | `declared_unit` |
+  | `Ab58Delivery` | `delivery` |
+  | `Ab58Effects` | `effects` |
+  | `Ab58Execution` | `execution` |
+  | `Ab58Family` | `family` |
+  | `Ab58Float32` | `float32` |
+  | `Ab58Freshness` | `freshness` |
+  | `Ab58Grade` | `grade` |
+  | `Ab58Group` | `group` |
+  | `Ab58Hardware` | `hardware` |
+  | `Ab58Input` | `input` |
+  | `Ab58Instance` | `instance` |
+  | `Ab58Opcode` | `opcode` |
+  | `Ab58Persistence` | `persistence` |
+  | `Ab58Presence` | `presence` |
+  | `Ab58Present` | `present` |
+  | `Ab58Raw` | `raw` |
+  | `Ab58Register` | `register` |
+  | `Ab58ReplyKind` | `reply_kind` |
+  | `Ab58ReturnedGroup` | `returned_group` |
+  | `Ab58ReturnedRegister` | `returned_register` |
+  | `Ab58Software` | `software` |
+  | `Ab58State` | `state` |
+  | `Ab58Support` | `support` |
+  | `Ab58Uint16` | `uint16` |
+  | `Ab58Value` | `value` |
+  | `Ab60APIRevision` | `api_revision` |
+  | `Ab60APIVersion` | `api_version` |
+  | `Ab60Codec` | `codec` |
+  | `Ab60CodecGrade` | `codec_grade` |
+  | `Ab60Context` | `context` |
+  | `Ab60DeclaredUnit` | `declared_unit` |
+  | `Ab60Delivery` | `delivery` |
+  | `Ab60Effects` | `effects` |
+  | `Ab60Execution` | `execution` |
+  | `Ab60Family` | `family` |
+  | `Ab60Float32` | `float32` |
+  | `Ab60Freshness` | `freshness` |
+  | `Ab60Grade` | `grade` |
+  | `Ab60Group` | `group` |
+  | `Ab60Hardware` | `hardware` |
+  | `Ab60Input` | `input` |
+  | `Ab60Instance` | `instance` |
+  | `Ab60Opcode` | `opcode` |
+  | `Ab60Persistence` | `persistence` |
+  | `Ab60Presence` | `presence` |
+  | `Ab60Present` | `present` |
+  | `Ab60Raw` | `raw` |
+  | `Ab60Register` | `register` |
+  | `Ab60ReplyKind` | `reply_kind` |
+  | `Ab60ReturnedGroup` | `returned_group` |
+  | `Ab60ReturnedRegister` | `returned_register` |
+  | `Ab60Software` | `software` |
+  | `Ab60State` | `state` |
+  | `Ab60Support` | `support` |
+  | `Ab60Uint16` | `uint16` |
+  | `Ab60Value` | `value` |
+  | `Ab62APIRevision` | `api_revision` |
+  | `Ab62APIVersion` | `api_version` |
+  | `Ab62Codec` | `codec` |
+  | `Ab62CodecGrade` | `codec_grade` |
+  | `Ab62Context` | `context` |
+  | `Ab62DeclaredUnit` | `declared_unit` |
+  | `Ab62Family` | `family` |
+  | `Ab62Grade` | `grade` |
+  | `Ab62Group` | `group` |
+  | `Ab62Hardware` | `hardware` |
+  | `Ab62Input` | `input` |
+  | `Ab62Instance` | `instance` |
+  | `Ab62Opcode` | `opcode` |
+  | `Ab62Present` | `present` |
+  | `Ab62Raw` | `raw` |
+  | `Ab62Register` | `register` |
+  | `Ab62ReplyKind` | `reply_kind` |
+  | `Ab62ReturnedGroup` | `returned_group` |
+  | `Ab62ReturnedRegister` | `returned_register` |
+  | `Ab62Software` | `software` |
+  | `Ab62State` | `state` |
+  | `Ab62Value` | `value` |
+  | `Ab64APIRevision` | `api_revision` |
+  | `Ab64APIVersion` | `api_version` |
+  | `Ab64Codec` | `codec` |
+  | `Ab64CodecGrade` | `codec_grade` |
+  | `Ab64Context` | `context` |
+  | `Ab64Delivery` | `delivery` |
+  | `Ab64Effects` | `effects` |
+  | `Ab64Execution` | `execution` |
+  | `Ab64Family` | `family` |
+  | `Ab64Freshness` | `freshness` |
+  | `Ab64Grade` | `grade` |
+  | `Ab64Group` | `group` |
+  | `Ab64Hardware` | `hardware` |
+  | `Ab64Input` | `input` |
+  | `Ab64Instance` | `instance` |
+  | `Ab64InstanceRule` | `instance_rule` |
+  | `Ab64NativeSupport` | `native_support` |
+  | `Ab64Opcode` | `opcode` |
+  | `Ab64Persistence` | `persistence` |
+  | `Ab64Presence` | `presence` |
+  | `Ab64Present` | `present` |
+  | `Ab64Qualification` | `qualification` |
+  | `Ab64Raw` | `raw` |
+  | `Ab64Register` | `register` |
+  | `Ab64ReplyKind` | `reply_kind` |
+  | `Ab64ReturnedGroup` | `returned_group` |
+  | `Ab64ReturnedRegister` | `returned_register` |
+  | `Ab64Software` | `software` |
+  | `Ab64State` | `state` |
+  | `Ab64Unit` | `unit` |
+  | `Ab64Value` | `value` |
+  | `Ab66Applicability` | `applicability` |
+  | `Ab66Group` | `group` |
+  | `Ab66Hint` | `hint` |
+  | `Ab66Key` | `key` |
+  | `Ab66Max` | `max` |
+  | `Ab66Min` | `min` |
+  | `Ab66Opcode` | `opcode` |
+  | `Ab66Qualified` | `qualified` |
+  | `Ab66Register` | `register` |
+  | `Ab66Status` | `status` |
+  | `Ab66Step` | `step` |
+  | `Ab66Type` | `type` |
+
 - Rename the work-item-coded JSON tags, string values and error texts of
   `catalog/ebusstandard`, `vaillant/system` and `vaillant/b555` to behavior
   names. The strings are replaced directly: there is no alias and no dual
@@ -29,8 +317,9 @@
   names and the row identifiers of the embedded catalog data are unchanged.
   The coded JSON tags of the remaining `vaillant/system` and `vaillant/b555`
   types and the coded strings of `catalog/vaillant` are renamed in a later
-  change. `scripts/rename_catalog_strings.py` reproduces the change; gateway
-  adoption and release bill of materials reconciliation remain required.
+  change. `scripts/rename_catalog_strings.py --slice catalog-strings`
+  reproduces the change; gateway adoption and release bill of materials
+  reconciliation remain required.
 
   | Previous string | Current string |
   | --- | --- |

@@ -37,29 +37,29 @@ const (
 // interpretation. ValueCodecQualified describes software decoding with a Proven
 // caller-supplied grade, never physical support or register qualification.
 type ValueCodecValue struct {
-	ValueCodecRaw            []byte          `json:"Ab11Raw"`
-	ValueCodecGrade          ValueCodecGrade `json:"Ab11Grade"`
-	ValueCodecInterpretation any             `json:"Ab11Interpretation"`
-	ValueCodecQualified      bool            `json:"Ab11Qualified"`
+	ValueCodecRaw            []byte          `json:"raw"`
+	ValueCodecGrade          ValueCodecGrade `json:"grade"`
+	ValueCodecInterpretation any             `json:"interpretation"`
+	ValueCodecQualified      bool            `json:"qualified"`
 }
 
 type ValueCodecDate struct {
-	ValueCodecDay   uint8 `json:"Ab11Day"`
-	ValueCodecMonth uint8 `json:"Ab11Month"`
-	ValueCodecYear  uint8 `json:"Ab11Year"`
+	ValueCodecDay   uint8 `json:"day"`
+	ValueCodecMonth uint8 `json:"month"`
+	ValueCodecYear  uint8 `json:"year"`
 }
 
 type ValueCodecTime struct {
-	ValueCodecHour   uint8 `json:"Ab11Hour"`
-	ValueCodecMinute uint8 `json:"Ab11Minute"`
-	ValueCodecSecond uint8 `json:"Ab11Second"`
+	ValueCodecHour   uint8 `json:"hour"`
+	ValueCodecMinute uint8 `json:"minute"`
+	ValueCodecSecond uint8 `json:"second"`
 }
 
 // ValueCodecString retains every byte; ValueCodecLatin1 maps each byte to its Unicode
 // code point without trimming or interpreting termination.
 type ValueCodecString struct {
-	ValueCodecBytes  []byte `json:"Ab11Bytes"`
-	ValueCodecLatin1 string `json:"Ab11Latin1"`
+	ValueCodecBytes  []byte `json:"bytes"`
+	ValueCodecLatin1 string `json:"latin1"`
 }
 
 // DecodeValue requires separate codec, byte width and evidence grade.

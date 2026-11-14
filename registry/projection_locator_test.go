@@ -150,4 +150,8 @@ func TestProjectionLocatorDocumentationNamesASnapshotLocator(t *testing.T) {
 			}
 		}
 	}
+	text := strings.Join(strings.Fields(docs["NodeID"]), " ")
+	if !strings.Contains(text, "native providers build are anchored") {
+		t.Errorf("doc comment of NodeID must limit the address behaviour to address-anchored native paths; got %q", text)
+	}
 }

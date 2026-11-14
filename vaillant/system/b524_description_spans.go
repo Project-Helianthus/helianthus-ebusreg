@@ -123,7 +123,9 @@ func B524BuildDescription(b524DescriptionSpanContext B524DescriptionSpanContext)
 // never fails: a width outside 1-4, a wrong length, an incomplete context,
 // an echo mismatch, a codec that does not match the width, a codec grade
 // below Hypothesis, or non-finite, reversed or negative-step limits each
-// stop decoding with Reason set and the raw spans kept. DATE and TIME stay
+// stop decoding with Reason set. The whole reply is always kept in Raw; the
+// split minimum, maximum and step spans are kept for every failure except a
+// bad width or a wrong length, where they stay empty. DATE and TIME stay
 // raw. Opcode 0x01 describes a value read with 0x02 and 0x07 one read with
 // 0x06. The result copies all input data.
 func B524DecodeDescription(b524DescriptionSpanContext B524DescriptionSpanContext, b524DescriptionSpanExplicitCodec B524DescriptionSpanCodec, b524DescriptionSpanExplicitWidth int, b524DescriptionSpanGrade B524DescriptionSpanGrade, b524DescriptionSpanRaw []byte) B524Description {

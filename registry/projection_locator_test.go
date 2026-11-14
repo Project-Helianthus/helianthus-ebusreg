@@ -155,3 +155,33 @@ func TestProjectionLocatorDocumentationNamesASnapshotLocator(t *testing.T) {
 		t.Errorf("doc comment of NodeID must limit the address behaviour to address-anchored native paths; got %q", text)
 	}
 }
+
+// The package documentation must give the same bounded guarantee as the NodeID
+// comment: the address behaviour holds for the address-anchored native paths
+// only, because an external provider may build a canonical path without an
+// address, whose locator survives re-addressing.
+func TestProjectionLocatorPackageDocumentationQualifiesTheAddressBehaviour(t *testing.T) {
+	fileSet := token.NewFileSet()
+	file, err := parser.ParseFile(fileSet, "doc.go", nil, parser.ParseComments|parser.PackageClauseOnly)
+	if err != nil {
+		t.Fatalf("parse doc.go: %v", err)
+	}
+	if file.Doc == nil {
+		t.Fatal("doc.go carries no package documentation")
+	}
+	text := strings.Join(strings.Fields(file.Doc.Text()), " ")
+	for _, phrase := range []string{
+		"snapshot locator",
+		"native-only",
+		"resource identity",
+		"native providers build are anchored",
+		"without an address gives no such guarantee",
+	} {
+		if !strings.Contains(text, phrase) {
+			t.Errorf("package documentation must mention %q; got %q", phrase, text)
+		}
+	}
+	if strings.Contains(text, "The canonical path is built from native addressing") {
+		t.Errorf("package documentation must not present the address behaviour as universal to every canonical path; got %q", text)
+	}
+}

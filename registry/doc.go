@@ -48,10 +48,13 @@
 // Projections. Projections describe a device's data as nodes and edges per
 // plane. A node identifier is a snapshot locator derived from the canonical
 // path, so inside one registry snapshot the same node has the same
-// identifier on every plane. The canonical path is built from native
-// addressing: it changes when a device is re-addressed and repeats when
-// another unit of the same model answers at the same address. The planes,
-// projections and locators are native-only and are not a resource identity.
+// identifier on every plane. The canonical paths the native providers build
+// are anchored at the bus address and the device segment, so for those paths
+// the locator changes when a device is re-addressed and repeats when another
+// unit of the same model answers at the same address; a provider that builds
+// a path without an address gives no such guarantee in either direction. The
+// planes, projections and locators are native-only and are not a resource
+// identity.
 // The portal and canonical indexes give read-only lookups over the
 // projections of one snapshot. When a device's projections do not form one
 // consistent canonical index, the entry carries no projections rather than

@@ -13,16 +13,22 @@ const (
 	methodGetParameters = "get_parameters"
 )
 
+// Provider is the stateless registry provider of the Vaillant solar plane.
 type Provider struct{}
 
+// NewProvider returns a Provider.
 func NewProvider() Provider {
 	return Provider{}
 }
 
+// Name returns the provider name "vaillant_solar".
 func (Provider) Name() string {
 	return "vaillant_solar"
 }
 
+// Match reports whether the manufacturer names the Vaillant group: a
+// case-insensitive match of "vaillant", "saunier" or "awb". An empty
+// manufacturer never matches.
 func (Provider) Match(info registry.DeviceInfo) bool {
 	manufacturer := strings.TrimSpace(info.Manufacturer)
 	if manufacturer == "" {
@@ -34,6 +40,8 @@ func (Provider) Match(info registry.DeviceInfo) bool {
 		strings.Contains(normalized, "awb")
 }
 
+// CreatePlanes returns the single read-only "solar" plane with get_status,
+// get_solar_yield and get_parameters; info does not change the plane.
 func (Provider) CreatePlanes(info registry.DeviceInfo) []registry.Plane {
 	return []registry.Plane{
 		newSolarPlane(),

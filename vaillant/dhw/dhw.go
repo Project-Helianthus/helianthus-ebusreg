@@ -17,16 +17,22 @@ const (
 	opParameters = byte(0x09)
 )
 
+// Provider is the stateless registry provider of the Vaillant domestic hot water plane.
 type Provider struct{}
 
+// NewProvider returns a Provider.
 func NewProvider() Provider {
 	return Provider{}
 }
 
+// Name returns the provider name "vaillant_dhw".
 func (Provider) Name() string {
 	return "vaillant_dhw"
 }
 
+// Match reports whether the manufacturer names the Vaillant group: a
+// case-insensitive match of "vaillant", "saunier" or "awb". An empty
+// manufacturer never matches.
 func (Provider) Match(info registry.DeviceInfo) bool {
 	manufacturer := strings.TrimSpace(info.Manufacturer)
 	if manufacturer == "" {
@@ -38,6 +44,9 @@ func (Provider) Match(info registry.DeviceInfo) bool {
 		strings.Contains(normalized, "awb")
 }
 
+// CreatePlanes returns the single "dhw" plane with get_status,
+// set_target_temp and get_parameters. get_energy_stats is added only when
+// the digits of the hardware version read as 7603 or higher.
 func (Provider) CreatePlanes(info registry.DeviceInfo) []registry.Plane {
 	return []registry.Plane{
 		newDHWPlane(info),

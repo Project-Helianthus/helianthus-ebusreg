@@ -43,6 +43,10 @@ type ServiceMethodView struct {
 	ResponseSelector schema.SchemaSelector
 }
 
+// ProjectRegistryDevices projects every entry of iter into service views,
+// sorted by address and then by identity fields. The first entry that fails
+// to project aborts the walk and its error is returned with no views. A nil
+// iter wraps the ebusgo ErrInvalidPayload.
 func ProjectRegistryDevices(iter EntryIterator) ([]ServiceDeviceView, error) {
 	if iter == nil {
 		return nil, fmt.Errorf("project registry devices: %w", ebuserrors.ErrInvalidPayload)
@@ -66,6 +70,11 @@ func ProjectRegistryDevices(iter EntryIterator) ([]ServiceDeviceView, error) {
 	return out, nil
 }
 
+// ProjectDeviceEntry copies the identity and planes of entry into a
+// ServiceDeviceView. Address is the display address; Addresses lists it
+// first, followed by the remaining addresses in ascending order. Planes and
+// their methods are sorted by case-folded name. A nil entry, plane or
+// method, or a method without a template, wraps ErrInvalidPayload.
 func ProjectDeviceEntry(entry DeviceEntry) (ServiceDeviceView, error) {
 	if entry == nil {
 		return ServiceDeviceView{}, fmt.Errorf("project device entry: %w", ebuserrors.ErrInvalidPayload)
@@ -95,6 +104,9 @@ func ProjectDeviceEntry(entry DeviceEntry) (ServiceDeviceView, error) {
 	}, nil
 }
 
+// ProjectPlane copies plane into a ServicePlaneView with its methods sorted
+// by case-folded name and then by command bytes. A nil plane or any method
+// that fails ProjectMethod is an error.
 func ProjectPlane(plane Plane) (ServicePlaneView, error) {
 	if plane == nil {
 		return ServicePlaneView{}, fmt.Errorf("project plane: %w", ebuserrors.ErrInvalidPayload)
@@ -117,6 +129,9 @@ func ProjectPlane(plane Plane) (ServicePlaneView, error) {
 	}, nil
 }
 
+// ProjectMethod copies method into a ServiceMethodView, including its
+// resolved MethodMetadata. A nil method or a nil Template wraps
+// ErrInvalidPayload.
 func ProjectMethod(method Method) (ServiceMethodView, error) {
 	if method == nil {
 		return ServiceMethodView{}, fmt.Errorf("project method: %w", ebuserrors.ErrInvalidPayload)

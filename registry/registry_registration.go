@@ -2,6 +2,15 @@ package registry
 
 import "time"
 
+// Register records an identification response for info.Address and returns
+// the entry that address now resolves to. Fields left empty in info keep
+// their stored values, and providers are matched against the merged result.
+// A complete identity may join this address to another entry with the same
+// identity, or split it from an entry whose identity differs; an incomplete
+// one only refreshes the address's own entry. When info conflicts with a
+// qualified identity bound elsewhere and the address already has an entry,
+// that entry is returned unchanged; otherwise the slot is stamped as
+// actively confirmed.
 func (r *DeviceRegistry) Register(info DeviceInfo) DeviceEntry {
 	r.mu.Lock()
 	defer r.mu.Unlock()

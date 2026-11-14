@@ -127,9 +127,13 @@ func hasConflictingModelSignature(incoming DeviceInfo, existing DeviceInfo) bool
 	return incomingDeviceID != existingDeviceID || incomingSoftware != existingSoftware || incomingHardware != existingHardware
 }
 
-// Lookup returns the canonical *DeviceEntry for the given address, or
-// (nil, false) if no device occupies that slot. Preserved (signature
-// unchanged) so existing callers continue to compile.
+// AliasAddresses records that addresses a and b are faces of the same
+// device. The entry already attached to a wins; when only b has one, it wins
+// instead. The other address moves to the winning entry, and an entry left
+// without addresses has its useful identity fields absorbed and is removed.
+// When neither address has an entry, only empty slots are created. A join
+// is also recorded as topology evidence, which lets later identity
+// confirmation of one face confirm the other. The error is always nil.
 func (r *DeviceRegistry) AliasAddresses(a, b byte) error {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -341,6 +345,10 @@ func (r *DeviceRegistry) absorbIdentityLocked(dst, src *deviceEntry) {
 	}
 }
 
+// Iterate calls fn for each device entry in registration order until fn
+// returns false. The order is copied under the read lock and fn runs without
+// it, so fn may call other registry methods; entries changed or removed
+// after the copy are still visited in their current state.
 func (r *DeviceRegistry) Iterate(fn func(DeviceEntry) bool) {
 	r.mu.RLock()
 	order := make([]*deviceEntry, len(r.order))

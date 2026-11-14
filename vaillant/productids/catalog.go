@@ -11,11 +11,15 @@ import (
 //go:embed product_ids.csv
 var rawCSV string
 
+// ErrMissingColumns is returned by LoadCatalog when the catalog header lacks
+// one of the brand, family, product_model, part_number or role columns.
 var (
 	ErrMissingColumns = errors.New("productids: missing required columns")
 	requiredColumns   = []string{"brand", "family", "product_model", "part_number", "role"}
 )
 
+// Record is one catalog row with surrounding whitespace trimmed. Notes is
+// empty when the catalog has no notes column.
 type Record struct {
 	Brand        string
 	Family       string
@@ -25,11 +29,18 @@ type Record struct {
 	Notes        string
 }
 
+// Catalog holds the embedded product catalog. All keeps every row in file
+// order, including rows with empty required fields. ByPartNumber indexes only
+// rows whose required fields are all present, keeping the first such row of
+// each part number.
 type Catalog struct {
 	All          []Record
 	ByPartNumber map[string]Record
 }
 
+// LoadCatalog parses the catalog embedded in the package. Each call returns a
+// new Catalog that the caller owns. Errors come from a missing required
+// column (ErrMissingColumns) or malformed CSV.
 func LoadCatalog() (Catalog, error) {
 	return parseCatalog(strings.NewReader(rawCSV))
 }
@@ -96,14 +107,20 @@ func valueAt(row []string, idx int) string {
 	return row[idx]
 }
 
+// ControllerCapability states whether a catalogued product acts as a system
+// controller (a regulator or thermostat role).
 type ControllerCapability int
 
+// ControllerCapability values. ControllerUnknown is the zero value and is
+// used whenever the catalog cannot classify a part number.
 const (
 	ControllerUnknown ControllerCapability = iota
 	ControllerNone
 	ControllerPresent
 )
 
+// String returns the constant name, or "ControllerCapability(invalid)" for
+// an out-of-range value.
 func (c ControllerCapability) String() string {
 	switch c {
 	case ControllerUnknown:
@@ -117,6 +134,11 @@ func (c ControllerCapability) String() string {
 	}
 }
 
+// ControllerCapability classifies the trimmed partNumber from its catalog
+// role: ControllerPresent for a regulator or thermostat, ControllerNone for
+// any other role. It returns ControllerUnknown for an empty or unknown part
+// number, an empty role, or duplicate rows whose roles disagree. A Catalog
+// with an empty All falls back to ByPartNumber.
 func (c Catalog) ControllerCapability(partNumber string) ControllerCapability {
 	partNumber = strings.TrimSpace(partNumber)
 	if partNumber == "" {

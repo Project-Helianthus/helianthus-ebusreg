@@ -2,8 +2,12 @@ package registry
 
 import "time"
 
+// SlotRole is the bus role of one address face: an initiator address that
+// may start frames, or a target address that only answers them.
 type SlotRole int
 
+// SlotRole values. SlotRoleUnknown is the zero value and means the role has
+// not been established; AddressByRole never matches it on a known face.
 const (
 	SlotRoleUnknown SlotRole = iota
 	SlotRoleMaster
@@ -15,6 +19,8 @@ const (
 // immutable for that face. VerificationState carries advancing confidence.
 type DiscoverySource int
 
+// DiscoverySource values, from the unset zero value to the three native
+// sources a face can be stamped with.
 const (
 	DiscoverySourceUnknown DiscoverySource = iota
 	DiscoverySourcePassiveObserved
@@ -22,8 +28,14 @@ const (
 	DiscoverySourceActiveConfirmed
 )
 
+// VerificationState is the advancing confidence that an address face belongs
+// to its device entry. The numeric order is a confidence order: registry
+// paths only raise it, from Candidate through Corroborated to
+// IdentityConfirmed, and never lower it for a retained face.
 type VerificationState int
 
+// VerificationState values in ascending confidence; the zero value is
+// VerificationStateUnknown.
 const (
 	VerificationStateUnknown VerificationState = iota
 	VerificationStateCandidate
@@ -31,6 +43,15 @@ const (
 	VerificationStateIdentityConfirmed
 )
 
+// AddressSlot is the registry's per-address record: the face's own role,
+// provenance and observation times plus the device entry it currently
+// resolves to. Device is nil while the address is known without an attached
+// identity, and several slots share one Device when addresses are aliased.
+//
+// A slot returned by DeviceRegistry.LookupSlot is live registry state that
+// writers mutate under the registry lock; readers outside the registry use
+// LookupSlotSnapshot for a race-free copy. FirstObservedAt and
+// LastObservedAt are zero until an observation or seed time is recorded.
 type AddressSlot struct {
 	Addr              byte
 	Role              SlotRole
@@ -41,6 +62,11 @@ type AddressSlot struct {
 	LastObservedAt    time.Time
 }
 
+// BusFace is a value copy of one address face of a device entry: the
+// address with its slot role, discovery source and verification state. The
+// registry rebuilds an entry's faces whenever one of its slots or aliases
+// changes. The registry itself leaves AccessProtocols empty; snapshots copy
+// whatever a caller recorded there.
 type BusFace struct {
 	Addr              byte
 	Role              SlotRole
@@ -80,6 +106,8 @@ func (s *AddressSlot) AddressByRole(role SlotRole) (byte, bool) {
 	return 0, false
 }
 
+// Addresses returns every address of the attached device entry, or nil when
+// the slot or its Device is nil.
 func (s *AddressSlot) Addresses() []byte {
 	if s == nil || s.Device == nil {
 		return nil
@@ -87,6 +115,8 @@ func (s *AddressSlot) Addresses() []byte {
 	return s.Device.Addresses()
 }
 
+// Manufacturer returns the attached device's manufacturer, or "" when no
+// device is attached.
 func (s *AddressSlot) Manufacturer() string {
 	if s == nil || s.Device == nil {
 		return ""
@@ -94,6 +124,8 @@ func (s *AddressSlot) Manufacturer() string {
 	return s.Device.Manufacturer()
 }
 
+// DeviceID returns the attached device's identifier, or "" when no device is
+// attached.
 func (s *AddressSlot) DeviceID() string {
 	if s == nil || s.Device == nil {
 		return ""
@@ -101,6 +133,8 @@ func (s *AddressSlot) DeviceID() string {
 	return s.Device.DeviceID()
 }
 
+// SerialNumber returns the attached device's serial number, or "" when no
+// device is attached.
 func (s *AddressSlot) SerialNumber() string {
 	if s == nil || s.Device == nil {
 		return ""
@@ -108,6 +142,8 @@ func (s *AddressSlot) SerialNumber() string {
 	return s.Device.SerialNumber()
 }
 
+// MacAddress returns the attached device's MAC address, or "" when no device
+// is attached.
 func (s *AddressSlot) MacAddress() string {
 	if s == nil || s.Device == nil {
 		return ""
@@ -115,6 +151,8 @@ func (s *AddressSlot) MacAddress() string {
 	return s.Device.MacAddress()
 }
 
+// SoftwareVersion returns the attached device's software version, or "" when
+// no device is attached.
 func (s *AddressSlot) SoftwareVersion() string {
 	if s == nil || s.Device == nil {
 		return ""
@@ -122,6 +160,8 @@ func (s *AddressSlot) SoftwareVersion() string {
 	return s.Device.SoftwareVersion()
 }
 
+// HardwareVersion returns the attached device's hardware version, or "" when
+// no device is attached.
 func (s *AddressSlot) HardwareVersion() string {
 	if s == nil || s.Device == nil {
 		return ""
@@ -129,6 +169,8 @@ func (s *AddressSlot) HardwareVersion() string {
 	return s.Device.HardwareVersion()
 }
 
+// Planes returns the attached device's planes, or nil when no device is
+// attached.
 func (s *AddressSlot) Planes() []Plane {
 	if s == nil || s.Device == nil {
 		return nil
@@ -136,6 +178,8 @@ func (s *AddressSlot) Planes() []Plane {
 	return s.Device.Planes()
 }
 
+// Projections returns the attached device's projections, or nil when no
+// device is attached.
 func (s *AddressSlot) Projections() []Projection {
 	if s == nil || s.Device == nil {
 		return nil

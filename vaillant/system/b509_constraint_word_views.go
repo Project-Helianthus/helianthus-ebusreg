@@ -5,46 +5,46 @@ import b509ConstraintWordViewBytes "bytes"
 const B509ConstraintWordViewPositiveResponse = "positive-response"
 
 type B509ConstraintWordViewInput struct {
-	B509ConstraintWordViewFamily           string `json:"Ab07An07Family"`
-	B509ConstraintWordViewVariant          string `json:"Ab07An07Variant"`
-	B509ConstraintWordViewOperation        byte   `json:"Ab07An07Operation"`
-	B509ConstraintWordViewDirection        string `json:"Ab07An07Direction"`
-	B509ConstraintWordViewRequestedAddress []byte `json:"Ab07An07RequestedAddress"`
-	B509ConstraintWordViewReturnedAddress  []byte `json:"Ab07An07ReturnedAddress"`
-	B509ConstraintWordViewMinimum          []byte `json:"Ab07An07Minimum"`
-	B509ConstraintWordViewMaximum          []byte `json:"Ab07An07Maximum"`
-	B509ConstraintWordViewDefault          []byte `json:"Ab07An07Default"`
-	B509ConstraintWordViewStep             []byte `json:"Ab07An07Step"`
-	B509ConstraintWordViewFactor           []byte `json:"Ab07An07Factor"`
+	B509ConstraintWordViewFamily           string `json:"family"`
+	B509ConstraintWordViewVariant          string `json:"variant"`
+	B509ConstraintWordViewOperation        byte   `json:"operation"`
+	B509ConstraintWordViewDirection        string `json:"direction"`
+	B509ConstraintWordViewRequestedAddress []byte `json:"requested_address"`
+	B509ConstraintWordViewReturnedAddress  []byte `json:"returned_address"`
+	B509ConstraintWordViewMinimum          []byte `json:"minimum"`
+	B509ConstraintWordViewMaximum          []byte `json:"maximum"`
+	B509ConstraintWordViewDefault          []byte `json:"default"`
+	B509ConstraintWordViewStep             []byte `json:"step"`
+	B509ConstraintWordViewFactor           []byte `json:"factor"`
 }
 
 type B509ConstraintWord struct {
-	B509ConstraintWordViewRaw   []byte `json:"Ab07An07Raw"`
-	B509ConstraintWordViewState string `json:"Ab07An07State"`
-	B509ConstraintWordViewValue int    `json:"Ab07An07Value"`
+	B509ConstraintWordViewRaw   []byte `json:"raw"`
+	B509ConstraintWordViewState string `json:"state"`
+	B509ConstraintWordViewValue int    `json:"value"`
 }
 
 type B509ConstraintWordView struct {
-	B509ConstraintWordViewContext                     B509ConstraintWordViewInput `json:"Ab07An07Context"`
-	B509ConstraintWordViewSelected                    bool                        `json:"Ab07An07Selected"`
-	B509ConstraintWordViewRawAddressEqual             bool                        `json:"Ab07An07RawAddressEqual"`
-	B509ConstraintWordViewRequestedEditBoundsAdmitted bool                        `json:"Ab07An07RequestedEditBoundsAdmitted"`
-	B509ConstraintWordViewMinimum                     B509ConstraintWord          `json:"Ab07An07Minimum"`
-	B509ConstraintWordViewMaximum                     B509ConstraintWord          `json:"Ab07An07Maximum"`
-	B509ConstraintWordViewDefault                     B509ConstraintWord          `json:"Ab07An07Default"`
-	B509ConstraintWordViewStep                        B509ConstraintWord          `json:"Ab07An07Step"`
-	B509ConstraintWordViewFactor                      B509ConstraintWord          `json:"Ab07An07Factor"`
-	B509ConstraintWordViewSoftwareContract            string                      `json:"Ab07An07SoftwareContract"`
-	B509ConstraintWordViewInterpretation              string                      `json:"Ab07An07Interpretation"`
-	B509ConstraintWordViewNativeEchoRules             string                      `json:"Ab07An07NativeEchoRules"`
-	B509ConstraintWordViewPhysicalQualification       string                      `json:"Ab07An07PhysicalQualification"`
-	B509ConstraintWordViewPacketAssociation           string                      `json:"Ab07An07PacketAssociation"`
-	B509ConstraintWordViewFamilyApplicability         string                      `json:"Ab07An07FamilyApplicability"`
-	B509ConstraintWordViewFactorAlgorithm             string                      `json:"Ab07An07FactorAlgorithm"`
-	B509ConstraintWordViewWritability                 string                      `json:"Ab07An07Writability"`
-	B509ConstraintWordViewPeerEnforcement             string                      `json:"Ab07An07PeerEnforcement"`
-	B509ConstraintWordViewFreshness                   string                      `json:"Ab07An07Freshness"`
-	B509ConstraintWordViewExecution                   string                      `json:"Ab07An07Execution"`
+	B509ConstraintWordViewContext                     B509ConstraintWordViewInput `json:"context"`
+	B509ConstraintWordViewSelected                    bool                        `json:"selected"`
+	B509ConstraintWordViewRawAddressEqual             bool                        `json:"raw_address_equal"`
+	B509ConstraintWordViewRequestedEditBoundsAdmitted bool                        `json:"requested_edit_bounds_admitted"`
+	B509ConstraintWordViewMinimum                     B509ConstraintWord          `json:"minimum"`
+	B509ConstraintWordViewMaximum                     B509ConstraintWord          `json:"maximum"`
+	B509ConstraintWordViewDefault                     B509ConstraintWord          `json:"default"`
+	B509ConstraintWordViewStep                        B509ConstraintWord          `json:"step"`
+	B509ConstraintWordViewFactor                      B509ConstraintWord          `json:"factor"`
+	B509ConstraintWordViewSoftwareContract            string                      `json:"software_contract"`
+	B509ConstraintWordViewInterpretation              string                      `json:"interpretation"`
+	B509ConstraintWordViewNativeEchoRules             string                      `json:"native_echo_rules"`
+	B509ConstraintWordViewPhysicalQualification       string                      `json:"physical_qualification"`
+	B509ConstraintWordViewPacketAssociation           string                      `json:"packet_association"`
+	B509ConstraintWordViewFamilyApplicability         string                      `json:"family_applicability"`
+	B509ConstraintWordViewFactorAlgorithm             string                      `json:"factor_algorithm"`
+	B509ConstraintWordViewWritability                 string                      `json:"writability"`
+	B509ConstraintWordViewPeerEnforcement             string                      `json:"peer_enforcement"`
+	B509ConstraintWordViewFreshness                   string                      `json:"freshness"`
+	B509ConstraintWordViewExecution                   string                      `json:"execution"`
 }
 
 func b509ConstraintWordViewClone(b509ConstraintWordViewRaw []byte) []byte {

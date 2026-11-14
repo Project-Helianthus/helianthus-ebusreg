@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
 """Reproduce the rename of the work-item-coded strings of three catalog packages.
 
+The work runs in slices; each slice is run once against the tree that still
+holds its coded strings (--slice selects it):
+
+- catalog-strings: the coded JSON tags, string values and error texts of
+  catalog/ebusstandard and the first types of vaillant/system and
+  vaillant/b555 (TOKENS, TEXTS, FILES below).
+- system-b555-tags: the coded JSON tags of the remaining vaillant/system and
+  vaillant/b555 types (TAG_TOKENS, TAG_FILES below).
+
 The coded JSON tags, string values and error texts of catalog/ebusstandard,
-vaillant/system and vaillant/b555 take behavior names. The table below is the
-whole change; nothing is computed from the source:
+vaillant/system and vaillant/b555 take behavior names. The tables below are
+the whole change; nothing is computed from the source:
 
 - TOKENS: per package, a coded JSON tag or value and its new string. A JSON
   tag or value keeps the part after the code in snake_case; the code is
@@ -20,10 +29,25 @@ values that decode into catalog types; KEEP lists the test-local keys of
 unlisted files that equal a token. The rows of naming-inventory.json whose
 current name is renamed follow one-to-one.
 
+The system-b555-tags slice applies the same naming rule to struct tags only:
+
+- TAG_TOKENS: per package, a coded JSON tag and its new key, the part after
+  the code in snake_case.
+- TAG_FILES: the production files whose json struct tags take the new keys;
+  after the rewrite none of their tags carries a code.
+- PIN_TESTS: test files whose TestRenamedFieldJSONKeys pins the production
+  keys; only the quoted keys inside that function follow.
+- FIXTURE_PATHS: per testdata fixture, the JSON paths ("*" is any array
+  element) whose value decodes into a renamed type. Every key under such a
+  path follows, matched without regard to case as encoding/json does; the
+  keys of the test-local vector types around it stay.
+- TAG_KEEP: the files that hold a token only as a test-local key; they stay.
+
 There are no aliases and no dual acceptance: the old strings are gone. The
 script runs once against the tree that still holds the coded strings and
-stops before writing when a precondition fails. --changelog prints the table
-of the CHANGELOG entry.
+stops before writing when a precondition fails. --check verifies that the
+selected slice leaves no coded string in the places it rewrites. --changelog
+prints the table of the CHANGELOG entry.
 """
 
 import argparse
@@ -473,9 +497,447 @@ def inventory(root):
     return json.dumps(data, indent=2, ensure_ascii=False) + "\n"
 
 
-def changelog():
+TAG_TOKENS = {
+    "vaillant/b555": {
+        "Ab52AvailableCount": "available_count",
+        "Ab52DayCountGrade": "day_count_grade",
+        "Ab52DayCounts": "day_counts",
+        "Ab52DeclaredCount": "declared_count",
+        "Ab52EighthCount": "eighth_count",
+        "Ab52EighthCountGrade": "eighth_count_grade",
+        "Ab52EndHour": "end_hour",
+        "Ab52EndMinute": "end_minute",
+        "Ab52Extent": "extent",
+        "Ab52Incomplete": "incomplete",
+        "Ab52Issues": "issues",
+        "Ab52Raw": "raw",
+        "Ab52SetpointGrade": "setpoint_grade",
+        "Ab52SetpointPresent": "setpoint_present",
+        "Ab52SetpointQualified": "setpoint_qualified",
+        "Ab52SetpointRaw": "setpoint_raw",
+        "Ab52SetpointTenths": "setpoint_tenths",
+        "Ab52StartHour": "start_hour",
+        "Ab52StartMinute": "start_minute",
+        "Ab52Status": "status",
+        "Ab52StatusAccepted": "status_accepted",
+        "Ab52StatusGrade": "status_grade",
+        "Ab52StatusUnavailable": "status_unavailable",
+        "Ab52WeekComplete": "week_complete",
+        "Ab52WeekValid": "week_valid",
+    },
+    "vaillant/system": {
+        "Ab01An01APIRevision": "api_revision",
+        "Ab01An01APIVersion": "api_version",
+        "Ab01An01Alternative": "alternative",
+        "Ab01An01Candidate": "candidate",
+        "Ab01An01Cell": "cell",
+        "Ab01An01Cells": "cells",
+        "Ab01An01CombinedTimestamp": "combined_timestamp",
+        "Ab01An01CompleteCandidate": "complete_candidate",
+        "Ab01An01Components": "components",
+        "Ab01An01Context": "context",
+        "Ab01An01ContractGrade": "contract_grade",
+        "Ab01An01EditValidation": "edit_validation",
+        "Ab01An01Family": "family",
+        "Ab01An01Grade": "grade",
+        "Ab01An01Hardware": "hardware",
+        "Ab01An01II": "ii",
+        "Ab01An01NativeQualification": "native_qualification",
+        "Ab01An01OP": "op",
+        "Ab01An01Raw": "raw",
+        "Ab01An01RequestedGG": "requested_gg",
+        "Ab01An01RequestedRR": "requested_rr",
+        "Ab01An01ResponseState": "response_state",
+        "Ab01An01ReturnedGG": "returned_gg",
+        "Ab01An01ReturnedRR": "returned_rr",
+        "Ab01An01Software": "software",
+        "Ab01An01State": "state",
+        "Ab03An03APIRevision": "api_revision",
+        "Ab03An03APIVersion": "api_version",
+        "Ab03An03Applicable": "applicable",
+        "Ab03An03CandidateLabel": "candidate_label",
+        "Ab03An03Context": "context",
+        "Ab03An03Family": "family",
+        "Ab03An03GG": "gg",
+        "Ab03An03Grade": "grade",
+        "Ab03An03Hardware": "hardware",
+        "Ab03An03II": "ii",
+        "Ab03An03Integer": "integer",
+        "Ab03An03MalformedWidth": "malformed_width",
+        "Ab03An03NativeQualification": "native_qualification",
+        "Ab03An03OP": "op",
+        "Ab03An03RR": "rr",
+        "Ab03An03Raw": "raw",
+        "Ab03An03RequestedGG": "requested_gg",
+        "Ab03An03RequestedRR": "requested_rr",
+        "Ab03An03ResponseState": "response_state",
+        "Ab03An03ReturnedGG": "returned_gg",
+        "Ab03An03ReturnedRR": "returned_rr",
+        "Ab03An03Software": "software",
+        "Ab03An03Width": "width",
+        "Ab03AvailabilityOnly": "availability_only",
+        "Ab03Family": "family",
+        "Ab03Group": "group",
+        "Ab03Instances": "instances",
+        "Ab03Maximum": "maximum",
+        "Ab03Minimum": "minimum",
+        "Ab03Opcode": "opcode",
+        "Ab03PredicateRegister": "predicate_register",
+        "Ab03RegisterCeiling": "register_ceiling",
+        "Ab03Virtual": "virtual",
+        "Ab07An07Context": "context",
+        "Ab07An07Default": "default",
+        "Ab07An07Direction": "direction",
+        "Ab07An07Execution": "execution",
+        "Ab07An07Factor": "factor",
+        "Ab07An07FactorAlgorithm": "factor_algorithm",
+        "Ab07An07Family": "family",
+        "Ab07An07FamilyApplicability": "family_applicability",
+        "Ab07An07Freshness": "freshness",
+        "Ab07An07Interpretation": "interpretation",
+        "Ab07An07Maximum": "maximum",
+        "Ab07An07Minimum": "minimum",
+        "Ab07An07NativeEchoRules": "native_echo_rules",
+        "Ab07An07Operation": "operation",
+        "Ab07An07PacketAssociation": "packet_association",
+        "Ab07An07PeerEnforcement": "peer_enforcement",
+        "Ab07An07PhysicalQualification": "physical_qualification",
+        "Ab07An07Raw": "raw",
+        "Ab07An07RawAddressEqual": "raw_address_equal",
+        "Ab07An07RequestedAddress": "requested_address",
+        "Ab07An07RequestedEditBoundsAdmitted": "requested_edit_bounds_admitted",
+        "Ab07An07ReturnedAddress": "returned_address",
+        "Ab07An07Selected": "selected",
+        "Ab07An07SoftwareContract": "software_contract",
+        "Ab07An07State": "state",
+        "Ab07An07Step": "step",
+        "Ab07An07Value": "value",
+        "Ab07An07Variant": "variant",
+        "Ab07An07Writability": "writability",
+        "Ab11Bytes": "bytes",
+        "Ab11Day": "day",
+        "Ab11Grade": "grade",
+        "Ab11Hour": "hour",
+        "Ab11Interpretation": "interpretation",
+        "Ab11Latin1": "latin1",
+        "Ab11Minute": "minute",
+        "Ab11Month": "month",
+        "Ab11Qualified": "qualified",
+        "Ab11Raw": "raw",
+        "Ab11Second": "second",
+        "Ab11Year": "year",
+        "Ab22BindingZone": "binding_zone",
+        "Ab22Context": "context",
+        "Ab22CoolingOperatingMode": "cooling_operating_mode",
+        "Ab22CoolingTemperatureRaw": "cooling_temperature_raw",
+        "Ab22Family": "family",
+        "Ab22Fields": "fields",
+        "Ab22FrostProtection": "frost_protection",
+        "Ab22HeatingOperatingMode": "heating_operating_mode",
+        "Ab22HeatingTemperatureRaw": "heating_temperature_raw",
+        "Ab22Opcode": "opcode",
+        "Ab22Payload": "payload",
+        "Ab22SpecialFunctionStatus": "special_function_status",
+        "Ab22StatusInfo": "status_info",
+        "Ab58APIRevision": "api_revision",
+        "Ab58APIVersion": "api_version",
+        "Ab58Codec": "codec",
+        "Ab58CodecGrade": "codec_grade",
+        "Ab58Context": "context",
+        "Ab58DeclaredUnit": "declared_unit",
+        "Ab58Delivery": "delivery",
+        "Ab58Effects": "effects",
+        "Ab58Execution": "execution",
+        "Ab58Family": "family",
+        "Ab58Float32": "float32",
+        "Ab58Freshness": "freshness",
+        "Ab58Grade": "grade",
+        "Ab58Group": "group",
+        "Ab58Hardware": "hardware",
+        "Ab58Input": "input",
+        "Ab58Instance": "instance",
+        "Ab58Opcode": "opcode",
+        "Ab58Persistence": "persistence",
+        "Ab58Presence": "presence",
+        "Ab58Present": "present",
+        "Ab58Raw": "raw",
+        "Ab58Register": "register",
+        "Ab58ReplyKind": "reply_kind",
+        "Ab58ReturnedGroup": "returned_group",
+        "Ab58ReturnedRegister": "returned_register",
+        "Ab58Software": "software",
+        "Ab58State": "state",
+        "Ab58Support": "support",
+        "Ab58Uint16": "uint16",
+        "Ab58Value": "value",
+        "Ab60APIRevision": "api_revision",
+        "Ab60APIVersion": "api_version",
+        "Ab60Codec": "codec",
+        "Ab60CodecGrade": "codec_grade",
+        "Ab60Context": "context",
+        "Ab60DeclaredUnit": "declared_unit",
+        "Ab60Delivery": "delivery",
+        "Ab60Effects": "effects",
+        "Ab60Execution": "execution",
+        "Ab60Family": "family",
+        "Ab60Float32": "float32",
+        "Ab60Freshness": "freshness",
+        "Ab60Grade": "grade",
+        "Ab60Group": "group",
+        "Ab60Hardware": "hardware",
+        "Ab60Input": "input",
+        "Ab60Instance": "instance",
+        "Ab60Opcode": "opcode",
+        "Ab60Persistence": "persistence",
+        "Ab60Presence": "presence",
+        "Ab60Present": "present",
+        "Ab60Raw": "raw",
+        "Ab60Register": "register",
+        "Ab60ReplyKind": "reply_kind",
+        "Ab60ReturnedGroup": "returned_group",
+        "Ab60ReturnedRegister": "returned_register",
+        "Ab60Software": "software",
+        "Ab60State": "state",
+        "Ab60Support": "support",
+        "Ab60Uint16": "uint16",
+        "Ab60Value": "value",
+        "Ab62APIRevision": "api_revision",
+        "Ab62APIVersion": "api_version",
+        "Ab62Codec": "codec",
+        "Ab62CodecGrade": "codec_grade",
+        "Ab62Context": "context",
+        "Ab62DeclaredUnit": "declared_unit",
+        "Ab62Family": "family",
+        "Ab62Grade": "grade",
+        "Ab62Group": "group",
+        "Ab62Hardware": "hardware",
+        "Ab62Input": "input",
+        "Ab62Instance": "instance",
+        "Ab62Opcode": "opcode",
+        "Ab62Present": "present",
+        "Ab62Raw": "raw",
+        "Ab62Register": "register",
+        "Ab62ReplyKind": "reply_kind",
+        "Ab62ReturnedGroup": "returned_group",
+        "Ab62ReturnedRegister": "returned_register",
+        "Ab62Software": "software",
+        "Ab62State": "state",
+        "Ab62Value": "value",
+        "Ab64APIRevision": "api_revision",
+        "Ab64APIVersion": "api_version",
+        "Ab64Codec": "codec",
+        "Ab64CodecGrade": "codec_grade",
+        "Ab64Context": "context",
+        "Ab64Delivery": "delivery",
+        "Ab64Effects": "effects",
+        "Ab64Execution": "execution",
+        "Ab64Family": "family",
+        "Ab64Freshness": "freshness",
+        "Ab64Grade": "grade",
+        "Ab64Group": "group",
+        "Ab64Hardware": "hardware",
+        "Ab64Input": "input",
+        "Ab64Instance": "instance",
+        "Ab64InstanceRule": "instance_rule",
+        "Ab64NativeSupport": "native_support",
+        "Ab64Opcode": "opcode",
+        "Ab64Persistence": "persistence",
+        "Ab64Presence": "presence",
+        "Ab64Present": "present",
+        "Ab64Qualification": "qualification",
+        "Ab64Raw": "raw",
+        "Ab64Register": "register",
+        "Ab64ReplyKind": "reply_kind",
+        "Ab64ReturnedGroup": "returned_group",
+        "Ab64ReturnedRegister": "returned_register",
+        "Ab64Software": "software",
+        "Ab64State": "state",
+        "Ab64Unit": "unit",
+        "Ab64Value": "value",
+        "Ab66Applicability": "applicability",
+        "Ab66Group": "group",
+        "Ab66Hint": "hint",
+        "Ab66Key": "key",
+        "Ab66Max": "max",
+        "Ab66Min": "min",
+        "Ab66Opcode": "opcode",
+        "Ab66Qualified": "qualified",
+        "Ab66Register": "register",
+        "Ab66Status": "status",
+        "Ab66Step": "step",
+        "Ab66Type": "type",
+    },
+}
+
+TAG_FILES = {
+    "vaillant/b555": [
+        "vaillant/b555/b555_extent_views.go",
+    ],
+    "vaillant/system": [
+        "vaillant/system/b509_constraint_word_views.go",
+        "vaillant/system/b524_calendar_views.go",
+        "vaillant/system/b524_circuit_scalars.go",
+        "vaillant/system/b524_codebook_views.go",
+        "vaillant/system/b524_dhw_ventilation_scalars.go",
+        "vaillant/system/b524_system_scalars.go",
+        "vaillant/system/b524_unscoped_hints.go",
+        "vaillant/system/b524_zone_scalars.go",
+        "vaillant/system/discovery_catalog.go",
+        "vaillant/system/status.go",
+        "vaillant/system/value_codec.go",
+    ],
+}
+
+PIN_TESTS = {
+    "vaillant/b555/b555_extent_views_test.go": "vaillant/b555",
+    "vaillant/system/b524_codebook_views_test.go": "vaillant/system",
+}
+
+FIXTURE_PATHS = {
+    "vaillant/system/testdata/ab03_discovery_windows.json": [
+        ("ab03Windows", "*"),
+    ],
+    "vaillant/system/testdata/ab07an07_b509_constraint_word_views.json": [
+        ("*", "Ab07An07Input"),
+    ],
+    "vaillant/system/testdata/ab66_b524_unscoped_hints.json": [
+        ("ab66Keys", "*"),
+        ("ab66Controls", "*", "Ab66Key"),
+        ("ab66Controls", "*", "Ab66Hint"),
+    ],
+}
+
+TAG_KEEP = [
+    "vaillant/system/b509_constraint_word_views_test.go",
+    "vaillant/system/b524_calendar_views_test.go",
+    "vaillant/system/b524_circuit_scalars_test.go",
+    "vaillant/system/b524_unscoped_hints_test.go",
+    "vaillant/system/b524_zone_scalars_test.go",
+    "vaillant/system/testdata/ab01an01_b524_calendar_views.json",
+    "vaillant/system/testdata/ab03an03_b524_codebook_views.json",
+    "vaillant/system/testdata/ab62_b524_circuit_scalars.json",
+    "vaillant/system/testdata/ab64_b524_zone_scalars.json",
+]
+
+CODED_TAG = re.compile(r'json:"[Aa][Bb][0-9]{2}')
+QUOTED = re.compile(r'"([A-Za-z0-9_]+)(?:,[a-z]+)*"')
+PIN_FUNCTION = re.compile(r"\nfunc TestRenamedFieldJSONKeys\(.*?\n}\n", re.S)
+
+
+def tag_package(rel):
+    return rel.split("/testdata/")[0]
+
+
+def rewrite_tags(text, table):
+    tags = pattern(table)
+    replace = lambda m: tags.sub(lambda t: table[t.group(1)], m.group())
+    return STRUCT_TAG.subn(replace, text)
+
+
+def rewrite_pins(text, table):
+    pin = PIN_FUNCTION.search(text)
+    if pin is None:
+        raise SystemExit("TestRenamedFieldJSONKeys not found")
+    quoted = re.compile('"(' + "|".join(re.escape(t) for t in table) + ')"')
+    body, count = quoted.subn(lambda m: '"' + table[m.group(1)] + '"', pin.group())
+    return text[:pin.start()] + body + text[pin.end():], count
+
+
+def under(path, roots):
+    def step(r, p):
+        return isinstance(p, int) if r == "*" else r == p
+    return any(len(path) >= len(root) and all(map(step, root, path)) for root in roots)
+
+
+def rewrite_fixture(rel, text, table):
+    lower = {old.lower(): new for old, new in table.items()}
+    roots, stack, out, count, i = FIXTURE_PATHS[rel], [], [], 0, 0
+    while i < len(text):
+        c = text[i]
+        if c == '"':
+            j = i + 1
+            while text[j] != '"':
+                j += 2 if text[j] == "\\" else 1
+            word, k = text[i + 1:j], j + 1
+            while k < len(text) and text[k] in " \t\r\n":
+                k += 1
+            if k < len(text) and text[k] == ":" and stack and stack[-1][0] == "{":
+                stack[-1][1] = word
+                if under(tuple(frame[1] for frame in stack[:-1]), roots):
+                    if word.lower() not in lower:
+                        raise SystemExit(f"{rel}: key {word} under a renamed type is unlisted")
+                    word, count = lower[word.lower()], count + 1
+            out.append('"' + word + '"')
+            i = j + 1
+            continue
+        if c in "{[":
+            stack.append([c, None if c == "{" else 0])
+        elif c in "}]":
+            stack.pop()
+        elif c == "," and stack[-1][0] == "[":
+            stack[-1][1] += 1
+        out.append(c)
+        i += 1
+    return "".join(out), count
+
+
+def tag_scope(root):
+    listed = {rel for files in TAG_FILES.values() for rel in files}
+    listed |= set(PIN_TESTS) | set(FIXTURE_PATHS) | set(TAG_KEEP)
+    lower = {t.lower() for table in TAG_TOKENS.values() for t in table}
+    holders = set()
+    for rel, path in repository_files(root):
+        if not rel.endswith((".go", ".json", ".txt")):
+            continue
+        if any(m.group(1).lower() in lower for m in QUOTED.finditer(path.read_text())):
+            holders.add(rel)
+    if holders - listed:
+        raise SystemExit(f"unlisted files hold a coded tag: {sorted(holders - listed)}")
+    if set(TAG_KEEP) - holders:
+        raise SystemExit(f"TAG_KEEP files hold no token: {sorted(set(TAG_KEEP) - holders)}")
+
+
+def tag_plan(root):
+    tag_scope(root)
+    changed = {}
+    for package, files in TAG_FILES.items():
+        for rel in files:
+            new, count = rewrite_tags((root / rel).read_text(), TAG_TOKENS[package])
+            if count == 0 or CODED_TAG.search(new):
+                raise SystemExit(f"{rel}: coded tags not fully covered by the table")
+            changed[rel] = new
+    for rel, package in PIN_TESTS.items():
+        new, count = rewrite_pins((root / rel).read_text(), TAG_TOKENS[package])
+        if count == 0:
+            raise SystemExit(f"{rel}: no pinned coded key found")
+        changed[rel] = new
+    for rel in FIXTURE_PATHS:
+        new, count = rewrite_fixture(rel, (root / rel).read_text(), TAG_TOKENS[tag_package(rel)])
+        if count == 0:
+            raise SystemExit(f"{rel}: no coded key under a renamed type")
+        changed[rel] = new
+    return changed
+
+
+def tag_check(root):
+    remaining = []
+    for files in TAG_FILES.values():
+        remaining += [rel for rel in files if CODED_TAG.search((root / rel).read_text())]
+    for rel, package in PIN_TESTS.items():
+        if rewrite_pins((root / rel).read_text(), TAG_TOKENS[package])[1]:
+            remaining.append(rel)
+    for rel in FIXTURE_PATHS:
+        table = {new: new for new in TAG_TOKENS[tag_package(rel)].values()}
+        try:
+            rewrite_fixture(rel, (root / rel).read_text(), table)
+        except SystemExit:
+            remaining.append(rel)
+    return remaining
+
+
+def changelog_rows(tables):
     rows = {}
-    for table in list(TOKENS.values()) + list(TEXTS.values()):
+    for table in tables:
         for old, new in table.items():
             if rows.setdefault(old, new) != new:
                 raise SystemExit(f"{old}: two new strings")
@@ -484,17 +946,33 @@ def changelog():
     return "\n".join(lines)
 
 
+SLICES = {
+    "catalog-strings": (plan, lambda: changelog_rows(list(TOKENS.values()) + list(TEXTS.values()))),
+    "system-b555-tags": (tag_plan, lambda: changelog_rows(TAG_TOKENS.values())),
+}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--slice", required=True, choices=sorted(SLICES))
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--check", action="store_true")
     parser.add_argument("--changelog", action="store_true")
     args = parser.parse_args()
+    build, table = SLICES[args.slice]
     if args.changelog:
-        print(changelog())
+        print(table())
         return 0
     root = args.root.resolve()
-    changed = plan(root)
+    if args.check:
+        if args.slice != "system-b555-tags":
+            raise SystemExit("--check covers the system-b555-tags slice")
+        remaining = tag_check(root)
+        for rel in remaining:
+            print(f"{rel}: coded string remains")
+        return 1 if remaining else 0
+    changed = build(root)
     for rel, text in sorted(changed.items()):
         print(rel)
         if not args.dry_run:

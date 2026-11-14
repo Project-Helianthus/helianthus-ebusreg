@@ -6,8 +6,8 @@ import (
 )
 
 type B524ZoneScalarField[B524ZoneScalarT any] struct {
-	B524ZoneScalarPresent bool            `json:"Ab64Present"`
-	B524ZoneScalarValue   B524ZoneScalarT `json:"Ab64Value"`
+	B524ZoneScalarPresent bool            `json:"present"`
+	B524ZoneScalarValue   B524ZoneScalarT `json:"value"`
 }
 
 type B524ZoneScalarGrade string
@@ -19,24 +19,24 @@ const (
 )
 
 type B524ZoneScalarContext struct {
-	B524ZoneScalarFamily      B524ZoneScalarField[string] `json:"Ab64Family"`
-	B524ZoneScalarSoftware    B524ZoneScalarField[string] `json:"Ab64Software"`
-	B524ZoneScalarHardware    B524ZoneScalarField[string] `json:"Ab64Hardware"`
-	B524ZoneScalarAPIVersion  B524ZoneScalarField[string] `json:"Ab64APIVersion"`
-	B524ZoneScalarAPIRevision B524ZoneScalarField[string] `json:"Ab64APIRevision"`
-	B524ZoneScalarOpcode      B524ZoneScalarField[byte]   `json:"Ab64Opcode"`
-	B524ZoneScalarGroup       B524ZoneScalarField[byte]   `json:"Ab64Group"`
-	B524ZoneScalarInstance    B524ZoneScalarField[byte]   `json:"Ab64Instance"`
-	B524ZoneScalarRegister    B524ZoneScalarField[uint16] `json:"Ab64Register"`
+	B524ZoneScalarFamily      B524ZoneScalarField[string] `json:"family"`
+	B524ZoneScalarSoftware    B524ZoneScalarField[string] `json:"software"`
+	B524ZoneScalarHardware    B524ZoneScalarField[string] `json:"hardware"`
+	B524ZoneScalarAPIVersion  B524ZoneScalarField[string] `json:"api_version"`
+	B524ZoneScalarAPIRevision B524ZoneScalarField[string] `json:"api_revision"`
+	B524ZoneScalarOpcode      B524ZoneScalarField[byte]   `json:"opcode"`
+	B524ZoneScalarGroup       B524ZoneScalarField[byte]   `json:"group"`
+	B524ZoneScalarInstance    B524ZoneScalarField[byte]   `json:"instance"`
+	B524ZoneScalarRegister    B524ZoneScalarField[uint16] `json:"register"`
 }
 
 type B524ZoneScalarInput struct {
-	B524ZoneScalarContext          B524ZoneScalarContext       `json:"Ab64Context"`
-	B524ZoneScalarReplyKind        string                      `json:"Ab64ReplyKind"`
-	B524ZoneScalarReturnedGroup    B524ZoneScalarField[byte]   `json:"Ab64ReturnedGroup"`
-	B524ZoneScalarReturnedRegister B524ZoneScalarField[uint16] `json:"Ab64ReturnedRegister"`
-	B524ZoneScalarCodecGrade       B524ZoneScalarGrade         `json:"Ab64CodecGrade"`
-	B524ZoneScalarRaw              []byte                      `json:"Ab64Raw"`
+	B524ZoneScalarContext          B524ZoneScalarContext       `json:"context"`
+	B524ZoneScalarReplyKind        string                      `json:"reply_kind"`
+	B524ZoneScalarReturnedGroup    B524ZoneScalarField[byte]   `json:"returned_group"`
+	B524ZoneScalarReturnedRegister B524ZoneScalarField[uint16] `json:"returned_register"`
+	B524ZoneScalarCodecGrade       B524ZoneScalarGrade         `json:"codec_grade"`
+	B524ZoneScalarRaw              []byte                      `json:"raw"`
 }
 
 type B524ZoneScalarState string
@@ -47,21 +47,21 @@ const (
 )
 
 type B524ZoneScalarResult struct {
-	B524ZoneScalarInput         B524ZoneScalarInput          `json:"Ab64Input"`
-	B524ZoneScalarState         B524ZoneScalarState          `json:"Ab64State"`
-	B524ZoneScalarValue         B524ZoneScalarField[float32] `json:"Ab64Value"`
-	B524ZoneScalarGrade         B524ZoneScalarGrade          `json:"Ab64Grade"`
-	B524ZoneScalarUnit          string                       `json:"Ab64Unit"`
-	B524ZoneScalarCodec         string                       `json:"Ab64Codec"`
-	B524ZoneScalarInstanceRule  string                       `json:"Ab64InstanceRule"`
-	B524ZoneScalarNativeSupport B524ZoneScalarGrade          `json:"Ab64NativeSupport"`
-	B524ZoneScalarQualification B524ZoneScalarGrade          `json:"Ab64Qualification"`
-	B524ZoneScalarPresence      B524ZoneScalarGrade          `json:"Ab64Presence"`
-	B524ZoneScalarFreshness     B524ZoneScalarGrade          `json:"Ab64Freshness"`
-	B524ZoneScalarExecution     B524ZoneScalarGrade          `json:"Ab64Execution"`
-	B524ZoneScalarEffects       B524ZoneScalarGrade          `json:"Ab64Effects"`
-	B524ZoneScalarPersistence   B524ZoneScalarGrade          `json:"Ab64Persistence"`
-	B524ZoneScalarDelivery      B524ZoneScalarGrade          `json:"Ab64Delivery"`
+	B524ZoneScalarInput         B524ZoneScalarInput          `json:"input"`
+	B524ZoneScalarState         B524ZoneScalarState          `json:"state"`
+	B524ZoneScalarValue         B524ZoneScalarField[float32] `json:"value"`
+	B524ZoneScalarGrade         B524ZoneScalarGrade          `json:"grade"`
+	B524ZoneScalarUnit          string                       `json:"unit"`
+	B524ZoneScalarCodec         string                       `json:"codec"`
+	B524ZoneScalarInstanceRule  string                       `json:"instance_rule"`
+	B524ZoneScalarNativeSupport B524ZoneScalarGrade          `json:"native_support"`
+	B524ZoneScalarQualification B524ZoneScalarGrade          `json:"qualification"`
+	B524ZoneScalarPresence      B524ZoneScalarGrade          `json:"presence"`
+	B524ZoneScalarFreshness     B524ZoneScalarGrade          `json:"freshness"`
+	B524ZoneScalarExecution     B524ZoneScalarGrade          `json:"execution"`
+	B524ZoneScalarEffects       B524ZoneScalarGrade          `json:"effects"`
+	B524ZoneScalarPersistence   B524ZoneScalarGrade          `json:"persistence"`
+	B524ZoneScalarDelivery      B524ZoneScalarGrade          `json:"delivery"`
 }
 
 func B524ZoneScalarInterpret(b524ZoneScalarInput B524ZoneScalarInput) B524ZoneScalarResult {

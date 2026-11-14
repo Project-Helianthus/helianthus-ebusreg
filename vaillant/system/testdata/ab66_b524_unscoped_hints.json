@@ -1,274 +1,274 @@
 {
   "ab66Keys": [
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 0,
-      "Ab66Register": 2
+      "opcode": 2,
+      "group": 0,
+      "register": 2
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 0,
-      "Ab66Register": 3
+      "opcode": 2,
+      "group": 0,
+      "register": 3
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 0,
-      "Ab66Register": 4
+      "opcode": 2,
+      "group": 0,
+      "register": 4
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 0,
-      "Ab66Register": 128
+      "opcode": 2,
+      "group": 0,
+      "register": 128
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 1,
-      "Ab66Register": 1
+      "opcode": 2,
+      "group": 1,
+      "register": 1
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 1,
-      "Ab66Register": 2
+      "opcode": 2,
+      "group": 1,
+      "register": 2
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 1,
-      "Ab66Register": 3
+      "opcode": 2,
+      "group": 1,
+      "register": 3
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 1,
-      "Ab66Register": 4
+      "opcode": 2,
+      "group": 1,
+      "register": 4
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 1,
-      "Ab66Register": 5
+      "opcode": 2,
+      "group": 1,
+      "register": 5
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 1,
-      "Ab66Register": 6
+      "opcode": 2,
+      "group": 1,
+      "register": 6
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 2,
-      "Ab66Register": 1
+      "opcode": 2,
+      "group": 2,
+      "register": 1
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 2,
-      "Ab66Register": 2
+      "opcode": 2,
+      "group": 2,
+      "register": 2
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 2,
-      "Ab66Register": 4
+      "opcode": 2,
+      "group": 2,
+      "register": 4
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 2,
-      "Ab66Register": 5
+      "opcode": 2,
+      "group": 2,
+      "register": 5
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 2,
-      "Ab66Register": 6
+      "opcode": 2,
+      "group": 2,
+      "register": 6
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 3,
-      "Ab66Register": 1
+      "opcode": 2,
+      "group": 3,
+      "register": 1
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 3,
-      "Ab66Register": 2
+      "opcode": 2,
+      "group": 3,
+      "register": 2
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 3,
-      "Ab66Register": 5
+      "opcode": 2,
+      "group": 3,
+      "register": 5
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 3,
-      "Ab66Register": 6
+      "opcode": 2,
+      "group": 3,
+      "register": 6
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 4,
-      "Ab66Register": 1
+      "opcode": 2,
+      "group": 4,
+      "register": 1
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 4,
-      "Ab66Register": 2
+      "opcode": 2,
+      "group": 4,
+      "register": 2
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 4,
-      "Ab66Register": 3
+      "opcode": 2,
+      "group": 4,
+      "register": 3
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 4,
-      "Ab66Register": 4
+      "opcode": 2,
+      "group": 4,
+      "register": 4
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 4,
-      "Ab66Register": 5
+      "opcode": 2,
+      "group": 4,
+      "register": 5
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 4,
-      "Ab66Register": 6
+      "opcode": 2,
+      "group": 4,
+      "register": 6
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 5,
-      "Ab66Register": 1
+      "opcode": 2,
+      "group": 5,
+      "register": 1
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 5,
-      "Ab66Register": 2
+      "opcode": 2,
+      "group": 5,
+      "register": 2
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 5,
-      "Ab66Register": 3
+      "opcode": 2,
+      "group": 5,
+      "register": 3
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 5,
-      "Ab66Register": 4
+      "opcode": 2,
+      "group": 5,
+      "register": 4
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 8,
-      "Ab66Register": 1
+      "opcode": 2,
+      "group": 8,
+      "register": 1
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 8,
-      "Ab66Register": 2
+      "opcode": 2,
+      "group": 8,
+      "register": 2
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 8,
-      "Ab66Register": 3
+      "opcode": 2,
+      "group": 8,
+      "register": 3
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 8,
-      "Ab66Register": 4
+      "opcode": 2,
+      "group": 8,
+      "register": 4
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 8,
-      "Ab66Register": 5
+      "opcode": 2,
+      "group": 8,
+      "register": 5
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 8,
-      "Ab66Register": 6
+      "opcode": 2,
+      "group": 8,
+      "register": 6
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 9,
-      "Ab66Register": 1
+      "opcode": 2,
+      "group": 9,
+      "register": 1
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 9,
-      "Ab66Register": 2
+      "opcode": 2,
+      "group": 9,
+      "register": 2
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 9,
-      "Ab66Register": 3
+      "opcode": 2,
+      "group": 9,
+      "register": 3
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 9,
-      "Ab66Register": 4
+      "opcode": 2,
+      "group": 9,
+      "register": 4
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 9,
-      "Ab66Register": 5
+      "opcode": 2,
+      "group": 9,
+      "register": 5
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 9,
-      "Ab66Register": 6
+      "opcode": 2,
+      "group": 9,
+      "register": 6
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 10,
-      "Ab66Register": 1
+      "opcode": 2,
+      "group": 10,
+      "register": 1
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 10,
-      "Ab66Register": 2
+      "opcode": 2,
+      "group": 10,
+      "register": 2
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 10,
-      "Ab66Register": 3
+      "opcode": 2,
+      "group": 10,
+      "register": 3
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 10,
-      "Ab66Register": 5
+      "opcode": 2,
+      "group": 10,
+      "register": 5
     },
     {
-      "Ab66Opcode": 2,
-      "Ab66Group": 10,
-      "Ab66Register": 6
+      "opcode": 2,
+      "group": 10,
+      "register": 6
     }
   ],
   "ab66Controls": [
     {
       "Ab66Key": {
-        "Ab66Opcode": 2,
-        "Ab66Group": 0,
-        "Ab66Register": 2
+        "opcode": 2,
+        "group": 0,
+        "register": 2
       },
       "Ab66Hint": {
-        "Ab66Type": "f32_range",
-        "Ab66Min": -26,
-        "Ab66Max": 10,
-        "Ab66Step": 1
+        "type": "f32_range",
+        "min": -26,
+        "max": 10,
+        "step": 1
       }
     },
     {
       "Ab66Key": {
-        "Ab66Opcode": 2,
-        "Ab66Group": 0,
-        "Ab66Register": 4
+        "opcode": 2,
+        "group": 0,
+        "register": 4
       },
       "Ab66Hint": {
-        "Ab66Type": "u16_range",
-        "Ab66Min": 0,
-        "Ab66Max": 300,
-        "Ab66Step": 10
+        "type": "u16_range",
+        "min": 0,
+        "max": 300,
+        "step": 10
       }
     },
     {
       "Ab66Key": {
-        "Ab66Opcode": 2,
-        "Ab66Group": 3,
-        "Ab66Register": 2
+        "opcode": 2,
+        "group": 3,
+        "register": 2
       },
       "Ab66Hint": {
-        "Ab66Type": "f32_range",
-        "Ab66Min": 15,
-        "Ab66Max": 30,
-        "Ab66Step": 0.5
+        "type": "f32_range",
+        "min": 15,
+        "max": 30,
+        "step": 0.5
       }
     }
   ]

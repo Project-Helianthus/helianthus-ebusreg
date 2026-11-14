@@ -1,22 +1,22 @@
 package system
 
 type DiscoveryCatalogInstanceInterval struct {
-	DiscoveryCatalogMinimum byte `json:"Ab03Minimum"`
-	DiscoveryCatalogMaximum byte `json:"Ab03Maximum"`
+	DiscoveryCatalogMinimum byte `json:"minimum"`
+	DiscoveryCatalogMaximum byte `json:"maximum"`
 }
 
 // DiscoveryWindow is a scheduling window, never a terminal register maximum.
 // Characterization does not establish physical availability, codec qualification,
 // or automatic admission; those remain Unknown. Nil ceilings remain absent.
 type DiscoveryWindow struct {
-	DiscoveryCatalogFamily            string                           `json:"Ab03Family"`
-	DiscoveryCatalogOpcode            byte                             `json:"Ab03Opcode"`
-	DiscoveryCatalogGroup             byte                             `json:"Ab03Group"`
-	DiscoveryCatalogInstances         DiscoveryCatalogInstanceInterval `json:"Ab03Instances"`
-	DiscoveryCatalogRegisterCeiling   *uint16                          `json:"Ab03RegisterCeiling"`
-	DiscoveryCatalogAvailabilityOnly  bool                             `json:"Ab03AvailabilityOnly"`
-	DiscoveryCatalogPredicateRegister *uint16                          `json:"Ab03PredicateRegister"`
-	DiscoveryCatalogVirtual           bool                             `json:"Ab03Virtual"`
+	DiscoveryCatalogFamily            string                           `json:"family"`
+	DiscoveryCatalogOpcode            byte                             `json:"opcode"`
+	DiscoveryCatalogGroup             byte                             `json:"group"`
+	DiscoveryCatalogInstances         DiscoveryCatalogInstanceInterval `json:"instances"`
+	DiscoveryCatalogRegisterCeiling   *uint16                          `json:"register_ceiling"`
+	DiscoveryCatalogAvailabilityOnly  bool                             `json:"availability_only"`
+	DiscoveryCatalogPredicateRegister *uint16                          `json:"predicate_register"`
+	DiscoveryCatalogVirtual           bool                             `json:"virtual"`
 }
 
 func discoveryCatalogRegister(discoveryCatalogValue uint16) *uint16 { return &discoveryCatalogValue }

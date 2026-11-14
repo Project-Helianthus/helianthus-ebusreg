@@ -1,32 +1,32 @@
 package system
 
 type B524CodebookViewInput struct {
-	B524CodebookViewFamily        string `json:"Ab03An03Family"`
-	B524CodebookViewSoftware      string `json:"Ab03An03Software"`
-	B524CodebookViewHardware      string `json:"Ab03An03Hardware"`
-	B524CodebookViewAPIVersion    string `json:"Ab03An03APIVersion"`
-	B524CodebookViewAPIRevision   string `json:"Ab03An03APIRevision"`
-	B524CodebookViewOP            byte   `json:"Ab03An03OP"`
-	B524CodebookViewGG            byte   `json:"Ab03An03GG"`
-	B524CodebookViewII            *byte  `json:"Ab03An03II"`
-	B524CodebookViewRR            uint16 `json:"Ab03An03RR"`
-	B524CodebookViewWidth         string `json:"Ab03An03Width"`
-	B524CodebookViewRequestedGG   byte   `json:"Ab03An03RequestedGG"`
-	B524CodebookViewRequestedRR   uint16 `json:"Ab03An03RequestedRR"`
-	B524CodebookViewReturnedGG    byte   `json:"Ab03An03ReturnedGG"`
-	B524CodebookViewReturnedRR    uint16 `json:"Ab03An03ReturnedRR"`
-	B524CodebookViewResponseState string `json:"Ab03An03ResponseState"`
-	B524CodebookViewRaw           []byte `json:"Ab03An03Raw"`
+	B524CodebookViewFamily        string `json:"family"`
+	B524CodebookViewSoftware      string `json:"software"`
+	B524CodebookViewHardware      string `json:"hardware"`
+	B524CodebookViewAPIVersion    string `json:"api_version"`
+	B524CodebookViewAPIRevision   string `json:"api_revision"`
+	B524CodebookViewOP            byte   `json:"op"`
+	B524CodebookViewGG            byte   `json:"gg"`
+	B524CodebookViewII            *byte  `json:"ii"`
+	B524CodebookViewRR            uint16 `json:"rr"`
+	B524CodebookViewWidth         string `json:"width"`
+	B524CodebookViewRequestedGG   byte   `json:"requested_gg"`
+	B524CodebookViewRequestedRR   uint16 `json:"requested_rr"`
+	B524CodebookViewReturnedGG    byte   `json:"returned_gg"`
+	B524CodebookViewReturnedRR    uint16 `json:"returned_rr"`
+	B524CodebookViewResponseState string `json:"response_state"`
+	B524CodebookViewRaw           []byte `json:"raw"`
 }
 
 type B524CodebookViewResult struct {
-	B524CodebookViewContext             B524CodebookViewInput `json:"Ab03An03Context"`
-	B524CodebookViewInteger             *int                  `json:"Ab03An03Integer"`
-	B524CodebookViewCandidateLabel      *string               `json:"Ab03An03CandidateLabel"`
-	B524CodebookViewApplicable          bool                  `json:"Ab03An03Applicable"`
-	B524CodebookViewMalformedWidth      bool                  `json:"Ab03An03MalformedWidth"`
-	B524CodebookViewGrade               string                `json:"Ab03An03Grade"`
-	B524CodebookViewNativeQualification string                `json:"Ab03An03NativeQualification"`
+	B524CodebookViewContext             B524CodebookViewInput `json:"context"`
+	B524CodebookViewInteger             *int                  `json:"integer"`
+	B524CodebookViewCandidateLabel      *string               `json:"candidate_label"`
+	B524CodebookViewApplicable          bool                  `json:"applicable"`
+	B524CodebookViewMalformedWidth      bool                  `json:"malformed_width"`
+	B524CodebookViewGrade               string                `json:"grade"`
+	B524CodebookViewNativeQualification string                `json:"native_qualification"`
 }
 
 func B524CodebookViewInterpret(b524CodebookViewInput B524CodebookViewInput) B524CodebookViewResult {

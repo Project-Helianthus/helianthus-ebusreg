@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- Document the projection node identifier as a native-only snapshot
+  locator. `NodeID` and `StableNodeID` keep their names and values: the
+  value is still the canonical Service path, which changes when a device is
+  re-addressed and repeats when another unit of the same model answers at
+  the same address. The package documentation, the `NodeID` and
+  `StableNodeID` doc comments and the per-device projection comments now say
+  that the gateway, the Portal and the semantic registry must not store the
+  locator as resource identity; resource identity follows the identity
+  anchors of the common semantic contract. New tests cover re-addressing and
+  a same-model swap. The gateway follow-up moves the Portal off the locator
+  as a stored identity.
+
 - Rename the work-item-coded JSON tags, string values and error texts of
   `catalog/ebusstandard`, `vaillant/system` and `vaillant/b555` to behavior
   names. The strings are replaced directly: there is no alias and no dual

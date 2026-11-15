@@ -39,7 +39,8 @@ type B511OverlapView struct {
 }
 
 // B511OverlapViewInterpret interprets the logical image for the selection and returns a detached view;
-// an unsupported selection or a short image leaves the values unset.
+// an unsupported selection leaves every value unset, and a short image still sets each value that
+// lies within its extent while the required extent and the complete flag report the shortfall.
 func B511OverlapViewInterpret(b511OverlapViewSelection B511OverlapViewSelection, b511OverlapViewLogicalImage []byte) B511OverlapView {
 	if b511OverlapViewSelection.B511OverlapViewOperation != nil {
 		b511OverlapViewOp := *b511OverlapViewSelection.B511OverlapViewOperation

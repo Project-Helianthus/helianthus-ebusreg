@@ -10,6 +10,8 @@ import (
 //go:embed data/b524_family_codebooks.json
 var b524FamilyCodebookEmbedded string
 
+// B524FamilyCodebookKey identifies one B524 family codebook row; nil optional axes are absent and lookups
+// compare every axis exactly.
 type B524FamilyCodebookKey struct {
 	B524Family                      string  `json:"family"`
 	B524FamilyCodebookVariant       string  `json:"variant"`
@@ -67,6 +69,8 @@ func b524FamilyCodebookValidate(b524FamilyCodebookData []byte) ([]b524FamilyCode
 	return b524FamilyCodebookRows, b524FamilyCodebookKeys, nil
 }
 
+// B524FamilyCodebookEntries validates the embedded catalog and returns a caller-owned copy of its JSON, or
+// the validation error.
 func B524FamilyCodebookEntries() (b524FamilyCodebookJSON.RawMessage, error) {
 	if _, _, b524FamilyCodebookError := b524FamilyCodebookValidate([]byte(b524FamilyCodebookEmbedded)); b524FamilyCodebookError != nil {
 		return nil, b524FamilyCodebookError
@@ -87,6 +91,8 @@ func b524FamilyCodebookLookup(b524FamilyCodebookData []byte, b524FamilyCodebookK
 	return nil, false, nil
 }
 
+// B524FamilyCodebookLookup returns a caller-owned copy of the row whose key equals the given key, false
+// when none matches, or the catalog validation error.
 func B524FamilyCodebookLookup(b524FamilyCodebookKey B524FamilyCodebookKey) (b524FamilyCodebookJSON.RawMessage, bool, error) {
 	return b524FamilyCodebookLookup([]byte(b524FamilyCodebookEmbedded), b524FamilyCodebookKey)
 }

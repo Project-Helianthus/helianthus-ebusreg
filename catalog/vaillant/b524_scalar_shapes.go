@@ -9,6 +9,8 @@ import (
 //go:embed data/b524_scalar_shapes.json
 var b524ScalarShapeScalarShapesJSON []byte
 
+// B524ScalarShapeKey identifies one B524 scalar shape; every axis is optional, nil means absent, and
+// lookups compare every axis exactly.
 type B524ScalarShapeKey struct {
 	B524ScalarShapeFamily    *string `json:"family"`
 	B524ScalarShapeVariant   *string `json:"variant"`
@@ -23,17 +25,21 @@ type B524ScalarShapeKey struct {
 	B524ScalarShapeRegister  *uint16 `json:"register"`
 }
 
+// B524ScalarShapeConversion converts a raw value of Encoding as raw*Factor + Offset.
 type B524ScalarShapeConversion struct {
 	B524ScalarShapeEncoding string  `json:"encoding"`
 	B524ScalarShapeFactor   float64 `json:"factor"`
 	B524ScalarShapeOffset   float64 `json:"offset"`
 }
 
+// B524ScalarShapeBounds holds the optional inclusive bounds of a converted value.
 type B524ScalarShapeBounds struct {
 	B524ScalarShapeMinimum *float64 `json:"minimum"`
 	B524ScalarShapeMaximum *float64 `json:"maximum"`
 }
 
+// B524ScalarShape declares one scalar shape with its layout, conversion, unit, default, bounds, labels,
+// replacement and reserved values and the raw fallback; nil members are not declared.
 type B524ScalarShape struct {
 	B524ScalarShapeKey               B524ScalarShapeKey         `json:"key"`
 	B524ScalarShapeShape             string                     `json:"shape"`
@@ -52,6 +58,7 @@ type B524ScalarShape struct {
 	B524ScalarShapeRawFallback       string                     `json:"raw_fallback"`
 }
 
+// B524ScalarShapeCatalog is the B524 scalar shape catalog with its catalog-wide grades and limitations.
 type B524ScalarShapeCatalog struct {
 	B524ScalarShapeCatalog               string            `json:"catalog"`
 	B524ScalarShapeRepresentationGrade   string            `json:"representation_grade"`
@@ -61,12 +68,16 @@ type B524ScalarShapeCatalog struct {
 	B524ScalarShapeEntries               []B524ScalarShape `json:"entries"`
 }
 
+// B524ScalarShapes decodes the embedded catalog on each call and returns a detached copy or the decoding
+// error.
 func B524ScalarShapes() (B524ScalarShapeCatalog, error) {
 	var b524ScalarShapeCatalog B524ScalarShapeCatalog
 	b524ScalarShapeError := b524ScalarShapeJSON.Unmarshal(b524ScalarShapeScalarShapesJSON, &b524ScalarShapeCatalog)
 	return b524ScalarShapeCatalog, b524ScalarShapeError
 }
 
+// B524ScalarShapeLookup returns every shape whose key equals the given key, in catalog order, or the
+// catalog decoding error; no match returns an empty result.
 func B524ScalarShapeLookup(b524ScalarShapeKey B524ScalarShapeKey) ([]B524ScalarShape, error) {
 	b524ScalarShapeCatalog, b524ScalarShapeError := B524ScalarShapes()
 	if b524ScalarShapeError != nil {

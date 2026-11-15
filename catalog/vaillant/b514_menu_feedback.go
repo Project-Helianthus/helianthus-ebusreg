@@ -5,11 +5,14 @@ import (
 	b514MenuFeedbackJSON "encoding/json"
 )
 
+// B514MenuFeedbackAxis is an optional key axis: Value only counts when Present is true.
 type B514MenuFeedbackAxis struct {
 	B514MenuFeedbackPresent bool   `json:"present"`
 	B514MenuFeedbackValue   uint16 `json:"value"`
 }
 
+// B514MenuFeedbackKey identifies one B514 menu feedback field; lookups compare every axis, including the
+// presence flag of each optional axis.
 type B514MenuFeedbackKey struct {
 	B514MenuFeedbackFamily    string               `json:"family"`
 	B514MenuFeedbackVariant   string               `json:"variant"`
@@ -24,17 +27,21 @@ type B514MenuFeedbackKey struct {
 	B514MenuFeedbackRegister  B514MenuFeedbackAxis `json:"register"`
 }
 
+// B514MenuFeedbackConversion converts a raw value as raw*Factor + Offset.
 type B514MenuFeedbackConversion struct {
 	B514MenuFeedbackFactor float64 `json:"factor"`
 	B514MenuFeedbackOffset float64 `json:"offset"`
 }
 
+// B514MenuFeedbackRange labels the inclusive raw range Minimum..Maximum with Meaning.
 type B514MenuFeedbackRange struct {
 	B514MenuFeedbackMinimum int    `json:"minimum"`
 	B514MenuFeedbackMaximum int    `json:"maximum"`
 	B514MenuFeedbackMeaning string `json:"meaning"`
 }
 
+// B514MenuFeedbackField declares one menu feedback field: position, width, conversion, unit, domain,
+// labels, conflicts, grade and the raw fallback kept when no interpretation applies.
 type B514MenuFeedbackField struct {
 	B514MenuFeedbackKey         B514MenuFeedbackKey         `json:"key"`
 	B514MenuFeedbackPosition    *int                        `json:"logical_position"`
@@ -56,6 +63,7 @@ type B514MenuFeedbackField struct {
 	B514MenuFeedbackRawFallback string                      `json:"raw_fallback"`
 }
 
+// B514MenuFeedbackCatalog is the B514 menu feedback catalog with its catalog-wide grades and limitations.
 type B514MenuFeedbackCatalog struct {
 	B514MenuFeedbackRepresentationGrade string                  `json:"representation_grade"`
 	B514MenuFeedbackQualification       string                  `json:"physical_qualification"`
@@ -66,12 +74,16 @@ type B514MenuFeedbackCatalog struct {
 //go:embed data/b514_menu_feedback.json
 var b514MenuFeedbackMenuFeedbackJSON string
 
+// B514MenuFeedback decodes the embedded B514 menu feedback catalog on each call and returns a detached
+// copy or the decoding error.
 func B514MenuFeedback() (B514MenuFeedbackCatalog, error) {
 	var b514MenuFeedbackCatalog B514MenuFeedbackCatalog
 	b514MenuFeedbackError := b514MenuFeedbackJSON.Unmarshal([]byte(b514MenuFeedbackMenuFeedbackJSON), &b514MenuFeedbackCatalog)
 	return b514MenuFeedbackCatalog, b514MenuFeedbackError
 }
 
+// B514MenuFeedbackLookup returns the field whose key equals the given key on every axis, false when none
+// matches, or the catalog decoding error.
 func B514MenuFeedbackLookup(b514MenuFeedbackKey B514MenuFeedbackKey) (B514MenuFeedbackField, bool, error) {
 	b514MenuFeedbackCatalog, b514MenuFeedbackError := B514MenuFeedback()
 	if b514MenuFeedbackError != nil {

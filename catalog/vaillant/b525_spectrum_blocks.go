@@ -2,8 +2,12 @@ package vaillant
 
 import "sort"
 
+// B525SpectrumBlockState is the outcome of reading one B525 spectrum block.
 type B525SpectrumBlockState string
 
+// Block states: valid holds exactly one full block, short and extra hold fewer or more bytes, prefix-only
+// is a positive reply whose values are not modelled, and raw-only is an unknown identity, selector or
+// direction.
 const (
 	B525SpectrumBlockStateValid      B525SpectrumBlockState = "valid"
 	B525SpectrumBlockStateShort      B525SpectrumBlockState = "short"
@@ -12,8 +16,12 @@ const (
 	B525SpectrumBlockStateRawOnly    B525SpectrumBlockState = "raw-only"
 )
 
+// B525SpectrumBlockJoinState is the outcome of joining spectrum blocks into one spectrum.
 type B525SpectrumBlockJoinState string
 
+// Join states: empty contributed nothing, partial contributed some entries, conflict holds a selector
+// supplied with different bytes, context-mismatch mixes request identities, and complete holds every
+// selector as a valid block.
 const (
 	B525SpectrumBlockJoinEmpty           B525SpectrumBlockJoinState = "empty"
 	B525SpectrumBlockJoinPartial         B525SpectrumBlockJoinState = "partial"
@@ -22,6 +30,8 @@ const (
 	B525SpectrumBlockJoinComplete        B525SpectrumBlockJoinState = "complete"
 )
 
+// Spectrum block constants: the grade and directions the views use, the first and last block selector, the
+// entries per block, and the number of spectrum indexes the masks cover.
 const (
 	B525SpectrumBlockGradeHypothesis   = "Hypothesis"
 	B525SpectrumBlockDirectionRequest  = "request"
@@ -32,6 +42,8 @@ const (
 	B525SpectrumBlockIndexCount        = 256
 )
 
+// B525SpectrumBlockContext identifies the frame a spectrum block came from: primary, secondary, family,
+// variant, operation, direction and block selector.
 type B525SpectrumBlockContext struct {
 	B525SpectrumBlockPrimary   byte   `json:"primary"`
 	B525SpectrumBlockSecondary byte   `json:"secondary"`
@@ -42,17 +54,21 @@ type B525SpectrumBlockContext struct {
 	B525SpectrumBlockSelector  int    `json:"selector"`
 }
 
+// B525SpectrumBlockInput is one spectrum block as received: its context and raw values.
 type B525SpectrumBlockInput struct {
 	B525SpectrumBlockContext B525SpectrumBlockContext `json:"context"`
 	B525SpectrumBlockValues  []byte                   `json:"values"`
 }
 
+// B525SpectrumBlockEntry is one spectrum value at its absolute index, as a raw and a signed byte.
 type B525SpectrumBlockEntry struct {
 	B525SpectrumBlockIndex   int  `json:"index"`
 	B525SpectrumBlockRawByte byte `json:"raw_byte"`
 	B525SpectrumBlockSigned  int8 `json:"signed"`
 }
 
+// B525SpectrumBlock is one interpreted spectrum block: state, start index (-1 when nothing is placed),
+// detached raw bytes, entries, an index presence mask and any bytes beyond the block length.
 type B525SpectrumBlock struct {
 	B525SpectrumBlockContext    B525SpectrumBlockContext `json:"context"`
 	B525SpectrumBlockState      B525SpectrumBlockState   `json:"state"`
@@ -66,6 +82,8 @@ type B525SpectrumBlock struct {
 	B525SpectrumBlockRemainder  []byte                   `json:"remainder"`
 }
 
+// B525SpectrumJoinBlock reports how one supplied block took part in a join: its state, and whether it
+// contributed or conflicted.
 type B525SpectrumJoinBlock struct {
 	B525SpectrumBlockSelector    int                    `json:"selector"`
 	B525SpectrumBlockState       B525SpectrumBlockState `json:"state"`
@@ -73,6 +91,8 @@ type B525SpectrumJoinBlock struct {
 	B525SpectrumBlockConflict    bool                   `json:"conflict"`
 }
 
+// B525SpectrumBlockJoined is a joined spectrum: state, contributed entries in selector order, index
+// presence mask, and the missing and conflicting selectors.
 type B525SpectrumBlockJoined struct {
 	B525SpectrumBlockState     B525SpectrumBlockJoinState `json:"state"`
 	B525SpectrumBlockGrade     string                     `json:"grade"`
@@ -107,6 +127,8 @@ func b525SpectrumBlockSetMask(b525SpectrumBlockMask *[4]uint64, b525SpectrumBloc
 	b525SpectrumBlockMask[b525SpectrumBlockIndex/64] |= 1 << uint(b525SpectrumBlockIndex%64)
 }
 
+// B525SpectrumBlockPresent reports whether the block holds a value at the absolute index; indexes out of
+// range report false.
 func (b525SpectrumBlockValue B525SpectrumBlock) B525SpectrumBlockPresent(b525SpectrumBlockIndex int) bool {
 	if b525SpectrumBlockIndex < 0 || b525SpectrumBlockIndex >= B525SpectrumBlockIndexCount {
 		return false
@@ -114,6 +136,8 @@ func (b525SpectrumBlockValue B525SpectrumBlock) B525SpectrumBlockPresent(b525Spe
 	return b525SpectrumBlockValue.B525SpectrumBlockMask[b525SpectrumBlockIndex/64]&(1<<uint(b525SpectrumBlockIndex%64)) != 0
 }
 
+// B525SpectrumBlockPresent reports whether the joined spectrum holds a value at the index; indexes out of
+// range report false.
 func (b525SpectrumBlockValue B525SpectrumBlockJoined) B525SpectrumBlockPresent(b525SpectrumBlockIndex int) bool {
 	if b525SpectrumBlockIndex < 0 || b525SpectrumBlockIndex >= B525SpectrumBlockIndexCount {
 		return false
@@ -121,6 +145,7 @@ func (b525SpectrumBlockValue B525SpectrumBlockJoined) B525SpectrumBlockPresent(b
 	return b525SpectrumBlockValue.B525SpectrumBlockMask[b525SpectrumBlockIndex/64]&(1<<uint(b525SpectrumBlockIndex%64)) != 0
 }
 
+// B525SpectrumBlockClone returns a copy that shares no slices with the block.
 func (b525SpectrumBlockValue B525SpectrumBlock) B525SpectrumBlockClone() B525SpectrumBlock {
 	b525SpectrumBlockCopy := b525SpectrumBlockValue
 	b525SpectrumBlockCopy.B525SpectrumBlockRaw = b525SpectrumBlockBytes(b525SpectrumBlockValue.B525SpectrumBlockRaw)
@@ -131,6 +156,9 @@ func (b525SpectrumBlockValue B525SpectrumBlock) B525SpectrumBlockClone() B525Spe
 	return b525SpectrumBlockCopy
 }
 
+// B525SpectrumBlockView places a request block at its selector's start index and reads up to one block
+// length of values; extra bytes are kept as the remainder. A positive reply is prefix-only and an unknown
+// identity, selector or direction is raw-only. The result shares no memory with the input.
 func B525SpectrumBlockView(b525SpectrumBlockInput B525SpectrumBlockInput) B525SpectrumBlock {
 	b525SpectrumBlockBlock := B525SpectrumBlock{
 		B525SpectrumBlockContext: b525SpectrumBlockInput.B525SpectrumBlockContext,
@@ -197,6 +225,9 @@ func b525SpectrumBlockSameBytes(b525SpectrumBlockLeft, b525SpectrumBlockRight []
 	return true
 }
 
+// B525SpectrumBlockJoin re-reads the supplied blocks from their raw bytes and joins the placed ones; the
+// first block per selector contributes, and a later one with different bytes turns that selector into a
+// conflict. Mixed request identities yield context-mismatch with every selector missing.
 func B525SpectrumBlockJoin(b525SpectrumBlockSupplied []B525SpectrumBlock) B525SpectrumBlockJoined {
 	b525SpectrumBlockResult := B525SpectrumBlockJoined{B525SpectrumBlockGrade: B525SpectrumBlockGradeHypothesis, B525SpectrumBlockState: B525SpectrumBlockJoinEmpty}
 	b525SpectrumBlockViews := make([]B525SpectrumBlock, len(b525SpectrumBlockSupplied))

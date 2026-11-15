@@ -8,6 +8,8 @@ import (
 	b524NumericCandidateReflect "reflect"
 )
 
+// B524NumericCandidateContext is the caller identity a numeric candidate view is bound to: family,
+// software, hardware, API version and API revision, all required.
 type B524NumericCandidateContext struct {
 	B524NumericCandidateFamily      string `json:"family,omitempty"`
 	B524NumericCandidateSoftware    string `json:"software,omitempty"`
@@ -16,6 +18,8 @@ type B524NumericCandidateContext struct {
 	B524NumericCandidateAPIRevision string `json:"api_revision,omitempty"`
 }
 
+// B524NumericCandidateKey identifies one B524 numeric candidate row under a caller identity; nil optional
+// axes are absent and lookups compare every axis exactly.
 type B524NumericCandidateKey struct {
 	B524NumericCandidateFamily        string  `json:"family,omitempty"`
 	B524NumericCandidateSoftware      string  `json:"software,omitempty"`
@@ -59,6 +63,8 @@ func b524NumericCandidateGrade(b524NumericCandidateValue string) bool {
 	return b524NumericCandidateValue == "Proven" || b524NumericCandidateValue == "Hypothesis" || b524NumericCandidateValue == "Unknown"
 }
 
+// B524NumericCandidateView is the validated numeric candidate catalog bound to one caller identity. It is
+// immutable after construction and safe for concurrent lookups; the zero value matches nothing.
 type B524NumericCandidateView struct {
 	b524NumericCandidateRows []b524NumericCandidateJSON.RawMessage
 	b524NumericCandidateKeys []B524NumericCandidateKey
@@ -175,6 +181,8 @@ func b524NumericCandidateValidate(b524NumericCandidateSource []byte) ([]b524Nume
 	return b524NumericCandidateRows, b524NumericCandidateKeys, nil
 }
 
+// B524NumericCandidateEntries validates the embedded catalog and returns a caller-owned copy of its JSON,
+// or the validation error.
 func B524NumericCandidateEntries() (b524NumericCandidateJSON.RawMessage, error) {
 	if _, _, b524NumericCandidateError := b524NumericCandidateValidate([]byte(b524NumericCandidateData)); b524NumericCandidateError != nil {
 		return nil, b524NumericCandidateError
@@ -202,10 +210,14 @@ func b524NumericCandidateNewView(b524NumericCandidateContext B524NumericCandidat
 	return b524NumericCandidateView, nil
 }
 
+// B524NumericCandidateNewView binds the validated embedded catalog to the caller identity; an incomplete
+// identity or an invalid catalog is an error.
 func B524NumericCandidateNewView(b524NumericCandidateContext B524NumericCandidateContext) (B524NumericCandidateView, error) {
 	return b524NumericCandidateNewView(b524NumericCandidateContext, []byte(b524NumericCandidateData))
 }
 
+// B524NumericCandidateLookup returns a caller-owned copy of the row whose key, identity included, equals
+// the given key; a key with an incomplete identity or no match returns false without an error.
 func (b524NumericCandidateView B524NumericCandidateView) B524NumericCandidateLookup(b524NumericCandidateKey B524NumericCandidateKey) (b524NumericCandidateJSON.RawMessage, bool, error) {
 	if !b524NumericCandidateComplete(b524NumericCandidateIdentity(b524NumericCandidateKey)) {
 		return nil, false, nil

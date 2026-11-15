@@ -63,6 +63,12 @@ func b516CycleReducerQuantity(b516CycleReducerNumber any) map[string]any {
 	return map[string]any{"state": "Hypothesis", "calculation": "Proven", "number": b516CycleReducerNumber}
 }
 
+// B516CycleReducerEvaluate reduces one local B516 read cycle over nine slots: per-slot outcome, change
+// against the prior value, the sum, the outcome counts and the failure counter; any failed or skipped slot
+// marks the cycle partial. The input is strict JSON with a context object, a fields object of byte arrays
+// and, where the view declares them, an arguments object; malformed input is an error, and a context the
+// view does not select returns an Unknown result. The output never qualifies a device: physical stays
+// Unknown and qualified false.
 func B516CycleReducerEvaluate(b516CycleReducerInput b516CycleReducerJSON.RawMessage) (b516CycleReducerJSON.RawMessage, error) {
 	b516CycleReducerDecoder := b516CycleReducerJSON.NewDecoder(b516CycleReducerBytes.NewReader(b516CycleReducerInput))
 	b516CycleReducerDecoder.UseNumber()

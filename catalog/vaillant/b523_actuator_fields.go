@@ -67,6 +67,12 @@ func b523ActuatorFieldResult(b523ActuatorFieldRaw any) map[string]any {
 	return map[string]any{"raw": b523ActuatorFieldRaw, "state": "complete", "grade": "Hypothesis"}
 }
 
+// B523ActuatorFieldEvaluate interprets the B523 six-relay (operation 1), twelve-relay (operation 5) and
+// mixer (operation 2) views; a mixer request requires the variant argument two-circuit or three-circuit.
+// The input is strict JSON with a context object, a fields object of byte arrays and, where the view
+// declares them, an arguments object; malformed input is an error, and a context the view does not select
+// returns an Unknown result. The output never qualifies a device: physical stays Unknown and qualified
+// false.
 func B523ActuatorFieldEvaluate(b523ActuatorFieldInput json.RawMessage) (json.RawMessage, error) {
 	b523ActuatorFieldDecoder := json.NewDecoder(bytes.NewReader(b523ActuatorFieldInput))
 	b523ActuatorFieldDecoder.UseNumber()

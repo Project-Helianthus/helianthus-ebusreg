@@ -12,6 +12,8 @@ import (
 //go:embed data/b523_config_mixer.json
 var b523ConfigMixerData []byte
 
+// B523ConfigMixerKey identifies one B523 mixer configuration field; nil optional axes are absent and
+// lookups compare every axis exactly.
 type B523ConfigMixerKey struct {
 	B523ConfigMixerFamily            string  `json:"family"`
 	B523ConfigMixerVariant           string  `json:"variant"`
@@ -26,6 +28,7 @@ type B523ConfigMixerKey struct {
 	B523ConfigMixerCommandRole       *string `json:"command_role"`
 }
 
+// B523ConfigMixerBit labels one bit of a configuration field, with its reserved and default state.
 type B523ConfigMixerBit struct {
 	B523ConfigMixerIndex    uint8   `json:"index"`
 	B523ConfigMixerLabel    *string `json:"label"`
@@ -33,6 +36,8 @@ type B523ConfigMixerBit struct {
 	B523ConfigMixerDefault  uint8   `json:"default"`
 }
 
+// B523ConfigMixerCandidate is one labelled reading of a configuration value: signedness, scale, range, a
+// raw-to-value pair and an optional clamp; nil members are not declared.
 type B523ConfigMixerCandidate struct {
 	B523ConfigMixerLabel   string   `json:"label"`
 	B523ConfigMixerSigned  *bool    `json:"signed"`
@@ -44,12 +49,15 @@ type B523ConfigMixerCandidate struct {
 	B523ConfigMixerClamp   *float64 `json:"clamp"`
 }
 
+// B523ConfigMixerInterval labels the inclusive raw range Minimum..Maximum.
 type B523ConfigMixerInterval struct {
 	B523ConfigMixerMinimum int    `json:"minimum"`
 	B523ConfigMixerMaximum int    `json:"maximum"`
 	B523ConfigMixerLabel   string `json:"label"`
 }
 
+// B523ConfigMixerEntry declares one mixer configuration field with its grades, layout, labels, bits,
+// relevant modes, candidates and unit; nil members are not declared.
 type B523ConfigMixerEntry struct {
 	B523ConfigMixerSigned                 *bool                      `json:"signed"`
 	B523ConfigMixerKey                    B523ConfigMixerKey         `json:"key"`
@@ -78,6 +86,8 @@ type B523ConfigMixerEntry struct {
 	B523ConfigMixerNotes                  []string                   `json:"notes"`
 }
 
+// B523ConfigMixerEntries strictly decodes and validates the embedded catalog on each call (unknown
+// members, trailing data, empty catalog, invalid or duplicate keys are errors) and returns its entries.
 func B523ConfigMixerEntries() ([]B523ConfigMixerEntry, error) {
 	var b523ConfigMixerEntries []B523ConfigMixerEntry
 	b523ConfigMixerDecoder := b523ConfigMixerJSON.NewDecoder(b523ConfigMixerBytes.NewReader(b523ConfigMixerData))
@@ -108,6 +118,8 @@ func B523ConfigMixerEntries() ([]B523ConfigMixerEntry, error) {
 	return b523ConfigMixerEntries, nil
 }
 
+// B523ConfigMixerLookup returns the entry whose key equals the given key, false when none matches, or the
+// catalog error.
 func B523ConfigMixerLookup(b523ConfigMixerKey B523ConfigMixerKey) (B523ConfigMixerEntry, bool, error) {
 	b523ConfigMixerEntries, b523ConfigMixerError := B523ConfigMixerEntries()
 	if b523ConfigMixerError != nil {

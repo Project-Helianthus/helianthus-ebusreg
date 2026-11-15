@@ -12,6 +12,8 @@ import (
 //go:embed data/b516_statistics_directions.json
 var b516StatisticsDirectionData []byte
 
+// B516StatisticsDirectionKey identifies one B516 statistics field by family, variant, operation,
+// direction, selector and field; lookups compare every axis exactly.
 type B516StatisticsDirectionKey struct {
 	B516StatisticsDirectionFamily    string `json:"family"`
 	B516StatisticsDirectionVariant   string `json:"variant"`
@@ -21,6 +23,8 @@ type B516StatisticsDirectionKey struct {
 	B516StatisticsDirectionField     string `json:"field"`
 }
 
+// B516StatisticsDirectionEntry declares one statistics field with its grades, layout, encoding and unit;
+// nil layout members are not declared.
 type B516StatisticsDirectionEntry struct {
 	B516StatisticsDirectionKey              B516StatisticsDirectionKey `json:"key"`
 	B516StatisticsDirectionGrade            string                     `json:"grade"`
@@ -88,10 +92,14 @@ func b516StatisticsDirectionParse(b516StatisticsDirectionRaw []byte) ([]B516Stat
 	return b516StatisticsDirectionEntries, nil
 }
 
+// B516StatisticsDirectionEntries parses and validates the embedded catalog on each call and returns its
+// entries.
 func B516StatisticsDirectionEntries() ([]B516StatisticsDirectionEntry, error) {
 	return b516StatisticsDirectionParse(b516StatisticsDirectionData)
 }
 
+// B516StatisticsDirectionLookup returns the entry whose key equals the given key, false when none matches,
+// or the catalog parsing error.
 func B516StatisticsDirectionLookup(b516StatisticsDirectionKey B516StatisticsDirectionKey) (B516StatisticsDirectionEntry, bool, error) {
 	b516StatisticsDirectionEntries, b516StatisticsDirectionErr := B516StatisticsDirectionEntries()
 	if b516StatisticsDirectionErr != nil {

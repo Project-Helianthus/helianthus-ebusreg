@@ -9,6 +9,8 @@ import (
 //go:embed data/b520_blocks.json
 var b520BlockB520Data []byte
 
+// B520BlockKey identifies one B520 block field; nil optional axes are absent and lookups compare every
+// axis exactly.
 type B520BlockKey struct {
 	B520BlockFamily      string  `json:"family"`
 	B520BlockVariant     string  `json:"variant"`
@@ -24,6 +26,8 @@ type B520BlockKey struct {
 	B520BlockRegister    *uint16 `json:"register"`
 }
 
+// B520BlockB520Field declares one block field with its prefix, layout, conversion, unit, limits, labels,
+// grade and the raw fallback; nil members are not declared.
 type B520BlockB520Field struct {
 	B520BlockKey             B520BlockKey      `json:"key"`
 	B520BlockPrefix          []int             `json:"prefix"`
@@ -47,6 +51,7 @@ type B520BlockB520Field struct {
 	B520BlockRawFallback     string            `json:"raw_fallback"`
 }
 
+// B520BlockCatalog is the B520 block catalog with its catalog-wide grades and declared unknowns.
 type B520BlockCatalog struct {
 	B520BlockRepresentationGrade   string               `json:"representation_grade"`
 	B520BlockPhysicalQualification string               `json:"physical_qualification"`
@@ -59,6 +64,7 @@ type B520BlockCatalog struct {
 	B520BlockFields                []B520BlockB520Field `json:"fields"`
 }
 
+// B520Blocks decodes the embedded catalog on each call and returns a detached copy or the decoding error.
 func B520Blocks() (B520BlockCatalog, error) {
 	var b520BlockCatalog B520BlockCatalog
 	b520BlockError := b520BlockJSON.Unmarshal(b520BlockB520Data, &b520BlockCatalog)
@@ -69,6 +75,8 @@ func b520BlockSameKey(b520BlockLeft, b520BlockRight B520BlockKey) bool {
 	return b520BlockReflect.DeepEqual(b520BlockLeft, b520BlockRight)
 }
 
+// B520BlockLookup returns the field whose key equals the given key on every axis, false when none matches,
+// or the catalog decoding error.
 func B520BlockLookup(b520BlockKey B520BlockKey) (B520BlockB520Field, bool, error) {
 	b520BlockCatalog, b520BlockError := B520Blocks()
 	if b520BlockError != nil {

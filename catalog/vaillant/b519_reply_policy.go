@@ -9,6 +9,8 @@ import (
 //go:embed data/b519_reply_policy.json
 var b519ReplyPolicyFiles b519ReplyPolicyEmbed.FS
 
+// B519ReplyPolicyKey identifies one B519 reply policy row; every row names all eleven axes, nil optional
+// axes are absent, and lookups compare every axis exactly.
 type B519ReplyPolicyKey struct {
 	B519ReplyPolicyFamily        string  `json:"family"`
 	B519ReplyPolicyVariant       string  `json:"variant"`
@@ -68,6 +70,8 @@ func b519ReplyPolicyValidate(b519ReplyPolicyData []byte) ([]b519ReplyPolicyJSON.
 	return b519ReplyPolicyRows, nil
 }
 
+// B519ReplyPolicyEntries validates the embedded B519 reply policy catalog (complete identities, no
+// duplicate) and returns a caller-owned copy of its JSON, or the read or validation error.
 func B519ReplyPolicyEntries() (b519ReplyPolicyJSON.RawMessage, error) {
 	b519ReplyPolicyData, b519ReplyPolicyError := b519ReplyPolicyFiles.ReadFile("data/b519_reply_policy.json")
 	if b519ReplyPolicyError != nil {
@@ -106,6 +110,8 @@ func b519ReplyPolicyLookup(b519ReplyPolicyData []byte, b519ReplyPolicyKey B519Re
 	return nil, false, nil
 }
 
+// B519ReplyPolicyLookup returns a caller-owned copy of the row whose key equals the given key, false when
+// none matches, or the catalog read or validation error.
 func B519ReplyPolicyLookup(b519ReplyPolicyKey B519ReplyPolicyKey) (b519ReplyPolicyJSON.RawMessage, bool, error) {
 	b519ReplyPolicyData, b519ReplyPolicyError := b519ReplyPolicyFiles.ReadFile("data/b519_reply_policy.json")
 	if b519ReplyPolicyError != nil {

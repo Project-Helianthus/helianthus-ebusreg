@@ -27,6 +27,8 @@ func (b524NameAnnotationCatalogValue *b524NameAnnotationCatalog) b524NameAnnotat
 	return b524NameAnnotationCatalogValue.b524NameAnnotationIndex, b524NameAnnotationCatalogValue.b524NameAnnotationError
 }
 
+// B524NameAnnotationKey identifies one B524 name annotation row; nil optional axes are absent and lookups
+// compare every axis exactly.
 type B524NameAnnotationKey struct {
 	B524NameAnnotationFamily        string  `json:"family"`
 	B524NameAnnotationVariant       string  `json:"variant"`
@@ -90,6 +92,9 @@ func b524NameAnnotationValidate(b524NameAnnotationSource []byte) ([]b524NameAnno
 	return b524NameAnnotationRows, b524NameAnnotationIndex, nil
 }
 
+// B524NameAnnotationEntries returns a caller-owned copy of the embedded catalog JSON, or the validation
+// error. The catalog is validated and indexed once per process, and that result, error included, is
+// reused; it is safe for concurrent use.
 func B524NameAnnotationEntries() (b524NameAnnotationJSON.RawMessage, error) {
 	if _, b524NameAnnotationError := b524NameAnnotationCachedCatalog.b524NameAnnotationLoad(); b524NameAnnotationError != nil {
 		return nil, b524NameAnnotationError
@@ -97,6 +102,8 @@ func B524NameAnnotationEntries() (b524NameAnnotationJSON.RawMessage, error) {
 	return b524NameAnnotationJSON.RawMessage(b524NameAnnotationCachedCatalog.b524NameAnnotationSource), nil
 }
 
+// B524NameAnnotationLookup returns a caller-owned copy of the row whose key equals the given key, false
+// when none matches, or the cached validation error; it is safe for concurrent use.
 func B524NameAnnotationLookup(b524NameAnnotationKey B524NameAnnotationKey) (b524NameAnnotationJSON.RawMessage, bool, error) {
 	b524NameAnnotationIndex, b524NameAnnotationError := b524NameAnnotationCachedCatalog.b524NameAnnotationLoad()
 	if b524NameAnnotationError != nil {

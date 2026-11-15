@@ -56,6 +56,12 @@ func b555ManagerGateUnsigned(b555ManagerGateValue any, b555ManagerGateBits int) 
 	return b555ManagerGateStrconv.ParseUint(string(b555ManagerGateNumber), 10, b555ManagerGateBits)
 }
 
+// B555ManagerGateEvaluate evaluates the local B555 operation 0 manager gate from the reply bytes and the
+// controller_type, spn and family_match arguments; a null family_match leaves family applicability
+// Unknown. The input is strict JSON with a context object, a fields object of byte arrays and, where the
+// view declares them, an arguments object; malformed input is an error, and a context the view does not
+// select returns an Unknown result. The output never qualifies a device: physical stays Unknown and
+// qualified false.
 func B555ManagerGateEvaluate(b555ManagerGateInput b555ManagerGateJSON.RawMessage) (b555ManagerGateJSON.RawMessage, error) {
 	b555ManagerGateDecoder := b555ManagerGateJSON.NewDecoder(b555ManagerGateBytesPackage.NewReader(b555ManagerGateInput))
 	b555ManagerGateDecoder.UseNumber()

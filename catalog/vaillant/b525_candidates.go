@@ -8,6 +8,8 @@ import (
 //go:embed data/b525_candidates.json
 var b525CandidateB525Data []byte
 
+// B525CandidateKey identifies one B525 candidate field; nil optional axes are absent and lookups compare
+// every axis exactly.
 type B525CandidateKey struct {
 	B525CandidateFamily    string  `json:"family"`
 	B525CandidateVariant   *string `json:"variant"`
@@ -18,6 +20,8 @@ type B525CandidateKey struct {
 	B525CandidateField     string  `json:"field"`
 }
 
+// B525CandidateEntry declares one candidate field with its position, width, codec, range, default, count,
+// unit, labels, bits and unknowns; nil members are not declared.
 type B525CandidateEntry struct {
 	B525CandidateKey        B525CandidateKey `json:"key"`
 	B525CandidateGrade      string           `json:"grade"`
@@ -37,6 +41,7 @@ type B525CandidateEntry struct {
 	B525CandidateRelation   string           `json:"relation"`
 }
 
+// B525CandidateCatalog is the B525 candidate catalog with its catalog-wide grades and limitations.
 type B525CandidateCatalog struct {
 	B525CandidateRepresentationGrade   string               `json:"representation_grade"`
 	B525CandidatePhysicalQualification string               `json:"physical_qualification"`
@@ -45,6 +50,8 @@ type B525CandidateCatalog struct {
 	B525CandidateEntries               []B525CandidateEntry `json:"entries"`
 }
 
+// B525Candidates decodes the embedded catalog on each call and returns a detached copy; it panics if the
+// embedded catalog does not decode, which the package tests rule out.
 func B525Candidates() B525CandidateCatalog {
 	var b525CandidateCatalog B525CandidateCatalog
 	if b525CandidateError := b525CandidateJSON.Unmarshal(b525CandidateB525Data, &b525CandidateCatalog); b525CandidateError != nil {
@@ -57,6 +64,8 @@ func b525CandidateEqualOptional[b525CandidateT comparable](b525CandidateLeft, b5
 	return b525CandidateLeft == nil && b525CandidateRight == nil || b525CandidateLeft != nil && b525CandidateRight != nil && *b525CandidateLeft == *b525CandidateRight
 }
 
+// B525CandidateLookup returns the entry whose key equals the given key on every axis, or false when none
+// matches; it panics under the same condition as B525Candidates.
 func B525CandidateLookup(b525CandidateKey B525CandidateKey) (B525CandidateEntry, bool) {
 	for _, b525CandidateEntry := range B525Candidates().B525CandidateEntries {
 		b525CandidateCandidate := b525CandidateEntry.B525CandidateKey

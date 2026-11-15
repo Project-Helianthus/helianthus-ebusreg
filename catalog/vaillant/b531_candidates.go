@@ -5,6 +5,8 @@ import (
 	b531CandidateJSON "encoding/json"
 )
 
+// B531CandidateKey identifies one B531 candidate field; nil optional axes are absent and lookups compare
+// every axis exactly.
 type B531CandidateKey struct {
 	B531CandidateFamily    string  `json:"family"`
 	B531CandidateVariant   string  `json:"variant"`
@@ -15,6 +17,8 @@ type B531CandidateKey struct {
 	B531CandidateField     string  `json:"field"`
 }
 
+// B531CandidateProjection is the local projection of a raw value: conversion, multiplier, width, domain,
+// unit and grade.
 type B531CandidateProjection struct {
 	B531CandidateConversion string   `json:"conversion"`
 	B531CandidateMultiplier uint32   `json:"multiplier"`
@@ -24,6 +28,8 @@ type B531CandidateProjection struct {
 	B531CandidateGrade      string   `json:"grade"`
 }
 
+// B531CandidateMaximumTable declares the table a maximum is indexed from: source field, index domain and
+// installed count when known.
 type B531CandidateMaximumTable struct {
 	B531CandidateSourceField    string `json:"source_field"`
 	B531CandidateIndexDomain    []int  `json:"index_domain"`
@@ -31,6 +37,8 @@ type B531CandidateMaximumTable struct {
 	B531CandidateGrade          string `json:"grade"`
 }
 
+// B531CandidateEntry declares one candidate field with its layout, raw domain, native unit, sentinel,
+// local projection and maximum table; nil members are not declared.
 type B531CandidateEntry struct {
 	B531CandidateKey             B531CandidateKey           `json:"key"`
 	B531CandidatePosition        *int                       `json:"position"`
@@ -46,6 +54,7 @@ type B531CandidateEntry struct {
 	B531CandidateMaximumTable    *B531CandidateMaximumTable `json:"maximum_table"`
 }
 
+// B531CandidateCatalog is the B531 candidate catalog with its catalog-wide grades and limitations.
 type B531CandidateCatalog struct {
 	B531CandidateMetadataPresence   string               `json:"metadata_presence"`
 	B531CandidatePhysicalSupport    string               `json:"physical_support"`
@@ -63,6 +72,8 @@ type B531CandidateCatalog struct {
 //go:embed data/b531_candidates.json
 var b531CandidateB531JSON []byte
 
+// B531Candidates decodes the embedded catalog on each call and returns a detached copy or the decoding
+// error.
 func B531Candidates() (B531CandidateCatalog, error) {
 	var b531CandidateCatalog B531CandidateCatalog
 	b531CandidateError := b531CandidateJSON.Unmarshal(b531CandidateB531JSON, &b531CandidateCatalog)
@@ -76,6 +87,8 @@ func b531CandidateEqualOptional[b531CandidateValue comparable](b531CandidateLeft
 	return *b531CandidateLeft == *b531CandidateRight
 }
 
+// B531CandidateLookup returns the entry whose key equals the given key on every axis, false when none
+// matches, or the catalog decoding error.
 func B531CandidateLookup(b531CandidateKey B531CandidateKey) (B531CandidateEntry, bool, error) {
 	b531CandidateCatalog, b531CandidateError := B531Candidates()
 	if b531CandidateError != nil {

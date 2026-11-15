@@ -108,6 +108,11 @@ func b520ActuatorViewValidSurrogates(input []byte) bool {
 	return true
 }
 
+// B520ActuatorViewInterpret interprets the B520 operation 0 logical-object view of a request or positive
+// reply. The input is strict JSON with a context object, a fields object of byte arrays and, where the
+// view declares them, an arguments object; malformed input is an error, and a context the view does not
+// select returns an Unknown result. The output never qualifies a device: physical stays Unknown and
+// qualified false. No arguments are defined; an arguments member must be an empty object.
 func B520ActuatorViewInterpret(b520ActuatorViewInput json.RawMessage) (json.RawMessage, error) {
 	if !utf8.Valid(b520ActuatorViewInput) {
 		return nil, fmt.Errorf("input must be UTF-8 JSON")

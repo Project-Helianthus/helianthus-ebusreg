@@ -11,6 +11,8 @@ import (
 //go:embed data/b516_residual_fields.json
 var b516ResidualFieldData string
 
+// B516ResidualFieldKey identifies one B516 residual field row; nil optional axes are absent and lookups
+// compare every axis exactly.
 type B516ResidualFieldKey struct {
 	B516ResidualFieldFamily        string  `json:"family"`
 	B516ResidualFieldVariant       string  `json:"variant"`
@@ -67,6 +69,8 @@ func b516ResidualFieldValidate(b516ResidualFieldSource []byte) ([]b516ResidualFi
 	return b516ResidualFieldRows, b516ResidualFieldKeys, nil
 }
 
+// B516ResidualFieldEntries validates the embedded B516 residual field catalog and returns a caller-owned
+// copy of its JSON, or the validation error.
 func B516ResidualFieldEntries() (b516ResidualFieldJSON.RawMessage, error) {
 	b516ResidualFieldSource := []byte(b516ResidualFieldData)
 	if _, _, b516ResidualFieldError := b516ResidualFieldValidate(b516ResidualFieldSource); b516ResidualFieldError != nil {
@@ -88,6 +92,8 @@ func b516ResidualFieldLookup(b516ResidualFieldSource []byte, b516ResidualFieldKe
 	return nil, false, nil
 }
 
+// B516ResidualFieldLookup returns a caller-owned copy of the row whose key equals the given key, false
+// when none matches, or the catalog validation error.
 func B516ResidualFieldLookup(b516ResidualFieldKey B516ResidualFieldKey) (b516ResidualFieldJSON.RawMessage, bool, error) {
 	return b516ResidualFieldLookup([]byte(b516ResidualFieldData), b516ResidualFieldKey)
 }

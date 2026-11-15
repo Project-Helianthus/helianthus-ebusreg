@@ -61,6 +61,11 @@ func b516EnergyTypeFieldByte(b516EnergyTypeFieldValue any) (uint8, bool) {
 	return uint8(b516EnergyTypeFieldInteger), b516EnergyTypeFieldErr == nil
 }
 
+// B516EnergyTypeFieldEvaluate interprets the one-byte B516 energy type field of a request, read reply or
+// write reply; the reply forms split the low six bits from the two high bits. The input is strict JSON
+// with a context object, a fields object of byte arrays and, where the view declares them, an arguments
+// object; malformed input is an error, and a context the view does not select returns an Unknown result.
+// The output never qualifies a device: physical stays Unknown and qualified false.
 func B516EnergyTypeFieldEvaluate(b516EnergyTypeFieldInput json.RawMessage) (json.RawMessage, error) {
 	b516EnergyTypeFieldDecoder := json.NewDecoder(bytes.NewReader(b516EnergyTypeFieldInput))
 	b516EnergyTypeFieldDecoder.UseNumber()

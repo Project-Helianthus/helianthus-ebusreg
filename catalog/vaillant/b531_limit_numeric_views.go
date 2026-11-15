@@ -1,11 +1,14 @@
 package vaillant
 
+// Family, variant and direction that B531LimitNumericViewInterpret admits.
 const (
 	B531LimitNumericViewFamily    = "vaillant-b531-family"
 	B531LimitNumericViewVariant   = "b531-op02-candidate"
 	B531LimitNumericViewDirection = "positive"
 )
 
+// B531LimitNumericViewField is one limit read: detached raw bytes, state (not-admitted, read-failed,
+// missing, malformed or success), and Value, valid only when Available.
 type B531LimitNumericViewField struct {
 	B531LimitNumericViewRaw       []byte `json:"raw"`
 	B531LimitNumericViewState     string `json:"state"`
@@ -14,12 +17,15 @@ type B531LimitNumericViewField struct {
 	B531LimitNumericViewFresh     bool   `json:"fresh"`
 }
 
+// B531LimitNumericViewPair is a minimum and maximum limit; Fresh is true only when both are fresh.
 type B531LimitNumericViewPair struct {
 	B531LimitNumericViewMinimum B531LimitNumericViewField `json:"minimum"`
 	B531LimitNumericViewMaximum B531LimitNumericViewField `json:"maximum"`
 	B531LimitNumericViewFresh   bool                      `json:"fresh"`
 }
 
+// B531LimitNumericViewResult holds the attempt, the prior pair and the last known pair, which keeps each
+// prior limit, marked not fresh, where the attempt did not produce one.
 type B531LimitNumericViewResult struct {
 	B531LimitNumericViewAdmitted            bool                     `json:"admitted"`
 	B531LimitNumericViewAttempt             B531LimitNumericViewPair `json:"attempt"`
@@ -68,6 +74,9 @@ func b531LimitNumericViewRetain(b531LimitNumericViewAttempt, b531LimitNumericVie
 	return b531LimitNumericViewPrior
 }
 
+// B531LimitNumericViewInterpret decodes the operation 0x02 minimum and maximum limits, each a
+// little-endian 16-bit raw value scaled by 10, and merges them with the prior pair field by field so a
+// failed read keeps its last known value. Units stay Unknown; the result shares no memory with the inputs.
 func B531LimitNumericViewInterpret(b531LimitNumericViewFamily, b531LimitNumericViewVariant string, b531LimitNumericViewOperation byte, b531LimitNumericViewDirection string, b531LimitNumericViewMinimumRaw, b531LimitNumericViewMaximumRaw []byte, b531LimitNumericViewMinimumReadOK, b531LimitNumericViewMaximumReadOK bool, b531LimitNumericViewPrior B531LimitNumericViewPair) B531LimitNumericViewResult {
 	b531LimitNumericViewResult := B531LimitNumericViewResult{
 		B531LimitNumericViewAdmitted:      b531LimitNumericViewFamily == B531LimitNumericViewFamily && b531LimitNumericViewVariant == B531LimitNumericViewVariant && b531LimitNumericViewOperation == 0x02 && b531LimitNumericViewDirection == B531LimitNumericViewDirection,
@@ -85,6 +94,7 @@ func B531LimitNumericViewInterpret(b531LimitNumericViewFamily, b531LimitNumericV
 	return b531LimitNumericViewResult
 }
 
+// B531LimitNumericViewGetter converts a scaled limit value back to its 16-bit raw form.
 func B531LimitNumericViewGetter(b531LimitNumericViewRaw uint32) uint16 {
 	return uint16(b531LimitNumericViewRaw / 10)
 }

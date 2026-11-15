@@ -62,6 +62,11 @@ func b531OrdinaryLimitUint(b531OrdinaryLimitValue any, b531OrdinaryLimitBits int
 	return b531OrdinaryLimitStrconv.ParseUint(string(b531OrdinaryLimitNumber), 10, b531OrdinaryLimitBits)
 }
 
+// B531OrdinaryLimitEvaluate evaluates the local B531 operation 3 ordinary-limit view from the limited
+// value and nine slot rows given as arguments. The input is strict JSON with a context object, a fields
+// object of byte arrays and, where the view declares them, an arguments object; malformed input is an
+// error, and a context the view does not select returns an Unknown result. The output never qualifies a
+// device: physical stays Unknown and qualified false.
 func B531OrdinaryLimitEvaluate(b531OrdinaryLimitInput b531OrdinaryLimitJSON.RawMessage) (b531OrdinaryLimitJSON.RawMessage, error) {
 	b531OrdinaryLimitDecoder := b531OrdinaryLimitJSON.NewDecoder(b531OrdinaryLimitBytesPackage.NewReader(b531OrdinaryLimitInput))
 	b531OrdinaryLimitDecoder.UseNumber()

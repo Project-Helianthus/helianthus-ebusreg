@@ -59,6 +59,11 @@ func b531CapabilityStateUint(b531CapabilityStateValue any, b531CapabilityStateBi
 	return strconv.ParseUint(string(b531CapabilityStateNumber), 10, b531CapabilityStateBits)
 }
 
+// B531CapabilityStateEvaluate evaluates the local B531 operation 1 capability view (registration, prior
+// value and result of one slot) and the select view, which requires nine rows as arguments. The input is
+// strict JSON with a context object, a fields object of byte arrays and, where the view declares them, an
+// arguments object; malformed input is an error, and a context the view does not select returns an Unknown
+// result. The output never qualifies a device: physical stays Unknown and qualified false.
 func B531CapabilityStateEvaluate(b531CapabilityStateInput json.RawMessage) (json.RawMessage, error) {
 	b531CapabilityStateDecoder := json.NewDecoder(bytes.NewReader(b531CapabilityStateInput))
 	b531CapabilityStateDecoder.UseNumber()

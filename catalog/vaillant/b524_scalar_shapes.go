@@ -6,7 +6,7 @@ import (
 	b524ScalarShapeReflect "reflect"
 )
 
-//go:embed data/ab85_b524_scalar_shapes.json
+//go:embed data/b524_scalar_shapes.json
 var b524ScalarShapeScalarShapesJSON []byte
 
 type B524ScalarShapeKey struct {

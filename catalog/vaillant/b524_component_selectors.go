@@ -7,7 +7,7 @@ import (
 	b524ComponentSelectorReflect "reflect"
 )
 
-//go:embed data/ab32_b524_component_selectors.json
+//go:embed data/b524_component_selectors.json
 var b524ComponentSelectorFiles b524ComponentSelectorEmbed.FS
 
 type B524ComponentSelectorKey struct {
@@ -82,7 +82,7 @@ func b524ComponentSelectorValidate(b524ComponentSelectorData []byte) ([]b524Comp
 }
 
 func b524ComponentSelectorRead() ([]byte, []b524ComponentSelectorJSON.RawMessage, []B524ComponentSelectorKey, error) {
-	b524ComponentSelectorData, b524ComponentSelectorError := b524ComponentSelectorFiles.ReadFile("data/ab32_b524_component_selectors.json")
+	b524ComponentSelectorData, b524ComponentSelectorError := b524ComponentSelectorFiles.ReadFile("data/b524_component_selectors.json")
 	if b524ComponentSelectorError != nil {
 		return nil, nil, nil, b524ComponentSelectorError
 	}

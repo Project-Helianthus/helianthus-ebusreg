@@ -7,7 +7,7 @@ import (
 	b524FamilyCodebookReflect "reflect"
 )
 
-//go:embed data/ab30_b524_family_codebooks.json
+//go:embed data/b524_family_codebooks.json
 var b524FamilyCodebookEmbedded string
 
 type B524FamilyCodebookKey struct {

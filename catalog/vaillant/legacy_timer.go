@@ -5,7 +5,7 @@ import (
 	legacyTimerJSON "encoding/json"
 )
 
-//go:embed data/ab35_legacy_timer.json
+//go:embed data/legacy_timer.json
 var legacyTimerLegacyTimer []byte
 
 // LegacyTimerCatalog returns an independently owned copy of the opt-in B515

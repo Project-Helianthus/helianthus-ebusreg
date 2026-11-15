@@ -9,7 +9,7 @@ import (
 	b51ADiagnosticVariantReflect "reflect"
 )
 
-//go:embed data/ab98_b51a_diagnostic_variants.json
+//go:embed data/b51a_diagnostic_variants.json
 var b51ADiagnosticVariantData []byte
 
 type B51ADiagnosticVariantKey struct {

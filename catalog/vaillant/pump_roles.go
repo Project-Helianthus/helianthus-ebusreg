@@ -5,7 +5,7 @@ import (
 	pumpRoleJSON "encoding/json"
 )
 
-//go:embed data/ab31_pump_roles.json
+//go:embed data/pump_roles.json
 var pumpRolePumpRoles []byte
 
 func PumpRoles() pumpRoleJSON.RawMessage {

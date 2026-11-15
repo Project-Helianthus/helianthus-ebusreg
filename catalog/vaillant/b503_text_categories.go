@@ -9,7 +9,7 @@ import (
 	b503TextCategoryReflect "reflect"
 )
 
-//go:embed data/ab96_b503_text_categories.json
+//go:embed data/b503_text_categories.json
 var b503TextCategoryData []byte
 
 type B503TextCategoryKey struct {

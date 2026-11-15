@@ -66,7 +66,7 @@ type B555NumericMetadata struct {
 	B555NumericUnitEntries               []B555NumericField `json:"entries"`
 }
 
-//go:embed data/ab94_b555_numeric_units.json
+//go:embed data/b555_numeric_units.json
 var b555NumericUnitNumericJSON string
 
 func B555NumericUnits() (B555NumericMetadata, error) {

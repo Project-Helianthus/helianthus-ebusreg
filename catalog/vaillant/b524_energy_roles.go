@@ -9,7 +9,7 @@ import (
 	b524EnergyRoleReflect "reflect"
 )
 
-//go:embed data/ab95_b524_energy_roles.json
+//go:embed data/b524_energy_roles.json
 var b524EnergyRoleData []byte
 
 type B524EnergyRoleKey struct {

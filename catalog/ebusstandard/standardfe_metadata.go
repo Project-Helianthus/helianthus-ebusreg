@@ -2,7 +2,7 @@ package ebusstandard
 
 import _ "embed"
 
-//go:embed testdata/ab49_fe_metadata.json
+//go:embed testdata/standardfe_metadata.json
 var standardFEMetadataFEMetadataJSON []byte
 
 func StandardFEMetadata() []byte {

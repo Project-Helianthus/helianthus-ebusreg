@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-//go:embed data/ab27_holiday.json
+//go:embed data/holiday.json
 var holidayHolidayJSON []byte
 
 func HolidayCatalog() json.RawMessage {

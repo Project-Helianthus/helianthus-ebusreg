@@ -21,7 +21,7 @@ type B555AdditionalFormKey struct {
 	B555AdditionalFormRegister      *uint16 `json:"register"`
 }
 
-//go:embed data/ab26_b555_additional_forms.json
+//go:embed data/b555_additional_forms.json
 var b555AdditionalFormFiles embed.FS
 
 func b555AdditionalFormValidate(b555AdditionalFormData []byte) ([]json.RawMessage, []B555AdditionalFormKey, error) {
@@ -69,7 +69,7 @@ func b555AdditionalFormValidate(b555AdditionalFormData []byte) ([]json.RawMessag
 }
 
 func B555AdditionalFormEntries() (json.RawMessage, error) {
-	b555AdditionalFormData, b555AdditionalFormError := b555AdditionalFormFiles.ReadFile("data/ab26_b555_additional_forms.json")
+	b555AdditionalFormData, b555AdditionalFormError := b555AdditionalFormFiles.ReadFile("data/b555_additional_forms.json")
 	if b555AdditionalFormError != nil {
 		return nil, b555AdditionalFormError
 	}

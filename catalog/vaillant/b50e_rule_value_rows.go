@@ -9,7 +9,7 @@ import (
 	b50ERuleValueRowReflect "reflect"
 )
 
-//go:embed data/ab74_b50e_rule_value_rows.json
+//go:embed data/b50e_rule_value_rows.json
 var b50ERuleValueRowRowsJSON []byte
 
 type B50ERuleValueRowKey struct {

@@ -52,7 +52,7 @@ type B509DiagnosticCatalog struct {
 	B509DiagnosticShapeFields              []B509DiagnosticField `json:"fields"`
 }
 
-//go:embed data/ab87_b509_diagnostic_shapes.json
+//go:embed data/b509_diagnostic_shapes.json
 var b509DiagnosticShapeDiagnosticJSON string
 
 func B509DiagnosticShapes() (B509DiagnosticCatalog, error) {

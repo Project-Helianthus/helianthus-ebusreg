@@ -8,7 +8,7 @@ import (
 	b524NameAnnotationSync "sync"
 )
 
-//go:embed data/ab36_b524_name_annotations.json
+//go:embed data/b524_name_annotations.json
 var b524NameAnnotationData string
 
 type b524NameAnnotationCatalog struct {

@@ -2,6 +2,89 @@
 
 ## Unreleased
 
+- Rename the embedded data files of `catalog/ebusstandard` and
+  `catalog/vaillant` whose names started with a work-item code; no
+  production file name starts with a code any more. Each file keeps its
+  directory, extension and bytes and takes the name of the Go file that
+  embeds it; its `go:embed` line and the `ReadFile` paths that name it
+  follow:
+  - `catalog/ebusstandard/testdata/ab83_03_counter_bodies.json` -> `standard03_counter_bodies.json`
+  - `catalog/ebusstandard/testdata/ab84_05_burner_bodies.json` -> `standard05_burner_bodies.json`
+  - `catalog/ebusstandard/testdata/ab77_07_candidates.json` -> `standard07_candidates.json`
+  - `catalog/ebusstandard/testdata/ab28_standard07_residual_fields.json` -> `standard07_residual_fields.json`
+  - `catalog/ebusstandard/testdata/ab79_09_candidates.json` -> `standard09_candidates.json`
+  - `catalog/ebusstandard/testdata/ab81_0f_candidates.json` -> `standard0f_candidates.json`
+  - `catalog/ebusstandard/testdata/ab49_fe_metadata.json` -> `standardfe_metadata.json`
+  - `catalog/ebusstandard/testdata/ab54_standard_ff_body_states.json` -> `standardff_body_states.json`
+  - `catalog/vaillant/data/ab33_appliance_info.json` -> `appliance_info.json`
+  - `catalog/vaillant/data/ab34_b501_legacy_sequence.json` -> `b501_legacy_sequence.json`
+  - `catalog/vaillant/data/ab86_b503_history_flags.json` -> `b503_history_flags.json`
+  - `catalog/vaillant/data/ab96_b503_text_categories.json` -> `b503_text_categories.json`
+  - `catalog/vaillant/data/ab53_b504_candidates.json` -> `b504_candidates.json`
+  - `catalog/vaillant/data/ab15_b504_circuit_roles.json` -> `b504_circuit_roles.json`
+  - `catalog/vaillant/data/ab55_b505_candidates.json` -> `b505_candidates.json`
+  - `catalog/vaillant/data/ab16_b505_operating_roles.json` -> `b505_operating_roles.json`
+  - `catalog/vaillant/data/ab57_b506_candidates.json` -> `b506_candidates.json`
+  - `catalog/vaillant/data/ab17_b506_rf_sequence.json` -> `b506_rf_sequence.json`
+  - `catalog/vaillant/data/ab13_b507_energy_candidates.json` -> `b507_energy_candidates.json`
+  - `catalog/vaillant/data/ab68_b509_boiler_codec_dictionary.json` -> `b509_boiler_codec_dictionary.json`
+  - `catalog/vaillant/data/ab59_b509_candidates.json` -> `b509_candidates.json`
+  - `catalog/vaillant/data/ab87_b509_diagnostic_shapes.json` -> `b509_diagnostic_shapes.json`
+  - `catalog/vaillant/data/ab70_b509_heatpump_codec_dictionary.json` -> `b509_heatpump_codec_dictionary.json`
+  - `catalog/vaillant/data/ab46_b509_identity_shapes.json` -> `b509_identity_shapes.json`
+  - `catalog/vaillant/data/ab14_b509_op59_quantities.json` -> `b509_op59_quantities.json`
+  - `catalog/vaillant/data/ab40_b509_symbolic_annotations.json` -> `b509_symbolic_annotations.json`
+  - `catalog/vaillant/data/ab61_b50e_candidates.json` -> `b50e_candidates.json`
+  - `catalog/vaillant/data/ab74_b50e_rule_value_rows.json` -> `b50e_rule_value_rows.json`
+  - `catalog/vaillant/data/ab63_b50f_candidates.json` -> `b50f_candidates.json`
+  - `catalog/vaillant/data/ab12_b50f_status_spans.json` -> `b50f_status_spans.json`
+  - `catalog/vaillant/data/ab65_b510_candidates.json` -> `b510_candidates.json`
+  - `catalog/vaillant/data/ab48_b510_operating_defaults.json` -> `b510_operating_defaults.json`
+  - `catalog/vaillant/data/ab67_b511_candidates.json` -> `b511_candidates.json`
+  - `catalog/vaillant/data/ab50_b511_class_candidates.json` -> `b511_class_candidates.json`
+  - `catalog/vaillant/data/ab88_b512_air_fields.json` -> `b512_air_fields.json`
+  - `catalog/vaillant/data/ab69_b512_candidates.json` -> `b512_candidates.json`
+  - `catalog/vaillant/data/ab97_b512_dhw_stepper.json` -> `b512_dhw_stepper.json`
+  - `catalog/vaillant/data/ab18_b512_feedback_fallback.json` -> `b512_feedback_fallback.json`
+  - `catalog/vaillant/data/ab19_b512_heatpump_io.json` -> `b512_heatpump_io.json`
+  - `catalog/vaillant/data/ab38_b513_symbolic_dictionary.json` -> `b513_symbolic_dictionary.json`
+  - `catalog/vaillant/data/ab89_b514_menu_feedback.json` -> `b514_menu_feedback.json`
+  - `catalog/vaillant/data/ab20_b516_directional_types.json` -> `b516_directional_types.json`
+  - `catalog/vaillant/data/ab51_b516_residual_fields.json` -> `b516_residual_fields.json`
+  - `catalog/vaillant/data/ab72_b516_statistics_directions.json` -> `b516_statistics_directions.json`
+  - `catalog/vaillant/data/ab21_b519_reply_policy.json` -> `b519_reply_policy.json`
+  - `catalog/vaillant/data/ab98_b51a_diagnostic_variants.json` -> `b51a_diagnostic_variants.json`
+  - `catalog/vaillant/data/ab90_b51a_mirror_fields.json` -> `b51a_mirror_fields.json`
+  - `catalog/vaillant/data/ab91_b51cd_partial_labels.json` -> `b51cd_partial_labels.json`
+  - `catalog/vaillant/data/ab92_b520_blocks.json` -> `b520_blocks.json`
+  - `catalog/vaillant/data/ab71_b523_candidates.json` -> `b523_candidates.json`
+  - `catalog/vaillant/data/ab99_b523_config_mixer.json` -> `b523_config_mixer.json`
+  - `catalog/vaillant/data/ab93_b523_sensor_fields.json` -> `b523_sensor_fields.json`
+  - `catalog/vaillant/data/ab32_b524_component_selectors.json` -> `b524_component_selectors.json`
+  - `catalog/vaillant/data/ab95_b524_energy_roles.json` -> `b524_energy_roles.json`
+  - `catalog/vaillant/data/ab30_b524_family_codebooks.json` -> `b524_family_codebooks.json`
+  - `catalog/vaillant/data/ab36_b524_name_annotations.json` -> `b524_name_annotations.json`
+  - `catalog/vaillant/data/ab56_b524_numeric_candidates.json` -> `b524_numeric_candidates.json`
+  - `catalog/vaillant/data/ab85_b524_scalar_shapes.json` -> `b524_scalar_shapes.json`
+  - `catalog/vaillant/data/ab73_b525_candidates.json` -> `b525_candidates.json`
+  - `catalog/vaillant/data/ab75_b531_candidates.json` -> `b531_candidates.json`
+  - `catalog/vaillant/data/ab26_b555_additional_forms.json` -> `b555_additional_forms.json`
+  - `catalog/vaillant/data/ab94_b555_numeric_units.json` -> `b555_numeric_units.json`
+  - `catalog/vaillant/data/ab47_fan_demand.json` -> `fan_demand.json`
+  - `catalog/vaillant/data/ab27_holiday.json` -> `holiday.json`
+  - `catalog/vaillant/data/ab35_legacy_timer.json` -> `legacy_timer.json`
+  - `catalog/vaillant/data/ab39_opaque_programming.json` -> `opaque_programming.json`
+  - `catalog/vaillant/data/ab45_outdoor_module.json` -> `outdoor_module.json`
+  - `catalog/vaillant/data/ab41_program_blocks.json` -> `program_blocks.json`
+  - `catalog/vaillant/data/ab31_pump_roles.json` -> `pump_roles.json`
+  - `catalog/vaillant/data/ab29_room_actions.json` -> `room_actions.json`
+  - `catalog/vaillant/data/ab43_simulator_adc.json` -> `simulator_adc.json`
+  - `catalog/vaillant/data/ab37_tunnel.json` -> `tunnel.json`
+  Test-only testdata fixtures keep their names. Exported names, JSON
+  contents and catalog identifiers inside the data are unchanged.
+  `scripts/rename_catalog_names.py --slice embedded-data` reproduces
+  the change and `--check` confirms it.
+
 - Rename the work-item-coded JSON tags, embedded data keys, string values
   and error texts of `catalog/vaillant` to behavior names. A JSON tag or
   data key keeps the part after the code in snake_case (`ab05_family` ->

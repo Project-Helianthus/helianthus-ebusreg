@@ -71,7 +71,7 @@ func TestAb49UnknownBodyAndQualification(standardFEMetadataT *standardFEMetadata
 }
 
 func TestAb49EmbeddedCopy(standardFEMetadataT *standardFEMetadataTesting.T) {
-	standardFEMetadataFixture, standardFEMetadataErr := standardFEMetadataOs.ReadFile("testdata/ab49_fe_metadata.json")
+	standardFEMetadataFixture, standardFEMetadataErr := standardFEMetadataOs.ReadFile("testdata/standardfe_metadata.json")
 	if standardFEMetadataErr != nil {
 		standardFEMetadataT.Fatal(standardFEMetadataErr)
 	}

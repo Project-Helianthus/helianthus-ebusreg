@@ -20,7 +20,7 @@ type Standard07ResidualKey struct {
 	Standard07ResidualRegister      *uint16 `json:"register"`
 }
 
-//go:embed testdata/ab28_standard07_residual_fields.json
+//go:embed testdata/standard07_residual_fields.json
 var standard07ResidualEmbedded string
 
 func standard07ResidualValidate(standard07ResidualData []byte) ([]standard07ResidualJSON.RawMessage, error) {

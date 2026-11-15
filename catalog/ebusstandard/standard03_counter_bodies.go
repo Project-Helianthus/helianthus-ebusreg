@@ -49,7 +49,7 @@ type Standard03CounterBody struct {
 	Standard03CounterBodyFields            []Standard03CounterBodyField `json:"fields"`
 }
 
-//go:embed testdata/ab83_03_counter_bodies.json
+//go:embed testdata/standard03_counter_bodies.json
 var standard03CounterBodyCounterJSON string
 
 // Standard03CounterBodies returns detached finite supplemental declarations, not invocation support.

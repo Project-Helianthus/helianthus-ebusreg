@@ -6,7 +6,7 @@ import (
 	b501LegacySequenceFmt "fmt"
 )
 
-//go:embed data/ab34_b501_legacy_sequence.json
+//go:embed data/b501_legacy_sequence.json
 var b501LegacySequenceEmbedded string
 
 type B501LegacySequenceKey struct {

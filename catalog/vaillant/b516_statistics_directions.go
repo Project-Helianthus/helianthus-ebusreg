@@ -9,7 +9,7 @@ import (
 	b516StatisticsDirectionReflect "reflect"
 )
 
-//go:embed data/ab72_b516_statistics_directions.json
+//go:embed data/b516_statistics_directions.json
 var b516StatisticsDirectionData []byte
 
 type B516StatisticsDirectionKey struct {

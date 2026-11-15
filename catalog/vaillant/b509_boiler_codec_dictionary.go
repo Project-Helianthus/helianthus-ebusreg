@@ -34,7 +34,7 @@ type B509BoilerCodecDictionaryEntry struct {
 	B509BoilerCodecDictionaryEvidence  map[string]string            `json:"evidence"`
 }
 
-//go:embed data/ab68_b509_boiler_codec_dictionary.json
+//go:embed data/b509_boiler_codec_dictionary.json
 var b509BoilerCodecDictionaryJSON []byte
 
 func b509BoilerCodecDictionaryParse(b509BoilerCodecDictionaryData []byte) ([]B509BoilerCodecDictionaryEntry, error) {

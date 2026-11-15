@@ -7,7 +7,7 @@ import (
 	b512HeatpumpIOReflect "reflect"
 )
 
-//go:embed data/ab19_b512_heatpump_io.json
+//go:embed data/b512_heatpump_io.json
 var b512HeatpumpIOData string
 
 type B512HeatpumpIOKey struct {

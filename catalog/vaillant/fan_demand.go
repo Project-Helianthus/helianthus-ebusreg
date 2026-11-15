@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-//go:embed data/ab47_fan_demand.json
+//go:embed data/fan_demand.json
 var fanDemandFanDemandJSON string
 
 func FanDemandCatalog() json.RawMessage {

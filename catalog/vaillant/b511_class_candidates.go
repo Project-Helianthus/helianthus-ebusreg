@@ -7,7 +7,7 @@ import (
 	b511ClassCandidateFmt "fmt"
 )
 
-//go:embed data/ab50_b511_class_candidates.json
+//go:embed data/b511_class_candidates.json
 var b511ClassCandidateData string
 
 type B511ClassCandidateKey struct {

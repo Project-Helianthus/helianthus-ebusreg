@@ -6,7 +6,7 @@ import (
 	b519ReplyPolicyFmt "fmt"
 )
 
-//go:embed data/ab21_b519_reply_policy.json
+//go:embed data/b519_reply_policy.json
 var b519ReplyPolicyFiles b519ReplyPolicyEmbed.FS
 
 type B519ReplyPolicyKey struct {
@@ -69,7 +69,7 @@ func b519ReplyPolicyValidate(b519ReplyPolicyData []byte) ([]b519ReplyPolicyJSON.
 }
 
 func B519ReplyPolicyEntries() (b519ReplyPolicyJSON.RawMessage, error) {
-	b519ReplyPolicyData, b519ReplyPolicyError := b519ReplyPolicyFiles.ReadFile("data/ab21_b519_reply_policy.json")
+	b519ReplyPolicyData, b519ReplyPolicyError := b519ReplyPolicyFiles.ReadFile("data/b519_reply_policy.json")
 	if b519ReplyPolicyError != nil {
 		return nil, b519ReplyPolicyError
 	}
@@ -107,7 +107,7 @@ func b519ReplyPolicyLookup(b519ReplyPolicyData []byte, b519ReplyPolicyKey B519Re
 }
 
 func B519ReplyPolicyLookup(b519ReplyPolicyKey B519ReplyPolicyKey) (b519ReplyPolicyJSON.RawMessage, bool, error) {
-	b519ReplyPolicyData, b519ReplyPolicyError := b519ReplyPolicyFiles.ReadFile("data/ab21_b519_reply_policy.json")
+	b519ReplyPolicyData, b519ReplyPolicyError := b519ReplyPolicyFiles.ReadFile("data/b519_reply_policy.json")
 	if b519ReplyPolicyError != nil {
 		return nil, false, b519ReplyPolicyError
 	}

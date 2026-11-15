@@ -5,7 +5,7 @@ import (
 	b50ECandidateJSON "encoding/json"
 )
 
-//go:embed data/ab61_b50e_candidates.json
+//go:embed data/b50e_candidates.json
 var b50ECandidateB50ECandidatesJSON string
 
 type B50ECandidateKey struct {

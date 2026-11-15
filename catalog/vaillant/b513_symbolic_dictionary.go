@@ -9,7 +9,7 @@ import (
 	b513SymbolicDictionarySync "sync"
 )
 
-//go:embed data/ab38_b513_symbolic_dictionary.json
+//go:embed data/b513_symbolic_dictionary.json
 var b513SymbolicDictionaryData []byte
 
 type b513SymbolicDictionaryCache struct {

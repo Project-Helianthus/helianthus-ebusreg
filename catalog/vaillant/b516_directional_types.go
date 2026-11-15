@@ -8,7 +8,7 @@ import (
 	b516DirectionalTypeReflect "reflect"
 )
 
-//go:embed data/ab20_b516_directional_types.json
+//go:embed data/b516_directional_types.json
 var b516DirectionalTypeData string
 
 type B516DirectionalTypeKey struct {

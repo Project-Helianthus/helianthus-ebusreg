@@ -20,7 +20,7 @@ type B512FeedbackFallbackKey struct {
 	B512FeedbackFallbackRegister      *uint16 `json:"register"`
 }
 
-//go:embed data/ab18_b512_feedback_fallback.json
+//go:embed data/b512_feedback_fallback.json
 var b512FeedbackFallbackData string
 
 func b512FeedbackFallbackValidate(b512FeedbackFallbackInput []byte) (map[string]b512FeedbackFallbackJSON.RawMessage, error) {

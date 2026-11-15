@@ -23,7 +23,7 @@ type B509IdentityShapeKey struct {
 	B509IdentityShapeRegister      *uint16 `json:"register"`
 }
 
-//go:embed data/ab46_b509_identity_shapes.json
+//go:embed data/b509_identity_shapes.json
 var b509IdentityShapeData string
 
 func b509IdentityShapeValidate(b509IdentityShapeSource []byte) ([]b509IdentityShapeJSON.RawMessage, []B509IdentityShapeKey, error) {

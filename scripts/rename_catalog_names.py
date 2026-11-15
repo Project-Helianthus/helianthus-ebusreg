@@ -13,9 +13,16 @@ still holds its coded files (--slice selects it):
 - vaillant-system-b555: the coded files of vaillant/system and vaillant/b555,
   checked as a whole before the first write, and the timer slot projection
   names of b524_timer_access.go with the two tests that use them.
+- embedded-data: the coded data files that production Go files of
+  catalog/ebusstandard and catalog/vaillant embed. Each keeps its directory,
+  extension and bytes and takes the name of the Go file that embeds it; the
+  go:embed line and string literals equal to its old path follow, and
+  naming-inventory.json, the behavior-name baseline and CHANGELOG.md record
+  the moves. Test-only testdata
+  files keep their names. --check reports whether the slice is applied.
 
-Production and test Go files lose their code prefix and keep the behavior part
-of their name. Go identifiers that start with a code prefix of the slice are
+In the identifier slices, production and test Go files lose their code
+prefix and keep the behavior part of their name. Go identifiers that start with a code prefix of the slice are
 renamed to a stem named after the destination file. The rewrite is
 token-aware: string literals (JSON tags, values, error texts, fixture paths)
 and embedded data and testdata file names stay byte-identical, so no
@@ -979,6 +986,19 @@ SLICES ={cfg.name: cfg for cfg in (EBUSSTANDARD, VAILLANT_01_29, VAILLANT_30_99)
 # reproduced in one run with one changelog entry.
 SLICES["vaillant-system-b555"] = (VAILLANT_SYSTEM, VAILLANT_B555)
 
+# The embedded data slice renames every data file a production Go file of the
+# two catalog packages embeds under a coded name. The file keeps its directory
+# and extension and takes the name of the Go file that embeds it. Test-only
+# testdata files keep their names.
+EMBEDDED_DATA = SimpleNamespace(
+    name="embedded-data",
+    package_dirs=("catalog/ebusstandard", "catalog/vaillant"),
+    expected=72,
+)
+SLICES[EMBEDDED_DATA.name] = EMBEDDED_DATA
+CODED_FILE = re.compile(r"a[ab][0-9]{2}(?:a[a-z][0-9]{2})?_")
+EMBED_PREFIX = "//go:embed "
+
 
 def lex(source):
     tokens, index, size = [], 0, len(source)
@@ -1828,6 +1848,282 @@ def run(root, print_map, cfg):
     changelog.write_text(text.replace(heading, heading + entry + "\n", 1))
 
 
+def embed_patterns(source):
+    """Return the patterns of every go:embed directive of one Go source."""
+    return [pattern for kind, text in lex(source)
+            if kind == "comment" and text.startswith(EMBED_PREFIX)
+            for pattern in text[len(EMBED_PREFIX):].split()]
+
+
+def embedded_moves(root, cfg=EMBEDDED_DATA):
+    """Map each coded embedded data file to the name of its embedding Go file.
+
+    Keys and values are package-relative paths, grouped by package directory.
+    """
+    moves = {}
+    for package in cfg.package_dirs:
+        local = {}
+        for path in sorted((root / package).glob("*.go")):
+            if path.name.endswith("_test.go"):
+                continue
+            patterns = embed_patterns(path.read_text())
+            coded_patterns = [p for p in patterns
+                              if CODED_FILE.match(p.rsplit("/", 1)[-1])]
+            if not coded_patterns:
+                continue
+            if len(patterns) != 1:
+                raise SystemExit(f"{package}/{path.name} embeds more than one file")
+            old = coded_patterns[0]
+            directory, _, name = old.rpartition("/")
+            if not directory or any(c in old for c in "*?["):
+                raise SystemExit(f"{package}/{path.name} embeds an unsupported pattern: {old}")
+            suffix = name[name.index("."):] if "." in name else ""
+            new = f"{directory}/{path.stem}{suffix}"
+            if not (root / package / old).is_file():
+                raise SystemExit(f"embedded file missing: {package}/{old}")
+            if (root / package / new).exists():
+                raise SystemExit(f"target already exists: {package}/{new}")
+            if new in local.values():
+                raise SystemExit(f"two embedded files take the name {package}/{new}")
+            local[old] = new
+        if local:
+            moves[package] = local
+    return moves
+
+
+def embedded_full_moves(moves):
+    return {f"{package}/{old}": f"{package}/{new}"
+            for package, local in moves.items() for old, new in local.items()}
+
+
+def rewrite_embedded(source, local):
+    """Rewrite go:embed patterns and string literals that equal a moved path."""
+    out = []
+    for kind, text in lex(source):
+        if kind == "comment" and text.startswith(EMBED_PREFIX):
+            patterns = text[len(EMBED_PREFIX):].split(" ")
+            text = EMBED_PREFIX + " ".join(local.get(p, p) for p in patterns)
+        elif kind == "string" and text[:1] == '"' and text[1:-1] in local:
+            text = '"' + local[text[1:-1]] + '"'
+        out.append(text)
+    return "".join(out)
+
+
+def embedded_changelog_entry(moves):
+    files = "".join(f"  - `{package}/{old}` -> `{new.rsplit('/', 1)[1]}`\n"
+                    for package, local in moves.items() for old, new in local.items())
+    return (
+        "- Rename the embedded data files of `catalog/ebusstandard` and\n"
+        "  `catalog/vaillant` whose names started with a work-item code; no\n"
+        "  production file name starts with a code any more. Each file keeps its\n"
+        "  directory, extension and bytes and takes the name of the Go file that\n"
+        "  embeds it; its `go:embed` line and the `ReadFile` paths that name it\n"
+        "  follow:\n" + files +
+        "  Test-only testdata fixtures keep their names. Exported names, JSON\n"
+        "  contents and catalog identifiers inside the data are unchanged.\n"
+        "  `scripts/rename_catalog_names.py --slice embedded-data` reproduces\n"
+        "  the change and `--check` confirms it.\n")
+
+
+def check_embedded(root, cfg=EMBEDDED_DATA):
+    """Return the problems that show the embedded data slice is not applied."""
+    problems = []
+    for package in cfg.package_dirs:
+        for path in sorted((root / package).glob("*.go")):
+            if path.name.endswith("_test.go"):
+                continue
+            for pattern in embed_patterns(path.read_text()):
+                directory, _, name = pattern.rpartition("/")
+                if CODED_FILE.match(name):
+                    problems.append(f"{package}/{path.name} embeds coded {pattern}")
+                elif directory in ("data", "testdata") and \
+                        name.split(".", 1)[0] != path.stem:
+                    problems.append(f"{package}/{path.name} embeds {pattern}")
+    return problems
+
+
+def update_embedded_baseline(root, full):
+    """Re-key the filename debt of moved files; drop rows that pass."""
+    module, vocabulary = behavior_tokens(root)
+    path = root / "scripts/behavior-name-baseline.json"
+    data = load_json(path)
+    rows = []
+    for row in data["baseline"]:
+        if row["path"] in full:
+            row = dict(row, path=full[row["path"]])
+            if row["category"] == "filename":
+                row["symbol"] = row["path"].rsplit("/", 1)[1]
+            if not module.violations([row], vocabulary):
+                continue
+        rows.append(row)
+    data["baseline"] = sorted(rows, key=lambda r: (r["path"], r["symbol"], r["category"]))
+    dump_json(path, data, True)
+
+
+def run_embedded(root, print_map, cfg=EMBEDDED_DATA):
+    moves = embedded_moves(root, cfg)
+    full = embedded_full_moves(moves)
+    if len(full) != cfg.expected:
+        raise SystemExit(f"expected {cfg.expected} coded embedded files, found {len(full)}")
+    if print_map:
+        for old, new in full.items():
+            print(f"{old} {new}")
+        return
+    changelog = root / "CHANGELOG.md"
+    text = changelog.read_text()
+    heading = "## Unreleased\n\n"
+    if heading not in text:
+        raise SystemExit("CHANGELOG.md has no Unreleased section")
+    sources = {}
+    for package, local in moves.items():
+        for path in sorted((root / package).glob("*.go")):
+            original = path.read_text()
+            source = rewrite_embedded(original, local)
+            if source != original:
+                sources[path] = source
+    for path, source in sources.items():
+        path.write_text(source)
+    for old, new in full.items():
+        os.rename(root / old, root / new)
+    path = root / "naming-inventory.json"
+    data = replace_paths(load_json(path), full)
+    data["source_files"] = sorted(data["source_files"])
+    dump_json(path, data, False)
+    update_embedded_baseline(root, full)
+    changelog.write_text(text.replace(heading, heading + embedded_changelog_entry(moves) + "\n", 1))
+    problems = check_embedded(root, cfg)
+    if problems:
+        raise SystemExit("\n".join(problems))
+
+
+def embedded_fixture(root):
+    """Two packages; each field of the move key differs between the files."""
+    files = {
+        "catalog/ebusstandard/standard07_candidates.go":
+            'package p\n\n//go:embed testdata/ab77_07_candidates.json\nvar a []byte\n',
+        "catalog/ebusstandard/standard07_candidates_test.go":
+            'package p\n\nvar b = "testdata/ab77_07_candidates.json"\n'
+            'var c = "testdata/ab76_only_test.json"\n',
+        "catalog/ebusstandard/testdata/ab77_07_candidates.json": '{"id":"ab77_07"}\n',
+        "catalog/ebusstandard/testdata/ab76_only_test.json": '{}\n',
+        "catalog/vaillant/tunnel.go":
+            'package v\n\n// Tunnel rows.\n//go:embed data/ab37_tunnel.csv\nvar d embed.FS\n\n'
+            'var e, _ = d.ReadFile("data/ab37_tunnel.csv")\nvar f = "ab37_tunnel"\n',
+        "catalog/vaillant/data/ab37_tunnel.csv": 'ab37_tunnel,1\n',
+        "catalog/vaillant/b509_op59_quantities.go":
+            'package v\n\n//go:embed data/ab14_b509_op59_quantities.json\nvar g []byte\n',
+        "catalog/vaillant/data/ab14_b509_op59_quantities.json": '[]\n',
+        "scripts/behavior-name-baseline.json": json.dumps({
+            "version": 1, "exceptions": [], "baseline": [
+                {"path": "catalog/ebusstandard/testdata/ab77_07_candidates.json",
+                 "symbol": "ab77_07_candidates.json", "category": "filename"},
+                {"path": "catalog/vaillant/b509_op59_quantities.go",
+                 "symbol": "b509_op59_quantities.go", "category": "filename"},
+                {"path": "catalog/vaillant/data/ab14_b509_op59_quantities.json",
+                 "symbol": "ab14_b509_op59_quantities.json", "category": "filename"},
+                {"path": "catalog/vaillant/data/ab37_tunnel.csv",
+                 "symbol": "ab37_tunnel.csv", "category": "filename"}]}),
+        "naming-inventory.json": json.dumps({"source_files": [
+            "catalog/vaillant/data/ab37_tunnel.csv",
+            "catalog/ebusstandard/testdata/ab77_07_candidates.json",
+            "catalog/ebusstandard/testdata/ab76_only_test.json"],
+            "rows": [{"owning_file": "catalog/vaillant/data/ab37_tunnel.csv"}]}),
+        "CHANGELOG.md": "# Changelog\n\n## Unreleased\n\n- Earlier entry.\n",
+    }
+    for rel, text in files.items():
+        (root / rel).parent.mkdir(parents=True, exist_ok=True)
+        (root / rel).write_text(text)
+    checker = Path(__file__).resolve().parent / "check_behavior_names.py"
+    (root / "scripts/check_behavior_names.py").write_bytes(checker.read_bytes())
+    return files
+
+
+def test_embedded_data_slice(tmp_path):
+    # Key fields of a move: package directory (ebusstandard/vaillant), data
+    # directory (testdata/data), embedding Go file stem and file extension
+    # (.json/.csv). Dropping the package, fixing the directory, keeping the
+    # coded stem or fixing the extension each yields a different path below.
+    files = embedded_fixture(tmp_path)
+    cfg = SimpleNamespace(**dict(vars(EMBEDDED_DATA), expected=3))
+    assert check_embedded(tmp_path, cfg) == [
+        "catalog/ebusstandard/standard07_candidates.go embeds coded "
+        "testdata/ab77_07_candidates.json",
+        "catalog/vaillant/b509_op59_quantities.go embeds coded "
+        "data/ab14_b509_op59_quantities.json",
+        "catalog/vaillant/tunnel.go embeds coded data/ab37_tunnel.csv"]
+    run_embedded(tmp_path, False, cfg)
+    assert check_embedded(tmp_path, cfg) == []
+    standard = tmp_path / "catalog/ebusstandard"
+    vaillant = tmp_path / "catalog/vaillant"
+    assert (standard / "testdata/standard07_candidates.json").read_text() == \
+        files["catalog/ebusstandard/testdata/ab77_07_candidates.json"]
+    assert (vaillant / "data/tunnel.csv").read_text() == \
+        files["catalog/vaillant/data/ab37_tunnel.csv"]
+    assert not (standard / "testdata/ab77_07_candidates.json").exists()
+    assert (standard / "testdata/ab76_only_test.json").exists()
+    assert "//go:embed testdata/standard07_candidates.json\n" in \
+        (standard / "standard07_candidates.go").read_text()
+    assert (standard / "standard07_candidates_test.go").read_text() == (
+        'package p\n\nvar b = "testdata/standard07_candidates.json"\n'
+        'var c = "testdata/ab76_only_test.json"\n')
+    assert (vaillant / "tunnel.go").read_text() == (
+        'package v\n\n// Tunnel rows.\n//go:embed data/tunnel.csv\nvar d embed.FS\n\n'
+        'var e, _ = d.ReadFile("data/tunnel.csv")\nvar f = "ab37_tunnel"\n')
+    assert (vaillant / "data/b509_op59_quantities.json").read_text() == "[]\n"
+    # A moved name that still holds a code-like token keeps its debt under
+    # the new path; names that pass the gate lose their rows.
+    baseline = json.loads((tmp_path / "scripts/behavior-name-baseline.json").read_text())
+    assert baseline["baseline"] == [
+        {"path": "catalog/vaillant/b509_op59_quantities.go",
+         "symbol": "b509_op59_quantities.go", "category": "filename"},
+        {"path": "catalog/vaillant/data/b509_op59_quantities.json",
+         "symbol": "b509_op59_quantities.json", "category": "filename"}]
+    inventory = json.loads((tmp_path / "naming-inventory.json").read_text())
+    assert inventory == {"source_files": [
+        "catalog/ebusstandard/testdata/ab76_only_test.json",
+        "catalog/ebusstandard/testdata/standard07_candidates.json",
+        "catalog/vaillant/data/tunnel.csv"],
+        "rows": [{"owning_file": "catalog/vaillant/data/tunnel.csv"}]}
+    changelog = (tmp_path / "CHANGELOG.md").read_text()
+    assert ("  - `catalog/ebusstandard/testdata/ab77_07_candidates.json` -> "
+            "`standard07_candidates.json`\n"
+            "  - `catalog/vaillant/data/ab14_b509_op59_quantities.json` -> "
+            "`b509_op59_quantities.json`\n"
+            "  - `catalog/vaillant/data/ab37_tunnel.csv` -> `tunnel.csv`\n") in changelog
+    assert changelog.endswith("\n\n- Earlier entry.\n")
+
+
+def test_embedded_check_skips_test_files(tmp_path):
+    # A test file may embed a coded test-only fixture; the check ignores it,
+    # as the move does.
+    embedded_fixture(tmp_path)
+    cfg = SimpleNamespace(**dict(vars(EMBEDDED_DATA), expected=3))
+    run_embedded(tmp_path, False, cfg)
+    test_file = tmp_path / "catalog/ebusstandard/only_test.go"
+    test_file.write_text('package p\n\n//go:embed testdata/ab76_only_test.json\nvar t []byte\n')
+    assert check_embedded(tmp_path, cfg) == []
+
+
+def test_embedded_data_preconditions(tmp_path):
+    cfg = SimpleNamespace(**dict(vars(EMBEDDED_DATA), expected=4))
+    for broken in ("count", "target", "missing"):
+        root = tmp_path / broken
+        embedded_fixture(root)
+        if broken == "target":
+            (root / "catalog/vaillant/data/tunnel.csv").write_text("x")
+        if broken == "missing":
+            os.rename(root / "catalog/vaillant/data/ab37_tunnel.csv",
+                      root / "catalog/vaillant/data/other.csv")
+        before = {p: p.read_bytes() for p in root.rglob("*") if p.is_file()}
+        try:
+            run_embedded(root, False, cfg if broken == "count" else
+                         SimpleNamespace(**dict(vars(EMBEDDED_DATA), expected=3)))
+        except SystemExit:
+            assert {p: p.read_bytes() for p in root.rglob("*") if p.is_file()} == before
+            continue
+        raise AssertionError(broken)
+
+
 def test_inventory_targets(tmp_path):
     row = {'owning_file': 'catalog/ebusstandard/ab76_standard03_candidate_views.go', 'kind': 'go_identifier', 'current_name': 'Ab76Interpret', 'target': 'Ab76Interpret', 'status': 'unchanged', 'identity': {'declaration': 'Ab76Interpret'}}
     (tmp_path / 'naming-inventory.json').write_text(json.dumps({'source_files': [row['owning_file']], 'rows': [row]}))
@@ -2083,6 +2379,18 @@ if __name__ == "__main__":
                         help="the rename slice to reproduce")
     parser.add_argument("--print-map", action="store_true",
                         help="print the identifier map and change nothing")
+    parser.add_argument("--check", action="store_true",
+                        help="embedded-data only: report whether the slice is applied")
     arguments = parser.parse_args()
-    run(arguments.root.resolve(), arguments.print_map, SLICES[arguments.slice])
+    root = arguments.root.resolve()
+    if arguments.slice == EMBEDDED_DATA.name:
+        if arguments.check:
+            problems = check_embedded(root)
+            print("\n".join(problems) or "embedded data names: ok")
+            sys.exit(1 if problems else 0)
+        run_embedded(root, arguments.print_map)
+        sys.exit(0)
+    if arguments.check:
+        parser.error("--check is only supported for --slice embedded-data")
+    run(root, arguments.print_map, SLICES[arguments.slice])
     sys.exit(0)

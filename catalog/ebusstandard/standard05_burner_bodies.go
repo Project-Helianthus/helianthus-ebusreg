@@ -59,7 +59,7 @@ type Standard05BurnerBodies struct {
 	Standard05BurnerBodyFields              []Standard05BurnerField `json:"fields"`
 }
 
-//go:embed testdata/ab84_05_burner_bodies.json
+//go:embed testdata/standard05_burner_bodies.json
 var standard05BurnerBodyBurnerJSON []byte
 
 func Standard05BurnerMetadata() Standard05BurnerBodies {

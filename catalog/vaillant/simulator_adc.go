@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-//go:embed data/ab43_simulator_adc.json
+//go:embed data/simulator_adc.json
 var simulatorADCSimulatorADC []byte
 
 func SimulatorADC() json.RawMessage {

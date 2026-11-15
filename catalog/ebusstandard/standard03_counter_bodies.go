@@ -5,6 +5,8 @@ import (
 	standard03CounterBodyJSON "encoding/json"
 )
 
+// Standard03CounterBodyKey identifies a counter body or one of its fields; absent optional axes are
+// nil and lookups compare every axis exactly.
 type Standard03CounterBodyKey struct {
 	Standard03CounterBodyFamily    string  `json:"family"`
 	Standard03CounterBodyVariant   string  `json:"variant"`
@@ -19,6 +21,8 @@ type Standard03CounterBodyKey struct {
 	Standard03CounterBodyRegister  *uint16 `json:"register"`
 }
 
+// Standard03CounterBodyField declares the position, width, encoding, conversion and value domain of
+// one counter body field.
 type Standard03CounterBodyField struct {
 	Standard03CounterBodyIdentity          string            `json:"identity"`
 	Standard03CounterBodyLogicalPosition   *int              `json:"logical_position"`
@@ -39,6 +43,7 @@ type Standard03CounterBodyField struct {
 	Standard03CounterBodyRawFallback       bool              `json:"raw_fallback"`
 }
 
+// Standard03CounterBody is one declared counter body with its claim grade, callability and fields.
 type Standard03CounterBody struct {
 	Standard03CounterBodyKey               Standard03CounterBodyKey     `json:"key"`
 	Standard03CounterBodyState             string                       `json:"body_state"`

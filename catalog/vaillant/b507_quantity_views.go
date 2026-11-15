@@ -50,6 +50,9 @@ func b507QuantityViewValue(b507QuantityViewDecoder *b507QuantityViewJSON.Decoder
 	}
 }
 
+// B507QuantityViewInterpret evaluates one JSON object with context, fields and arguments members
+// against the B507 quantity views and returns the evaluated JSON. Malformed or trailing JSON and input
+// of the wrong shape return an error.
 func B507QuantityViewInterpret(b507QuantityViewInput b507QuantityViewJSON.RawMessage) (b507QuantityViewJSON.RawMessage, error) {
 	b507QuantityViewDecoder := b507QuantityViewJSON.NewDecoder(b507QuantityViewBytesPackage.NewReader(b507QuantityViewInput))
 	b507QuantityViewDecoder.UseNumber()

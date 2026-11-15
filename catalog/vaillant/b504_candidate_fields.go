@@ -77,6 +77,9 @@ func b504CandidateFieldString(b504CandidateFieldRaw json.RawMessage) (string, er
 	return b504CandidateFieldValue, b504CandidateFieldErr
 }
 
+// B504CandidateFieldEvaluate evaluates one JSON object with context, fields and arguments members
+// against the B504 candidate fields and returns the evaluated JSON. Malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B504CandidateFieldEvaluate(b504CandidateFieldInputRaw json.RawMessage) (json.RawMessage, error) {
 	b504CandidateFieldDecoder := json.NewDecoder(bytes.NewReader(b504CandidateFieldInputRaw))
 	b504CandidateFieldDecoder.UseNumber()

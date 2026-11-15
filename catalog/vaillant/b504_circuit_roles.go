@@ -10,6 +10,8 @@ import (
 //go:embed data/b504_circuit_roles.json
 var b504CircuitRoleFiles b504CircuitRoleEmbed.FS
 
+// B504CircuitRoleKey identifies one B504 circuit role row; absent optional axes are nil and every axis
+// takes part in the lookup.
 type B504CircuitRoleKey struct {
 	B504CircuitRoleFamily        string  `json:"family"`
 	B504CircuitRoleVariant       string  `json:"variant"`
@@ -40,6 +42,8 @@ type b504CircuitRoleRow struct {
 	B504CircuitRoleRaw                   b504CircuitRoleJSON.RawMessage `json:"raw"`
 }
 
+// B504CircuitRoleEntries validates the embedded B504 circuit role rows and returns them as JSON.
+// Invalid embedded data returns an error.
 func B504CircuitRoleEntries() (b504CircuitRoleJSON.RawMessage, error) {
 	b504CircuitRoleData, b504CircuitRoleErr := b504CircuitRoleFiles.ReadFile("data/b504_circuit_roles.json")
 	if b504CircuitRoleErr != nil {
@@ -48,6 +52,8 @@ func B504CircuitRoleEntries() (b504CircuitRoleJSON.RawMessage, error) {
 	return b504CircuitRoleEntries(b504CircuitRoleData)
 }
 
+// B504CircuitRoleLookup returns the circuit role row whose key equals the given key on every axis. It
+// returns an error if the embedded rows fail validation.
 func B504CircuitRoleLookup(b504CircuitRoleKey B504CircuitRoleKey) (b504CircuitRoleJSON.RawMessage, bool, error) {
 	b504CircuitRoleData, b504CircuitRoleErr := b504CircuitRoleFiles.ReadFile("data/b504_circuit_roles.json")
 	if b504CircuitRoleErr != nil {

@@ -6,6 +6,8 @@ import (
 	b504CandidateReflect "reflect"
 )
 
+// B504CandidateKey identifies one B504 candidate field; absent optional axes are nil and lookups
+// compare every axis exactly.
 type B504CandidateKey struct {
 	B504CandidateFamily    string `json:"family"`
 	B504CandidateVariant   string `json:"variant"`
@@ -16,6 +18,7 @@ type B504CandidateKey struct {
 	B504CandidateField     string `json:"field"`
 }
 
+// B504CandidateDomain is the value domain of a candidate field: listed values or a stepped range.
 type B504CandidateDomain struct {
 	B504CandidateValues  []int `json:"values"`
 	B504CandidateMinimum *int  `json:"minimum"`
@@ -23,6 +26,8 @@ type B504CandidateDomain struct {
 	B504CandidateStep    *int  `json:"step"`
 }
 
+// B504CandidateEntry declares one B504 candidate field with its position, width, scaling, unit, labels
+// and domain.
 type B504CandidateEntry struct {
 	B504CandidateKey           B504CandidateKey     `json:"key"`
 	B504CandidateGrade         SchemaGrade          `json:"grade"`
@@ -38,6 +43,7 @@ type B504CandidateEntry struct {
 	B504CandidateNotes         []string             `json:"notes"`
 }
 
+// B504CandidateCatalog is the B504 candidate catalog with its catalog-wide grades and limitations.
 type B504CandidateCatalog struct {
 	B504CandidateMetadataPresence   SchemaGrade          `json:"metadata_presence"`
 	B504CandidatePhysicalAdaptation SchemaGrade          `json:"physical_adaptation"`
@@ -51,12 +57,16 @@ type B504CandidateCatalog struct {
 //go:embed data/b504_candidates.json
 var b504CandidateB504JSON []byte
 
+// B504Candidates decodes the embedded B504 candidate catalog on each call and returns a detached copy
+// or the decoding error.
 func B504Candidates() (B504CandidateCatalog, error) {
 	var b504CandidateCatalog B504CandidateCatalog
 	b504CandidateError := b504CandidateJSON.Unmarshal(b504CandidateB504JSON, &b504CandidateCatalog)
 	return b504CandidateCatalog, b504CandidateError
 }
 
+// B504LookupCandidate returns the candidate entry whose key equals the given key on every axis, or the
+// catalog decoding error.
 func B504LookupCandidate(b504CandidateKey B504CandidateKey) (B504CandidateEntry, bool, error) {
 	b504CandidateCatalog, b504CandidateError := B504Candidates()
 	if b504CandidateError != nil {

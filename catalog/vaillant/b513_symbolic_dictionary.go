@@ -31,6 +31,8 @@ func b513SymbolicDictionaryLoad() *b513SymbolicDictionaryCache {
 	return b513SymbolicDictionaryDictionary
 }
 
+// B513SymbolicDictionaryKey identifies one B513 symbolic dictionary row; absent optional axes are nil
+// and every axis takes part in the lookup.
 type B513SymbolicDictionaryKey struct {
 	B513SymbolicDictionaryFamily        string  `json:"family"`
 	B513SymbolicDictionaryVariant       string  `json:"variant"`
@@ -109,6 +111,8 @@ func b513SymbolicDictionaryValidate(b513SymbolicDictionarySource []byte) ([]b513
 	return b513SymbolicDictionaryRows, b513SymbolicDictionaryIndex, nil
 }
 
+// B513SymbolicDictionaryEntries returns a copy of the embedded symbolic dictionary, which is validated
+// once and cached. Invalid embedded data returns an error.
 func B513SymbolicDictionaryEntries() (b513SymbolicDictionaryJSON.RawMessage, error) {
 	b513SymbolicDictionaryCached := b513SymbolicDictionaryLoad()
 	if b513SymbolicDictionaryCached.b513SymbolicDictionaryErr != nil {
@@ -117,6 +121,8 @@ func B513SymbolicDictionaryEntries() (b513SymbolicDictionaryJSON.RawMessage, err
 	return b513SymbolicDictionaryBytes.Clone(b513SymbolicDictionaryCached.b513SymbolicDictionaryEntries), nil
 }
 
+// B513SymbolicDictionaryLookup returns a copy of the dictionary row whose key equals the given key on
+// every axis, or the dictionary error.
 func B513SymbolicDictionaryLookup(b513SymbolicDictionaryKey B513SymbolicDictionaryKey) (b513SymbolicDictionaryJSON.RawMessage, bool, error) {
 	b513SymbolicDictionaryCached := b513SymbolicDictionaryLoad()
 	if b513SymbolicDictionaryCached.b513SymbolicDictionaryErr != nil {

@@ -8,6 +8,8 @@ import (
 //go:embed data/b511_candidates.json
 var b511CandidateB511Data []byte
 
+// B511CandidateB511Key identifies one B511 candidate field; absent optional axes are nil and lookups
+// compare every axis exactly.
 type B511CandidateB511Key struct {
 	B511CandidateFamily    string `json:"family"`
 	B511CandidateVariant   string `json:"variant"`
@@ -18,6 +20,8 @@ type B511CandidateB511Key struct {
 	B511CandidateField     string `json:"field"`
 }
 
+// B511CandidateEntry declares one B511 candidate field with its position, width, values, bits, raw
+// domain and scaling.
 type B511CandidateEntry struct {
 	B511CandidateKey              B511CandidateB511Key `json:"key"`
 	B511CandidatePosition         *int                 `json:"position"`
@@ -38,6 +42,8 @@ type B511CandidateEntry struct {
 	B511CandidateRawPolicy        string               `json:"raw_policy"`
 }
 
+// B511CandidateDeclarations is the B511 candidate catalog with its catalog-wide grades and
+// limitations.
 type B511CandidateDeclarations struct {
 	B511CandidateMetadataPresence      SchemaGrade          `json:"metadata_presence"`
 	B511CandidatePhysicalQualification SchemaGrade          `json:"physical_qualification"`
@@ -46,6 +52,8 @@ type B511CandidateDeclarations struct {
 	B511CandidateEntries               []B511CandidateEntry `json:"entries"`
 }
 
+// B511CandidateCatalog decodes the embedded B511 candidate catalog on each call and returns a detached
+// copy or the decoding error.
 func B511CandidateCatalog() (B511CandidateDeclarations, error) {
 	var b511CandidateCatalog B511CandidateDeclarations
 	b511CandidateError := b511CandidateJSON.Unmarshal(b511CandidateB511Data, &b511CandidateCatalog)
@@ -59,6 +67,8 @@ func b511CandidateEqualByte(b511CandidateLeft, b511CandidateRight *uint8) bool {
 	return *b511CandidateLeft == *b511CandidateRight
 }
 
+// B511CandidateLookup returns the candidate entry whose key equals the given key on every axis, or the
+// catalog decoding error.
 func B511CandidateLookup(b511CandidateKey B511CandidateB511Key) (B511CandidateEntry, bool, error) {
 	b511CandidateCatalog, b511CandidateError := B511CandidateCatalog()
 	if b511CandidateError != nil {

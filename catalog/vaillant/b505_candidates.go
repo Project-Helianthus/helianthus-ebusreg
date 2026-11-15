@@ -9,6 +9,8 @@ import (
 //go:embed data/b505_candidates.json
 var b505CandidateCandidatesJSON string
 
+// B505CandidateKey identifies one B505 candidate field; absent optional axes are nil and lookups
+// compare every axis exactly.
 type B505CandidateKey struct {
 	B505CandidateFamily    string  `json:"family"`
 	B505CandidateVariant   string  `json:"variant"`
@@ -19,6 +21,8 @@ type B505CandidateKey struct {
 	B505CandidateField     string  `json:"field"`
 }
 
+// B505CandidateEntry declares one B505 candidate field with its position, width, conversion, bounds
+// and raw-value branches.
 type B505CandidateEntry struct {
 	B505CandidateSignedness          string            `json:"signedness"`
 	B505CandidateUnit                *string           `json:"unit"`
@@ -42,6 +46,7 @@ type B505CandidateEntry struct {
 	B505CandidateDurationEnforcement string            `json:"duration_enforcement"`
 }
 
+// B505CandidateCatalog is the B505 candidate catalog with its qualification and limitations.
 type B505CandidateCatalog struct {
 	B505CandidateMetadataPresence string               `json:"metadata_presence"`
 	B505CandidateQualification    string               `json:"qualification"`
@@ -49,6 +54,8 @@ type B505CandidateCatalog struct {
 	B505CandidateEntries          []B505CandidateEntry `json:"entries"`
 }
 
+// B505Candidates decodes the embedded B505 candidate catalog on each call and returns a detached copy.
+// It panics if the embedded data is malformed.
 func B505Candidates() B505CandidateCatalog {
 	var b505CandidateCatalog B505CandidateCatalog
 	if b505CandidateError := b505CandidateJSON.Unmarshal([]byte(b505CandidateCandidatesJSON), &b505CandidateCatalog); b505CandidateError != nil {
@@ -57,6 +64,7 @@ func B505Candidates() B505CandidateCatalog {
 	return b505CandidateCatalog
 }
 
+// B505CandidateLookup returns the candidate entry whose key equals the given key on every axis.
 func B505CandidateLookup(b505CandidateKey B505CandidateKey) (B505CandidateEntry, bool) {
 	for _, b505CandidateEntry := range B505Candidates().B505CandidateEntries {
 		if b505CandidateKeysEqual(b505CandidateEntry.B505CandidateKey, b505CandidateKey) {
@@ -66,6 +74,8 @@ func B505CandidateLookup(b505CandidateKey B505CandidateKey) (B505CandidateEntry,
 	return B505CandidateEntry{}, false
 }
 
+// B505CandidateSelectRaw returns the branch declared for the raw value, or the fallback when no branch
+// matches.
 func (b505CandidateEntry B505CandidateEntry) B505CandidateSelectRaw(b505CandidateRaw string) string {
 	if b505CandidateBranch, b505CandidateFound := b505CandidateEntry.B505CandidateBranches[b505CandidateRaw]; b505CandidateFound {
 		return b505CandidateBranch

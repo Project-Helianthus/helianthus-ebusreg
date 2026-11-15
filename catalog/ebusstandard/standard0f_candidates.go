@@ -8,6 +8,8 @@ import (
 //go:embed testdata/standard0f_candidates.json
 var standard0fCandidateCandidatesJSON []byte
 
+// Standard0fCandidateKey identifies one service 0F candidate; absent optional axes are nil and lookups
+// compare every axis exactly.
 type Standard0fCandidateKey struct {
 	Standard0fCandidateFamily    string `json:"family"`
 	Standard0fCandidateVariant   string `json:"variant"`
@@ -18,12 +20,15 @@ type Standard0fCandidateKey struct {
 	Standard0fCandidateField     string `json:"field"`
 }
 
+// Standard0fCandidatePositive describes the positive response prefix of a service 0F candidate.
 type Standard0fCandidatePositive struct {
 	Standard0fCandidatePrefix           string `json:"prefix"`
 	Standard0fCandidateTypedDataPresent *bool  `json:"typed_data_present"`
 	Standard0fCandidateGrade            string `json:"grade"`
 }
 
+// Standard0fCandidate declares one service 0F candidate with its body, offsets, grades and limits;
+// Executable and Sendable state whether it may be invoked.
 type Standard0fCandidate struct {
 	Standard0fCandidateKey           Standard0fCandidateKey       `json:"key"`
 	Standard0fCandidateMetadataGrade string                       `json:"metadata_grade"`
@@ -42,6 +47,8 @@ type Standard0fCandidate struct {
 	Standard0fCandidateLimits        []string                     `json:"limits"`
 }
 
+// Standard0fCandidates decodes the embedded service 0F candidates on each call and returns a detached
+// copy. It panics if the embedded data is malformed.
 func Standard0fCandidates() []Standard0fCandidate {
 	var standard0fCandidateEntries []Standard0fCandidate
 	if standard0fCandidateErr := standard0fCandidateJSON.Unmarshal(standard0fCandidateCandidatesJSON, &standard0fCandidateEntries); standard0fCandidateErr != nil {
@@ -54,6 +61,7 @@ func standard0fCandidateOptionalEqual(standard0fCandidateLeft, standard0fCandida
 	return standard0fCandidateLeft == nil && standard0fCandidateRight == nil || standard0fCandidateLeft != nil && standard0fCandidateRight != nil && *standard0fCandidateLeft == *standard0fCandidateRight
 }
 
+// Standard0fCandidateLookup returns the candidate whose key equals the given key on every axis.
 func Standard0fCandidateLookup(standard0fCandidateKey Standard0fCandidateKey) (Standard0fCandidate, bool) {
 	for _, standard0fCandidateEntry := range Standard0fCandidates() {
 		standard0fCandidateStored := standard0fCandidateEntry.Standard0fCandidateKey

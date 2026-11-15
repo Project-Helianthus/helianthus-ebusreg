@@ -9,6 +9,8 @@ import (
 	b509HeatpumpCodecDictionaryReflect "reflect"
 )
 
+// B509HeatpumpCodecDictionaryKey identifies one B509 heat pump codec dictionary entry by message axes
+// and selector; absent optional axes are nil.
 type B509HeatpumpCodecDictionaryKey struct {
 	B509HeatpumpCodecDictionaryFamily    string   `json:"family"`
 	B509HeatpumpCodecDictionaryVariant   string   `json:"variant"`
@@ -19,6 +21,8 @@ type B509HeatpumpCodecDictionaryKey struct {
 	B509HeatpumpCodecDictionarySelector  []uint16 `json:"selector"`
 }
 
+// B509HeatpumpCodecDictionaryEntry declares the quantity, codec, unit and mapping of one heat pump
+// dictionary entry.
 type B509HeatpumpCodecDictionaryEntry struct {
 	B509HeatpumpCodecDictionaryKey              B509HeatpumpCodecDictionaryKey `json:"key"`
 	B509HeatpumpCodecDictionaryQuantity         string                         `json:"quantity"`
@@ -77,6 +81,8 @@ func b509HeatpumpCodecDictionaryParse(b509HeatpumpCodecDictionaryData []byte) ([
 	return b509HeatpumpCodecDictionaryEntries, nil
 }
 
+// B509HeatpumpCodecDictionaryEntries decodes and validates the embedded heat pump codec dictionary on
+// each call. Invalid embedded data returns an error.
 func B509HeatpumpCodecDictionaryEntries() ([]B509HeatpumpCodecDictionaryEntry, error) {
 	return b509HeatpumpCodecDictionaryParse(b509HeatpumpCodecDictionaryJSON)
 }
@@ -98,6 +104,8 @@ func b509HeatpumpCodecDictionaryFind(b509HeatpumpCodecDictionaryEntries []B509He
 	return B509HeatpumpCodecDictionaryEntry{}, false, nil
 }
 
+// B509HeatpumpCodecDictionaryLookup returns the heat pump dictionary entry whose key equals the given
+// key on every axis, or the dictionary error.
 func B509HeatpumpCodecDictionaryLookup(b509HeatpumpCodecDictionaryKey B509HeatpumpCodecDictionaryKey) (B509HeatpumpCodecDictionaryEntry, bool, error) {
 	b509HeatpumpCodecDictionaryEntries, b509HeatpumpCodecDictionaryError := B509HeatpumpCodecDictionaryEntries()
 	if b509HeatpumpCodecDictionaryError != nil {

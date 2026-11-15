@@ -58,6 +58,9 @@ func b512FanFieldUint(b512FanFieldValue any, b512FanFieldBits int) (uint64, bool
 	return b512FanFieldResult, b512FanFieldErr == nil
 }
 
+// B512FanFieldEvaluate evaluates one JSON object with context, fields and arguments members against
+// the B512 fan fields and returns the evaluated JSON. Malformed or trailing JSON and input of the
+// wrong shape return an error.
 func B512FanFieldEvaluate(b512FanFieldInput b512FanFieldJSON.RawMessage) (b512FanFieldJSON.RawMessage, error) {
 	b512FanFieldDecoder := b512FanFieldJSON.NewDecoder(b512FanFieldBytesPackage.NewReader(b512FanFieldInput))
 	b512FanFieldDecoder.UseNumber()

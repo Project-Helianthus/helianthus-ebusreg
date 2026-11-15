@@ -60,6 +60,9 @@ func b511FailureTransitionInteger(b511FailureTransitionValue any) (int64, bool) 
 	return b511FailureTransitionInt, b511FailureTransitionErr == nil
 }
 
+// B511FailureTransitionInterpret evaluates one JSON object with context, fields and arguments members
+// against the B511 failure transition and returns the evaluated JSON. Malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B511FailureTransitionInterpret(b511FailureTransitionInput json.RawMessage) (json.RawMessage, error) {
 	b511FailureTransitionDecoder := json.NewDecoder(b511FailureTransitionBytesPackage.NewReader(b511FailureTransitionInput))
 	b511FailureTransitionDecoder.UseNumber()

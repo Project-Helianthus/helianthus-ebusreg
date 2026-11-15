@@ -1,9 +1,13 @@
 package ebusstandard
 
+// Standard03CandidateViewState is the completeness or validity state of a standard counter view or of
+// one component.
 type Standard03CandidateViewState string
 
+// Standard03CandidateViewEncoding names the byte encoding a standard counter selection asks for.
 type Standard03CandidateViewEncoding string
 
+// The view states and the component encodings of the standard counter views.
 const (
 	Standard03CandidateViewRawOnly             Standard03CandidateViewState    = "raw-only"
 	Standard03CandidateViewIncomplete          Standard03CandidateViewState    = "incomplete"
@@ -17,6 +21,8 @@ const (
 	Standard03CandidateViewUnsignedU8          Standard03CandidateViewEncoding = "unsigned-u8"
 )
 
+// Standard03CandidateViewSelection selects a standard counter view by family, variant, function,
+// operation, direction, selector and encoding.
 type Standard03CandidateViewSelection struct {
 	Standard03CandidateViewFamily    string                          `json:"family"`
 	Standard03CandidateViewVariant   string                          `json:"variant"`
@@ -27,6 +33,8 @@ type Standard03CandidateViewSelection struct {
 	Standard03CandidateViewEncoding  Standard03CandidateViewEncoding `json:"encoding"`
 }
 
+// Standard03CandidateViewComponent is one counter byte with its raw value, its accepted value when it
+// is within Maximum, and its default.
 type Standard03CandidateViewComponent struct {
 	Standard03CandidateViewName     string                          `json:"name"`
 	Standard03CandidateViewState    Standard03CandidateViewState    `json:"state"`
@@ -38,6 +46,8 @@ type Standard03CandidateViewComponent struct {
 	Standard03CandidateViewEncoding Standard03CandidateViewEncoding `json:"encoding"`
 }
 
+// Standard03CandidateView is the interpreted standard counter body. The local counter, hours and
+// minute are set only for a complete body; the grades state that the meaning is a hypothesis.
 type Standard03CandidateView struct {
 	Standard03CandidateViewSelection           Standard03CandidateViewSelection   `json:"selection"`
 	Standard03CandidateViewState               Standard03CandidateViewState       `json:"state"`
@@ -69,6 +79,9 @@ func standard03CandidateViewCopyBody(standard03CandidateViewBody []byte) []byte 
 	return standard03CandidateViewCopy
 }
 
+// Standard03CandidateViewInterpret interprets the body for the selection and returns a detached view.
+// An unsupported selection yields a raw-only view; a short body is incomplete, extra bytes are kept as
+// the remainder, and a byte above its maximum makes the view invalid.
 func Standard03CandidateViewInterpret(standard03CandidateViewSelection Standard03CandidateViewSelection, standard03CandidateViewBody []byte) Standard03CandidateView {
 	standard03CandidateViewSelection.Standard03CandidateViewFunction = standard03CandidateViewCopyByte(standard03CandidateViewSelection.Standard03CandidateViewFunction)
 	standard03CandidateViewSelection.Standard03CandidateViewOperation = standard03CandidateViewCopyByte(standard03CandidateViewSelection.Standard03CandidateViewOperation)

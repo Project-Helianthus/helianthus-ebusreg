@@ -1,5 +1,6 @@
 package vaillant
 
+// B503HistoryBranchContext is the family, variant, operation and direction of a B503 history record.
 type B503HistoryBranchContext struct {
 	B503HistoryBranchFamily    string `json:"family"`
 	B503HistoryBranchVariant   string `json:"variant"`
@@ -7,6 +8,8 @@ type B503HistoryBranchContext struct {
 	B503HistoryBranchDirection string `json:"direction"`
 }
 
+// B503HistoryBranchCell is one calendar cell of a history record with its raw and normalized values
+// and their presence.
 type B503HistoryBranchCell struct {
 	B503HistoryBranchRawPresent        bool   `json:"raw_present"`
 	B503HistoryBranchRaw               uint8  `json:"raw"`
@@ -14,6 +17,8 @@ type B503HistoryBranchCell struct {
 	B503HistoryBranchValue             uint64 `json:"value"`
 }
 
+// B503HistoryBranchFields are the decoded fields of one history record: the branch marker, the
+// remainder, the error code and the calendar cells.
 type B503HistoryBranchFields struct {
 	B503HistoryBranchContext          B503HistoryBranchContext `json:"context"`
 	B503HistoryBranchMarkerPresent    bool                     `json:"marker_present"`
@@ -25,11 +30,13 @@ type B503HistoryBranchFields struct {
 	B503HistoryBranchCalendar         [5]B503HistoryBranchCell `json:"calendar"`
 }
 
+// B503HistoryBranchComponent is one calendar cell with its interpretation state.
 type B503HistoryBranchComponent struct {
 	B503HistoryBranchCell  B503HistoryBranchCell `json:"cell"`
 	B503HistoryBranchState string                `json:"state"`
 }
 
+// B503HistoryBranchView is the branch interpretation of a history record with its grades.
 type B503HistoryBranchView struct {
 	B503HistoryBranchFields        B503HistoryBranchFields       `json:"fields"`
 	B503HistoryBranchState         string                        `json:"state"`
@@ -40,6 +47,9 @@ type B503HistoryBranchView struct {
 	B503HistoryBranchQualification string                        `json:"qualification"`
 }
 
+// B503HistoryBranchHistory selects the record branch from the marker: 0 is a no-item record when the
+// remainder is all 0xFF, 1 an error record without complete time, and 2 a record with candidate
+// calendar components. Any other marker or incomplete input leaves the state unknown-branch.
 func B503HistoryBranchHistory(b503HistoryBranchFields B503HistoryBranchFields) B503HistoryBranchView {
 	b503HistoryBranchView := B503HistoryBranchView{
 		B503HistoryBranchFields:        b503HistoryBranchFields,

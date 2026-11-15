@@ -55,6 +55,9 @@ func b512PowerStepperFieldRead(b512PowerStepperFieldDecoder *json.Decoder) (any,
 	return b512PowerStepperFieldToken, nil
 }
 
+// B512PowerStepperFieldEvaluate evaluates one JSON object with context, fields and arguments members
+// against the B512 power stepper fields and returns the evaluated JSON. Malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B512PowerStepperFieldEvaluate(b512PowerStepperFieldInput json.RawMessage) (json.RawMessage, error) {
 	b512PowerStepperFieldDecoder := json.NewDecoder(bytes.NewReader(b512PowerStepperFieldInput))
 	b512PowerStepperFieldDecoder.UseNumber()

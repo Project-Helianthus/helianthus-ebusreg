@@ -9,6 +9,8 @@ import (
 //go:embed data/b509_symbolic_annotations.json
 var b509SymbolicAnnotationData []byte
 
+// B509SymbolicAnnotationKey identifies one B509 symbolic annotation row; absent optional axes are nil
+// and every axis takes part in the lookup.
 type B509SymbolicAnnotationKey struct {
 	B509SymbolicAnnotationFamily        string  `json:"family"`
 	B509SymbolicAnnotationVariant       string  `json:"variant"`
@@ -70,6 +72,8 @@ func b509SymbolicAnnotationValidate(b509SymbolicAnnotationSource []byte) ([]json
 	return b509SymbolicAnnotationRows, b509SymbolicAnnotationIndex, nil
 }
 
+// B509SymbolicAnnotationEntries validates the embedded B509 symbolic annotation rows and returns them
+// as caller-owned JSON. Invalid embedded data returns an error.
 func B509SymbolicAnnotationEntries() (json.RawMessage, error) {
 	if _, _, b509SymbolicAnnotationError := b509SymbolicAnnotationValidate(b509SymbolicAnnotationData); b509SymbolicAnnotationError != nil {
 		return nil, b509SymbolicAnnotationError
@@ -77,6 +81,8 @@ func B509SymbolicAnnotationEntries() (json.RawMessage, error) {
 	return append(json.RawMessage(nil), b509SymbolicAnnotationData...), nil
 }
 
+// B509SymbolicAnnotationLookup returns the B509 symbolic annotation row whose key equals the given key
+// on every axis as caller-owned JSON. It returns an error if the embedded rows fail validation.
 func B509SymbolicAnnotationLookup(b509SymbolicAnnotationKey B509SymbolicAnnotationKey) (json.RawMessage, bool, error) {
 	_, b509SymbolicAnnotationIndex, b509SymbolicAnnotationError := b509SymbolicAnnotationValidate(b509SymbolicAnnotationData)
 	if b509SymbolicAnnotationError != nil {

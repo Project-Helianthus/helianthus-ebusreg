@@ -9,6 +9,8 @@ import (
 	b509IdentityShapeReflect "reflect"
 )
 
+// B509IdentityShapeKey identifies one B509 identity shape row; absent optional axes are nil and every
+// axis takes part in the lookup.
 type B509IdentityShapeKey struct {
 	B509IdentityShapeFamily        string  `json:"family"`
 	B509IdentityShapeVariant       string  `json:"variant"`
@@ -62,6 +64,8 @@ func b509IdentityShapeValidate(b509IdentityShapeSource []byte) ([]b509IdentitySh
 	return b509IdentityShapeRows, b509IdentityShapeKeys, nil
 }
 
+// B509IdentityShapeEntries validates the embedded B509 identity shape rows and returns them as
+// caller-owned JSON. Invalid embedded data returns an error.
 func B509IdentityShapeEntries() (b509IdentityShapeJSON.RawMessage, error) {
 	if _, _, b509IdentityShapeError := b509IdentityShapeValidate([]byte(b509IdentityShapeData)); b509IdentityShapeError != nil {
 		return nil, b509IdentityShapeError
@@ -82,6 +86,8 @@ func b509IdentityShapeLookup(b509IdentityShapeSource []byte, b509IdentityShapeKe
 	return nil, false, nil
 }
 
+// B509IdentityShapeLookup returns the B509 identity shape row whose key equals the given key on every
+// axis as caller-owned JSON. It returns an error if the embedded rows fail validation.
 func B509IdentityShapeLookup(b509IdentityShapeKey B509IdentityShapeKey) (b509IdentityShapeJSON.RawMessage, bool, error) {
 	return b509IdentityShapeLookup([]byte(b509IdentityShapeData), b509IdentityShapeKey)
 }

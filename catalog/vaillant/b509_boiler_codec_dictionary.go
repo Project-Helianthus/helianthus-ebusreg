@@ -9,6 +9,8 @@ import (
 	b509BoilerCodecDictionaryReflect "reflect"
 )
 
+// B509BoilerCodecDictionaryKey identifies one B509 boiler codec dictionary entry by message axes and
+// selector; absent optional axes are nil.
 type B509BoilerCodecDictionaryKey struct {
 	B509BoilerCodecDictionaryFamily    string   `json:"family"`
 	B509BoilerCodecDictionaryVariant   string   `json:"variant"`
@@ -19,6 +21,8 @@ type B509BoilerCodecDictionaryKey struct {
 	B509BoilerCodecDictionarySelector  []uint16 `json:"selector"`
 }
 
+// B509BoilerCodecDictionaryEntry declares the quantity, codec, unit and mapping of one boiler
+// dictionary entry.
 type B509BoilerCodecDictionaryEntry struct {
 	B509BoilerCodecDictionaryKey       B509BoilerCodecDictionaryKey `json:"key"`
 	B509BoilerCodecDictionaryQuantity  string                       `json:"quantity"`
@@ -84,6 +88,8 @@ func b509BoilerCodecDictionaryParse(b509BoilerCodecDictionaryData []byte) ([]B50
 	return b509BoilerCodecDictionaryEntries, nil
 }
 
+// B509BoilerCodecDictionaryEntries decodes and validates the embedded boiler codec dictionary on each
+// call. Invalid embedded data returns an error.
 func B509BoilerCodecDictionaryEntries() ([]B509BoilerCodecDictionaryEntry, error) {
 	return b509BoilerCodecDictionaryParse(b509BoilerCodecDictionaryJSON)
 }
@@ -101,6 +107,8 @@ func b509BoilerCodecDictionaryLookup(b509BoilerCodecDictionaryData []byte, b509B
 	return B509BoilerCodecDictionaryEntry{}, false, nil
 }
 
+// B509BoilerCodecDictionaryLookup returns the boiler dictionary entry whose key equals the given key
+// on every axis, or the dictionary error.
 func B509BoilerCodecDictionaryLookup(b509BoilerCodecDictionaryKey B509BoilerCodecDictionaryKey) (B509BoilerCodecDictionaryEntry, bool, error) {
 	return b509BoilerCodecDictionaryLookup(b509BoilerCodecDictionaryJSON, b509BoilerCodecDictionaryKey)
 }

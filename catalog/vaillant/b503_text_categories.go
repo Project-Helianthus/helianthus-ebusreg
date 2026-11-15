@@ -12,6 +12,8 @@ import (
 //go:embed data/b503_text_categories.json
 var b503TextCategoryData []byte
 
+// B503TextCategoryKey identifies one B503 text category field; absent optional axes are nil and
+// lookups compare every axis exactly.
 type B503TextCategoryKey struct {
 	B503TextCategoryFamily            string  `json:"family"`
 	B503TextCategoryVariant           string  `json:"variant"`
@@ -26,6 +28,8 @@ type B503TextCategoryKey struct {
 	B503TextCategoryCommandRole       *string `json:"command_role"`
 }
 
+// B503TextCategoryEntry declares one text category field with its position, width, encoding, labels
+// and grades.
 type B503TextCategoryEntry struct {
 	B503TextCategoryKey                   B503TextCategoryKey `json:"key"`
 	B503TextCategoryGrade                 string              `json:"grade"`
@@ -47,6 +51,8 @@ type B503TextCategoryEntry struct {
 	B503TextCategoryNativeContract string `json:"native_contract"`
 }
 
+// B503TextCategoryEntries strictly decodes and validates the embedded text category catalog on each
+// call. Unknown members, trailing data, an empty catalog and invalid rows return an error.
 func B503TextCategoryEntries() ([]B503TextCategoryEntry, error) {
 	var b503TextCategoryDecoded []struct {
 		B503TextCategoryEntry
@@ -95,6 +101,8 @@ func B503TextCategoryEntries() ([]B503TextCategoryEntry, error) {
 	return b503TextCategoryEntries, nil
 }
 
+// B503TextCategoryLookup returns the text category entry whose key equals the given key on every axis,
+// or the catalog error.
 func B503TextCategoryLookup(b503TextCategoryKey B503TextCategoryKey) (B503TextCategoryEntry, bool, error) {
 	b503TextCategoryEntries, b503TextCategoryError := B503TextCategoryEntries()
 	if b503TextCategoryError != nil {

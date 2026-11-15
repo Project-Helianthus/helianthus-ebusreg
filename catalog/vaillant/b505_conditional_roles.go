@@ -95,6 +95,9 @@ func b505ConditionalRoleByte(b505ConditionalRoleValue any) (int, bool) {
 	return int(b505ConditionalRoleInteger), b505ConditionalRoleInteger >= 0 && b505ConditionalRoleInteger <= 255
 }
 
+// B505ConditionalRoleEvaluate evaluates one JSON object with context, fields and arguments members
+// against the B505 conditional roles and returns the evaluated JSON. Malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B505ConditionalRoleEvaluate(b505ConditionalRoleInput json.RawMessage) (json.RawMessage, error) {
 	b505ConditionalRoleDecoder := json.NewDecoder(bytes.NewReader(b505ConditionalRoleInput))
 	b505ConditionalRoleDecoder.UseNumber()

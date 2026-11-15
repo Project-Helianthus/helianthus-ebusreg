@@ -9,6 +9,8 @@ import (
 //go:embed data/b505_operating_roles.json
 var b505OperatingRoleData string
 
+// B505OperatingRoleKey identifies one B505 operating role row; absent optional axes are nil and every
+// axis takes part in the lookup.
 type B505OperatingRoleKey struct {
 	B505OperatingRoleFamily        string  `json:"family"`
 	B505OperatingRoleVariant       string  `json:"variant"`
@@ -58,6 +60,8 @@ func b505OperatingRoleValidate(b505OperatingRoleData []byte) (map[string]b505Ope
 	return b505OperatingRoleIndex, nil
 }
 
+// B505OperatingRoleEntries validates the embedded B505 operating role rows and returns them as
+// caller-owned JSON. Invalid embedded data returns an error.
 func B505OperatingRoleEntries() (b505OperatingRoleJSON.RawMessage, error) {
 	if _, b505OperatingRoleErr := b505OperatingRoleValidate([]byte(b505OperatingRoleData)); b505OperatingRoleErr != nil {
 		return nil, b505OperatingRoleErr
@@ -78,6 +82,8 @@ func b505OperatingRoleLookup(b505OperatingRoleData []byte, b505OperatingRoleKey 
 	return append(b505OperatingRoleJSON.RawMessage(nil), b505OperatingRoleRow...), b505OperatingRoleFound, nil
 }
 
+// B505OperatingRoleLookup returns the B505 operating role row whose key equals the given key on every
+// axis as caller-owned JSON. It returns an error if the embedded rows fail validation.
 func B505OperatingRoleLookup(b505OperatingRoleKey B505OperatingRoleKey) (b505OperatingRoleJSON.RawMessage, bool, error) {
 	return b505OperatingRoleLookup([]byte(b505OperatingRoleData), b505OperatingRoleKey)
 }

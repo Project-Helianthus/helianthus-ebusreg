@@ -6,6 +6,8 @@ import (
 	b512FeedbackFallbackFmt "fmt"
 )
 
+// B512FeedbackFallbackKey identifies one B512 feedback fallback row; absent optional axes are nil and
+// every axis takes part in the lookup.
 type B512FeedbackFallbackKey struct {
 	B512FeedbackFallbackFamily        string  `json:"family"`
 	B512FeedbackFallbackVariant       string  `json:"variant"`
@@ -70,6 +72,8 @@ func b512FeedbackFallbackValidate(b512FeedbackFallbackInput []byte) (map[string]
 	return b512FeedbackFallbackIndex, nil
 }
 
+// B512FeedbackFallbackEntries validates the embedded B512 feedback fallback rows and returns them as
+// caller-owned JSON. Invalid embedded data returns an error.
 func B512FeedbackFallbackEntries() (b512FeedbackFallbackJSON.RawMessage, error) {
 	if _, b512FeedbackFallbackError := b512FeedbackFallbackValidate([]byte(b512FeedbackFallbackData)); b512FeedbackFallbackError != nil {
 		return nil, b512FeedbackFallbackError
@@ -90,6 +94,8 @@ func b512FeedbackFallbackLookup(b512FeedbackFallbackInput []byte, b512FeedbackFa
 	return append(b512FeedbackFallbackJSON.RawMessage(nil), b512FeedbackFallbackRow...), b512FeedbackFallbackFound, nil
 }
 
+// B512FeedbackFallbackLookup returns the B512 feedback fallback row whose key equals the given key on
+// every axis as caller-owned JSON. It returns an error if the embedded rows fail validation.
 func B512FeedbackFallbackLookup(b512FeedbackFallbackKey B512FeedbackFallbackKey) (b512FeedbackFallbackJSON.RawMessage, bool, error) {
 	return b512FeedbackFallbackLookup([]byte(b512FeedbackFallbackData), b512FeedbackFallbackKey)
 }

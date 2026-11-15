@@ -8,6 +8,8 @@ import (
 //go:embed data/b512_candidates.json
 var b512CandidateB512JSON []byte
 
+// B512CandidateKey identifies one B512 candidate field; absent optional axes are nil and lookups
+// compare every axis exactly.
 type B512CandidateKey struct {
 	B512CandidateFamily    string `json:"family"`
 	B512CandidateVariant   string `json:"variant"`
@@ -18,12 +20,15 @@ type B512CandidateKey struct {
 	B512CandidateField     string `json:"field"`
 }
 
+// B512CandidateRange is an inclusive raw range with its meaning.
 type B512CandidateRange struct {
 	B512CandidateMin     int    `json:"min"`
 	B512CandidateMax     int    `json:"max"`
 	B512CandidateMeaning string `json:"meaning"`
 }
 
+// B512Candidate declares one B512 candidate field with its position, width, raw domain, scaling,
+// mappings and ranges.
 type B512Candidate struct {
 	B512CandidateKey            B512CandidateKey     `json:"key"`
 	B512CandidateGrade          string               `json:"grade"`
@@ -44,6 +49,7 @@ type B512Candidate struct {
 	B512CandidateNotes          []string             `json:"notes"`
 }
 
+// B512CandidateCatalog is the B512 candidate catalog with its catalog-wide grades and scope.
 type B512CandidateCatalog struct {
 	B512CandidateRepresentationGrade   string          `json:"representation_grade"`
 	B512CandidatePhysicalQualification string          `json:"physical_qualification"`
@@ -54,6 +60,8 @@ type B512CandidateCatalog struct {
 	B512CandidateEntries               []B512Candidate `json:"entries"`
 }
 
+// B512Candidates decodes the embedded B512 candidate catalog on each call and returns a detached copy.
+// It panics if the embedded data is malformed.
 func B512Candidates() B512CandidateCatalog {
 	var b512CandidateCatalog B512CandidateCatalog
 	if b512CandidateErr := b512CandidateJSON.Unmarshal(b512CandidateB512JSON, &b512CandidateCatalog); b512CandidateErr != nil {
@@ -69,6 +77,7 @@ func b512CandidateOptionalEqual(b512CandidateLeft, b512CandidateRight *byte) boo
 	return *b512CandidateLeft == *b512CandidateRight
 }
 
+// B512CandidateLookup returns the candidate whose key equals the given key on every axis.
 func B512CandidateLookup(b512CandidateKey B512CandidateKey) (B512Candidate, bool) {
 	for _, b512CandidateEntry := range B512Candidates().B512CandidateEntries {
 		b512CandidateStored := b512CandidateEntry.B512CandidateKey

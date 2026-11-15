@@ -1,7 +1,10 @@
 package ebusstandard
 
+// Standard05CandidateViewState is the interpretation or domain state of a burner candidate view or
+// field.
 type Standard05CandidateViewState string
 
+// Standard05CandidateViewKey selects a burner candidate view; absent optional axes are nil.
 type Standard05CandidateViewKey struct {
 	Standard05CandidateViewFamily    string `json:"family"`
 	Standard05CandidateViewVariant   string `json:"variant"`
@@ -12,6 +15,8 @@ type Standard05CandidateViewKey struct {
 	Standard05CandidateViewSelector  string `json:"selector"`
 }
 
+// Standard05CandidateViewField is one interpreted burner byte with its raw value, value, label and
+// candidate domain.
 type Standard05CandidateViewField struct {
 	Standard05CandidateViewLabel          string                       `json:"label"`
 	Standard05CandidateViewRaw            *uint8                       `json:"raw"`
@@ -24,6 +29,8 @@ type Standard05CandidateViewField struct {
 	Standard05CandidateViewMaximum        int                          `json:"maximum"`
 }
 
+// Standard05CandidateView is the five-field burner candidate view of a body, with the remainder and
+// the grades and unknowns of the interpretation.
 type Standard05CandidateView struct {
 	Standard05CandidateViewKey          Standard05CandidateViewKey      `json:"key"`
 	Standard05CandidateViewRaw          []byte                          `json:"raw"`
@@ -45,6 +52,9 @@ func standard05CandidateViewCopyByte(standard05CandidateViewByte *uint8) *uint8 
 	return &standard05CandidateViewValue
 }
 
+// Standard05CandidateViewInterpret interprets the body for the key and returns a detached view. A key
+// other than the burner five-field request selection yields a raw-only view; missing bytes stay absent
+// and values outside the candidate domain are flagged, not rejected.
 func Standard05CandidateViewInterpret(standard05CandidateViewKey Standard05CandidateViewKey, standard05CandidateViewBody []byte) Standard05CandidateView {
 	standard05CandidateViewKey.Standard05CandidateViewPrimary = standard05CandidateViewCopyByte(standard05CandidateViewKey.Standard05CandidateViewPrimary)
 	standard05CandidateViewKey.Standard05CandidateViewSecondary = standard05CandidateViewCopyByte(standard05CandidateViewKey.Standard05CandidateViewSecondary)

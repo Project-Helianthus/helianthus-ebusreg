@@ -12,6 +12,8 @@ import (
 //go:embed data/b509_op59_quantities.json
 var b509Op59QuantityData string
 
+// B509Op59QuantityKey identifies one operation 59 quantity; absent optional axes are nil and lookups
+// compare every axis exactly.
 type B509Op59QuantityKey struct {
 	B509Op59QuantityFamily            string  `json:"family"`
 	B509Op59QuantityVariant           string  `json:"variant"`
@@ -26,6 +28,7 @@ type B509Op59QuantityKey struct {
 	B509Op59QuantityCommandRole       *string `json:"command_role"`
 }
 
+// B509Op59QuantityCodec declares the representation, width, divisor and unit of a quantity.
 type B509Op59QuantityCodec struct {
 	B509Op59QuantityRepresentation string   `json:"representation"`
 	B509Op59QuantityWidth          *uint8   `json:"width_bits"`
@@ -33,6 +36,7 @@ type B509Op59QuantityCodec struct {
 	B509Op59QuantityUnit           *string  `json:"unit"`
 }
 
+// B509Op59QuantityEntry declares one operation 59 quantity with its codec, position, label and grades.
 type B509Op59QuantityEntry struct {
 	B509Op59QuantityKey                   B509Op59QuantityKey    `json:"key"`
 	B509Op59QuantityGrade                 string                 `json:"grade"`
@@ -45,6 +49,8 @@ type B509Op59QuantityEntry struct {
 	B509Op59QuantityUnknown               []string               `json:"unknown"`
 }
 
+// B509Op59QuantityEntries strictly decodes and validates the five embedded operation 59 quantities on
+// each call. Unknown members, trailing data or a different entry count return an error.
 func B509Op59QuantityEntries() ([]B509Op59QuantityEntry, error) {
 	var b509Op59QuantityEntries []B509Op59QuantityEntry
 	b509Op59QuantityDecoder := b509Op59QuantityJSON.NewDecoder(b509Op59QuantityBytes.NewBufferString(b509Op59QuantityData))
@@ -82,6 +88,8 @@ func B509Op59QuantityEntries() ([]B509Op59QuantityEntry, error) {
 	return b509Op59QuantityEntries, nil
 }
 
+// B509Op59QuantityLookup returns the quantity whose key equals the given key on every axis, or the
+// catalog error.
 func B509Op59QuantityLookup(b509Op59QuantityKey B509Op59QuantityKey) (B509Op59QuantityEntry, bool, error) {
 	b509Op59QuantityEntries, b509Op59QuantityError := B509Op59QuantityEntries()
 	if b509Op59QuantityError != nil {

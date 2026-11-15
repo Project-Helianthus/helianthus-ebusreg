@@ -59,6 +59,9 @@ func b50FFieldViewRead(b50FFieldViewDecoder *b50FFieldViewJSON.Decoder, b50FFiel
 	return b50FFieldViewToken, nil
 }
 
+// B50FFieldViewInterpret evaluates one JSON object with context, fields and arguments members against
+// the B50F field views and returns the evaluated JSON. Malformed or trailing JSON and input of the
+// wrong shape return an error.
 func B50FFieldViewInterpret(b50FFieldViewInput b50FFieldViewJSON.RawMessage) (b50FFieldViewJSON.RawMessage, error) {
 	b50FFieldViewDecoder := b50FFieldViewJSON.NewDecoder(b50FFieldViewBytes.NewReader(b50FFieldViewInput))
 	b50FFieldViewDecoder.UseNumber()

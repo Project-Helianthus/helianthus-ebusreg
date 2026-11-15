@@ -5,11 +5,13 @@ import (
 	"encoding/json"
 )
 
+// B512AirFieldAxis is an optional numeric key axis; Value is meaningful only when Present is true.
 type B512AirFieldAxis struct {
 	B512AirFieldPresent bool   `json:"present"`
 	B512AirFieldValue   uint16 `json:"value"`
 }
 
+// B512AirKey identifies one B512 air field; lookups compare every axis exactly.
 type B512AirKey struct {
 	B512AirFieldFamily    string           `json:"family"`
 	B512AirFieldVariant   string           `json:"variant"`
@@ -24,6 +26,8 @@ type B512AirKey struct {
 	B512AirFieldRegister  B512AirFieldAxis `json:"register"`
 }
 
+// B512AirField declares the position, width, conversion, unit, default and value domain of one air
+// field.
 type B512AirField struct {
 	B512AirFieldKey             B512AirKey                   `json:"key"`
 	B512AirFieldLogicalPosition *int                         `json:"logical_position"`
@@ -45,12 +49,14 @@ type B512AirField struct {
 	B512AirFieldRawFallback     string                       `json:"raw_fallback"`
 }
 
+// B512AirOperation declares whether an air operation takes request arguments and its grade.
 type B512AirOperation struct {
 	B512AirFieldOperation        uint16 `json:"operation"`
 	B512AirFieldRequestArguments bool   `json:"request_arguments"`
 	B512AirFieldGrade            string `json:"grade"`
 }
 
+// B512AirMetadata is the B512 air field catalog with its grades, operations and fields.
 type B512AirMetadata struct {
 	B512AirFieldRepresentation  string             `json:"representation"`
 	B512AirFieldPhysicalSupport string             `json:"physical_support"`
@@ -65,6 +71,8 @@ type B512AirMetadata struct {
 //go:embed data/b512_air_fields.json
 var b512AirFieldAirJSON []byte
 
+// B512AirFields decodes the embedded air field catalog on each call and returns a detached copy. It
+// panics if the embedded data is malformed.
 func B512AirFields() B512AirMetadata {
 	var b512AirFieldMetadata B512AirMetadata
 	if b512AirFieldError := json.Unmarshal(b512AirFieldAirJSON, &b512AirFieldMetadata); b512AirFieldError != nil {
@@ -82,6 +90,7 @@ func b512AirFieldFindAirField(b512AirFieldFields []B512AirField, b512AirFieldKey
 	return B512AirField{}, false
 }
 
+// B512LookupAirField returns the air field whose key equals the given key on every axis.
 func B512LookupAirField(b512AirFieldKey B512AirKey) (B512AirField, bool) {
 	return b512AirFieldFindAirField(B512AirFields().B512AirFieldFields, b512AirFieldKey)
 }

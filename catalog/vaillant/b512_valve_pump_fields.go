@@ -92,6 +92,9 @@ func b512ValvePumpFieldBytes(b512ValvePumpFieldValue any) ([]int, error) {
 	return b512ValvePumpFieldBytes, nil
 }
 
+// B512ValvePumpFieldEvaluate evaluates one JSON object with context, fields and arguments members
+// against the B512 valve and pump fields and returns the evaluated JSON. Malformed or trailing JSON
+// and input of the wrong shape return an error.
 func B512ValvePumpFieldEvaluate(b512ValvePumpFieldInput json.RawMessage) (json.RawMessage, error) {
 	b512ValvePumpFieldDecoder := json.NewDecoder(bytes.NewReader(b512ValvePumpFieldInput))
 	b512ValvePumpFieldDecoder.UseNumber()

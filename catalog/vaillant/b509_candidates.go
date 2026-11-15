@@ -9,6 +9,8 @@ import (
 //go:embed data/b509_candidates.json
 var b509CandidateB509CandidatesJSON string
 
+// B509CandidateKey identifies one B509 candidate field; absent optional axes are nil and lookups
+// compare every axis exactly.
 type B509CandidateKey struct {
 	B509CandidateFamily    string  `json:"family"`
 	B509CandidateVariant   string  `json:"variant"`
@@ -19,6 +21,8 @@ type B509CandidateKey struct {
 	B509CandidateField     string  `json:"field"`
 }
 
+// B509CandidateEntry declares one B509 candidate field with its position, width, conversion, unit,
+// bounds and mappings.
 type B509CandidateEntry struct {
 	B509CandidateKey           B509CandidateKey  `json:"key"`
 	B509CandidatePosition      *int              `json:"position"`
@@ -38,6 +42,7 @@ type B509CandidateEntry struct {
 	B509CandidateNotes         []string          `json:"notes"`
 }
 
+// B509CandidateCatalog is the B509 candidate catalog with its catalog-wide grades and limitations.
 type B509CandidateCatalog struct {
 	B509CandidateMetadataPresence SchemaGrade          `json:"metadata_presence"`
 	B509CandidateWireAdaptation   SchemaGrade          `json:"wire_adaptation"`
@@ -47,12 +52,16 @@ type B509CandidateCatalog struct {
 	B509CandidateEntries          []B509CandidateEntry `json:"entries"`
 }
 
+// B509Candidates decodes the embedded B509 candidate catalog on each call and returns a detached copy
+// or the decoding error.
 func B509Candidates() (B509CandidateCatalog, error) {
 	var b509CandidateCatalog B509CandidateCatalog
 	b509CandidateError := b509CandidateJSON.Unmarshal([]byte(b509CandidateB509CandidatesJSON), &b509CandidateCatalog)
 	return b509CandidateCatalog, b509CandidateError
 }
 
+// B509CandidateLookup returns the candidate entry whose key equals the given key on every axis, or the
+// catalog decoding error.
 func B509CandidateLookup(b509CandidateKey B509CandidateKey) (B509CandidateEntry, bool, error) {
 	b509CandidateCatalog, b509CandidateError := B509Candidates()
 	if b509CandidateError != nil {

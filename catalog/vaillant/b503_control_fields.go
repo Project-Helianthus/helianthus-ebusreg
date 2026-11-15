@@ -62,6 +62,9 @@ func b503ControlFieldUint(b503ControlFieldValue any, b503ControlFieldBits int) (
 	return b503ControlFieldStrconv.ParseUint(string(b503ControlFieldNumber), 10, b503ControlFieldBits)
 }
 
+// B503ControlFieldEvaluate evaluates one JSON object with context, fields and arguments members
+// against the B503 control fields and returns the evaluated JSON. Malformed or trailing JSON and input
+// of the wrong shape return an error.
 func B503ControlFieldEvaluate(b503ControlFieldInput b503ControlFieldJSON.RawMessage) (b503ControlFieldJSON.RawMessage, error) {
 	b503ControlFieldDecoder := b503ControlFieldJSON.NewDecoder(b503ControlFieldBytesPackage.NewReader(b503ControlFieldInput))
 	b503ControlFieldDecoder.UseNumber()

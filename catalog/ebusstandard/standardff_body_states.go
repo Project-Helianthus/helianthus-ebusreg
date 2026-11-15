@@ -7,6 +7,8 @@ import (
 	standardFFBodyStateFmt "fmt"
 )
 
+// StandardFFBodyStateKey identifies one service FF body state row; every axis takes part in the
+// lookup.
 type StandardFFBodyStateKey struct {
 	StandardFFBodyStateFamily        string  `json:"family"`
 	StandardFFBodyStateVariant       string  `json:"variant"`
@@ -108,6 +110,8 @@ func standardFFBodyStateValidate(standardFFBodyStateData []byte) (standardFFBody
 	return append(standardFFBodyStateJSON.RawMessage(nil), standardFFBodyStateData...), standardFFBodyStateIndex, nil
 }
 
+// StandardFFBodyStateEntries validates the embedded service FF body state rows and returns a copy of
+// them. Invalid rows or duplicate keys return an error.
 func StandardFFBodyStateEntries() (standardFFBodyStateJSON.RawMessage, error) {
 	standardFFBodyStateEntries, _, standardFFBodyStateErr := standardFFBodyStateValidate(standardFFBodyStateBodyStatesJSON)
 	return standardFFBodyStateEntries, standardFFBodyStateErr
@@ -126,6 +130,8 @@ func standardFFBodyStateLookup(standardFFBodyStateData []byte, standardFFBodySta
 	return append(standardFFBodyStateJSON.RawMessage(nil), standardFFBodyStateRow...), standardFFBodyStateFound, nil
 }
 
+// StandardFFBodyStateLookup returns a copy of the body state row whose key equals the given key on
+// every axis. It returns an error if the embedded rows fail validation.
 func StandardFFBodyStateLookup(standardFFBodyStateKey StandardFFBodyStateKey) (standardFFBodyStateJSON.RawMessage, bool, error) {
 	return standardFFBodyStateLookup(standardFFBodyStateBodyStatesJSON, standardFFBodyStateKey)
 }

@@ -1,10 +1,13 @@
 package vaillant
 
+// The family and the variant that select the B512 hot water view.
 const (
 	B512DHWViewFamily  = "vaillant-dhw-family"
 	B512DHWViewVariant = "b512-op06-candidate"
 )
 
+// B512DHWViewScalar is a raw byte scaled to Value in Unit; UnitConflict and NamedDomain flag a
+// disputed unit and a named domain value.
 type B512DHWViewScalar struct {
 	B512DHWViewRaw          byte    `json:"raw"`
 	B512DHWViewValue        float64 `json:"value"`
@@ -13,6 +16,8 @@ type B512DHWViewScalar struct {
 	B512DHWViewNamedDomain  bool    `json:"named_domain"`
 }
 
+// B512DHWViewRequest are the request-direction hot water fields; nil fields were absent from the
+// image.
 type B512DHWViewRequest struct {
 	B512DHWViewTaskActive          *bool                 `json:"task_active"`
 	B512DHWViewHeatDemand          *bool                 `json:"heat_demand"`
@@ -25,6 +30,8 @@ type B512DHWViewRequest struct {
 	B512DHWViewInletConditionBits  [2]*bool              `json:"inlet_condition_bits"`
 }
 
+// B512DHWViewPositive are the positive-direction hot water fields; nil fields were absent from the
+// image.
 type B512DHWViewPositive struct {
 	B512DHWViewLoadingDisabled       *bool              `json:"loading_disabled"`
 	B512DHWViewInternalTestActive    *bool              `json:"internal_test_active"`
@@ -37,6 +44,8 @@ type B512DHWViewPositive struct {
 	B512DHWViewAdjustment            *B512DHWViewScalar `json:"adjustment"`
 }
 
+// B512DHWViewResult is the hot water view of an image: the raw bytes, the bytes no field models, the
+// admitted direction fields and the grades.
 type B512DHWViewResult struct {
 	B512DHWViewRaw           []byte               `json:"raw"`
 	B512DHWViewUnmodelled    map[int]byte         `json:"unmodelled"`
@@ -62,6 +71,8 @@ func b512DHWViewScalar(b512DHWViewRaw byte, b512DHWViewDivisor float64, b512DHWV
 	return &B512DHWViewScalar{B512DHWViewRaw: b512DHWViewRaw, B512DHWViewValue: float64(b512DHWViewRaw) / b512DHWViewDivisor, B512DHWViewUnit: b512DHWViewUnit}
 }
 
+// B512DHWViewInterpret interprets the image for the family, variant and direction and returns a
+// detached result; an unsupported selection is not admitted and keeps every byte unmodelled.
 func B512DHWViewInterpret(b512DHWViewFamily, b512DHWViewVariant, b512DHWViewDirection string, b512DHWViewImage []byte) B512DHWViewResult {
 	b512DHWViewResult := B512DHWViewResult{
 		B512DHWViewRaw:           append([]byte(nil), b512DHWViewImage...),

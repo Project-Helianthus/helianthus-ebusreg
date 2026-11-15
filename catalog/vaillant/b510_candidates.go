@@ -9,6 +9,8 @@ import (
 //go:embed data/b510_candidates.json
 var b510CandidateB510Data []byte
 
+// B510CandidateKey identifies one B510 candidate field; absent optional axes are nil and lookups
+// compare every axis exactly.
 type B510CandidateKey struct {
 	B510CandidateFamily    string  `json:"family"`
 	B510CandidateVariant   string  `json:"variant"`
@@ -19,6 +21,8 @@ type B510CandidateKey struct {
 	B510CandidateField     string  `json:"field"`
 }
 
+// B510CandidateBit declares one bit of a B510 candidate field with its values, the modes it applies to
+// and its meaning.
 type B510CandidateBit struct {
 	B510CandidateBit                 uint8            `json:"bit"`
 	B510CandidateGrade               string           `json:"grade"`
@@ -32,6 +36,8 @@ type B510CandidateBit struct {
 	B510CandidateCommandsTermination *bool            `json:"commands_termination"`
 }
 
+// B510CandidateEntry declares one B510 candidate field with its position, width, raw domain, scaling,
+// values and bits.
 type B510CandidateEntry struct {
 	B510CandidateKey            B510CandidateKey   `json:"key"`
 	B510CandidatePosition       *int               `json:"position"`
@@ -45,6 +51,7 @@ type B510CandidateEntry struct {
 	B510CandidateInterpretation string             `json:"interpretation"`
 }
 
+// B510CandidateCatalog is the B510 candidate catalog with its catalog-wide grades and limitations.
 type B510CandidateCatalog struct {
 	B510CandidateMetadataPresence      string               `json:"metadata_presence"`
 	B510CandidatePhysicalQualification string               `json:"physical_qualification"`
@@ -54,6 +61,8 @@ type B510CandidateCatalog struct {
 	B510CandidateEntries               []B510CandidateEntry `json:"entries"`
 }
 
+// B510Candidates decodes the embedded B510 candidate catalog on each call and returns a detached copy.
+// It panics if the embedded data is malformed.
 func B510Candidates() B510CandidateCatalog {
 	var b510CandidateCatalog B510CandidateCatalog
 	if b510CandidateError := b510CandidateJSON.Unmarshal(b510CandidateB510Data, &b510CandidateCatalog); b510CandidateError != nil {
@@ -62,6 +71,7 @@ func B510Candidates() B510CandidateCatalog {
 	return b510CandidateCatalog
 }
 
+// B510CandidateLookup returns the candidate entry whose key equals the given key on every axis.
 func B510CandidateLookup(b510CandidateKey B510CandidateKey) (B510CandidateEntry, bool) {
 	for _, b510CandidateEntry := range B510Candidates().B510CandidateEntries {
 		if b510CandidateReflect.DeepEqual(b510CandidateKey, b510CandidateEntry.B510CandidateKey) {

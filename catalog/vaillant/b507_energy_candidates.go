@@ -14,6 +14,8 @@ var b507EnergyCandidateFiles b507EnergyCandidateEmbed.FS
 
 var b507EnergyCandidateData, b507EnergyCandidateReadError = b507EnergyCandidateFiles.ReadFile("data/b507_energy_candidates.json")
 
+// B507EnergyCandidateKey identifies one B507 energy candidate field; absent optional axes are nil and
+// lookups compare every axis exactly.
 type B507EnergyCandidateKey struct {
 	B507EnergyCandidateFamily            string  `json:"family"`
 	B507EnergyCandidateVariant           string  `json:"variant"`
@@ -28,6 +30,8 @@ type B507EnergyCandidateKey struct {
 	B507EnergyCandidateCommandRole       *string `json:"command_role"`
 }
 
+// B507EnergyCandidateEntry declares one energy candidate field with its position, width, encoding, raw
+// domain and grades.
 type B507EnergyCandidateEntry struct {
 	B507EnergyCandidateKey                   B507EnergyCandidateKey `json:"key"`
 	B507EnergyCandidateGrade                 string                 `json:"grade"`
@@ -50,6 +54,8 @@ type B507EnergyCandidateEntry struct {
 	B507EnergyCandidateAlternatives          []string               `json:"alternatives"`
 }
 
+// B507EnergyCandidateEntries strictly decodes and validates the embedded energy candidates on each
+// call. Unknown members, trailing data, an empty catalog and invalid rows return an error.
 func B507EnergyCandidateEntries() ([]B507EnergyCandidateEntry, error) {
 	if b507EnergyCandidateReadError != nil {
 		return nil, b507EnergyCandidateReadError
@@ -89,6 +95,8 @@ func B507EnergyCandidateEntries() ([]B507EnergyCandidateEntry, error) {
 	return b507EnergyCandidateEntries, nil
 }
 
+// B507EnergyCandidateLookup returns the energy candidate whose key equals the given key on every axis,
+// or the catalog error.
 func B507EnergyCandidateLookup(b507EnergyCandidateKey B507EnergyCandidateKey) (B507EnergyCandidateEntry, bool, error) {
 	b507EnergyCandidateEntries, b507EnergyCandidateError := B507EnergyCandidateEntries()
 	if b507EnergyCandidateError != nil {

@@ -6,6 +6,8 @@ import (
 	standard07ResidualFmt "fmt"
 )
 
+// Standard07ResidualKey identifies one residual service 07 field row; every axis takes part in the
+// lookup.
 type Standard07ResidualKey struct {
 	Standard07ResidualFamily        string  `json:"family"`
 	Standard07ResidualVariant       string  `json:"variant"`
@@ -71,6 +73,8 @@ func standard07ResidualValidate(standard07ResidualData []byte) ([]standard07Resi
 	return standard07ResidualRows, nil
 }
 
+// Standard07ResidualEntries validates the embedded residual field rows and returns them as one JSON
+// array. Malformed rows, missing axes, incomplete identities and duplicate keys return an error.
 func Standard07ResidualEntries() (standard07ResidualJSON.RawMessage, error) {
 	if _, standard07ResidualErr := standard07ResidualValidate([]byte(standard07ResidualEmbedded)); standard07ResidualErr != nil {
 		return nil, standard07ResidualErr
@@ -105,6 +109,8 @@ func standard07ResidualLookup(standard07ResidualData []byte, standard07ResidualK
 	return nil, false, nil
 }
 
+// Standard07ResidualLookup returns a copy of the residual row whose key equals the given key on every
+// axis. It returns an error if the embedded rows fail validation.
 func Standard07ResidualLookup(standard07ResidualKey Standard07ResidualKey) (standard07ResidualJSON.RawMessage, bool, error) {
 	return standard07ResidualLookup([]byte(standard07ResidualEmbedded), standard07ResidualKey)
 }

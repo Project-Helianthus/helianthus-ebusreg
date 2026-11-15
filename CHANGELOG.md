@@ -2,6 +2,32 @@
 
 ## Unreleased
 
+- Add `vaillant/nativepoints`, the native point catalog of the controller
+  register service and the boiler and heat-pump register service. It joins
+  the controller name annotations, the register-service symbolic
+  annotations, the boiler and heat-pump codec dictionaries, the controller
+  discovery profiles and the codecs and units of the `vaillant/system`
+  scalar interpreters into one row per device class and canonical name:
+  operation and selector or group and register, instance range, value
+  class, codec and scale, native unit, controller families, name status
+  and `Exportable` with a withheld reason (`name_not_final`,
+  `identifier_or_code`, `not_numeric`, `unit_unknown`,
+  `pressure_reference_unknown`, `codec_unknown`). The evidence grade is
+  Hypothesis on every source row and is not the gate. Heat-pump rows keep
+  their real status: refrigerant and water pressures are withheld because
+  no pressure reference is documented, superheat, subcooling and
+  compressor counts and times are withheld until a machine-readable codec
+  exists, and a speed with an unresolved unit is withheld. `Decode` turns a
+  retained raw reply of an exportable row into an exact native value and
+  an exact SI value (kelvin, pascal, joule, watt, second, cubic metre per
+  second, per second or a ratio) and refuses NaN, infinities, codec
+  sentinels and short or over-long replies with a typed `DecodeError`.
+  `scripts/generate_native_points.py --check` compares the committed table
+  with its sources. No existing package, name, tag or embedded file
+  changes, and the library performs no bus traffic. Follow-up: the gateway
+  native point export reads this catalog to publish exportable values from
+  the replies it already retains.
+
 - Rename the embedded data files of `catalog/ebusstandard` and
   `catalog/vaillant` whose names started with a work-item code; no
   production file name starts with a code any more. Each file keeps its

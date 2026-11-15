@@ -9,6 +9,8 @@ import (
 //go:embed data/b501_legacy_sequence.json
 var b501LegacySequenceEmbedded string
 
+// B501LegacySequenceKey identifies one B501 legacy sequence row; absent optional axes are nil and
+// every axis takes part in the lookup.
 type B501LegacySequenceKey struct {
 	B501LegacySequenceFamily        string  `json:"family"`
 	B501LegacySequenceVariant       string  `json:"variant"`
@@ -69,6 +71,8 @@ func b501LegacySequenceValidate(b501LegacySequenceData []byte) ([]b501LegacySequ
 	return b501LegacySequenceRows, nil
 }
 
+// B501LegacySequenceEntries validates the embedded B501 legacy sequence rows and returns them as
+// caller-owned JSON. Invalid embedded data returns an error.
 func B501LegacySequenceEntries() (b501LegacySequenceJSON.RawMessage, error) {
 	b501LegacySequenceData := []byte(b501LegacySequenceEmbedded)
 	if _, b501LegacySequenceError := b501LegacySequenceValidate(b501LegacySequenceData); b501LegacySequenceError != nil {
@@ -104,6 +108,8 @@ func b501LegacySequenceLookup(b501LegacySequenceData []byte, b501LegacySequenceK
 	return nil, false, nil
 }
 
+// B501LegacySequenceLookup returns the B501 legacy sequence row whose key equals the given key on
+// every axis as caller-owned JSON. It returns an error if the embedded rows fail validation.
 func B501LegacySequenceLookup(b501LegacySequenceKey B501LegacySequenceKey) (b501LegacySequenceJSON.RawMessage, bool, error) {
 	return b501LegacySequenceLookup([]byte(b501LegacySequenceEmbedded), b501LegacySequenceKey)
 }

@@ -10,6 +10,8 @@ import (
 //go:embed data/b512_heatpump_io.json
 var b512HeatpumpIOData string
 
+// B512HeatpumpIOKey identifies one B512 heat pump input and output row; absent optional axes are nil
+// and every axis takes part in the lookup.
 type B512HeatpumpIOKey struct {
 	B512HeatpumpIOFamily        string  `json:"family"`
 	B512HeatpumpIOVariant       string  `json:"variant"`
@@ -80,6 +82,8 @@ func b512HeatpumpIOEntries(b512HeatpumpIOInput string) (b512HeatpumpIOJSON.RawMe
 	return append(b512HeatpumpIOJSON.RawMessage(nil), b512HeatpumpIOInput...), nil
 }
 
+// B512HeatpumpIOEntries validates the embedded B512 heat pump input and output rows and returns them
+// as caller-owned JSON. Invalid embedded data returns an error.
 func B512HeatpumpIOEntries() (b512HeatpumpIOJSON.RawMessage, error) {
 	return b512HeatpumpIOEntries(b512HeatpumpIOData)
 }
@@ -97,6 +101,8 @@ func b512HeatpumpIOLookup(b512HeatpumpIOInput string, b512HeatpumpIOKey B512Heat
 	return nil, false, nil
 }
 
+// B512HeatpumpIOLookup returns the B512 heat pump input and output row whose key equals the given key
+// on every axis as caller-owned JSON. It returns an error if the embedded rows fail validation.
 func B512HeatpumpIOLookup(b512HeatpumpIOKey B512HeatpumpIOKey) (b512HeatpumpIOJSON.RawMessage, bool, error) {
 	return b512HeatpumpIOLookup(b512HeatpumpIOData, b512HeatpumpIOKey)
 }

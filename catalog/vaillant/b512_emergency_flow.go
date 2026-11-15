@@ -50,6 +50,9 @@ func b512EmergencyFlowRead(b512EmergencyFlowDecoder *json.Decoder) (any, error) 
 	return b512EmergencyFlowToken, nil
 }
 
+// B512EmergencyFlowEvaluate evaluates one JSON object with context, fields and arguments members
+// against the B512 emergency flow fields and returns the evaluated JSON. Malformed or trailing JSON
+// and input of the wrong shape return an error.
 func B512EmergencyFlowEvaluate(b512EmergencyFlowInput json.RawMessage) (json.RawMessage, error) {
 	b512EmergencyFlowDecoder := json.NewDecoder(bytes.NewReader(b512EmergencyFlowInput))
 	b512EmergencyFlowDecoder.UseNumber()

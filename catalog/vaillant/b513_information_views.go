@@ -57,6 +57,9 @@ func b513InformationViewInteger(b513InformationViewValue any) (int64, bool) {
 	return b513InformationViewInt, b513InformationViewError == nil
 }
 
+// B513InformationViewInterpret evaluates one JSON object with context, fields and arguments members
+// against the B513 information views and returns the evaluated JSON. Malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B513InformationViewInterpret(b513InformationViewInput json.RawMessage) (json.RawMessage, error) {
 	b513InformationViewDecoder := json.NewDecoder(bytes.NewReader(b513InformationViewInput))
 	b513InformationViewDecoder.UseNumber()

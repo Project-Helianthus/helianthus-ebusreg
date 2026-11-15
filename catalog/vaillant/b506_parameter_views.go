@@ -65,6 +65,9 @@ func b506ParameterViewInteger(b506ParameterViewValue any) (int64, bool) {
 	return b506ParameterViewInt, b506ParameterViewErr == nil
 }
 
+// B506ParameterViewInterpret evaluates one JSON object with context, fields and arguments members
+// against the B506 parameter views and returns the evaluated JSON. Malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B506ParameterViewInterpret(b506ParameterViewInput json.RawMessage) (json.RawMessage, error) {
 	b506ParameterViewDecoder := json.NewDecoder(bytes.NewReader(b506ParameterViewInput))
 	b506ParameterViewDecoder.UseNumber()

@@ -6,6 +6,8 @@ import (
 	b509DiagnosticShapeReflect "reflect"
 )
 
+// B509DiagnosticKey identifies one B509 diagnostic field; absent optional axes are nil and lookups
+// compare every axis exactly.
 type B509DiagnosticKey struct {
 	B509DiagnosticShapeFamily    string  `json:"family"`
 	B509DiagnosticShapeVariant   string  `json:"variant"`
@@ -20,6 +22,8 @@ type B509DiagnosticKey struct {
 	B509DiagnosticShapeRegister  *uint16 `json:"register"`
 }
 
+// B509DiagnosticField declares the position, width, conversion, unit and value domain of one
+// diagnostic field.
 type B509DiagnosticField struct {
 	B509DiagnosticShapeKey              B509DiagnosticKey  `json:"key"`
 	B509DiagnosticShapeLogicalPosition  *int               `json:"logical_position"`
@@ -42,6 +46,8 @@ type B509DiagnosticField struct {
 	B509DiagnosticShapePadding          *string            `json:"padding"`
 }
 
+// B509DiagnosticCatalog is the B509 diagnostic shape catalog with its catalog-wide grades and
+// limitations.
 type B509DiagnosticCatalog struct {
 	B509DiagnosticShapeRepresentation      string                `json:"representation"`
 	B509DiagnosticShapeQualification       string                `json:"qualification"`
@@ -55,6 +61,8 @@ type B509DiagnosticCatalog struct {
 //go:embed data/b509_diagnostic_shapes.json
 var b509DiagnosticShapeDiagnosticJSON string
 
+// B509DiagnosticShapes decodes the embedded diagnostic shape catalog on each call and returns a
+// detached copy or the decoding error.
 func B509DiagnosticShapes() (B509DiagnosticCatalog, error) {
 	var b509DiagnosticShapeCatalog B509DiagnosticCatalog
 	b509DiagnosticShapeError := b509DiagnosticShapeJSON.Unmarshal([]byte(b509DiagnosticShapeDiagnosticJSON), &b509DiagnosticShapeCatalog)
@@ -76,6 +84,8 @@ func b509DiagnosticShapeLookupField(b509DiagnosticShapeFields []B509DiagnosticFi
 	return B509DiagnosticField{}, false, nil
 }
 
+// B509LookupDiagnosticField returns the diagnostic field whose key equals the given key on every axis,
+// or the lookup error.
 func B509LookupDiagnosticField(b509DiagnosticShapeKey B509DiagnosticKey) (B509DiagnosticField, bool, error) {
 	b509DiagnosticShapeCatalog, b509DiagnosticShapeError := B509DiagnosticShapes()
 	if b509DiagnosticShapeError != nil {

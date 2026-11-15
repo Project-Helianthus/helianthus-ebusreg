@@ -12,6 +12,8 @@ import (
 //go:embed data/b50e_rule_value_rows.json
 var b50ERuleValueRowRowsJSON []byte
 
+// B50ERuleValueRowKey identifies one B50E rule value row; every axis is optional and lookups compare
+// every axis exactly.
 type B50ERuleValueRowKey struct {
 	B50ERuleValueRowFamily    *string `json:"family"`
 	B50ERuleValueRowVariant   *string `json:"variant"`
@@ -23,6 +25,8 @@ type B50ERuleValueRowKey struct {
 	B50ERuleValueRowField     *string `json:"field"`
 }
 
+// B50ERuleValueRowField declares the offset, width, encoding, scale, unit and carrier and scaled
+// ranges of a rule value.
 type B50ERuleValueRowField struct {
 	B50ERuleValueRowOffset         *int              `json:"offset"`
 	B50ERuleValueRowWidth          *int              `json:"width"`
@@ -38,6 +42,8 @@ type B50ERuleValueRowField struct {
 	B50ERuleValueRowScaledMaximum  *float64          `json:"scaled_maximum"`
 }
 
+// B50ERuleValueRowEntry declares one rule value row with its value, optional companion field and
+// grades.
 type B50ERuleValueRowEntry struct {
 	B50ERuleValueRowKey                  B50ERuleValueRowKey    `json:"key"`
 	B50ERuleValue                        B50ERuleValueRowField  `json:"value"`
@@ -119,10 +125,14 @@ func b50ERuleValueRowDecode(b50ERuleValueRowInput []byte) ([]B50ERuleValueRowEnt
 	return b50ERuleValueRowEntries, nil
 }
 
+// B50ERuleValueRowEntries decodes and validates the embedded rule value rows on each call. Invalid
+// embedded data returns an error.
 func B50ERuleValueRowEntries() ([]B50ERuleValueRowEntry, error) {
 	return b50ERuleValueRowDecode(b50ERuleValueRowRowsJSON)
 }
 
+// B50ERuleValueRowLookup returns the rule value row whose key equals the given key on every axis, or
+// the catalog error.
 func B50ERuleValueRowLookup(b50ERuleValueRowKey B50ERuleValueRowKey) (B50ERuleValueRowEntry, bool, error) {
 	b50ERuleValueRowEntries, b50ERuleValueRowError := B50ERuleValueRowEntries()
 	if b50ERuleValueRowError != nil {

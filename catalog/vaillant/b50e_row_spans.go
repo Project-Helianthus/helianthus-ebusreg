@@ -58,6 +58,9 @@ func b50ERowSpanInteger(b50ERowSpanValue any) (int64, bool) {
 	return b50ERowSpanInt, b50ERowSpanErr == nil
 }
 
+// B50ERowSpanInterpret evaluates one JSON object with context, fields and arguments members against
+// the B50E row spans and returns the evaluated JSON. Invalid UTF-8, malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B50ERowSpanInterpret(b50ERowSpanInput json.RawMessage) (json.RawMessage, error) {
 	if !utf8.Valid(b50ERowSpanInput) {
 		return nil, fmt.Errorf("invalid UTF-8 JSON")

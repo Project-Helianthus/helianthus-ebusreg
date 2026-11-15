@@ -11,6 +11,8 @@ import (
 //go:embed data/b510_operating_defaults.json
 var b510OperatingDefaultData string
 
+// B510OperatingDefaultKey identifies one B510 operating default row; absent optional axes are nil and
+// every axis takes part in the lookup.
 type B510OperatingDefaultKey struct {
 	B510OperatingDefaultFamily        string  `json:"family"`
 	B510OperatingDefaultVariant       string  `json:"variant"`
@@ -66,6 +68,8 @@ func b510OperatingDefaultValidate(b510OperatingDefaultSource []byte) ([]b510Oper
 	return b510OperatingDefaultRows, b510OperatingDefaultKeys, nil
 }
 
+// B510OperatingDefaultEntries validates the embedded B510 operating default rows and returns them as
+// caller-owned JSON. Invalid embedded data returns an error.
 func B510OperatingDefaultEntries() (b510OperatingDefaultJSON.RawMessage, error) {
 	b510OperatingDefaultSource := []byte(b510OperatingDefaultData)
 	if _, _, b510OperatingDefaultErr := b510OperatingDefaultValidate(b510OperatingDefaultSource); b510OperatingDefaultErr != nil {
@@ -87,6 +91,8 @@ func b510OperatingDefaultLookupSource(b510OperatingDefaultSource []byte, b510Ope
 	return nil, false, nil
 }
 
+// B510OperatingDefaultLookup returns the B510 operating default row whose key equals the given key on
+// every axis as caller-owned JSON. It returns an error if the embedded rows fail validation.
 func B510OperatingDefaultLookup(b510OperatingDefaultKey B510OperatingDefaultKey) (b510OperatingDefaultJSON.RawMessage, bool, error) {
 	return b510OperatingDefaultLookupSource([]byte(b510OperatingDefaultData), b510OperatingDefaultKey)
 }

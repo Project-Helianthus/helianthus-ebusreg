@@ -85,6 +85,9 @@ func b512HeatpumpIOEvaluatorValidateArguments(b512HeatpumpIOEvaluatorValue any) 
 	return nil
 }
 
+// B512HeatpumpIOEvaluate evaluates one JSON object with context, fields and arguments members against
+// the B512 heat pump inputs and outputs and returns the evaluated JSON. Malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B512HeatpumpIOEvaluate(b512HeatpumpIOEvaluatorInput json.RawMessage) (json.RawMessage, error) {
 	b512HeatpumpIOEvaluatorDecoder := json.NewDecoder(bytes.NewReader(b512HeatpumpIOEvaluatorInput))
 	b512HeatpumpIOEvaluatorDecoder.UseNumber()

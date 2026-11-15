@@ -5,11 +5,14 @@ import (
 	standard05BurnerBodyJSON "encoding/json"
 )
 
+// Standard05BurnerBodyAxis is an optional numeric key axis; Value is meaningful only when Present is
+// true.
 type Standard05BurnerBodyAxis struct {
 	Standard05BurnerBodyPresent bool   `json:"present"`
 	Standard05BurnerBodyValue   uint16 `json:"value"`
 }
 
+// Standard05BurnerBodyKey identifies one burner body field; lookups compare every axis exactly.
 type Standard05BurnerBodyKey struct {
 	Standard05BurnerBodyFamily    string                   `json:"family"`
 	Standard05BurnerBodyVariant   string                   `json:"variant"`
@@ -24,11 +27,14 @@ type Standard05BurnerBodyKey struct {
 	Standard05BurnerBodyRegister  Standard05BurnerBodyAxis `json:"register"`
 }
 
+// Standard05BurnerBodyBounds is the inclusive value range of a burner field.
 type Standard05BurnerBodyBounds struct {
 	Standard05BurnerBodyMin int `json:"min"`
 	Standard05BurnerBodyMax int `json:"max"`
 }
 
+// Standard05BurnerField declares the position, width, conversion, unit and value domain of one burner
+// body field.
 type Standard05BurnerField struct {
 	Standard05BurnerBodyKey             Standard05BurnerBodyKey     `json:"key"`
 	Standard05BurnerBodyLogicalPosition *int                        `json:"logical_position"`
@@ -47,6 +53,7 @@ type Standard05BurnerField struct {
 	Standard05BurnerBodyRawFallback     string                      `json:"raw_fallback"`
 }
 
+// Standard05BurnerBodies is the burner body catalog with its catalog-wide grades and fields.
 type Standard05BurnerBodies struct {
 	Standard05BurnerBodyRepresentationGrade string                  `json:"representation_grade"`
 	Standard05BurnerBodyComplete            bool                    `json:"complete"`
@@ -62,6 +69,8 @@ type Standard05BurnerBodies struct {
 //go:embed testdata/standard05_burner_bodies.json
 var standard05BurnerBodyBurnerJSON []byte
 
+// Standard05BurnerMetadata decodes the embedded burner body catalog on each call and returns a
+// detached copy. It panics if the embedded data is malformed.
 func Standard05BurnerMetadata() Standard05BurnerBodies {
 	var standard05BurnerBodyBodies Standard05BurnerBodies
 	if standard05BurnerBodyError := standard05BurnerBodyJSON.Unmarshal(standard05BurnerBodyBurnerJSON, &standard05BurnerBodyBodies); standard05BurnerBodyError != nil {
@@ -70,6 +79,7 @@ func Standard05BurnerMetadata() Standard05BurnerBodies {
 	return standard05BurnerBodyBodies
 }
 
+// Standard05LookupBurnerField returns the burner field whose key equals the given key on every axis.
 func Standard05LookupBurnerField(standard05BurnerBodyKey Standard05BurnerBodyKey) (Standard05BurnerField, bool) {
 	return standard05BurnerBodyLookupBurnerField(Standard05BurnerMetadata().Standard05BurnerBodyFields, standard05BurnerBodyKey)
 }

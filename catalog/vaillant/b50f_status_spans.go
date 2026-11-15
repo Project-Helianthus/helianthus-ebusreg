@@ -11,6 +11,8 @@ import (
 //go:embed data/b50f_status_spans.json
 var b50FStatusSpanStatusJSON string
 
+// B50FStatusSpanKey identifies one B50F status span; absent optional axes are nil and lookups compare
+// every axis.
 type B50FStatusSpanKey struct {
 	B50FStatusSpanFamily            string  `json:"family"`
 	B50FStatusSpanVariant           string  `json:"variant"`
@@ -25,6 +27,7 @@ type B50FStatusSpanKey struct {
 	B50FStatusSpanCommandRole       *string `json:"command_role"`
 }
 
+// B50FStatusSpanBit declares the label and category of one status bit, or marks it reserved.
 type B50FStatusSpanBit struct {
 	B50FStatusSpanBit      byte    `json:"bit"`
 	B50FStatusSpanLabel    *string `json:"label"`
@@ -32,6 +35,8 @@ type B50FStatusSpanBit struct {
 	B50FStatusSpanReserved bool    `json:"reserved"`
 }
 
+// B50FStatusSpanEntry declares one status span with its position, width, allocated and reserved masks
+// and bits.
 type B50FStatusSpanEntry struct {
 	B50FStatusSpanKey             B50FStatusSpanKey   `json:"key"`
 	B50FStatusSpanPosition        *int                `json:"position"`
@@ -67,6 +72,8 @@ func b50FStatusSpanKeyEqual(b50FStatusSpanLeft, b50FStatusSpanRight B50FStatusSp
 		b50FStatusSpanOptionalEqual(b50FStatusSpanLeft.B50FStatusSpanCommandRole, b50FStatusSpanRight.B50FStatusSpanCommandRole)
 }
 
+// B50FStatusSpanEntries strictly decodes and validates the eight embedded status spans on each call.
+// Unknown members, trailing data or an incomplete catalog return an error.
 func B50FStatusSpanEntries() ([]B50FStatusSpanEntry, error) {
 	var b50FStatusSpanEntries []B50FStatusSpanEntry
 	b50FStatusSpanDecoder := b50FStatusSpanJSON.NewDecoder(b50FStatusSpanBytes.NewBufferString(b50FStatusSpanStatusJSON))
@@ -110,6 +117,8 @@ func B50FStatusSpanEntries() ([]B50FStatusSpanEntry, error) {
 	return b50FStatusSpanEntries, nil
 }
 
+// B50FStatusSpanLookup returns the status span whose key equals the given key on every axis, or the
+// catalog error.
 func B50FStatusSpanLookup(b50FStatusSpanKey B50FStatusSpanKey) (B50FStatusSpanEntry, bool, error) {
 	b50FStatusSpanEntries, b50FStatusSpanError := B50FStatusSpanEntries()
 	if b50FStatusSpanError != nil {

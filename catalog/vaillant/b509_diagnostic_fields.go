@@ -69,6 +69,9 @@ func b509DiagnosticFieldUnsigned(b509DiagnosticFieldValue any, b509DiagnosticFie
 	return b509DiagnosticFieldParsed, b509DiagnosticFieldErr == nil && b509DiagnosticFieldParsed <= b509DiagnosticFieldMax
 }
 
+// B509DiagnosticFieldEvaluate evaluates one JSON object with context, fields and arguments members
+// against the B509 diagnostic fields and returns the evaluated JSON. Malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B509DiagnosticFieldEvaluate(b509DiagnosticFieldInput b509DiagnosticFieldJSON.RawMessage) (b509DiagnosticFieldJSON.RawMessage, error) {
 	b509DiagnosticFieldDecoder := b509DiagnosticFieldJSON.NewDecoder(b509DiagnosticFieldStrings.NewReader(string(b509DiagnosticFieldInput)))
 	b509DiagnosticFieldDecoder.UseNumber()

@@ -1,5 +1,6 @@
 package ebusstandard
 
+// Standard09BodyViewKey selects a service 09 view by family, profile, service and direction.
 type Standard09BodyViewKey struct {
 	Standard09BodyViewFamily    string `json:"family"`
 	Standard09BodyViewProfile   string `json:"profile"`
@@ -7,6 +8,8 @@ type Standard09BodyViewKey struct {
 	Standard09BodyViewDirection string `json:"direction"`
 }
 
+// Standard09BodyViewState is the common state of a service 09 view: the raw bytes, the view state and
+// the grades of the interpretation.
 type Standard09BodyViewState struct {
 	Standard09BodyViewKey                          Standard09BodyViewKey `json:"key"`
 	Standard09BodyViewRaw                          []byte                `json:"raw"`
@@ -19,12 +22,15 @@ type Standard09BodyViewState struct {
 	Standard09BodyViewPositivePrefixRelevanceGrade string                `json:"positive_prefix_relevance_grade"`
 }
 
+// Standard09BodyViewBody is the positive body view with its data bytes and any unresolved tail.
 type Standard09BodyViewBody struct {
 	Standard09BodyViewState          Standard09BodyViewState `json:"state"`
 	Standard09BodyViewData           []byte                  `json:"data"`
 	Standard09BodyViewUnresolvedTail []byte                  `json:"unresolved_tail"`
 }
 
+// Standard09BodyViewAddress is the request address view; LE is set for services 0900 and 0901, Low and
+// High for the other services.
 type Standard09BodyViewAddress struct {
 	Standard09BodyViewState Standard09BodyViewState `json:"state"`
 	Standard09BodyViewLE    *uint16                 `json:"le"`
@@ -32,6 +38,8 @@ type Standard09BodyViewAddress struct {
 	Standard09BodyViewHigh  *uint8                  `json:"high"`
 }
 
+// Standard09BodyViewCount is the request count view; Conflict reports a count above the candidate
+// maximum.
 type Standard09BodyViewCount struct {
 	Standard09BodyViewState            Standard09BodyViewState `json:"state"`
 	Standard09BodyViewValue            uint8                   `json:"value"`
@@ -54,8 +62,8 @@ func standard09BodyViewMatches(standard09BodyViewSelected, standard09BodyViewKey
 		standard09BodyViewSelected.Standard09BodyViewService >= 0x0900 && standard09BodyViewSelected.Standard09BodyViewService <= 0x0903
 }
 
-// Body views match the positive direction; address and count views match the
-// abstract-request direction that carries those request fields.
+// Standard09ViewBody interprets a body in the positive direction; address and count views
+// match the abstract-request direction that carries those request fields.
 func Standard09ViewBody(standard09BodyViewSelected, standard09BodyViewKey Standard09BodyViewKey, standard09BodyViewRaw []byte) Standard09BodyViewBody {
 	standard09BodyViewView := Standard09BodyViewBody{Standard09BodyViewState: standard09BodyViewState(standard09BodyViewKey, standard09BodyViewRaw)}
 	if !standard09BodyViewMatches(standard09BodyViewSelected, standard09BodyViewKey, "positive") {
@@ -82,6 +90,8 @@ func Standard09ViewBody(standard09BodyViewSelected, standard09BodyViewKey Standa
 	return standard09BodyViewView
 }
 
+// Standard09ViewAddress interprets a two-byte request address field when the selected key equals the
+// given key in the abstract-request direction; otherwise the state stays unknown.
 func Standard09ViewAddress(standard09BodyViewSelected, standard09BodyViewKey Standard09BodyViewKey, standard09BodyViewField []byte) Standard09BodyViewAddress {
 	standard09BodyViewView := Standard09BodyViewAddress{Standard09BodyViewState: standard09BodyViewState(standard09BodyViewKey, standard09BodyViewField)}
 	if !standard09BodyViewMatches(standard09BodyViewSelected, standard09BodyViewKey, "abstract-request") {
@@ -102,6 +112,8 @@ func Standard09ViewAddress(standard09BodyViewSelected, standard09BodyViewKey Sta
 	return standard09BodyViewView
 }
 
+// Standard09ViewCount interprets a request count for services 0900 and 0902 when the selected key
+// equals the given key in the abstract-request direction; otherwise the state stays unknown.
 func Standard09ViewCount(standard09BodyViewSelected, standard09BodyViewKey Standard09BodyViewKey, standard09BodyViewCount uint8) Standard09BodyViewCount {
 	standard09BodyViewView := Standard09BodyViewCount{Standard09BodyViewState: standard09BodyViewState(standard09BodyViewKey, []byte{standard09BodyViewCount}), Standard09BodyViewValue: standard09BodyViewCount}
 	if !standard09BodyViewMatches(standard09BodyViewSelected, standard09BodyViewKey, "abstract-request") || (standard09BodyViewKey.Standard09BodyViewService != 0x0900 && standard09BodyViewKey.Standard09BodyViewService != 0x0902) {

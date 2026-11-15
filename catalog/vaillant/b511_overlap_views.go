@@ -1,5 +1,6 @@
 package vaillant
 
+// The family and the variants of the B511 overlap views.
 const (
 	B511OverlapViewFamily           = "b511-family"
 	B511OverlapViewOP00Reserved     = "op00-reserved"
@@ -8,6 +9,7 @@ const (
 	B511OverlapViewOP07ExtendedRoom = "op07-extended-room"
 )
 
+// B511OverlapViewSelection selects a B511 overlap view by family, variant, operation and direction.
 type B511OverlapViewSelection struct {
 	B511OverlapViewFamily    string `json:"family"`
 	B511OverlapViewVariant   string `json:"variant"`
@@ -15,6 +17,9 @@ type B511OverlapViewSelection struct {
 	B511OverlapViewDirection string `json:"direction"`
 }
 
+// B511OverlapView is the interpreted overlap of a B511 logical image: the raw flag, fan, room setpoint
+// in degrees Celsius and pressure in percent, each set only when the selected variant and the
+// available extent provide it.
 type B511OverlapView struct {
 	B511OverlapViewSelection             B511OverlapViewSelection `json:"selection"`
 	B511OverlapViewRaw                   []byte                   `json:"raw"`
@@ -33,6 +38,9 @@ type B511OverlapView struct {
 	B511OverlapViewPhysicalQualification string                   `json:"physical_qualification"`
 }
 
+// B511OverlapViewInterpret interprets the logical image for the selection and returns a detached view;
+// an unsupported selection leaves every value unset, and a short image still sets each value that
+// lies within its extent while the required extent and the complete flag report the shortfall.
 func B511OverlapViewInterpret(b511OverlapViewSelection B511OverlapViewSelection, b511OverlapViewLogicalImage []byte) B511OverlapView {
 	if b511OverlapViewSelection.B511OverlapViewOperation != nil {
 		b511OverlapViewOp := *b511OverlapViewSelection.B511OverlapViewOperation

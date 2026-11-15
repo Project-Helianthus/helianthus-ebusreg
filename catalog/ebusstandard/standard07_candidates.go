@@ -8,6 +8,8 @@ import (
 //go:embed testdata/standard07_candidates.json
 var standard07CandidateData []byte
 
+// Standard07CandidateKey identifies one service 07 candidate field; absent optional axes are nil and
+// lookups compare every axis exactly.
 type Standard07CandidateKey struct {
 	Standard07CandidateFamily    string `json:"family"`
 	Standard07CandidateVariant   string `json:"variant"`
@@ -18,6 +20,8 @@ type Standard07CandidateKey struct {
 	Standard07CandidateField     string `json:"field"`
 }
 
+// Standard07CandidateControl declares the not-okay range, the default and the okay values of a control
+// field.
 type Standard07CandidateControl struct {
 	Standard07CandidateNotOkayMinimum int    `json:"not_okay_minimum"`
 	Standard07CandidateNotOkayMaximum int    `json:"not_okay_maximum"`
@@ -25,6 +29,8 @@ type Standard07CandidateControl struct {
 	Standard07CandidateOkayValues     []int  `json:"okay_values"`
 }
 
+// Standard07CandidateLocalParser declares the offsets, widths and limits the local identification
+// parser applies to a candidate body.
 type Standard07CandidateLocalParser struct {
 	Standard07CandidateMinimumDeclaredCount   int    `json:"minimum_declared_count"`
 	Standard07CandidateMaximumDeclaredCount   *int   `json:"maximum_declared_count"`
@@ -48,6 +54,8 @@ type Standard07CandidateLocalParser struct {
 	Standard07CandidateScope                  string `json:"scope"`
 }
 
+// Standard07CandidateEntry declares one service 07 candidate field with its grade, position, width and
+// optional control or parser declarations.
 type Standard07CandidateEntry struct {
 	Standard07CandidateKey                 Standard07CandidateKey          `json:"key"`
 	Standard07CandidateGrade               string                          `json:"grade"`
@@ -58,6 +66,8 @@ type Standard07CandidateEntry struct {
 	Standard07CandidateLocalParser         *Standard07CandidateLocalParser `json:"local_parser"`
 }
 
+// Standard07Candidates is the service 07 candidate catalog with its catalog-wide grades, scope and
+// unknowns.
 type Standard07Candidates struct {
 	Standard07CandidateUnknownGrade  string                     `json:"unknown_grade"`
 	Standard07CandidatePresenceGrade string                     `json:"presence_grade"`
@@ -66,6 +76,8 @@ type Standard07Candidates struct {
 	Standard07CandidateEntries       []Standard07CandidateEntry `json:"entries"`
 }
 
+// Standard07CandidateMetadata decodes the embedded service 07 candidate catalog on each call and
+// returns a detached copy. It panics if the embedded data is malformed.
 func Standard07CandidateMetadata() Standard07Candidates {
 	var standard07CandidateResult Standard07Candidates
 	if standard07CandidateErr := standard07CandidateJSON.Unmarshal(standard07CandidateData, &standard07CandidateResult); standard07CandidateErr != nil {
@@ -78,6 +90,7 @@ func standard07CandidateEqualByte(standard07CandidateLeft, standard07CandidateRi
 	return standard07CandidateLeft == nil && standard07CandidateRight == nil || standard07CandidateLeft != nil && standard07CandidateRight != nil && *standard07CandidateLeft == *standard07CandidateRight
 }
 
+// Standard07CandidateLookup returns the candidate entry whose key equals the given key on every axis.
 func Standard07CandidateLookup(standard07CandidateKey Standard07CandidateKey) (Standard07CandidateEntry, bool) {
 	for _, standard07CandidateEntry := range Standard07CandidateMetadata().Standard07CandidateEntries {
 		standard07CandidateCandidate := standard07CandidateEntry.Standard07CandidateKey

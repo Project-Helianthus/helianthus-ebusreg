@@ -7,6 +7,9 @@ import (
 	b512FeedbackViewIO "io"
 )
 
+// B512FeedbackViewInterpret evaluates one JSON object with context, fields and arguments members
+// against the B512 feedback views and returns the evaluated JSON. Malformed or trailing JSON and input
+// of the wrong shape return an error.
 func B512FeedbackViewInterpret(b512FeedbackViewInput b512FeedbackViewJSON.RawMessage) (b512FeedbackViewJSON.RawMessage, error) {
 	b512FeedbackViewDecoder := b512FeedbackViewJSON.NewDecoder(b512FeedbackViewBytesPackage.NewReader(b512FeedbackViewInput))
 	b512FeedbackViewDecoder.UseNumber()

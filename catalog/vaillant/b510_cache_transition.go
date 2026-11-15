@@ -64,6 +64,9 @@ func b510CacheTransitionInteger(b510CacheTransitionValue any) (*b510CacheTransit
 	return b510CacheTransitionResult, b510CacheTransitionOK
 }
 
+// B510CacheTransitionInterpret evaluates one JSON object with context, fields and arguments members
+// against the B510 cache transition and returns the evaluated JSON. Malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B510CacheTransitionInterpret(b510CacheTransitionInput b510CacheTransitionJSON.RawMessage) (b510CacheTransitionJSON.RawMessage, error) {
 	b510CacheTransitionDecoder := b510CacheTransitionJSON.NewDecoder(b510CacheTransitionBytesPackage.NewReader(b510CacheTransitionInput))
 	b510CacheTransitionDecoder.UseNumber()

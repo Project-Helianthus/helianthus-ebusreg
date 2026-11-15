@@ -10,6 +10,8 @@ import (
 //go:embed data/b511_class_candidates.json
 var b511ClassCandidateData string
 
+// B511ClassCandidateKey identifies one B511 class candidate row; absent optional axes are nil and
+// every axis takes part in the lookup.
 type B511ClassCandidateKey struct {
 	B511ClassCandidateFamily        string  `json:"family"`
 	B511ClassCandidateVariant       string  `json:"variant"`
@@ -78,6 +80,8 @@ func b511ClassCandidateEntries(b511ClassCandidateSource []byte) (b511ClassCandid
 	return append(b511ClassCandidateJSON.RawMessage(nil), b511ClassCandidateSource...), nil
 }
 
+// B511ClassCandidateEntries validates the embedded B511 class candidate rows and returns them as
+// caller-owned JSON. Invalid embedded data returns an error.
 func B511ClassCandidateEntries() (b511ClassCandidateJSON.RawMessage, error) {
 	return b511ClassCandidateEntries([]byte(b511ClassCandidateData))
 }
@@ -103,6 +107,8 @@ func b511ClassCandidateLookup(b511ClassCandidateSource []byte, b511ClassCandidat
 	return nil, false, nil
 }
 
+// B511ClassCandidateLookup returns the B511 class candidate row whose key equals the given key on
+// every axis as caller-owned JSON. It returns an error if the embedded rows fail validation.
 func B511ClassCandidateLookup(b511ClassCandidateKey B511ClassCandidateKey) (b511ClassCandidateJSON.RawMessage, bool, error) {
 	return b511ClassCandidateLookup([]byte(b511ClassCandidateData), b511ClassCandidateKey)
 }

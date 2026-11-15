@@ -77,6 +77,11 @@ func standard07FieldViewByte(standard07FieldViewValue any) (int, bool) {
 	return int(standard07FieldViewInteger), standard07FieldViewInteger >= 0 && standard07FieldViewInteger <= 255
 }
 
+// Standard07FieldViewEvaluate evaluates one JSON object with context, fields and optional arguments
+// members against the service 07 field candidates and returns it with results, state, physical and
+// qualified members added. A context that does not select the field-candidates view returns state
+// Unknown; malformed, duplicate-key or trailing JSON, reserved output keys in the input and non-byte
+// fields return an error.
 func Standard07FieldViewEvaluate(standard07FieldViewInput json.RawMessage) (json.RawMessage, error) {
 	standard07FieldViewDecoder := json.NewDecoder(bytes.NewReader(standard07FieldViewInput))
 	standard07FieldViewDecoder.UseNumber()

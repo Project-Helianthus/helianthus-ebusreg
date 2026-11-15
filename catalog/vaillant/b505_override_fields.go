@@ -73,6 +73,9 @@ func b505OverrideFieldByte(b505OverrideFieldRaw json.RawMessage) (int, error) {
 	return b505OverrideFieldNumber, nil
 }
 
+// B505OverrideFieldEvaluate evaluates one JSON object with context, fields and arguments members
+// against the B505 override fields and returns the evaluated JSON. Malformed or trailing JSON and
+// input of the wrong shape return an error.
 func B505OverrideFieldEvaluate(b505OverrideFieldInputRaw json.RawMessage) (json.RawMessage, error) {
 	b505OverrideFieldDecoder := json.NewDecoder(bytes.NewReader(b505OverrideFieldInputRaw))
 	b505OverrideFieldDecoder.UseNumber()

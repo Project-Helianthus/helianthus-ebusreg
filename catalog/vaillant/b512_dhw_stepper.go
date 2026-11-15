@@ -15,6 +15,8 @@ import (
 //go:embed data/b512_dhw_stepper.json
 var b512DHWStepperData []byte
 
+// B512DHWStepperKey identifies one B512 hot water stepper field; absent optional axes are nil and
+// lookups compare every axis exactly.
 type B512DHWStepperKey struct {
 	B512DHWStepperFamily            string  `json:"family"`
 	B512DHWStepperVariant           string  `json:"variant"`
@@ -29,6 +31,8 @@ type B512DHWStepperKey struct {
 	B512DHWStepperCommandRole       *string `json:"command_role"`
 }
 
+// B512DHWStepperEntry declares one hot water stepper field with its position, width, bit, scaling,
+// units, defaults and values.
 type B512DHWStepperEntry struct {
 	B512DHWStepperCoordinateBasis *string           `json:"coordinate_basis"`
 	B512DHWStepperKey             B512DHWStepperKey `json:"key"`
@@ -56,6 +60,8 @@ type B512DHWStepperEntry struct {
 // The embedded catalog is validated once and never exposed to callers.
 var b512DHWStepperCatalog = b512DHWStepperSync.OnceValues(b512DHWStepperLoadEntries)
 
+// B512DHWStepperEntries returns deep copies of the hot water stepper entries, which are loaded and
+// validated once; a catalog error is returned on every call.
 func B512DHWStepperEntries() ([]B512DHWStepperEntry, error) {
 	b512DHWStepperEntries, b512DHWStepperErr := b512DHWStepperCatalog()
 	if b512DHWStepperErr != nil {
@@ -101,6 +107,8 @@ func b512DHWStepperLoadEntries() ([]B512DHWStepperEntry, error) {
 	return b512DHWStepperEntries, nil
 }
 
+// B512DHWStepperLookup returns a deep copy of the stepper entry whose key equals the given key on
+// every axis, or the catalog error.
 func B512DHWStepperLookup(b512DHWStepperKey B512DHWStepperKey) (B512DHWStepperEntry, bool, error) {
 	b512DHWStepperEntries, b512DHWStepperErr := b512DHWStepperCatalog()
 	if b512DHWStepperErr != nil {

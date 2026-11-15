@@ -10,6 +10,8 @@ import (
 //go:embed data/b506_rf_sequence.json
 var b506RFSequenceCatalog string
 
+// B506RFSequenceKey identifies one B506 radio sequence row; absent optional axes are nil and every
+// axis takes part in the lookup.
 type B506RFSequenceKey struct {
 	B506RFSequenceFamily        string  `json:"family"`
 	B506RFSequenceVariant       string  `json:"variant"`
@@ -83,6 +85,8 @@ func b506RFSequenceEntriesFrom(b506RFSequenceData string) ([]b506RFSequenceJSON.
 	return b506RFSequenceRows, nil
 }
 
+// B506RFSequenceEntries validates the embedded B506 radio sequence rows and returns them as
+// caller-owned JSON. Invalid embedded data returns an error.
 func B506RFSequenceEntries() (b506RFSequenceJSON.RawMessage, error) {
 	if _, b506RFSequenceError := b506RFSequenceEntriesFrom(b506RFSequenceCatalog); b506RFSequenceError != nil {
 		return nil, b506RFSequenceError
@@ -115,6 +119,8 @@ func b506RFSequenceLookupFrom(b506RFSequenceData string, b506RFSequenceKey B506R
 	return nil, false, nil
 }
 
+// B506RFSequenceLookup returns the B506 radio sequence row whose key equals the given key on every
+// axis as caller-owned JSON. It returns an error if the embedded rows fail validation.
 func B506RFSequenceLookup(b506RFSequenceKey B506RFSequenceKey) (b506RFSequenceJSON.RawMessage, bool, error) {
 	return b506RFSequenceLookupFrom(b506RFSequenceCatalog, b506RFSequenceKey)
 }

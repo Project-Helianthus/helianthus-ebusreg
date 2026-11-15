@@ -56,6 +56,9 @@ func b505SentinelViewRead(b505SentinelViewDecoder *b505SentinelViewJSON.Decoder)
 	return b505SentinelViewToken, nil
 }
 
+// B505SentinelViewInterpret evaluates one JSON object with context, fields and arguments members
+// against the B505 sentinel views and returns the evaluated JSON. Malformed or trailing JSON and input
+// of the wrong shape return an error.
 func B505SentinelViewInterpret(b505SentinelViewInput b505SentinelViewJSON.RawMessage) (b505SentinelViewJSON.RawMessage, error) {
 	b505SentinelViewDecoder := b505SentinelViewJSON.NewDecoder(b505SentinelViewBytes.NewReader(b505SentinelViewInput))
 	b505SentinelViewDecoder.UseNumber()

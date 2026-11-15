@@ -503,10 +503,12 @@
     "scripts/check_go_lint_baseline.py",
     "scripts/check_size_ratchet.py",
     "scripts/ci_local.sh",
+    "scripts/generate_native_points.py",
     "scripts/go-lint-baseline.json",
     "scripts/size-baseline.json",
     "scripts/sizeratchet/parser.go.txt",
     "scripts/tests/test_behavior_name_gate.py",
+    "scripts/tests/test_generate_native_points.py",
     "scripts/tests/test_go_lint_baseline.py",
     "scripts/tests/test_size_ratchet.py",
     "vaillant/b555/b555.go",
@@ -533,6 +535,12 @@
     "vaillant/heating/heating_test.go",
     "vaillant/heating/schemas.go",
     "vaillant/heating/schemas_test.go",
+    "vaillant/nativepoints/decode.go",
+    "vaillant/nativepoints/decode_test.go",
+    "vaillant/nativepoints/doc.go",
+    "vaillant/nativepoints/points.go",
+    "vaillant/nativepoints/points_data.go",
+    "vaillant/nativepoints/points_test.go",
     "vaillant/productids/catalog.go",
     "vaillant/productids/catalog_test.go",
     "vaillant/productids/product_ids.csv",
@@ -187660,6 +187668,1754 @@
       ]
     },
     {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 4,
+        "declaration": "DeviceClass"
+      },
+      "current_name": "DeviceClass",
+      "target": "DeviceClass",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 8,
+        "declaration": "DeviceClassController"
+      },
+      "current_name": "DeviceClassController",
+      "target": "DeviceClassController",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 9,
+        "declaration": "DeviceClassBoiler"
+      },
+      "current_name": "DeviceClassBoiler",
+      "target": "DeviceClassBoiler",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 10,
+        "declaration": "DeviceClassHeatPump"
+      },
+      "current_name": "DeviceClassHeatPump",
+      "target": "DeviceClassHeatPump",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 11,
+        "declaration": "DeviceClassHeatPumpInterfaceUnit"
+      },
+      "current_name": "DeviceClassHeatPumpInterfaceUnit",
+      "target": "DeviceClassHeatPumpInterfaceUnit",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 15,
+        "declaration": "NameStatus"
+      },
+      "current_name": "NameStatus",
+      "target": "NameStatus",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 22,
+        "declaration": "NameFinal"
+      },
+      "current_name": "NameFinal",
+      "target": "NameFinal",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 23,
+        "declaration": "NameProvisional"
+      },
+      "current_name": "NameProvisional",
+      "target": "NameProvisional",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 24,
+        "declaration": "NameAmbiguous"
+      },
+      "current_name": "NameAmbiguous",
+      "target": "NameAmbiguous",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 28,
+        "declaration": "ValueClass"
+      },
+      "current_name": "ValueClass",
+      "target": "ValueClass",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 32,
+        "declaration": "ValueNumeric"
+      },
+      "current_name": "ValueNumeric",
+      "target": "ValueNumeric",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 33,
+        "declaration": "ValueBoolean"
+      },
+      "current_name": "ValueBoolean",
+      "target": "ValueBoolean",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 34,
+        "declaration": "ValueEnumeration"
+      },
+      "current_name": "ValueEnumeration",
+      "target": "ValueEnumeration",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 35,
+        "declaration": "ValueFlags"
+      },
+      "current_name": "ValueFlags",
+      "target": "ValueFlags",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 36,
+        "declaration": "ValueCode"
+      },
+      "current_name": "ValueCode",
+      "target": "ValueCode",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 37,
+        "declaration": "ValueIdentifier"
+      },
+      "current_name": "ValueIdentifier",
+      "target": "ValueIdentifier",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 38,
+        "declaration": "ValueText"
+      },
+      "current_name": "ValueText",
+      "target": "ValueText",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 39,
+        "declaration": "ValueDate"
+      },
+      "current_name": "ValueDate",
+      "target": "ValueDate",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 40,
+        "declaration": "ValueTime"
+      },
+      "current_name": "ValueTime",
+      "target": "ValueTime",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 41,
+        "declaration": "ValueCommand"
+      },
+      "current_name": "ValueCommand",
+      "target": "ValueCommand",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 42,
+        "declaration": "ValueUnknown"
+      },
+      "current_name": "ValueUnknown",
+      "target": "ValueUnknown",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 46,
+        "declaration": "Codec"
+      },
+      "current_name": "Codec",
+      "target": "Codec",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 53,
+        "declaration": "CodecUnknown"
+      },
+      "current_name": "CodecUnknown",
+      "target": "CodecUnknown",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 54,
+        "declaration": "CodecFloat32LE"
+      },
+      "current_name": "CodecFloat32LE",
+      "target": "CodecFloat32LE",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 55,
+        "declaration": "CodecUint16LE"
+      },
+      "current_name": "CodecUint16LE",
+      "target": "CodecUint16LE",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 56,
+        "declaration": "CodecData2c"
+      },
+      "current_name": "CodecData2c",
+      "target": "CodecData2c",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 57,
+        "declaration": "CodecData2b"
+      },
+      "current_name": "CodecData2b",
+      "target": "CodecData2b",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 58,
+        "declaration": "CodecUIN"
+      },
+      "current_name": "CodecUIN",
+      "target": "CodecUIN",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 62,
+        "declaration": "InstanceRule"
+      },
+      "current_name": "InstanceRule",
+      "target": "InstanceRule",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 67,
+        "declaration": "InstanceSingle"
+      },
+      "current_name": "InstanceSingle",
+      "target": "InstanceSingle",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 68,
+        "declaration": "InstanceIndexed"
+      },
+      "current_name": "InstanceIndexed",
+      "target": "InstanceIndexed",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 69,
+        "declaration": "InstanceUnknown"
+      },
+      "current_name": "InstanceUnknown",
+      "target": "InstanceUnknown",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 73,
+        "declaration": "WithheldReason"
+      },
+      "current_name": "WithheldReason",
+      "target": "WithheldReason",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 78,
+        "declaration": "WithheldNone"
+      },
+      "current_name": "WithheldNone",
+      "target": "WithheldNone",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 79,
+        "declaration": "WithheldNameNotFinal"
+      },
+      "current_name": "WithheldNameNotFinal",
+      "target": "WithheldNameNotFinal",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 80,
+        "declaration": "WithheldIdentifierOrCode"
+      },
+      "current_name": "WithheldIdentifierOrCode",
+      "target": "WithheldIdentifierOrCode",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 81,
+        "declaration": "WithheldNotNumeric"
+      },
+      "current_name": "WithheldNotNumeric",
+      "target": "WithheldNotNumeric",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 82,
+        "declaration": "WithheldUnitUnknown"
+      },
+      "current_name": "WithheldUnitUnknown",
+      "target": "WithheldUnitUnknown",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 83,
+        "declaration": "WithheldPressureReferenceUnknown"
+      },
+      "current_name": "WithheldPressureReferenceUnknown",
+      "target": "WithheldPressureReferenceUnknown",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 84,
+        "declaration": "WithheldCodecUnknown"
+      },
+      "current_name": "WithheldCodecUnknown",
+      "target": "WithheldCodecUnknown",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 94,
+        "declaration": "Location"
+      },
+      "current_name": "Location",
+      "target": "Location",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 95,
+        "field_candidate": "Opcode"
+      },
+      "current_name": "Opcode",
+      "target": "Opcode",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 96,
+        "field_candidate": "Group"
+      },
+      "current_name": "Group",
+      "target": "Group",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 97,
+        "field_candidate": "Register"
+      },
+      "current_name": "Register",
+      "target": "Register",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 98,
+        "field_candidate": "Selector"
+      },
+      "current_name": "Selector",
+      "target": "Selector",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 99,
+        "field_candidate": "InstanceRule"
+      },
+      "current_name": "InstanceRule",
+      "target": "InstanceRule",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 100,
+        "field_candidate": "InstanceMin"
+      },
+      "current_name": "InstanceMin",
+      "target": "InstanceMin",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 101,
+        "field_candidate": "InstanceMax"
+      },
+      "current_name": "InstanceMax",
+      "target": "InstanceMax",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 102,
+        "field_candidate": "ControllerFamilies"
+      },
+      "current_name": "ControllerFamilies",
+      "target": "ControllerFamilies",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 103,
+        "field_candidate": "Codec"
+      },
+      "current_name": "Codec",
+      "target": "Codec",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 104,
+        "field_candidate": "CodecDeclaration"
+      },
+      "current_name": "CodecDeclaration",
+      "target": "CodecDeclaration",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 105,
+        "field_candidate": "ScaleDivisor"
+      },
+      "current_name": "ScaleDivisor",
+      "target": "ScaleDivisor",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 106,
+        "field_candidate": "NativeUnit"
+      },
+      "current_name": "NativeUnit",
+      "target": "NativeUnit",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 114,
+        "declaration": "Point"
+      },
+      "current_name": "Point",
+      "target": "Point",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 115,
+        "field_candidate": "DeviceClass"
+      },
+      "current_name": "DeviceClass",
+      "target": "DeviceClass",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 116,
+        "field_candidate": "Name"
+      },
+      "current_name": "Name",
+      "target": "Name",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 117,
+        "field_candidate": "NameStatus"
+      },
+      "current_name": "NameStatus",
+      "target": "NameStatus",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 118,
+        "field_candidate": "Primary"
+      },
+      "current_name": "Primary",
+      "target": "Primary",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 119,
+        "field_candidate": "Secondary"
+      },
+      "current_name": "Secondary",
+      "target": "Secondary",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 120,
+        "field_candidate": "ValueClass"
+      },
+      "current_name": "ValueClass",
+      "target": "ValueClass",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 121,
+        "field_candidate": "Codec"
+      },
+      "current_name": "Codec",
+      "target": "Codec",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 122,
+        "field_candidate": "CodecDeclaration"
+      },
+      "current_name": "CodecDeclaration",
+      "target": "CodecDeclaration",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 123,
+        "field_candidate": "ScaleDivisor"
+      },
+      "current_name": "ScaleDivisor",
+      "target": "ScaleDivisor",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 124,
+        "field_candidate": "NativeUnit"
+      },
+      "current_name": "NativeUnit",
+      "target": "NativeUnit",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 125,
+        "field_candidate": "ControllerFamilies"
+      },
+      "current_name": "ControllerFamilies",
+      "target": "ControllerFamilies",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 126,
+        "field_candidate": "Locations"
+      },
+      "current_name": "Locations",
+      "target": "Locations",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 127,
+        "field_candidate": "Exportable"
+      },
+      "current_name": "Exportable",
+      "target": "Exportable",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 128,
+        "field_candidate": "Withheld"
+      },
+      "current_name": "Withheld",
+      "target": "Withheld",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 144,
+        "declaration": "Points"
+      },
+      "current_name": "Points",
+      "target": "Points",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 153,
+        "declaration": "Lookup"
+      },
+      "current_name": "Lookup",
+      "target": "Lookup",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 15,
+        "declaration": "Value"
+      },
+      "current_name": "Value",
+      "target": "Value",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 16,
+        "field_candidate": "Native"
+      },
+      "current_name": "Native",
+      "target": "Native",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 17,
+        "field_candidate": "NativeUnit"
+      },
+      "current_name": "NativeUnit",
+      "target": "NativeUnit",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 18,
+        "field_candidate": "SI"
+      },
+      "current_name": "SI",
+      "target": "SI",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 19,
+        "field_candidate": "SIUnit"
+      },
+      "current_name": "SIUnit",
+      "target": "SIUnit",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 23,
+        "declaration": "DecodeFailure"
+      },
+      "current_name": "DecodeFailure",
+      "target": "DecodeFailure",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 29,
+        "declaration": "DecodeWithheld"
+      },
+      "current_name": "DecodeWithheld",
+      "target": "DecodeWithheld",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 30,
+        "declaration": "DecodeCodecUnknown"
+      },
+      "current_name": "DecodeCodecUnknown",
+      "target": "DecodeCodecUnknown",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 31,
+        "declaration": "DecodeUnitUnknown"
+      },
+      "current_name": "DecodeUnitUnknown",
+      "target": "DecodeUnitUnknown",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 32,
+        "declaration": "DecodeShortReply"
+      },
+      "current_name": "DecodeShortReply",
+      "target": "DecodeShortReply",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 33,
+        "declaration": "DecodeLongReply"
+      },
+      "current_name": "DecodeLongReply",
+      "target": "DecodeLongReply",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 34,
+        "declaration": "DecodeNotANumber"
+      },
+      "current_name": "DecodeNotANumber",
+      "target": "DecodeNotANumber",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 35,
+        "declaration": "DecodeInfinite"
+      },
+      "current_name": "DecodeInfinite",
+      "target": "DecodeInfinite",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 36,
+        "declaration": "DecodeSentinel"
+      },
+      "current_name": "DecodeSentinel",
+      "target": "DecodeSentinel",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 41,
+        "declaration": "DecodeError"
+      },
+      "current_name": "DecodeError",
+      "target": "DecodeError",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 42,
+        "field_candidate": "DeviceClass"
+      },
+      "current_name": "DeviceClass",
+      "target": "DeviceClass",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 43,
+        "field_candidate": "Name"
+      },
+      "current_name": "Name",
+      "target": "Name",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 44,
+        "field_candidate": "Failure"
+      },
+      "current_name": "Failure",
+      "target": "Failure",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 45,
+        "field_candidate": "Length"
+      },
+      "current_name": "Length",
+      "target": "Length",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 46,
+        "field_candidate": "Width"
+      },
+      "current_name": "Width",
+      "target": "Width",
+      "kind": "go_field_candidate",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 49,
+        "declaration": "Error"
+      },
+      "current_name": "Error",
+      "target": "Error",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/decode.go",
+      "identity": {
+        "lexical_location": 90,
+        "declaration": "Decode"
+      },
+      "current_name": "Decode",
+      "target": "Decode",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/decode.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
       "owning_file": "catalog/vaillant/data/b524_name_annotations.json",
       "identity": {
         "family": "unqualified",
@@ -188350,7 +190106,7 @@
       "value_class": null,
       "unit": null,
       "status": "provisional",
-      "open_question": "Candidate interpretation, unconfirmed on the wire: an electricity price at the high tariff; the register map decodes a u16 in °C, which does not fit a price; unresolved.",
+      "open_question": "Candidate interpretation, unconfirmed on the wire: an electricity price at the high tariff; the register map decodes a u16 in \u00b0C, which does not fit a price; unresolved.",
       "consumer_files": [
         "vrc-explorer/src/helianthus_vrc_explorer/data/b524_docs_catalog_names.csv"
       ],
@@ -199802,7 +201558,7 @@
       "value_class": null,
       "unit": null,
       "status": "provisional",
-      "open_question": "Candidate interpretations, unconfirmed on the wire: a DHW quick mode, or a frost protection threshold; the catalog decodes a float32 in °C; unresolved.",
+      "open_question": "Candidate interpretations, unconfirmed on the wire: a DHW quick mode, or a frost protection threshold; the catalog decodes a float32 in \u00b0C; unresolved.",
       "consumer_files": [
         "vrc-explorer/src/helianthus_vrc_explorer/data/b524_docs_catalog_names.csv"
       ],

@@ -10,6 +10,8 @@ import (
 //go:embed data/b524_component_selectors.json
 var b524ComponentSelectorFiles b524ComponentSelectorEmbed.FS
 
+// B524ComponentSelectorKey identifies one B524 component selector row; nil optional axes are absent and
+// lookups compare every axis exactly.
 type B524ComponentSelectorKey struct {
 	B524ComponentSelectorFamily        string  `json:"family"`
 	B524ComponentSelectorVariant       string  `json:"variant"`
@@ -90,6 +92,8 @@ func b524ComponentSelectorRead() ([]byte, []b524ComponentSelectorJSON.RawMessage
 	return b524ComponentSelectorData, b524ComponentSelectorRows, b524ComponentSelectorKeys, b524ComponentSelectorError
 }
 
+// B524ComponentSelectorEntries validates the embedded catalog and returns a caller-owned copy of its JSON,
+// or the read or validation error.
 func B524ComponentSelectorEntries() (b524ComponentSelectorJSON.RawMessage, error) {
 	b524ComponentSelectorData, _, _, b524ComponentSelectorError := b524ComponentSelectorRead()
 	if b524ComponentSelectorError != nil {
@@ -98,6 +102,8 @@ func B524ComponentSelectorEntries() (b524ComponentSelectorJSON.RawMessage, error
 	return append(b524ComponentSelectorJSON.RawMessage(nil), b524ComponentSelectorData...), nil
 }
 
+// B524ComponentSelectorLookup returns a caller-owned copy of the row whose key equals the given key, false
+// when none matches, or the catalog read or validation error.
 func B524ComponentSelectorLookup(b524ComponentSelectorKey B524ComponentSelectorKey) (b524ComponentSelectorJSON.RawMessage, bool, error) {
 	b524ComponentSelectorData, _, _, b524ComponentSelectorError := b524ComponentSelectorRead()
 	if b524ComponentSelectorError != nil {

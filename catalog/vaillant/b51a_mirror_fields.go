@@ -9,6 +9,8 @@ import (
 //go:embed data/b51a_mirror_fields.json
 var b51AMirrorFieldMirrorJSON string
 
+// B51AMirrorKey identifies one B51A mirror field; nil optional axes are absent and lookups compare every
+// axis exactly.
 type B51AMirrorKey struct {
 	B51AMirrorFieldFamily    string  `json:"family"`
 	B51AMirrorFieldVariant   string  `json:"variant"`
@@ -23,6 +25,7 @@ type B51AMirrorKey struct {
 	B51AMirrorFieldRegister  *uint16 `json:"register"`
 }
 
+// B51AMirrorBit declares one bit of a mirror field by index, with its role, default and grade.
 type B51AMirrorBit struct {
 	B51AMirrorFieldIndex   int         `json:"index"`
 	B51AMirrorFieldName    *string     `json:"name"`
@@ -31,6 +34,7 @@ type B51AMirrorBit struct {
 	B51AMirrorFieldGrade   SchemaGrade `json:"grade"`
 }
 
+// B51AMirrorAlternative is one reading of a mirror field that applies under Condition.
 type B51AMirrorAlternative struct {
 	B51AMirrorFieldName        string           `json:"name"`
 	B51AMirrorFieldWidthBytes  *int             `json:"width_bytes"`
@@ -40,6 +44,8 @@ type B51AMirrorAlternative struct {
 	B51AMirrorFieldGrade       SchemaGrade      `json:"grade"`
 }
 
+// B51AMirrorField declares one mirror field with its layout, conversion, unit, formal and logical limits,
+// labels, bits, alternatives and the raw fallback; nil members are not declared.
 type B51AMirrorField struct {
 	B51AMirrorFieldKey             B51AMirrorKey           `json:"key"`
 	B51AMirrorFieldLogicalPosition *int                    `json:"logical_position"`
@@ -65,6 +71,7 @@ type B51AMirrorField struct {
 	B51AMirrorFieldUnmapped        string                  `json:"unmapped"`
 }
 
+// B51AMirrorMetadata is the B51A mirror field catalog with its catalog-wide grades and limitations.
 type B51AMirrorMetadata struct {
 	B51AMirrorFieldRepresentationGrade SchemaGrade       `json:"representation_grade"`
 	B51AMirrorFieldSemanticsGrade      SchemaGrade       `json:"semantics_grade"`
@@ -77,6 +84,8 @@ type B51AMirrorMetadata struct {
 	B51AMirrorFieldFields              []B51AMirrorField `json:"fields"`
 }
 
+// B51AMirrorFields decodes the embedded catalog on each call and returns a detached copy or the decoding
+// error.
 func B51AMirrorFields() (B51AMirrorMetadata, error) {
 	var b51AMirrorFieldMetadata B51AMirrorMetadata
 	b51AMirrorFieldError := b51AMirrorFieldJSON.Unmarshal([]byte(b51AMirrorFieldMirrorJSON), &b51AMirrorFieldMetadata)
@@ -87,6 +96,8 @@ func b51AMirrorFieldMirrorKeysEqual(b51AMirrorFieldLeft, b51AMirrorFieldRight B5
 	return b51AMirrorFieldReflect.DeepEqual(b51AMirrorFieldLeft, b51AMirrorFieldRight)
 }
 
+// B51ALookupMirrorField returns the field whose key equals the given key on every axis, false when none
+// matches, or the catalog decoding error.
 func B51ALookupMirrorField(b51AMirrorFieldKey B51AMirrorKey) (B51AMirrorField, bool, error) {
 	b51AMirrorFieldMetadata, b51AMirrorFieldError := B51AMirrorFields()
 	if b51AMirrorFieldError != nil {

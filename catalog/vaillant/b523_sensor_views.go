@@ -70,6 +70,12 @@ func b523SensorViewInteger(b523SensorViewValue any) (int, bool) {
 	return b523SensorViewInt, b523SensorViewErr == nil
 }
 
+// B523SensorViewInterpret interprets the B523 sensor status views of a positive reply: each sensor is a
+// signed little-endian word in sixteenths (0x8000 is the replacement value) with a two-bit status code.
+// The input is strict JSON with a context object, a fields object of byte arrays and, where the view
+// declares them, an arguments object; malformed input is an error, and a context the view does not select
+// returns an Unknown result. The output never qualifies a device: physical stays Unknown and qualified
+// false. No arguments are defined; an arguments member must be an empty object.
 func B523SensorViewInterpret(b523SensorViewInput json.RawMessage) (json.RawMessage, error) {
 	if !utf8.Valid(b523SensorViewInput) {
 		return nil, fmt.Errorf("invalid UTF-8 JSON")

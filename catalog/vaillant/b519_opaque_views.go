@@ -67,6 +67,12 @@ func b519OpaqueViewInteger(b519OpaqueViewValue any) (int, bool) {
 	return b519OpaqueViewInt, true
 }
 
+// B519OpaqueViewInterpret interprets the B519 logical-body view of a request or positive reply for
+// operations 0 to 8 and 0xAA; bytes it does not model stay raw and Unknown. The input is strict JSON with
+// a context object, a fields object of byte arrays and, where the view declares them, an arguments object;
+// malformed input is an error, and a context the view does not select returns an Unknown result. The
+// output never qualifies a device: physical stays Unknown and qualified false. No arguments are declared;
+// an arguments member must be an empty object.
 func B519OpaqueViewInterpret(b519OpaqueViewInput json.RawMessage) (json.RawMessage, error) {
 	b519OpaqueViewDecoder := json.NewDecoder(bytes.NewReader(b519OpaqueViewInput))
 	b519OpaqueViewDecoder.UseNumber()

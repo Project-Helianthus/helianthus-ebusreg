@@ -9,6 +9,8 @@ import (
 //go:embed data/b523_candidates.json
 var b523CandidateB523Data []byte
 
+// B523CandidateKey identifies one B523 candidate field; nil optional axes are absent and lookups compare
+// every axis exactly.
 type B523CandidateKey struct {
 	B523CandidateFamily    string  `json:"family"`
 	B523CandidateVariant   *string `json:"variant"`
@@ -19,6 +21,8 @@ type B523CandidateKey struct {
 	B523CandidateField     string  `json:"field"`
 }
 
+// B523CandidateRule maps the inclusive raw range RawMin..RawMax to Result, optionally dividing by DivideBy
+// and naming a duration unit.
 type B523CandidateRule struct {
 	B523CandidateRawMin       byte     `json:"raw_min"`
 	B523CandidateRawMax       byte     `json:"raw_max"`
@@ -28,12 +32,15 @@ type B523CandidateRule struct {
 	B523CandidateGrade        string   `json:"grade"`
 }
 
+// B523CandidateAlternative is one named reading of a field as an ordered list of rules.
 type B523CandidateAlternative struct {
 	B523CandidateName  string              `json:"name"`
 	B523CandidateGrade string              `json:"grade"`
 	B523CandidateRules []B523CandidateRule `json:"rules"`
 }
 
+// B523CandidateEntry declares one candidate field with its position, width, extents, default, raw domain
+// and alternatives; nil members are not declared.
 type B523CandidateEntry struct {
 	B523CandidateKey             B523CandidateKey           `json:"key"`
 	B523CandidateLogicalPosition *int                       `json:"logical_position"`
@@ -47,6 +54,7 @@ type B523CandidateEntry struct {
 	B523CandidateAlternatives    []B523CandidateAlternative `json:"alternatives"`
 }
 
+// B523CandidateCatalog is the B523 candidate catalog with its catalog-wide grades and limitations.
 type B523CandidateCatalog struct {
 	B523CandidateRepresentationGrade string               `json:"representation_grade"`
 	B523CandidateNativeSupport       string               `json:"native_support"`
@@ -56,12 +64,16 @@ type B523CandidateCatalog struct {
 	B523CandidateEntries             []B523CandidateEntry `json:"entries"`
 }
 
+// B523Candidates decodes the embedded catalog on each call and returns a detached copy or the decoding
+// error.
 func B523Candidates() (B523CandidateCatalog, error) {
 	var b523CandidateCatalog B523CandidateCatalog
 	b523CandidateError := b523CandidateJSON.Unmarshal(b523CandidateB523Data, &b523CandidateCatalog)
 	return b523CandidateCatalog, b523CandidateError
 }
 
+// B523CandidateLookup returns the entry whose key equals the given key on every axis, false when none
+// matches, or the catalog decoding error.
 func B523CandidateLookup(b523CandidateKey B523CandidateKey) (B523CandidateEntry, bool, error) {
 	b523CandidateCatalog, b523CandidateError := B523Candidates()
 	if b523CandidateError != nil {

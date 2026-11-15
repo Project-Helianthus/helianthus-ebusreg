@@ -11,6 +11,8 @@ import (
 //go:embed data/b516_directional_types.json
 var b516DirectionalTypeData string
 
+// B516DirectionalTypeKey identifies one B516 directional type row; nil optional axes are absent and
+// lookups compare every axis exactly.
 type B516DirectionalTypeKey struct {
 	B516DirectionalTypeFamily        string  `json:"family"`
 	B516DirectionalTypeVariant       string  `json:"variant"`
@@ -74,6 +76,8 @@ func b516DirectionalTypeValidate(b516DirectionalTypeData []byte) ([]b516Directio
 	return b516DirectionalTypeRows, nil
 }
 
+// B516DirectionalTypeEntries validates the embedded B516 directional type catalog (unique ids, complete
+// keys, no duplicate key) and returns a caller-owned copy of its JSON, or the validation error.
 func B516DirectionalTypeEntries() (b516DirectionalTypeJSON.RawMessage, error) {
 	if _, b516DirectionalTypeErr := b516DirectionalTypeValidate([]byte(b516DirectionalTypeData)); b516DirectionalTypeErr != nil {
 		return nil, b516DirectionalTypeErr
@@ -81,6 +85,8 @@ func B516DirectionalTypeEntries() (b516DirectionalTypeJSON.RawMessage, error) {
 	return b516DirectionalTypeJSON.RawMessage([]byte(b516DirectionalTypeData)), nil
 }
 
+// B516DirectionalTypeLookup returns a caller-owned copy of the row whose key equals the given key, false
+// when none matches, or the catalog validation error.
 func B516DirectionalTypeLookup(b516DirectionalTypeKey B516DirectionalTypeKey) (b516DirectionalTypeJSON.RawMessage, bool, error) {
 	return b516DirectionalTypeLookup([]byte(b516DirectionalTypeData), b516DirectionalTypeKey)
 }

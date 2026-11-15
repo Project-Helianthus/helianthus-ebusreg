@@ -60,6 +60,11 @@ func b51AMirrorFieldEvaluatorUint(b51AMirrorFieldEvaluatorValue any, b51AMirrorF
 	return b51AMirrorFieldEvaluatorRational.Num().Uint64(), true
 }
 
+// B51AMirrorFieldEvaluate interprets the B51A mirror get (operation 2) and mirror set (operation 3) views;
+// the status byte keeps both the whole-Boolean and the bit-0 alternatives. The input is strict JSON with a
+// context object, a fields object of byte arrays and, where the view declares them, an arguments object;
+// malformed input is an error, and a context the view does not select returns an Unknown result. The
+// output never qualifies a device: physical stays Unknown and qualified false.
 func B51AMirrorFieldEvaluate(b51AMirrorFieldEvaluatorInput b51AMirrorFieldEvaluatorJSON.RawMessage) (b51AMirrorFieldEvaluatorJSON.RawMessage, error) {
 	b51AMirrorFieldEvaluatorDecoder := b51AMirrorFieldEvaluatorJSON.NewDecoder(b51AMirrorFieldEvaluatorBytesPackage.NewReader(b51AMirrorFieldEvaluatorInput))
 	b51AMirrorFieldEvaluatorDecoder.UseNumber()

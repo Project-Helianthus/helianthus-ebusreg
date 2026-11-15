@@ -2,6 +2,7 @@ package registry
 
 import (
 	"fmt"
+	"reflect"
 	"sort"
 	"strings"
 
@@ -72,11 +73,13 @@ func ProjectRegistryDevices(iter EntryIterator) ([]ServiceDeviceView, error) {
 
 // ProjectDeviceEntry copies the identity and planes of entry into a
 // ServiceDeviceView. Address is the display address; Addresses lists it
-// first, followed by the remaining addresses in ascending order. Planes and
-// their methods are sorted by case-folded name. A nil entry, plane or
-// method, or a method without a template, wraps ErrInvalidPayload.
+// first, followed by the remaining addresses in ascending order. Planes are
+// sorted by name trimmed of surrounding whitespace and case-folded, then by
+// exact name; their methods are ordered as ProjectPlane orders them. A nil
+// entry, plane or method, including an interface holding a nil pointer, or a
+// method without a template, wraps ErrInvalidPayload.
 func ProjectDeviceEntry(entry DeviceEntry) (ServiceDeviceView, error) {
-	if entry == nil {
+	if isNilProjectionInput(entry) {
 		return ServiceDeviceView{}, fmt.Errorf("project device entry: %w", ebuserrors.ErrInvalidPayload)
 	}
 
@@ -105,11 +108,12 @@ func ProjectDeviceEntry(entry DeviceEntry) (ServiceDeviceView, error) {
 }
 
 // ProjectPlane copies plane into a ServicePlaneView with its methods sorted
-// by case-folded name, then by exact name, then by command bytes (primary,
-// then secondary). A nil plane or any method
-// that fails ProjectMethod is an error.
+// by name trimmed of surrounding whitespace and case-folded, then by exact
+// name, then by command bytes (primary, then secondary). A nil plane,
+// including an interface holding a nil pointer, wraps ErrInvalidPayload; a
+// method that fails ProjectMethod returns its error.
 func ProjectPlane(plane Plane) (ServicePlaneView, error) {
-	if plane == nil {
+	if isNilProjectionInput(plane) {
 		return ServicePlaneView{}, fmt.Errorf("project plane: %w", ebuserrors.ErrInvalidPayload)
 	}
 
@@ -131,10 +135,10 @@ func ProjectPlane(plane Plane) (ServicePlaneView, error) {
 }
 
 // ProjectMethod copies method into a ServiceMethodView, including its
-// resolved MethodMetadata. A nil method or a nil Template wraps
-// ErrInvalidPayload.
+// resolved MethodMetadata. A nil method, including an interface holding a
+// nil pointer, or a nil Template wraps ErrInvalidPayload.
 func ProjectMethod(method Method) (ServiceMethodView, error) {
-	if method == nil {
+	if isNilProjectionInput(method) {
 		return ServiceMethodView{}, fmt.Errorf("project method: %w", ebuserrors.ErrInvalidPayload)
 	}
 	template := method.Template()
@@ -150,6 +154,19 @@ func ProjectMethod(method Method) (ServiceMethodView, error) {
 		Metadata:         ResolveMethodMetadata(method),
 		ResponseSelector: method.ResponseSchema(),
 	}, nil
+}
+
+func isNilProjectionInput(value any) bool {
+	if value == nil {
+		return true
+	}
+	reflected := reflect.ValueOf(value)
+	switch reflected.Kind() {
+	case reflect.Pointer, reflect.Map, reflect.Slice, reflect.Func, reflect.Chan, reflect.Interface:
+		return reflected.IsNil()
+	default:
+		return false
+	}
 }
 
 func normalizeProjectedAddresses(primary byte, aliases []byte) []byte {

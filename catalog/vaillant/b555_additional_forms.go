@@ -7,6 +7,8 @@ import (
 	"reflect"
 )
 
+// B555AdditionalFormKey identifies one B555 additional form row; nil optional axes are absent and lookups
+// compare every axis exactly.
 type B555AdditionalFormKey struct {
 	B555AdditionalFormFamily        string  `json:"family"`
 	B555AdditionalFormVariant       string  `json:"variant"`
@@ -68,6 +70,8 @@ func b555AdditionalFormValidate(b555AdditionalFormData []byte) ([]json.RawMessag
 	return b555AdditionalFormRows, b555AdditionalFormKeys, nil
 }
 
+// B555AdditionalFormEntries validates the embedded catalog and returns a caller-owned copy of its JSON, or
+// the read or validation error.
 func B555AdditionalFormEntries() (json.RawMessage, error) {
 	b555AdditionalFormData, b555AdditionalFormError := b555AdditionalFormFiles.ReadFile("data/b555_additional_forms.json")
 	if b555AdditionalFormError != nil {
@@ -79,6 +83,8 @@ func B555AdditionalFormEntries() (json.RawMessage, error) {
 	return append(json.RawMessage(nil), b555AdditionalFormData...), nil
 }
 
+// B555AdditionalFormLookup returns a caller-owned copy of the row whose key equals the given key, false
+// when none matches, or the catalog read or validation error.
 func B555AdditionalFormLookup(b555AdditionalFormKey B555AdditionalFormKey) (json.RawMessage, bool, error) {
 	b555AdditionalFormData, b555AdditionalFormError := B555AdditionalFormEntries()
 	if b555AdditionalFormError != nil {

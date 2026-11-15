@@ -70,6 +70,11 @@ func b521FieldViewByte(b521FieldViewValue any) (uint64, error) {
 	return b521FieldViewStrconv.ParseUint(string(b521FieldViewNumber), 10, 8)
 }
 
+// B521FieldViewEvaluate interprets the B521 module-fields view of a request or positive reply; a context
+// that names an operation is not selected. The input is strict JSON with a context object, a fields object
+// of byte arrays and, where the view declares them, an arguments object; malformed input is an error, and
+// a context the view does not select returns an Unknown result. The output never qualifies a device:
+// physical stays Unknown and qualified false. The view declares no arguments.
 func B521FieldViewEvaluate(b521FieldViewInput b521FieldViewJSON.RawMessage) (b521FieldViewJSON.RawMessage, error) {
 	b521FieldViewDecoder := b521FieldViewJSON.NewDecoder(b521FieldViewBytes.NewReader(b521FieldViewInput))
 	b521FieldViewDecoder.UseNumber()

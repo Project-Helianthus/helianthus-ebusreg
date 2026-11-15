@@ -9,6 +9,8 @@ import (
 //go:embed data/b51cd_partial_labels.json
 var b51CDPartialLabelPartialLabelsJSON string
 
+// B51CDPartialKey identifies one B51C or B51D partial label field; nil optional axes are absent and
+// lookups compare every axis exactly.
 type B51CDPartialKey struct {
 	B51CDPartialLabelFamily    string  `json:"family"`
 	B51CDPartialLabelVariant   string  `json:"variant"`
@@ -24,6 +26,8 @@ type B51CDPartialKey struct {
 	B51CDPartialLabelRegister  *uint16 `json:"register"`
 }
 
+// B51CDPartialField is the field layout of a partial label: byte and bit position, width, constant,
+// conversion, unit, domain, labels and the raw fallback; nil members are not declared.
 type B51CDPartialField struct {
 	B51CDPartialLabelLogicalByte *int              `json:"logical_byte"`
 	B51CDPartialLabelLogicalBit  *int              `json:"logical_bit"`
@@ -42,6 +46,7 @@ type B51CDPartialField struct {
 	B51CDPartialLabelRawFallback string            `json:"raw_fallback"`
 }
 
+// B51CDPartialLabel declares one partial label field with its metadata, body width and grade.
 type B51CDPartialLabel struct {
 	B51CDPartialLabelKey         B51CDPartialKey   `json:"key"`
 	B51CDPartialLabelField       B51CDPartialField `json:"metadata"`
@@ -50,6 +55,8 @@ type B51CDPartialLabel struct {
 	B51CDPartialLabelRawFallback string            `json:"raw_fallback"`
 }
 
+// B51CDPartialLabelPartialLabels is the partial label catalog with its catalog-wide grades and
+// limitations.
 type B51CDPartialLabelPartialLabels struct {
 	B51CDPartialLabelRepresentation        string              `json:"software_representation"`
 	B51CDPartialLabelPhysicalQualification string              `json:"physical_qualification"`
@@ -67,6 +74,8 @@ type B51CDPartialLabelPartialLabels struct {
 	B51CDPartialLabelEntries               []B51CDPartialLabel `json:"entries"`
 }
 
+// B51CDPartialLabels decodes the embedded catalog on each call and returns a detached copy or the decoding
+// error.
 func B51CDPartialLabels() (B51CDPartialLabelPartialLabels, error) {
 	var b51CDPartialLabelCatalog B51CDPartialLabelPartialLabels
 	b51CDPartialLabelError := json.Unmarshal([]byte(b51CDPartialLabelPartialLabelsJSON), &b51CDPartialLabelCatalog)
@@ -82,6 +91,8 @@ func b51CDPartialLabelFindPartialLabel(b51CDPartialLabelEntries []B51CDPartialLa
 	return B51CDPartialLabel{}, false
 }
 
+// B51CDLookupPartialLabel returns the entry whose key equals the given key on every axis, false when none
+// matches, or the catalog decoding error.
 func B51CDLookupPartialLabel(b51CDPartialLabelKey B51CDPartialKey) (B51CDPartialLabel, bool, error) {
 	b51CDPartialLabelCatalog, b51CDPartialLabelError := B51CDPartialLabels()
 	if b51CDPartialLabelError != nil {

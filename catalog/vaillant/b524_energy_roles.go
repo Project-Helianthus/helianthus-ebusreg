@@ -12,6 +12,8 @@ import (
 //go:embed data/b524_energy_roles.json
 var b524EnergyRoleData []byte
 
+// B524EnergyRoleKey identifies one B524 energy target by its register coordinates and command role;
+// lookups compare every axis exactly.
 type B524EnergyRoleKey struct {
 	B524EnergyRoleFamily            string  `json:"family"`
 	B524EnergyRoleVariant           string  `json:"variant"`
@@ -26,6 +28,8 @@ type B524EnergyRoleKey struct {
 	B524EnergyCommandRole           string  `json:"command_role"`
 }
 
+// B524EnergyRoleEntry declares one energy target with its codec, width, offset, byte order, native unit,
+// control labels, response form, unknowns and grades; nil members are not declared.
 type B524EnergyRoleEntry struct {
 	B524EnergyRoleReadbackInstance      *uint8            `json:"readback_instance"`
 	B524EnergyRoleKey                   B524EnergyRoleKey `json:"key"`
@@ -45,6 +49,8 @@ type B524EnergyRoleEntry struct {
 	B524EnergyRoleNativeContract        string            `json:"native_contract"`
 }
 
+// B524EnergyRoleEntries strictly decodes and validates the embedded catalog on each call: exactly five
+// targets with complete keys and the expected grades, no duplicate key; anything else is an error.
 func B524EnergyRoleEntries() ([]B524EnergyRoleEntry, error) {
 	var b524EnergyRoleEntries []B524EnergyRoleEntry
 	b524EnergyRoleDecoder := b524EnergyRoleJSON.NewDecoder(b524EnergyRoleBytesPackage.NewReader(b524EnergyRoleData))
@@ -72,6 +78,8 @@ func B524EnergyRoleEntries() ([]B524EnergyRoleEntry, error) {
 	return b524EnergyRoleEntries, nil
 }
 
+// B524EnergyRoleLookup returns the entry whose key equals the given key, false when none matches, or the
+// catalog error.
 func B524EnergyRoleLookup(b524EnergyRoleKey B524EnergyRoleKey) (B524EnergyRoleEntry, bool, error) {
 	b524EnergyRoleEntries, b524EnergyRoleError := B524EnergyRoleEntries()
 	if b524EnergyRoleError != nil {

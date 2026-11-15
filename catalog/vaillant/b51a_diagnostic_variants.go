@@ -12,6 +12,8 @@ import (
 //go:embed data/b51a_diagnostic_variants.json
 var b51ADiagnosticVariantData []byte
 
+// B51ADiagnosticVariantKey identifies one B51A diagnostic field; nil optional axes are absent and lookups
+// compare every axis exactly.
 type B51ADiagnosticVariantKey struct {
 	B51ADiagnosticVariantFamily            string  `json:"family"`
 	B51ADiagnosticVariant                  string  `json:"variant"`
@@ -26,12 +28,14 @@ type B51ADiagnosticVariantKey struct {
 	B51ADiagnosticVariantCommandRole       *string `json:"command_role"`
 }
 
+// B51ADiagnosticVariantCondition holds when bit Bit (0 to 7) of Field equals Set.
 type B51ADiagnosticVariantCondition struct {
 	B51ADiagnosticVariantField string `json:"field"`
 	B51ADiagnosticVariantBit   uint8  `json:"bit"`
 	B51ADiagnosticVariantSet   bool   `json:"set"`
 }
 
+// B51ADiagnosticVariantBit labels one bit of a bit field, with its reserved and default state.
 type B51ADiagnosticVariantBit struct {
 	B51ADiagnosticVariantBit      uint8    `json:"bit"`
 	B51ADiagnosticVariantLabels   []string `json:"labels"`
@@ -39,6 +43,8 @@ type B51ADiagnosticVariantBit struct {
 	B51ADiagnosticVariantDefault  bool     `json:"default"`
 }
 
+// B51ADiagnosticVariantEntry declares one diagnostic field with its grades, layout, domain, labels, bits,
+// conditions and alternatives; nil layout members are not declared.
 type B51ADiagnosticVariantEntry struct {
 	B51ADiagnosticVariantKey                   B51ADiagnosticVariantKey           `json:"key"`
 	B51ADiagnosticVariantGrade                 string                             `json:"grade"`
@@ -63,6 +69,8 @@ type B51ADiagnosticVariantEntry struct {
 	B51ADiagnosticVariantTail                  []uint16                           `json:"tail"`
 }
 
+// B51ADiagnosticVariantAlternative is one labelled reading of a field that applies when all of its
+// conditions hold.
 type B51ADiagnosticVariantAlternative struct {
 	B51ADiagnosticVariantLabel           string                           `json:"label"`
 	B51ADiagnosticVariantConditions      []B51ADiagnosticVariantCondition `json:"conditions"`
@@ -70,6 +78,8 @@ type B51ADiagnosticVariantAlternative struct {
 	B51ADiagnosticVariantInterpretations []string                         `json:"interpretations"`
 }
 
+// B51ADiagnosticVariantEntries strictly decodes and validates the embedded catalog on each call (unknown
+// members, trailing data and invalid entries are errors) and returns its entries.
 func B51ADiagnosticVariantEntries() ([]B51ADiagnosticVariantEntry, error) {
 	var b51ADiagnosticVariantEntries []B51ADiagnosticVariantEntry
 	b51ADiagnosticVariantDecoder := b51ADiagnosticVariantJSON.NewDecoder(b51ADiagnosticVariantBytes.NewReader(b51ADiagnosticVariantData))
@@ -152,6 +162,8 @@ func b51ADiagnosticVariantValidateConditions(b51ADiagnosticVariantConditions []B
 	return nil
 }
 
+// B51ADiagnosticVariantLookup returns the entry whose key equals the given key, false when none matches,
+// or the catalog error.
 func B51ADiagnosticVariantLookup(b51ADiagnosticVariantKey B51ADiagnosticVariantKey) (B51ADiagnosticVariantEntry, bool, error) {
 	b51ADiagnosticVariantEntries, b51ADiagnosticVariantErr := B51ADiagnosticVariantEntries()
 	if b51ADiagnosticVariantErr != nil {

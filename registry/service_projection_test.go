@@ -371,3 +371,76 @@ func TestProjectPlaneDeterministicOrdering(t *testing.T) {
 		t.Fatalf("method order = [%s,%s]; want [alpha,zeta]", projected.Methods[0].Name, projected.Methods[1].Name)
 	}
 }
+
+func TestProjectTypedNilInputs(t *testing.T) {
+	t.Parallel()
+
+	var nilEntry *projectionTestEntry
+	if _, err := ProjectDeviceEntry(nilEntry); !stderrors.Is(err, ebuserrors.ErrInvalidPayload) {
+		t.Fatalf("ProjectDeviceEntry(typed nil) error = %v; want ErrInvalidPayload", err)
+	}
+	if _, err := ProjectRegistryDevices(projectionTestIterator{entries: []DeviceEntry{nilEntry}}); !stderrors.Is(err, ebuserrors.ErrInvalidPayload) {
+		t.Fatalf("ProjectRegistryDevices(typed nil entry) error = %v; want ErrInvalidPayload", err)
+	}
+
+	var nilPlane *projectionTestPlane
+	if _, err := ProjectPlane(nilPlane); !stderrors.Is(err, ebuserrors.ErrInvalidPayload) {
+		t.Fatalf("ProjectPlane(typed nil) error = %v; want ErrInvalidPayload", err)
+	}
+	withNilPlane := projectionTestEntry{address: 0x08, planes: []Plane{nilPlane}}
+	if _, err := ProjectDeviceEntry(withNilPlane); !stderrors.Is(err, ebuserrors.ErrInvalidPayload) {
+		t.Fatalf("ProjectDeviceEntry(typed nil plane) error = %v; want ErrInvalidPayload", err)
+	}
+
+	var nilMethod *projectionTestMethod
+	if _, err := ProjectMethod(nilMethod); !stderrors.Is(err, ebuserrors.ErrInvalidPayload) {
+		t.Fatalf("ProjectMethod(typed nil) error = %v; want ErrInvalidPayload", err)
+	}
+	withNilMethod := projectionTestPlane{name: "Heating", methods: []Method{nilMethod}}
+	if _, err := ProjectPlane(withNilMethod); !stderrors.Is(err, ebuserrors.ErrInvalidPayload) {
+		t.Fatalf("ProjectPlane(typed nil method) error = %v; want ErrInvalidPayload", err)
+	}
+}
+
+func TestProjectPlaneOrderingTrimsAndFoldsNames(t *testing.T) {
+	t.Parallel()
+
+	method := func(name string, primary, secondary byte) Method {
+		return projectionTestMethod{name: name, readOnly: true, template: projectionTestTemplate{primary: primary, secondary: secondary}}
+	}
+	methods := []Method{
+		method("gamma", 0xB5, 0x01),
+		method(" Beta", 0xB5, 0x01),
+		method("delta", 0xB5, 0x02),
+		method("alpha ", 0xB5, 0x01),
+		method("delta", 0xB5, 0x01),
+		method("ALPHA", 0xB5, 0x01),
+		method("delta", 0xB4, 0x09),
+	}
+
+	projected, err := ProjectPlane(projectionTestPlane{name: "Heating", methods: methods})
+	if err != nil {
+		t.Fatalf("ProjectPlane error = %v", err)
+	}
+	type orderKey struct {
+		name      string
+		primary   byte
+		secondary byte
+	}
+	want := []orderKey{
+		{"ALPHA", 0xB5, 0x01},
+		{"alpha ", 0xB5, 0x01},
+		{" Beta", 0xB5, 0x01},
+		{"delta", 0xB4, 0x09},
+		{"delta", 0xB5, 0x01},
+		{"delta", 0xB5, 0x02},
+		{"gamma", 0xB5, 0x01},
+	}
+	got := make([]orderKey, 0, len(projected.Methods))
+	for _, view := range projected.Methods {
+		got = append(got, orderKey{view.Name, view.Primary, view.Secondary})
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("method order = %+v; want %+v", got, want)
+	}
+}

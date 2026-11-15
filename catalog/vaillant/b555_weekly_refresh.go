@@ -76,6 +76,12 @@ func b555WeeklyRefreshBytes(b555WeeklyRefreshValue any) error {
 	return nil
 }
 
+// B555WeeklyRefreshEvaluate evaluates the B555 weekly refresh (operation 164, with status_ok, slot_limit
+// and seven day arguments) and the non-heating shape (operation 166, with initial, count and slot setpoint
+// arguments). The input is strict JSON with a context object, a fields object of byte arrays and, where
+// the view declares them, an arguments object; malformed input is an error, and a context the view does
+// not select returns an Unknown result. The output never qualifies a device: physical stays Unknown and
+// qualified false.
 func B555WeeklyRefreshEvaluate(b555WeeklyRefreshInput json.RawMessage) (json.RawMessage, error) {
 	b555WeeklyRefreshDecoder := json.NewDecoder(bytes.NewReader(b555WeeklyRefreshInput))
 	b555WeeklyRefreshDecoder.UseNumber()

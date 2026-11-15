@@ -9,6 +9,8 @@ import (
 //go:embed data/b523_sensor_fields.json
 var b523SensorFieldB523SensorJSON string
 
+// B523SensorKey identifies one B523 sensor field; nil optional axes are absent and lookups compare every
+// axis exactly.
 type B523SensorKey struct {
 	B523SensorFieldFamily    string  `json:"family"`
 	B523SensorFieldVariant   string  `json:"variant"`
@@ -23,6 +25,7 @@ type B523SensorKey struct {
 	B523SensorFieldRegister  *uint16 `json:"register"`
 }
 
+// B523SensorBranch is one named reading of a sensor field with its codec, unit, default, bounds and grade.
 type B523SensorBranch struct {
 	B523SensorFieldName       string    `json:"name"`
 	B523SensorFieldSignedness string    `json:"signedness"`
@@ -34,6 +37,8 @@ type B523SensorBranch struct {
 	B523SensorFieldGrade      string    `json:"grade"`
 }
 
+// B523SensorField declares one sensor field with its layout, codec, unit, bounds, labels, replacement
+// value, branches and the raw fallback; nil members are not declared.
 type B523SensorField struct {
 	B523SensorFieldKey            B523SensorKey      `json:"key"`
 	B523SensorFieldPosition       *int               `json:"logical_position"`
@@ -54,6 +59,7 @@ type B523SensorField struct {
 	B523SensorFieldRawFallback    string             `json:"raw_fallback"`
 }
 
+// B523SensorCatalog is the B523 sensor field catalog with its catalog-wide grades and limitations.
 type B523SensorCatalog struct {
 	B523SensorFieldRepresentationGrade string            `json:"representation_grade"`
 	B523SensorFieldQualification       string            `json:"physical_qualification"`
@@ -62,6 +68,8 @@ type B523SensorCatalog struct {
 	B523SensorFieldFields              []B523SensorField `json:"fields"`
 }
 
+// B523SensorFields decodes the embedded catalog on each call and returns a detached copy or the decoding
+// error.
 func B523SensorFields() (B523SensorCatalog, error) {
 	var b523SensorFieldCatalog B523SensorCatalog
 	b523SensorFieldError := b523SensorFieldJSON.Unmarshal([]byte(b523SensorFieldB523SensorJSON), &b523SensorFieldCatalog)
@@ -84,6 +92,8 @@ func b523SensorFieldFindSensorField(b523SensorFieldFields []B523SensorField, b52
 	return B523SensorField{}, false, nil
 }
 
+// B523LookupSensorField returns a deep copy of the field whose key equals the given key, false when none
+// matches, or the catalog decoding or copy error.
 func B523LookupSensorField(b523SensorFieldKey B523SensorKey) (B523SensorField, bool, error) {
 	b523SensorFieldCatalog, b523SensorFieldError := B523SensorFields()
 	if b523SensorFieldError != nil {

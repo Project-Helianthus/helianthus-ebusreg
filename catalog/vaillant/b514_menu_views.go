@@ -72,6 +72,12 @@ func b514MenuViewInteger(b514MenuViewValue any) (int, bool) {
 	return b514MenuViewInt, b514MenuViewErr == nil
 }
 
+// B514MenuViewInterpret interprets the B514 menu feedback views (result and progress feedback, and the
+// pressure logical object) of a positive reply. The input is strict JSON with a context object, a fields
+// object of byte arrays and, where the view declares them, an arguments object; malformed input is an
+// error, and a context the view does not select returns an Unknown result. The output never qualifies a
+// device: physical stays Unknown and qualified false. No arguments are defined; an arguments member must
+// be an empty object.
 func B514MenuViewInterpret(b514MenuViewInput b514MenuViewJSON.RawMessage) (b514MenuViewJSON.RawMessage, error) {
 	if !b514MenuViewUTF8.Valid(b514MenuViewInput) {
 		return nil, b514MenuViewFmt.Errorf("invalid UTF-8 JSON")

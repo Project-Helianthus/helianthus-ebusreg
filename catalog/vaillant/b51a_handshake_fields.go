@@ -64,6 +64,12 @@ func b51AHandshakeFieldByte(b51AHandshakeFieldValue any) (int, bool) {
 	return int(b51AHandshakeFieldInt), b51AHandshakeFieldErr == nil && b51AHandshakeFieldInt >= 0 && b51AHandshakeFieldInt <= 255
 }
 
+// B51AHandshakeFieldEvaluate interprets the B51A reset, handshake and sequence-pair views; in a positive
+// reply whose flags report no change, the sequence, start and offset results are absent-unless-change. The
+// input is strict JSON with a context object, a fields object of byte arrays and, where the view declares
+// them, an arguments object; malformed input is an error, and a context the view does not select returns
+// an Unknown result. The output never qualifies a device: physical stays Unknown and qualified false. No
+// arguments are supported.
 func B51AHandshakeFieldEvaluate(b51AHandshakeFieldInput json.RawMessage) (json.RawMessage, error) {
 	b51AHandshakeFieldDecoder := json.NewDecoder(bytes.NewReader(b51AHandshakeFieldInput))
 	b51AHandshakeFieldDecoder.UseNumber()

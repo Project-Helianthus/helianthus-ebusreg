@@ -126,6 +126,11 @@ func b525QualityConfigValidateEscapes(b525QualityConfigInput []byte) error {
 	return nil
 }
 
+// B525QualityConfigEvaluate interprets the B525 quality view (operation 3, positive reply) and the
+// configuration views (operations 24 to 27, request or positive reply). The input is strict JSON with a
+// context object, a fields object of byte arrays and, where the view declares them, an arguments object;
+// malformed input is an error, and a context the view does not select returns an Unknown result. The
+// output never qualifies a device: physical stays Unknown and qualified false.
 func B525QualityConfigEvaluate(b525QualityConfigInput json.RawMessage) (json.RawMessage, error) {
 	if !utf8.Valid(b525QualityConfigInput) {
 		return nil, fmt.Errorf("input must be valid UTF-8")

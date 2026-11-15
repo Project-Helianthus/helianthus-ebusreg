@@ -68,6 +68,12 @@ func b51ADiagnosticFieldUint(b51ADiagnosticFieldValue any) (uint64, bool) {
 	return b51ADiagnosticFieldRat.Num().Uint64(), true
 }
 
+// B51ADiagnosticFieldEvaluate interprets the B51A diagnostic views of a positive reply: enable bits
+// (operation 4), range, enumeration and four-byte values (operation 5) and save (operation 6), where the
+// save view requires the value_width argument of 1 or 2 bytes. The input is strict JSON with a context
+// object, a fields object of byte arrays and, where the view declares them, an arguments object; malformed
+// input is an error, and a context the view does not select returns an Unknown result. The output never
+// qualifies a device: physical stays Unknown and qualified false.
 func B51ADiagnosticFieldEvaluate(b51ADiagnosticFieldInput b51ADiagnosticFieldJSON.RawMessage) (b51ADiagnosticFieldJSON.RawMessage, error) {
 	b51ADiagnosticFieldDecoder := b51ADiagnosticFieldJSON.NewDecoder(b51ADiagnosticFieldBytes.NewReader(b51ADiagnosticFieldInput))
 	b51ADiagnosticFieldDecoder.UseNumber()

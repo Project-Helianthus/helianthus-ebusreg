@@ -6,6 +6,8 @@ import (
 	"reflect"
 )
 
+// B555NumericUnitKey identifies one B555 numeric field; nil optional axes are absent and lookups compare
+// every axis exactly.
 type B555NumericUnitKey struct {
 	B555NumericUnitFamily    string  `json:"family"`
 	B555NumericUnitVariant   string  `json:"variant"`
@@ -20,6 +22,7 @@ type B555NumericUnitKey struct {
 	B555NumericUnitRegister  *uint16 `json:"register"`
 }
 
+// B555NumericUnitReplacement marks one raw value as a replacement with its role, context and grade.
 type B555NumericUnitReplacement struct {
 	B555NumericUnitRaw     uint64      `json:"raw"`
 	B555NumericUnitRole    string      `json:"role"`
@@ -27,6 +30,8 @@ type B555NumericUnitReplacement struct {
 	B555NumericUnitGrade   SchemaGrade `json:"grade"`
 }
 
+// B555NumericField declares one numeric field with its layout, conversion, divisor, unit, raw and numeric
+// limits, labels, replacement and reserved values and grades; nil members are not declared.
 type B555NumericField struct {
 	B555NumericUnitKey             B555NumericUnitKey           `json:"key"`
 	B555NumericUnitLogicalPosition *int                         `json:"logical_position"`
@@ -53,6 +58,7 @@ type B555NumericField struct {
 	B555NumericUnitPeerEffects     SchemaGrade                  `json:"peer_effects"`
 }
 
+// B555NumericMetadata is the B555 numeric unit catalog with its catalog-wide grades and limitations.
 type B555NumericMetadata struct {
 	B555NumericUnitRepresentationGrade   SchemaGrade        `json:"representation_grade"`
 	B555NumericUnitPhysicalQualification SchemaGrade        `json:"physical_qualification"`
@@ -69,6 +75,8 @@ type B555NumericMetadata struct {
 //go:embed data/b555_numeric_units.json
 var b555NumericUnitNumericJSON string
 
+// B555NumericUnits decodes the embedded catalog on each call and returns a detached copy or the decoding
+// error.
 func B555NumericUnits() (B555NumericMetadata, error) {
 	var b555NumericUnitMetadata B555NumericMetadata
 	b555NumericUnitError := json.Unmarshal([]byte(b555NumericUnitNumericJSON), &b555NumericUnitMetadata)
@@ -84,6 +92,8 @@ func b555NumericUnitLookup(b555NumericUnitEntries []B555NumericField, b555Numeri
 	return B555NumericField{}, false
 }
 
+// B555LookupNumericUnits returns the field whose key equals the given key on every axis, false when none
+// matches, or the catalog decoding error.
 func B555LookupNumericUnits(b555NumericUnitKey B555NumericUnitKey) (B555NumericField, bool, error) {
 	b555NumericUnitMetadata, b555NumericUnitError := B555NumericUnits()
 	if b555NumericUnitError != nil {

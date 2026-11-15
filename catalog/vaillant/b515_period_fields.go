@@ -88,6 +88,11 @@ func b515PeriodFieldPeriod(b515PeriodFieldRaw any) map[string]any {
 	return b515PeriodFieldResult
 }
 
+// B515PeriodFieldEvaluate interprets the B515 periods view (request or positive) and the intervals view
+// (request), whose three start and end pairs are required arguments. The input is strict JSON with a
+// context object, a fields object of byte arrays and, where the view declares them, an arguments object;
+// malformed input is an error, and a context the view does not select returns an Unknown result. The
+// output never qualifies a device: physical stays Unknown and qualified false.
 func B515PeriodFieldEvaluate(b515PeriodFieldInput b515PeriodFieldJSON.RawMessage) (b515PeriodFieldJSON.RawMessage, error) {
 	b515PeriodFieldDecoder := b515PeriodFieldJSON.NewDecoder(b515PeriodFieldBytes.NewReader(b515PeriodFieldInput))
 	b515PeriodFieldDecoder.UseNumber()

@@ -6,14 +6,18 @@ import (
 	"fmt"
 )
 
+// SchemaGrade is the evidence grade of a catalog claim: Unknown, Hypothesis or Proven.
 type SchemaGrade string
 
+// The evidence grades, weakest first; an empty grade in a record is read as SchemaUnknown.
 const (
 	SchemaUnknown    SchemaGrade = "Unknown"
 	SchemaHypothesis SchemaGrade = "Hypothesis"
 	SchemaProven     SchemaGrade = "Proven"
 )
 
+// SchemaKey identifies one schema record; it is comparable, and decoding requires every numeric selector,
+// zero included.
 type SchemaKey struct {
 	SchemaFamily      string `json:"family"`
 	SchemaVariant     string `json:"variant"`
@@ -53,6 +57,8 @@ func (schemaKey *SchemaKey) UnmarshalJSON(schemaData []byte) error {
 	return nil
 }
 
+// SchemaField declares one field of a record with its position, width, codec, unit, labels, sentinel,
+// grade and raw fallback.
 type SchemaField struct {
 	SchemaName        string           `json:"name"`
 	SchemaPosition    *int             `json:"position,omitempty"`
@@ -65,6 +71,7 @@ type SchemaField struct {
 	SchemaRawFallback []byte           `json:"raw_fallback"`
 }
 
+// SchemaRecord declares one record: its key, body width, grade, raw fallback and fields.
 type SchemaRecord struct {
 	SchemaKey         SchemaKey     `json:"key"`
 	SchemaBodyWidth   *int          `json:"body_width,omitempty"`
@@ -77,6 +84,8 @@ func schemaValidGrade(schemaGrade SchemaGrade) bool {
 	return schemaGrade == "" || schemaGrade == SchemaUnknown || schemaGrade == SchemaHypothesis || schemaGrade == SchemaProven
 }
 
+// SchemaValidate checks the records: complete keys with a request or response direction, no duplicate key,
+// valid grades, and field extents inside the body width. It returns the first violation.
 func SchemaValidate(schemaRecords []SchemaRecord) error {
 	schemaSeen := make(map[SchemaKey]bool)
 	for schemaIndex, schemaRecord := range schemaRecords {
@@ -129,6 +138,8 @@ func schemaClaimGrade(schemaGrade SchemaGrade) SchemaGrade {
 	return schemaGrade
 }
 
+// SchemaQuery validates the records and returns a deep copy of the record whose key equals the given key,
+// with empty grades reported as SchemaUnknown; false when none matches, or the validation error.
 func SchemaQuery(schemaRecords []SchemaRecord, schemaKey SchemaKey) (SchemaRecord, bool, error) {
 	if schemaError := SchemaValidate(schemaRecords); schemaError != nil {
 		return SchemaRecord{}, false, schemaError

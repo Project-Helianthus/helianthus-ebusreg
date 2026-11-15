@@ -5,11 +5,15 @@ import (
 	b516TwoWordViewMath "math"
 )
 
+// Family and variant that B516TwoWordViewInterpret admits.
 const (
 	B516TwoWordViewFamily  = "vaillant-b516-family"
 	B516TwoWordViewVariant = "b516-op14-candidate"
 )
 
+// B516TwoWordViewResult is the status byte and two 32-bit words of the B516 operation 0x14 reply; each
+// part is set only when both the declared count and the received body cover it, and Raw and Trailing are
+// detached copies.
 type B516TwoWordViewResult struct {
 	B516TwoWordViewDeclaredCount       int      `json:"declared_count"`
 	B516TwoWordViewAvailableExtent     int      `json:"available_extent"`
@@ -37,6 +41,10 @@ type B516TwoWordViewResult struct {
 	B516TwoWordViewQualification       string   `json:"qualification"`
 }
 
+// B516TwoWordViewInterpret reads the positive operation 0x14 reply: a status byte, a little-endian IEEE
+// 754 word whose value is kept only when finite, and a second word kept raw. Units, signs and the status
+// meaning stay Unknown; a family, variant, operation or direction mismatch or a negative count is not
+// admitted and returns only the raw body.
 func B516TwoWordViewInterpret(b516TwoWordViewFamily, b516TwoWordViewVariant string, b516TwoWordViewOperation byte, b516TwoWordViewDirection string, b516TwoWordViewDeclaredCount int, b516TwoWordViewBody []byte) B516TwoWordViewResult {
 	b516TwoWordViewResult := B516TwoWordViewResult{
 		B516TwoWordViewDeclaredCount:       b516TwoWordViewDeclaredCount,

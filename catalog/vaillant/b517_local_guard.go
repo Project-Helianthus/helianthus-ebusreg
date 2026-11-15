@@ -118,6 +118,12 @@ func b517LocalGuardEncoding(b517LocalGuardData []byte) bool {
 	return true
 }
 
+// B517LocalGuardEvaluate evaluates the local B517 adaptation guard: each flag and the overall eligibility
+// derive from the supplied fields and the required arguments, and a missing input keeps the result
+// partial. The input is strict JSON with a context object, a fields object of byte arrays and, where the
+// view declares them, an arguments object; malformed input is an error, and a context the view does not
+// select returns an Unknown result. The output never qualifies a device: physical stays Unknown and
+// qualified false.
 func B517LocalGuardEvaluate(b517LocalGuardInputJSON b517LocalGuardJSON.RawMessage) (b517LocalGuardJSON.RawMessage, error) {
 	if !b517LocalGuardEncoding(b517LocalGuardInputJSON) {
 		return nil, b517LocalGuardFmt.Errorf("invalid string encoding")

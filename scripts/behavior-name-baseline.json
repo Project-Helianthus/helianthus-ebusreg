@@ -448,53 +448,13 @@
       "category": "filename"
     },
     {
-      "path": "catalog/ebusstandard/testdata/ab28_standard07_residual_fields.json",
-      "symbol": "ab28_standard07_residual_fields.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/ebusstandard/testdata/ab49_fe_metadata.json",
-      "symbol": "ab49_fe_metadata.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/ebusstandard/testdata/ab54_standard_ff_body_states.json",
-      "symbol": "ab54_standard_ff_body_states.json",
-      "category": "filename"
-    },
-    {
       "path": "catalog/ebusstandard/testdata/ab76_standard03_candidate_views.json",
       "symbol": "ab76_standard03_candidate_views.json",
       "category": "filename"
     },
     {
-      "path": "catalog/ebusstandard/testdata/ab77_07_candidates.json",
-      "symbol": "ab77_07_candidates.json",
-      "category": "filename"
-    },
-    {
       "path": "catalog/ebusstandard/testdata/ab78_standard05_candidate_views.json",
       "symbol": "ab78_standard05_candidate_views.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/ebusstandard/testdata/ab79_09_candidates.json",
-      "symbol": "ab79_09_candidates.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/ebusstandard/testdata/ab81_0f_candidates.json",
-      "symbol": "ab81_0f_candidates.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/ebusstandard/testdata/ab83_03_counter_bodies.json",
-      "symbol": "ab83_03_counter_bodies.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/ebusstandard/testdata/ab84_05_burner_bodies.json",
-      "symbol": "ab84_05_burner_bodies.json",
       "category": "filename"
     },
     {
@@ -53798,323 +53758,268 @@
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab12_b50f_status_spans.json",
-      "symbol": "ab12_b50f_status_spans.json",
+      "path": "catalog/vaillant/data/b501_legacy_sequence.json",
+      "symbol": "b501_legacy_sequence.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab13_b507_energy_candidates.json",
-      "symbol": "ab13_b507_energy_candidates.json",
+      "path": "catalog/vaillant/data/b503_history_flags.json",
+      "symbol": "b503_history_flags.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab14_b509_op59_quantities.json",
-      "symbol": "ab14_b509_op59_quantities.json",
+      "path": "catalog/vaillant/data/b503_text_categories.json",
+      "symbol": "b503_text_categories.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab15_b504_circuit_roles.json",
-      "symbol": "ab15_b504_circuit_roles.json",
+      "path": "catalog/vaillant/data/b504_candidates.json",
+      "symbol": "b504_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab16_b505_operating_roles.json",
-      "symbol": "ab16_b505_operating_roles.json",
+      "path": "catalog/vaillant/data/b504_circuit_roles.json",
+      "symbol": "b504_circuit_roles.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab17_b506_rf_sequence.json",
-      "symbol": "ab17_b506_rf_sequence.json",
+      "path": "catalog/vaillant/data/b505_candidates.json",
+      "symbol": "b505_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab18_b512_feedback_fallback.json",
-      "symbol": "ab18_b512_feedback_fallback.json",
+      "path": "catalog/vaillant/data/b505_operating_roles.json",
+      "symbol": "b505_operating_roles.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab19_b512_heatpump_io.json",
-      "symbol": "ab19_b512_heatpump_io.json",
+      "path": "catalog/vaillant/data/b506_candidates.json",
+      "symbol": "b506_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab20_b516_directional_types.json",
-      "symbol": "ab20_b516_directional_types.json",
+      "path": "catalog/vaillant/data/b506_rf_sequence.json",
+      "symbol": "b506_rf_sequence.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab21_b519_reply_policy.json",
-      "symbol": "ab21_b519_reply_policy.json",
+      "path": "catalog/vaillant/data/b507_energy_candidates.json",
+      "symbol": "b507_energy_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab26_b555_additional_forms.json",
-      "symbol": "ab26_b555_additional_forms.json",
+      "path": "catalog/vaillant/data/b509_boiler_codec_dictionary.json",
+      "symbol": "b509_boiler_codec_dictionary.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab27_holiday.json",
-      "symbol": "ab27_holiday.json",
+      "path": "catalog/vaillant/data/b509_candidates.json",
+      "symbol": "b509_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab29_room_actions.json",
-      "symbol": "ab29_room_actions.json",
+      "path": "catalog/vaillant/data/b509_diagnostic_shapes.json",
+      "symbol": "b509_diagnostic_shapes.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab30_b524_family_codebooks.json",
-      "symbol": "ab30_b524_family_codebooks.json",
+      "path": "catalog/vaillant/data/b509_heatpump_codec_dictionary.json",
+      "symbol": "b509_heatpump_codec_dictionary.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab31_pump_roles.json",
-      "symbol": "ab31_pump_roles.json",
+      "path": "catalog/vaillant/data/b509_identity_shapes.json",
+      "symbol": "b509_identity_shapes.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab32_b524_component_selectors.json",
-      "symbol": "ab32_b524_component_selectors.json",
+      "path": "catalog/vaillant/data/b509_op59_quantities.json",
+      "symbol": "b509_op59_quantities.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab33_appliance_info.json",
-      "symbol": "ab33_appliance_info.json",
+      "path": "catalog/vaillant/data/b509_symbolic_annotations.json",
+      "symbol": "b509_symbolic_annotations.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab34_b501_legacy_sequence.json",
-      "symbol": "ab34_b501_legacy_sequence.json",
+      "path": "catalog/vaillant/data/b50e_candidates.json",
+      "symbol": "b50e_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab35_legacy_timer.json",
-      "symbol": "ab35_legacy_timer.json",
+      "path": "catalog/vaillant/data/b50e_rule_value_rows.json",
+      "symbol": "b50e_rule_value_rows.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab36_b524_name_annotations.json",
-      "symbol": "ab36_b524_name_annotations.json",
+      "path": "catalog/vaillant/data/b50f_candidates.json",
+      "symbol": "b50f_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab37_tunnel.json",
-      "symbol": "ab37_tunnel.json",
+      "path": "catalog/vaillant/data/b50f_status_spans.json",
+      "symbol": "b50f_status_spans.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab38_b513_symbolic_dictionary.json",
-      "symbol": "ab38_b513_symbolic_dictionary.json",
+      "path": "catalog/vaillant/data/b510_candidates.json",
+      "symbol": "b510_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab39_opaque_programming.json",
-      "symbol": "ab39_opaque_programming.json",
+      "path": "catalog/vaillant/data/b510_operating_defaults.json",
+      "symbol": "b510_operating_defaults.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab40_b509_symbolic_annotations.json",
-      "symbol": "ab40_b509_symbolic_annotations.json",
+      "path": "catalog/vaillant/data/b511_candidates.json",
+      "symbol": "b511_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab41_program_blocks.json",
-      "symbol": "ab41_program_blocks.json",
+      "path": "catalog/vaillant/data/b511_class_candidates.json",
+      "symbol": "b511_class_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab43_simulator_adc.json",
-      "symbol": "ab43_simulator_adc.json",
+      "path": "catalog/vaillant/data/b512_air_fields.json",
+      "symbol": "b512_air_fields.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab45_outdoor_module.json",
-      "symbol": "ab45_outdoor_module.json",
+      "path": "catalog/vaillant/data/b512_candidates.json",
+      "symbol": "b512_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab46_b509_identity_shapes.json",
-      "symbol": "ab46_b509_identity_shapes.json",
+      "path": "catalog/vaillant/data/b512_dhw_stepper.json",
+      "symbol": "b512_dhw_stepper.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab47_fan_demand.json",
-      "symbol": "ab47_fan_demand.json",
+      "path": "catalog/vaillant/data/b512_feedback_fallback.json",
+      "symbol": "b512_feedback_fallback.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab48_b510_operating_defaults.json",
-      "symbol": "ab48_b510_operating_defaults.json",
+      "path": "catalog/vaillant/data/b512_heatpump_io.json",
+      "symbol": "b512_heatpump_io.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab50_b511_class_candidates.json",
-      "symbol": "ab50_b511_class_candidates.json",
+      "path": "catalog/vaillant/data/b513_symbolic_dictionary.json",
+      "symbol": "b513_symbolic_dictionary.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab51_b516_residual_fields.json",
-      "symbol": "ab51_b516_residual_fields.json",
+      "path": "catalog/vaillant/data/b514_menu_feedback.json",
+      "symbol": "b514_menu_feedback.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab53_b504_candidates.json",
-      "symbol": "ab53_b504_candidates.json",
+      "path": "catalog/vaillant/data/b516_directional_types.json",
+      "symbol": "b516_directional_types.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab55_b505_candidates.json",
-      "symbol": "ab55_b505_candidates.json",
+      "path": "catalog/vaillant/data/b516_residual_fields.json",
+      "symbol": "b516_residual_fields.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab56_b524_numeric_candidates.json",
-      "symbol": "ab56_b524_numeric_candidates.json",
+      "path": "catalog/vaillant/data/b516_statistics_directions.json",
+      "symbol": "b516_statistics_directions.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab57_b506_candidates.json",
-      "symbol": "ab57_b506_candidates.json",
+      "path": "catalog/vaillant/data/b519_reply_policy.json",
+      "symbol": "b519_reply_policy.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab59_b509_candidates.json",
-      "symbol": "ab59_b509_candidates.json",
+      "path": "catalog/vaillant/data/b51a_diagnostic_variants.json",
+      "symbol": "b51a_diagnostic_variants.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab61_b50e_candidates.json",
-      "symbol": "ab61_b50e_candidates.json",
+      "path": "catalog/vaillant/data/b51a_mirror_fields.json",
+      "symbol": "b51a_mirror_fields.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab63_b50f_candidates.json",
-      "symbol": "ab63_b50f_candidates.json",
+      "path": "catalog/vaillant/data/b51cd_partial_labels.json",
+      "symbol": "b51cd_partial_labels.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab65_b510_candidates.json",
-      "symbol": "ab65_b510_candidates.json",
+      "path": "catalog/vaillant/data/b520_blocks.json",
+      "symbol": "b520_blocks.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab67_b511_candidates.json",
-      "symbol": "ab67_b511_candidates.json",
+      "path": "catalog/vaillant/data/b523_candidates.json",
+      "symbol": "b523_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab68_b509_boiler_codec_dictionary.json",
-      "symbol": "ab68_b509_boiler_codec_dictionary.json",
+      "path": "catalog/vaillant/data/b523_config_mixer.json",
+      "symbol": "b523_config_mixer.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab69_b512_candidates.json",
-      "symbol": "ab69_b512_candidates.json",
+      "path": "catalog/vaillant/data/b523_sensor_fields.json",
+      "symbol": "b523_sensor_fields.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab70_b509_heatpump_codec_dictionary.json",
-      "symbol": "ab70_b509_heatpump_codec_dictionary.json",
+      "path": "catalog/vaillant/data/b524_component_selectors.json",
+      "symbol": "b524_component_selectors.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab71_b523_candidates.json",
-      "symbol": "ab71_b523_candidates.json",
+      "path": "catalog/vaillant/data/b524_energy_roles.json",
+      "symbol": "b524_energy_roles.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab72_b516_statistics_directions.json",
-      "symbol": "ab72_b516_statistics_directions.json",
+      "path": "catalog/vaillant/data/b524_family_codebooks.json",
+      "symbol": "b524_family_codebooks.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab73_b525_candidates.json",
-      "symbol": "ab73_b525_candidates.json",
+      "path": "catalog/vaillant/data/b524_name_annotations.json",
+      "symbol": "b524_name_annotations.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab74_b50e_rule_value_rows.json",
-      "symbol": "ab74_b50e_rule_value_rows.json",
+      "path": "catalog/vaillant/data/b524_numeric_candidates.json",
+      "symbol": "b524_numeric_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab75_b531_candidates.json",
-      "symbol": "ab75_b531_candidates.json",
+      "path": "catalog/vaillant/data/b524_scalar_shapes.json",
+      "symbol": "b524_scalar_shapes.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab85_b524_scalar_shapes.json",
-      "symbol": "ab85_b524_scalar_shapes.json",
+      "path": "catalog/vaillant/data/b525_candidates.json",
+      "symbol": "b525_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab86_b503_history_flags.json",
-      "symbol": "ab86_b503_history_flags.json",
+      "path": "catalog/vaillant/data/b531_candidates.json",
+      "symbol": "b531_candidates.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab87_b509_diagnostic_shapes.json",
-      "symbol": "ab87_b509_diagnostic_shapes.json",
+      "path": "catalog/vaillant/data/b555_additional_forms.json",
+      "symbol": "b555_additional_forms.json",
       "category": "filename"
     },
     {
-      "path": "catalog/vaillant/data/ab88_b512_air_fields.json",
-      "symbol": "ab88_b512_air_fields.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab89_b514_menu_feedback.json",
-      "symbol": "ab89_b514_menu_feedback.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab90_b51a_mirror_fields.json",
-      "symbol": "ab90_b51a_mirror_fields.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab91_b51cd_partial_labels.json",
-      "symbol": "ab91_b51cd_partial_labels.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab92_b520_blocks.json",
-      "symbol": "ab92_b520_blocks.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab93_b523_sensor_fields.json",
-      "symbol": "ab93_b523_sensor_fields.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab94_b555_numeric_units.json",
-      "symbol": "ab94_b555_numeric_units.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab95_b524_energy_roles.json",
-      "symbol": "ab95_b524_energy_roles.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab96_b503_text_categories.json",
-      "symbol": "ab96_b503_text_categories.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab97_b512_dhw_stepper.json",
-      "symbol": "ab97_b512_dhw_stepper.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab98_b51a_diagnostic_variants.json",
-      "symbol": "ab98_b51a_diagnostic_variants.json",
-      "category": "filename"
-    },
-    {
-      "path": "catalog/vaillant/data/ab99_b523_config_mixer.json",
-      "symbol": "ab99_b523_config_mixer.json",
+      "path": "catalog/vaillant/data/b555_numeric_units.json",
+      "symbol": "b555_numeric_units.json",
       "category": "filename"
     },
     {

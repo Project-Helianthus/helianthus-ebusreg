@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- `scripts/vaillant_race_budget.sh` lists the tests in `catalog/vaillant` and
+  runs each one alone with the race detector, count 1 and a 90 second bound.
+  The bound names a test that does not finish and exits non-zero. It does
+  not pass `-short`, does not skip a test, and does not change the 20 minute
+  suite timeout. Refs #522. Related: issue 514, which this change does not
+  close.
+
 - Add `vaillant/nativepoints`, the native point catalog of the controller
   register service and the boiler and heat-pump register service. It joins
   the controller name annotations, the register-service symbolic

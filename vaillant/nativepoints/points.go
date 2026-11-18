@@ -113,8 +113,12 @@ const (
 // applies to: those whose register matrix row or scalar interpreter declares
 // it and, on a register the matrix or an interpreter declares for one family,
 // the other family with the family-independent map layout unless the map reads
-// the register on one family only. It is empty when only the map declares the
-// register.
+// the register on one family only, and on such a register that one family
+// even when only the map declares it. It is empty otherwise when only the map
+// declares the register. ValueClass is the value class this location's own
+// documentation states (Boolean, enumeration, date, time, version or text),
+// empty when it states none; DecodeNative applies the Boolean range and the
+// enumeration reading only where it is stated.
 type Location struct {
 	Opcode             uint8              `json:"opcode"`
 	Group              uint8              `json:"group"`
@@ -129,6 +133,7 @@ type Location struct {
 	ScaleDivisor       uint16             `json:"scale_divisor"`
 	NativeUnit         string             `json:"native_unit"`
 	Enumeration        []EnumerationLabel `json:"enumeration"`
+	ValueClass         ValueClass         `json:"value_class"`
 }
 
 // Point is one catalog row, keyed by device class and canonical name. Codec,

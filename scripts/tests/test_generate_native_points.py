@@ -20,7 +20,8 @@ SCRATCH.mkdir(exist_ok=True)
 def location(**fields):
     base = dict(opcode=0x02, group=0, register=1, selector="", instance_rule="single",
                 instance_min=0, instance_max=0, families=[], codec="float32_le",
-                declaration="", divisor=1, unit="°C", enumeration=[], kind="", unresolved=False)
+                declaration="", divisor=1, unit="°C", enumeration=[], kind="", value_class="",
+                unresolved=False)
     base.update(fields)
     return base
 
@@ -294,10 +295,52 @@ class RuleTests(unittest.TestCase):
         self.assertEqual((place["codec"], place["kind"], [entry["label"] for entry in place["enumeration"]]),
                          ("uint8", "enumeration", ["inactive", "active", "extended"]))
         self.assertEqual(generator.map_layout(dict(wire="u8", decode="enum"), (0x02, 0x02, 0x0004))["enumeration"], [])
-        for decode in ("bool", "count", "—"):
+        for decode in ("count", "—"):
             with self.subTest(decode=decode):
                 with self.assertRaises(generator.InputError):
                     generator.map_layout(dict(wire="u8", decode=decode), key)
+
+    def test_boolean_registers_take_the_label_pair_of_their_group(self):
+        expected = {0x09: ["empty", "paired"], 0x0A: ["empty", "paired"], 0x0C: ["not_connected", "connected"]}
+        for group, names in expected.items():
+            with self.subTest(group=group):
+                place = generator.map_layout(dict(wire="u8", decode="bool"), (0x06, group, 0x0001))
+                self.assertEqual((place["codec"], place["kind"], [entry["value"] for entry in place["enumeration"]],
+                                  [entry["label"] for entry in place["enumeration"]]),
+                                 ("uint8", "boolean", [0, 1], names))
+        self.assertEqual(generator.map_layout(dict(wire="u8", decode="—"), (0x06, 0x08, 0x0001))["enumeration"], [])
+        with self.assertRaises(generator.InputError):
+            generator.map_layout(dict(wire="u8", decode="—"), (0x06, 0x09, 0x0001))
+
+    def test_a_location_carries_only_its_own_documented_class(self):
+        base = dict(operation=0x06, group=0x08, register=0x0001)
+        names = names_for(base, {"device_connected": {}}, wire="u8", decode="—")
+        names += names_for(dict(base, group=0x09), {"device_connected": {}}, wire="u8", decode="bool")
+        names += names_for(dict(base, group=0x0C), {"device_connected": {}}, wire="u8", decode="bool")
+        places = controller_join(names, [matrix_row("controller-720", 0x0300, "uint8", [1])])
+        classes = {place["group"]: (place["value_class"], len(place["enumeration"]))
+                   for place in places[("controller", "device_connected")]}
+        self.assertEqual(classes, {0x08: ("", 0), 0x09: ("boolean", 2), 0x0C: ("boolean", 2)})
+        literal = generator.location_literal(places[("controller", "device_connected")][0])
+        self.assertNotIn("ValueClass", literal)
+        frost = dict(operation=0x02, group=0x03, register=0x002C)
+        truth = "0=False; 1=True"
+        places = controller_join(names_for(frost, {"zone_frost_protection_active": {}}, wire="u16", decode="—"),
+                                 [matrix_row("controller-720", 0x002C, "uint8 or uint16 LE", [1, 2],
+                                             enumeration=truth, group=0x03)])
+        classes = {tuple(place["families"]): place["value_class"]
+                   for place in places[("controller", "zone_frost_protection_active")]}
+        self.assertEqual(classes, {("controller-700",): "", ("controller-720",): "boolean"})
+        other = controller_join(names_for(frost, {"x_mode": {}}, wire="u16", decode="—"),
+                                [matrix_row("controller-720", 0x002C, "uint8", [1], enumeration="0=Eco; 1=SetBack",
+                                            group=0x03)])
+        classes = {tuple(place["families"]): place["value_class"] for place in other[("controller", "x_mode")]}
+        self.assertEqual(classes, {("controller-700",): "", ("controller-720",): "enumeration"})
+        stated = controller_join(names_for(frost, {"x_enabled": {}}, wire="u16", decode="bool"),
+                                 [matrix_row("controller-720", 0x002C, "uint8", [1],
+                                             enumeration="0=Disabled; 1=Enabled", group=0x03)])
+        self.assertEqual({place["value_class"] for place in stated[("controller", "x_enabled")]}, {"boolean"})
+        self.assertIn('ValueClass: "boolean"', generator.location_literal(stated[("controller", "x_enabled")][0]))
 
     def test_unused_map_labels_fail_generation(self):
         with tempfile.TemporaryDirectory(dir=SCRATCH) as scratch:
@@ -344,6 +387,11 @@ class RuleTests(unittest.TestCase):
                 other = next(f for f in generator.FAMILIES if f != family)
                 with self.assertRaisesRegex(generator.InputError, "reads on"):
                     controller_join(names_for(key, {"base": {}}, **columns), [row, dict(row, family=other)])
+        for label, (change, family) in limited.items():
+            with self.subTest(unlisted=label):
+                key = dict(base, **change)
+                self.assertEqual(layouts(names_for(key, {"base": {}}, **columns), elsewhere)["base"],
+                                 [("float32_le", "°C", [family])])
         on_other_opcode = layouts(names_for(dict(base, operation=0x06, group=0x09), {"base": {}}, **columns), elsewhere)
         self.assertEqual(on_other_opcode["base"], [("float32_le", "°C", [])])
 

@@ -29,8 +29,9 @@ family; a disagreement fails generation. Map wire types whose layout the map
 leaves open (date, time, bytes, unknown) and decode columns without a unit or
 value class give no codec and no unit; the map's time wire with the version
 decode is the three-byte major, minor and patch triple. An enumeration
-register of the map takes the label list its Values column states outright
-(MAP_LABELS below).
+or Boolean register of the map takes the label list its Values column states
+outright (MAP_LABELS below). A location on a register the map reads on one
+controller family only names that family even when no matrix row lists it.
 
 One row is emitted per (device class, canonical name). Annotations without a
 canonical name and the two operation-level annotations of class "any" carry no
@@ -39,7 +40,13 @@ has several locations, every location names its controller families and no two
 locations share one; otherwise it is provisional or ambiguous.
 
 A point's value class follows the decode column of the map (Boolean,
-enumeration, date, time or text) and otherwise the name rules below. A row is
+enumeration, date, time or text) and otherwise the name rules below. Each
+controller location also carries the value class its own documentation states:
+the decode column of the map, the matrix calendar layout, the matrix Boolean
+label pair 0=False 1=True, or enumeration for any other label list; it is
+empty when the location's documentation states none, so a name rule or a
+sibling location never makes DecodeNative treat its integer as a Boolean or
+an enumeration code. A row is
 exportable only when its name is final, its value class is numeric,
 its unit converts to SI, its codec is one the decoder implements and it is not
 a pressure without a documented reference. Otherwise the first failing rule in
@@ -115,17 +122,22 @@ UNSTATED_DECODES = {"—", "unknown", "raw", "schedule"}
 MAJOR_MINOR_PATCH = "major_minor_patch"
 OP06_SLOTS = {group: (1, 8) for group in range(0x01, 0x10)}
 # Label lists that the register map's Values column states outright for an
-# enumeration register, verbatim; a reference to the enum reference section is
-# not a list and is not copied.
+# enumeration or Boolean register, verbatim; a reference to the enum reference
+# section is not a list and is not copied.
 MAP_LABELS = {
     (0x02, 0x00, 0x0016): "1=AUTO 2=DAY 3=SET_BACK",
     (0x02, 0x00, 0x002B): "0=off 1=Mon 2=Tue 3=Wed 4=Thu 5=Fri 6=Sat 7=Sun",
     (0x02, 0x00, 0x0048): "0=standby 1=heating 2=cooling 3=dhw",
     (0x02, 0x02, 0x0003): "0=inactive 1=active 2=extended",
     (0x02, 0x09, 0x0002): "1=TIME_CONTROLLED 2=NORMAL 3=REDUCED",
+    (0x06, 0x09, 0x0001): "0=empty 1=paired",
     (0x06, 0x09, 0x0002): "0x15=VRC720 0x35=VR92 0x26=VR71",
+    (0x06, 0x0A, 0x0001): "0=empty 1=paired",
     (0x06, 0x0A, 0x0002): "0x15=VRC720 0x35=VR92 0x26=VR71",
+    (0x06, 0x0C, 0x0001): "0=not_connected 1=connected",
 }
+LABELLED_DECODES = ("bool", "enum", "state")
+BOOLEAN_LABELS = [{"value": 0, "label": "False"}, {"value": 1, "label": "True"}]
 MAP_LABEL = re.compile(r"(0x[0-9A-Fa-f]+|[0-9]+)=(\S+)")
 # Opcode 0x02 registers that the register map reads on one controller family
 # only: group 0x09 and the continuous-heating set point on the controller-720
@@ -343,8 +355,8 @@ def map_labels(text):
 def map_layout(row, key=None):
     wire, decode = row.get("wire"), row.get("decode")
     labels = MAP_LABELS.get(key)
-    if labels is not None and decode not in ("enum", "state"):
-        raise InputError(f"register map labels on {key} without an enumeration decode")
+    if labels is not None and decode not in LABELLED_DECODES:
+        raise InputError(f"register map labels on {key} without an enumeration or Boolean decode")
     if wire is None and decode is None:
         return layout()
     if wire not in WIRE_CODECS:
@@ -380,7 +392,7 @@ def documented_layouts(name, documented, mapped, declared, only=None):
                              f"documentation states {expected['codec']!r} {expected['unit']!r}")
         families.setdefault(family, mapped)
     if not families:
-        return [(mapped, [])]
+        return [(mapped, [only] if only is not None else [])]
     if only is None:
         for family in FAMILIES:
             families.setdefault(family, mapped)
@@ -388,6 +400,15 @@ def documented_layouts(name, documented, mapped, declared, only=None):
     for family, place in sorted(families.items()):
         split.setdefault(json.dumps(place, sort_keys=True), (place, []))[1].append(family)
     return list(split.values())
+
+
+def location_class(place, mapped):
+    kind = place["kind"] or mapped["kind"]
+    if kind:
+        return kind
+    if place["enumeration"] == BOOLEAN_LABELS:
+        return "boolean"
+    return "enumeration" if place["enumeration"] else ""
 
 
 def controller_locations(root, grouped, services):
@@ -412,6 +433,7 @@ def controller_locations(root, grouped, services):
             place = dict(place, opcode=opcode, group=group, register=register, selector="",
                          instance_rule=rule, instance_min=low, instance_max=high,
                          families=families, declaration="",
+                         value_class=location_class(place, mapped),
                          unresolved=row["unresolved"] is not False)
             grouped.setdefault(("controller", name), []).append(place)
         services[("controller", name)] = CONTROLLER_SERVICE
@@ -441,7 +463,7 @@ def register_service_locations(root, grouped, services):
         place = dict(opcode=row["operation"], group=0, register=0, selector=selector,
                      instance_rule="single", instance_min=0, instance_max=0, families=[],
                      codec=codec, declaration=declaration, divisor=divisor,
-                     unit=row.get("unit") or "", enumeration=[], kind="",
+                     unit=row.get("unit") or "", enumeration=[], kind="", value_class="",
                      unresolved=row["unresolved"] is not False)
         grouped.setdefault((row["class"], row["name"]), []).append(place)
         services[(row["class"], row["name"])] = REGISTER_SERVICE
@@ -491,6 +513,8 @@ def location_literal(place):
         fields.append(f"NativeUnit: {quote(place['unit'])}")
     if place["enumeration"]:
         fields.append(f"Enumeration: {enumeration_literal(place['enumeration'])}")
+    if place["value_class"]:
+        fields.append(f"ValueClass: {quote(place['value_class'])}")
     return "{" + ", ".join(fields) + "}"
 
 

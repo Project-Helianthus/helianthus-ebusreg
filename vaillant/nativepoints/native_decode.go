@@ -49,8 +49,13 @@ var nativeWidths = map[Codec][2]int{
 
 // DecodeNative decodes a retained raw reply of any point whose codec is known
 // into its exact native value; it does not apply the SI export rule, so a
-// withheld point decodes too. An integer of a Boolean point must be 0 or 1, and
-// a date must have day 1 to 31, month 1 to 12 and year 0 to 99. The documented
+// withheld point decodes too. The Boolean and enumeration readings follow the
+// value class the documentation of every location of the point states
+// (Location.ValueClass), not the point's ValueClass, so a location whose own
+// documentation states neither decodes its integer as a number; narrow a point
+// whose locations disagree with ForLocation first. An integer of a documented
+// Boolean must be 0 or 1, and a date must have day 1 to 31, month 1 to 12 and
+// year 0 to 99. The documented
 // labels of an enumeration are candidates and a code without one is not shown
 // to be invalid, so such a code decodes with an empty label. A version of three
 // 0xFF bytes is the empty-slot sentinel. A numeric value is divided by
@@ -109,14 +114,15 @@ func DecodeNative(point Point, raw []byte) (NativeValue, error) {
 	if sentinel {
 		return refuse(DecodeSentinel, widths[1])
 	}
-	if point.ValueClass == ValueBoolean {
+	class := point.documentedClass()
+	if class == ValueBoolean {
 		if code != 0 && code != 1 {
 			return refuse(DecodeOutOfRange, widths[1])
 		}
 		label, _ := point.label(code)
 		return NativeValue{ValueClass: ValueBoolean, Native: strconv.FormatBool(code == 1), NativeUnit: point.NativeUnit, Label: label}, nil
 	}
-	if len(point.Enumeration) > 0 || point.ValueClass == ValueEnumeration {
+	if len(point.Enumeration) > 0 || class == ValueEnumeration {
 		label, _ := point.label(code)
 		return NativeValue{ValueClass: ValueEnumeration, Native: strconv.FormatInt(code, 10), NativeUnit: point.NativeUnit, Label: label}, nil
 	}
@@ -128,6 +134,21 @@ func DecodeNative(point Point, raw []byte) (NativeValue, error) {
 		return point.numeric(new(big.Rat).SetFrac64(code, divisor)), nil
 	}
 	return point.numeric(new(big.Rat).SetInt64(code)), nil
+}
+
+// documentedClass is the value class every location of the point documents,
+// empty when a location documents none or the locations disagree.
+func (point Point) documentedClass() ValueClass {
+	if len(point.Locations) == 0 {
+		return ""
+	}
+	class := point.Locations[0].ValueClass
+	for _, location := range point.Locations[1:] {
+		if location.ValueClass != class {
+			return ""
+		}
+	}
+	return class
 }
 
 func nativeInteger(codec Codec, raw []byte) (int64, bool) {

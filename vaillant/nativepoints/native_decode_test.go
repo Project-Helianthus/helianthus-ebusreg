@@ -424,3 +424,78 @@ func TestNativeForLocationRejectsAnIndexOutsideTheLocations(t *testing.T) {
 		t.Fatal("ForLocation shares mutable state")
 	}
 }
+
+// A location whose own documentation states no Boolean or enumeration keeps
+// its integer even when the point's name or a sibling location is Boolean or
+// an enumeration.
+func TestNativeDecodeFollowsTheClassOfEachLocation(t *testing.T) {
+	connected := mustLookup(t, nativepoints.DeviceClassController, "device_connected")
+	status := locationAt(t, connected, 0x06, 0x08, 0x0001)
+	if value := nativeOf(t, status, []byte{2}); value.ValueClass != nativepoints.ValueNumeric || value.Native != "2" || value.Label != "" {
+		t.Errorf("group 0x08 device_connected status byte 02 = %+v", value)
+	}
+	refuseNative(t, locationAt(t, connected, 0x06, 0x09, 0x0001), []byte{2}, nativepoints.DecodeOutOfRange)
+
+	frost := mustLookup(t, nativepoints.DeviceClassController, "zone_frost_protection_active")
+	if value := nativeOf(t, locationForFamily(t, frost, "controller-700"), []byte{2, 0}); value.ValueClass != nativepoints.ValueNumeric || value.Native != "2" {
+		t.Errorf("controller-700 zone_frost_protection_active 02 00 = %+v", value)
+	}
+	narrowed := locationForFamily(t, frost, "controller-720")
+	if value := nativeOf(t, narrowed, []byte{1}); value.ValueClass != nativepoints.ValueBoolean || value.Native != "true" || value.Label != "True" {
+		t.Errorf("controller-720 zone_frost_protection_active 01 = %+v", value)
+	}
+	refuseNative(t, narrowed, []byte{2}, nativepoints.DecodeOutOfRange)
+
+	address := mustLookup(t, nativepoints.DeviceClassController, "device_class_address")
+	if value := nativeOf(t, locationAt(t, address, 0x06, 0x08, 0x0002), []byte{0x26}); value.ValueClass != nativepoints.ValueNumeric || value.Native != "38" || value.Label != "" {
+		t.Errorf("group 0x08 device_class_address 26 = %+v", value)
+	}
+	if value := nativeOf(t, locationAt(t, address, 0x06, 0x09, 0x0002), []byte{0x26}); value.ValueClass != nativepoints.ValueEnumeration || value.Label != "VR71" {
+		t.Errorf("group 0x09 device_class_address 26 = %+v", value)
+	}
+}
+
+// Each group states its own pair of labels for device_connected.
+func TestNativeDecodeDeviceConnectedLabelsOfEachGroup(t *testing.T) {
+	connected := mustLookup(t, nativepoints.DeviceClassController, "device_connected")
+	cases := []struct {
+		group uint8
+		raw   byte
+		value string
+		label string
+	}{
+		{0x09, 0, "false", "empty"}, {0x09, 1, "true", "paired"},
+		{0x0A, 0, "false", "empty"}, {0x0A, 1, "true", "paired"},
+		{0x0C, 0, "false", "not_connected"}, {0x0C, 1, "true", "connected"},
+	}
+	for _, tc := range cases {
+		value := nativeOf(t, locationAt(t, connected, 0x06, tc.group, 0x0001), []byte{tc.raw})
+		if value.ValueClass != nativepoints.ValueBoolean || value.Native != tc.value || value.Label != tc.label {
+			t.Errorf("group 0x%02x device_connected % X = %+v, want %s %q", tc.group, tc.raw, value, tc.value, tc.label)
+		}
+	}
+}
+
+// Every opcode 0x02 group 0x09 location names the controller-720 family only,
+// including the rows the register matrix does not list.
+func TestNativeVentilationGroupNamesItsOneFamily(t *testing.T) {
+	checked := 0
+	for _, point := range nativepoints.Points() {
+		for _, location := range point.Locations {
+			if point.DeviceClass != nativepoints.DeviceClassController || location.Opcode != 0x02 || location.Group != 0x09 {
+				continue
+			}
+			checked++
+			if fmt.Sprint(location.ControllerFamilies) != "[controller-720]" {
+				t.Errorf("%s at group 0x09 register 0x%04x names families %v", point.Name, location.Register, location.ControllerFamilies)
+			}
+		}
+	}
+	if checked == 0 {
+		t.Fatal("no opcode 0x02 group 0x09 location")
+	}
+	point := mustLookup(t, nativepoints.DeviceClassController, "ventilation_special_function_mode")
+	if fmt.Sprint(point.ControllerFamilies) != "[controller-720]" {
+		t.Errorf("ventilation_special_function_mode families %v", point.ControllerFamilies)
+	}
+}

@@ -460,15 +460,18 @@ func labels(pairs ...any) []nativepoints.EnumerationLabel {
 }
 
 // The label lists the register map's Values column states outright for an
-// enumeration register.
+// enumeration or Boolean register.
 var mapStatedLabels = map[layoutKey][]nativepoints.EnumerationLabel{
 	{0x02, 0x00, 0x0016}: labels(1, "AUTO", 2, "DAY", 3, "SET_BACK"),
 	{0x02, 0x00, 0x002B}: labels(0, "off", 1, "Mon", 2, "Tue", 3, "Wed", 4, "Thu", 5, "Fri", 6, "Sat", 7, "Sun"),
 	{0x02, 0x00, 0x0048}: labels(0, "standby", 1, "heating", 2, "cooling", 3, "dhw"),
 	{0x02, 0x02, 0x0003}: labels(0, "inactive", 1, "active", 2, "extended"),
 	{0x02, 0x09, 0x0002}: labels(1, "TIME_CONTROLLED", 2, "NORMAL", 3, "REDUCED"),
+	{0x06, 0x09, 0x0001}: labels(0, "empty", 1, "paired"),
 	{0x06, 0x09, 0x0002}: labels(0x15, "VRC720", 0x26, "VR71", 0x35, "VR92"),
+	{0x06, 0x0A, 0x0001}: labels(0, "empty", 1, "paired"),
 	{0x06, 0x0A, 0x0002}: labels(0x15, "VRC720", 0x26, "VR71", 0x35, "VR92"),
+	{0x06, 0x0C, 0x0001}: labels(0, "not_connected", 1, "connected"),
 }
 
 // The opcode 0x02 registers the register map reads on one controller family
@@ -578,6 +581,9 @@ func TestControllerLayoutsFollowTheMatrixAndTheMap(t *testing.T) {
 		for _, location := range point.Locations {
 			key := layoutKey{location.Opcode, location.Group, location.Register}
 			got := documentedLayout{location.Codec, location.NativeUnit, location.ScaleDivisor, fmt.Sprint(location.Enumeration)}
+			if only := oneFamily(key); only != "" && fmt.Sprint(location.ControllerFamilies) != fmt.Sprint([]string{only}) {
+				t.Errorf("%s at %+v: the map reads it on %s only, but the location names families %v", point.Name, key, only, location.ControllerFamilies)
+			}
 			if documented[key].codec != nativepoints.CodecUnknown && location.Codec == nativepoints.CodecUnknown {
 				t.Errorf("%s at %+v: the map states the wire type of codec %q but the location has none", point.Name, key, documented[key].codec)
 			}
@@ -630,6 +636,53 @@ func TestControllerLayoutsFollowTheMatrixAndTheMap(t *testing.T) {
 	}
 	if checked == 0 {
 		t.Fatal("no controller location checked")
+	}
+}
+
+var mapDecodeClasses = map[string]nativepoints.ValueClass{
+	"bool": nativepoints.ValueBoolean, "enum": nativepoints.ValueEnumeration, "state": nativepoints.ValueEnumeration,
+	"date": nativepoints.ValueDate, "time": nativepoints.ValueTime, "text": nativepoints.ValueText,
+	"version": nativepoints.ValueVersion,
+}
+
+// Each controller location carries the value class its own documentation
+// states and no other: a sibling location or a name rule does not lend it one.
+func TestControllerLocationClassesFollowTheirOwnDocumentation(t *testing.T) {
+	decodes := map[layoutKey]string{}
+	for _, row := range controllerAnnotations(t) {
+		if row.Name != nil && row.Decode != nil {
+			decodes[layoutKey{row.Key.Operation, row.Key.Group, row.Key.Register}] = *row.Decode
+		}
+	}
+	booleanLabels := fmt.Sprint(labels(0, "False", 1, "True"))
+	checked := 0
+	for _, point := range nativepoints.Points() {
+		for _, location := range point.Locations {
+			mapClass := mapDecodeClasses[decodes[layoutKey{location.Opcode, location.Group, location.Register}]]
+			var want nativepoints.ValueClass
+			switch {
+			case point.DeviceClass != nativepoints.DeviceClassController:
+			case location.Codec == nativepoints.CodecDayMonthYear:
+				want = nativepoints.ValueDate
+			case location.Codec == nativepoints.CodecHourMinuteSecond:
+				want = nativepoints.ValueTime
+			case mapClass != "":
+				want = mapClass
+			case fmt.Sprint(location.Enumeration) == booleanLabels:
+				want = nativepoints.ValueBoolean
+			case len(location.Enumeration) > 0:
+				want = nativepoints.ValueEnumeration
+			}
+			if location.ValueClass != want {
+				t.Errorf("%s/%s at 0x%02x/0x%02x/0x%04x: location class %q, documented %q", point.DeviceClass, point.Name, location.Opcode, location.Group, location.Register, location.ValueClass, want)
+			}
+			if want != "" {
+				checked++
+			}
+		}
+	}
+	if checked == 0 {
+		t.Fatal("no location documents a value class")
 	}
 }
 

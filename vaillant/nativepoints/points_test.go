@@ -441,6 +441,12 @@ var mapWireCodecs = map[string]nativepoints.Codec{
 	"u32": nativepoints.CodecUint32LE, "f32": nativepoints.CodecFloat32LE, "string": nativepoints.CodecText,
 }
 
+// A map row whose wire and decode are both date, or both time, is a packed
+// binary-coded-decimal triple in every family the matrix does not override.
+var mapCalendarCodecs = map[string]nativepoints.Codec{
+	"date": nativepoints.CodecDayMonthYear, "time": nativepoints.CodecHourMinuteSecond,
+}
+
 var mapDecodeUnits = map[string]struct {
 	unit    string
 	divisor uint16
@@ -567,6 +573,11 @@ func mapLayouts(t *testing.T) map[layoutKey]documentedLayout {
 			want.codec = mapWireCodecs[*row.Wire]
 			if *row.Wire == "time" && row.Decode != nil && *row.Decode == "version" {
 				want.codec = nativepoints.CodecMajorMinorPatch
+			}
+			if row.Decode != nil && *row.Decode == *row.Wire {
+				if codec, calendar := mapCalendarCodecs[*row.Wire]; calendar {
+					want.codec = codec
+				}
 			}
 			if want.codec != nativepoints.CodecUnknown {
 				stated++

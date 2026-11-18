@@ -28,7 +28,7 @@ type NativeValue struct {
 }
 
 // DecodeNative failures beyond those of Decode: a code outside the documented
-// Boolean range or date range or a date or time byte that is not a packed
+// Boolean, date or clock range or a date or time byte that is not a packed
 // binary-coded decimal, and a text that is not UTF-8.
 const (
 	DecodeOutOfRange  DecodeFailure = "out_of_range"
@@ -58,8 +58,9 @@ var nativeWidths = map[Codec][2]int{
 // documentation states neither decodes its integer as a number; narrow a point
 // whose locations disagree with ForLocation first. An integer of a documented
 // Boolean must be 0 or 1, every byte of a date or time must be a packed
-// binary-coded decimal of two digits, and a date must have day 1 to 31 and
-// month 1 to 12. The documented
+// binary-coded decimal of two digits, a date must have day 1 to 31 and
+// month 1 to 12, and a time hour 0 to 23, minute 0 to 59 and second 0 to 59.
+// The documented
 // labels of an enumeration are candidates and a code without one is not shown
 // to be invalid, so such a code decodes with an empty label. A version of three
 // 0xFF bytes is the empty-slot sentinel. A numeric value is divided by
@@ -98,10 +99,11 @@ func DecodeNative(point Point, raw []byte) (NativeValue, error) {
 		}
 		return NativeValue{ValueClass: ValueDate, Native: fmt.Sprintf("%02d.%02d.%02d", day, month, year)}, nil
 	case CodecHourMinuteSecond:
-		if !validBCD(raw) {
+		hour, minute, second, valid := bcd(raw[0]), bcd(raw[1]), bcd(raw[2]), validBCD(raw)
+		if !valid || hour > 23 || minute > 59 || second > 59 {
 			return refuse(DecodeOutOfRange, widths[1])
 		}
-		return NativeValue{ValueClass: ValueTime, Native: fmt.Sprintf("%02d:%02d:%02d", bcd(raw[0]), bcd(raw[1]), bcd(raw[2]))}, nil
+		return NativeValue{ValueClass: ValueTime, Native: fmt.Sprintf("%02d:%02d:%02d", hour, minute, second)}, nil
 	case CodecMajorMinorPatch:
 		if raw[0] == 0xFF && raw[1] == 0xFF && raw[2] == 0xFF {
 			return refuse(DecodeSentinel, widths[1])

@@ -321,9 +321,11 @@ class RuleTests(unittest.TestCase):
             (dict(wire="u32", decode="hrs"), ("uint32_le", "h", 1, "")),
             (dict(wire="i8", decode="—"), ("int8", "", 1, "")),
             (dict(wire="string", decode="text"), ("text", "", 1, "text")),
-            (dict(wire="date", decode="date"), ("", "", 1, "date")),
+            (dict(wire="date", decode="date"), ("day_month_year", "", 1, "date")),
             (dict(wire="time", decode="version"), ("major_minor_patch", "", 1, "version")),
-            (dict(wire="time", decode="time"), ("", "", 1, "time")),
+            (dict(wire="time", decode="time"), ("hour_minute_second", "", 1, "time")),
+            (dict(wire="date", decode="raw"), ("", "", 1, "")),
+            (dict(wire="time", decode="—"), ("", "", 1, "")),
             (dict(wire="bytes", decode="raw"), ("", "", 1, "")),
             (dict(), ("", "", 1, "")),
         ]
@@ -479,6 +481,34 @@ class RuleTests(unittest.TestCase):
                                  [("float32_le", "°C", [family])])
         on_other_opcode = layouts(names_for(dict(base, operation=0x06, group=0x09), {"base": {}}, **columns), elsewhere)
         self.assertEqual(on_other_opcode["base"], [("float32_le", "°C", [])])
+
+    def test_a_map_date_or_time_takes_its_calendar_codec_in_every_family(self):
+        def layouts(names, matrix):
+            return {name: [(p["codec"], p["value_class"], p["families"]) for p in places]
+                    for (_, name), places in controller_join(names, matrix).items()}
+
+        base = dict(operation=0x02, group=0x03, register=0x0200)
+        elsewhere = [matrix_row("controller-720", 0x0201, "uint8", [1], group=0x03)]
+        calendar = {"date": "day_month_year", "time": "hour_minute_second"}
+        for kind, codec in calendar.items():
+            with self.subTest(unlisted=kind):
+                self.assertEqual(layouts(names_for(base, {"base": {}}, wire=kind, decode=kind), elsewhere)["base"],
+                                 [(codec, kind, [])])
+            with self.subTest(op06=kind):
+                key = dict(base, operation=0x06, group=0x09)
+                self.assertEqual(layouts(names_for(key, {"base": {}}, wire=kind, decode=kind), elsewhere)["base"],
+                                 [(codec, kind, [])])
+        stated_time = matrix_row("controller-720", 0x0200, "3 x uint8", [3],
+                                 enumeration="time: hour; minute; second", group=0x03)
+        self.assertEqual(layouts(names_for(base, {"base": {}}, wire="date", decode="date"), [stated_time])["base"],
+                         [("day_month_year", "date", ["controller-700"]),
+                          ("hour_minute_second", "time", ["controller-720"])])
+        stated_word = matrix_row("controller-720", 0x0200, "uint16 LE", [2], group=0x03)
+        self.assertEqual([codec for codec, _, _ in
+                          layouts(names_for(base, {"base": {}}, wire="time", decode="time"), [stated_word])["base"]],
+                         ["hour_minute_second", "uint16_le"])
+        self.assertEqual(layouts(names_for(base, {"base": {}}, wire="time", decode="version"), elsewhere)["base"],
+                         [("major_minor_patch", "version", [])])
 
     def test_stated_kind_precedes_the_name_rules(self):
         self.assertEqual(generator.value_class("device_connected", "", "", "uint8", "boolean"), "boolean")

@@ -32,8 +32,8 @@
 // time of packed binary-coded decimal bytes, a firmware version or a text.
 // The Boolean and enumeration readings follow the value class each
 // location's own documentation states, so a location that states neither
-// keeps its integer. It refuses a wrong width, a Boolean or date out of range,
-// a date or time byte that is not binary-coded decimal and a codec sentinel
+// keeps its integer. It refuses a wrong width, a Boolean, date or clock time
+// out of range, a date or time byte that is not binary-coded decimal and a codec sentinel
 // with the same typed error. Point.ForLocation narrows a row to one location,
 // for example to one controller family's enumeration, and gives it the value
 // class DecodeNative decodes that location as. The package performs no bus

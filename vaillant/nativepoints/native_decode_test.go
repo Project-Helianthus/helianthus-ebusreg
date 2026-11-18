@@ -589,6 +589,47 @@ func TestNativeDecodeDateAndTimeAreBinaryCodedDecimal(t *testing.T) {
 	}
 }
 
+// A register whose map wire and decode are both date or both time decodes
+// without narrowing to a family, including a family the matrix does not list.
+func TestNativeDecodeMapDateAndTimeWithoutAMatrixRow(t *testing.T) {
+	cases := []struct {
+		name   string
+		raw    []byte
+		class  nativepoints.ValueClass
+		native string
+	}{
+		{"maintenance_date", []byte{0x18, 0x11, 0x26}, nativepoints.ValueDate, "18.11.26"},
+		{"dhw_holiday_end_clock_time", []byte{0x07, 0x30, 0x00}, nativepoints.ValueTime, "07:30:00"},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			point := mustLookup(t, nativepoints.DeviceClassController, tc.name)
+			value := nativeOf(t, point, tc.raw)
+			if value.ValueClass != tc.class || value.Native != tc.native {
+				t.Errorf("% X = %+v, want %s %q", tc.raw, value, tc.class, tc.native)
+			}
+			for index := range point.Locations {
+				narrowed, _ := point.ForLocation(index)
+				if got := nativeOf(t, narrowed, tc.raw); got.Native != tc.native {
+					t.Errorf("location %d % X = %+v, want %q", index, tc.raw, got, tc.native)
+				}
+			}
+		})
+	}
+}
+
+// A binary-coded-decimal time outside hour 0-23, minute 0-59 or second 0-59
+// is not a clock and is refused like a day or month out of range.
+func TestNativeDecodeRefusesATimeThatIsNotAClock(t *testing.T) {
+	point := mustLookup(t, nativepoints.DeviceClassController, "ventilation_holiday_end_clock_time")
+	for _, raw := range [][]byte{{0x24, 0x00, 0x00}, {0x00, 0x60, 0x00}, {0x00, 0x00, 0x60}, {0x24, 0x60, 0x60}} {
+		refuseNative(t, point, raw, nativepoints.DecodeOutOfRange)
+	}
+	if value := nativeOf(t, point, []byte{0x00, 0x00, 0x00}); value.Native != "00:00:00" {
+		t.Errorf("00 00 00 = %+v", value)
+	}
+}
+
 func nativeSample(codec nativepoints.Codec) []byte {
 	switch codec {
 	case nativepoints.CodecFloat32LE, nativepoints.CodecUint32LE:

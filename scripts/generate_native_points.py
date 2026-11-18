@@ -28,10 +28,13 @@ blank keeps the unit and scale of the map's Decode column; a matrix row whose
 codec then differs from the map's fails generation. Families whose rows
 disagree get one location each. An INTERPRETED declaration must agree with the
 documented codec of its family and, when the interpreter declares a unit, with
-its documented unit; a disagreement fails generation. Map wire types whose layout the map
-leaves open (date, time, bytes, unknown) and decode columns without a unit or
-value class give no codec and no unit; the map's time wire with the version
-decode is the three-byte major, minor and patch triple. An enumeration
+its documented unit; a disagreement fails generation. The map's date wire with
+the date decode is the packed binary-coded-decimal day, month and year triple
+and its time wire with the time decode the hour, minute and second triple, in
+every family whose matrix row states no other layout; the time wire with the
+version decode is the three-byte major, minor and patch triple. Map wire types
+whose layout the map otherwise leaves open (date, time, bytes, unknown) and
+decode columns without a unit or value class give no codec and no unit. An enumeration
 or Boolean register of the map takes the label list its Values column states
 outright (MAP_LABELS below). A location on a register the map reads on one
 controller family only names that family even when no matrix row lists it.
@@ -128,6 +131,7 @@ DECODE_UNITS = {"°C": ("°C", 1), "°C/2": ("°C", 2), "K": ("K", 1), "bar": ("
 DECODE_KINDS = {"bool": "boolean", "enum": "enumeration", "state": "enumeration",
                 "date": "date", "time": "time", "text": "text"}
 UNSTATED_DECODES = {"—", "unknown", "raw", "schedule"}
+MAP_CALENDAR = {("date", "date"): DAY_MONTH_YEAR, ("time", "time"): HOUR_MINUTE_SECOND}
 MAJOR_MINOR_PATCH = "major_minor_patch"
 OP06_SLOTS = {group: (1, 8) for group in range(0x01, 0x10)}
 # Label lists that the register map's Values column states outright for an
@@ -399,8 +403,8 @@ def map_layout(row, key=None):
         unit, divisor = DECODE_UNITS[decode]
         return layout(WIRE_CODECS[wire], unit, divisor)
     if decode in DECODE_KINDS:
-        return layout(WIRE_CODECS[wire], enumeration=map_labels(labels) if labels else (),
-                      kind=DECODE_KINDS[decode])
+        return layout(MAP_CALENDAR.get((wire, decode), WIRE_CODECS[wire]),
+                      enumeration=map_labels(labels) if labels else (), kind=DECODE_KINDS[decode])
     if decode not in UNSTATED_DECODES:
         raise InputError(f"unknown register map decode {decode!r}")
     return layout(WIRE_CODECS[wire])

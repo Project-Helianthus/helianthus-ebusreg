@@ -276,7 +276,8 @@ func TestKnownExportableRows(t *testing.T) {
 		families []string
 	}{
 		{nativepoints.DeviceClassController, "outdoor_temperature", nativepoints.CodecFloat32LE, 1, "°C", controllerFamilies},
-		{nativepoints.DeviceClassController, "preheating_time_maximum", nativepoints.CodecUint16LE, 1, "min", []string{"controller-720"}},
+		{nativepoints.DeviceClassController, "preheating_time_maximum", nativepoints.CodecUint16LE, 1, "min", controllerFamilies},
+		{nativepoints.DeviceClassController, "continuous_heating_room_temperature_setpoint", nativepoints.CodecFloat32LE, 1, "°C", []string{"controller-720"}},
 		{nativepoints.DeviceClassController, "zone_room_humidity", nativepoints.CodecFloat32LE, 1, "%", controllerFamilies},
 		{nativepoints.DeviceClassBoiler, "flow_temperature", nativepoints.CodecData2c, 1, "°C", nil},
 		{nativepoints.DeviceClassBoiler, "dhw_water_flow_rate", nativepoints.CodecUIN, 100, "L/min", nil},
@@ -450,6 +451,43 @@ var mapDecodeUnits = map[string]struct {
 	"kWh": {"kWh", 1}, "hrs": {"h", 1}, "min": {"min", 1}, "count": {"count", 1}, "days": {"d", 1},
 }
 
+func labels(pairs ...any) []nativepoints.EnumerationLabel {
+	var list []nativepoints.EnumerationLabel
+	for index := 0; index < len(pairs); index += 2 {
+		list = append(list, nativepoints.EnumerationLabel{Value: int64(pairs[index].(int)), Label: pairs[index+1].(string)})
+	}
+	return list
+}
+
+// The label lists the register map's Values column states outright for an
+// enumeration register.
+var mapStatedLabels = map[layoutKey][]nativepoints.EnumerationLabel{
+	{0x02, 0x00, 0x0016}: labels(1, "AUTO", 2, "DAY", 3, "SET_BACK"),
+	{0x02, 0x00, 0x002B}: labels(0, "off", 1, "Mon", 2, "Tue", 3, "Wed", 4, "Thu", 5, "Fri", 6, "Sat", 7, "Sun"),
+	{0x02, 0x00, 0x0048}: labels(0, "standby", 1, "heating", 2, "cooling", 3, "dhw"),
+	{0x02, 0x02, 0x0003}: labels(0, "inactive", 1, "active", 2, "extended"),
+	{0x02, 0x09, 0x0002}: labels(1, "TIME_CONTROLLED", 2, "NORMAL", 3, "REDUCED"),
+	{0x06, 0x09, 0x0002}: labels(0x15, "VRC720", 0x26, "VR71", 0x35, "VR92"),
+	{0x06, 0x0A, 0x0002}: labels(0x15, "VRC720", 0x26, "VR71", 0x35, "VR92"),
+}
+
+// The opcode 0x02 registers the register map reads on one controller family
+// only; every other register of the matrix applies to both families.
+func oneFamily(key layoutKey) string {
+	if key.opcode != 0x02 {
+		return ""
+	}
+	if key.group == 0x09 {
+		return "controller-720"
+	}
+	return map[layoutKey]string{
+		{0x02, 0x00, 0x00EF}: "controller-720",
+		{0x02, 0x00, 0x0016}: "controller-700", {0x02, 0x00, 0x0042}: "controller-700",
+		{0x02, 0x00, 0x0043}: "controller-700", {0x02, 0x00, 0x00A4}: "controller-700",
+		{0x02, 0x00, 0x0071}: "controller-700", {0x02, 0x00, 0x0072}: "controller-700",
+	}[key]
+}
+
 func matrixLabels(t *testing.T, text string) []nativepoints.EnumerationLabel {
 	t.Helper()
 	if text == "" || strings.HasPrefix(text, "date:") || strings.HasPrefix(text, "time:") {
@@ -505,9 +543,13 @@ func mapLayouts(t *testing.T) map[layoutKey]documentedLayout {
 		if row.Name == nil {
 			continue
 		}
-		want := documentedLayout{divisor: 1, labels: fmt.Sprint([]nativepoints.EnumerationLabel(nil))}
+		key := layoutKey{row.Key.Operation, row.Key.Group, row.Key.Register}
+		want := documentedLayout{divisor: 1, labels: fmt.Sprint(mapStatedLabels[key])}
 		if row.Wire != nil {
 			want.codec = mapWireCodecs[*row.Wire]
+			if *row.Wire == "time" && row.Decode != nil && *row.Decode == "version" {
+				want.codec = nativepoints.CodecMajorMinorPatch
+			}
 			if want.codec != nativepoints.CodecUnknown {
 				stated++
 			}
@@ -517,7 +559,7 @@ func mapLayouts(t *testing.T) map[layoutKey]documentedLayout {
 				want.unit, want.divisor = unit.unit, unit.divisor
 			}
 		}
-		documented[layoutKey{row.Key.Operation, row.Key.Group, row.Key.Register}] = want
+		documented[key] = want
 	}
 	if stated == 0 {
 		t.Fatal("no annotation carries a map wire type with a layout")
@@ -570,6 +612,20 @@ func TestControllerLayoutsFollowTheMatrixAndTheMap(t *testing.T) {
 			if !located[key][family] {
 				t.Errorf("matrix row %s %+v has no location", family, key)
 			}
+		}
+		only := oneFamily(key)
+		for _, family := range controllerFamilies {
+			if only == "" && !located[key][family] {
+				t.Errorf("%+v: family %s, which the matrix does not list, has no location with the map layout", key, family)
+			}
+			if only != "" && family != only && located[key][family] {
+				t.Errorf("%+v: the map reads it on %s only, but %s has a location", key, only, family)
+			}
+		}
+	}
+	for key, want := range mapStatedLabels {
+		if fmt.Sprint(want) != documented[key].labels {
+			t.Errorf("%+v: stated labels %v without a named enumeration register", key, want)
 		}
 	}
 	if checked == 0 {

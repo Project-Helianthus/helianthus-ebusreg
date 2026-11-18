@@ -13,10 +13,11 @@ import (
 // NativeValue is the exact native value of a reply. Native is a decimal
 // integer or terminating decimal (numerator/denominator otherwise) for a
 // numeric value and for the code of an enumeration, true or false for a
-// Boolean, DD.MM.YY for a date, HH:MM:SS for a time and the text up to its
-// first NUL byte for a text. Label is the documented label of the code, empty
-// when the documentation states none. ValueClass is the class the value was
-// decoded as: boolean, enumeration, date, time, text or numeric.
+// Boolean, DD.MM.YY for a date, HH:MM:SS for a time, the major, minor and
+// patch byte-decimal numbers padded to two digits and joined by dots (08.05.00)
+// for a version and the text up to its first NUL byte for a text. Label is the documented label of the code,
+// empty when the documentation states none. ValueClass is the class the value
+// was decoded as: boolean, enumeration, date, time, version, text or numeric.
 type NativeValue struct {
 	ValueClass ValueClass `json:"value_class"`
 	Native     string     `json:"native"`
@@ -25,7 +26,7 @@ type NativeValue struct {
 }
 
 // DecodeNative failures beyond those of Decode: a code outside the documented
-// Boolean range, enumeration or date range, and a text that is not UTF-8.
+// Boolean range or date range, and a text that is not UTF-8.
 const (
 	DecodeOutOfRange  DecodeFailure = "out_of_range"
 	DecodeInvalidText DecodeFailure = "invalid_text"
@@ -40,6 +41,7 @@ var nativeWidths = map[Codec][2]int{
 	CodecUint8OrUint16LE:  {1, 2},
 	CodecDayMonthYear:     {3, 3},
 	CodecHourMinuteSecond: {3, 3},
+	CodecMajorMinorPatch:  {3, 3},
 	CodecData2c:           {2, 2},
 	CodecData2b:           {2, 2},
 	CodecUIN:              {2, 2},
@@ -47,12 +49,14 @@ var nativeWidths = map[Codec][2]int{
 
 // DecodeNative decodes a retained raw reply of any point whose codec is known
 // into its exact native value; it does not apply the SI export rule, so a
-// withheld point decodes too. An integer of a Boolean point must be 0 or 1, an
-// integer of a point with an enumeration must be one of its codes, and a date
-// must have day 1 to 31, month 1 to 12 and year 0 to 99. A numeric value is
-// divided by ScaleDivisor. It refuses an unknown codec or a zero scale, a reply
-// of the wrong width, NaN, infinities, codec sentinels, a code out of range and
-// a text that is not UTF-8 with a typed DecodeError. The reply is not modified.
+// withheld point decodes too. An integer of a Boolean point must be 0 or 1, and
+// a date must have day 1 to 31, month 1 to 12 and year 0 to 99. The documented
+// labels of an enumeration are candidates and a code without one is not shown
+// to be invalid, so such a code decodes with an empty label. A version of three
+// 0xFF bytes is the empty-slot sentinel. A numeric value is divided by
+// ScaleDivisor. It refuses an unknown codec or a zero scale, a reply of the
+// wrong width, NaN, infinities, codec sentinels, a code out of range and a text
+// that is not UTF-8 with a typed DecodeError. The reply is not modified.
 func DecodeNative(point Point, raw []byte) (NativeValue, error) {
 	refuse := func(failure DecodeFailure, width int) (NativeValue, error) {
 		return NativeValue{}, &DecodeError{DeviceClass: point.DeviceClass, Name: point.Name, Failure: failure, Length: len(raw), Width: width}
@@ -85,6 +89,11 @@ func DecodeNative(point Point, raw []byte) (NativeValue, error) {
 		return NativeValue{ValueClass: ValueDate, Native: fmt.Sprintf("%02d.%02d.%02d", raw[0], raw[1], raw[2])}, nil
 	case CodecHourMinuteSecond:
 		return NativeValue{ValueClass: ValueTime, Native: fmt.Sprintf("%02d:%02d:%02d", raw[0], raw[1], raw[2])}, nil
+	case CodecMajorMinorPatch:
+		if raw[0] == 0xFF && raw[1] == 0xFF && raw[2] == 0xFF {
+			return refuse(DecodeSentinel, widths[1])
+		}
+		return NativeValue{ValueClass: ValueVersion, Native: fmt.Sprintf("%02d.%02d.%02d", raw[0], raw[1], raw[2])}, nil
 	case CodecFloat32LE:
 		value := math.Float32frombits(binary.LittleEndian.Uint32(raw))
 		if math.IsNaN(float64(value)) {
@@ -107,15 +116,9 @@ func DecodeNative(point Point, raw []byte) (NativeValue, error) {
 		label, _ := point.label(code)
 		return NativeValue{ValueClass: ValueBoolean, Native: strconv.FormatBool(code == 1), NativeUnit: point.NativeUnit, Label: label}, nil
 	}
-	if len(point.Enumeration) > 0 {
-		label, found := point.label(code)
-		if !found {
-			return refuse(DecodeOutOfRange, widths[1])
-		}
+	if len(point.Enumeration) > 0 || point.ValueClass == ValueEnumeration {
+		label, _ := point.label(code)
 		return NativeValue{ValueClass: ValueEnumeration, Native: strconv.FormatInt(code, 10), NativeUnit: point.NativeUnit, Label: label}, nil
-	}
-	if point.ValueClass == ValueEnumeration {
-		return NativeValue{ValueClass: ValueEnumeration, Native: strconv.FormatInt(code, 10), NativeUnit: point.NativeUnit}, nil
 	}
 	if point.Codec == CodecData2c || point.Codec == CodecData2b {
 		divisor := int64(16)

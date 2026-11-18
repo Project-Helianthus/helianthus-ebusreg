@@ -38,6 +38,7 @@ const (
 	ValueText        ValueClass = "text"
 	ValueDate        ValueClass = "date"
 	ValueTime        ValueClass = "time"
+	ValueVersion     ValueClass = "version"
 	ValueCommand     ValueClass = "command"
 	ValueUnknown     ValueClass = "unknown"
 )
@@ -48,8 +49,9 @@ type Codec string
 
 // Codecs: little-endian float32, uint16 and uint32, uint8, int8 and the
 // unsigned integer of one or two little-endian bytes of the controller
-// registers; three plain bytes of day, month and year and of hour, minute and
-// second; a NUL-terminated text; and the signed 16-bit DATA2c (1/16) and
+// registers; three plain bytes of day, month and year, of hour, minute and
+// second and of a major, minor and patch version number; a NUL-terminated
+// text; and the signed 16-bit DATA2c (1/16) and
 // DATA2b (1/256) and the unsigned 16-bit UIN word of the register service.
 // CodecUnknown marks a missing, literal-only or undocumented layout.
 const (
@@ -62,6 +64,7 @@ const (
 	CodecUint8OrUint16LE  Codec = "uint8_or_uint16_le"
 	CodecDayMonthYear     Codec = "day_month_year"
 	CodecHourMinuteSecond Codec = "hour_minute_second"
+	CodecMajorMinorPatch  Codec = "major_minor_patch"
 	CodecText             Codec = "text"
 	CodecData2c           Codec = "DATA2c"
 	CodecData2b           Codec = "DATA2b"
@@ -106,9 +109,12 @@ const (
 // the symbolic annotation records, as upper-case hexadecimal pairs separated
 // by spaces. Codec,
 // declaration, scale, unit and enumeration are those declared for this
-// location; ControllerFamilies lists the controller families whose register
-// matrix row or scalar interpreter declares them, and is empty when only the
-// family-independent register map declares them.
+// location; ControllerFamilies lists the controller families the location
+// applies to: those whose register matrix row or scalar interpreter declares
+// it and, on a register the matrix or an interpreter declares for one family,
+// the other family with the family-independent map layout unless the map reads
+// the register on one family only. It is empty when only the map declares the
+// register.
 type Location struct {
 	Opcode             uint8              `json:"opcode"`
 	Group              uint8              `json:"group"`

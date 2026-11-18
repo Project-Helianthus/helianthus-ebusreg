@@ -246,8 +246,11 @@ class RuleTests(unittest.TestCase):
             with self.subTest(codec=codec):
                 grouped = controller_join(names_for(base, {"base": {}}),
                                           [matrix_row("controller-720", 0x0200, "3 x uint8", [3], enumeration=text)])
-                place = grouped[("controller", "base")][0]
+                places = {tuple(p["families"]): p for p in grouped[("controller", "base")]}
+                self.assertEqual(sorted(places), [("controller-700",), ("controller-720",)])
+                place = places[("controller-720",)]
                 self.assertEqual((place["codec"], place["kind"], place["enumeration"]), (codec, kind, []))
+                self.assertEqual((places[("controller-700",)]["codec"], places[("controller-700",)]["kind"]), ("", ""))
 
     def test_map_columns(self):
         cases = [
@@ -260,7 +263,8 @@ class RuleTests(unittest.TestCase):
             (dict(wire="i8", decode="—"), ("int8", "", 1, "")),
             (dict(wire="string", decode="text"), ("text", "", 1, "text")),
             (dict(wire="date", decode="date"), ("", "", 1, "date")),
-            (dict(wire="time", decode="version"), ("", "", 1, "")),
+            (dict(wire="time", decode="version"), ("major_minor_patch", "", 1, "version")),
+            (dict(wire="time", decode="time"), ("", "", 1, "time")),
             (dict(wire="bytes", decode="raw"), ("", "", 1, "")),
             (dict(), ("", "", 1, "")),
         ]
@@ -268,10 +272,80 @@ class RuleTests(unittest.TestCase):
             with self.subTest(columns=columns):
                 place = generator.map_layout(columns)
                 self.assertEqual((place["codec"], place["unit"], place["divisor"], place["kind"]), expected)
-        for columns in (dict(wire="f64", decode="°C"), dict(wire="u8", decode="furlong"), dict(decode="°C")):
+        for columns in (dict(wire="f64", decode="°C"), dict(wire="u8", decode="furlong"), dict(decode="°C"),
+                        dict(wire="u8", decode="version"), dict(wire="date", decode="version")):
             with self.subTest(columns=columns):
                 with self.assertRaises(generator.InputError):
                     generator.map_layout(columns)
+
+    def test_map_label_lists(self):
+        self.assertEqual(generator.map_labels("0=inactive 1=active 2=extended"),
+                         [{"value": 0, "label": "inactive"}, {"value": 1, "label": "active"},
+                          {"value": 2, "label": "extended"}])
+        self.assertEqual(generator.map_labels("0x35=B 0x15=A"),
+                         [{"value": 0x15, "label": "A"}, {"value": 0x35, "label": "B"}])
+        for malformed in ("0=a 0=b", "0=a 0x00=b", "a=0", "0=", "0=a  1=b", "<4=unstable"):
+            with self.subTest(text=malformed):
+                with self.assertRaises(generator.InputError):
+                    generator.map_labels(malformed)
+        key = (0x02, 0x02, 0x0003)
+        self.assertIn(key, generator.MAP_LABELS)
+        place = generator.map_layout(dict(wire="u8", decode="enum"), key)
+        self.assertEqual((place["codec"], place["kind"], [entry["label"] for entry in place["enumeration"]]),
+                         ("uint8", "enumeration", ["inactive", "active", "extended"]))
+        self.assertEqual(generator.map_layout(dict(wire="u8", decode="enum"), (0x02, 0x02, 0x0004))["enumeration"], [])
+        for decode in ("bool", "count", "—"):
+            with self.subTest(decode=decode):
+                with self.assertRaises(generator.InputError):
+                    generator.map_layout(dict(wire="u8", decode=decode), key)
+
+    def test_unused_map_labels_fail_generation(self):
+        with tempfile.TemporaryDirectory(dir=SCRATCH) as scratch:
+            root = Path(scratch)
+            for relative in [*generator.SOURCES.values(), generator.OUTPUT]:
+                (root / relative).parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / relative, root / relative)
+            names = root / generator.SOURCES["controller_names"]
+            rows = [row for row in json.loads(names.read_text(encoding="utf-8"))
+                    if (row["key"]["operation"], row["key"]["group"], row["key"]["register"]) != (0x02, 0x02, 0x0003)]
+            names.write_text(json.dumps(rows), encoding="utf-8")
+            result = run("--check", "--root", str(root))
+            self.assertEqual(result.returncode, 2, result.stderr)
+            self.assertIn("labels without a named register", result.stderr)
+
+    def test_a_family_the_matrix_does_not_list_takes_the_map_layout(self):
+        columns = dict(wire="f32", decode="°C")
+        base = dict(operation=0x02, group=0x03, register=0x0200)
+
+        def layouts(names, matrix):
+            return {name: [(p["codec"], p["unit"], p["families"]) for p in places]
+                    for (_, name), places in controller_join(names, matrix).items()}
+
+        same = layouts(names_for(base, {"base": {}}, **columns),
+                       [matrix_row("controller-720", 0x0200, "float32 LE", [4], unit="°C", group=0x03)])
+        self.assertEqual(same["base"], [("float32_le", "°C", ["controller-700", "controller-720"])])
+        differs = layouts(names_for(base, {"base": {}}, **columns),
+                          [matrix_row("controller-720", 0x0200, "uint16 LE", [2], unit="min", group=0x03)])
+        self.assertEqual(differs["base"], [("float32_le", "°C", ["controller-700"]),
+                                           ("uint16_le", "min", ["controller-720"])])
+        elsewhere = [matrix_row("controller-720", 0x0201, "uint8", [1], group=0x03)]
+        unlisted = layouts(names_for(base, {"base": {}}, **columns), elsewhere)
+        self.assertEqual(unlisted["base"], [("float32_le", "°C", [])])
+        limited = {"continuous heating": (dict(group=0x00, register=0x00EF), "controller-720"),
+                   "ventilation group": (dict(group=0x09, register=0x0200), "controller-720"),
+                   "ventilation item": (dict(group=0x00, register=0x00A4), "controller-700"),
+                   "holiday date": (dict(group=0x00, register=0x0071), "controller-700")}
+        for label, (change, family) in limited.items():
+            with self.subTest(register=label):
+                key = dict(base, **change)
+                row = matrix_row(family, key["register"], "float32 LE", [4], unit="°C", group=key["group"])
+                self.assertEqual(layouts(names_for(key, {"base": {}}, **columns), [row])["base"],
+                                 [("float32_le", "°C", [family])])
+                other = next(f for f in generator.FAMILIES if f != family)
+                with self.assertRaisesRegex(generator.InputError, "reads on"):
+                    controller_join(names_for(key, {"base": {}}, **columns), [row, dict(row, family=other)])
+        on_other_opcode = layouts(names_for(dict(base, operation=0x06, group=0x09), {"base": {}}, **columns), elsewhere)
+        self.assertEqual(on_other_opcode["base"], [("float32_le", "°C", [])])
 
     def test_stated_kind_precedes_the_name_rules(self):
         self.assertEqual(generator.value_class("device_connected", "", "", "uint8", "boolean"), "boolean")

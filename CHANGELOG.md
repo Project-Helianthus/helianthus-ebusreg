@@ -14,18 +14,26 @@
   matrix by family (reply width, value type, unit and enumeration for the
   `controller-700` and `controller-720` families). The generator takes a
   controller location's codec, unit and enumeration from the matrix row of
-  its family and otherwise from the map, gives families whose rows differ
-  one location each, fails when a scalar interpreter disagrees with the
-  documented layout, and gives the opcode 0x06 groups the map's slot
-  interval 1 to 8. A layout the map leaves open (`date`, `time`, `bytes`,
-  `unknown`) gets no codec and stays native and named. New codecs:
-  `uint8`, `int8`, `uint8_or_uint16_le`, `uint32_le`, `day_month_year`,
-  `hour_minute_second` and `text`; points and locations carry their
-  documented enumeration labels. `DecodeNative` returns the exact native
+  its family and otherwise from the map; a family the matrix does not list
+  takes the map's layout unless the map reads the register on one family
+  only. It gives families whose rows differ one location each, fails when
+  a scalar interpreter disagrees with the documented layout, and gives the
+  opcode 0x06 groups the map's slot interval 1 to 8. A layout the map
+  leaves open (`date`, `time`, `bytes`, `unknown`) gets no codec and stays
+  native and named; the map's `time` wire with the `version` decode is the
+  three-byte major, minor and patch triple. New codecs: `uint8`, `int8`,
+  `uint8_or_uint16_le`, `uint32_le`, `day_month_year`,
+  `hour_minute_second`, `major_minor_patch` and `text`, and the value
+  class `version`; points and locations carry their documented
+  enumeration labels, from the matrix or from a label list the map's
+  Values column states outright. `DecodeNative` returns the exact native
   value of any point with a known codec (number, Boolean, enumeration
-  code and label, date, time or text) and refuses a wrong width, a code
-  out of range, a non-UTF-8 text, NaN, infinities and codec sentinels with
-  the typed `DecodeError` (`out_of_range`, `invalid_text`).
+  code and label, date, time, version or text); an enumeration code
+  without a candidate label decodes with an empty label, because the map
+  does not show such a code to be invalid. It refuses a wrong width, a
+  Boolean or date out of range, a non-UTF-8 text, NaN, infinities and
+  codec sentinels with the typed `DecodeError` (`out_of_range`,
+  `invalid_text`).
   `Point.ForLocation` narrows a point to one location. The SI export rule,
   its withheld reasons, `Decode`, the boiler and heat-pump dictionaries
   and every existing canonical name are unchanged; 37 more controller

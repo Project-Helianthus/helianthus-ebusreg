@@ -188035,6 +188035,25 @@
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
         "lexical_location": 41,
+        "declaration": "ValueVersion"
+      },
+      "current_name": "ValueVersion",
+      "target": "ValueVersion",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 42,
         "declaration": "ValueCommand"
       },
       "current_name": "ValueCommand",
@@ -188053,7 +188072,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 42,
+        "lexical_location": 43,
         "declaration": "ValueUnknown"
       },
       "current_name": "ValueUnknown",
@@ -188072,7 +188091,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 47,
+        "lexical_location": 48,
         "declaration": "Codec"
       },
       "current_name": "Codec",
@@ -188091,7 +188110,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 56,
+        "lexical_location": 58,
         "declaration": "CodecUnknown"
       },
       "current_name": "CodecUnknown",
@@ -188110,7 +188129,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 57,
+        "lexical_location": 59,
         "declaration": "CodecFloat32LE"
       },
       "current_name": "CodecFloat32LE",
@@ -188129,7 +188148,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 58,
+        "lexical_location": 60,
         "declaration": "CodecUint16LE"
       },
       "current_name": "CodecUint16LE",
@@ -188148,7 +188167,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 59,
+        "lexical_location": 61,
         "declaration": "CodecUint32LE"
       },
       "current_name": "CodecUint32LE",
@@ -188167,7 +188186,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 60,
+        "lexical_location": 62,
         "declaration": "CodecUint8"
       },
       "current_name": "CodecUint8",
@@ -188186,7 +188205,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 61,
+        "lexical_location": 63,
         "declaration": "CodecSignedByte"
       },
       "current_name": "CodecSignedByte",
@@ -188205,7 +188224,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 62,
+        "lexical_location": 64,
         "declaration": "CodecUint8OrUint16LE"
       },
       "current_name": "CodecUint8OrUint16LE",
@@ -188224,7 +188243,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 63,
+        "lexical_location": 65,
         "declaration": "CodecDayMonthYear"
       },
       "current_name": "CodecDayMonthYear",
@@ -188243,7 +188262,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 64,
+        "lexical_location": 66,
         "declaration": "CodecHourMinuteSecond"
       },
       "current_name": "CodecHourMinuteSecond",
@@ -188262,7 +188281,26 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 65,
+        "lexical_location": 67,
+        "declaration": "CodecMajorMinorPatch"
+      },
+      "current_name": "CodecMajorMinorPatch",
+      "target": "CodecMajorMinorPatch",
+      "kind": "go_identifier",
+      "roles": [],
+      "public_evidence": [
+        "vaillant/nativepoints/points.go"
+      ],
+      "value_class": null,
+      "unit": null,
+      "status": "ready",
+      "open_question": "",
+      "consumer_files": []
+    },
+    {
+      "owning_file": "vaillant/nativepoints/points.go",
+      "identity": {
+        "lexical_location": 68,
         "declaration": "CodecText"
       },
       "current_name": "CodecText",
@@ -188281,7 +188319,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 66,
+        "lexical_location": 69,
         "declaration": "CodecData2c"
       },
       "current_name": "CodecData2c",
@@ -188300,7 +188338,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 67,
+        "lexical_location": 70,
         "declaration": "CodecData2b"
       },
       "current_name": "CodecData2b",
@@ -188319,7 +188357,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 68,
+        "lexical_location": 71,
         "declaration": "CodecUIN"
       },
       "current_name": "CodecUIN",
@@ -188338,7 +188376,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 73,
+        "lexical_location": 76,
         "declaration": "EnumerationLabel"
       },
       "current_name": "EnumerationLabel",
@@ -188357,7 +188395,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 74,
+        "lexical_location": 77,
         "field_candidate": "Value"
       },
       "current_name": "Value",
@@ -188376,7 +188414,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 75,
+        "lexical_location": 78,
         "field_candidate": "Label"
       },
       "current_name": "Label",
@@ -188395,7 +188433,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 79,
+        "lexical_location": 82,
         "declaration": "InstanceRule"
       },
       "current_name": "InstanceRule",
@@ -188414,7 +188452,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 84,
+        "lexical_location": 87,
         "declaration": "InstanceSingle"
       },
       "current_name": "InstanceSingle",
@@ -188433,7 +188471,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 85,
+        "lexical_location": 88,
         "declaration": "InstanceIndexed"
       },
       "current_name": "InstanceIndexed",
@@ -188452,7 +188490,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 86,
+        "lexical_location": 89,
         "declaration": "InstanceUnknown"
       },
       "current_name": "InstanceUnknown",
@@ -188471,7 +188509,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 90,
+        "lexical_location": 93,
         "declaration": "WithheldReason"
       },
       "current_name": "WithheldReason",
@@ -188490,7 +188528,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 95,
+        "lexical_location": 98,
         "declaration": "WithheldNone"
       },
       "current_name": "WithheldNone",
@@ -188509,7 +188547,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 96,
+        "lexical_location": 99,
         "declaration": "WithheldNameNotFinal"
       },
       "current_name": "WithheldNameNotFinal",
@@ -188528,7 +188566,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 97,
+        "lexical_location": 100,
         "declaration": "WithheldIdentifierOrCode"
       },
       "current_name": "WithheldIdentifierOrCode",
@@ -188547,7 +188585,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 98,
+        "lexical_location": 101,
         "declaration": "WithheldNotNumeric"
       },
       "current_name": "WithheldNotNumeric",
@@ -188566,7 +188604,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 99,
+        "lexical_location": 102,
         "declaration": "WithheldUnitUnknown"
       },
       "current_name": "WithheldUnitUnknown",
@@ -188585,7 +188623,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 100,
+        "lexical_location": 103,
         "declaration": "WithheldPressureReferenceUnknown"
       },
       "current_name": "WithheldPressureReferenceUnknown",
@@ -188604,7 +188642,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 101,
+        "lexical_location": 104,
         "declaration": "WithheldCodecUnknown"
       },
       "current_name": "WithheldCodecUnknown",
@@ -188623,7 +188661,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 112,
+        "lexical_location": 118,
         "declaration": "Location"
       },
       "current_name": "Location",
@@ -188642,7 +188680,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 113,
+        "lexical_location": 119,
         "field_candidate": "Opcode"
       },
       "current_name": "Opcode",
@@ -188661,7 +188699,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 114,
+        "lexical_location": 120,
         "field_candidate": "Group"
       },
       "current_name": "Group",
@@ -188680,7 +188718,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 115,
+        "lexical_location": 121,
         "field_candidate": "Register"
       },
       "current_name": "Register",
@@ -188699,7 +188737,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 116,
+        "lexical_location": 122,
         "field_candidate": "Selector"
       },
       "current_name": "Selector",
@@ -188718,7 +188756,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 117,
+        "lexical_location": 123,
         "field_candidate": "InstanceRule"
       },
       "current_name": "InstanceRule",
@@ -188737,7 +188775,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 118,
+        "lexical_location": 124,
         "field_candidate": "InstanceMin"
       },
       "current_name": "InstanceMin",
@@ -188756,7 +188794,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 119,
+        "lexical_location": 125,
         "field_candidate": "InstanceMax"
       },
       "current_name": "InstanceMax",
@@ -188775,7 +188813,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 120,
+        "lexical_location": 126,
         "field_candidate": "ControllerFamilies"
       },
       "current_name": "ControllerFamilies",
@@ -188794,7 +188832,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 121,
+        "lexical_location": 127,
         "field_candidate": "Codec"
       },
       "current_name": "Codec",
@@ -188813,7 +188851,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 122,
+        "lexical_location": 128,
         "field_candidate": "CodecDeclaration"
       },
       "current_name": "CodecDeclaration",
@@ -188832,7 +188870,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 123,
+        "lexical_location": 129,
         "field_candidate": "ScaleDivisor"
       },
       "current_name": "ScaleDivisor",
@@ -188851,7 +188889,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 124,
+        "lexical_location": 130,
         "field_candidate": "NativeUnit"
       },
       "current_name": "NativeUnit",
@@ -188870,7 +188908,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 125,
+        "lexical_location": 131,
         "field_candidate": "Enumeration"
       },
       "current_name": "Enumeration",
@@ -188889,7 +188927,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 134,
+        "lexical_location": 140,
         "declaration": "Point"
       },
       "current_name": "Point",
@@ -188908,7 +188946,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 135,
+        "lexical_location": 141,
         "field_candidate": "DeviceClass"
       },
       "current_name": "DeviceClass",
@@ -188927,7 +188965,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 136,
+        "lexical_location": 142,
         "field_candidate": "Name"
       },
       "current_name": "Name",
@@ -188946,7 +188984,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 137,
+        "lexical_location": 143,
         "field_candidate": "NameStatus"
       },
       "current_name": "NameStatus",
@@ -188965,7 +189003,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 138,
+        "lexical_location": 144,
         "field_candidate": "Primary"
       },
       "current_name": "Primary",
@@ -188984,7 +189022,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 139,
+        "lexical_location": 145,
         "field_candidate": "Secondary"
       },
       "current_name": "Secondary",
@@ -189003,7 +189041,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 140,
+        "lexical_location": 146,
         "field_candidate": "ValueClass"
       },
       "current_name": "ValueClass",
@@ -189022,7 +189060,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 141,
+        "lexical_location": 147,
         "field_candidate": "Codec"
       },
       "current_name": "Codec",
@@ -189041,7 +189079,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 142,
+        "lexical_location": 148,
         "field_candidate": "CodecDeclaration"
       },
       "current_name": "CodecDeclaration",
@@ -189060,7 +189098,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 143,
+        "lexical_location": 149,
         "field_candidate": "ScaleDivisor"
       },
       "current_name": "ScaleDivisor",
@@ -189079,7 +189117,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 144,
+        "lexical_location": 150,
         "field_candidate": "NativeUnit"
       },
       "current_name": "NativeUnit",
@@ -189098,7 +189136,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 145,
+        "lexical_location": 151,
         "field_candidate": "Enumeration"
       },
       "current_name": "Enumeration",
@@ -189117,7 +189155,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 146,
+        "lexical_location": 152,
         "field_candidate": "ControllerFamilies"
       },
       "current_name": "ControllerFamilies",
@@ -189136,7 +189174,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 147,
+        "lexical_location": 153,
         "field_candidate": "Locations"
       },
       "current_name": "Locations",
@@ -189155,7 +189193,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 148,
+        "lexical_location": 154,
         "field_candidate": "Exportable"
       },
       "current_name": "Exportable",
@@ -189174,7 +189212,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 149,
+        "lexical_location": 155,
         "field_candidate": "Withheld"
       },
       "current_name": "Withheld",
@@ -189193,7 +189231,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 170,
+        "lexical_location": 176,
         "declaration": "ForLocation"
       },
       "current_name": "ForLocation",
@@ -189212,7 +189250,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 186,
+        "lexical_location": 192,
         "declaration": "Points"
       },
       "current_name": "Points",
@@ -189231,7 +189269,7 @@
     {
       "owning_file": "vaillant/nativepoints/points.go",
       "identity": {
-        "lexical_location": 195,
+        "lexical_location": 201,
         "declaration": "Lookup"
       },
       "current_name": "Lookup",
@@ -189668,7 +189706,7 @@
     {
       "owning_file": "vaillant/nativepoints/native_decode.go",
       "identity": {
-        "lexical_location": 20,
+        "lexical_location": 21,
         "declaration": "NativeValue"
       },
       "current_name": "NativeValue",
@@ -189687,7 +189725,7 @@
     {
       "owning_file": "vaillant/nativepoints/native_decode.go",
       "identity": {
-        "lexical_location": 21,
+        "lexical_location": 22,
         "field_candidate": "ValueClass"
       },
       "current_name": "ValueClass",
@@ -189706,7 +189744,7 @@
     {
       "owning_file": "vaillant/nativepoints/native_decode.go",
       "identity": {
-        "lexical_location": 22,
+        "lexical_location": 23,
         "field_candidate": "Native"
       },
       "current_name": "Native",
@@ -189725,7 +189763,7 @@
     {
       "owning_file": "vaillant/nativepoints/native_decode.go",
       "identity": {
-        "lexical_location": 23,
+        "lexical_location": 24,
         "field_candidate": "NativeUnit"
       },
       "current_name": "NativeUnit",
@@ -189744,7 +189782,7 @@
     {
       "owning_file": "vaillant/nativepoints/native_decode.go",
       "identity": {
-        "lexical_location": 24,
+        "lexical_location": 25,
         "field_candidate": "Label"
       },
       "current_name": "Label",
@@ -189763,7 +189801,7 @@
     {
       "owning_file": "vaillant/nativepoints/native_decode.go",
       "identity": {
-        "lexical_location": 30,
+        "lexical_location": 31,
         "declaration": "DecodeOutOfRange"
       },
       "current_name": "DecodeOutOfRange",
@@ -189782,7 +189820,7 @@
     {
       "owning_file": "vaillant/nativepoints/native_decode.go",
       "identity": {
-        "lexical_location": 31,
+        "lexical_location": 32,
         "declaration": "DecodeInvalidText"
       },
       "current_name": "DecodeInvalidText",
@@ -189801,7 +189839,7 @@
     {
       "owning_file": "vaillant/nativepoints/native_decode.go",
       "identity": {
-        "lexical_location": 56,
+        "lexical_location": 60,
         "declaration": "DecodeNative"
       },
       "current_name": "DecodeNative",

@@ -9,9 +9,10 @@
 // including the local parameter group 0x0A, and of the opcode 0x06 device
 // groups, whose universal names apply to registers 0x0001 to 0x0004 of every
 // group. A controller location takes its codec, unit and enumeration from the
-// register matrix row of its controller family and otherwise from the map; a
-// register whose layout the documentation leaves open has no codec and stays
-// native and named.
+// register matrix row of its controller family and otherwise from the map,
+// whose layout also applies to a family the matrix does not list unless the
+// map reads the register on one family only; a register whose layout the
+// documentation leaves open has no codec and stays native and named.
 //
 // Each row says whether its value may be exported. A row is exportable only
 // when its name is final, its value class is numeric, its native unit converts
@@ -25,8 +26,9 @@
 // codec sentinels and replies of the wrong length with a typed DecodeError.
 // DecodeNative turns a retained raw reply of any row with a known codec into
 // its exact native value: a number, a Boolean, an enumeration code with its
-// documented label, a date, a time or a text; it refuses a wrong width, a code
-// out of range and a codec sentinel with the same typed error. Point.ForLocation
+// documented label (empty for a code without a candidate label), a date, a
+// time, a firmware version or a text; it refuses a wrong width, a Boolean or
+// date out of range and a codec sentinel with the same typed error. Point.ForLocation
 // narrows a row to one location, for example to one controller family's
 // enumeration. The package performs no bus traffic.
 //

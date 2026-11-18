@@ -20,12 +20,17 @@ Inputs, all read from the repository:
 
 A controller location takes its codec, unit and enumeration from the register
 matrix row of each controller family that states a value type, and from the
-register map's Wire and Decode columns when no family row states one. Families
-whose rows disagree get one location each. An INTERPRETED declaration must
-agree with the documented codec and unit of its family; a disagreement fails
-generation. Map wire types whose layout the map leaves open (date, time,
-bytes, unknown) and decode columns without a unit or value class give no codec
-and no unit.
+register map's Wire and Decode columns when no family row states one. When the
+matrix states a value type for one family only, the other family takes the
+map's layout, except on a register the documentation reads on one family only
+(ONE_FAMILY below). Families whose rows disagree get one location each. An
+INTERPRETED declaration must agree with the documented codec and unit of its
+family; a disagreement fails generation. Map wire types whose layout the map
+leaves open (date, time, bytes, unknown) and decode columns without a unit or
+value class give no codec and no unit; the map's time wire with the version
+decode is the three-byte major, minor and patch triple. An enumeration
+register of the map takes the label list its Values column states outright
+(MAP_LABELS below).
 
 One row is emitted per (device class, canonical name). Annotations without a
 canonical name and the two operation-level annotations of class "any" carry no
@@ -106,8 +111,30 @@ DECODE_UNITS = {"°C": ("°C", 1), "°C/2": ("°C", 2), "K": ("K", 1), "bar": ("
                 "count": ("count", 1), "days": ("d", 1)}
 DECODE_KINDS = {"bool": "boolean", "enum": "enumeration", "state": "enumeration",
                 "date": "date", "time": "time", "text": "text"}
-UNSTATED_DECODES = {"—", "unknown", "raw", "schedule", "version"}
+UNSTATED_DECODES = {"—", "unknown", "raw", "schedule"}
+MAJOR_MINOR_PATCH = "major_minor_patch"
 OP06_SLOTS = {group: (1, 8) for group in range(0x01, 0x10)}
+# Label lists that the register map's Values column states outright for an
+# enumeration register, verbatim; a reference to the enum reference section is
+# not a list and is not copied.
+MAP_LABELS = {
+    (0x02, 0x00, 0x0016): "1=AUTO 2=DAY 3=SET_BACK",
+    (0x02, 0x00, 0x002B): "0=off 1=Mon 2=Tue 3=Wed 4=Thu 5=Fri 6=Sat 7=Sun",
+    (0x02, 0x00, 0x0048): "0=standby 1=heating 2=cooling 3=dhw",
+    (0x02, 0x02, 0x0003): "0=inactive 1=active 2=extended",
+    (0x02, 0x09, 0x0002): "1=TIME_CONTROLLED 2=NORMAL 3=REDUCED",
+    (0x06, 0x09, 0x0002): "0x15=VRC720 0x35=VR92 0x26=VR71",
+    (0x06, 0x0A, 0x0002): "0x15=VRC720 0x35=VR92 0x26=VR71",
+}
+MAP_LABEL = re.compile(r"(0x[0-9A-Fa-f]+|[0-9]+)=(\S+)")
+# Opcode 0x02 registers that the register map reads on one controller family
+# only: group 0x09 and the continuous-heating set point on the controller-720
+# family; the controller-700 ventilation items of group 0x00 and the family
+# split of the holiday dates on the controller-700 family.
+ONE_FAMILY_GROUPS = {0x09: C720}
+ONE_FAMILY = {(0x00, 0x00EF): C720, (0x00, 0x0016): C700, (0x00, 0x0042): C700,
+              (0x00, 0x0043): C700, (0x00, 0x00A4): C700, (0x00, 0x0071): C700,
+              (0x00, 0x0072): C700}
 
 DECODED_CODECS = {F32, U16, "DATA2c", "DATA2b", "UIN"}
 SI_UNITS = {"°C", "K", "bar", "kWh", "kW", "W", "h", "min", "s", "%", "count", "steps",
@@ -303,24 +330,49 @@ def register_matrix(root):
     return table
 
 
-def map_layout(row):
+def map_labels(text):
+    labels = {}
+    for part in text.split(" "):
+        match = MAP_LABEL.fullmatch(part)
+        if not match or int(match.group(1), 0) in labels:
+            raise InputError(f"malformed register map label list {text!r}")
+        labels[int(match.group(1), 0)] = match.group(2)
+    return [{"value": value, "label": labels[value]} for value in sorted(labels)]
+
+
+def map_layout(row, key=None):
     wire, decode = row.get("wire"), row.get("decode")
+    labels = MAP_LABELS.get(key)
+    if labels is not None and decode not in ("enum", "state"):
+        raise InputError(f"register map labels on {key} without an enumeration decode")
     if wire is None and decode is None:
         return layout()
     if wire not in WIRE_CODECS:
         raise InputError(f"unknown register map wire type {wire!r}")
+    if decode == "version":
+        if wire != "time":
+            raise InputError(f"register map version decode on wire type {wire!r}")
+        return layout(MAJOR_MINOR_PATCH, kind="version")
     if decode in DECODE_UNITS:
         unit, divisor = DECODE_UNITS[decode]
         return layout(WIRE_CODECS[wire], unit, divisor)
     if decode in DECODE_KINDS:
-        return layout(WIRE_CODECS[wire], kind=DECODE_KINDS[decode])
+        return layout(WIRE_CODECS[wire], enumeration=map_labels(labels) if labels else (),
+                      kind=DECODE_KINDS[decode])
     if decode not in UNSTATED_DECODES:
         raise InputError(f"unknown register map decode {decode!r}")
     return layout(WIRE_CODECS[wire])
 
 
-def documented_layouts(name, documented, mapped, declared):
+def one_family(group, register):
+    return ONE_FAMILY.get((group, register), ONE_FAMILY_GROUPS.get(group))
+
+
+def documented_layouts(name, documented, mapped, declared, only=None):
     families = dict(documented)
+    if only is not None and set(families) - {only}:
+        raise InputError(f"register matrix lists {sorted(families)} for {name}, which the "
+                         f"register map reads on {only} only")
     for family, (codec, unit) in sorted(declared.items()):
         expected = families.get(family, mapped)
         if (expected["codec"], expected["unit"]) != (codec, unit):
@@ -329,6 +381,9 @@ def documented_layouts(name, documented, mapped, declared):
         families.setdefault(family, mapped)
     if not families:
         return [(mapped, [])]
+    if only is None:
+        for family in FAMILIES:
+            families.setdefault(family, mapped)
     split = {}
     for family, place in sorted(families.items()):
         split.setdefault(json.dumps(place, sort_keys=True), (place, []))[1].append(family)
@@ -337,11 +392,13 @@ def documented_layouts(name, documented, mapped, declared):
 
 def controller_locations(root, grouped, services):
     rules, codecs, matrix = instance_rules(root), interpreted(), register_matrix(root)
+    labelled = set()
     for row in load_json(root, "controller_names"):
         key, name = row["key"], row["canonical_name"]
         if name is None:
             continue
         opcode, group, register = key["operation"], key["group"], key["register"]
+        labelled.add((opcode, group, register))
         declared = codecs.get((group, register), {}) if opcode == 0x02 else {}
         documented = matrix.get((opcode, group, register), {})
         if opcode == 0x06:
@@ -349,13 +406,16 @@ def controller_locations(root, grouped, services):
             rule = "indexed" if group in OP06_SLOTS else "unknown"
         else:
             rule, low, high = rules.get((group, opcode), ("unknown", 0, 0))
-        for place, families in documented_layouts(name, documented, map_layout(row), declared):
+        only = one_family(group, register) if opcode == 0x02 else None
+        mapped = map_layout(row, (opcode, group, register))
+        for place, families in documented_layouts(name, documented, mapped, declared, only):
             place = dict(place, opcode=opcode, group=group, register=register, selector="",
                          instance_rule=rule, instance_min=low, instance_max=high,
                          families=families, declaration="",
                          unresolved=row["unresolved"] is not False)
             grouped.setdefault(("controller", name), []).append(place)
         services[("controller", name)] = CONTROLLER_SERVICE
+    return labelled
 
 
 def register_service_locations(root, grouped, services):
@@ -462,10 +522,12 @@ def point_literal(point):
 def build(root):
     grouped, services = {}, {}
     try:
-        controller_locations(root, grouped, services)
+        named = controller_locations(root, grouped, services)
         register_service_locations(root, grouped, services)
     except (KeyError, TypeError, AttributeError) as error:
         raise InputError(f"malformed source row: {error!r}") from error
+    if set(MAP_LABELS) - named:
+        raise InputError(f"register map labels without a named register: {sorted(set(MAP_LABELS) - named)}")
     points = assemble(grouped, services)
     lines = ["// Code generated by scripts/generate_native_points.py; DO NOT EDIT.", "",
              "package nativepoints", "", "var generatedPoints = []Point{"]

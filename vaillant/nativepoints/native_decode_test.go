@@ -232,8 +232,100 @@ func TestNativeDecodeSignedEnumerationPerFamily(t *testing.T) {
 			t.Errorf("%s % X: %+v", tc.family, tc.raw, value)
 		}
 	}
-	refuseNative(t, locationForFamily(t, point, "controller-700"), []byte{0x08}, nativepoints.DecodeOutOfRange)
-	refuseNative(t, locationForFamily(t, point, "controller-720"), []byte{0x09}, nativepoints.DecodeOutOfRange)
+	for _, tc := range []struct {
+		family string
+		raw    byte
+	}{{"controller-700", 0x08}, {"controller-720", 0x09}} {
+		value := nativeOf(t, locationForFamily(t, point, tc.family), []byte{tc.raw})
+		if value.Native != fmt.Sprint(tc.raw) || value.Label != "" || value.ValueClass != nativepoints.ValueEnumeration {
+			t.Errorf("%s % X without a candidate label: %+v", tc.family, tc.raw, value)
+		}
+	}
+}
+
+// The register map states that a code with no candidate label is not shown to
+// be invalid on the wire, naming codes 2 and 9 of the zone special function.
+func TestNativeDecodeKeepsACodeWithoutACandidateLabel(t *testing.T) {
+	zone := mustLookup(t, nativepoints.DeviceClassController, "zone_special_function_state")
+	for _, family := range controllerFamilies {
+		narrowed := locationForFamily(t, zone, family)
+		if len(narrowed.Enumeration) == 0 {
+			t.Fatalf("%s location has no candidate labels: %+v", family, narrowed)
+		}
+		for _, raw := range [][]byte{{2}, {9}, {2, 0}, {9, 0}} {
+			value := nativeOf(t, narrowed, raw)
+			if value.ValueClass != nativepoints.ValueEnumeration || value.Native != fmt.Sprint(raw[0]) || value.Label != "" {
+				t.Errorf("%s % X = %+v, want code %d without a label", family, raw, value, raw[0])
+			}
+		}
+		if value := nativeOf(t, narrowed, []byte{7}); value.Label != "Holiday" {
+			t.Errorf("%s labelled code 7 = %+v", family, value)
+		}
+	}
+	dhw := mustLookup(t, nativepoints.DeviceClassController, "dhw_special_function_state")
+	if value := nativeOf(t, dhw, []byte{2, 0}); value.Native != "2" || value.Label != "" || value.ValueClass != nativepoints.ValueEnumeration {
+		t.Errorf("dhw_special_function_state 02 00 = %+v", value)
+	}
+	weekday := mustLookup(t, nativepoints.DeviceClassController, "dhw_legionella_protection_start_weekday")
+	if value := nativeOf(t, weekday, []byte{9, 0}); value.Native != "9" || value.Label != "" {
+		t.Errorf("dhw_legionella_protection_start_weekday 09 00 = %+v", value)
+	}
+}
+
+func locationAt(t *testing.T, point nativepoints.Point, opcode, group uint8, register uint16) nativepoints.Point {
+	t.Helper()
+	for index, location := range point.Locations {
+		if location.Opcode == opcode && location.Group == group && location.Register == register {
+			narrowed, found := point.ForLocation(index)
+			if !found {
+				t.Fatalf("ForLocation(%d) not found", index)
+			}
+			return narrowed
+		}
+	}
+	t.Fatalf("%s has no location 0x%02x/0x%02x/0x%04x", point.Name, opcode, group, register)
+	return nativepoints.Point{}
+}
+
+func TestNativeDecodeLabelsTheMapStatesOutright(t *testing.T) {
+	influence := mustLookup(t, nativepoints.DeviceClassController, "circuit_room_influence_mode")
+	for raw, label := range map[byte]string{0: "inactive", 1: "active", 2: "extended"} {
+		if value := nativeOf(t, influence, []byte{raw}); value.Native != fmt.Sprint(raw) || value.Label != label || value.ValueClass != nativepoints.ValueEnumeration {
+			t.Errorf("circuit_room_influence_mode % X = %+v, want label %q", raw, value, label)
+		}
+	}
+	address := mustLookup(t, nativepoints.DeviceClassController, "device_class_address")
+	for _, group := range []uint8{0x09, 0x0A} {
+		narrowed := locationAt(t, address, 0x06, group, 0x0002)
+		for raw, label := range map[byte]string{0x15: "VRC720", 0x35: "VR92", 0x26: "VR71"} {
+			if value := nativeOf(t, narrowed, []byte{raw}); value.Native != fmt.Sprint(raw) || value.Label != label {
+				t.Errorf("group 0x%02x device_class_address % X = %+v, want label %q", group, raw, value, label)
+			}
+		}
+	}
+	if narrowed := locationAt(t, address, 0x06, 0x01, 0x0002); len(narrowed.Enumeration) != 0 {
+		t.Errorf("a group whose map table states no label list has labels: %+v", narrowed.Enumeration)
+	}
+}
+
+func TestNativeDecodeFirmwareVersionTriple(t *testing.T) {
+	point := mustLookup(t, nativepoints.DeviceClassController, "device_firmware_version")
+	for _, group := range []uint8{0x09, 0x0A, 0x0C} {
+		narrowed := locationAt(t, point, 0x06, group, 0x0004)
+		if narrowed.Codec != nativepoints.CodecMajorMinorPatch || narrowed.ValueClass != nativepoints.ValueVersion {
+			t.Fatalf("group 0x%02x firmware version = codec %q class %q", group, narrowed.Codec, narrowed.ValueClass)
+		}
+		value := nativeOf(t, narrowed, []byte{0x08, 0x05, 0x00})
+		if value.ValueClass != nativepoints.ValueVersion || value.Native != "08.05.00" || value.Label != "" {
+			t.Errorf("group 0x%02x 08 05 00 = %+v", group, value)
+		}
+		if value := nativeOf(t, narrowed, []byte{0x10, 0x00, 0x63}); value.Native != "16.00.99" {
+			t.Errorf("group 0x%02x byte-decimal 10 00 63 = %+v", group, value)
+		}
+		refuseNative(t, narrowed, []byte{0xFF, 0xFF, 0xFF}, nativepoints.DecodeSentinel)
+		refuseNative(t, narrowed, []byte{0x08, 0x05}, nativepoints.DecodeShortReply)
+		refuseNative(t, narrowed, []byte{0x08, 0x05, 0x00, 0x00}, nativepoints.DecodeLongReply)
+	}
 }
 
 func locationForFamily(t *testing.T, point nativepoints.Point, family string) nativepoints.Point {
@@ -281,7 +373,6 @@ func TestNativeDecodeRefusals(t *testing.T) {
 		{"one or two empty", controller("zone_enabled"), nil, nativepoints.DecodeShortReply},
 		{"one or two long", controller("zone_enabled"), []byte{1, 0, 0}, nativepoints.DecodeLongReply},
 		{"boolean out of range", controller("adaptive_heating_curve_enabled"), []byte{2}, nativepoints.DecodeOutOfRange},
-		{"enumeration out of range", controller("dhw_legionella_protection_start_weekday"), []byte{9, 0}, nativepoints.DecodeOutOfRange},
 		{"date short", controller("date"), []byte{18, 11}, nativepoints.DecodeShortReply},
 		{"date day", controller("date"), []byte{32, 11, 26}, nativepoints.DecodeOutOfRange},
 		{"date month", controller("date"), []byte{18, 13, 26}, nativepoints.DecodeOutOfRange},

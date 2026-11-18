@@ -1,0 +1,2584 @@
+[
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 1,
+    "name": "dhw_outdoor_bivalence_temperature_limit",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 1,
+    "name": "dhw_outdoor_bivalence_temperature_limit",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 2,
+    "name": "continuous_heating_outdoor_temperature_limit",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 2,
+    "name": "continuous_heating_outdoor_temperature_limit",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 4,
+    "name": "preheating_time_maximum",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "min",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 6,
+    "name": "manual_cooling_time",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 7,
+    "name": "off_enabled",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 7,
+    "name": "off_enabled",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 9,
+    "name": "automatic_cooling_enabled",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=no; 1=yes"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 9,
+    "name": "automatic_cooling_enabled",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=no; 1=yes"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 10,
+    "name": "cylinder_parallel_loading_enabled",
+    "reply_widths": [
+      1,
+      2
+    ],
+    "value_type": "uint8 or uint16 LE",
+    "unit": "",
+    "enumeration": "0=no; 1=yes"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 10,
+    "name": "cylinder_parallel_loading_enabled",
+    "reply_widths": [
+      1,
+      2
+    ],
+    "value_type": "uint8 or uint16 LE",
+    "unit": "",
+    "enumeration": "0=no; 1=yes"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 15,
+    "name": "hybrid_control_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=triVAI; 1=BivalencePoint"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 15,
+    "name": "hybrid_control_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=triVAI; 1=BivalencePoint"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 19,
+    "name": "backup_heater_type",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Condensing; 1=NonCondensing; 2=Electrical"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 19,
+    "name": "backup_heater_type",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Condensing; 1=NonCondensing; 2=Electrical"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 20,
+    "name": "adaptive_heating_curve_enabled",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=Disabled; 1=Enabled"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 20,
+    "name": "adaptive_heating_curve_enabled",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=Disabled; 1=Enabled"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 22,
+    "name": "ventilation_operating_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "1=Auto; 2=Day; 3=Setback"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 23,
+    "name": "dhw_loading_time_maximum",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "min",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 23,
+    "name": "dhw_loading_time_maximum",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "min",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 24,
+    "name": "dhw_blocking_time",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "min",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 34,
+    "name": "heating_outdoor_alternative_temperature_limit",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 34,
+    "name": "heating_outdoor_alternative_temperature_limit",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 35,
+    "name": "heating_outdoor_bivalence_temperature_limit",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 35,
+    "name": "heating_outdoor_bivalence_temperature_limit",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 36,
+    "name": "backup_heater_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Disabled; 1=Heating; 2=DHW; 3=DHWandHeating"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 36,
+    "name": "backup_heater_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Disabled; 1=Heating; 2=DHW; 3=DHWandHeating"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 37,
+    "name": "temporary_backup_heater_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Disabled; 1=Heating; 2=DHW; 3=DHWandHeating"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 37,
+    "name": "temporary_backup_heater_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Disabled; 1=Heating; 2=DHW; 3=DHWandHeating"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 38,
+    "name": "heating_flow_temperature_setpoint_maximum_at_heat_pump_fault",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 38,
+    "name": "heating_flow_temperature_setpoint_maximum_at_heat_pump_fault",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 39,
+    "name": "cylinder_loading_start_hysteresis",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "K",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 39,
+    "name": "cylinder_loading_start_hysteresis",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "K",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 41,
+    "name": "cylinder_loading_offset",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "K",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 41,
+    "name": "cylinder_loading_offset",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "K",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 43,
+    "name": "dhw_legionella_protection_start_weekday",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Off; 1=Monday; 2=Tuesday; 3=Wednesday; 4=Thursday; 5=Friday; 6=Saturday; 7=Sunday; 8=Daily"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 43,
+    "name": "dhw_legionella_protection_start_weekday",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Off; 1=Monday; 2=Tuesday; 3=Wednesday; 4=Thursday; 5=Friday; 6=Saturday; 7=Sunday; 8=Daily"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 47,
+    "name": "functional_module_configuration_code",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 47,
+    "name": "functional_module_configuration_code",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 52,
+    "name": "date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 52,
+    "name": "date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 53,
+    "name": "clock_time",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "time: hour; minute; second"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 53,
+    "name": "clock_time",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "time: hour; minute; second"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 54,
+    "name": "hydraulic_scheme_code",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 54,
+    "name": "hydraulic_scheme_code",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 56,
+    "name": "cooling_start_temperature_limit",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 56,
+    "name": "cooling_start_temperature_limit",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 57,
+    "name": "water_pressure",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "bar",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 57,
+    "name": "water_pressure",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "bar",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 66,
+    "name": "ventilation_fan_speed_limit_maximum_at_day",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 67,
+    "name": "ventilation_fan_speed_limit_maximum_at_night",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 69,
+    "name": "utility_lockout_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Disable heatpump; 1=Disable backup heater; 2=Disable Heatpump and Backup heater; 3=Disable heating; 4=Disable cooling; 5=Disable heating and cooling"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 69,
+    "name": "utility_lockout_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Disable heatpump; 1=Disable backup heater; 2=Disable Heatpump and Backup heater; 3=Disable heating; 4=Disable cooling; 5=Disable heating and cooling"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 70,
+    "name": "dhw_flow_temperature_setpoint_maximum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 70,
+    "name": "dhw_flow_temperature_setpoint_maximum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 72,
+    "name": "energy_manager_state",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=StandBy; 1=Heating; 2=Cooling; 3=DHW"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 72,
+    "name": "energy_manager_state",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=StandBy; 1=Heating; 2=Cooling; 3=DHW"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 75,
+    "name": "flow_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 75,
+    "name": "flow_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 77,
+    "name": "multifunction_output_2_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=CirculationPump; 1=Dehumidifier; 2=Zone; 3=LegionellaPump; 4=NoFunction"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 103,
+    "name": "cylinder_bottom_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 103,
+    "name": "cylinder_bottom_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 104,
+    "name": "cylinder_top_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 104,
+    "name": "cylinder_top_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 105,
+    "name": "unknown_1",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "candidate labels: 0=regulator; 1=Zone_1; 2=Zone_2; 3=Zone_3"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 113,
+    "name": "holiday_start_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 114,
+    "name": "holiday_end_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 115,
+    "name": "outdoor_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 115,
+    "name": "outdoor_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 143,
+    "name": "cylinder_type",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Disabled; 1=Heating; 2=DHW; 3=DHWandHeating"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 143,
+    "name": "cylinder_type",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Disabled; 1=Heating; 2=DHW; 3=DHWandHeating"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 149,
+    "name": "outdoor_temperature_daily_average",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 149,
+    "name": "outdoor_temperature_daily_average",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 157,
+    "name": "dhw_cylinder_top_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 157,
+    "name": "dhw_cylinder_top_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 158,
+    "name": "dhw_cylinder_bottom_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 158,
+    "name": "dhw_cylinder_bottom_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 159,
+    "name": "heating_cylinder_top_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 159,
+    "name": "heating_cylinder_top_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 160,
+    "name": "heating_cylinder_bottom_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 160,
+    "name": "heating_cylinder_bottom_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 162,
+    "name": "heating_cylinder_offset_at_pv_surplus",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "K",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 162,
+    "name": "heating_cylinder_offset_at_pv_surplus",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "K",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 164,
+    "name": "ventilation_special_function_state",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=No special function active; 1=Ventilation boost; 3=Party; 5=One day holiday; 6=One day bank holiday; 7=Holiday; 8=BankHoliday; 10=SystemOff"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 171,
+    "name": "isolation_switch_active",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=off; 1=on"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 171,
+    "name": "isolation_switch_active",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=off; 1=on"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 181,
+    "name": "outdoor_temperature_sensor_ok",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 181,
+    "name": "outdoor_temperature_sensor_ok",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 0,
+    "register": 182,
+    "name": "external_energy_management_enabled",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 182,
+    "name": "external_energy_management_enabled",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 218,
+    "name": "manual_cooling_start_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 219,
+    "name": "manual_cooling_end_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 220,
+    "name": "room_temperature_control_mode",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=Two Point; 1=Analoge"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 0,
+    "register": 239,
+    "name": "continuous_heating_room_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 1,
+    "register": 1,
+    "name": "dhw_circuit_type",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Deactivated; 1=DHWCircuit"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 1,
+    "name": "dhw_circuit_type",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Deactivated; 1=DHWCircuit"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 1,
+    "register": 3,
+    "name": "dhw_operating_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Off; 1=Auto; 2=Day"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 3,
+    "name": "dhw_operating_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Off; 1=TimeControlled; 2=Manual"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 1,
+    "register": 4,
+    "name": "dhw_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 4,
+    "name": "dhw_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 1,
+    "register": 5,
+    "name": "dhw_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 5,
+    "name": "dhw_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 1,
+    "register": 9,
+    "name": "dhw_holiday_start_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 9,
+    "name": "dhw_holiday_start_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 1,
+    "register": 10,
+    "name": "dhw_holiday_end_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 10,
+    "name": "dhw_holiday_end_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 1,
+    "register": 15,
+    "name": "dhw_special_function_state",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=NoSpecialFunctionActive; 3=Party; 5=One day holiday; 6=One day bank holiday; 7=Holiday; 8=BankHoliday; 9=OneTimeTankloading; 10=SystemOff"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 15,
+    "name": "dhw_special_function_state",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=NoSpecialFunctionActive; 3=Party; 5=One day holiday; 6=One day bank holiday; 7=Holiday; 8=BankHoliday; 9=OneTimeTankloading; 10=SystemOff"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 16,
+    "name": "dhw_holiday_start_clock_time",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "time: hour; minute; second"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 17,
+    "name": "dhw_holiday_end_clock_time",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "time: hour; minute; second"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 20,
+    "name": "dhw_preference",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 21,
+    "name": "dhw_recharge_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 1,
+    "register": 25,
+    "name": "dhw_loading_efficiency_state",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 1,
+    "name": "hydraulic_circuit_type",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "1=DirectHeatingCircuit; 2=MixerCircuitExternal"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 1,
+    "name": "hydraulic_circuit_type",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "1=DirectHeatingCircuit; 2=MixerCircuitExternal"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 2,
+    "name": "circuit_type",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Deactivated; 1=HeatingCircuit; 2=FixValueCircuit; 3=DHWCircuit; 4=BackFlowCircuit; 5=PoolCircuit"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 2,
+    "name": "circuit_type",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Deactivated; 1=HeatingCircuit; 2=FixValueCircuit; 3=DHWCircuit; 4=BackFlowCircuit"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 5,
+    "name": "circuit_condensate_sensitive_emitter_available",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 6,
+    "name": "circuit_cooling_enabled",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 6,
+    "name": "circuit_cooling_enabled",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 7,
+    "name": "circuit_flow_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 7,
+    "name": "circuit_flow_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 8,
+    "name": "circuit_flow_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 8,
+    "name": "circuit_flow_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 10,
+    "name": "circuit_unknown_7",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "K",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 10,
+    "name": "circuit_unknown_7",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "K",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 11,
+    "name": "heating_circuit_flow_temperature_offset",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "K",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 11,
+    "name": "heating_circuit_flow_temperature_offset",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "K",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 14,
+    "name": "circuit_frost_protection_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Eco; 1=SetBack"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 14,
+    "name": "circuit_frost_protection_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Eco; 1=SetBack"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 15,
+    "name": "circuit_heating_curve_factor",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 15,
+    "name": "circuit_heating_curve_factor",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 16,
+    "name": "heating_circuit_flow_temperature_setpoint_maximum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 16,
+    "name": "heating_circuit_flow_temperature_setpoint_maximum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 17,
+    "name": "cooling_circuit_flow_temperature_setpoint_minimum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 17,
+    "name": "cooling_circuit_flow_temperature_setpoint_minimum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 18,
+    "name": "circuit_flow_temperature_setpoint_minimum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 18,
+    "name": "circuit_flow_temperature_setpoint_minimum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 20,
+    "name": "heating_circuit_outdoor_temperature_limit_maximum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 20,
+    "name": "heating_circuit_outdoor_temperature_limit_maximum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 21,
+    "name": "circuit_room_temperature_influence_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Non; 1=SwitchOn; 2=ThermostatFunction"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 21,
+    "name": "circuit_room_temperature_influence_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Non; 1=SwitchOn; 2=ThermostatFunction"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 26,
+    "name": "circuit_mixer_movement",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "%",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 28,
+    "name": "circuit_adaptive_heating_curve_offset",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 29,
+    "name": "circuit_special_function_mode",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=no quick mode; 2=party; 4=one-day holiday; 5=one-day bank holiday; 6=cylinder boost; 255=no action needed"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 29,
+    "name": "circuit_special_function_mode",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "uint8",
+    "unit": "",
+    "enumeration": "0=no quick mode; 6=one-time cylinder loading; 255=no action needed"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 30,
+    "name": "circuit_state",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=StandBy; 1=Heating; 2=Cooling; 3=DHW"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 30,
+    "name": "circuit_state",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=StandBy; 1=Heating; 2=Cooling; 3=DHW"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 2,
+    "register": 31,
+    "name": "cooling_circuit_outdoor_temperature_limit_minimum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 2,
+    "register": 31,
+    "name": "cooling_circuit_outdoor_temperature_limit_minimum",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 1,
+    "name": "cooling_zone_operating_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Off; 1=Auto; 2=Day"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 1,
+    "name": "cooling_zone_operating_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Off; 1=TimeControlled; 2=Manual"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 2,
+    "name": "cooling_zone_room_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 2,
+    "name": "cooling_zone_room_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 3,
+    "name": "zone_holiday_start_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 3,
+    "name": "zone_holiday_start_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 4,
+    "name": "zone_holiday_end_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 4,
+    "name": "zone_holiday_end_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 5,
+    "name": "zone_room_temperature_setpoint_at_holiday",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 5,
+    "name": "zone_room_temperature_setpoint_at_holiday",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 6,
+    "name": "heating_zone_operating_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Off; 1=Auto; 2=Day; 3=Setback"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 6,
+    "name": "heating_zone_operating_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Off; 1=TimeControlled; 2=Manual"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 7,
+    "name": "heating_zone_room_comfort_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 9,
+    "name": "heating_zone_room_setback_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 9,
+    "name": "heating_zone_room_setback_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 15,
+    "name": "zone_room_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 15,
+    "name": "zone_room_temperature",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 17,
+    "name": "zone_enabled",
+    "reply_widths": [
+      1,
+      2
+    ],
+    "value_type": "uint8 or uint16 LE",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 17,
+    "name": "zone_enabled",
+    "reply_widths": [
+      1,
+      2
+    ],
+    "value_type": "uint8 or uint16 LE",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 19,
+    "name": "zone_room_sensor_binding_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Non; 1=CentralControl; 2=RemoteControl1; 3=RemoteControl2; 4=RemoteControl3; 5=RemoteControl4; 6=RemoteControl5; 7=RemoteControl6; 8=RemoteControl7; 9=RemoteControl8"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 19,
+    "name": "zone_room_sensor_binding_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=Non; 1=CentralControl; 2=RemoteControl1; 3=RemoteControl2; 4=RemoteControl3; 5=RemoteControl4"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 20,
+    "name": "heating_zone_room_effective_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 20,
+    "name": "heating_zone_room_effective_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 21,
+    "name": "cooling_zone_room_effective_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 21,
+    "name": "cooling_zone_room_effective_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 27,
+    "name": "zone_special_function_state",
+    "reply_widths": [
+      1,
+      2
+    ],
+    "value_type": "uint8 or uint16 LE",
+    "unit": "",
+    "enumeration": "0=NoQuickMode; 1=VentilationBoost; 3=Party; 4=QuickVeto; 5=OneDayHoliday; 6=OneDayBankHoliday; 7=Holiday; 8=BankHoliday; 10=SystemOff"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 27,
+    "name": "zone_special_function_state",
+    "reply_widths": [
+      1,
+      2
+    ],
+    "value_type": "uint8 or uint16 LE",
+    "unit": "",
+    "enumeration": "0=NoSpecialFunctionActive; 1=VentilationBoost; 4=QuickVeto; 7=Holiday; 10=SystemOff"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 28,
+    "name": "zone_circuit_assignment",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "int8",
+    "unit": "",
+    "enumeration": "0=Control_CC1; 1=Control_CC2; 2=Control_CC3; -1=notBound"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 28,
+    "name": "zone_circuit_assignment",
+    "reply_widths": [
+      1
+    ],
+    "value_type": "int8",
+    "unit": "",
+    "enumeration": "0=Control_CC1; 1=Control_CC2; 2=Control_CC3; 3=Control_CC4; 4=Control_CC5; 5=Control_CC6; 6=Control_CC7; 7=Control_CC8; 8=Control_CC9; -1=notBound"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 30,
+    "name": "zone_quick_veto_end_clock_time",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "time: hour; minute; second"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 32,
+    "name": "zone_holiday_end_clock_time",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "time: hour; minute; second"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 33,
+    "name": "zone_holiday_start_clock_time",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "time: hour; minute; second"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 34,
+    "name": "heating_zone_room_manual_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 35,
+    "name": "cooling_zone_room_manual_temperature_setpoint",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "°C",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 36,
+    "name": "zone_quick_veto_end_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 39,
+    "name": "zone_manual_cooling_active",
+    "reply_widths": [
+      1,
+      2
+    ],
+    "value_type": "uint8 or uint16 LE",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-700",
+    "opcode": 2,
+    "group": 3,
+    "register": 40,
+    "name": "zone_room_humidity",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "%",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 40,
+    "name": "zone_room_humidity",
+    "reply_widths": [
+      4
+    ],
+    "value_type": "float32 LE",
+    "unit": "%",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 3,
+    "register": 44,
+    "name": "zone_frost_protection_active",
+    "reply_widths": [
+      1,
+      2
+    ],
+    "value_type": "uint8 or uint16 LE",
+    "unit": "",
+    "enumeration": "0=False; 1=True"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 9,
+    "register": 2,
+    "name": "ventilation_operating_mode",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "1=TimeControlled; 2=Normal; 3=Reduced"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 9,
+    "register": 4,
+    "name": "ventilation_special_function_state",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": "0=NoSpecialFunctionActive; 1=VentilationBoost; 7=Holiday; 10=SystemOff"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 9,
+    "register": 7,
+    "name": "ventilation_holiday_end_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 9,
+    "register": 8,
+    "name": "ventilation_holiday_end_clock_time",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "time: hour; minute; second"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 9,
+    "register": 9,
+    "name": "ventilation_holiday_start_date",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "date: day 1..31; month 1..12; year 0..99"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 9,
+    "register": 10,
+    "name": "ventilation_holiday_start_clock_time",
+    "reply_widths": [
+      3
+    ],
+    "value_type": "3 x uint8",
+    "unit": "",
+    "enumeration": "time: hour; minute; second"
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 9,
+    "register": 13,
+    "name": "ventilation_fan_speed_limit_maximum_at_day",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": ""
+  },
+  {
+    "family": "controller-720",
+    "opcode": 2,
+    "group": 9,
+    "register": 14,
+    "name": "ventilation_fan_speed_limit_maximum_at_night",
+    "reply_widths": [
+      2
+    ],
+    "value_type": "uint16 LE",
+    "unit": "",
+    "enumeration": ""
+  }
+]

@@ -2,6 +2,36 @@
 
 ## Unreleased
 
+- `vaillant/nativepoints` models every named controller register of the
+  published B524 register map. The name annotations gain the local
+  parameter group (opcode 0x02, group 0x0A) and the opcode 0x06 device
+  groups, with the universal names `device_connected`,
+  `device_class_address`, `device_error_code` and
+  `device_firmware_version` for registers 0x0001 to 0x0004 of every
+  group; unnamed rows get no point. Each annotation carries the map's
+  `wire` and `decode` columns, and the new
+  `catalog/vaillant/data/b524_register_matrix.json` holds the register
+  matrix by family (reply width, value type, unit and enumeration for the
+  `controller-700` and `controller-720` families). The generator takes a
+  controller location's codec, unit and enumeration from the matrix row of
+  its family and otherwise from the map, gives families whose rows differ
+  one location each, fails when a scalar interpreter disagrees with the
+  documented layout, and gives the opcode 0x06 groups the map's slot
+  interval 1 to 8. A layout the map leaves open (`date`, `time`, `bytes`,
+  `unknown`) gets no codec and stays native and named. New codecs:
+  `uint8`, `int8`, `uint8_or_uint16_le`, `uint32_le`, `day_month_year`,
+  `hour_minute_second` and `text`; points and locations carry their
+  documented enumeration labels. `DecodeNative` returns the exact native
+  value of any point with a known codec (number, Boolean, enumeration
+  code and label, date, time or text) and refuses a wrong width, a code
+  out of range, a non-UTF-8 text, NaN, infinities and codec sentinels with
+  the typed `DecodeError` (`out_of_range`, `invalid_text`).
+  `Point.ForLocation` narrows a point to one location. The SI export rule,
+  its withheld reasons, `Decode`, the boiler and heat-pump dictionaries
+  and every existing canonical name are unchanged; 37 more controller
+  rows become exportable because the documentation now states their codec
+  and unit. Refs #524.
+
 - `scripts/vaillant_race_budget.sh` lists the tests in `catalog/vaillant` and
   runs each one alone with the race detector, count 1 and a 90 second bound.
   The bound names a test that does not finish and exits non-zero. It does

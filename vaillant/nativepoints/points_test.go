@@ -73,6 +73,8 @@ type controllerAnnotation struct {
 	} `json:"key"`
 	Name       *string `json:"canonical_name"`
 	Unresolved *bool   `json:"unresolved"`
+	Wire       *string `json:"wire"`
+	Decode     *string `json:"decode"`
 }
 
 type symbolicAnnotation struct {
@@ -385,27 +387,32 @@ func TestControllerCodecsMatchTheScalarInterpreters(t *testing.T) {
 			continue
 		}
 		pointFamilies := map[string]bool{}
+		covered := map[place]map[string]bool{}
 		for _, location := range point.Locations {
+			for _, family := range location.ControllerFamilies {
+				pointFamilies[family] = true
+			}
+			if location.Opcode != 0x02 {
+				continue
+			}
 			key := place{location.Group, location.Register}
 			located[key] = true
-			families := expected[key]
-			if location.Opcode != 0x02 {
-				families = nil
+			if covered[key] == nil {
+				covered[key] = map[string]bool{}
 			}
-			if len(families) == 0 && (location.Codec != nativepoints.CodecUnknown || location.NativeUnit != "") {
-				t.Errorf("%s at %+v: codec %q unit %q without an interpreter", point.Name, key, location.Codec, location.NativeUnit)
-			}
-			var want []string
-			for family, result := range families {
-				want = append(want, family)
-				pointFamilies[family] = true
-				if location.Codec != nativepoints.Codec(result.codec) || location.NativeUnit != result.unit {
+			for _, family := range location.ControllerFamilies {
+				covered[key][family] = true
+				result, interpreted := expected[key][family]
+				if interpreted && (location.Codec != nativepoints.Codec(result.codec) || location.NativeUnit != result.unit) {
 					t.Errorf("%s at %+v for %s: codec %q unit %q, interpreter %q %q", point.Name, key, family, location.Codec, location.NativeUnit, result.codec, result.unit)
 				}
 			}
-			sort.Strings(want)
-			if fmt.Sprint(location.ControllerFamilies) != fmt.Sprint(want) {
-				t.Errorf("%s at %+v: families %v, interpreter %v", point.Name, key, location.ControllerFamilies, want)
+		}
+		for key, families := range covered {
+			for family := range expected[key] {
+				if !families[family] {
+					t.Errorf("%s at %+v: interpreted family %s has no location", point.Name, key, family)
+				}
 			}
 		}
 		var want []string
@@ -430,6 +437,149 @@ func TestControllerCodecsMatchTheScalarInterpreters(t *testing.T) {
 	}
 }
 
+var mapWireCodecs = map[string]nativepoints.Codec{
+	"u8": nativepoints.CodecUint8, "i8": nativepoints.CodecSignedByte, "u16": nativepoints.CodecUint16LE,
+	"u32": nativepoints.CodecUint32LE, "f32": nativepoints.CodecFloat32LE, "string": nativepoints.CodecText,
+}
+
+var mapDecodeUnits = map[string]struct {
+	unit    string
+	divisor uint16
+}{
+	"°C": {"°C", 1}, "°C/2": {"°C", 2}, "K": {"K", 1}, "bar": {"bar", 1}, "%": {"%", 1},
+	"kWh": {"kWh", 1}, "hrs": {"h", 1}, "min": {"min", 1}, "count": {"count", 1}, "days": {"d", 1},
+}
+
+func matrixLabels(t *testing.T, text string) []nativepoints.EnumerationLabel {
+	t.Helper()
+	if text == "" || strings.HasPrefix(text, "date:") || strings.HasPrefix(text, "time:") {
+		return nil
+	}
+	var labels []nativepoints.EnumerationLabel
+	for _, part := range strings.Split(strings.TrimPrefix(text, "candidate labels: "), "; ") {
+		code, label, found := strings.Cut(part, "=")
+		var value int64
+		if _, err := fmt.Sscan(code, &value); !found || err != nil {
+			t.Fatalf("malformed matrix enumeration %q", text)
+		}
+		labels = append(labels, nativepoints.EnumerationLabel{Value: value, Label: label})
+	}
+	sort.Slice(labels, func(i, j int) bool { return labels[i].Value < labels[j].Value })
+	return labels
+}
+
+type layoutKey struct {
+	opcode, group uint8
+	register      uint16
+}
+
+type documentedLayout struct {
+	codec   nativepoints.Codec
+	unit    string
+	divisor uint16
+	labels  string
+}
+
+func matrixLayouts(t *testing.T) map[layoutKey]map[string]documentedLayout {
+	t.Helper()
+	matrix := map[layoutKey]map[string]documentedLayout{}
+	for _, row := range registerMatrix(t) {
+		codec := matrixCodec(row)
+		if codec == nativepoints.CodecUnknown {
+			continue
+		}
+		key := layoutKey{row.Opcode, row.Group, row.Register}
+		if matrix[key] == nil {
+			matrix[key] = map[string]documentedLayout{}
+		}
+		matrix[key][row.Family] = documentedLayout{codec, row.Unit, 1, fmt.Sprint(matrixLabels(t, row.Enumeration))}
+	}
+	return matrix
+}
+
+func mapLayouts(t *testing.T) map[layoutKey]documentedLayout {
+	t.Helper()
+	documented := map[layoutKey]documentedLayout{}
+	stated := 0
+	for _, row := range controllerAnnotations(t) {
+		if row.Name == nil {
+			continue
+		}
+		want := documentedLayout{divisor: 1, labels: fmt.Sprint([]nativepoints.EnumerationLabel(nil))}
+		if row.Wire != nil {
+			want.codec = mapWireCodecs[*row.Wire]
+			if want.codec != nativepoints.CodecUnknown {
+				stated++
+			}
+		}
+		if row.Decode != nil {
+			if unit, found := mapDecodeUnits[*row.Decode]; found {
+				want.unit, want.divisor = unit.unit, unit.divisor
+			}
+		}
+		documented[layoutKey{row.Key.Operation, row.Key.Group, row.Key.Register}] = want
+	}
+	if stated == 0 {
+		t.Fatal("no annotation carries a map wire type with a layout")
+	}
+	return documented
+}
+
+func TestControllerLayoutsFollowTheMatrixAndTheMap(t *testing.T) {
+	matrix, documented := matrixLayouts(t), mapLayouts(t)
+	located := map[layoutKey]map[string]bool{}
+	checked := 0
+	for _, point := range nativepoints.Points() {
+		if point.DeviceClass != nativepoints.DeviceClassController {
+			continue
+		}
+		for _, location := range point.Locations {
+			key := layoutKey{location.Opcode, location.Group, location.Register}
+			got := documentedLayout{location.Codec, location.NativeUnit, location.ScaleDivisor, fmt.Sprint(location.Enumeration)}
+			if documented[key].codec != nativepoints.CodecUnknown && location.Codec == nativepoints.CodecUnknown {
+				t.Errorf("%s at %+v: the map states the wire type of codec %q but the location has none", point.Name, key, documented[key].codec)
+			}
+			if len(location.ControllerFamilies) == 0 {
+				if len(matrix[key]) != 0 || got != documented[key] {
+					t.Errorf("%s at %+v: family-independent layout %+v, map %+v, matrix families %d", point.Name, key, got, documented[key], len(matrix[key]))
+				}
+				checked++
+				continue
+			}
+			if located[key] == nil {
+				located[key] = map[string]bool{}
+			}
+			for _, family := range location.ControllerFamilies {
+				located[key][family] = true
+				want, inMatrix := matrix[key][family]
+				if !inMatrix {
+					want = documented[key]
+				}
+				if got != want {
+					t.Errorf("%s at %+v for %s: layout %+v, documented %+v", point.Name, key, family, got, want)
+				}
+				checked++
+			}
+		}
+	}
+	for key, families := range matrix {
+		if _, annotated := documented[key]; !annotated {
+			continue
+		}
+		for family := range families {
+			if !located[key][family] {
+				t.Errorf("matrix row %s %+v has no location", family, key)
+			}
+		}
+	}
+	if checked == 0 {
+		t.Fatal("no controller location checked")
+	}
+}
+
+var opcode06Slots = map[uint8]bool{0x01: true, 0x02: true, 0x03: true, 0x04: true, 0x05: true, 0x06: true, 0x07: true,
+	0x08: true, 0x09: true, 0x0A: true, 0x0B: true, 0x0C: true, 0x0D: true, 0x0E: true, 0x0F: true}
+
 func TestControllerInstanceRangesMatchTheDiscoveryProfiles(t *testing.T) {
 	type scope struct{ group, opcode uint8 }
 	profiles := map[scope]system.B524GroupProfile{}
@@ -441,6 +591,12 @@ func TestControllerInstanceRangesMatchTheDiscoveryProfiles(t *testing.T) {
 			if point.DeviceClass != nativepoints.DeviceClassController {
 				if location.InstanceRule != nativepoints.InstanceSingle || location.InstanceMax != 0 {
 					t.Errorf("%s/%s: register service row is instanced: %+v", point.DeviceClass, point.Name, location)
+				}
+				continue
+			}
+			if location.Opcode == 0x06 {
+				if !opcode06Slots[location.Group] || location.InstanceRule != nativepoints.InstanceIndexed || location.InstanceMin != 1 || location.InstanceMax != 8 {
+					t.Errorf("%s: opcode 0x06 group 0x%02x has %+v, the map's slot interval is 1 to 8", point.Name, location.Group, location)
 				}
 				continue
 			}

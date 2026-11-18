@@ -2,6 +2,59 @@
 
 ## Unreleased
 
+- `vaillant/nativepoints` models every named controller register of the
+  published B524 register map. The name annotations gain the local
+  parameter group (opcode 0x02, group 0x0A) and the opcode 0x06 device
+  groups, with the universal names `device_connected`,
+  `device_class_address`, `device_error_code` and
+  `device_firmware_version` for registers 0x0001 to 0x0004 of every
+  group; unnamed rows get no point. Each annotation carries the map's
+  `wire` and `decode` columns, and the new
+  `catalog/vaillant/data/controller_register_matrix.json` holds the register
+  matrix by family (reply width, value type, unit and enumeration for the
+  `controller-700` and `controller-720` families). The generator takes a
+  controller location's codec, unit and enumeration from the matrix row of
+  its family and otherwise from the map; a family the matrix does not list
+  takes the map's layout unless the map reads the register on one family
+  only, and a location on such a register names that one family even when
+  no matrix row lists it. A matrix row that leaves the unit blank keeps the
+  map's unit, and a wire type alone does not make a register numeric when
+  its decode column states no class. It gives families whose rows differ one location each, fails when
+  a scalar interpreter disagrees with the documented layout, and gives the
+  opcode 0x06 groups the map's slot interval 1 to 8. The map's `date` wire
+  with the `date` decode reads as `day_month_year` and its `time` wire with
+  the `time` decode as `hour_minute_second` in every family whose matrix row
+  states no other layout; the `time` wire with the `version` decode is the
+  three-byte major, minor and patch triple. Any other layout the map leaves
+  open (`date`, `time`, `bytes`, `unknown`) gets no codec and stays native
+  and named. New codecs: `uint8`, `int8`,
+  `uint8_or_uint16_le`, `uint32_le`, `day_month_year`,
+  `hour_minute_second` (both three packed binary-coded decimal bytes, as
+  the B524 `date` and `time` wire types state), `major_minor_patch` and
+  `text`, and the value
+  class `version`; points and locations carry their documented
+  enumeration or Boolean labels, from the matrix or from a label list the
+  map's Values column states outright (which replaces a missing matrix list
+  and the matrix's bare `0=False; 1=True` pair), and each location carries the value
+  class its own documentation states. `DecodeNative` returns the exact native
+  value of any point with a known codec (number, Boolean, enumeration
+  code and label, date, time, version or text); an enumeration code
+  without a candidate label decodes with an empty label, because the map
+  does not show such a code to be invalid. The Boolean range and the
+  enumeration reading apply only where the documentation of the location
+  states them, so a location that states neither keeps its integer. It
+  refuses a wrong width, a
+  Boolean, date or clock time out of range, a date or time byte that is not
+  binary-coded decimal, a non-UTF-8 text, NaN, infinities and
+  codec sentinels with the typed `DecodeError` (`out_of_range`,
+  `invalid_text`).
+  `Point.ForLocation` narrows a point to one location and gives it the
+  value class `DecodeNative` decodes that location as. The SI export rule,
+  its withheld reasons, `Decode`, the boiler and heat-pump dictionaries
+  and every existing canonical name are unchanged; 37 more controller
+  rows become exportable because the documentation now states their codec
+  and unit. Refs #524.
+
 - `scripts/vaillant_race_budget.sh` lists the tests in `catalog/vaillant` and
   runs each one alone with the race detector, count 1 and a 90 second bound.
   The bound names a test that does not finish and exits non-zero. It does

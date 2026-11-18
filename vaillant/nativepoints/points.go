@@ -38,31 +38,52 @@ const (
 	ValueText        ValueClass = "text"
 	ValueDate        ValueClass = "date"
 	ValueTime        ValueClass = "time"
+	ValueVersion     ValueClass = "version"
 	ValueCommand     ValueClass = "command"
 	ValueUnknown     ValueClass = "unknown"
 )
 
-// Codec is a machine-readable value encoding that Decode implements.
+// Codec is a machine-readable value encoding. DecodeNative implements every
+// codec; Decode implements the float32, uint16, DATA2c, DATA2b and UIN codecs.
 type Codec string
 
-// Codecs: little-endian float32 and uint16 of the controller registers, the
-// signed 16-bit DATA2c (1/16) and DATA2b (1/256) and the unsigned 16-bit UIN
-// word of the register service. CodecUnknown marks a missing or literal-only
-// declaration.
+// Codecs: little-endian float32, uint16 and uint32, uint8, int8 and the
+// unsigned integer of one or two little-endian bytes of the controller
+// registers; three packed binary-coded decimal bytes of day, month and year
+// and of hour, minute and second; three plain bytes of a major, minor and
+// patch version number; a NUL-terminated
+// text; and the signed 16-bit DATA2c (1/16) and
+// DATA2b (1/256) and the unsigned 16-bit UIN word of the register service.
+// CodecUnknown marks a missing, literal-only or undocumented layout.
 const (
-	CodecUnknown   Codec = ""
-	CodecFloat32LE Codec = "float32_le"
-	CodecUint16LE  Codec = "uint16_le"
-	CodecData2c    Codec = "DATA2c"
-	CodecData2b    Codec = "DATA2b"
-	CodecUIN       Codec = "UIN"
+	CodecUnknown          Codec = ""
+	CodecFloat32LE        Codec = "float32_le"
+	CodecUint16LE         Codec = "uint16_le"
+	CodecUint32LE         Codec = "uint32_le"
+	CodecUint8            Codec = "uint8"
+	CodecSignedByte       Codec = "int8"
+	CodecUint8OrUint16LE  Codec = "uint8_or_uint16_le"
+	CodecDayMonthYear     Codec = "day_month_year"
+	CodecHourMinuteSecond Codec = "hour_minute_second"
+	CodecMajorMinorPatch  Codec = "major_minor_patch"
+	CodecText             Codec = "text"
+	CodecData2c           Codec = "DATA2c"
+	CodecData2b           Codec = "DATA2b"
+	CodecUIN              Codec = "UIN"
 )
+
+// EnumerationLabel is one documented code of an enumeration or Boolean value
+// and its label.
+type EnumerationLabel struct {
+	Value int64  `json:"value"`
+	Label string `json:"label"`
+}
 
 // InstanceRule says how a location is instanced.
 type InstanceRule string
 
 // Instance rules: single has instance 0 only or no instance byte, indexed
-// spans InstanceMin to InstanceMax, unknown has no discovery profile.
+// spans InstanceMin to InstanceMax, unknown has no documented instance range.
 const (
 	InstanceSingle  InstanceRule = "single"
 	InstanceIndexed InstanceRule = "indexed"
@@ -88,55 +109,95 @@ const (
 // group and register; register-service locations carry the selector bytes
 // the symbolic annotation records, as upper-case hexadecimal pairs separated
 // by spaces. Codec,
-// declaration, scale and unit are those declared for this location;
-// ControllerFamilies lists the controller families whose interpreter declares
-// the codec.
+// declaration, scale, unit and enumeration are those declared for this
+// location; ControllerFamilies lists the controller families the location
+// applies to: those whose register matrix row or scalar interpreter declares
+// it and, on a register the matrix or an interpreter declares for one family,
+// the other family with the family-independent map layout unless the map reads
+// the register on one family only, and on such a register that one family
+// even when only the map declares it. It is empty otherwise when only the map
+// declares the register. ValueClass is the value class this location's own
+// documentation states (Boolean, enumeration, date, time, version or text),
+// empty when it states none; DecodeNative applies the Boolean range and the
+// enumeration reading only where it is stated.
 type Location struct {
-	Opcode             uint8        `json:"opcode"`
-	Group              uint8        `json:"group"`
-	Register           uint16       `json:"register"`
-	Selector           string       `json:"selector"`
-	InstanceRule       InstanceRule `json:"instance_rule"`
-	InstanceMin        uint8        `json:"instance_min"`
-	InstanceMax        uint8        `json:"instance_max"`
-	ControllerFamilies []string     `json:"controller_families"`
-	Codec              Codec        `json:"codec"`
-	CodecDeclaration   string       `json:"codec_declaration"`
-	ScaleDivisor       uint16       `json:"scale_divisor"`
-	NativeUnit         string       `json:"native_unit"`
+	Opcode             uint8              `json:"opcode"`
+	Group              uint8              `json:"group"`
+	Register           uint16             `json:"register"`
+	Selector           string             `json:"selector"`
+	InstanceRule       InstanceRule       `json:"instance_rule"`
+	InstanceMin        uint8              `json:"instance_min"`
+	InstanceMax        uint8              `json:"instance_max"`
+	ControllerFamilies []string           `json:"controller_families"`
+	Codec              Codec              `json:"codec"`
+	CodecDeclaration   string             `json:"codec_declaration"`
+	ScaleDivisor       uint16             `json:"scale_divisor"`
+	NativeUnit         string             `json:"native_unit"`
+	Enumeration        []EnumerationLabel `json:"enumeration"`
+	ValueClass         ValueClass         `json:"value_class"`
 }
 
 // Point is one catalog row, keyed by device class and canonical name. Codec,
-// scale and native unit are set only when every location agrees on them; the
-// native value is the decoded integer or float divided by ScaleDivisor.
+// scale and native unit are set only when every location agrees on them, and
+// the enumeration only when every location also agrees on it; the native value
+// is the decoded integer or float divided by ScaleDivisor.
 // ControllerFamilies is the union of the location families. Exportable is
 // true only when Withheld is WithheldNone.
 type Point struct {
-	DeviceClass        DeviceClass    `json:"device_class"`
-	Name               string         `json:"name"`
-	NameStatus         NameStatus     `json:"name_status"`
-	Primary            uint8          `json:"primary"`
-	Secondary          uint8          `json:"secondary"`
-	ValueClass         ValueClass     `json:"value_class"`
-	Codec              Codec          `json:"codec"`
-	CodecDeclaration   string         `json:"codec_declaration"`
-	ScaleDivisor       uint16         `json:"scale_divisor"`
-	NativeUnit         string         `json:"native_unit"`
-	ControllerFamilies []string       `json:"controller_families"`
-	Locations          []Location     `json:"locations"`
-	Exportable         bool           `json:"exportable"`
-	Withheld           WithheldReason `json:"withheld"`
+	DeviceClass        DeviceClass        `json:"device_class"`
+	Name               string             `json:"name"`
+	NameStatus         NameStatus         `json:"name_status"`
+	Primary            uint8              `json:"primary"`
+	Secondary          uint8              `json:"secondary"`
+	ValueClass         ValueClass         `json:"value_class"`
+	Codec              Codec              `json:"codec"`
+	CodecDeclaration   string             `json:"codec_declaration"`
+	ScaleDivisor       uint16             `json:"scale_divisor"`
+	NativeUnit         string             `json:"native_unit"`
+	Enumeration        []EnumerationLabel `json:"enumeration"`
+	ControllerFamilies []string           `json:"controller_families"`
+	Locations          []Location         `json:"locations"`
+	Exportable         bool               `json:"exportable"`
+	Withheld           WithheldReason     `json:"withheld"`
 }
 
 func (point Point) clone() Point {
 	point.ControllerFamilies = append([]string(nil), point.ControllerFamilies...)
+	point.Enumeration = append([]EnumerationLabel(nil), point.Enumeration...)
 	locations := make([]Location, len(point.Locations))
 	for index, location := range point.Locations {
 		location.ControllerFamilies = append([]string(nil), location.ControllerFamilies...)
+		location.Enumeration = append([]EnumerationLabel(nil), location.Enumeration...)
 		locations[index] = location
 	}
 	point.Locations = locations
 	return point
+}
+
+// ForLocation returns a copy of the point narrowed to the location at index:
+// its only location is that location, and its codec, declaration, scale,
+// native unit, enumeration and controller families are that location's. Its
+// value class is the class DecodeNative decodes that location as, so a
+// location whose layout differs from the point's other locations does not keep
+// a class it cannot decode to; it stays the point's only when the location's
+// codec is unknown. Name, name status and the export decision, with its
+// withheld reason, stay those of the point. It reports false when index is
+// outside the locations.
+func (point Point) ForLocation(index int) (Point, bool) {
+	if index < 0 || index >= len(point.Locations) {
+		return Point{}, false
+	}
+	narrowed := point.clone()
+	location := narrowed.Locations[index]
+	narrowed.Locations = []Location{location}
+	narrowed.Codec, narrowed.CodecDeclaration = location.Codec, location.CodecDeclaration
+	narrowed.ScaleDivisor, narrowed.NativeUnit = location.ScaleDivisor, location.NativeUnit
+	narrowed.Enumeration = append([]EnumerationLabel(nil), location.Enumeration...)
+	narrowed.ControllerFamilies = append([]string(nil), location.ControllerFamilies...)
+	if class := narrowed.nativeClass(); class != "" {
+		narrowed.ValueClass = class
+	}
+	return narrowed, true
 }
 
 // Points returns a copy of every catalog row, ordered by device class and

@@ -73,6 +73,8 @@ type controllerAnnotation struct {
 	} `json:"key"`
 	Name       *string `json:"canonical_name"`
 	Unresolved *bool   `json:"unresolved"`
+	Wire       *string `json:"wire"`
+	Decode     *string `json:"decode"`
 }
 
 type symbolicAnnotation struct {
@@ -274,7 +276,8 @@ func TestKnownExportableRows(t *testing.T) {
 		families []string
 	}{
 		{nativepoints.DeviceClassController, "outdoor_temperature", nativepoints.CodecFloat32LE, 1, "°C", controllerFamilies},
-		{nativepoints.DeviceClassController, "preheating_time_maximum", nativepoints.CodecUint16LE, 1, "min", []string{"controller-720"}},
+		{nativepoints.DeviceClassController, "preheating_time_maximum", nativepoints.CodecUint16LE, 1, "min", controllerFamilies},
+		{nativepoints.DeviceClassController, "continuous_heating_room_temperature_setpoint", nativepoints.CodecFloat32LE, 1, "°C", []string{"controller-720"}},
 		{nativepoints.DeviceClassController, "zone_room_humidity", nativepoints.CodecFloat32LE, 1, "%", controllerFamilies},
 		{nativepoints.DeviceClassBoiler, "flow_temperature", nativepoints.CodecData2c, 1, "°C", nil},
 		{nativepoints.DeviceClassBoiler, "dhw_water_flow_rate", nativepoints.CodecUIN, 100, "L/min", nil},
@@ -365,9 +368,6 @@ func TestControllerCodecsMatchTheScalarInterpreters(t *testing.T) {
 				if result.codec == "" {
 					continue
 				}
-				if result.unit == "Unknown" {
-					result.unit = ""
-				}
 				key := place{group, register}
 				if expected[key] == nil {
 					expected[key] = map[string]probe{}
@@ -385,27 +385,33 @@ func TestControllerCodecsMatchTheScalarInterpreters(t *testing.T) {
 			continue
 		}
 		pointFamilies := map[string]bool{}
+		covered := map[place]map[string]bool{}
 		for _, location := range point.Locations {
+			for _, family := range location.ControllerFamilies {
+				pointFamilies[family] = true
+			}
+			if location.Opcode != 0x02 {
+				continue
+			}
 			key := place{location.Group, location.Register}
 			located[key] = true
-			families := expected[key]
-			if location.Opcode != 0x02 {
-				families = nil
+			if covered[key] == nil {
+				covered[key] = map[string]bool{}
 			}
-			if len(families) == 0 && (location.Codec != nativepoints.CodecUnknown || location.NativeUnit != "") {
-				t.Errorf("%s at %+v: codec %q unit %q without an interpreter", point.Name, key, location.Codec, location.NativeUnit)
-			}
-			var want []string
-			for family, result := range families {
-				want = append(want, family)
-				pointFamilies[family] = true
-				if location.Codec != nativepoints.Codec(result.codec) || location.NativeUnit != result.unit {
+			for _, family := range location.ControllerFamilies {
+				covered[key][family] = true
+				result, interpreted := expected[key][family]
+				// An interpreter whose declared unit is "Unknown" states no unit.
+				if interpreted && (location.Codec != nativepoints.Codec(result.codec) || (result.unit != "Unknown" && location.NativeUnit != result.unit)) {
 					t.Errorf("%s at %+v for %s: codec %q unit %q, interpreter %q %q", point.Name, key, family, location.Codec, location.NativeUnit, result.codec, result.unit)
 				}
 			}
-			sort.Strings(want)
-			if fmt.Sprint(location.ControllerFamilies) != fmt.Sprint(want) {
-				t.Errorf("%s at %+v: families %v, interpreter %v", point.Name, key, location.ControllerFamilies, want)
+		}
+		for key, families := range covered {
+			for family := range expected[key] {
+				if !families[family] {
+					t.Errorf("%s at %+v: interpreted family %s has no location", point.Name, key, family)
+				}
 			}
 		}
 		var want []string
@@ -430,6 +436,294 @@ func TestControllerCodecsMatchTheScalarInterpreters(t *testing.T) {
 	}
 }
 
+var mapWireCodecs = map[string]nativepoints.Codec{
+	"u8": nativepoints.CodecUint8, "i8": nativepoints.CodecSignedByte, "u16": nativepoints.CodecUint16LE,
+	"u32": nativepoints.CodecUint32LE, "f32": nativepoints.CodecFloat32LE, "string": nativepoints.CodecText,
+}
+
+// A map row whose wire and decode are both date, or both time, is a packed
+// binary-coded-decimal triple in every family the matrix does not override.
+var mapCalendarCodecs = map[string]nativepoints.Codec{
+	"date": nativepoints.CodecDayMonthYear, "time": nativepoints.CodecHourMinuteSecond,
+}
+
+var mapDecodeUnits = map[string]struct {
+	unit    string
+	divisor uint16
+}{
+	"°C": {"°C", 1}, "°C/2": {"°C", 2}, "K": {"K", 1}, "bar": {"bar", 1}, "%": {"%", 1},
+	"kWh": {"kWh", 1}, "hrs": {"h", 1}, "min": {"min", 1}, "count": {"count", 1}, "days": {"d", 1},
+}
+
+func labels(pairs ...any) []nativepoints.EnumerationLabel {
+	var list []nativepoints.EnumerationLabel
+	for index := 0; index < len(pairs); index += 2 {
+		list = append(list, nativepoints.EnumerationLabel{Value: int64(pairs[index].(int)), Label: pairs[index+1].(string)})
+	}
+	return list
+}
+
+// The label lists the register map's Values column states outright for an
+// enumeration or Boolean register.
+var mapStatedLabels = map[layoutKey][]nativepoints.EnumerationLabel{
+	{0x02, 0x00, 0x0007}: labels(0, "system on", 1, "system off"),
+	{0x02, 0x00, 0x0009}: labels(0, "off", 1, "on"),
+	{0x02, 0x00, 0x0016}: labels(1, "AUTO", 2, "DAY", 3, "SET_BACK"),
+	{0x02, 0x00, 0x002B}: labels(0, "off", 1, "Mon", 2, "Tue", 3, "Wed", 4, "Thu", 5, "Fri", 6, "Sat", 7, "Sun"),
+	{0x02, 0x00, 0x0048}: labels(0, "standby", 1, "heating", 2, "cooling", 3, "dhw"),
+	{0x02, 0x01, 0x0001}: labels(0, "off", 1, "on"),
+	{0x02, 0x01, 0x0002}: labels(0, "off", 1, "on"),
+	{0x02, 0x01, 0x0006}: labels(0, "off", 1, "on"),
+	{0x02, 0x02, 0x0003}: labels(0, "inactive", 1, "active", 2, "extended"),
+	{0x02, 0x02, 0x0005}: labels(0, "off", 1, "on"),
+	{0x02, 0x02, 0x0006}: labels(0, "off", 1, "on"),
+	{0x02, 0x03, 0x0012}: labels(0, "closed", 1, "open"),
+	{0x02, 0x03, 0x0019}: labels(0, "off", 1, "on"),
+	{0x02, 0x03, 0x001A}: labels(0, "off", 1, "on"),
+	{0x02, 0x04, 0x0001}: labels(0, "off", 1, "on"),
+	{0x02, 0x04, 0x0002}: labels(0, "off", 1, "on"),
+	{0x02, 0x04, 0x0008}: labels(0, "off", 1, "on"),
+	{0x02, 0x09, 0x0002}: labels(1, "TIME_CONTROLLED", 2, "NORMAL", 3, "REDUCED"),
+	{0x02, 0x09, 0x0003}: labels(0, "off", 1, "on"),
+	{0x02, 0x0A, 0x0006}: labels(0, "off", 1, "on"),
+	{0x06, 0x09, 0x0001}: labels(0, "empty", 1, "paired"),
+	{0x06, 0x09, 0x0002}: labels(0x15, "VRC720", 0x26, "VR71", 0x35, "VR92"),
+	{0x06, 0x09, 0x001E}: labels(0, "no", 1, "yes"),
+	{0x06, 0x0A, 0x0001}: labels(0, "empty", 1, "paired"),
+	{0x06, 0x0A, 0x0002}: labels(0x15, "VRC720", 0x26, "VR71", 0x35, "VR92"),
+	{0x06, 0x0A, 0x001E}: labels(0, "no", 1, "yes"),
+	{0x06, 0x0C, 0x0001}: labels(0, "not_connected", 1, "connected"),
+}
+
+// The opcode 0x02 registers the register map reads on one controller family
+// only; every other register of the matrix applies to both families.
+func oneFamily(key layoutKey) string {
+	if key.opcode != 0x02 {
+		return ""
+	}
+	if key.group == 0x09 {
+		return "controller-720"
+	}
+	return map[layoutKey]string{
+		{0x02, 0x00, 0x00EF}: "controller-720",
+		{0x02, 0x00, 0x0016}: "controller-700", {0x02, 0x00, 0x0042}: "controller-700",
+		{0x02, 0x00, 0x0043}: "controller-700", {0x02, 0x00, 0x00A4}: "controller-700",
+		{0x02, 0x00, 0x0071}: "controller-700", {0x02, 0x00, 0x0072}: "controller-700",
+	}[key]
+}
+
+func matrixLabels(t *testing.T, text string) []nativepoints.EnumerationLabel {
+	t.Helper()
+	if text == "" || strings.HasPrefix(text, "date:") || strings.HasPrefix(text, "time:") {
+		return nil
+	}
+	var labels []nativepoints.EnumerationLabel
+	for _, part := range strings.Split(strings.TrimPrefix(text, "candidate labels: "), "; ") {
+		code, label, found := strings.Cut(part, "=")
+		var value int64
+		if _, err := fmt.Sscan(code, &value); !found || err != nil {
+			t.Fatalf("malformed matrix enumeration %q", text)
+		}
+		labels = append(labels, nativepoints.EnumerationLabel{Value: value, Label: label})
+	}
+	sort.Slice(labels, func(i, j int) bool { return labels[i].Value < labels[j].Value })
+	return labels
+}
+
+type layoutKey struct {
+	opcode, group uint8
+	register      uint16
+}
+
+type documentedLayout struct {
+	codec   nativepoints.Codec
+	unit    string
+	divisor uint16
+	labels  string
+}
+
+func matrixLayouts(t *testing.T) map[layoutKey]map[string]documentedLayout {
+	t.Helper()
+	matrix := map[layoutKey]map[string]documentedLayout{}
+	for _, row := range registerMatrix(t) {
+		codec := matrixCodec(row)
+		if codec == nativepoints.CodecUnknown {
+			continue
+		}
+		key := layoutKey{row.Opcode, row.Group, row.Register}
+		if matrix[key] == nil {
+			matrix[key] = map[string]documentedLayout{}
+		}
+		matrix[key][row.Family] = documentedLayout{codec, row.Unit, 1, fmt.Sprint(matrixLabels(t, row.Enumeration))}
+	}
+	return matrix
+}
+
+func mapLayouts(t *testing.T) map[layoutKey]documentedLayout {
+	t.Helper()
+	documented := map[layoutKey]documentedLayout{}
+	stated := 0
+	for _, row := range controllerAnnotations(t) {
+		if row.Name == nil {
+			continue
+		}
+		key := layoutKey{row.Key.Operation, row.Key.Group, row.Key.Register}
+		want := documentedLayout{divisor: 1, labels: fmt.Sprint(mapStatedLabels[key])}
+		if row.Wire != nil {
+			want.codec = mapWireCodecs[*row.Wire]
+			if *row.Wire == "time" && row.Decode != nil && *row.Decode == "version" {
+				want.codec = nativepoints.CodecMajorMinorPatch
+			}
+			if row.Decode != nil && *row.Decode == *row.Wire {
+				if codec, calendar := mapCalendarCodecs[*row.Wire]; calendar {
+					want.codec = codec
+				}
+			}
+			if want.codec != nativepoints.CodecUnknown {
+				stated++
+			}
+		}
+		if row.Decode != nil {
+			if unit, found := mapDecodeUnits[*row.Decode]; found {
+				want.unit, want.divisor = unit.unit, unit.divisor
+			}
+		}
+		documented[key] = want
+	}
+	if stated == 0 {
+		t.Fatal("no annotation carries a map wire type with a layout")
+	}
+	return documented
+}
+
+func TestControllerLayoutsFollowTheMatrixAndTheMap(t *testing.T) {
+	matrix, documented := matrixLayouts(t), mapLayouts(t)
+	located := map[layoutKey]map[string]bool{}
+	checked := 0
+	for _, point := range nativepoints.Points() {
+		if point.DeviceClass != nativepoints.DeviceClassController {
+			continue
+		}
+		for _, location := range point.Locations {
+			key := layoutKey{location.Opcode, location.Group, location.Register}
+			got := documentedLayout{location.Codec, location.NativeUnit, location.ScaleDivisor, fmt.Sprint(location.Enumeration)}
+			if only := oneFamily(key); only != "" && fmt.Sprint(location.ControllerFamilies) != fmt.Sprint([]string{only}) {
+				t.Errorf("%s at %+v: the map reads it on %s only, but the location names families %v", point.Name, key, only, location.ControllerFamilies)
+			}
+			if documented[key].codec != nativepoints.CodecUnknown && location.Codec == nativepoints.CodecUnknown {
+				t.Errorf("%s at %+v: the map states the wire type of codec %q but the location has none", point.Name, key, documented[key].codec)
+			}
+			if len(location.ControllerFamilies) == 0 {
+				if len(matrix[key]) != 0 || got != documented[key] {
+					t.Errorf("%s at %+v: family-independent layout %+v, map %+v, matrix families %d", point.Name, key, got, documented[key], len(matrix[key]))
+				}
+				checked++
+				continue
+			}
+			if located[key] == nil {
+				located[key] = map[string]bool{}
+			}
+			for _, family := range location.ControllerFamilies {
+				located[key][family] = true
+				want, inMatrix := matrix[key][family]
+				if !inMatrix {
+					want = documented[key]
+				}
+				// A matrix row that leaves the unit blank keeps the map's unit,
+				// and one that states no label list or only the bare Boolean
+				// pair takes the list the map states outright.
+				if inMatrix && want.unit == "" {
+					want.unit, want.divisor = documented[key].unit, documented[key].divisor
+				}
+				if inMatrix && len(mapStatedLabels[key]) > 0 && (want.labels == "[]" || want.labels == fmt.Sprint(labels(0, "False", 1, "True"))) {
+					want.labels = documented[key].labels
+				}
+				if got != want {
+					t.Errorf("%s at %+v for %s: layout %+v, documented %+v", point.Name, key, family, got, want)
+				}
+				checked++
+			}
+		}
+	}
+	for key, families := range matrix {
+		if _, annotated := documented[key]; !annotated {
+			continue
+		}
+		for family := range families {
+			if !located[key][family] {
+				t.Errorf("matrix row %s %+v has no location", family, key)
+			}
+		}
+		only := oneFamily(key)
+		for _, family := range controllerFamilies {
+			if only == "" && !located[key][family] {
+				t.Errorf("%+v: family %s, which the matrix does not list, has no location with the map layout", key, family)
+			}
+			if only != "" && family != only && located[key][family] {
+				t.Errorf("%+v: the map reads it on %s only, but %s has a location", key, only, family)
+			}
+		}
+	}
+	for key, want := range mapStatedLabels {
+		if fmt.Sprint(want) != documented[key].labels {
+			t.Errorf("%+v: stated labels %v without a named enumeration register", key, want)
+		}
+	}
+	if checked == 0 {
+		t.Fatal("no controller location checked")
+	}
+}
+
+var mapDecodeClasses = map[string]nativepoints.ValueClass{
+	"bool": nativepoints.ValueBoolean, "enum": nativepoints.ValueEnumeration, "state": nativepoints.ValueEnumeration,
+	"date": nativepoints.ValueDate, "time": nativepoints.ValueTime, "text": nativepoints.ValueText,
+	"version": nativepoints.ValueVersion,
+}
+
+// Each controller location carries the value class its own documentation
+// states and no other: a sibling location or a name rule does not lend it one.
+func TestControllerLocationClassesFollowTheirOwnDocumentation(t *testing.T) {
+	decodes := map[layoutKey]string{}
+	for _, row := range controllerAnnotations(t) {
+		if row.Name != nil && row.Decode != nil {
+			decodes[layoutKey{row.Key.Operation, row.Key.Group, row.Key.Register}] = *row.Decode
+		}
+	}
+	booleanLabels := fmt.Sprint(labels(0, "False", 1, "True"))
+	checked := 0
+	for _, point := range nativepoints.Points() {
+		for _, location := range point.Locations {
+			mapClass := mapDecodeClasses[decodes[layoutKey{location.Opcode, location.Group, location.Register}]]
+			var want nativepoints.ValueClass
+			switch {
+			case point.DeviceClass != nativepoints.DeviceClassController:
+			case location.Codec == nativepoints.CodecDayMonthYear:
+				want = nativepoints.ValueDate
+			case location.Codec == nativepoints.CodecHourMinuteSecond:
+				want = nativepoints.ValueTime
+			case mapClass != "":
+				want = mapClass
+			case fmt.Sprint(location.Enumeration) == booleanLabels:
+				want = nativepoints.ValueBoolean
+			case len(location.Enumeration) > 0:
+				want = nativepoints.ValueEnumeration
+			}
+			if location.ValueClass != want {
+				t.Errorf("%s/%s at 0x%02x/0x%02x/0x%04x: location class %q, documented %q", point.DeviceClass, point.Name, location.Opcode, location.Group, location.Register, location.ValueClass, want)
+			}
+			if want != "" {
+				checked++
+			}
+		}
+	}
+	if checked == 0 {
+		t.Fatal("no location documents a value class")
+	}
+}
+
+var opcode06Slots = map[uint8]bool{0x01: true, 0x02: true, 0x03: true, 0x04: true, 0x05: true, 0x06: true, 0x07: true,
+	0x08: true, 0x09: true, 0x0A: true, 0x0B: true, 0x0C: true, 0x0D: true, 0x0E: true, 0x0F: true}
+
 func TestControllerInstanceRangesMatchTheDiscoveryProfiles(t *testing.T) {
 	type scope struct{ group, opcode uint8 }
 	profiles := map[scope]system.B524GroupProfile{}
@@ -441,6 +735,12 @@ func TestControllerInstanceRangesMatchTheDiscoveryProfiles(t *testing.T) {
 			if point.DeviceClass != nativepoints.DeviceClassController {
 				if location.InstanceRule != nativepoints.InstanceSingle || location.InstanceMax != 0 {
 					t.Errorf("%s/%s: register service row is instanced: %+v", point.DeviceClass, point.Name, location)
+				}
+				continue
+			}
+			if location.Opcode == 0x06 {
+				if !opcode06Slots[location.Group] || location.InstanceRule != nativepoints.InstanceIndexed || location.InstanceMin != 1 || location.InstanceMax != 8 {
+					t.Errorf("%s: opcode 0x06 group 0x%02x has %+v, the map's slot interval is 1 to 8", point.Name, location.Group, location)
 				}
 				continue
 			}

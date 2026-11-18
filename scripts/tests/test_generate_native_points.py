@@ -81,6 +81,17 @@ class CheckModeTests(unittest.TestCase):
             result = run("--check", "--root", scratch)
             self.assertEqual(result.returncode, 2)
 
+    def test_source_filenames_pass_the_behavior_name_guard(self):
+        guard_spec = importlib.util.spec_from_file_location(
+            "check_behavior_names", ROOT / "scripts/check_behavior_names.py")
+        guard = importlib.util.module_from_spec(guard_spec)
+        guard_spec.loader.exec_module(guard)
+        vocabulary, baseline = guard.load_policy(guard.BASELINE)
+        entries = [{"path": relative, "symbol": Path(relative).name, "category": "filename"}
+                   for relative in generator.SOURCES.values()]
+        new = [entry for entry in guard.violations(entries, vocabulary) if entry not in baseline]
+        self.assertEqual(new, [])
+
 
 class RuleTests(unittest.TestCase):
     def test_withheld_reasons_in_order(self):

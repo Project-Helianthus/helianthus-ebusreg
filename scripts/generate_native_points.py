@@ -75,7 +75,7 @@ SOURCES = {
     "symbolic": "catalog/vaillant/data/b509_symbolic_annotations.json",
     "boiler_codecs": "catalog/vaillant/data/b509_boiler_codec_dictionary.json",
     "heat_pump_codecs": "catalog/vaillant/data/b509_heatpump_codec_dictionary.json",
-    "register_matrix": "catalog/vaillant/data/b524_register_matrix.json",
+    "register_matrix": "catalog/vaillant/data/controller_register_matrix.json",
     "profiles": "vaillant/system/b524_profile.go",
 }
 CONTROLLER_SERVICE = (0xB5, 0x24)

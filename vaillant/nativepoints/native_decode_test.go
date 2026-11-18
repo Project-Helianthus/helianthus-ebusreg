@@ -65,7 +65,7 @@ type matrixRow struct {
 
 func registerMatrix(t *testing.T) []matrixRow {
 	t.Helper()
-	raw, err := os.ReadFile("../../catalog/vaillant/data/b524_register_matrix.json")
+	raw, err := os.ReadFile("../../catalog/vaillant/data/controller_register_matrix.json")
 	if err != nil {
 		t.Fatal(err)
 	}

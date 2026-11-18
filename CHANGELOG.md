@@ -10,7 +10,7 @@
   `device_firmware_version` for registers 0x0001 to 0x0004 of every
   group; unnamed rows get no point. Each annotation carries the map's
   `wire` and `decode` columns, and the new
-  `catalog/vaillant/data/b524_register_matrix.json` holds the register
+  `catalog/vaillant/data/controller_register_matrix.json` holds the register
   matrix by family (reply width, value type, unit and enumeration for the
   `controller-700` and `controller-720` families). The generator takes a
   controller location's codec, unit and enumeration from the matrix row of

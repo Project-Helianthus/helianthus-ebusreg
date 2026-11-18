@@ -13,7 +13,9 @@ import (
 // NativeValue is the exact native value of a reply. Native is a decimal
 // integer or terminating decimal (numerator/denominator otherwise) for a
 // numeric value and for the code of an enumeration, true or false for a
-// Boolean, DD.MM.YY for a date, HH:MM:SS for a time, the major, minor and
+// Boolean, DD.MM.YY for a date and HH:MM:SS for a time (each field read from
+// one packed binary-coded decimal byte, as the B524 wire types date and time
+// state), the major, minor and
 // patch byte-decimal numbers padded to two digits and joined by dots (08.05.00)
 // for a version and the text up to its first NUL byte for a text. Label is the documented label of the code,
 // empty when the documentation states none. ValueClass is the class the value
@@ -26,7 +28,8 @@ type NativeValue struct {
 }
 
 // DecodeNative failures beyond those of Decode: a code outside the documented
-// Boolean range or date range, and a text that is not UTF-8.
+// Boolean range or date range or a date or time byte that is not a packed
+// binary-coded decimal, and a text that is not UTF-8.
 const (
 	DecodeOutOfRange  DecodeFailure = "out_of_range"
 	DecodeInvalidText DecodeFailure = "invalid_text"
@@ -54,8 +57,9 @@ var nativeWidths = map[Codec][2]int{
 // (Location.ValueClass), not the point's ValueClass, so a location whose own
 // documentation states neither decodes its integer as a number; narrow a point
 // whose locations disagree with ForLocation first. An integer of a documented
-// Boolean must be 0 or 1, and a date must have day 1 to 31, month 1 to 12 and
-// year 0 to 99. The documented
+// Boolean must be 0 or 1, every byte of a date or time must be a packed
+// binary-coded decimal of two digits, and a date must have day 1 to 31 and
+// month 1 to 12. The documented
 // labels of an enumeration are candidates and a code without one is not shown
 // to be invalid, so such a code decodes with an empty label. A version of three
 // 0xFF bytes is the empty-slot sentinel. A numeric value is divided by
@@ -88,12 +92,16 @@ func DecodeNative(point Point, raw []byte) (NativeValue, error) {
 	}
 	switch point.Codec {
 	case CodecDayMonthYear:
-		if raw[0] < 1 || raw[0] > 31 || raw[1] < 1 || raw[1] > 12 || raw[2] > 99 {
+		day, month, year, valid := bcd(raw[0]), bcd(raw[1]), bcd(raw[2]), validBCD(raw)
+		if !valid || day < 1 || day > 31 || month < 1 || month > 12 {
 			return refuse(DecodeOutOfRange, widths[1])
 		}
-		return NativeValue{ValueClass: ValueDate, Native: fmt.Sprintf("%02d.%02d.%02d", raw[0], raw[1], raw[2])}, nil
+		return NativeValue{ValueClass: ValueDate, Native: fmt.Sprintf("%02d.%02d.%02d", day, month, year)}, nil
 	case CodecHourMinuteSecond:
-		return NativeValue{ValueClass: ValueTime, Native: fmt.Sprintf("%02d:%02d:%02d", raw[0], raw[1], raw[2])}, nil
+		if !validBCD(raw) {
+			return refuse(DecodeOutOfRange, widths[1])
+		}
+		return NativeValue{ValueClass: ValueTime, Native: fmt.Sprintf("%02d:%02d:%02d", bcd(raw[0]), bcd(raw[1]), bcd(raw[2]))}, nil
 	case CodecMajorMinorPatch:
 		if raw[0] == 0xFF && raw[1] == 0xFF && raw[2] == 0xFF {
 			return refuse(DecodeSentinel, widths[1])
@@ -114,7 +122,7 @@ func DecodeNative(point Point, raw []byte) (NativeValue, error) {
 	if sentinel {
 		return refuse(DecodeSentinel, widths[1])
 	}
-	class := point.documentedClass()
+	class := point.nativeClass()
 	if class == ValueBoolean {
 		if code != 0 && code != 1 {
 			return refuse(DecodeOutOfRange, widths[1])
@@ -122,7 +130,7 @@ func DecodeNative(point Point, raw []byte) (NativeValue, error) {
 		label, _ := point.label(code)
 		return NativeValue{ValueClass: ValueBoolean, Native: strconv.FormatBool(code == 1), NativeUnit: point.NativeUnit, Label: label}, nil
 	}
-	if len(point.Enumeration) > 0 || class == ValueEnumeration {
+	if class == ValueEnumeration {
 		label, _ := point.label(code)
 		return NativeValue{ValueClass: ValueEnumeration, Native: strconv.FormatInt(code, 10), NativeUnit: point.NativeUnit, Label: label}, nil
 	}
@@ -134,6 +142,49 @@ func DecodeNative(point Point, raw []byte) (NativeValue, error) {
 		return point.numeric(new(big.Rat).SetFrac64(code, divisor)), nil
 	}
 	return point.numeric(new(big.Rat).SetInt64(code)), nil
+}
+
+// nativeClass is the value class DecodeNative decodes a reply of the point as,
+// empty when it refuses every reply for an unknown codec or a zero scale.
+func (point Point) nativeClass() ValueClass {
+	if point.Codec == CodecText {
+		return ValueText
+	}
+	if _, known := nativeWidths[point.Codec]; !known || point.ScaleDivisor == 0 {
+		return ""
+	}
+	switch point.Codec {
+	case CodecDayMonthYear:
+		return ValueDate
+	case CodecHourMinuteSecond:
+		return ValueTime
+	case CodecMajorMinorPatch:
+		return ValueVersion
+	case CodecFloat32LE:
+		return ValueNumeric
+	}
+	switch class := point.documentedClass(); {
+	case class == ValueBoolean:
+		return ValueBoolean
+	case len(point.Enumeration) > 0 || class == ValueEnumeration:
+		return ValueEnumeration
+	}
+	return ValueNumeric
+}
+
+// bcd is the value of one packed binary-coded decimal byte.
+func bcd(packed byte) int {
+	return int(packed>>4)*10 + int(packed&0x0F)
+}
+
+// validBCD reports whether every nibble of the bytes is a decimal digit.
+func validBCD(raw []byte) bool {
+	for _, packed := range raw {
+		if packed>>4 > 9 || packed&0x0F > 9 {
+			return false
+		}
+	}
+	return true
 }
 
 // documentedClass is the value class every location of the point documents,

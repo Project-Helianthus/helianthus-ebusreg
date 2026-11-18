@@ -49,8 +49,9 @@ type Codec string
 
 // Codecs: little-endian float32, uint16 and uint32, uint8, int8 and the
 // unsigned integer of one or two little-endian bytes of the controller
-// registers; three plain bytes of day, month and year, of hour, minute and
-// second and of a major, minor and patch version number; a NUL-terminated
+// registers; three packed binary-coded decimal bytes of day, month and year
+// and of hour, minute and second; three plain bytes of a major, minor and
+// patch version number; a NUL-terminated
 // text; and the signed 16-bit DATA2c (1/16) and
 // DATA2b (1/256) and the unsigned 16-bit UIN word of the register service.
 // CodecUnknown marks a missing, literal-only or undocumented layout.
@@ -175,9 +176,13 @@ func (point Point) clone() Point {
 
 // ForLocation returns a copy of the point narrowed to the location at index:
 // its only location is that location, and its codec, declaration, scale,
-// native unit, enumeration and controller families are that location's. Name,
-// name status, value class and the export decision stay those of the point.
-// It reports false when index is outside the locations.
+// native unit, enumeration and controller families are that location's. Its
+// value class is the class DecodeNative decodes that location as, so a
+// location whose layout differs from the point's other locations does not keep
+// a class it cannot decode to; it stays the point's only when the location's
+// codec is unknown. Name, name status and the export decision, with its
+// withheld reason, stay those of the point. It reports false when index is
+// outside the locations.
 func (point Point) ForLocation(index int) (Point, bool) {
 	if index < 0 || index >= len(point.Locations) {
 		return Point{}, false
@@ -189,6 +194,9 @@ func (point Point) ForLocation(index int) (Point, bool) {
 	narrowed.ScaleDivisor, narrowed.NativeUnit = location.ScaleDivisor, location.NativeUnit
 	narrowed.Enumeration = append([]EnumerationLabel(nil), location.Enumeration...)
 	narrowed.ControllerFamilies = append([]string(nil), location.ControllerFamilies...)
+	if class := narrowed.nativeClass(); class != "" {
+		narrowed.ValueClass = class
+	}
 	return narrowed, true
 }
 

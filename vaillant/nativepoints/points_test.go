@@ -460,15 +460,32 @@ func labels(pairs ...any) []nativepoints.EnumerationLabel {
 // The label lists the register map's Values column states outright for an
 // enumeration or Boolean register.
 var mapStatedLabels = map[layoutKey][]nativepoints.EnumerationLabel{
+	{0x02, 0x00, 0x0007}: labels(0, "system on", 1, "system off"),
+	{0x02, 0x00, 0x0009}: labels(0, "off", 1, "on"),
 	{0x02, 0x00, 0x0016}: labels(1, "AUTO", 2, "DAY", 3, "SET_BACK"),
 	{0x02, 0x00, 0x002B}: labels(0, "off", 1, "Mon", 2, "Tue", 3, "Wed", 4, "Thu", 5, "Fri", 6, "Sat", 7, "Sun"),
 	{0x02, 0x00, 0x0048}: labels(0, "standby", 1, "heating", 2, "cooling", 3, "dhw"),
+	{0x02, 0x01, 0x0001}: labels(0, "off", 1, "on"),
+	{0x02, 0x01, 0x0002}: labels(0, "off", 1, "on"),
+	{0x02, 0x01, 0x0006}: labels(0, "off", 1, "on"),
 	{0x02, 0x02, 0x0003}: labels(0, "inactive", 1, "active", 2, "extended"),
+	{0x02, 0x02, 0x0005}: labels(0, "off", 1, "on"),
+	{0x02, 0x02, 0x0006}: labels(0, "off", 1, "on"),
+	{0x02, 0x03, 0x0012}: labels(0, "closed", 1, "open"),
+	{0x02, 0x03, 0x0019}: labels(0, "off", 1, "on"),
+	{0x02, 0x03, 0x001A}: labels(0, "off", 1, "on"),
+	{0x02, 0x04, 0x0001}: labels(0, "off", 1, "on"),
+	{0x02, 0x04, 0x0002}: labels(0, "off", 1, "on"),
+	{0x02, 0x04, 0x0008}: labels(0, "off", 1, "on"),
 	{0x02, 0x09, 0x0002}: labels(1, "TIME_CONTROLLED", 2, "NORMAL", 3, "REDUCED"),
+	{0x02, 0x09, 0x0003}: labels(0, "off", 1, "on"),
+	{0x02, 0x0A, 0x0006}: labels(0, "off", 1, "on"),
 	{0x06, 0x09, 0x0001}: labels(0, "empty", 1, "paired"),
 	{0x06, 0x09, 0x0002}: labels(0x15, "VRC720", 0x26, "VR71", 0x35, "VR92"),
+	{0x06, 0x09, 0x001E}: labels(0, "no", 1, "yes"),
 	{0x06, 0x0A, 0x0001}: labels(0, "empty", 1, "paired"),
 	{0x06, 0x0A, 0x0002}: labels(0x15, "VRC720", 0x26, "VR71", 0x35, "VR92"),
+	{0x06, 0x0A, 0x001E}: labels(0, "no", 1, "yes"),
 	{0x06, 0x0C, 0x0001}: labels(0, "not_connected", 1, "connected"),
 }
 
@@ -601,9 +618,14 @@ func TestControllerLayoutsFollowTheMatrixAndTheMap(t *testing.T) {
 				if !inMatrix {
 					want = documented[key]
 				}
-				// A matrix row that leaves the unit blank keeps the map's unit.
+				// A matrix row that leaves the unit blank keeps the map's unit,
+				// and one that states no label list or only the bare Boolean
+				// pair takes the list the map states outright.
 				if inMatrix && want.unit == "" {
 					want.unit, want.divisor = documented[key].unit, documented[key].divisor
+				}
+				if inMatrix && len(mapStatedLabels[key]) > 0 && (want.labels == "[]" || want.labels == fmt.Sprint(labels(0, "False", 1, "True"))) {
+					want.labels = documented[key].labels
 				}
 				if got != want {
 					t.Errorf("%s at %+v for %s: layout %+v, documented %+v", point.Name, key, family, got, want)

@@ -358,6 +358,33 @@ class RuleTests(unittest.TestCase):
                 with self.assertRaises(generator.InputError):
                     generator.map_layout(dict(wire="u8", decode=decode), key)
 
+    def test_map_labels_of_several_words(self):
+        self.assertEqual(generator.map_labels("0=system on 1=system off"),
+                         [{"value": 0, "label": "system on"}, {"value": 1, "label": "system off"}])
+        for malformed in ("0=system on  1=off", "0=a 1=", "0= on"):
+            with self.subTest(text=malformed):
+                with self.assertRaises(generator.InputError):
+                    generator.map_labels(malformed)
+
+    def test_map_labels_replace_a_missing_or_bare_boolean_matrix_list(self):
+        valve = dict(operation=0x02, group=0x03, register=0x0012)
+        self.assertIn((0x02, 0x03, 0x0012), generator.MAP_LABELS)
+        names = names_for(valve, {"zone_valve_position": {}}, wire="u16", decode="bool")
+        cases = (("", ["closed", "open"]), ("0=False; 1=True", ["closed", "open"]),
+                 ("0=Shut; 1=Opened", ["Shut", "Opened"]))
+        for enumeration, expected in cases:
+            with self.subTest(enumeration=enumeration):
+                places = controller_join(names, [matrix_row(family, 0x0012, "uint16 LE", [2],
+                                                            enumeration=enumeration, group=0x03)
+                                                 for family in generator.FAMILIES])
+                labels = {tuple(place["families"]): ([entry["label"] for entry in place["enumeration"]],
+                                                     place["value_class"])
+                          for place in places[("controller", "zone_valve_position")]}
+                self.assertEqual(labels, {tuple(generator.FAMILIES): (expected, "boolean")})
+        places = controller_join(names, [matrix_row(generator.C720, 0x0013, "uint16 LE", [2], group=0x03)])
+        self.assertEqual([[entry["label"] for entry in place["enumeration"]]
+                          for place in places[("controller", "zone_valve_position")]], [["closed", "open"]])
+
     def test_boolean_registers_take_the_label_pair_of_their_group(self):
         expected = {0x09: ["empty", "paired"], 0x0A: ["empty", "paired"], 0x0C: ["not_connected", "connected"]}
         for group, names in expected.items():

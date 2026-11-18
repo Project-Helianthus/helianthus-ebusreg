@@ -132,22 +132,42 @@ MAJOR_MINOR_PATCH = "major_minor_patch"
 OP06_SLOTS = {group: (1, 8) for group in range(0x01, 0x10)}
 # Label lists that the register map's Values column states outright for an
 # enumeration or Boolean register, verbatim; a reference to the enum reference
-# section is not a list and is not copied.
+# section is not a list and is not copied. A stated list labels the codes of
+# every location of the register whose matrix row states no list of its own or
+# only the bare Boolean pair 0=False; 1=True.
 MAP_LABELS = {
+    (0x02, 0x00, 0x0007): "0=system on 1=system off",
+    (0x02, 0x00, 0x0009): "0=off 1=on",
     (0x02, 0x00, 0x0016): "1=AUTO 2=DAY 3=SET_BACK",
     (0x02, 0x00, 0x002B): "0=off 1=Mon 2=Tue 3=Wed 4=Thu 5=Fri 6=Sat 7=Sun",
     (0x02, 0x00, 0x0048): "0=standby 1=heating 2=cooling 3=dhw",
+    (0x02, 0x01, 0x0001): "0=off 1=on",
+    (0x02, 0x01, 0x0002): "0=off 1=on",
+    (0x02, 0x01, 0x0006): "0=off 1=on",
     (0x02, 0x02, 0x0003): "0=inactive 1=active 2=extended",
+    (0x02, 0x02, 0x0005): "0=off 1=on",
+    (0x02, 0x02, 0x0006): "0=off 1=on",
+    (0x02, 0x03, 0x0012): "0=closed 1=open",
+    (0x02, 0x03, 0x0019): "0=off 1=on",
+    (0x02, 0x03, 0x001A): "0=off 1=on",
+    (0x02, 0x04, 0x0001): "0=off 1=on",
+    (0x02, 0x04, 0x0002): "0=off 1=on",
+    (0x02, 0x04, 0x0008): "0=off 1=on",
     (0x02, 0x09, 0x0002): "1=TIME_CONTROLLED 2=NORMAL 3=REDUCED",
+    (0x02, 0x09, 0x0003): "0=off 1=on",
+    (0x02, 0x0A, 0x0006): "0=off 1=on",
     (0x06, 0x09, 0x0001): "0=empty 1=paired",
     (0x06, 0x09, 0x0002): "0x15=VRC720 0x35=VR92 0x26=VR71",
+    (0x06, 0x09, 0x001E): "0=no 1=yes",
     (0x06, 0x0A, 0x0001): "0=empty 1=paired",
     (0x06, 0x0A, 0x0002): "0x15=VRC720 0x35=VR92 0x26=VR71",
+    (0x06, 0x0A, 0x001E): "0=no 1=yes",
     (0x06, 0x0C, 0x0001): "0=not_connected 1=connected",
 }
 LABELLED_DECODES = ("bool", "enum", "state")
 BOOLEAN_LABELS = [{"value": 0, "label": "False"}, {"value": 1, "label": "True"}]
-MAP_LABEL = re.compile(r"(0x[0-9A-Fa-f]+|[0-9]+)=(\S+)")
+MAP_LABEL = re.compile(r"(0x[0-9A-Fa-f]+|[0-9]+)=(\S+(?: \S+)*)")
+MAP_LABEL_START = re.compile(r" (?=(?:0x[0-9A-Fa-f]+|[0-9]+)=)")
 # Opcode 0x02 registers that the register map reads on one controller family
 # only: group 0x09 and the continuous-heating set point on the controller-720
 # family; the controller-700 ventilation items of group 0x00 and the family
@@ -354,7 +374,7 @@ def register_matrix(root):
 
 def map_labels(text):
     labels = {}
-    for part in text.split(" "):
+    for part in MAP_LABEL_START.split(text):
         match = MAP_LABEL.fullmatch(part)
         if not match or int(match.group(1), 0) in labels:
             raise InputError(f"malformed register map label list {text!r}")
@@ -423,6 +443,14 @@ def with_map_unit(name, place, mapped):
     return dict(place, unit=mapped["unit"], divisor=mapped["divisor"])
 
 
+def with_map_labels(place, mapped):
+    """A label list the map states outright labels a matrix row that states
+    no list of its own or only the bare Boolean pair."""
+    if mapped["enumeration"] and place["enumeration"] in ([], BOOLEAN_LABELS):
+        return dict(place, enumeration=mapped["enumeration"])
+    return place
+
+
 def location_class(place, mapped):
     kind = place["kind"] or mapped["kind"]
     if kind:
@@ -443,7 +471,7 @@ def controller_locations(root, grouped, services):
         labelled.add((opcode, group, register))
         declared = codecs.get((group, register), {}) if opcode == 0x02 else {}
         mapped = map_layout(row, (opcode, group, register))
-        documented = {family: with_map_unit(name, place, mapped)
+        documented = {family: with_map_labels(with_map_unit(name, place, mapped), mapped)
                       for family, place in matrix.get((opcode, group, register), {}).items()}
         if opcode == 0x06:
             low, high = OP06_SLOTS.get(group, (0, 0))

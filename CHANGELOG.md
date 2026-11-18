@@ -26,10 +26,13 @@
   native and named; the map's `time` wire with the `version` decode is the
   three-byte major, minor and patch triple. New codecs: `uint8`, `int8`,
   `uint8_or_uint16_le`, `uint32_le`, `day_month_year`,
-  `hour_minute_second`, `major_minor_patch` and `text`, and the value
+  `hour_minute_second` (both three packed binary-coded decimal bytes, as
+  the B524 `date` and `time` wire types state), `major_minor_patch` and
+  `text`, and the value
   class `version`; points and locations carry their documented
   enumeration or Boolean labels, from the matrix or from a label list the
-  map's Values column states outright, and each location carries the value
+  map's Values column states outright (which replaces a missing matrix list
+  and the matrix's bare `0=False; 1=True` pair), and each location carries the value
   class its own documentation states. `DecodeNative` returns the exact native
   value of any point with a known codec (number, Boolean, enumeration
   code and label, date, time, version or text); an enumeration code
@@ -38,10 +41,12 @@
   enumeration reading apply only where the documentation of the location
   states them, so a location that states neither keeps its integer. It
   refuses a wrong width, a
-  Boolean or date out of range, a non-UTF-8 text, NaN, infinities and
+  Boolean or date out of range, a date or time byte that is not
+  binary-coded decimal, a non-UTF-8 text, NaN, infinities and
   codec sentinels with the typed `DecodeError` (`out_of_range`,
   `invalid_text`).
-  `Point.ForLocation` narrows a point to one location. The SI export rule,
+  `Point.ForLocation` narrows a point to one location and gives it the
+  value class `DecodeNative` decodes that location as. The SI export rule,
   its withheld reasons, `Decode`, the boiler and heat-pump dictionaries
   and every existing canonical name are unchanged; 37 more controller
   rows become exportable because the documentation now states their codec

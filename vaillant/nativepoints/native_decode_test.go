@@ -166,8 +166,14 @@ func TestNativeDecodeBooleanEnumerationDateAndTime(t *testing.T) {
 		{"adaptive_heating_curve_enabled", []byte{0x01}, nativepoints.ValueBoolean, "true", "Enabled"},
 		{"adaptive_heating_curve_enabled", []byte{0x00}, nativepoints.ValueBoolean, "false", "Disabled"},
 		{"dhw_legionella_protection_start_weekday", []byte{0x03, 0x00}, nativepoints.ValueEnumeration, "3", "Wednesday"},
-		{"date", []byte{18, 11, 26}, nativepoints.ValueDate, "18.11.26", ""},
-		{"clock_time", []byte{7, 5, 9}, nativepoints.ValueTime, "07:05:09", ""},
+		{"date", []byte{0x18, 0x11, 0x26}, nativepoints.ValueDate, "18.11.26", ""},
+		{"clock_time", []byte{0x23, 0x59, 0x45}, nativepoints.ValueTime, "23:59:45", ""},
+		{"zone_valve_position", []byte{0x01, 0x00}, nativepoints.ValueBoolean, "true", "open"},
+		{"zone_valve_position", []byte{0x00, 0x00}, nativepoints.ValueBoolean, "false", "closed"},
+		{"unknown_11", []byte{0x01}, nativepoints.ValueBoolean, "true", "system off"},
+		{"unknown_11", []byte{0x00}, nativepoints.ValueBoolean, "false", "system on"},
+		{"circuit_cooling_enabled", []byte{0x01}, nativepoints.ValueBoolean, "true", "on"},
+		{"device_pairing_active", []byte{0x00}, nativepoints.ValueBoolean, "false", "no"},
 	}
 	for _, tc := range cases {
 		t.Run(fmt.Sprintf("%s % X", tc.name, tc.raw), func(t *testing.T) {
@@ -420,11 +426,14 @@ func TestNativeDecodeRefusals(t *testing.T) {
 		{"one or two empty", controller("zone_enabled"), nil, nativepoints.DecodeShortReply},
 		{"one or two long", controller("zone_enabled"), []byte{1, 0, 0}, nativepoints.DecodeLongReply},
 		{"boolean out of range", controller("adaptive_heating_curve_enabled"), []byte{2}, nativepoints.DecodeOutOfRange},
-		{"date short", controller("date"), []byte{18, 11}, nativepoints.DecodeShortReply},
-		{"date day", controller("date"), []byte{32, 11, 26}, nativepoints.DecodeOutOfRange},
-		{"date month", controller("date"), []byte{18, 13, 26}, nativepoints.DecodeOutOfRange},
-		{"date year", controller("date"), []byte{18, 11, 100}, nativepoints.DecodeOutOfRange},
-		{"time long", controller("clock_time"), []byte{7, 5, 9, 0}, nativepoints.DecodeLongReply},
+		{"date short", controller("date"), []byte{0x18, 0x11}, nativepoints.DecodeShortReply},
+		{"date day", controller("date"), []byte{0x32, 0x11, 0x26}, nativepoints.DecodeOutOfRange},
+		{"date day zero", controller("date"), []byte{0x00, 0x00, 0x00}, nativepoints.DecodeOutOfRange},
+		{"date month", controller("date"), []byte{0x18, 0x13, 0x26}, nativepoints.DecodeOutOfRange},
+		{"date month not decimal", controller("date"), []byte{0x18, 0x0C, 0x26}, nativepoints.DecodeOutOfRange},
+		{"date year not decimal", controller("date"), []byte{0x18, 0x11, 0x9A}, nativepoints.DecodeOutOfRange},
+		{"time long", controller("clock_time"), []byte{0x07, 0x05, 0x09, 0x00}, nativepoints.DecodeLongReply},
+		{"time not decimal", controller("clock_time"), []byte{0x07, 0x5A, 0x09}, nativepoints.DecodeOutOfRange},
 		{"text not UTF-8", controller("zone_name"), []byte{0xFF, 0xFE, 0x00}, nativepoints.DecodeInvalidText},
 		{"DATA2c sentinel", mustLookup(t, nativepoints.DeviceClassBoiler, "flow_temperature"), []byte{0x00, 0x80}, nativepoints.DecodeSentinel},
 		{"UIN sentinel", mustLookup(t, nativepoints.DeviceClassBoiler, "fan_speed"), []byte{0xFF, 0xFF}, nativepoints.DecodeSentinel},
@@ -544,5 +553,85 @@ func TestNativeVentilationGroupNamesItsOneFamily(t *testing.T) {
 	point := mustLookup(t, nativepoints.DeviceClassController, "ventilation_special_function_mode")
 	if fmt.Sprint(point.ControllerFamilies) != "[controller-720]" {
 		t.Errorf("ventilation_special_function_mode families %v", point.ControllerFamilies)
+	}
+}
+
+// The B524 date and time wire types are packed binary-coded decimal bytes, so
+// a date the map documents as 01.01.2015 reads 01 01 15 and a November date
+// carries the month byte 0x11.
+func TestNativeDecodeDateAndTimeAreBinaryCodedDecimal(t *testing.T) {
+	cases := []struct {
+		name   string
+		raw    []byte
+		native string
+	}{
+		{"ventilation_holiday_end_date", []byte{0x01, 0x01, 0x15}, "01.01.15"},
+		{"ventilation_holiday_end_date", []byte{0x18, 0x11, 0x26}, "18.11.26"},
+		{"manual_cooling_start_date", []byte{0x31, 0x12, 0x99}, "31.12.99"},
+		{"ventilation_holiday_end_clock_time", []byte{0x23, 0x59, 0x59}, "23:59:59"},
+	}
+	for _, tc := range cases {
+		point := mustLookup(t, nativepoints.DeviceClassController, tc.name)
+		decoded := 0
+		for index := range point.Locations {
+			narrowed, _ := point.ForLocation(index)
+			if narrowed.Codec != nativepoints.CodecDayMonthYear && narrowed.Codec != nativepoints.CodecHourMinuteSecond {
+				continue
+			}
+			decoded++
+			if value := nativeOf(t, narrowed, tc.raw); value.Native != tc.native {
+				t.Errorf("%s % X = %+v, want %q", tc.name, tc.raw, value, tc.native)
+			}
+		}
+		if decoded == 0 {
+			t.Errorf("%s has no date or time location", tc.name)
+		}
+	}
+}
+
+func nativeSample(codec nativepoints.Codec) []byte {
+	switch codec {
+	case nativepoints.CodecFloat32LE, nativepoints.CodecUint32LE:
+		return []byte{0, 0, 0, 0}
+	case nativepoints.CodecUint8, nativepoints.CodecSignedByte, nativepoints.CodecUint8OrUint16LE:
+		return []byte{0}
+	case nativepoints.CodecDayMonthYear:
+		return []byte{0x01, 0x01, 0x00}
+	case nativepoints.CodecHourMinuteSecond, nativepoints.CodecMajorMinorPatch:
+		return []byte{0, 0, 0}
+	case nativepoints.CodecText:
+		return nil
+	}
+	return []byte{0, 0}
+}
+
+// A point narrowed to one location carries the value class DecodeNative
+// decodes that location as, so the float32 firmware version of the solar
+// module is numeric while the byte triple of a remote regulator is a version.
+func TestNativeForLocationTakesTheClassDecodeNativeReturns(t *testing.T) {
+	firmware := mustLookup(t, nativepoints.DeviceClassController, "device_firmware_version")
+	if solar := locationAt(t, firmware, 0x06, 0x08, 0x0004); solar.Codec != nativepoints.CodecFloat32LE || solar.ValueClass != nativepoints.ValueNumeric {
+		t.Errorf("group 0x08 device_firmware_version = codec %q class %q", solar.Codec, solar.ValueClass)
+	}
+	checked := 0
+	for _, point := range nativepoints.Points() {
+		for index := range point.Locations {
+			narrowed, _ := point.ForLocation(index)
+			if narrowed.Codec == nativepoints.CodecUnknown {
+				continue
+			}
+			value, err := nativepoints.DecodeNative(narrowed, nativeSample(narrowed.Codec))
+			if err != nil {
+				t.Errorf("%s/%s location %d: %v", point.DeviceClass, point.Name, index, err)
+				continue
+			}
+			if value.ValueClass != narrowed.ValueClass {
+				t.Errorf("%s/%s location %d: narrowed class %q, DecodeNative class %q", point.DeviceClass, point.Name, index, narrowed.ValueClass, value.ValueClass)
+			}
+			checked++
+		}
+	}
+	if checked == 0 {
+		t.Fatal("no location with a codec checked")
 	}
 }

@@ -105,13 +105,18 @@ func TestNativeZoneCoolingSetpointTakesTheMatrixLayout(t *testing.T) {
 	if point.Codec != nativepoints.CodecFloat32LE || point.NativeUnit != "°C" || fmt.Sprint(point.ControllerFamilies) != fmt.Sprint(controllerFamilies) {
 		t.Errorf("cooling_zone_room_temperature_setpoint = %+v", point)
 	}
-	checked := 0
+	checked, mapped := 0, mapLayouts(t)
 	for _, row := range registerMatrix(t) {
 		want := matrixCodec(row)
 		if want == nativepoints.CodecUnknown {
 			continue
 		}
 		checked++
+		// A blank matrix unit keeps the unit the map's Decode column states.
+		unit := row.Unit
+		if unit == "" {
+			unit = mapped[layoutKey{row.Opcode, row.Group, row.Register}].unit
+		}
 		matched := false
 		for _, candidate := range nativepoints.Points() {
 			if candidate.DeviceClass != nativepoints.DeviceClassController {
@@ -123,13 +128,13 @@ func TestNativeZoneCoolingSetpointTakesTheMatrixLayout(t *testing.T) {
 				}
 				for _, family := range location.ControllerFamilies {
 					if family == row.Family {
-						matched = location.Codec == want && location.NativeUnit == row.Unit
+						matched = location.Codec == want && location.NativeUnit == unit
 					}
 				}
 			}
 		}
 		if !matched {
-			t.Errorf("matrix row %s 0x%02x/0x%04x %s: no location with codec %q unit %q", row.Family, row.Group, row.Register, row.Name, want, row.Unit)
+			t.Errorf("matrix row %s 0x%02x/0x%04x %s: no location with codec %q unit %q", row.Family, row.Group, row.Register, row.Name, want, unit)
 		}
 	}
 	if checked == 0 {
@@ -343,6 +348,48 @@ func locationForFamily(t *testing.T, point nativepoints.Point, family string) na
 	}
 	t.Fatalf("%s has no location for %s", point.Name, family)
 	return nativepoints.Point{}
+}
+
+// A matrix row that states a value type and leaves the unit blank keeps the
+// unit the map's Decode column states, on every family.
+func TestNativeDecodeKeepsTheMapUnitBehindABlankMatrixUnit(t *testing.T) {
+	cases := []struct {
+		name string
+		unit string
+	}{
+		{"manual_cooling_time", "d"},
+		{"hydraulic_scheme_code", "count"},
+		{"functional_module_configuration_code", "count"},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			point := mustLookup(t, nativepoints.DeviceClassController, tc.name)
+			narrowed := []nativepoints.Point{point}
+			for _, family := range controllerFamilies {
+				narrowed = append(narrowed, locationForFamily(t, point, family))
+			}
+			for _, candidate := range narrowed {
+				value := nativeOf(t, candidate, []byte{0x02, 0x00})
+				if value.ValueClass != nativepoints.ValueNumeric || value.Native != "2" || value.NativeUnit != tc.unit {
+					t.Errorf("%v: got %+v, want numeric 2 %s", candidate.ControllerFamilies, value, tc.unit)
+				}
+			}
+		})
+	}
+}
+
+// A bare wire type does not make a register numeric when its Decode column
+// states no class and its name is not a quantity; an identifier stays one.
+func TestNativeUnclassifiedRegistersAreNotNumeric(t *testing.T) {
+	for name, want := range map[string]nativepoints.ValueClass{
+		"language": nativepoints.ValueUnknown, "network_identifier": nativepoints.ValueIdentifier,
+		"hardware_identifier": nativepoints.ValueIdentifier,
+	} {
+		point := mustLookup(t, nativepoints.DeviceClassController, name)
+		if point.ValueClass != want || point.Codec == nativepoints.CodecUnknown {
+			t.Errorf("%s: class %q codec %q, want class %q with a codec", name, point.ValueClass, point.Codec, want)
+		}
+	}
 }
 
 func refuseNative(t *testing.T, point nativepoints.Point, raw []byte, failure nativepoints.DecodeFailure) {

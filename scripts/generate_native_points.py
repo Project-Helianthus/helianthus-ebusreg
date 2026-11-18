@@ -23,9 +23,12 @@ matrix row of each controller family that states a value type, and from the
 register map's Wire and Decode columns when no family row states one. When the
 matrix states a value type for one family only, the other family takes the
 map's layout, except on a register the documentation reads on one family only
-(ONE_FAMILY below). Families whose rows disagree get one location each. An
-INTERPRETED declaration must agree with the documented codec and unit of its
-family; a disagreement fails generation. Map wire types whose layout the map
+(ONE_FAMILY below). A matrix row that states a value type and leaves the unit
+blank keeps the unit and scale of the map's Decode column; a matrix row whose
+codec then differs from the map's fails generation. Families whose rows
+disagree get one location each. An INTERPRETED declaration must agree with the
+documented codec of its family and, when the interpreter declares a unit, with
+its documented unit; a disagreement fails generation. Map wire types whose layout the map
 leaves open (date, time, bytes, unknown) and decode columns without a unit or
 value class give no codec and no unit; the map's time wire with the version
 decode is the three-byte major, minor and patch triple. An enumeration
@@ -40,7 +43,10 @@ has several locations, every location names its controller families and no two
 locations share one; otherwise it is provisional or ambiguous.
 
 A point's value class follows the decode column of the map (Boolean,
-enumeration, date, time or text) and otherwise the name rules below. Each
+enumeration, date, time or text) and otherwise the name rules below. A codec
+alone makes a controller point numeric only when the decode column of one of
+its locations states a unit or class; a register whose decode column states
+none is numeric only by its unit or a quantity name. Each
 controller location also carries the value class its own documentation states:
 the decode column of the map, the matrix calendar layout, the matrix Boolean
 label pair 0=False 1=True, or enumeration for any other label list; it is
@@ -78,6 +84,9 @@ DICTIONARY_CLASSES = {"boiler": "boiler", "heat-pump": "heat_pump"}
 
 F32, U16 = "float32_le", "uint16_le"
 C700, C720 = "controller-700", "controller-720"
+# An interpreter that declares no unit (its declared unit is "Unknown") states
+# nothing about the unit and agrees with any documented one.
+UNDECLARED = None
 SYSTEM_CELSIUS = (0x0002, 0x0022, 0x0023, 0x0026, 0x0038, 0x0046, 0x004B, 0x0067,
                   0x0068, 0x0073, 0x0095, 0x009D, 0x009E, 0x009F, 0x00A0)
 INTERPRETED = [
@@ -87,14 +96,14 @@ INTERPRETED = [
     ((C700,), 0x00, (0x0017,), U16, "min"),
     ((C700, C720), 0x00, (0x0029,), F32, "K"),
     ((C700, C720), 0x00, (0x0039,), F32, "bar"),
-    ((C700, C720), 0x00, (0x002F, 0x0036), U16, ""),
-    ((C700,), 0x00, (0x0006, 0x0042, 0x0043), U16, ""),
+    ((C700, C720), 0x00, (0x002F, 0x0036), U16, UNDECLARED),
+    ((C700,), 0x00, (0x0006, 0x0042, 0x0043), U16, UNDECLARED),
     ((C700, C720), 0x01, (0x0004, 0x0005), F32, "°C"),
-    ((C720,), 0x09, (0x000D, 0x000E), U16, ""),
+    ((C720,), 0x09, (0x000D, 0x000E), U16, UNDECLARED),
     ((C700, C720), 0x02, (0x0007, 0x0008, 0x0010, 0x0011, 0x0012, 0x0014, 0x001F), F32, "°C"),
     ((C700, C720), 0x02, (0x000A, 0x000B), F32, "K"),
-    ((C700, C720), 0x02, (0x000F,), F32, ""),
-    ((C720,), 0x02, (0x001C,), F32, ""),
+    ((C700, C720), 0x02, (0x000F,), F32, UNDECLARED),
+    ((C720,), 0x02, (0x001C,), F32, UNDECLARED),
     ((C720,), 0x02, (0x001A,), F32, "%"),
     ((C700, C720), 0x03, (0x0002, 0x0005, 0x0009, 0x000F, 0x0014, 0x0015), F32, "°C"),
     ((C720,), 0x03, (0x0023,), F32, "°C"),
@@ -154,7 +163,7 @@ SI_UNITS = {"°C", "K", "bar", "kWh", "kW", "W", "h", "min", "s", "%", "count", 
 PRESSURE_UNITS = {"bar"}
 WITHHELD_ORDER = ("name_not_final", "identifier_or_code", "not_numeric", "unit_unknown",
                   "pressure_reference_unknown", "codec_unknown")
-IDENTIFIER_MARKERS = ("phone_number", "serial_number", "device_specific_number")
+IDENTIFIER_MARKERS = ("phone_number", "serial_number", "device_specific_number", "identifier")
 TEXT_SUFFIXES = ("_name", "_name_prefix", "_name_suffix")
 BOOLEAN_SUFFIXES = ("_active", "_enabled", "_ok", "_available")
 ENUMERATION_SUFFIXES = ("_mode", "_type", "_state", "_status", "_weekday")
@@ -181,7 +190,7 @@ def parse_declaration(text):
     return match.group(1), int(match.group(2) or 1)
 
 
-def value_class(name, declaration, unit, codec, kind=""):
+def value_class(name, declaration, unit, codec, kind="", classified=True):
     lowered = declaration.lower()
     if name.endswith("_code") or "_code_" in name:
         return "code"
@@ -205,7 +214,7 @@ def value_class(name, declaration, unit, codec, kind=""):
         return "boolean"
     if name.endswith(ENUMERATION_SUFFIXES):
         return "enumeration"
-    if codec in DECODED_CODECS or unit in SI_UNITS or QUANTITY_TOKENS & set(name.split("_")):
+    if (classified and codec in DECODED_CODECS) or unit in SI_UNITS or QUANTITY_TOKENS & set(name.split("_")):
         return "numeric"
     return "unknown"
 
@@ -258,7 +267,8 @@ def assemble(grouped, services):
             families=sorted({f for place in locations for f in place["families"]}),
         )
         kind = kinds.pop() if len(kinds) == 1 else ""
-        point["value_class"] = value_class(name, point["declaration"], point["unit"], point["codec"], kind)
+        classified = any(p.get("decode_stated", True) for p in locations)
+        point["value_class"] = value_class(name, point["declaration"], point["unit"], point["codec"], kind, classified)
         point["withheld"] = withheld(point)
         points.append(point)
     return points
@@ -387,7 +397,7 @@ def documented_layouts(name, documented, mapped, declared, only=None):
                          f"register map reads on {only} only")
     for family, (codec, unit) in sorted(declared.items()):
         expected = families.get(family, mapped)
-        if (expected["codec"], expected["unit"]) != (codec, unit):
+        if expected["codec"] != codec or (unit is not UNDECLARED and expected["unit"] != unit):
             raise InputError(f"interpreter of {family} reads {name} as {codec!r} {unit!r}; the "
                              f"documentation states {expected['codec']!r} {expected['unit']!r}")
         families.setdefault(family, mapped)
@@ -400,6 +410,17 @@ def documented_layouts(name, documented, mapped, declared, only=None):
     for family, place in sorted(families.items()):
         split.setdefault(json.dumps(place, sort_keys=True), (place, []))[1].append(family)
     return list(split.values())
+
+
+def with_map_unit(name, place, mapped):
+    """A matrix row that states a value type and leaves the unit blank keeps
+    the unit and scale the map's Decode column states for the same layout."""
+    if place["unit"] or not mapped["unit"]:
+        return place
+    if place["codec"] != mapped["codec"]:
+        raise InputError(f"register matrix reads {name} as {place['codec']!r} without a unit; the "
+                         f"register map states {mapped['codec']!r} in {mapped['unit']!r}")
+    return dict(place, unit=mapped["unit"], divisor=mapped["divisor"])
 
 
 def location_class(place, mapped):
@@ -421,19 +442,21 @@ def controller_locations(root, grouped, services):
         opcode, group, register = key["operation"], key["group"], key["register"]
         labelled.add((opcode, group, register))
         declared = codecs.get((group, register), {}) if opcode == 0x02 else {}
-        documented = matrix.get((opcode, group, register), {})
+        mapped = map_layout(row, (opcode, group, register))
+        documented = {family: with_map_unit(name, place, mapped)
+                      for family, place in matrix.get((opcode, group, register), {}).items()}
         if opcode == 0x06:
             low, high = OP06_SLOTS.get(group, (0, 0))
             rule = "indexed" if group in OP06_SLOTS else "unknown"
         else:
             rule, low, high = rules.get((group, opcode), ("unknown", 0, 0))
         only = one_family(group, register) if opcode == 0x02 else None
-        mapped = map_layout(row, (opcode, group, register))
+        stated = row.get("decode") is not None and row.get("decode") not in UNSTATED_DECODES
         for place, families in documented_layouts(name, documented, mapped, declared, only):
             place = dict(place, opcode=opcode, group=group, register=register, selector="",
                          instance_rule=rule, instance_min=low, instance_max=high,
                          families=families, declaration="",
-                         value_class=location_class(place, mapped),
+                         value_class=location_class(place, mapped), decode_stated=stated,
                          unresolved=row["unresolved"] is not False)
             grouped.setdefault(("controller", name), []).append(place)
         services[("controller", name)] = CONTROLLER_SERVICE

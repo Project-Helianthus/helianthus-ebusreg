@@ -123,6 +123,53 @@ class RuleTests(unittest.TestCase):
             with self.subTest(name=name):
                 self.assertEqual(generator.value_class(name, declaration, unit, codec), value_class)
 
+    def test_a_bare_wire_codec_does_not_classify(self):
+        # A codec alone makes a register numeric only when its Decode column
+        # states a class; an identifier name stays on the identifier withhold.
+        self.assertEqual(generator.value_class("language", "", "", "uint16_le", "", False), "unknown")
+        self.assertEqual(generator.value_class("x_temperature", "", "", "uint16_le", "", False), "numeric")
+        self.assertEqual(generator.value_class("x_level", "", "°C", "uint16_le", "", False), "numeric")
+        for name in ("network_identifier", "hardware_identifier"):
+            with self.subTest(name=name):
+                self.assertEqual(generator.value_class(name, "", "", "uint16_le"), "identifier")
+
+        def assembled(*locations):
+            key = ("controller", "language")
+            return generator.assemble({key: list(locations)}, {key: (0xB5, 0x24)})[0]["value_class"]
+        bare = location(codec="uint16_le", unit="", decode_stated=False)
+        self.assertEqual(assembled(bare), "unknown")
+        self.assertEqual(assembled(bare, location(register=2, codec="uint16_le", unit="")), "numeric")
+        names = names_for(dict(operation=0x02, group=0x03, register=0x0200), {"language": {}},
+                          wire="u16", decode="—")
+        elsewhere = [matrix_row("controller-720", 0x0201, "uint8", [1], group=0x03)]
+        places = controller_join(names, elsewhere)[("controller", "language")]
+        self.assertEqual([place["decode_stated"] for place in places], [False])
+        point = generator.assemble({("controller", "language"): places}, {("controller", "language"): (0xB5, 0x24)})[0]
+        self.assertEqual((point["codec"], point["value_class"], point["withheld"]), ("uint16_le", "unknown", "not_numeric"))
+
+    def test_a_blank_matrix_unit_keeps_the_map_unit(self):
+        def layouts(key, matrix, decode="days"):
+            names = names_for(key, {"base": {}}, wire="u16", decode=decode)
+            return [(p["codec"], p["unit"], p["divisor"], p["families"])
+                    for p in controller_join(names, matrix)[("controller", "base")]]
+        base = dict(operation=0x02, group=0x03, register=0x0200)
+        blank = [matrix_row("controller-700", 0x0200, "uint16 LE", [2], group=0x03)]
+        self.assertEqual(layouts(base, blank), [("uint16_le", "d", 1, ["controller-700", "controller-720"])])
+        self.assertEqual(layouts(base, blank, decode="—"), [("uint16_le", "", 1, ["controller-700", "controller-720"])])
+        stated = [matrix_row("controller-700", 0x0200, "uint16 LE", [2], unit="min", group=0x03)]
+        self.assertEqual(layouts(base, stated), [("uint16_le", "min", 1, ["controller-700"]),
+                                                 ("uint16_le", "d", 1, ["controller-720"])])
+        with self.assertRaisesRegex(generator.InputError, "without a unit"):
+            layouts(base, [matrix_row("controller-700", 0x0200, "uint8", [1], group=0x03)])
+        # An interpreter that declares no unit agrees with the documented one;
+        # an interpreter that declares another unit fails generation.
+        cooling = dict(operation=0x02, group=0x00, register=0x0006)
+        self.assertEqual(layouts(cooling, [matrix_row("controller-700", 0x0006, "uint16 LE", [2])]),
+                         [("uint16_le", "d", 1, ["controller-700", "controller-720"])])
+        timer = dict(operation=0x02, group=0x00, register=0x0017)
+        with self.assertRaisesRegex(generator.InputError, "interpreter"):
+            layouts(timer, [matrix_row("controller-700", 0x0017, "uint16 LE", [2])])
+
     def test_declarations(self):
         self.assertEqual(generator.parse_declaration("DATA2c"), ("DATA2c", 1))
         self.assertEqual(generator.parse_declaration("DATA2b"), ("DATA2b", 1))

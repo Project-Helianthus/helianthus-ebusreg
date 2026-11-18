@@ -17,7 +17,9 @@
   its family and otherwise from the map; a family the matrix does not list
   takes the map's layout unless the map reads the register on one family
   only, and a location on such a register names that one family even when
-  no matrix row lists it. It gives families whose rows differ one location each, fails when
+  no matrix row lists it. A matrix row that leaves the unit blank keeps the
+  map's unit, and a wire type alone does not make a register numeric when
+  its decode column states no class. It gives families whose rows differ one location each, fails when
   a scalar interpreter disagrees with the documented layout, and gives the
   opcode 0x06 groups the map's slot interval 1 to 8. A layout the map
   leaves open (`date`, `time`, `bytes`, `unknown`) gets no codec and stays

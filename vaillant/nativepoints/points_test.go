@@ -368,9 +368,6 @@ func TestControllerCodecsMatchTheScalarInterpreters(t *testing.T) {
 				if result.codec == "" {
 					continue
 				}
-				if result.unit == "Unknown" {
-					result.unit = ""
-				}
 				key := place{group, register}
 				if expected[key] == nil {
 					expected[key] = map[string]probe{}
@@ -404,7 +401,8 @@ func TestControllerCodecsMatchTheScalarInterpreters(t *testing.T) {
 			for _, family := range location.ControllerFamilies {
 				covered[key][family] = true
 				result, interpreted := expected[key][family]
-				if interpreted && (location.Codec != nativepoints.Codec(result.codec) || location.NativeUnit != result.unit) {
+				// An interpreter whose declared unit is "Unknown" states no unit.
+				if interpreted && (location.Codec != nativepoints.Codec(result.codec) || (result.unit != "Unknown" && location.NativeUnit != result.unit)) {
 					t.Errorf("%s at %+v for %s: codec %q unit %q, interpreter %q %q", point.Name, key, family, location.Codec, location.NativeUnit, result.codec, result.unit)
 				}
 			}
@@ -602,6 +600,10 @@ func TestControllerLayoutsFollowTheMatrixAndTheMap(t *testing.T) {
 				want, inMatrix := matrix[key][family]
 				if !inMatrix {
 					want = documented[key]
+				}
+				// A matrix row that leaves the unit blank keeps the map's unit.
+				if inMatrix && want.unit == "" {
+					want.unit, want.divisor = documented[key].unit, documented[key].divisor
 				}
 				if got != want {
 					t.Errorf("%s at %+v for %s: layout %+v, documented %+v", point.Name, key, family, got, want)

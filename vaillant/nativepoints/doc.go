@@ -11,8 +11,10 @@
 // group. A controller location takes its codec, unit and enumeration from the
 // register matrix row of its controller family and otherwise from the map,
 // whose layout also applies to a family the matrix does not list unless the
-// map reads the register on one family only; a register whose layout the
-// documentation leaves open has no codec and stays native and named.
+// map reads the register on one family only; a matrix row that leaves the
+// unit blank keeps the map's unit. A register whose layout the documentation
+// leaves open has no codec and stays native and named, and a wire type alone
+// does not make a register numeric.
 //
 // Each row says whether its value may be exported. A row is exportable only
 // when its name is final, its value class is numeric, its native unit converts

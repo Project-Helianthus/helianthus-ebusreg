@@ -2,7 +2,7 @@
   "schema_version": 1,
   "purpose": "Non-runtime consumer candidate map; textual hits do not establish bindings or absence.",
   "repositories": {
-    "ebusgateway": {
+    "gateway": {
       "source_files": [
         ".github/workflows/ci.yml",
         ".github/workflows/semantic-imports.yml",
@@ -3327,7 +3327,7 @@
       "snapshot_inventory_review": "Compared every supplied source-file inventory entry with the supplied public tree. Added profile/lifecycle helpers do not bind these library names.",
       "binding_review": "The listed registry reference is documentary; runtime consumers use gateway surfaces. Their gateway-contract tests remain required in the coordinated wave."
     },
-    "matter-binding": {
+    "matterreg": {
       "source_files": [
         ".github/workflows/sdk-baseline.yml",
         ".gitignore",
@@ -4918,7 +4918,7 @@
     }
   },
   "absence_searches": "No consumer absence asserted; dynamic paths need semantic inspection.",
-  "documentation_contract": "docs-ebus/architecture/naming.md",
+  "documentation_contract": "docs/architecture/naming.md",
   "unresolved": [
     "duration activity and zero semantics",
     "all non-B524 names without a supported native contract",

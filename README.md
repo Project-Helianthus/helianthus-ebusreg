@@ -14,7 +14,7 @@
 ### What does not belong in this repository
 
 - Byte-level transport, framing, and low-level bus primitives (use `helianthus-ebusgo`).
-- Gateway runtime/API process wiring and live deployment orchestration (use `helianthus-ebusgateway`).
+- Gateway runtime/API process wiring and live deployment orchestration (use `helianthus-gateway`).
 - Protocol-independent photovoltaic semantics (owned by `helianthus-semreg`, `packs/pv`).
   The unused duplicate `pv/` package has been removed; native eBUS registry,
   identity, and projection behavior remains owned here.
@@ -23,12 +23,12 @@
 
 - Active, CI-validated library with stable package-level tests.
 - Suitable for contributor onboarding and issue-focused feature work.
-- Live adapter smoke runs are executed from `helianthus-ebusgateway`; this repo provides the registry/projection core used there.
+- Live adapter smoke runs are executed from `helianthus-gateway`; this repo provides the registry/projection core used there.
 
 ## Helianthus Dependency Chain
 
 ```text
-helianthus-ebusgo  ->  helianthus-ebusreg  ->  helianthus-ebusgateway  ->  integrations/add-ons
+helianthus-ebusgo  ->  helianthus-ebusreg  ->  helianthus-gateway  ->  integrations/add-ons
   (transport)          (registry/schema)        (runtime/api/smoke)
 ```
 
@@ -130,7 +130,7 @@ Deterministic ordering guarantees for projected views:
 ### 1) Clone and baseline checks
 
 ```bash
-git clone https://github.com/d3vi1/helianthus-ebusreg.git
+git clone https://github.com/Project-Helianthus/helianthus-ebusreg.git
 cd helianthus-ebusreg
 go test ./...
 go vet ./...
@@ -201,19 +201,19 @@ eventRouter.SetPlanes(planesFromEntries(entries))
 
 ### Core repos
 
-- `helianthus-ebusgo`: https://github.com/d3vi1/helianthus-ebusgo
-- `helianthus-ebusgateway`: https://github.com/d3vi1/helianthus-ebusgateway
+- `helianthus-ebusgo`: https://github.com/Project-Helianthus/helianthus-ebusgo
+- `helianthus-gateway`: https://github.com/Project-Helianthus/helianthus-gateway
 
 ### Architecture and smoke docs
 
-- Architecture overview: https://github.com/d3vi1/helianthus-docs-ebus/blob/main/architecture/overview.md
-- Architecture decisions: https://github.com/d3vi1/helianthus-docs-ebus/blob/main/architecture/decisions.md
-- Smoke test flow: https://github.com/d3vi1/helianthus-docs-ebus/blob/main/development/smoke-test.md
-- Protocol overview: https://github.com/d3vi1/helianthus-docs-ebus/blob/main/protocols/ebus-overview.md
+- Architecture overview: https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/architecture/overview.md
+- Architecture decisions: https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/architecture/decisions.md
+- Smoke test flow: https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/development/smoke-test.md
+- Protocol overview: https://github.com/Project-Helianthus/helianthus-docs-ebus/blob/main/protocols/ebus-overview.md
 
 ### Issues and workflow conventions
 
-- Issue tracker: https://github.com/d3vi1/helianthus-ebusreg/issues
+- Issue tracker: https://github.com/Project-Helianthus/helianthus-ebusreg/issues
 - Keep one issue-focused branch (example: `issue-70-readme-refresh`).
 - Keep PR scope aligned to issue acceptance criteria.
 - Include closing keyword in PR body (example: `Fixes #70`).

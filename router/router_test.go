@@ -683,3 +683,102 @@ func TestBusEventRouter_InvokeBroadcastSendErrorStillFails(t *testing.T) {
 		t.Fatalf("DecodeResponse calls = %d; want 0", decodeCalls)
 	}
 }
+
+// targetBus answers each request with a single data byte equal to the request
+// target, after an optional delay, and counts calls.
+type targetBus struct {
+	mu        sync.Mutex
+	delay     time.Duration
+	callCount int
+}
+
+func (bus *targetBus) Send(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error) {
+	if bus.delay > 0 {
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		case <-time.After(bus.delay):
+		}
+	}
+	bus.mu.Lock()
+	bus.callCount++
+	bus.mu.Unlock()
+	return &protocol.Frame{
+		Source: frame.Target, Target: frame.Source,
+		Primary: frame.Primary, Secondary: frame.Secondary,
+		Data: []byte{frame.Target},
+	}, nil
+}
+
+func (bus *targetBus) Calls() int {
+	bus.mu.Lock()
+	defer bus.mu.Unlock()
+	return bus.callCount
+}
+
+func addressBoundPlane(target byte) *mockPlane {
+	return &mockPlane{
+		name:    "system",
+		methods: []registry.Method{mockMethod{name: "read_state", readOnly: true, template: mockTemplate{primary: 0xB5, secondary: 0x24}}},
+		buildRequest: func(registry.Method, map[string]any) (protocol.Frame, error) {
+			return protocol.Frame{Source: 0x31, Target: target, Primary: 0xB5, Secondary: 0x24, Data: []byte{0x01}}, nil
+		},
+		decodeResponse: func(_ registry.Method, response protocol.Frame, _ map[string]any) (any, error) {
+			return int(response.Data[0]), nil
+		},
+	}
+}
+
+func TestBusEventRouter_InvokeCacheKeySeparatesTargetsSequential(t *testing.T) {
+	t.Parallel()
+
+	bus := &targetBus{}
+	eventRouter := NewBusEventRouter(bus)
+	params := map[string]any{"addr": 0x10}
+
+	for _, target := range []byte{0x15, 0x08, 0x15} {
+		got, err := eventRouter.Invoke(context.Background(), addressBoundPlane(target), "read_state", params)
+		if err != nil {
+			t.Fatalf("Invoke target=0x%02x error = %v", target, err)
+		}
+		if got != int(target) {
+			t.Fatalf("Invoke target=0x%02x = %v; want %d", target, got, target)
+		}
+	}
+	if got := bus.Calls(); got != 2 {
+		t.Fatalf("bus calls = %d; want 2 (third call served from target 0x15 cache)", got)
+	}
+}
+
+func TestBusEventRouter_InvokeCacheKeySeparatesTargetsConcurrent(t *testing.T) {
+	t.Parallel()
+
+	bus := &targetBus{delay: 40 * time.Millisecond}
+	eventRouter := NewBusEventRouter(bus)
+	params := map[string]any{"addr": 0x10}
+
+	targets := []byte{0x15, 0x08}
+	results := make([]any, len(targets))
+	errs := make([]error, len(targets))
+	var wg sync.WaitGroup
+	for i, target := range targets {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			results[i], errs[i] = eventRouter.Invoke(context.Background(), addressBoundPlane(target), "read_state", params)
+		}()
+	}
+	wg.Wait()
+
+	for i, target := range targets {
+		if errs[i] != nil {
+			t.Fatalf("Invoke target=0x%02x error = %v", target, errs[i])
+		}
+		if results[i] != int(target) {
+			t.Fatalf("Invoke target=0x%02x = %v; want %d", target, results[i], target)
+		}
+	}
+	if got := bus.Calls(); got != 2 {
+		t.Fatalf("bus calls = %d; want 2", got)
+	}
+}

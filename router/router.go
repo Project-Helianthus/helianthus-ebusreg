@@ -235,7 +235,8 @@ func (router *BusEventRouter) HandleBroadcast(frame protocol.Frame) []error {
 // Invoke builds the request of the named method of plane, sends it on the
 // bus and returns the decoded response. Mutating methods are always sent.
 // Read-only methods are coalesced: callers with the same plane name, method
-// name and JSON-encoded params wait for one in-flight request, and a
+// name, JSON-encoded params and resolved request frame (source, target,
+// command bytes, data) wait for one in-flight request, and a
 // successful response is decoded again for later callers until the refresh
 // interval of its class has passed. Failures are not cached. A nil plane or
 // unknown method wraps the ebusgo ErrInvalidPayload; a cancelled ctx stops
@@ -265,7 +266,7 @@ func (router *BusEventRouter) Invoke(ctx context.Context, plane Plane, methodNam
 		return decoded, err
 	}
 
-	cacheKey, err := buildInvokeCacheKey(plane.Name(), method.Name(), params)
+	cacheKey, err := buildInvokeCacheKey(plane.Name(), method.Name(), params, request)
 	if err != nil {
 		return nil, fmt.Errorf("router.Invoke key plane=%s method=%s: %w", plane.Name(), method.Name(), err)
 	}
@@ -456,6 +457,7 @@ func buildInvokeCacheKey(
 	planeName string,
 	methodName string,
 	params map[string]any,
+	request protocol.Frame,
 ) (string, error) {
 	normalizedParams := params
 	if normalizedParams == nil {
@@ -465,7 +467,13 @@ func buildInvokeCacheKey(
 	if err != nil {
 		return "", err
 	}
-	return planeName + "|" + methodName + "|" + string(serialized), nil
+	// The resolved request identity keeps address-bound instances of one plane
+	// from sharing cached or in-flight responses.
+	return fmt.Sprintf(
+		"%s|%s|%s|%02x>%02x|%02x%02x|%x",
+		planeName, methodName, serialized,
+		request.Source, request.Target, request.Primary, request.Secondary, request.Data,
+	), nil
 }
 
 func cloneFrame(frame protocol.Frame) protocol.Frame {

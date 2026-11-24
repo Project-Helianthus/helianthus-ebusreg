@@ -1,6 +1,7 @@
 // Package brink provides the registry plane of the Brink 40xx family. It
 // exposes every documented read and write as a method a caller can invoke by
-// hand; nothing is sent unless a method is called.
+// hand. BuildRequest uses the catalogue encoders. A request the page does not
+// layout returns an error and is not sent.
 package brink
 
 import (
@@ -43,17 +44,19 @@ func (Provider) Match(info registry.DeviceInfo) bool {
 }
 
 // CreatePlanes returns the family plane for a caller-supplied identity. The
-// plane has every documented read and write, and info does not change it.
+// method set does not depend on info. The plane binds info.Address as the
+// request target; a zero address takes the target parameter at invocation.
 func (Provider) CreatePlanes(info registry.DeviceInfo) []registry.Plane {
-	return []registry.Plane{newPlane()}
+	return []registry.Plane{newPlane(info.Address)}
 }
 
 type plane struct {
+	address byte
 	methods []registry.Method
 }
 
-func newPlane() *plane {
-	return &plane{methods: []registry.Method{
+func newPlane(address byte) *plane {
+	return &plane{address: address, methods: []registry.Method{
 		method{name: methodSensorRead, readOnly: true, sb: 0x22},
 		method{name: methodParameterRead, readOnly: true, sb: 0x50},
 		method{name: methodErrorHistoryRead, readOnly: true, sb: 0x90},
@@ -88,24 +91,21 @@ func (m method) ReadOnly() bool {
 }
 
 func (m method) Template() registry.FrameTemplate {
-	return template{primary: 0x40, secondary: m.sb}
+	return m
+}
+
+// Primary returns the family process byte, 0x40.
+func (m method) Primary() byte {
+	return 0x40
+}
+
+// Secondary returns the method's sub-protocol byte.
+func (m method) Secondary() byte {
+	return m.sb
 }
 
 // ResponseSchema is empty: replies are decoded by the catalogue package
 // (catalog/brink), which keeps every reply the page does not define raw.
 func (m method) ResponseSchema() schema.SchemaSelector {
 	return schema.SchemaSelector{}
-}
-
-type template struct {
-	primary   byte
-	secondary byte
-}
-
-func (t template) Primary() byte {
-	return t.primary
-}
-
-func (t template) Secondary() byte {
-	return t.secondary
 }

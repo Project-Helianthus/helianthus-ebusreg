@@ -1,7 +1,7 @@
 // Package weishaupt provides the registry plane of the Weishaupt WRSol and
 // Kromschroeder/Weishaupt memory messages. Every documented write or command
-// is a method a caller can invoke by hand; nothing is sent unless a method is
-// called.
+// is a method a caller can invoke by hand. BuildRequest uses the catalogue
+// encoders. A request the page does not layout returns an error and is not sent.
 package weishaupt
 
 import (
@@ -47,25 +47,28 @@ func (Provider) Match(info registry.DeviceInfo) bool {
 	return matchedManufacturers[strings.ToUpper(strings.TrimSpace(info.Manufacturer))]
 }
 
-// CreatePlanes returns the Weishaupt plane with every documented method.
+// CreatePlanes returns the Weishaupt plane bound to info.Address, with every
+// documented method. A zero address takes the target parameter when the method
+// is invoked. wrsol_datetime_set always addresses FEh.
 func (Provider) CreatePlanes(info registry.DeviceInfo) []registry.Plane {
-	return []registry.Plane{newPlane()}
+	return []registry.Plane{newPlane(info.Address)}
 }
 
 type plane struct {
+	address byte
 	methods []registry.Method
 }
 
-func newPlane() *plane {
-	return &plane{methods: []registry.Method{
+func newPlane(address byte) *plane {
+	return &plane{address: address, methods: []registry.Method{
 		method{name: methodIdentificationRead, primary: 0x07, secondary: 0x04, readOnly: true},
 		method{name: methodRAMRead, primary: 0x09, secondary: 0x00, readOnly: true},
 		method{name: methodDateTimeSet, primary: 0x07, secondary: 0x00},
 		method{name: methodMemoryRead, primary: 0x50, secondary: 0x00, readOnly: true},
 		method{name: methodMemoryWrite, primary: 0x50, secondary: 0x01},
 		// The page states PB 0x09 with SB 0x02 for the secondary-channel read and
-		// SB 0x03 for its write; it states no request layout, so these methods
-		// carry the bytes only and no payload is built here.
+		// SB 0x03 for its write, and no request layout. Invocation returns an
+		// error and sends nothing.
 		method{name: methodSecondaryRead, primary: 0x09, secondary: 0x02, readOnly: true},
 		method{name: methodSecondaryWrite, primary: 0x09, secondary: 0x03},
 	}}
@@ -95,24 +98,21 @@ func (m method) ReadOnly() bool {
 }
 
 func (m method) Template() registry.FrameTemplate {
-	return template{primary: m.primary, secondary: m.secondary}
+	return m
+}
+
+// Primary returns the method's primary command byte.
+func (m method) Primary() byte {
+	return m.primary
+}
+
+// Secondary returns the method's secondary command byte.
+func (m method) Secondary() byte {
+	return m.secondary
 }
 
 // ResponseSchema is empty: replies are decoded by the catalogue package
 // (catalog/weishaupt), which keeps undocumented replies raw.
 func (m method) ResponseSchema() schema.SchemaSelector {
 	return schema.SchemaSelector{}
-}
-
-type template struct {
-	primary   byte
-	secondary byte
-}
-
-func (t template) Primary() byte {
-	return t.primary
-}
-
-func (t template) Secondary() byte {
-	return t.secondary
 }

@@ -1,6 +1,7 @@
 // Package wolf provides the registry plane of the Wolf burner and solar
 // messages. Every documented write or command is a method a caller can invoke
-// by hand; nothing is sent unless a method is called.
+// by hand. BuildRequest uses the catalogue encoders. A request the page does
+// not layout returns an error and is not sent.
 package wolf
 
 import (
@@ -48,18 +49,20 @@ func (Provider) Match(info registry.DeviceInfo) bool {
 	return strings.EqualFold(strings.TrimSpace(info.Manufacturer), wolfManufacturer)
 }
 
-// CreatePlanes returns the Wolf plane with every documented write and command,
-// and the service-parameter read.
+// CreatePlanes returns the Wolf plane bound to info.Address, with every
+// documented write and command and the service-parameter read. A zero address
+// takes the target parameter when the method is invoked.
 func (Provider) CreatePlanes(info registry.DeviceInfo) []registry.Plane {
-	return []registry.Plane{newPlane()}
+	return []registry.Plane{newPlane(info.Address)}
 }
 
 type plane struct {
+	address byte
 	methods []registry.Method
 }
 
-func newPlane() *plane {
-	return &plane{methods: []registry.Method{
+func newPlane(address byte) *plane {
+	return &plane{address: address, methods: []registry.Method{
 		method{name: methodBurnerStatusSend, primary: 0x05, secondary: 0x03},
 		method{name: methodModulationSend, primary: 0x05, secondary: 0x04},
 		method{name: methodHeatRequestSend, primary: 0x05, secondary: 0x07},
@@ -96,24 +99,21 @@ func (m method) ReadOnly() bool {
 }
 
 func (m method) Template() registry.FrameTemplate {
-	return template{primary: m.primary, secondary: m.secondary}
+	return m
+}
+
+// Primary returns the method's primary command byte.
+func (m method) Primary() byte {
+	return m.primary
+}
+
+// Secondary returns the method's secondary command byte.
+func (m method) Secondary() byte {
+	return m.secondary
 }
 
 // ResponseSchema is empty: replies are decoded by the catalogue package
 // (catalog/wolf), which keeps undocumented frames raw.
 func (m method) ResponseSchema() schema.SchemaSelector {
 	return schema.SchemaSelector{}
-}
-
-type template struct {
-	primary   byte
-	secondary byte
-}
-
-func (t template) Primary() byte {
-	return t.primary
-}
-
-func (t template) Secondary() byte {
-	return t.secondary
 }

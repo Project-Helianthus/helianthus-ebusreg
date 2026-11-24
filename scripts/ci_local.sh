@@ -29,6 +29,9 @@ go vet ./...
 echo "==> driver import policy"
 python3 -m unittest discover -s scripts/tests -p driver_imports_test.py
 
+echo "==> preflight self-test"
+python3 -m unittest discover -s scripts/preflight -p 'test_*.py'
+
 echo "==> go build"
 go build ./...
 

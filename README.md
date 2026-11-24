@@ -10,6 +10,7 @@
 - Method/schema modeling and selector decoding (`schema/`).
 - Invoke and broadcast routing (`router/`).
 - Default provider wiring and Vaillant plane implementations (`providers/`, `vaillant/`).
+- Mapping of eBUS data and operations to SemReg through the SemReg driver contract (`github.com/Project-Helianthus/helianthus-semreg/semreg/v1/driver`, `semreg/v1/roweval`, and the exposed `semreg/v1`, `semreg/v1/catalog`, `semreg/v1/operation` and `semreg/v1/packs/thermal` packages).
 
 ### What does not belong in this repository
 
@@ -27,10 +28,20 @@
 
 ## Helianthus Dependency Chain
 
+Imports point down only. Hosts import the driver and SemReg; the driver imports its transport and the SemReg contract.
+
 ```text
-helianthus-ebusgo  ->  helianthus-ebusreg  ->  helianthus-gateway  ->  integrations/add-ons
-  (transport)          (registry/schema)        (runtime/api/smoke)
+host (helianthus-gateway, other hosts) -> helianthus-ebusreg (driver) -> helianthus-ebusgo (transport)
+                                              |
+                                              +-> github.com/Project-Helianthus/helianthus-semreg/semreg/v1/driver
+                                              +-> github.com/Project-Helianthus/helianthus-semreg/semreg/v1/roweval
+                                              +-> github.com/Project-Helianthus/helianthus-semreg/semreg/v1
+                                              +-> github.com/Project-Helianthus/helianthus-semreg/semreg/v1/catalog
+                                              +-> github.com/Project-Helianthus/helianthus-semreg/semreg/v1/operation
+                                              +-> github.com/Project-Helianthus/helianthus-semreg/semreg/v1/packs/thermal
 ```
+
+`scripts/tests/driver_imports_test.py` checks this direction.
 
 ## Method Metadata Contract
 

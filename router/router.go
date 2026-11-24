@@ -259,7 +259,8 @@ func (router *BusEventRouter) Invoke(ctx context.Context, plane Plane, methodNam
 	}
 
 	maxAge := router.invokeMaxAge(plane.Name(), method, params)
-	if maxAge <= 0 {
+	if maxAge <= 0 || request.Target == protocol.AddressBroadcast {
+		// A broadcast has no response frame to cache or replay.
 		decoded, _, err := router.sendAndDecode(ctx, plane, method, params, request)
 		return decoded, err
 	}
@@ -345,6 +346,11 @@ func (router *BusEventRouter) sendAndDecode(
 			method.Name(),
 			err,
 		)
+	}
+	if response == nil && request.Target == protocol.AddressBroadcast {
+		// A broadcast has no response: the transport reports a sent
+		// broadcast as (nil, nil), so there is nothing to decode.
+		return nil, protocol.Frame{}, nil
 	}
 	if response == nil {
 		return nil, protocol.Frame{}, fmt.Errorf(

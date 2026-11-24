@@ -2,7 +2,11 @@
 
 ## Scope
 
-`helianthus-ebusreg` owns eBUS registry, device identity, typed projection planes, and routing helpers. Keep eBUS-specific registry details here; do not add transport/framing, consumer, MCP, GraphQL, or Home Assistant policy.
+`helianthus-ebusreg` owns eBUS registry, device identity, typed projection planes, and routing helpers. Keep eBUS-specific registry details here; transport/framing is not added here, and consumer, MCP, GraphQL, or Home Assistant policy stays out as well.
+
+`helianthus-ebusreg` is the eBUS driver. It owns eBUS device knowledge and its mapping to SemReg in both directions. Hosts import this driver and SemReg; this repository never imports a host.
+
+Among the Helianthus modules, the packages of this repository import only `helianthus-ebusgo` (the eBUS transport), the SemReg driver contract `github.com/Project-Helianthus/helianthus-semreg/semreg/v1/driver`, the row evaluator `github.com/Project-Helianthus/helianthus-semreg/semreg/v1/roweval`, the types exposed at `github.com/Project-Helianthus/helianthus-semreg/semreg/v1`, the exact public packages `github.com/Project-Helianthus/helianthus-semreg/semreg/v1/catalog`, `github.com/Project-Helianthus/helianthus-semreg/semreg/v1/operation` and `github.com/Project-Helianthus/helianthus-semreg/semreg/v1/packs/thermal`, and this module. The standard library and `gopkg.in/yaml.v3`, which `go.mod` already requires, are not restricted. Importing the gateway or any other `helianthus-semreg` package is not allowed. The repository opens no socket, serves no API, and holds no host code. `scripts/tests/driver_imports_test.py` checks this import direction.
 
 This repository is not the universal semantic layer. The planned `helianthus-semreg` repository will own universal, cross-protocol semantics when that work is active.
 

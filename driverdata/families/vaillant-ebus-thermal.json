@@ -1,0 +1,30 @@
+{
+  "family_id": "vaillant-ebus-thermal",
+  "name": "Vaillant eBUS thermal",
+  "native_owner": "Project-Helianthus/helianthus-ebusreg",
+  "semantic_pack": "helianthus.pack.thermal@1.0.0",
+  "state": "candidate",
+  "composition": "composed_legacy",
+  "reason": "legacy_layer_composition",
+  "evidence": [
+    {
+      "owner": "Project-Helianthus/helianthus-ebusreg@2342a8d",
+      "kind": "native_registry",
+      "locator": "registry",
+      "statement": "owner of Vaillant eBUS identity and native evidence; carries no composition claim"
+    },
+    {
+      "owner": "Project-Helianthus/helianthus-docs-semantic@30f5e5c",
+      "kind": "semantic_contract",
+      "locator": "api/v1/packs/thermal-hvac-v1.md",
+      "statement": "thermal.mapping.ebus.companion is a native-owner candidate row; no mapping is normative"
+    },
+    {
+      "owner": "Project-Helianthus/helianthus-ebusgateway@e017a547967e449ffbe76ea779d5892596306f07",
+      "kind": "gateway_composition",
+      "locator": "cmd/gateway/semantic_vaillant.go",
+      "statement": "Vaillant polling feeds graphql.LiveSemanticProvider, the legacy semantic layer, not a SemReg thermal pack publication"
+    }
+  ],
+  "composition_verified": true
+}

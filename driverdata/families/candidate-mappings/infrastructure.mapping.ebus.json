@@ -1,0 +1,12 @@
+{
+  "id": "infrastructure.mapping.ebus",
+  "native_owner": "helianthus-docs-ebus",
+  "source_refs": [
+    "ebus_docs"
+  ],
+  "state": "unknown_profile_specific",
+  "qualification": "identity_provenance_only",
+  "control_route": "none",
+  "live_authority": false,
+  "loss": "unknown"
+}

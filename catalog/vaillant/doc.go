@@ -7,7 +7,10 @@
 // providers and consumers decide what to send and when. It does not
 // establish protocol facts: entries carry their qualification and grade
 // (Proven, Hypothesis or Unknown), and nothing here promotes a Hypothesis
-// or Unknown entry.
+// or Unknown entry. A grade is a recorded level: the package decides nothing
+// from it, and a consumer may publish a documented Hypothesis entry together
+// with its grade. Declared controller and boiler-target rows are answered by
+// the driver's vaillant/system package, not here.
 //
 // Validation is per catalogue, not package-wide. Most loaders and
 // interpreters read their embedded or supplied JSON strictly, rejecting

@@ -7,7 +7,8 @@
 //
 // Every documented write or command has an encoder; the plane methods in
 // providers/weishaupt call them by hand, and nothing is sent unless a method is
-// called. The 0902/0903 secondary channel is not catalogued: the page gives its
-// register count but not its request layout. The package decides no support
-// and no qualification; undocumented replies are kept raw.
+// called. The 0902/0903 secondary messages are passive in the cited TypeSpec
+// source and are not catalogued here: the page gives their register count but
+// no payload layout. The package decides no support and no qualification;
+// undocumented replies are kept raw.
 package weishaupt

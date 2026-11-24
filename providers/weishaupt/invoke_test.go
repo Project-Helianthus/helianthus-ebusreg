@@ -168,8 +168,8 @@ func TestWeishauptInvokeEveryDocumentedRequest(t *testing.T) {
 
 func TestWeishauptInvokeSendsNothingWhenUnspecified(t *testing.T) {
 	raw := map[string]any{"source": byte(0x10), "payload": []byte{0x01, 0x02, 0x03, 0x04}}
-	assertNoSend(t, 0x08, methodSecondaryRead, raw, ebuserrors.ErrInvalidPayload)
-	assertNoSend(t, 0x08, methodSecondaryWrite, raw, ebuserrors.ErrInvalidPayload)
+	assertNoSend(t, 0x08, "kromschroeder_secondary_read", raw, ebuserrors.ErrInvalidPayload)
+	assertNoSend(t, 0x08, "kromschroeder_secondary_write", raw, ebuserrors.ErrInvalidPayload)
 	assertNoSend(t, 0x08, methodMemoryWrite, map[string]any{
 		"source": byte(0x10), "address": uint16(0x0004), "value": []byte{0x2A},
 	}, ebuserrors.ErrInvalidPayload)

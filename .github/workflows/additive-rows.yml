@@ -1,0 +1,126 @@
+name: Additive rows
+on:
+  pull_request:
+
+jobs:
+  classify:
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.gate.outputs.mode }}
+      skip_full: ${{ steps.gate.outputs.skip_full }}
+      source_sha: ${{ steps.gate.outputs.source_sha }}
+      manifest: ${{ steps.gate.outputs.manifest }}
+      donor_repository: ${{ steps.gate.outputs.donor_repository }}
+      donor_sha: ${{ steps.gate.outputs.donor_sha }}
+      packages: ${{ steps.gate.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - id: gate
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+          PR_BASE_REPO_ID: ${{ github.event.pull_request.base.repo.id }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          PR_HEAD_REPO_ID: ${{ github.event.pull_request.head.repo.id }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: python3 scripts/preflight/schedule.py gate
+
+  additive-rows:
+    needs: [classify]
+    if: ${{ needs.classify.outputs.mode == 'fast-additive' || needs.classify.outputs.mode == 'fast-compare' || needs.classify.outputs.mode == 'check-failed' }}
+    # fork pull requests never run on the persistent runners
+    runs-on: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) && 'ubuntu-latest' || 'synology' }}
+    timeout-minutes: 30
+    steps:
+      - name: Scope git config to this job
+        run: echo "GIT_CONFIG_GLOBAL=$RUNNER_TEMP/gitconfig" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+        with:
+          clean: true
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          # The persistent runner keeps its module and build caches on its
+          # volume; restoring the 2.9 GB setup-go cache over them only adds tar
+          # conflicts, and saving it again fails on the existing key. Hosted
+          # runners start empty and keep the cache.
+          cache: ${{ runner.environment == 'github-hosted' }}
+      - run: git config --global url."https://${{ secrets.REPO_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Package tests
+        if: needs.classify.outputs.mode != 'check-failed'
+        run: go test -race -count=1 -timeout 20m ${{ needs.classify.outputs.packages }}
+      - name: Prepare immutable inputs
+        run: |
+          python3 scripts/preflight/schedule.py prepare \
+            --source-sha "${{ needs.classify.outputs.source_sha }}" \
+            --manifest "${{ needs.classify.outputs.manifest }}" \
+            --donor-repository "${{ needs.classify.outputs.donor_repository }}" \
+            --donor-sha "${{ needs.classify.outputs.donor_sha }}" \
+            --tool "$RUNNER_TEMP/docs-semantic" \
+            --donor "$RUNNER_TEMP/donor"
+      - name: Manifest check
+        id: check
+        continue-on-error: true
+        run: python3 "$RUNNER_TEMP/docs-semantic/acceptance/tools/manifest/main.py" check --manifest "$RUNNER_TEMP/docs-semantic/${{ needs.classify.outputs.manifest }}" --donor "$RUNNER_TEMP/donor"
+      - name: Manifest compare
+        id: compare
+        continue-on-error: true
+        run: python3 "$RUNNER_TEMP/docs-semantic/acceptance/tools/manifest/main.py" compare --manifest "$RUNNER_TEMP/docs-semantic/${{ needs.classify.outputs.manifest }}" --destination "$GITHUB_WORKSPACE"
+      - name: Record check and compare
+        if: always()
+        run: |
+          echo "check=${{ steps.check.outcome }}"
+          echo "compare=${{ steps.compare.outcome }}"
+          test "${{ steps.check.outcome }}" = "success"
+          test "${{ steps.compare.outcome }}" = "success"
+      - uses: golangci/golangci-lint-action@v8
+        if: needs.classify.outputs.mode == 'fast-additive'
+        with:
+          version: v2.11.4
+          skip-cache: true
+          install-only: true
+      - name: Preflight
+        if: always() && needs.classify.outputs.mode == 'fast-additive' && steps.check.outcome == 'success' && steps.compare.outcome == 'success'
+        env:
+          GOWORK: 'off'
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+          GOTOOLCHAIN: local
+          GOFLAGS: '-buildvcs=false'
+        run: python3 scripts/preflight/preflight.py --manifest "$RUNNER_TEMP/docs-semantic/${{ needs.classify.outputs.manifest }}" --donor "$RUNNER_TEMP/donor"
+      - name: Size ratchet
+        if: always() && needs.classify.outputs.mode == 'fast-additive' && steps.check.outcome == 'success' && steps.compare.outcome == 'success'
+        env:
+          GOWORK: 'off'
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+          GOTOOLCHAIN: local
+          GOFLAGS: '-buildvcs=false'
+        run: python3 scripts/check_size_ratchet.py
+      - name: Behavior names
+        if: always() && needs.classify.outputs.mode == 'fast-additive' && steps.check.outcome == 'success' && steps.compare.outcome == 'success'
+        env:
+          GOWORK: 'off'
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+          GOTOOLCHAIN: local
+          GOFLAGS: '-buildvcs=false'
+        run: python3 scripts/check_behavior_names.py --check
+      - name: Lint baseline
+        if: always() && needs.classify.outputs.mode == 'fast-additive' && steps.check.outcome == 'success' && steps.compare.outcome == 'success'
+        run: python3 scripts/check_go_lint_baseline.py --check
+      - name: Remove job-scoped git config
+        if: always()
+        run: rm -f "$RUNNER_TEMP/gitconfig"

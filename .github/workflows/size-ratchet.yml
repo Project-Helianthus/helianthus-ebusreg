@@ -6,7 +6,40 @@ on:
 permissions:
   contents: read
 jobs:
+  classify:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.gate.outputs.mode }}
+      skip_full: ${{ steps.gate.outputs.skip_full }}
+      source_sha: ${{ steps.gate.outputs.source_sha }}
+      manifest: ${{ steps.gate.outputs.manifest }}
+      donor_repository: ${{ steps.gate.outputs.donor_repository }}
+      donor_sha: ${{ steps.gate.outputs.donor_sha }}
+      packages: ${{ steps.gate.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - id: gate
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+          PR_BASE_REPO_ID: ${{ github.event.pull_request.base.repo.id }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          PR_HEAD_REPO_ID: ${{ github.event.pull_request.head.repo.id }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: python3 scripts/preflight/schedule.py gate
+
   size-ratchet:
+    needs: [classify]
+    if: ${{ always() && (github.event_name != 'pull_request' || needs.classify.outputs.skip_full != 'true') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

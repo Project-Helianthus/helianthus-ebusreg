@@ -98,7 +98,25 @@ func TestWeishauptWRSolRAMReadRequestAndScales(t *testing.T) {
 }
 
 func TestWeishauptWRSolRAMTableCount(t *testing.T) {
-	if len(ramTable) != 42 {
-		t.Fatalf("RAM rows = %d; the page's address map has 42", len(ramTable))
+	if len(ramTable) != 43 {
+		t.Fatalf("RAM rows = %d; the page's address map has 43", len(ramTable))
+	}
+}
+
+func TestWeishauptWRSolBufferPumpRowDecodes(t *testing.T) {
+	reg, ok := RAMByAddress(0xF4FC)
+	if !ok {
+		t.Fatal("RAMByAddress(0xF4FC) returned no row; the page's address map lists Drehzahl_Puf_WT")
+	}
+	if reg.Name != "Drehzahl_Puf_WT" || reg.Scale != "X10" || reg.Unit != "%" {
+		t.Fatalf("buffer pump row = %#v; want Drehzahl_Puf_WT X10 %%", reg)
+	}
+	// 0x00FA as a little-endian Integer with X10 scale is 25.0 %.
+	f, err := DecodeRAMRead(reg, []byte{0xFA, 0x00})
+	if err != nil {
+		t.Fatalf("decode buffer pump reply: %v", err)
+	}
+	if f.Name != "Drehzahl_Puf_WT" || f.Unit != "%" || f.Value.(float64) != 25 {
+		t.Fatalf("buffer pump field = %#v; want Drehzahl_Puf_WT 25 %%", f)
 	}
 }

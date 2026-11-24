@@ -37,6 +37,8 @@ func TestWeishauptPlaneMethodsAndFlags(t *testing.T) {
 		methodDateTimeSet:        {false, 0x07, 0x00},
 		methodMemoryRead:         {true, 0x50, 0x00},
 		methodMemoryWrite:        {false, 0x50, 0x01},
+		methodSecondaryRead:      {true, 0x09, 0x02},
+		methodSecondaryWrite:     {false, 0x09, 0x03},
 	}
 	got := map[string]registry.Method{}
 	for _, m := range entry.Planes()[0].Methods() {

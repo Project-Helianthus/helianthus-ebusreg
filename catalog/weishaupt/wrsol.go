@@ -194,6 +194,7 @@ var ramTable = []RAMRegister{
 	{Address: 0xF4F4, Name: "TPU", Format: "Integer", Scale: "X10", Unit: "C", Description: "Buffer Bottom Temperature (Puffer Unten Temperatur)"},
 	{Address: 0xF4F6, Name: "TWT", Format: "Integer", Scale: "X10", Unit: "C", Description: "Buffer Plate Heat Exchanger Temperature (Puffer Plattentauscher Temperatur)"},
 	{Address: 0xF4F8, Name: "THR", Format: "Integer", Scale: "X10", Unit: "C", Description: "Heating Return Temperature (Heizungs Rucklauftemperatur)"},
+	{Address: 0xF4FC, Name: "Drehzahl_Puf_WT", Format: "Integer", Scale: "X10", Unit: "%", Description: "Buffer Plate Heat Exchanger Pump Speed (Drehzahl Puffer Plattentauscher Pumpe)"},
 	{Address: 0xF504, Name: "TWW", Format: "Integer", Scale: "X10", Unit: "C", Description: "Hot Water Temperature HV 14 (Warmwasser Temperatur HV 14)"},
 	{Address: 0xF506, Name: "TKW", Format: "Integer", Scale: "X10", Unit: "C", Description: "Cold Water Temperature HV 14 (Kaltwasser Temperatur HV 14)"},
 	{Address: 0xF508, Name: "Drehzahl_WW", Format: "Integer", Scale: "X10", Unit: "%", Description: "DHW Charging Pump Speed HV 14 (Drehzahl Warmwasser Ladepumpe HV 14)"},

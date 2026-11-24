@@ -20,6 +20,8 @@ const (
 	methodDateTimeSet        = "wrsol_datetime_set"
 	methodMemoryRead         = "kromschroeder_memory_read"
 	methodMemoryWrite        = "kromschroeder_memory_write"
+	methodSecondaryRead      = "kromschroeder_secondary_read"
+	methodSecondaryWrite     = "kromschroeder_secondary_write"
 )
 
 // matchedManufacturers are the manufacturer bytes the pages state, as the
@@ -61,6 +63,11 @@ func newPlane() *plane {
 		method{name: methodDateTimeSet, primary: 0x07, secondary: 0x00},
 		method{name: methodMemoryRead, primary: 0x50, secondary: 0x00, readOnly: true},
 		method{name: methodMemoryWrite, primary: 0x50, secondary: 0x01},
+		// The page states PB 0x09 with SB 0x02 for the secondary-channel read and
+		// SB 0x03 for its write; it states no request layout, so these methods
+		// carry the bytes only and no payload is built here.
+		method{name: methodSecondaryRead, primary: 0x09, secondary: 0x02, readOnly: true},
+		method{name: methodSecondaryWrite, primary: 0x09, secondary: 0x03},
 	}}
 }
 

@@ -1054,5 +1054,233 @@
       "freshness": "Unknown",
       "unlisted_codes": "Unknown"
     }
+  },
+  {
+    "id": "ab30_controller-700_gg01_rr000D_u8",
+    "key": {
+      "family": "controller-700",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "value",
+      "alternative": "u8",
+      "group": 1,
+      "instance_scope": "00",
+      "register": 13
+    },
+    "grade": "Hypothesis",
+    "representation_grade": "Proven",
+    "enumeration": {
+      "0": {
+        "value": 0,
+        "label": "cancel"
+      },
+      "6": {
+        "value": 6,
+        "label": "start a one-time DHW load"
+      }
+    },
+    "raw_form": {
+      "encoding": "u8",
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "preserved": true
+    },
+    "raw_fallback": "Preserve raw bytes; unlisted codes and unknown families have Unknown meaning.",
+    "relations": {
+      "identity_grade": "Proven",
+      "candidate_opcode": "OP02",
+      "instance_scope_role": "metadata-only",
+      "width_selection": "explicit alternative; reply length does not select",
+      "family_selection": "explicit; no auto-detection"
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "installed_cardinality": "Unknown",
+      "present_slots": "Unknown",
+      "freshness": "Unknown",
+      "unlisted_codes": "Unknown"
+    }
+  },
+  {
+    "id": "ab30_controller-700_gg02_rr001D_u8",
+    "key": {
+      "family": "controller-700",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "value",
+      "alternative": "u8",
+      "group": 2,
+      "instance_scope": "dynamic",
+      "register": 29
+    },
+    "grade": "Hypothesis",
+    "representation_grade": "Proven",
+    "enumeration": {
+      "0": {
+        "value": 0,
+        "label": "no quick mode"
+      },
+      "2": {
+        "value": 2,
+        "label": "party"
+      },
+      "4": {
+        "value": 4,
+        "label": "one-day holiday"
+      },
+      "5": {
+        "value": 5,
+        "label": "one-day bank holiday"
+      },
+      "6": {
+        "value": 6,
+        "label": "cylinder boost"
+      },
+      "255": {
+        "value": 255,
+        "label": "no action needed"
+      }
+    },
+    "raw_form": {
+      "encoding": "u8",
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "preserved": true
+    },
+    "raw_fallback": "Preserve raw bytes; unlisted codes and unknown families have Unknown meaning.",
+    "relations": {
+      "identity_grade": "Proven",
+      "candidate_opcode": "OP02",
+      "instance_scope_role": "metadata-only",
+      "width_selection": "explicit alternative; reply length does not select",
+      "family_selection": "explicit; no auto-detection"
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "installed_cardinality": "Unknown",
+      "present_slots": "Unknown",
+      "freshness": "Unknown",
+      "unlisted_codes": "Unknown"
+    }
+  },
+  {
+    "id": "ab30_controller-720_gg01_rr000D_u8",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "value",
+      "alternative": "u8",
+      "group": 1,
+      "instance_scope": "00",
+      "register": 13
+    },
+    "grade": "Hypothesis",
+    "representation_grade": "Proven",
+    "enumeration": {
+      "0": {
+        "value": 0,
+        "label": "cancel"
+      },
+      "6": {
+        "value": 6,
+        "label": "start a one-time DHW load"
+      }
+    },
+    "raw_form": {
+      "encoding": "u8",
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "preserved": true
+    },
+    "raw_fallback": "Preserve raw bytes; unlisted codes and unknown families have Unknown meaning.",
+    "relations": {
+      "identity_grade": "Proven",
+      "candidate_opcode": "OP02",
+      "instance_scope_role": "metadata-only",
+      "width_selection": "explicit alternative; reply length does not select",
+      "family_selection": "explicit; no auto-detection"
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "installed_cardinality": "Unknown",
+      "present_slots": "Unknown",
+      "freshness": "Unknown",
+      "unlisted_codes": "Unknown"
+    }
+  },
+  {
+    "id": "ab30_controller-720_gg02_rr001D_u8",
+    "key": {
+      "family": "controller-720",
+      "variant": "none",
+      "primary": 181,
+      "secondary": 36,
+      "operation": 2,
+      "direction": "read",
+      "field": "value",
+      "alternative": "u8",
+      "group": 2,
+      "instance_scope": "dynamic",
+      "register": 29
+    },
+    "grade": "Hypothesis",
+    "representation_grade": "Proven",
+    "enumeration": {
+      "0": {
+        "value": 0,
+        "label": "no quick mode"
+      },
+      "6": {
+        "value": 6,
+        "label": "one-time cylinder loading"
+      },
+      "255": {
+        "value": 255,
+        "label": "no action needed"
+      }
+    },
+    "raw_form": {
+      "encoding": "u8",
+      "width_bytes": 1,
+      "signedness": "unsigned",
+      "preserved": true
+    },
+    "raw_fallback": "Preserve raw bytes; unlisted codes and unknown families have Unknown meaning.",
+    "relations": {
+      "identity_grade": "Proven",
+      "candidate_opcode": "OP02",
+      "instance_scope_role": "metadata-only",
+      "width_selection": "explicit alternative; reply length does not select",
+      "family_selection": "explicit; no auto-detection"
+    },
+    "unknown": {
+      "native_support": "Unknown",
+      "physical_effects": "Unknown",
+      "persistence": "Unknown",
+      "delivery": "Unknown",
+      "installed_cardinality": "Unknown",
+      "present_slots": "Unknown",
+      "freshness": "Unknown",
+      "unlisted_codes": "Unknown"
+    }
   }
 ]

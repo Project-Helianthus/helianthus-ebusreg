@@ -65,7 +65,7 @@ func TestAb30Codebooks(b524FamilyCodebookT *b524FamilyCodebookTesting.T) {
 	if b524FamilyCodebookError := b524FamilyCodebookJSON.Unmarshal(b524FamilyCodebookRaw, &b524FamilyCodebookRows); b524FamilyCodebookError != nil {
 		b524FamilyCodebookT.Fatal(b524FamilyCodebookError)
 	}
-	if len(b524FamilyCodebookRows) != 16 {
+	if len(b524FamilyCodebookRows) != 20 {
 		b524FamilyCodebookT.Fatalf("ab30 finite row count: %d", len(b524FamilyCodebookRows))
 	}
 	b524FamilyCodebookSeen := map[string]bool{}
@@ -76,6 +76,8 @@ func TestAb30Codebooks(b524FamilyCodebookT *b524FamilyCodebookTesting.T) {
 			b524FamilyCodebookScope, b524FamilyCodebookAlternative, b524FamilyCodebookLabels700, b524FamilyCodebookLabels720 string
 		}{
 			{1, 0x0003, "00", "u16", "0:off,1:automatic,2:day", "0:off,1:time-controlled,2:manual"},
+			{1, 0x000D, "00", "u8", "0:cancel,6:start a one-time DHW load", "0:cancel,6:start a one-time DHW load"},
+			{2, 0x001D, "dynamic", "u8", "0:no quick mode,2:party,4:one-day holiday,5:one-day bank holiday,6:cylinder boost,255:no action needed", "0:no quick mode,6:one-time cylinder loading,255:no action needed"},
 			{2, 0x0002, "dynamic", "u16", "0:deactivated,1:heating,2:fixed-flow,3:DHW,4:return-flow,5:pool", "0:deactivated,1:heating,2:fixed-flow,3:DHW,4:return-flow"},
 			{3, 0x0001, "dynamic", "u16", "0:off,1:automatic,2:day", "0:off,1:time-controlled,2:manual"},
 			{3, 0x0006, "dynamic", "u16", "0:off,1:automatic,2:day,3:setback", "0:off,1:time-controlled,2:manual"},

@@ -16,8 +16,8 @@ var (
 	_ registry.Plane = (*plane)(nil)
 )
 
-// Subscriptions returns no broadcast list. Hand invocation sends a directed
-// request; it does not register a passive listener.
+// Subscriptions returns no broadcast list. The passive 09/02 and 09/03
+// messages have no documented payload layout to decode here.
 func (p *plane) Subscriptions() []router.Subscription {
 	return nil
 }
@@ -96,8 +96,6 @@ func (p *plane) DecodeResponse(method registry.Method, response protocol.Frame, 
 		return weishauptcat.DecodeMemoryReply(response.Data)
 	case methodDateTimeSet, methodMemoryWrite:
 		return append([]byte(nil), response.Data...), nil
-	case methodSecondaryRead, methodSecondaryWrite:
-		return nil, unspecified(method.Name())
 	default:
 		return nil, fmt.Errorf("weishaupt DecodeResponse unknown method %q: %w", method.Name(), ebuserrors.ErrInvalidPayload)
 	}
@@ -116,8 +114,6 @@ func (m method) Build(params map[string]any) ([]byte, error) {
 		return buildMemoryRead(params)
 	case methodMemoryWrite:
 		return buildMemoryWrite(params)
-	case methodSecondaryRead, methodSecondaryWrite:
-		return nil, unspecified(m.name)
 	default:
 		return nil, fmt.Errorf("weishaupt BuildRequest unspecified method %q: %w", m.name, ebuserrors.ErrInvalidPayload)
 	}
@@ -234,10 +230,6 @@ func decodeRAM(params map[string]any, payload []byte) (any, error) {
 		return nil, fmt.Errorf("weishaupt ram: %w", err)
 	}
 	return field, nil
-}
-
-func unspecified(name string) error {
-	return fmt.Errorf("weishaupt %s has no documented request layout: %w", name, ebuserrors.ErrInvalidPayload)
 }
 
 func invalidParam(name string) error {

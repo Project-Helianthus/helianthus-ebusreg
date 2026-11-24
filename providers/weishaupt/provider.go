@@ -1,5 +1,5 @@
 // Package weishaupt provides the registry plane of the Weishaupt WRSol and
-// Kromschroeder/Weishaupt memory messages. Every documented write or command
+// Kromschroeder/Weishaupt memory messages. Every documented active write or command
 // is a method a caller can invoke by hand. BuildRequest uses the catalogue
 // encoders. A request the page does not layout returns an error and is not sent.
 package weishaupt
@@ -20,8 +20,6 @@ const (
 	methodDateTimeSet        = "wrsol_datetime_set"
 	methodMemoryRead         = "kromschroeder_memory_read"
 	methodMemoryWrite        = "kromschroeder_memory_write"
-	methodSecondaryRead      = "kromschroeder_secondary_read"
-	methodSecondaryWrite     = "kromschroeder_secondary_write"
 )
 
 // matchedManufacturers are the manufacturer bytes the pages state, as the
@@ -66,11 +64,6 @@ func newPlane(address byte) *plane {
 		method{name: methodDateTimeSet, primary: 0x07, secondary: 0x00},
 		method{name: methodMemoryRead, primary: 0x50, secondary: 0x00, readOnly: true},
 		method{name: methodMemoryWrite, primary: 0x50, secondary: 0x01},
-		// The page states PB 0x09 with SB 0x02 for the secondary-channel read and
-		// SB 0x03 for its write, and no request layout. Invocation returns an
-		// error and sends nothing.
-		method{name: methodSecondaryRead, primary: 0x09, secondary: 0x02, readOnly: true},
-		method{name: methodSecondaryWrite, primary: 0x09, secondary: 0x03},
 	}}
 }
 

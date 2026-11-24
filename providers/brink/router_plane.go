@@ -224,15 +224,15 @@ func integralByte(value any) (byte, bool) {
 	case byte:
 		return typed, true
 	case int:
-		return byteFromInt64(int64(typed))
+		return byteFromSigned(int64(typed))
 	case int8:
-		return byteFromInt64(int64(typed))
+		return byteFromSigned(int64(typed))
 	case int16:
-		return byteFromInt64(int64(typed))
+		return byteFromSigned(int64(typed))
 	case int32:
-		return byteFromInt64(int64(typed))
+		return byteFromSigned(int64(typed))
 	case int64:
-		return byteFromInt64(typed)
+		return byteFromSigned(typed)
 	case uint:
 		return byteFromUint64(uint64(typed))
 	case uint16:
@@ -247,7 +247,7 @@ func integralByte(value any) (byte, bool) {
 		return byteFromFloat(typed)
 	case json.Number:
 		if parsed, err := typed.Int64(); err == nil {
-			return byteFromInt64(parsed)
+			return byteFromSigned(parsed)
 		}
 		floatParsed, err := typed.Float64()
 		if err != nil {
@@ -259,7 +259,7 @@ func integralByte(value any) (byte, bool) {
 	}
 }
 
-func byteFromInt64(value int64) (byte, bool) {
+func byteFromSigned(value int64) (byte, bool) {
 	if value < 0 || value > 255 {
 		return 0, false
 	}

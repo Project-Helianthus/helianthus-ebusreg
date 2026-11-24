@@ -583,3 +583,103 @@ func TestBusEventRouter_InvokeWriteMethodsDoNotUseCache(t *testing.T) {
 		t.Fatalf("calls = %d; want 2 for write method", got)
 	}
 }
+
+func broadcastWritePlane(t *testing.T, target byte, decodeCalls *int) (*mockPlane, protocol.Frame) {
+	t.Helper()
+
+	method := mockMethod{
+		name:     "set_datetime",
+		readOnly: false,
+		template: mockTemplate{primary: 0xB5, secondary: 0x16},
+	}
+	request := protocol.Frame{
+		Source:    0x31,
+		Target:    target,
+		Primary:   0xB5,
+		Secondary: 0x16,
+		Data:      []byte{0x00, 0x01, 0x02},
+	}
+	plane := &mockPlane{
+		name:    "wrsol",
+		methods: []registry.Method{method},
+		buildRequest: func(registry.Method, map[string]any) (protocol.Frame, error) {
+			return request, nil
+		},
+		decodeResponse: func(registry.Method, protocol.Frame, map[string]any) (any, error) {
+			*decodeCalls++
+			return "decoded", nil
+		},
+	}
+	return plane, request
+}
+
+func TestBusEventRouter_InvokeBroadcastWithoutResponseSucceeds(t *testing.T) {
+	t.Parallel()
+
+	decodeCalls := 0
+	plane, request := broadcastWritePlane(t, protocol.AddressBroadcast, &decodeCalls)
+	bus := &mockBus{}
+	router := NewBusEventRouter(bus)
+
+	result, err := router.Invoke(context.Background(), plane, "set_datetime", map[string]any{})
+	if err != nil {
+		t.Fatalf("Invoke error = %v; want nil for a sent broadcast", err)
+	}
+	if result != nil {
+		t.Fatalf("Invoke result = %v; want nil", result)
+	}
+	if bus.callCount != 1 {
+		t.Fatalf("Send calls = %d; want 1", bus.callCount)
+	}
+	if bus.lastRequest.Source != request.Source ||
+		bus.lastRequest.Target != protocol.AddressBroadcast ||
+		bus.lastRequest.Primary != request.Primary ||
+		bus.lastRequest.Secondary != request.Secondary ||
+		string(bus.lastRequest.Data) != string(request.Data) {
+		t.Fatalf("sent frame = %+v; want %+v", bus.lastRequest, request)
+	}
+	if decodeCalls != 0 {
+		t.Fatalf("DecodeResponse calls = %d; want 0", decodeCalls)
+	}
+}
+
+func TestBusEventRouter_InvokeNonBroadcastNilResponseStillFails(t *testing.T) {
+	t.Parallel()
+
+	decodeCalls := 0
+	plane, _ := broadcastWritePlane(t, 0x15, &decodeCalls)
+	bus := &mockBus{}
+	router := NewBusEventRouter(bus)
+
+	_, err := router.Invoke(context.Background(), plane, "set_datetime", map[string]any{})
+	if !errors.Is(err, ebuserrors.ErrInvalidPayload) {
+		t.Fatalf("Invoke error = %v; want ErrInvalidPayload", err)
+	}
+	if bus.callCount != 1 {
+		t.Fatalf("Send calls = %d; want 1", bus.callCount)
+	}
+	if decodeCalls != 0 {
+		t.Fatalf("DecodeResponse calls = %d; want 0", decodeCalls)
+	}
+}
+
+func TestBusEventRouter_InvokeBroadcastSendErrorStillFails(t *testing.T) {
+	t.Parallel()
+
+	decodeCalls := 0
+	plane, _ := broadcastWritePlane(t, protocol.AddressBroadcast, &decodeCalls)
+	sendErr := errors.New("bus down")
+	bus := &mockBus{err: sendErr}
+	router := NewBusEventRouter(bus)
+
+	_, err := router.Invoke(context.Background(), plane, "set_datetime", map[string]any{})
+	if !errors.Is(err, sendErr) {
+		t.Fatalf("Invoke error = %v; want wrapped %v", err, sendErr)
+	}
+	if bus.callCount != 1 {
+		t.Fatalf("Send calls = %d; want 1", bus.callCount)
+	}
+	if decodeCalls != 0 {
+		t.Fatalf("DecodeResponse calls = %d; want 0", decodeCalls)
+	}
+}

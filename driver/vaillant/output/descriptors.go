@@ -107,7 +107,7 @@ var viewAttributes = [...]viewField{
 	{memberKey{Namespace: "ebusreg", Local: "zone.state"}, "zone", "state", "Zone", "State", "ebus_v1_semantic_zones_get", "state", ""},
 	{memberKey{Namespace: "ebusreg", Local: "energy_point_meta.age_seconds"}, "energy_point_meta", "age_seconds", "EnergyPointMeta", "AgeSeconds", "ebus_v1_semantic_energy_totals_get", "age_seconds", "seconds"},
 	{memberKey{Namespace: "ebusreg", Local: "energy_point_meta.freshness_state"}, "energy_point_meta", "freshness_state", "EnergyPointMeta", "FreshnessState", "ebus_v1_semantic_energy_totals_get", "freshness_state", ""},
-	{memberKey{Namespace: "ebusreg", Local: "energy_point_meta.last_observed_utc"}, "energy_point_meta", "last_observed_utc", "EnergyPointMeta", "LastObservedUTC", "ebus_v1_semantic_energy_totals_get", "last_observed_utc", "celsius"},
+	{memberKey{Namespace: "ebusreg", Local: "energy_point_meta.last_observed_utc"}, "energy_point_meta", "last_observed_utc", "EnergyPointMeta", "LastObservedUTC", "ebus_v1_semantic_energy_totals_get", "last_observed_utc", "UTC timestamp"},
 	{memberKey{Namespace: "ebusreg", Local: "energy_point_meta.provenance"}, "energy_point_meta", "provenance", "EnergyPointMeta", "Provenance", "ebus_v1_semantic_energy_totals_get", "provenance", ""},
 	{memberKey{Namespace: "ebusreg", Local: "energy_point_meta.stale"}, "energy_point_meta", "stale", "EnergyPointMeta", "Stale", "ebus_v1_semantic_energy_totals_get", "stale", ""},
 	{memberKey{Namespace: "ebusreg", Local: "energy_series.monthly"}, "energy_series", "monthly", "EnergySeries", "Monthly", "ebus_v1_semantic_energy_totals_get", "monthly", "kWh"},

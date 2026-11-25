@@ -136,6 +136,19 @@ func TestVaillantViewDescriptorsMatchServedFields(t *testing.T) {
 	checkDescriptorNodesAndMethods(t, seen, registered, fields)
 }
 
+func TestVaillantEnergyLastObservedDescriptorUsesUTCUnit(t *testing.T) {
+	const field = "energy_point_meta.last_observed_utc"
+	for _, attr := range viewAttributes {
+		if attr.Key.Local == field {
+			if attr.Unit != "UTC timestamp" {
+				t.Errorf("%s unit = %q, want UTC timestamp", field, attr.Unit)
+			}
+			return
+		}
+	}
+	t.Fatalf("missing descriptor for %s", field)
+}
+
 func descriptorRecordType(record string) string {
 	switch record {
 	case "circuit_managing_device":

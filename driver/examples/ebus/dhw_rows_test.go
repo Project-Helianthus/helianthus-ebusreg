@@ -11,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"regexp"
 	"testing"
 
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
@@ -375,6 +376,8 @@ func compareDHWNative(t *testing.T, ref comparisonRef, got dhwResult, a roweval.
 	}
 }
 
+// Local consistency check of the fixture against its own index entry; the
+// index file itself is not staged, so the index digest is checked for form only.
 func TestDHWSpecificationOperandIsTraceable(t *testing.T) {
 	f := fixtureJSON[struct{ Vectors []dhwVector }](t, "testdata/dhw_vectors.json")
 	found := 0
@@ -387,7 +390,7 @@ func TestDHWSpecificationOperandIsTraceable(t *testing.T) {
 		if s.Origin != "specification" || e.Origin != s.Origin || e.Case != s.Case || e.Path != s.Path || e.Digest != s.Digest {
 			t.Fatalf("%s: operand differs from its index entry: %+v", v.Name, s)
 		}
-		if s.Index.Repository == "" || s.Index.Path != "acceptance/vectors/index.json" || len(s.Index.Digest) != 64 || s.Index.MergedBy == "" {
+		if s.Index.Repository == "" || s.Index.Path != "acceptance/vectors/index.json" || !regexp.MustCompile(`^[0-9a-f]{64}$`).MatchString(s.Index.Digest) || !regexp.MustCompile(`^[0-9a-f]{64}$`).MatchString(s.Digest) || s.Index.MergedBy == "" {
 			t.Fatalf("%s: index entry is not immutable and traceable: %+v", v.Name, s.Index)
 		}
 		if v.Name != "setpoint_50" || *v.Expected.SI != "323.15" {

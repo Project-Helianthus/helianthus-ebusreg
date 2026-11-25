@@ -1,0 +1,345 @@
+type AdapterHardwareInfo struct {
+	FirmwareVersion    string   `json:"firmware_version"`
+	FirmwareChecksum   string   `json:"firmware_checksum"`
+	BootloaderVersion  string   `json:"bootloader_version"`
+	BootloaderChecksum string   `json:"bootloader_checksum"`
+	HardwareID         string   `json:"hardware_id"`
+	HardwareConfig     string   `json:"hardware_config"`
+	Features           byte     `json:"features"`
+	Jumpers            byte     `json:"jumpers"`
+	JumperFlags        []string `json:"jumper_flags"`
+	IsWiFi             bool     `json:"is_wifi"`
+	IsEthernet         bool     `json:"is_ethernet"`
+	TemperatureC       *float64 `json:"temperature_c,omitempty"`
+	SupplyVoltageMV    *int     `json:"supply_voltage_mv,omitempty"`
+	BusVoltageMaxDV    *int     `json:"bus_voltage_max_dv,omitempty"`
+	BusVoltageMinDV    *int     `json:"bus_voltage_min_dv,omitempty"`
+	ResetCause         *string  `json:"reset_cause,omitempty"`
+	ResetCauseCode     *byte    `json:"reset_cause_code,omitempty"`
+	RestartCount       *byte    `json:"restart_count,omitempty"`
+	WiFiRSSIDBm        *int     `json:"wifi_rssi_dbm,omitempty"`
+	LastIdentityQuery  *string  `json:"last_identity_query,omitempty"`
+	LastTelemetryQuery *string  `json:"last_telemetry_query,omitempty"`
+	VersionResponseLen int      `json:"version_response_len"`
+	InfoSupported      bool     `json:"info_supported"`
+}
+
+type BoilerConfig struct {
+	DhwOperatingMode  *string  `json:"dhw_operating_mode,omitempty"`
+	FlowsetHcMaxC     *float64 `json:"maximum_heating_flow_temperature_setpoint,omitempty"`
+	FlowsetHwcMaxC    *float64 `json:"maximum_dhw_flow_temperature_setpoint,omitempty"`
+	PartloadHcKW      *float64 `json:"heating_partial_load_power,omitempty"`
+	PartloadHwcKW     *float64 `json:"dhw_partial_load_power,omitempty"`
+	InstallerMenuCode *int     `json:"central_heating_pump_mode,omitempty"`
+	PhoneNumber       *string  `json:"installer_phone_number,omitempty"`
+	HoursTillService  *int     `json:"service_time_remaining,omitempty"`
+}
+
+type BoilerDiagnostics struct {
+	HeatingStatusRaw         *int     `json:"heating_status_raw,omitempty"`
+	DhwStatusRaw             *int     `json:"dhw_status_raw,omitempty"`
+	CentralHeatingHours      *float64 `json:"central_heating_operating_time,omitempty"`
+	DhwHours                 *float64 `json:"dhw_operating_time,omitempty"`
+	CentralHeatingStarts     *int     `json:"central_heating_start_count,omitempty"`
+	DhwStarts                *int     `json:"dhw_start_count,omitempty"`
+	PumpHours                *float64 `json:"pump_operating_time,omitempty"`
+	FanHours                 *float64 `json:"fan_operating_time,omitempty"`
+	DeactivationsIFC         *int     `json:"fire_control_deactivation_count,omitempty"`
+	DeactivationsTemplimiter *int     `json:"temperature_limiter_deactivation_count,omitempty"`
+}
+
+type BoilerState struct {
+	FlowTemperatureC         *float64 `json:"flow_temperature,omitempty"`
+	ReturnTemperatureC       *float64 `json:"return_temperature_c,omitempty"`
+	CentralHeatingPumpActive *bool    `json:"central_heating_pump_active,omitempty"`
+	WaterPressureBar         *float64 `json:"water_pressure,omitempty"`
+	ExternalPumpActive       *bool    `json:"external_pump_active,omitempty"`
+	CirculationPumpActive    *bool    `json:"circulation_pump_active,omitempty"`
+	GasValveActive           *bool    `json:"gas_valve_active,omitempty"`
+	FlameActive              *bool    `json:"flame_active,omitempty"`
+	DiverterValvePositionPct *float64 `json:"diverter_valve_position,omitempty"`
+	FanSpeedRpm              *int     `json:"fan_speed,omitempty"`
+	TargetFanSpeedRpm        *int     `json:"fan_speed_setpoint,omitempty"`
+	IonisationVoltageUa      *float64 `json:"flame_ionization_current,omitempty"`
+	DhwWaterFlowLpm          *float64 `json:"dhw_water_flow_rate,omitempty"`
+	DhwDemandActive          *bool    `json:"dhw_demand_active,omitempty"`
+	HeatingSwitchActive      *bool    `json:"heating_switch_active,omitempty"`
+	StorageLoadPumpPct       *float64 `json:"storage_loading_pump_level,omitempty"`
+	ModulationPct            *float64 `json:"modulation_setpoint,omitempty"`
+	PrimaryCircuitFlowLpm    *float64 `json:"primary_circuit_flow_rate,omitempty"`
+	FlowTempDesiredC         *float64 `json:"flow_temperature_setpoint,omitempty"`
+	DhwTempDesiredC          *float64 `json:"dhw_temperature_setpoint,omitempty"`
+	StateNumber              *int     `json:"boiler_state_code,omitempty"`
+	DhwTemperatureC          *float64 `json:"dhw_temperature_c,omitempty"`
+	DhwTargetTemperatureC    *float64 `json:"dhw_target_temperature_c,omitempty"`
+}
+
+type BoilerStatus struct {
+	State       *BoilerState       `json:"state,omitempty"`
+	Config      *BoilerConfig      `json:"config,omitempty"`
+	Diagnostics *BoilerDiagnostics `json:"diagnostics,omitempty"`
+}
+
+type CircuitConfig struct {
+	HeatingCurve        *float64 `json:"circuit_heating_curve_factor,omitempty"`
+	FlowTempMaxC        *float64 `json:"heating_circuit_flow_temperature_setpoint_maximum,omitempty"`
+	FlowTempMinC        *float64 `json:"circuit_flow_temperature_setpoint_minimum,omitempty"`
+	SummerLimitC        *float64 `json:"heating_circuit_outdoor_temperature_limit_maximum,omitempty"`
+	SpecialFunctionMode *int     `json:"circuit_special_function_mode,omitempty"`
+	RoomTempControl     string   `json:"circuit_room_temperature_influence_mode,omitempty"`
+	CoolingEnabled      *bool    `json:"circuit_cooling_enabled,omitempty"`
+}
+
+type CircuitState struct {
+	PumpActive       *bool    `json:"circuit_pump_unknown_8,omitempty"`
+	MixerPositionPct *float64 `json:"circuit_mixer_position,omitempty"`
+	FlowTemperatureC *float64 `json:"circuit_flow_temperature,omitempty"`
+	FlowSetpointC    *float64 `json:"circuit_flow_temperature_setpoint,omitempty"`
+	CalcFlowTempC    *float64 `json:"calc_flow_temp_c,omitempty"`
+	CircuitState     string   `json:"circuit_state,omitempty"`
+	Humidity         *float64 `json:"circuit_room_humidity,omitempty"`
+	DewPoint         *float64 `json:"circuit_dew_point_temperature,omitempty"`
+	PumpHours        *float64 `json:"circuit_pump_operating_time_total,omitempty"`
+	PumpStarts       *int     `json:"circuit_pump_start_count_total,omitempty"`
+}
+
+type CircuitStatus struct {
+	Index          int            `json:"index"`
+	CircuitType    string         `json:"circuit_type"`
+	HasMixer       bool           `json:"has_mixer"`
+	State          CircuitState   `json:"state"`
+	Config         CircuitConfig  `json:"config"`
+	ManagingDevice ManagingDevice `json:"managing_device"`
+}
+
+type ConfigBound struct {
+	NarrowedOnly bool    `json:"narrowed_only"`
+	MinC         float64 `json:"min_c"`
+	MaxC         float64 `json:"max_c"`
+	Source       string  `json:"source"`
+	Reason       string  `json:"reason,omitempty"`
+	Profile      string  `json:"profile,omitempty"`
+}
+
+type CylinderStatus struct {
+	Index             int      `json:"index"`
+	TemperatureC      *float64 `json:"temperature_c,omitempty"`
+	MaxSetpointC      *float64 `json:"max_setpoint_c,omitempty"`
+	ChargeHysteresisC *float64 `json:"charge_hysteresis_c,omitempty"`
+	ChargeOffsetC     *float64 `json:"charge_offset_c,omitempty"`
+}
+
+type DhwConfig struct {
+	OperatingMode    string   `json:"dhw_operating_mode"`
+	Preset           string   `json:"preset"`
+	TargetTempC      *float64 `json:"dhw_temperature_setpoint,omitempty"`
+	HolidayStartDate string   `json:"dhw_holiday_start_date,omitempty"`
+	HolidayEndDate   string   `json:"dhw_holiday_end_date,omitempty"`
+}
+
+type DhwState struct {
+	CurrentTempC     *float64 `json:"dhw_temperature,omitempty"`
+	SpecialFunction  string   `json:"dhw_special_function_mode,omitempty"`
+	HeatingDemandPct *float64 `json:"heating_demand_pct,omitempty"`
+}
+
+type DhwStatus struct {
+	State  DhwState  `json:"state"`
+	Config DhwConfig `json:"config"`
+}
+
+type EnergyChannel struct {
+	DHW     EnergySeries `json:"dhw"`
+	Climate EnergySeries `json:"climate"`
+}
+
+type EnergyPointMeta struct {
+	FreshnessState  string  `json:"freshness_state"`
+	Provenance      string  `json:"provenance"`
+	LastObservedUTC string  `json:"last_observed_utc,omitempty"`
+	AgeSeconds      float64 `json:"age_seconds,omitempty"`
+	Stale           bool    `json:"stale"`
+}
+
+type EnergySeries struct {
+	Today       float64           `json:"today"`
+	Yearly      []float64         `json:"yearly"`
+	Monthly     []float64         `json:"monthly,omitempty"`
+	TodayMeta   EnergyPointMeta   `json:"today_meta"`
+	YearlyMeta  []EnergyPointMeta `json:"yearly_meta,omitempty"`
+	MonthlyMeta []EnergyPointMeta `json:"monthly_meta,omitempty"`
+}
+
+type EnergyTotals struct {
+	Gas      EnergyChannel `json:"gas"`
+	Electric EnergyChannel `json:"electric"`
+	Solar    EnergyChannel `json:"solar"`
+}
+
+type Fm5Interpretation struct {
+	Mode             Fm5SemanticMode            `json:"mode"`
+	DegradedReason   *Fm5SemanticDegradedReason `json:"degraded_reason"`
+	EvidenceRevision string                     `json:"evidence_revision"`
+}
+
+type ManagingDevice struct {
+	Role     string  `json:"role"`
+	DeviceID *string `json:"device_id,omitempty"`
+	Address  *int    `json:"address,omitempty"`
+}
+
+type RadioDevice struct {
+	Group                int      `json:"group"`
+	Instance             int      `json:"instance"`
+	SlotMode             string   `json:"slot_mode"`
+	DeviceConnected      *bool    `json:"device_connected,omitempty"`
+	DeviceClassAddress   *int     `json:"device_class_address,omitempty"`
+	DeviceModel          string   `json:"device_model,omitempty"`
+	FirmwareVersion      *string  `json:"firmware_version,omitempty"`
+	HardwareIdentifier   *int     `json:"hardware_identifier,omitempty"`
+	RemoteControlAddress *int     `json:"remote_control_address,omitempty"`
+	DevicePaired         *bool    `json:"device_paired,omitempty"`
+	ReceptionStrength    *int     `json:"reception_strength,omitempty"`
+	ZoneAssignment       *int     `json:"zone_assignment,omitempty"`
+	RoomTemperatureC     *float64 `json:"room_temperature_c,omitempty"`
+	RoomHumidityPct      *float64 `json:"room_humidity_pct,omitempty"`
+}
+
+type ScheduleConfig struct {
+	MaxSlots       int      `json:"max_slots"`
+	TimeResolution int      `json:"time_resolution"`
+	MinDuration    int      `json:"min_duration"`
+	HasTemperature bool     `json:"has_temperature"`
+	TempSlots      int      `json:"temp_slots"`
+	MinTempC       *float64 `json:"min_temp_c,omitempty"`
+	MaxTempC       *float64 `json:"max_temp_c,omitempty"`
+}
+
+type ScheduleDayProgram struct {
+	Weekday string              `json:"weekday"`
+	Slots   []ScheduleTimerSlot `json:"slots"`
+}
+
+type ScheduleProgram struct {
+	Zone      int                  `json:"zone"`
+	HC        string               `json:"hc"`
+	Config    *ScheduleConfig      `json:"config,omitempty"`
+	SlotsUsed []int                `json:"slots_used,omitempty"`
+	Days      []ScheduleDayProgram `json:"days,omitempty"`
+}
+
+type ScheduleStatus struct {
+	Programs []ScheduleProgram `json:"programs"`
+}
+
+type ScheduleTimerSlot struct {
+	StartHour      int      `json:"start_hour"`
+	StartMinute    int      `json:"start_minute"`
+	EndHour        int      `json:"end_hour"`
+	EndMinute      int      `json:"end_minute"`
+	TemperatureC   *float64 `json:"temperature_c,omitempty"`
+	TemperatureRaw *int     `json:"temperature_raw,omitempty"`
+}
+
+type SolarStatus struct {
+	CollectorTemperatureC *float64 `json:"collector_temperature_c,omitempty"`
+	ReturnTemperatureC    *float64 `json:"return_temperature_c,omitempty"`
+	PumpActive            *bool    `json:"pump_active,omitempty"`
+	CurrentYield          *float64 `json:"current_yield,omitempty"`
+	PumpHours             *float64 `json:"pump_hours,omitempty"`
+	SolarEnabled          *bool    `json:"solar_enabled,omitempty"`
+	FunctionMode          *bool    `json:"function_mode,omitempty"`
+}
+
+type SystemConfig struct {
+	AdaptiveHeatingCurve         *bool        `json:"adaptive_heating_curve_enabled,omitempty"`
+	AlternativePoint             *float64     `json:"heating_outdoor_alternative_temperature_limit,omitempty"`
+	HeatingCircuitBivalencePoint *float64     `json:"heating_outdoor_bivalence_temperature_limit,omitempty"`
+	DhwBivalencePoint            *float64     `json:"dhw_outdoor_bivalence_temperature_limit,omitempty"`
+	DhwBivalenceBound            *ConfigBound `json:"dhw_outdoor_bivalence_temperature_limit_bound,omitempty"`
+	HcEmergencyTemperature       *float64     `json:"heating_flow_temperature_setpoint_maximum_at_heat_pump_fault,omitempty"`
+	HwcMaxFlowTempDesired        *float64     `json:"dhw_flow_temperature_setpoint_maximum,omitempty"`
+	MaxRoomHumidity              *int         `json:"room_humidity_limit_maximum,omitempty"`
+	MaintenanceDate              *string      `json:"maintenance_date,omitempty"`
+	InstallerName                *string      `json:"installer_name,omitempty"`
+	InstallerPhone               *string      `json:"installer_phone_number,omitempty"`
+	InstallerMenuCode            *int         `json:"installer_access_code,omitempty"`
+}
+
+type SystemProperties struct {
+	SystemScheme            *int `json:"hydraulic_scheme_code,omitempty"`
+	ModuleConfigurationVR71 *int `json:"functional_module_configuration_code,omitempty"`
+}
+
+type SystemState struct {
+	SystemOff                    *bool    `json:"system_off,omitempty"`
+	SystemWaterPressure          *float64 `json:"water_pressure,omitempty"`
+	SystemFlowTemperature        *float64 `json:"flow_temperature,omitempty"`
+	OutdoorTemperature           *float64 `json:"outdoor_temperature,omitempty"`
+	OutdoorTemperatureAvg24h     *float64 `json:"outdoor_temperature_daily_average,omitempty"`
+	MaintenanceDue               *bool    `json:"maintenance_active,omitempty"`
+	HwcCylinderTemperatureTop    *float64 `json:"dhw_cylinder_top_temperature,omitempty"`
+	HwcCylinderTemperatureBottom *float64 `json:"dhw_cylinder_bottom_temperature,omitempty"`
+}
+
+type SystemStatus struct {
+	State      *SystemState      `json:"state,omitempty"`
+	Config     *SystemConfig     `json:"config,omitempty"`
+	Properties *SystemProperties `json:"properties,omitempty"`
+}
+
+type TimeProgramSlot struct {
+	StartHour    int      `json:"start_hour"`
+	StartMinute  int      `json:"start_minute"`
+	EndHour      int      `json:"end_hour"`
+	EndMinute    int      `json:"end_minute"`
+	TemperatureC *float64 `json:"temperature_c,omitempty"`
+}
+
+type TimeProgramSlotResult struct {
+	SlotIndex int    `json:"slot_index"`
+	Accepted  bool   `json:"accepted"`
+	ErrorCode int    `json:"error_code"`
+	ErrorDesc string `json:"error_description,omitempty"`
+}
+
+type TimeProgramWriteResult struct {
+	Success     bool                    `json:"success"`
+	SlotResults []TimeProgramSlotResult `json:"slot_results"`
+	Error       string                  `json:"error,omitempty"`
+}
+
+type Zone struct {
+	ID     string     `json:"id"`
+	Name   string     `json:"name"`
+	State  ZoneState  `json:"state"`
+	Config ZoneConfig `json:"config"`
+}
+
+type ZoneConfig struct {
+	OperatingMode              string   `json:"operating_mode"`
+	Preset                     string   `json:"preset"`
+	TargetTempC                *float64 `json:"target_temp_c,omitempty"`
+	AllowedModes               []string `json:"allowed_modes,omitempty"`
+	CircuitType                string   `json:"circuit_type,omitempty"`
+	AssociatedCircuit          *int     `json:"associated_circuit,omitempty"`
+	RoomTemperatureZoneMapping *int     `json:"room_temperature_zone_mapping,omitempty"`
+	QuickVeto                  bool     `json:"quick_veto"`
+	QuickVetoSetpointC         *float64 `json:"zone_room_temperature_setpoint_at_quick_veto,omitempty"`
+	QuickVetoDurationH         *float64 `json:"zone_quick_veto_time,omitempty"`
+	QuickVetoExpiry            string   `json:"quick_veto_expiry,omitempty"`
+	HolidayStartDate           string   `json:"zone_holiday_start_date,omitempty"`
+	HolidayEndDate             string   `json:"zone_holiday_end_date,omitempty"`
+	HolidaySetpointC           *float64 `json:"zone_room_temperature_setpoint_at_holiday,omitempty"`
+	HolidayStartTime           string   `json:"zone_holiday_start_clock_time,omitempty"`
+	HolidayEndTime             string   `json:"zone_holiday_end_clock_time,omitempty"`
+}
+
+type ZoneState struct {
+	CurrentTempC       *float64 `json:"zone_room_temperature,omitempty"`
+	CurrentHumidityPct *float64 `json:"zone_room_humidity,omitempty"`
+	HvacAction         string   `json:"hvac_action,omitempty"`
+	SpecialFunction    string   `json:"zone_special_function_mode,omitempty"`
+	HeatingDemandPct   *float64 `json:"heating_demand_pct,omitempty"`
+	ValvePositionPct   *float64 `json:"zone_valve_position,omitempty"`
+}

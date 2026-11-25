@@ -1,0 +1,300 @@
+{
+  "adapter_hardware_info": {
+    "bootloader_checksum": "BootloaderChecksum",
+    "bootloader_version": "BootloaderVersion",
+    "bus_voltage_max_dv": "BusVoltageMaxDV",
+    "bus_voltage_min_dv": "BusVoltageMinDV",
+    "features": "Features",
+    "firmware_checksum": "FirmwareChecksum",
+    "firmware_version": "FirmwareVersion",
+    "hardware_config": "HardwareConfig",
+    "hardware_id": "HardwareID",
+    "info_supported": "InfoSupported",
+    "is_ethernet": "IsEthernet",
+    "is_wifi": "IsWiFi",
+    "jumper_flags": "JumperFlags",
+    "jumpers": "Jumpers",
+    "last_identity_query": "LastIdentityQuery",
+    "last_telemetry_query": "LastTelemetryQuery",
+    "reset_cause": "ResetCause",
+    "reset_cause_code": "ResetCauseCode",
+    "restart_count": "RestartCount",
+    "supply_voltage_mv": "SupplyVoltageMV",
+    "temperature_c": "TemperatureC",
+    "version_response_len": "VersionResponseLen",
+    "wifi_rssi_dbm": "WiFiRSSIDBm"
+  },
+  "boiler_config": {
+    "central_heating_pump_mode": "InstallerMenuCode",
+    "dhw_operating_mode": "DhwOperatingMode",
+    "dhw_partial_load_power": "PartloadHwcKW",
+    "heating_partial_load_power": "PartloadHcKW",
+    "installer_phone_number": "PhoneNumber",
+    "maximum_dhw_flow_temperature_setpoint": "FlowsetHwcMaxC",
+    "maximum_heating_flow_temperature_setpoint": "FlowsetHcMaxC",
+    "service_time_remaining": "HoursTillService"
+  },
+  "boiler_diagnostics": {
+    "central_heating_operating_time": "CentralHeatingHours",
+    "central_heating_start_count": "CentralHeatingStarts",
+    "dhw_operating_time": "DhwHours",
+    "dhw_start_count": "DhwStarts",
+    "dhw_status_raw": "DhwStatusRaw",
+    "fan_operating_time": "FanHours",
+    "fire_control_deactivation_count": "DeactivationsIFC",
+    "heating_status_raw": "HeatingStatusRaw",
+    "pump_operating_time": "PumpHours",
+    "temperature_limiter_deactivation_count": "DeactivationsTemplimiter"
+  },
+  "boiler_state": {
+    "boiler_state_code": "StateNumber",
+    "central_heating_pump_active": "CentralHeatingPumpActive",
+    "circulation_pump_active": "CirculationPumpActive",
+    "dhw_demand_active": "DhwDemandActive",
+    "dhw_target_temperature_c": "DhwTargetTemperatureC",
+    "dhw_temperature_c": "DhwTemperatureC",
+    "dhw_temperature_setpoint": "DhwTempDesiredC",
+    "dhw_water_flow_rate": "DhwWaterFlowLpm",
+    "diverter_valve_position": "DiverterValvePositionPct",
+    "external_pump_active": "ExternalPumpActive",
+    "fan_speed": "FanSpeedRpm",
+    "fan_speed_setpoint": "TargetFanSpeedRpm",
+    "flame_active": "FlameActive",
+    "flame_ionization_current": "IonisationVoltageUa",
+    "flow_temperature": "FlowTemperatureC",
+    "flow_temperature_setpoint": "FlowTempDesiredC",
+    "gas_valve_active": "GasValveActive",
+    "heating_switch_active": "HeatingSwitchActive",
+    "modulation_setpoint": "ModulationPct",
+    "primary_circuit_flow_rate": "PrimaryCircuitFlowLpm",
+    "return_temperature_c": "ReturnTemperatureC",
+    "storage_loading_pump_level": "StorageLoadPumpPct",
+    "water_pressure": "WaterPressureBar"
+  },
+  "boiler_status": {
+    "config": "Config",
+    "diagnostics": "Diagnostics",
+    "state": "State"
+  },
+  "circuit_config": {
+    "circuit_cooling_enabled": "CoolingEnabled",
+    "circuit_flow_temperature_setpoint_minimum": "FlowTempMinC",
+    "circuit_heating_curve_factor": "HeatingCurve",
+    "circuit_room_temperature_influence_mode": "RoomTempControl",
+    "circuit_special_function_mode": "SpecialFunctionMode",
+    "heating_circuit_flow_temperature_setpoint_maximum": "FlowTempMaxC",
+    "heating_circuit_outdoor_temperature_limit_maximum": "SummerLimitC"
+  },
+  "circuit_managing_device": {
+    "address": "Address",
+    "device_id": "DeviceID",
+    "role": "Role"
+  },
+  "circuit_state": {
+    "calc_flow_temp_c": "CalcFlowTempC",
+    "circuit_dew_point_temperature": "DewPoint",
+    "circuit_flow_temperature": "FlowTemperatureC",
+    "circuit_flow_temperature_setpoint": "FlowSetpointC",
+    "circuit_mixer_position": "MixerPositionPct",
+    "circuit_pump_operating_time_total": "PumpHours",
+    "circuit_pump_start_count_total": "PumpStarts",
+    "circuit_pump_unknown_8": "PumpActive",
+    "circuit_room_humidity": "Humidity",
+    "circuit_state": "CircuitState"
+  },
+  "circuit_status": {
+    "circuit_type": "CircuitType",
+    "config": "Config",
+    "has_mixer": "HasMixer",
+    "index": "Index",
+    "managing_device": "ManagingDevice",
+    "state": "State"
+  },
+  "cylinder_status": {
+    "charge_hysteresis_c": "ChargeHysteresisC",
+    "charge_offset_c": "ChargeOffsetC",
+    "index": "Index",
+    "max_setpoint_c": "MaxSetpointC",
+    "temperature_c": "TemperatureC"
+  },
+  "dhw_config": {
+    "dhw_holiday_end_date": "HolidayEndDate",
+    "dhw_holiday_start_date": "HolidayStartDate",
+    "dhw_operating_mode": "OperatingMode",
+    "dhw_temperature_setpoint": "TargetTempC",
+    "operation_mode_changeable": "OperationModeChangeable",
+    "preset": "Preset"
+  },
+  "dhw_state": {
+    "dhw_special_function_mode": "SpecialFunction",
+    "dhw_temperature": "CurrentTempC",
+    "heating_demand_pct": "HeatingDemandPct",
+    "overrun_active": "OverrunActive"
+  },
+  "dhw_status": {
+    "config": "Config",
+    "state": "State"
+  },
+  "energy_channel": {
+    "climate": "Climate",
+    "dhw": "DHW"
+  },
+  "energy_point_meta": {
+    "age_seconds": "AgeSeconds",
+    "freshness_state": "FreshnessState",
+    "last_observed_utc": "LastObservedUTC",
+    "provenance": "Provenance",
+    "stale": "Stale"
+  },
+  "energy_series": {
+    "monthly": "Monthly",
+    "monthly_meta": "MonthlyMeta",
+    "today": "Today",
+    "today_meta": "TodayMeta",
+    "yearly": "Yearly",
+    "yearly_meta": "YearlyMeta"
+  },
+  "energy_totals": {
+    "electric": "Electric",
+    "gas": "Gas",
+    "solar": "Solar"
+  },
+  "fm5_interpretation": {
+    "degraded_reason": "DegradedReason",
+    "evidence_revision": "EvidenceRevision",
+    "mode": "Mode"
+  },
+  "radio_device": {
+    "device_class_address": "DeviceClassAddress",
+    "device_connected": "DeviceConnected",
+    "device_model": "DeviceModel",
+    "device_paired": "DevicePaired",
+    "firmware_version": "FirmwareVersion",
+    "group": "Group",
+    "hardware_identifier": "HardwareIdentifier",
+    "instance": "Instance",
+    "reception_strength": "ReceptionStrength",
+    "remote_control_address": "RemoteControlAddress",
+    "room_humidity_pct": "RoomHumidityPct",
+    "room_temperature_c": "RoomTemperatureC",
+    "slot_mode": "SlotMode",
+    "zone_assignment": "ZoneAssignment"
+  },
+  "schedule_config": {
+    "has_temperature": "HasTemperature",
+    "max_slots": "MaxSlots",
+    "max_temp_c": "MaxTempC",
+    "min_duration": "MinDuration",
+    "min_temp_c": "MinTempC",
+    "temp_slots": "TempSlots",
+    "time_resolution": "TimeResolution"
+  },
+  "schedule_day_program": {
+    "slots": "Slots",
+    "weekday": "Weekday"
+  },
+  "schedule_program": {
+    "config": "Config",
+    "days": "Days",
+    "hc": "HC",
+    "slots_used": "SlotsUsed",
+    "zone": "Zone"
+  },
+  "schedule_status": {
+    "programs": "Programs"
+  },
+  "schedule_timer_slot": {
+    "end_hour": "EndHour",
+    "end_minute": "EndMinute",
+    "start_hour": "StartHour",
+    "start_minute": "StartMinute",
+    "temperature_c": "TemperatureC",
+    "temperature_raw": "TemperatureRaw"
+  },
+  "solar_status": {
+    "collector_temperature_c": "CollectorTemperatureC",
+    "current_yield": "CurrentYield",
+    "function_mode": "FunctionMode",
+    "pump_active": "PumpActive",
+    "pump_hours": "PumpHours",
+    "return_temperature_c": "ReturnTemperatureC",
+    "solar_enabled": "SolarEnabled"
+  },
+  "system_config": {
+    "adaptive_heating_curve_enabled": "AdaptiveHeatingCurve",
+    "dhw_flow_temperature_setpoint_maximum": "HwcMaxFlowTempDesired",
+    "dhw_outdoor_bivalence_temperature_limit": "DhwBivalencePoint",
+    "dhw_outdoor_bivalence_temperature_limit_bound": "DhwBivalenceBound",
+    "heating_flow_temperature_setpoint_maximum_at_heat_pump_fault": "HcEmergencyTemperature",
+    "heating_outdoor_alternative_temperature_limit": "AlternativePoint",
+    "heating_outdoor_bivalence_temperature_limit": "HeatingCircuitBivalencePoint",
+    "installer_access_code": "InstallerMenuCode",
+    "installer_name": "InstallerName",
+    "installer_phone_number": "InstallerPhone",
+    "maintenance_date": "MaintenanceDate",
+    "room_humidity_limit_maximum": "MaxRoomHumidity"
+  },
+  "system_config_bound": {
+    "max_c": "MaxC",
+    "min_c": "MinC",
+    "narrowed_only": "NarrowedOnly",
+    "profile": "Profile",
+    "reason": "Reason",
+    "source": "Source"
+  },
+  "system_properties": {
+    "functional_module_configuration_code": "ModuleConfigurationVR71",
+    "hydraulic_scheme_code": "SystemScheme"
+  },
+  "system_state": {
+    "dhw_cylinder_bottom_temperature": "HwcCylinderTemperatureBottom",
+    "dhw_cylinder_top_temperature": "HwcCylinderTemperatureTop",
+    "flow_temperature": "SystemFlowTemperature",
+    "maintenance_active": "MaintenanceDue",
+    "outdoor_temperature": "OutdoorTemperature",
+    "outdoor_temperature_daily_average": "OutdoorTemperatureAvg24h",
+    "system_off": "SystemOff",
+    "water_pressure": "SystemWaterPressure"
+  },
+  "system_status": {
+    "config": "Config",
+    "gateway_brand": "GatewayBrand",
+    "gateway_vendor": "GatewayVendor",
+    "properties": "Properties",
+    "state": "State"
+  },
+  "zone": {
+    "config": "Config",
+    "id": "ID",
+    "name": "Name",
+    "state": "State"
+  },
+  "zone_config": {
+    "allowed_modes": "AllowedModes",
+    "associated_circuit": "AssociatedCircuit",
+    "circuit_type": "CircuitType",
+    "operating_mode": "OperatingMode",
+    "operation_mode_changeable": "OperationModeChangeable",
+    "preset": "Preset",
+    "quick_veto": "QuickVeto",
+    "quick_veto_expiry": "QuickVetoExpiry",
+    "room_temperature_zone_mapping": "RoomTemperatureZoneMapping",
+    "source_label": "SourceLabel",
+    "target_temp_c": "TargetTempC",
+    "zone_holiday_end_clock_time": "HolidayEndTime",
+    "zone_holiday_end_date": "HolidayEndDate",
+    "zone_holiday_start_clock_time": "HolidayStartTime",
+    "zone_holiday_start_date": "HolidayStartDate",
+    "zone_quick_veto_time": "QuickVetoDurationH",
+    "zone_room_temperature_setpoint_at_holiday": "HolidaySetpointC",
+    "zone_room_temperature_setpoint_at_quick_veto": "QuickVetoSetpointC"
+  },
+  "zone_state": {
+    "heating_demand_pct": "HeatingDemandPct",
+    "hvac_action": "HvacAction",
+    "zone_room_humidity": "CurrentHumidityPct",
+    "zone_room_temperature": "CurrentTempC",
+    "zone_special_function_mode": "SpecialFunction",
+    "zone_valve_position": "ValvePositionPct"
+  }
+}

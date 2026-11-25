@@ -1,8 +1,8 @@
 {
   "format": "ex01-native-response-exemplars/v1",
   "donor": {
-    "repository": "helianthus-gateway",
-    "revision": "the frozen gateway revision named by EX01 item 12; the commit identifier is withheld from published files, and the revision content is identified by source_sha256",
+    "repository": "helianthus-ebusgateway",
+    "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-ebusgateway/pull/1738",
     "source_listing_sha256": "4f9a24f8c3f4ed550bbb5a53c34d09a298040c4066589ff55e3184ab70f79120",
     "source_listing_format": "lines of '<sha256>  <path>' for every source_sha256 entry, sorted by path, newline-terminated",
     "scratch_selections": [

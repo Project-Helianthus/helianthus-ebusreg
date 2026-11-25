@@ -26,9 +26,20 @@ type dhwCaller struct {
 	SubjectKind string `json:"subject_kind"`
 }
 
+type indexRef struct {
+	Repository, Path string
+	Digest           string `json:"sha256"`
+	MergedBy         string `json:"merged_by"`
+	Entry            struct {
+		Case, Path, Origin string
+		Digest             string `json:"sha256"`
+	}
+}
+
 type comparisonRef struct {
 	Case, Path, Origin string
-	Digest             string `json:"sha256"`
+	Digest             string    `json:"sha256"`
+	Index              *indexRef `json:"index"`
 }
 
 type specRef struct {
@@ -41,7 +52,7 @@ type specRef struct {
 			Case, Kind, Path, Origin, Recorder string
 			Digest                             string `json:"sha256"`
 		}
-	}
+	} `json:"index"`
 }
 
 type dhwVector struct {
@@ -329,6 +340,12 @@ func readComparison(t *testing.T, ref comparisonRef) dhwComparison {
 	digest := fmt.Sprintf("%x", sha256.Sum256(raw))
 	if ref.Origin != "recorded-current" || digest != ref.Digest {
 		t.Fatalf("record %s: unexpected origin or checksum %s", ref.Case, digest)
+	}
+	// Every staged record names the frozen index entry it comes from.
+	if x := ref.Index; x == nil || x.Repository != "helianthus-docs-semantic" || x.Path != "acceptance/vectors/index.json" ||
+		!regexp.MustCompile(`^[0-9a-f]{64}$`).MatchString(x.Digest) || x.MergedBy == "" ||
+		x.Entry.Case != ref.Case || x.Entry.Path != ref.Path || x.Entry.Digest != digest || x.Entry.Origin != ref.Origin {
+		t.Fatalf("record %s: not linked to its frozen index entry: %+v", ref.Case, x)
 	}
 	t.Logf("comparison %s (%s), sha256 %s", ref.Case, ref.Path, digest)
 	var data dhwComparison

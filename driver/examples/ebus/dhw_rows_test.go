@@ -30,6 +30,19 @@ type comparisonRef struct {
 	Digest             string `json:"sha256"`
 }
 
+type specRef struct {
+	comparisonRef
+	Index struct {
+		Repository, Path string
+		Digest           string `json:"sha256"`
+		MergedBy         string `json:"merged_by"`
+		Entry            struct {
+			Case, Kind, Path, Origin, Recorder string
+			Digest                             string `json:"sha256"`
+		}
+	}
+}
+
 type dhwVector struct {
 	Name, Selector, Response, Direction, Presentation, Caller string
 	GateResponse                                              *string `json:"gate_response"`
@@ -64,6 +77,7 @@ type dhwVector struct {
 		SIUnit      semreg.DefinitionID `json:"si_unit"`
 	}
 	OldPath  *comparisonRef `json:"old_path"`
+	Spec     *specRef       `json:"specification"`
 	Verbatim *comparisonRef `json:"verbatim_reply_comparison"`
 }
 
@@ -358,5 +372,29 @@ func compareDHWNative(t *testing.T, ref comparisonRef, got dhwResult, a roweval.
 		if !reflect.DeepEqual(q, ob.Quality) {
 			t.Fatalf("shared quality differs: %+v versus %+v", q, ob.Quality)
 		}
+	}
+}
+
+func TestDHWSpecificationOperandIsTraceable(t *testing.T) {
+	f := fixtureJSON[struct{ Vectors []dhwVector }](t, "testdata/dhw_vectors.json")
+	found := 0
+	for _, v := range f.Vectors {
+		if v.Spec == nil || v.Spec.Case == "" {
+			continue
+		}
+		found++
+		s, e := v.Spec, v.Spec.Index.Entry
+		if s.Origin != "specification" || e.Origin != s.Origin || e.Case != s.Case || e.Path != s.Path || e.Digest != s.Digest {
+			t.Fatalf("%s: operand differs from its index entry: %+v", v.Name, s)
+		}
+		if s.Index.Repository == "" || s.Index.Path != "acceptance/vectors/index.json" || len(s.Index.Digest) != 64 || s.Index.MergedBy == "" {
+			t.Fatalf("%s: index entry is not immutable and traceable: %+v", v.Name, s.Index)
+		}
+		if v.Name != "setpoint_50" || *v.Expected.SI != "323.15" {
+			t.Fatalf("%s: unexpected specification operand", v.Name)
+		}
+	}
+	if found != 1 {
+		t.Fatalf("%d specification operands, want the single 50.0 C operand", found)
 	}
 }

@@ -23,6 +23,8 @@ type simulatedAdapter struct {
 	inbound []byte
 	echoes  int
 	written []byte
+	// inFlight runs once, when the first reply byte is delivered: the send has begun and has not completed.
+	inFlight func()
 }
 
 func (a *simulatedAdapter) Write(data []byte) (int, error) {
@@ -38,6 +40,10 @@ func (a *simulatedAdapter) ReadByte() (byte, error) {
 	}
 	if len(a.inbound) == 0 {
 		return 0, ebuserrors.ErrTimeout
+	}
+	if f := a.inFlight; f != nil {
+		a.inFlight = nil
+		f()
 	}
 	b := a.inbound[0]
 	a.inbound = a.inbound[1:]
@@ -77,7 +83,12 @@ func fixtureReply(t *testing.T, frame protocol.Frame, wantRequest, raw []byte, f
 
 func simulateExchange(t *testing.T, frame protocol.Frame, source, target byte, wantRequest, raw []byte, failure string) (*protocol.Frame, error) {
 	t.Helper()
-	adapter := &simulatedAdapter{Loopback: transport.NewLoopback()}
+	return simulateExchangeInFlight(t, frame, source, target, wantRequest, raw, failure, nil)
+}
+
+func simulateExchangeInFlight(t *testing.T, frame protocol.Frame, source, target byte, wantRequest, raw []byte, failure string, inFlight func()) (*protocol.Frame, error) {
+	t.Helper()
+	adapter := &simulatedAdapter{Loopback: transport.NewLoopback(), inFlight: inFlight}
 	var wantErr error
 	switch failure {
 	case "nack":

@@ -519,7 +519,20 @@
         "path": "specification/ss02-vaillant-dhw-0004.new-binding.json",
         "sha256": "295302e08f48c54e5d1efbb64fa678b5643141379c7cb1ce60c7e85d9f3b14b2",
         "origin": "specification",
-        "index": "docs-semantic PR #159"
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004",
+            "kind": "new-binding",
+            "path": "specification/ss02-vaillant-dhw-0004.new-binding.json",
+            "sha256": "295302e08f48c54e5d1efbb64fa678b5643141379c7cb1ce60c7e85d9f3b14b2",
+            "origin": "specification",
+            "recorder": "hand-authored"
+          }
+        }
       },
       "old_path": {
         "case": "vaillant-dhw-0004",

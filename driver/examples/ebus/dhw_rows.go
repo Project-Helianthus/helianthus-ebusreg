@@ -163,15 +163,22 @@ func dhwBinding(nativeID string, fact semreg.DefinitionID, policy semreg.PolicyI
 		Capability: thermalRef("thermal.capability.read.dhw"), When: roweval.When{Equal: equal},
 		Read: &roweval.ReadRow{Fact: thermalRef(fact), Unit: "unit.kelvin", Policy: policy,
 			Dimensions: map[semreg.DefinitionID]string{"thermal.dimension.dhw": "resource"},
-			ToRegistry: roweval.Convert{Hook: "dhw_celsius_to_kelvin"}},
+			ToRegistry: roweval.Convert{Numeric: &roweval.Affine{Num: 1, Den: 1, Add: kelvinOffset}, Hook: "dhw_celsius_to_kelvin"}},
 	}
 }
 
-func dhwKelvin(in roweval.DetachedInputs, _ roweval.RowID, _ roweval.Direction, celsius roweval.TypedValue) (roweval.DerivedValue, roweval.Reason) {
-	x, ok := new(big.Rat).SetString(decimalOperand(celsius.Quantity.Number))
-	if !ok {
+var kelvinOffset = semreg.Decimal{Coefficient: "27315", Exponent10: -2}
+
+func dhwKelvin(in roweval.DetachedInputs, _ roweval.RowID, _ roweval.Direction, kelvin roweval.TypedValue) (roweval.DerivedValue, roweval.Reason) {
+	if kelvin.Quantity == nil {
 		return roweval.DerivedValue{}, roweval.ReasonConversion
 	}
+	k, ok := new(big.Rat).SetString(decimalOperand(kelvin.Quantity.Number))
+	offset, offsetOK := new(big.Rat).SetString(decimalOperand(kelvinOffset))
+	if !ok || !offsetOK {
+		return roweval.DerivedValue{}, roweval.ReasonConversion
+	}
+	celsius := k.Sub(k, offset)
 	q := in.Qualifiers().Values
 	for _, b := range []struct {
 		key string
@@ -182,18 +189,12 @@ func dhwKelvin(in roweval.DetachedInputs, _ roweval.RowID, _ roweval.Direction, 
 			if !valid {
 				return roweval.DerivedValue{}, roweval.ReasonConversion
 			}
-			if x.Cmp(bound) == b.cmp {
+			if celsius.Cmp(bound) == b.cmp {
 				return roweval.DerivedValue{}, roweval.ReasonOutsideDomain
 			}
 		}
 	}
-	x.Add(x, big.NewRat(27315, 100))
-	digits := max(2, -int(celsius.Quantity.Number.Exponent10))
-	n, err := nativeDecimal(x.FloatString(digits))
-	if err != nil {
-		return roweval.DerivedValue{}, roweval.ReasonRegistry
-	}
-	return roweval.DerivedValue{Value: semreg.Value{Kind: semreg.ValueQuantity, Quantity: &semreg.Quantity{Number: n, Unit: "unit.kelvin"}}}, ""
+	return roweval.DerivedValue{Value: kelvin}, ""
 }
 
 func decimalOperand(d semreg.Decimal) string {

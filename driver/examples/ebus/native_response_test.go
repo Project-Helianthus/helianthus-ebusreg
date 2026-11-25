@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"reflect"
+	"sort"
 	"testing"
 
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
@@ -160,5 +161,27 @@ func replayWriteAttempts(t *testing.T, frame protocol.Frame, v nativeResponseVec
 		if err := errText(ack(reply)); err != v.Error {
 			t.Fatalf("acknowledgement %q, recorded %q", err, v.Error)
 		}
+	}
+}
+
+func TestNativeResponseDonorRecord(t *testing.T) {
+	f := fixtureJSON[struct {
+		Donor struct {
+			Repository, Revision string
+			SourceListingSHA256  string `json:"source_listing_sha256"`
+		}
+		SourceSHA256 map[string]string `json:"source_sha256"`
+	}](t, "testdata/vaillant_native_response_vectors.json")
+	paths := make([]string, 0, len(f.SourceSHA256))
+	for p := range f.SourceSHA256 {
+		paths = append(paths, p)
+	}
+	sort.Strings(paths)
+	h := sha256.New()
+	for _, p := range paths {
+		h.Write([]byte(f.SourceSHA256[p] + "  " + p + "\n"))
+	}
+	if f.Donor.Repository == "" || f.Donor.Revision == "" || fmt.Sprintf("%x", h.Sum(nil)) != f.Donor.SourceListingSHA256 {
+		t.Fatalf("donor record does not identify the frozen source set: %+v", f.Donor)
 	}
 }

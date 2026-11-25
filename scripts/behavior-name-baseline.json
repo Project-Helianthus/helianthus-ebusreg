@@ -1,6 +1,11 @@
 {
   "version": 1,
-  "exceptions": [],
+  "exceptions": [
+    {
+      "token": "B524",
+      "reason": "Protocol vocabulary: the Vaillant extended register service, primary 0xB5 and secondary 0x24."
+    }
+  ],
   "baseline": [
     {
       "path": "catalog/ebusstandard/catalog.go",

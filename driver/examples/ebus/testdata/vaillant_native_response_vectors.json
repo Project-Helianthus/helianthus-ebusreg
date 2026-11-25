@@ -1,0 +1,1110 @@
+{
+  "format": "ex01-native-response-exemplars/v1",
+  "receipts": {
+    "gateway": {
+      "exit_status": 0,
+      "sha256": "901017855268ff46f72bd8cae6ce97ab3926b3cdc43a30c65976e024b8c40870"
+    },
+    "mcp": {
+      "exit_status": 0,
+      "sha256": "4ffe747cda94fc10487521d482fd6f5b5cb7f02d6cfca870b2df1a6ddc6cd7de"
+    }
+  },
+  "source_sha256": {
+    "cmd/gateway/semantic_vaillant_b524_access.go": "e36f4462b2727c4fa87a40c383d4b86c2cbab6e8a87f93e53fd6580fa5b538bf",
+    "cmd/gateway/semantic_vaillant_b509_access.go": "e5e4a076348108d3032f83b725313fd6ca9637fae6acd0b26dda482fa8e549f0",
+    "cmd/gateway/semantic_vaillant_discovery.go": "2e3c4a4f43f6ae64be1f41c4f4a3fea93a28dd20c768f554035459acfd36d3ed",
+    "cmd/gateway/semantic_vaillant_dhw.go": "717edac6f3d14739554fd3ee4fa1950d90e681a097dd247237121d7193db40cb",
+    "cmd/gateway/semantic_vaillant_dhw_bound_test.go": "276337a202fb26d905ada5f3b89cd21c8841bb39336ea285e850860a6e522751",
+    "cmd/gateway/semantic_vaillant_passive_test.go": "f9c93e5cac0b9934435c7f4c47a05a0ba316f70dc4a64e571fa9289f551a572b",
+    "cmd/gateway/semantic_vaillant_schedules.go": "3ff6099da0a4efc45479ecd46d6727a7ac77af04b07f7c7b31d52790f2d466be",
+    "cmd/gateway/semantic_vaillant_test.go": "38ca14400dcfb9f38423ebf9657ac0b0f9cfee9c10e2f678efcc77ce23bd1383",
+    "cmd/gateway/vaillant_b503_dispatcher.go": "2178a41f6904403f4dc74b133187cc48c5d666e1a0a00da03b77defba99d5df9",
+    "cmd/gateway/vaillant_b503_dispatcher_test.go": "7f1f0c394c71ae425187b8aa8376a066f1efd86bad6133a2f4a264df421c1436",
+    "cmd/gateway/vaillant_b503_dispatcher_truthtable_test.go": "19ed4202d960618c0aa700480da933347ca7cc553058abcfe1c0c32434d2e140",
+    "cmd/gateway/vaillant_b524_interface_identity.go": "19fd035e7b81a7348413c46a1dde880db4804cac41af31d65144fc35f5fcdff2",
+    "cmd/gateway/vaillant_b524_interface_identity_test.go": "17258a3e287372d66ae5519405a5375d739e8606ee18a4fae45d8a4da8f4d1fa",
+    "cmd/gateway/vaillant_publication_site_test.go": "5c12414dce2fa84da79198536e46509f14d7bae8703b143482de25a508a8173b",
+    "cmd/gateway/b509_decode.go": "8610fd279faf8d4e68573247a87875a0424f9fccbc547b838b4b66d159f4aa8e",
+    "b524_coherency.go": "7ca8e3da117967020998fadfd9a0e62e3976ffde0140ed781f88b8ef67e46314",
+    "internal/vaillant/systemconfig/write_specs.go": "3ba569744ffb32c202ccbfcde227fc4ed9c4be3f1f64b536c44581992a8349fb",
+    "mcp/vaillant_b503.go": "29796eb3989f380206c0ab2829c09f15c3dcc4eb941c12f75f97f1551713929a",
+    "mcp/vaillant_b503_test.go": "ab5852faa801aab25a6a86ef7911808572f8974f495e41118b480fbae1b6fdd7",
+    "go.mod": "8a284925da088047667b682c041837df9d1f6df5a6408cbf23679ec1380cb64c"
+  },
+  "recorder_sha256": {
+    "cmd/gateway/vaillant_native_response_replay_test.go": "f2348ad95324c1a2ca549d7ef7fe8272d16e659789903711a1d5584b6050de38",
+    "mcp/vaillant_b503_native_replay_test.go": "e72350cd9560ab0bc33e74bd1420ae3df426c754c68230b8179c309d59959e49"
+  },
+  "gateway": {
+    "a3_config": {
+      "code": null,
+      "decoded": {
+        "MaxSlots": 3,
+        "TimeResolution": 10,
+        "MinDuration": 10,
+        "HasTemperature": true,
+        "TempSlots": 1,
+        "MinTempC": 5,
+        "MaxTempC": 30
+      },
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "00030a0a0101051e00",
+      "request": "a30100",
+      "secondary": 85,
+      "send_outcome": 1,
+      "source": 240,
+      "target": 21
+    },
+    "a3_wrong_width": {
+      "code": null,
+      "decoded": null,
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "00030a0a0101051e",
+      "request": "a30100",
+      "secondary": 85,
+      "send_outcome": 1,
+      "source": 240,
+      "target": 21
+    },
+    "a4_slots": {
+      "code": null,
+      "decoded": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2
+      ],
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "000101010101020200",
+      "request": "a40100",
+      "secondary": 85,
+      "send_outcome": 1,
+      "source": 240,
+      "target": 21
+    },
+    "a4_wrong_width": {
+      "code": null,
+      "decoded": null,
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "0001010101010202",
+      "request": "a40100",
+      "secondary": 85,
+      "send_outcome": 1,
+      "source": 240,
+      "target": 21
+    },
+    "a5_no_temperature": {
+      "code": null,
+      "decoded": {
+        "StartHour": 6,
+        "StartMinute": 0,
+        "EndHour": 7,
+        "EndMinute": 30,
+        "TemperatureC": null,
+        "TemperatureRaw": null
+      },
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "000600071effff",
+      "request": "a501000200",
+      "secondary": 85,
+      "send_outcome": 1,
+      "source": 240,
+      "target": 21
+    },
+    "a5_timer": {
+      "code": null,
+      "decoded": {
+        "StartHour": 6,
+        "StartMinute": 0,
+        "EndHour": 7,
+        "EndMinute": 30,
+        "TemperatureC": 20,
+        "TemperatureRaw": 200
+      },
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "000600071ec800",
+      "request": "a501000200",
+      "secondary": 85,
+      "send_outcome": 1,
+      "source": 240,
+      "target": 21
+    },
+    "a5_wrong_width": {
+      "code": null,
+      "decoded": null,
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "000600071ec8",
+      "request": "a501000200",
+      "secondary": 85,
+      "send_outcome": 1,
+      "source": 240,
+      "target": 21
+    },
+    "a6_absent_frame": {
+      "code": 255,
+      "decoded": null,
+      "error": "b555 timer write: no response",
+      "present": false,
+      "primary": 181,
+      "request": "a601000200010600071ec800",
+      "secondary": 85,
+      "send_outcome": 2,
+      "source": 240,
+      "target": 21
+    },
+    "a6_nonzero_status": {
+      "code": 3,
+      "decoded": null,
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "03",
+      "request": "a601000200010600071ec800",
+      "secondary": 85,
+      "send_outcome": 1,
+      "source": 240,
+      "target": 21
+    },
+    "a6_present_empty": {
+      "code": 255,
+      "decoded": null,
+      "error": "b555 timer write: empty response",
+      "present": true,
+      "primary": 181,
+      "reply": "",
+      "request": "a601000200010600071ec800",
+      "secondary": 85,
+      "send_outcome": 1,
+      "source": 240,
+      "target": 21
+    },
+    "a6_zero_status": {
+      "code": 0,
+      "decoded": null,
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "00",
+      "request": "a601000200010600071ec800",
+      "secondary": 85,
+      "send_outcome": 1,
+      "source": 240,
+      "target": 21
+    },
+    "b503_ack_decode_failed": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "decode_error": "b503: payload shorter than required for selector: Currenterror wants 10 bytes, got 1",
+      "emitted": true,
+      "error": "",
+      "frame": {
+        "primary": 181,
+        "request": "0001",
+        "secondary": 3,
+        "source": 127,
+        "target": 8
+      },
+      "native": 1,
+      "request": "0001",
+      "response": "19",
+      "send_error": "",
+      "target": 8,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": "19"
+    },
+    "b503_ambiguous": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "emitted": true,
+      "error": "b503dispatcher: upstream rpc failed: proxy diagnostic contains NAK text only",
+      "frame": {
+        "primary": 181,
+        "request": "0003",
+        "secondary": 3,
+        "source": 127,
+        "target": 21
+      },
+      "native": 0,
+      "request": "0003",
+      "send_error": "proxy diagnostic contains NAK text only",
+      "target": 21,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": ""
+    },
+    "b503_current_error": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "decode_error": "",
+      "decoded": {
+        "Slots": [
+          281,
+          65535,
+          65535,
+          65535,
+          65535
+        ]
+      },
+      "emitted": true,
+      "error": "",
+      "frame": {
+        "primary": 181,
+        "request": "0001",
+        "secondary": 3,
+        "source": 127,
+        "target": 8
+      },
+      "native": 1,
+      "request": "0001",
+      "response": "1901ffffffffffffffff",
+      "send_error": "",
+      "target": 8,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": "1901ffffffffffffffff"
+    },
+    "b503_current_service": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "decode_error": "",
+      "decoded": {
+        "Slots": [
+          65535,
+          65535,
+          65535,
+          65535,
+          65535
+        ]
+      },
+      "emitted": true,
+      "error": "",
+      "frame": {
+        "primary": 181,
+        "request": "0002",
+        "secondary": 3,
+        "source": 127,
+        "target": 8
+      },
+      "native": 1,
+      "request": "0002",
+      "response": "ffffffffffffffffffff",
+      "send_error": "",
+      "target": 8,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": "ffffffffffffffffffff"
+    },
+    "b503_duplicate_envelope": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "emitted": false,
+      "error": "b503dispatcher: payload must not start with b5 03 (PB/SB live in Frame envelope, not payload)",
+      "native": 0,
+      "request": "b5030001",
+      "send_error": "",
+      "target": 8,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": ""
+    },
+    "b503_error_history": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "decode_error": "",
+      "decoded": {
+        "Index": 0,
+        "Slots": [
+          281,
+          65535,
+          65535,
+          65535,
+          65535
+        ]
+      },
+      "emitted": true,
+      "error": "",
+      "frame": {
+        "primary": 181,
+        "request": "0101",
+        "secondary": 3,
+        "source": 127,
+        "target": 8
+      },
+      "native": 1,
+      "request": "0101",
+      "response": "001901ffffffffffffffff",
+      "send_error": "",
+      "target": 8,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": "001901ffffffffffffffff"
+    },
+    "b503_live_monitor": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "decode_error": "",
+      "decoded": {
+        "Status": 1,
+        "Function": 0,
+        "Reserved": ""
+      },
+      "emitted": true,
+      "error": "",
+      "frame": {
+        "primary": 181,
+        "request": "0003",
+        "secondary": 3,
+        "source": 127,
+        "target": 8
+      },
+      "native": 1,
+      "request": "0003",
+      "response": "0100",
+      "send_error": "",
+      "target": 8,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": "0100"
+    },
+    "b503_nak": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "emitted": true,
+      "error": "b503dispatcher: upstream rpc failed: target rejected request: ebus: target returned NACK",
+      "frame": {
+        "primary": 181,
+        "request": "0003",
+        "secondary": 3,
+        "source": 127,
+        "target": 21
+      },
+      "native": 2,
+      "request": "0003",
+      "send_error": "target rejected request: ebus: target returned NACK",
+      "target": 21,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": ""
+    },
+    "b503_pre_cancelled": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "emitted": false,
+      "error": "b503dispatcher: ctx canceled before bus turnaround: context canceled",
+      "native": 0,
+      "request": "0001",
+      "send_error": "",
+      "target": 8,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": ""
+    },
+    "b503_service_history": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "decode_error": "",
+      "decoded": {
+        "Index": 0,
+        "Slots": [
+          65535,
+          65535,
+          65535,
+          65535,
+          65535
+        ]
+      },
+      "emitted": true,
+      "error": "",
+      "frame": {
+        "primary": 181,
+        "request": "0102",
+        "secondary": 3,
+        "source": 127,
+        "target": 8
+      },
+      "native": 1,
+      "request": "0102",
+      "response": "00ffffffffffffffffffff",
+      "send_error": "",
+      "target": 8,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": "00ffffffffffffffffffff"
+    },
+    "b503_stale_epoch": {
+      "completion_transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 999
+      },
+      "emitted": true,
+      "error": "b503dispatcher: stale-epoch reply discarded",
+      "frame": {
+        "primary": 181,
+        "request": "0001",
+        "secondary": 3,
+        "source": 127,
+        "target": 8
+      },
+      "native": 0,
+      "request": "0001",
+      "send_error": "",
+      "target": 8,
+      "transport": {
+        "AdapterInstanceID": "test",
+        "TransportEpoch": 1
+      },
+      "wire_reply": "ffffffffffffffffffff"
+    },
+    "b509_read_address_echo": {
+      "decoded": false,
+      "ok": true,
+      "primary": 181,
+      "reply": "4400f0",
+      "request": "0d4400",
+      "secondary": 9,
+      "source": 240,
+      "tail": "f0",
+      "target": 8
+    },
+    "b509_read_address_only": {
+      "decoded": null,
+      "ok": false,
+      "primary": 181,
+      "reply": "4400",
+      "request": "0d4400",
+      "secondary": 9,
+      "source": 240,
+      "tail": "",
+      "target": 8
+    },
+    "b509_read_bare": {
+      "decoded": true,
+      "ok": true,
+      "primary": 181,
+      "reply": "00",
+      "request": "0d4400",
+      "secondary": 9,
+      "source": 240,
+      "tail": "00",
+      "target": 8
+    },
+    "b509_read_header_only": {
+      "decoded": null,
+      "ok": false,
+      "primary": 181,
+      "reply": "0d4400",
+      "request": "0d4400",
+      "secondary": 9,
+      "source": 240,
+      "tail": "",
+      "target": 8
+    },
+    "b509_read_opcode_echo": {
+      "decoded": true,
+      "ok": true,
+      "primary": 181,
+      "reply": "0d440000",
+      "request": "0d4400",
+      "secondary": 9,
+      "source": 240,
+      "tail": "00",
+      "target": 8
+    },
+    "b509_read_other_header_bare": {
+      "decoded": true,
+      "ok": true,
+      "primary": 181,
+      "reply": "0d430000",
+      "request": "0d4400",
+      "secondary": 9,
+      "source": 240,
+      "tail": "0d430000",
+      "target": 8
+    },
+    "b509_read_overwide_native": {
+      "decoded": true,
+      "ok": true,
+      "primary": 181,
+      "reply": "0d44000099",
+      "request": "0d4400",
+      "secondary": 9,
+      "source": 240,
+      "tail": "0099",
+      "target": 8
+    },
+    "b509_read_wrong_width_empty": {
+      "decoded": null,
+      "ok": false,
+      "primary": 181,
+      "reply": "",
+      "request": "0d4400",
+      "secondary": 9,
+      "source": 240,
+      "tail": "",
+      "target": 8
+    },
+    "b509_write_absent_frame": {
+      "error": "b509 write returned nil response",
+      "present": false,
+      "primary": 181,
+      "request": "0e02003344",
+      "requests": [
+        {
+          "primary": 181,
+          "request": "0e02003344",
+          "secondary": 9,
+          "source": 240,
+          "target": 8
+        },
+        {
+          "primary": 181,
+          "request": "0e02003344",
+          "secondary": 9,
+          "source": 240,
+          "target": 8
+        },
+        {
+          "primary": 181,
+          "request": "0e02003344",
+          "secondary": 9,
+          "source": 240,
+          "target": 8
+        }
+      ],
+      "secondary": 9,
+      "source": 240,
+      "target": 8
+    },
+    "b509_write_present_empty": {
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "",
+      "request": "0e02003344",
+      "requests": [
+        {
+          "primary": 181,
+          "request": "0e02003344",
+          "secondary": 9,
+          "source": 240,
+          "target": 8
+        }
+      ],
+      "secondary": 9,
+      "source": 240,
+      "target": 8
+    },
+    "b509_write_present_zero": {
+      "error": "b509 write ack invalid: target=0x08 addr=0x0200",
+      "present": true,
+      "primary": 181,
+      "reply": "00",
+      "request": "0e02003344",
+      "requests": [
+        {
+          "primary": 181,
+          "request": "0e02003344",
+          "secondary": 9,
+          "source": 240,
+          "target": 8
+        },
+        {
+          "primary": 181,
+          "request": "0e02003344",
+          "secondary": 9,
+          "source": 240,
+          "target": 8
+        },
+        {
+          "primary": 181,
+          "request": "0e02003344",
+          "secondary": 9,
+          "source": 240,
+          "target": 8
+        }
+      ],
+      "secondary": 9,
+      "source": 240,
+      "target": 8
+    },
+    "b524_dhw_discovery_header": {
+      "attempts": 1,
+      "ok": true,
+      "primary": 181,
+      "purpose": "discovery",
+      "reply": "0100010300",
+      "request": "020001000300",
+      "secondary": 36,
+      "source": 240,
+      "tail": "",
+      "target": 21
+    },
+    "b524_dhw_discovery_wrong_group": {
+      "attempts": 1,
+      "ok": false,
+      "primary": 181,
+      "purpose": "discovery",
+      "reply": "0100020300",
+      "request": "020001000300",
+      "secondary": 36,
+      "source": 240,
+      "tail": "",
+      "target": 21
+    },
+    "b524_dhw_discovery_wrong_register": {
+      "attempts": 1,
+      "ok": false,
+      "primary": 181,
+      "purpose": "discovery",
+      "reply": "0100010600",
+      "request": "020001000300",
+      "secondary": 36,
+      "source": 240,
+      "tail": "",
+      "target": 21
+    },
+    "b524_dhw_scalar_header": {
+      "attempts": 3,
+      "ok": false,
+      "primary": 181,
+      "purpose": "scalar",
+      "reply": "0100010300",
+      "request": "020001000300",
+      "secondary": 36,
+      "source": 240,
+      "tail": "",
+      "target": 21
+    },
+    "b524_explicit_instance_scalar": {
+      "attempts": 1,
+      "celsius": 50,
+      "ok": true,
+      "primary": 181,
+      "purpose": "scalar",
+      "reply": "010001040000004842",
+      "request": "020001000400",
+      "secondary": 36,
+      "source": 240,
+      "tail": "00004842",
+      "target": 21
+    },
+    "b524_write_absent_frame": {
+      "error": "b524 write returned nil response",
+      "present": false,
+      "primary": 181,
+      "request": "0201000001000000a041",
+      "requests": [
+        {
+          "primary": 181,
+          "request": "0201000001000000a041",
+          "secondary": 36,
+          "source": 240,
+          "target": 21
+        },
+        {
+          "primary": 181,
+          "request": "0201000001000000a041",
+          "secondary": 36,
+          "source": 240,
+          "target": 21
+        },
+        {
+          "primary": 181,
+          "request": "0201000001000000a041",
+          "secondary": 36,
+          "source": 240,
+          "target": 21
+        }
+      ],
+      "secondary": 36,
+      "source": 240,
+      "target": 21
+    },
+    "b524_write_short_ack": {
+      "error": "",
+      "present": true,
+      "primary": 181,
+      "reply": "00",
+      "request": "0201000001000000a041",
+      "requests": [
+        {
+          "primary": 181,
+          "request": "0201000001000000a041",
+          "secondary": 36,
+          "source": 240,
+          "target": 21
+        }
+      ],
+      "secondary": 36,
+      "source": 240,
+      "target": 21
+    },
+    "b524_wrong_instance_scalar": {
+      "attempts": 3,
+      "ok": false,
+      "primary": 181,
+      "purpose": "scalar",
+      "reply": "010201040000004842",
+      "request": "020001000400",
+      "secondary": 36,
+      "source": 240,
+      "tail": "",
+      "target": 21
+    },
+    "identity_invalid_reply": {
+      "complete": false,
+      "session": 1,
+      "steps": [
+        {
+          "present": true,
+          "primary": 181,
+          "qualified": "1",
+          "reply": "0000803f",
+          "request": "000600",
+          "secondary": 36,
+          "source": 113,
+          "target": 21
+        },
+        {
+          "present": true,
+          "primary": 181,
+          "qualified": "",
+          "reply": "000080",
+          "request": "000700",
+          "secondary": 36,
+          "source": 113,
+          "target": 21
+        }
+      ]
+    },
+    "identity_matched": {
+      "complete": true,
+      "observation_matched": true,
+      "session": 1,
+      "steps": [
+        {
+          "present": true,
+          "primary": 181,
+          "qualified": "1",
+          "reply": "0000803f",
+          "request": "000600",
+          "secondary": 36,
+          "source": 113,
+          "target": 21
+        },
+        {
+          "present": true,
+          "primary": 181,
+          "qualified": "2",
+          "reply": "00000040",
+          "request": "000700",
+          "secondary": 36,
+          "source": 113,
+          "target": 21
+        }
+      ]
+    },
+    "identity_missing_companion": {
+      "complete": false,
+      "session": 1,
+      "steps": [
+        {
+          "present": true,
+          "primary": 181,
+          "qualified": "1",
+          "reply": "0000803f",
+          "request": "000600",
+          "secondary": 36,
+          "source": 113,
+          "target": 21
+        },
+        {
+          "present": false,
+          "primary": 181,
+          "reply": "",
+          "request": "000700",
+          "secondary": 36,
+          "source": 113,
+          "target": 21
+        }
+      ]
+    }
+  },
+  "mcp": {
+    "error_history_index_absent": {
+      "data": {
+        "first_active_error": 281,
+        "index": 0,
+        "slots": [
+          281,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "error": null,
+      "meta": {
+        "capabilities": {
+          "vaillant_b503": {
+            "available": true,
+            "reason": "AVAILABLE"
+          }
+        },
+        "consistency": {
+          "mode": "LIVE"
+        },
+        "contract": {
+          "major": 1,
+          "minor": 0,
+          "name": "helianthus-ebus-mcp"
+        }
+      },
+      "probe": "0001",
+      "probe_target": 8,
+      "reply": "001901ffffffffffffffff",
+      "request": "0101",
+      "target": 8
+    },
+    "error_history_index_zero": {
+      "data": {
+        "first_active_error": 281,
+        "index": 0,
+        "slots": [
+          281,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "error": null,
+      "meta": {
+        "capabilities": {
+          "vaillant_b503": {
+            "available": true,
+            "reason": "AVAILABLE"
+          }
+        },
+        "consistency": {
+          "mode": "LIVE"
+        },
+        "contract": {
+          "major": 1,
+          "minor": 0,
+          "name": "helianthus-ebus-mcp"
+        }
+      },
+      "probe": "0001",
+      "probe_target": 8,
+      "reply": "001901ffffffffffffffff",
+      "request": "010100",
+      "target": 8
+    },
+    "live_monitor_disable": {
+      "action": "disable",
+      "data": {
+        "disabled": true
+      },
+      "error": null,
+      "meta": {
+        "capabilities": {
+          "vaillant_b503": {
+            "available": false,
+            "reason": "UNKNOWN"
+          }
+        },
+        "consistency": {
+          "mode": "LIVE"
+        },
+        "contract": {
+          "major": 1,
+          "minor": 0,
+          "name": "helianthus-ebus-mcp"
+        }
+      },
+      "reply": "0100",
+      "request": "0003",
+      "target": 8
+    },
+    "live_monitor_enable": {
+      "action": "enable",
+      "data": {},
+      "error": null,
+      "meta": {
+        "capabilities": {
+          "vaillant_b503": {
+            "available": false,
+            "reason": "UNKNOWN"
+          }
+        },
+        "consistency": {
+          "mode": "LIVE"
+        },
+        "contract": {
+          "major": 1,
+          "minor": 0,
+          "name": "helianthus-ebus-mcp"
+        }
+      },
+      "reply": "0100",
+      "request": "0003",
+      "target": 8
+    },
+    "live_monitor_read": {
+      "action": "read",
+      "data": {
+        "raw_hex": "0100"
+      },
+      "error": null,
+      "meta": {
+        "capabilities": {
+          "vaillant_b503": {
+            "available": false,
+            "reason": "UNKNOWN"
+          }
+        },
+        "consistency": {
+          "mode": "LIVE"
+        },
+        "contract": {
+          "major": 1,
+          "minor": 0,
+          "name": "helianthus-ebus-mcp"
+        }
+      },
+      "reply": "0100",
+      "request": "0003",
+      "target": 8
+    },
+    "service_history_index_absent": {
+      "data": {
+        "first_active_error": 281,
+        "index": 0,
+        "slots": [
+          281,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "error": null,
+      "meta": {
+        "capabilities": {
+          "vaillant_b503": {
+            "available": true,
+            "reason": "AVAILABLE"
+          }
+        },
+        "consistency": {
+          "mode": "LIVE"
+        },
+        "contract": {
+          "major": 1,
+          "minor": 0,
+          "name": "helianthus-ebus-mcp"
+        }
+      },
+      "probe": "0001",
+      "probe_target": 8,
+      "reply": "001901ffffffffffffffff",
+      "request": "0102",
+      "target": 8
+    },
+    "service_history_index_zero": {
+      "data": {
+        "first_active_error": 281,
+        "index": 0,
+        "slots": [
+          281,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "error": null,
+      "meta": {
+        "capabilities": {
+          "vaillant_b503": {
+            "available": true,
+            "reason": "AVAILABLE"
+          }
+        },
+        "consistency": {
+          "mode": "LIVE"
+        },
+        "contract": {
+          "major": 1,
+          "minor": 0,
+          "name": "helianthus-ebus-mcp"
+        }
+      },
+      "probe": "0001",
+      "probe_target": 8,
+      "reply": "001901ffffffffffffffff",
+      "request": "010200",
+      "target": 8
+    }
+  }
+}

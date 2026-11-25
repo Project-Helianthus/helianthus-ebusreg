@@ -1,0 +1,3530 @@
+{
+  "callers": {
+    "synthetic": {
+      "template": {
+        "candidate_id": "candidate.synthetic.1",
+        "key": {
+          "pack_id": "template.key",
+          "pack_version": "9.9.9",
+          "fact_id": "template.fact",
+          "dimensions": []
+        },
+        "value": {
+          "kind": "quantity",
+          "quantity": {
+            "number": {
+              "coefficient": "123",
+              "exponent10": 0
+            },
+            "unit": "unit.kelvin"
+          }
+        },
+        "quality": {
+          "assertion": "observed",
+          "qualification": "qualified",
+          "promotion": "promoted",
+          "validity": "good",
+          "availability": "available",
+          "freshness": "fresh",
+          "reasons": []
+        },
+        "times": {
+          "received_at": {
+            "clock_id": "clock.synthetic",
+            "unix_nanoseconds": "100",
+            "uncertainty_ns": "0"
+          },
+          "receipt_monotonic": {
+            "clock_epoch_id": "clock:synthetic",
+            "nanoseconds": "100"
+          },
+          "evaluated_at": {
+            "clock_id": "clock.synthetic",
+            "unix_nanoseconds": "200",
+            "uncertainty_ns": "0"
+          },
+          "evaluate_monotonic": {
+            "clock_epoch_id": "clock:synthetic",
+            "nanoseconds": "200"
+          },
+          "source_at": {
+            "clock_id": "clock.synthetic",
+            "unix_nanoseconds": "90",
+            "uncertainty_ns": "5"
+          }
+        },
+        "freshness_policy": {
+          "policy_id": "policy.synthetic",
+          "version": "1.0.0",
+          "fresh_for_ns": "1000",
+          "retain_for_ns": "2000",
+          "max_wall_uncertainty_ns": "0"
+        },
+        "binding_id": "binding:synthetic",
+        "source_epoch_id": "epoch:synthetic",
+        "driver_generation": "2",
+        "origin": {
+          "origin_id": "origin.synthetic",
+          "kind": "native_observation",
+          "source_id": "source:synthetic",
+          "source_epoch_id": "epoch:synthetic",
+          "binding_id": "binding:synthetic",
+          "evidence": [
+            {
+              "owner": "test.ebus",
+              "kind": "test.fixture",
+              "contract": "test.ebus/v1",
+              "access": "public",
+              "redaction": "none",
+              "digest": "sha256:45623bb3d7bb06ee4fc558e464945e270ecbbf50254131f02567d7d4e202995b"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "owner": "test.ebus",
+            "kind": "test.fixture",
+            "contract": "test.ebus/v1",
+            "access": "public",
+            "redaction": "none",
+            "digest": "sha256:45623bb3d7bb06ee4fc558e464945e270ecbbf50254131f02567d7d4e202995b"
+          }
+        ],
+        "revision": "1"
+      },
+      "roles": {
+        "Subjects": {
+          "resource": {
+            "ServiceInstance": "dhw:synthetic",
+            "CapabilityInstance": "capability:synthetic"
+          }
+        },
+        "Catalog": [
+          {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "services": [
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.service.dhw",
+                "version": "1.0.0"
+              }
+            ],
+            "capabilities": [
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.capability.read.dhw",
+                "version": "1.0.0"
+              }
+            ],
+            "fields": [
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.setpoint.dhw_temperature_setpoint",
+                "version": "1.0.0"
+              },
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.measurement.dhw_temperature",
+                "version": "1.0.0"
+              }
+            ]
+          }
+        ]
+      },
+      "subject_kind": "resource.domestic_hot_water"
+    },
+    "setpoint_comparison": {
+      "template": {
+        "candidate_id": "candidate.synthetic.1",
+        "key": {
+          "pack_id": "template.key",
+          "pack_version": "9.9.9",
+          "fact_id": "template.fact",
+          "dimensions": []
+        },
+        "value": {
+          "kind": "quantity",
+          "quantity": {
+            "number": {
+              "coefficient": "123",
+              "exponent10": 0
+            },
+            "unit": "unit.kelvin"
+          }
+        },
+        "quality": {
+          "assertion": "observed",
+          "qualification": "qualified",
+          "promotion": "promoted",
+          "validity": "good",
+          "availability": "available",
+          "freshness": "fresh",
+          "reasons": []
+        },
+        "times": {
+          "received_at": {
+            "clock_id": "clock.synthetic",
+            "unix_nanoseconds": "100",
+            "uncertainty_ns": "0"
+          },
+          "receipt_monotonic": {
+            "clock_epoch_id": "clock:synthetic",
+            "nanoseconds": "100"
+          },
+          "evaluated_at": {
+            "clock_id": "clock.synthetic",
+            "unix_nanoseconds": "200",
+            "uncertainty_ns": "0"
+          },
+          "evaluate_monotonic": {
+            "clock_epoch_id": "clock:synthetic",
+            "nanoseconds": "200"
+          }
+        },
+        "freshness_policy": {
+          "policy_id": "policy.synthetic",
+          "version": "1.0.0",
+          "fresh_for_ns": "1000",
+          "retain_for_ns": "2000",
+          "max_wall_uncertainty_ns": "0"
+        },
+        "binding_id": "binding:synthetic",
+        "source_epoch_id": "epoch:synthetic",
+        "driver_generation": "2",
+        "origin": {
+          "origin_id": "origin.synthetic",
+          "kind": "native_observation",
+          "source_id": "source:synthetic",
+          "source_epoch_id": "epoch:synthetic",
+          "binding_id": "binding:synthetic",
+          "evidence": [
+            {
+              "access": "public",
+              "contract": "test.synthetic/v1",
+              "digest": "sha256:0c27c53f67a1b2418e7abda1e592e2de4258783b9bb3c56a83d7c0fa2352603c",
+              "kind": "test.synthetic",
+              "owner": "test.dhw",
+              "redaction": "none"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "access": "public",
+            "contract": "test.synthetic/v1",
+            "digest": "sha256:0c27c53f67a1b2418e7abda1e592e2de4258783b9bb3c56a83d7c0fa2352603c",
+            "kind": "test.synthetic",
+            "owner": "test.dhw",
+            "redaction": "none"
+          }
+        ],
+        "revision": "1"
+      },
+      "roles": {
+        "Subjects": {
+          "resource": {
+            "ServiceInstance": "dhw:synthetic",
+            "CapabilityInstance": "capability:synthetic"
+          }
+        },
+        "Catalog": [
+          {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "services": [
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.service.dhw",
+                "version": "1.0.0"
+              }
+            ],
+            "capabilities": [
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.capability.read.dhw",
+                "version": "1.0.0"
+              }
+            ],
+            "fields": [
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.setpoint.dhw_temperature_setpoint",
+                "version": "1.0.0"
+              },
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.measurement.dhw_temperature",
+                "version": "1.0.0"
+              }
+            ]
+          }
+        ]
+      },
+      "subject_kind": "resource.domestic_hot_water"
+    },
+    "measured_comparison": {
+      "template": {
+        "candidate_id": "candidate.synthetic.1",
+        "key": {
+          "pack_id": "template.key",
+          "pack_version": "9.9.9",
+          "fact_id": "template.fact",
+          "dimensions": []
+        },
+        "value": {
+          "kind": "quantity",
+          "quantity": {
+            "number": {
+              "coefficient": "123",
+              "exponent10": 0
+            },
+            "unit": "unit.kelvin"
+          }
+        },
+        "quality": {
+          "assertion": "observed",
+          "qualification": "qualified",
+          "promotion": "promoted",
+          "validity": "good",
+          "availability": "available",
+          "freshness": "fresh",
+          "reasons": []
+        },
+        "times": {
+          "received_at": {
+            "clock_id": "clock.synthetic",
+            "unix_nanoseconds": "10",
+            "uncertainty_ns": "0"
+          },
+          "receipt_monotonic": {
+            "clock_epoch_id": "clock:synthetic",
+            "nanoseconds": "10"
+          },
+          "evaluated_at": {
+            "clock_id": "clock.synthetic",
+            "unix_nanoseconds": "20",
+            "uncertainty_ns": "0"
+          },
+          "evaluate_monotonic": {
+            "clock_epoch_id": "clock:synthetic",
+            "nanoseconds": "20"
+          }
+        },
+        "freshness_policy": {
+          "policy_id": "policy.synthetic",
+          "version": "1.0.0",
+          "fresh_for_ns": "1000",
+          "retain_for_ns": "2000",
+          "max_wall_uncertainty_ns": "0"
+        },
+        "binding_id": "binding:synthetic",
+        "source_epoch_id": "epoch:synthetic",
+        "driver_generation": "2",
+        "origin": {
+          "origin_id": "origin.synthetic",
+          "kind": "native_observation",
+          "source_id": "source:synthetic",
+          "source_epoch_id": "epoch:synthetic",
+          "binding_id": "binding:synthetic",
+          "evidence": [
+            {
+              "access": "public",
+              "contract": "test.native/v1",
+              "digest": "sha256:068962f7e589628c821ac1b698f660928a93c4da376d1f267541b7da1bfffaa3",
+              "kind": "test.fixture",
+              "owner": "test.native",
+              "redaction": "none"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "access": "public",
+            "contract": "test.native/v1",
+            "digest": "sha256:068962f7e589628c821ac1b698f660928a93c4da376d1f267541b7da1bfffaa3",
+            "kind": "test.fixture",
+            "owner": "test.native",
+            "redaction": "none"
+          }
+        ],
+        "revision": "1"
+      },
+      "roles": {
+        "Subjects": {
+          "resource": {
+            "ServiceInstance": "dhw:synthetic",
+            "CapabilityInstance": "capability:synthetic"
+          }
+        },
+        "Catalog": [
+          {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "services": [
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.service.dhw",
+                "version": "1.0.0"
+              }
+            ],
+            "capabilities": [
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.capability.read.dhw",
+                "version": "1.0.0"
+              }
+            ],
+            "fields": [
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.setpoint.dhw_temperature_setpoint",
+                "version": "1.0.0"
+              },
+              {
+                "pack": {
+                  "id": "helianthus.pack.thermal",
+                  "version": "1.0.0"
+                },
+                "id": "thermal.measurement.dhw_temperature",
+                "version": "1.0.0"
+              }
+            ]
+          }
+        ]
+      },
+      "subject_kind": "resource.domestic_hot_water"
+    }
+  },
+  "vectors": [
+    {
+      "name": "setpoint_50",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "setpoint_comparison",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "50",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature_setpoint",
+          "direction": "controller_to_initiator",
+          "presentation": "controller"
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.setpoint.dhw_temperature_setpoint",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "323.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "case": "vaillant-dhw-0004",
+        "path": "specification/ss02-vaillant-dhw-0004.new-binding.json",
+        "sha256": "295302e08f48c54e5d1efbb64fa678b5643141379c7cb1ce60c7e85d9f3b14b2",
+        "origin": "specification",
+        "index": "docs-semantic PR #159"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0004",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-value-50.native.json",
+        "sha256": "c4b77050dfe86ccf195207a5b8df02af586e1e8cc75ec7dcb977a65ef7c761b4",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "measured_47_5",
+      "selector": "b524020001000500",
+      "gate_response": "010101000100",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature",
+        "native": "47.5",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature",
+          "direction": "target_to_initiator",
+          "presentation": ""
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.measurement.dhw_temperature",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "320.65",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "measured_presentation_is_not_a_qualifier",
+      "selector": "b524020001000500",
+      "gate_response": "010101000100",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "controller_mirror",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature",
+        "native": "47.5",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature",
+          "direction": "target_to_initiator",
+          "presentation": ""
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.measurement.dhw_temperature",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "320.65",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "measured_45_native_parity",
+      "selector": "b524020001000500",
+      "gate_response": "010101000100",
+      "response": "0101050000003442",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "measured_comparison",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": {
+        "Min": "-50",
+        "Max": "150",
+        "Source": "qualified synthetic measured-temperature input",
+        "Scope": "B5/24 local group 01, register 0005"
+      },
+      "expected": {
+        "value_tail": "00003442",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature",
+        "native": "45",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature",
+          "direction": "target_to_initiator",
+          "presentation": ""
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.measurement.dhw_temperature",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "318.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0005",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0005-measured-temperature.native.json",
+        "sha256": "516bbd978a51ee7d25c28d5097b7c2f8953a827306b61f216c779c6aeeaadf82",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "unmatched_legacy_frames",
+      "selector": "b524020001000500",
+      "gate_response": "0201000100",
+      "response": "02010000003442",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "measured_comparison",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "unknown",
+        "read_reason": "unmatched_echo",
+        "gate_reason": "unmatched_echo",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null,
+      "verbatim_reply_comparison": {
+        "case": "vaillant-dhw-0005",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0005-measured-temperature.native.json",
+        "sha256": "516bbd978a51ee7d25c28d5097b7c2f8953a827306b61f216c779c6aeeaadf82",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "setpoint_boundary_35",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000000c42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "setpoint_comparison",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00000c42",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "35",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature_setpoint",
+          "direction": "controller_to_initiator",
+          "presentation": "controller"
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.setpoint.dhw_temperature_setpoint",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "308.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0004-boundary-35",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-boundary-35.native.json",
+        "sha256": "4ebed97d0e9065dd668260487dbbd82898495fcfb4fa8559876aff5ec3a8659b",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "setpoint_boundary_70",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000008c42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "setpoint_comparison",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00008c42",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "70",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature_setpoint",
+          "direction": "controller_to_initiator",
+          "presentation": "controller"
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.setpoint.dhw_temperature_setpoint",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "343.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0004-boundary-70",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-boundary-70.native.json",
+        "sha256": "bdb3d8ba5064aa123b3815480ef822ff56d007edfc6e52c3027176b6c734e1e1",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "setpoint_zero_outside_domain",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000000000",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00000000",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "outside_domain",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "0",
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "setpoint_above_maximum",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000008e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "setpoint_comparison",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00008e42",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "outside_domain",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "71",
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0004-above-bound-71",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-above-bound-71.native.json",
+        "sha256": "938ee47322f18016840a7988a32f28a59206416933804e25f8e9e0c17a08be54",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "setpoint_finite_tail_without_comparable_recorded_number",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "setpoint_comparison",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "50",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature_setpoint",
+          "direction": "controller_to_initiator",
+          "presentation": "controller"
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.setpoint.dhw_temperature_setpoint",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "323.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0004-sentinel-no-value",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-sentinel-no-value.native.json",
+        "sha256": "09688d5d545b22c3655a780683b150b7f78b2acef7c419c8376ecf9c3aa6707f",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "setpoint_zero_permitted",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000000000",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": {
+        "Min": "0",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (zeroPermitted)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00000000",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "0",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature_setpoint",
+          "direction": "controller_to_initiator",
+          "presentation": "controller"
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.setpoint.dhw_temperature_setpoint",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "273.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "measured_zero",
+      "selector": "b524020001000500",
+      "gate_response": "010101000100",
+      "response": "0101050000000000",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00000000",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature",
+        "native": "0",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature",
+          "direction": "target_to_initiator",
+          "presentation": ""
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.measurement.dhw_temperature",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "273.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "measured_below_historical_hint",
+      "selector": "b524020001000500",
+      "gate_response": "010101000100",
+      "response": "01010500000000bf",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": {
+        "Min": "-50",
+        "Max": "150",
+        "Source": "qualified synthetic measured-temperature input",
+        "Scope": "B5/24 local group 01, register 0005"
+      },
+      "expected": {
+        "value_tail": "000000bf",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature",
+        "native": "-0.5",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature",
+          "direction": "target_to_initiator",
+          "presentation": ""
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.measurement.dhw_temperature",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "272.65",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "setpoint_gate_nonboolean_nonzero",
+      "selector": "b524020001000400",
+      "gate_response": "010101000200",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "50",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature_setpoint",
+          "direction": "controller_to_initiator",
+          "presentation": "controller"
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.setpoint.dhw_temperature_setpoint",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "323.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "measured_gate_nonboolean_nonzero",
+      "selector": "b524020001000500",
+      "gate_response": "010101000200",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature",
+        "native": "47.5",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature",
+          "direction": "target_to_initiator",
+          "presentation": ""
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.measurement.dhw_temperature",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "320.65",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "setpoint_explicit_instance",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "010001040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": 0,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "50",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature_setpoint",
+          "direction": "controller_to_initiator",
+          "presentation": "controller"
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.setpoint.dhw_temperature_setpoint",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "323.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "setpoint_explicit_successor",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "010101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": 1,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "50",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature_setpoint",
+          "direction": "controller_to_initiator",
+          "presentation": "controller"
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.setpoint.dhw_temperature_setpoint",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "323.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "setpoint_explicit_wrong_instance",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "010201040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "unmatched_instance",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": 2,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "setpoint_controller_mirror",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "setpoint_comparison",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller_mirror",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "50",
+        "native_unit": "°C",
+        "binding": {
+          "native_id": "dhw_temperature_setpoint",
+          "direction": "controller_to_initiator",
+          "presentation": "controller_mirror"
+        },
+        "subject": {
+          "Role": "resource",
+          "Service": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.service.dhw",
+            "version": "1.0.0"
+          },
+          "Capability": {
+            "pack": {
+              "id": "helianthus.pack.thermal",
+              "version": "1.0.0"
+            },
+            "id": "thermal.capability.read.dhw",
+            "version": "1.0.0"
+          },
+          "ServiceInstance": "dhw:synthetic",
+          "CapabilityInstance": "capability:synthetic"
+        },
+        "subject_kind": "resource.domestic_hot_water",
+        "key": {
+          "pack_id": "helianthus.pack.thermal",
+          "pack_version": "1.0.0",
+          "fact_id": "thermal.setpoint.dhw_temperature_setpoint",
+          "dimensions": [
+            {
+              "id": "thermal.dimension.dhw",
+              "value": {
+                "kind": "text",
+                "text": "resource"
+              }
+            }
+          ]
+        },
+        "si": "323.15",
+        "si_unit": "unit.kelvin"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0004-mirror-presentation",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-mirror-presentation.native.json",
+        "sha256": "6c379ba43be81400b2991ca65bd9ba173502622d59f0fdccf4bf9556772aba42",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "setpoint_boiler_presentation",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "setpoint_comparison",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "boiler_direct",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_binding",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "50",
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0004-boiler-direct-presentation",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-boiler-direct-presentation.native.json",
+        "sha256": "2a66087b45bc26febf885c43fdcdda6845ff355391106c78ca51d8627d6ace1a",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "setpoint_zero_wrong_presentation",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000000000",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "boiler_direct",
+      "domain": null,
+      "expected": {
+        "value_tail": "00000000",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_binding",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "0",
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "setpoint_wrong_direction",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_binding",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "50",
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "setpoint_missing_direction",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_binding",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "50",
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "setpoint_missing_presentation",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_binding",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": "50",
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "measured_wrong_direction",
+      "selector": "b524020001000500",
+      "gate_response": "010101000100",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_binding",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature",
+        "native": "47.5",
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "measured_missing_direction",
+      "selector": "b524020001000500",
+      "gate_response": "010101000100",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_binding",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": "dhw_temperature",
+        "native": "47.5",
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0004_gate_off",
+      "selector": "b524020001000400",
+      "gate_response": "010101000000",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "not_present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0004_gate_absent",
+      "selector": "b524020001000400",
+      "gate_response": null,
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0004_gate_empty",
+      "selector": "b524020001000400",
+      "gate_response": "",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "empty",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0004_gate_wrong_width",
+      "selector": "b524020001000400",
+      "gate_response": "0101010001",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0004_gate_nack",
+      "selector": "b524020001000400",
+      "gate_response": null,
+      "response": "0101040000004842",
+      "gate_error": "nack",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "acquisition_error",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0004_gate_decode_failed",
+      "selector": "b524020001000400",
+      "gate_response": "01010100ffff",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0004_gate_wrong_group",
+      "selector": "b524020001000400",
+      "gate_response": "010201000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "unmatched_echo",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0004_gate_wrong_register",
+      "selector": "b524020001000400",
+      "gate_response": "010102000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "unmatched_echo",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0005_gate_off",
+      "selector": "b524020001000500",
+      "gate_response": "010101000000",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "not_present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0005_gate_absent",
+      "selector": "b524020001000500",
+      "gate_response": null,
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0005_gate_empty",
+      "selector": "b524020001000500",
+      "gate_response": "",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "empty",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0005_gate_wrong_width",
+      "selector": "b524020001000500",
+      "gate_response": "0101010001",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0005_gate_nack",
+      "selector": "b524020001000500",
+      "gate_response": null,
+      "response": "0101050000003e42",
+      "gate_error": "nack",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "acquisition_error",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0005_gate_decode_failed",
+      "selector": "b524020001000500",
+      "gate_response": "01010100ffff",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0005_gate_wrong_group",
+      "selector": "b524020001000500",
+      "gate_response": "010201000100",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "unmatched_echo",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "0005_gate_wrong_register",
+      "selector": "b524020001000500",
+      "gate_response": "010102000100",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "unknown",
+        "read_reason": "",
+        "gate_reason": "unmatched_echo",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "selector_primary",
+      "selector": "b424020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "selector_secondary",
+      "selector": "b523020001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "setpoint_comparison",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0004-neighbouring-sb-23",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-neighbouring-sb-23.native.json",
+        "sha256": "ccc2e7a6c738cdfa3ed46eabce6049a899c75199134b6dd0941850b98b35fa04",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "selector_operation",
+      "selector": "b524020101000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "selector_instance",
+      "selector": "b524020001010400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "selector_group",
+      "selector": "b524020002000400",
+      "gate_response": "010101000100",
+      "response": "0102040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "setpoint_comparison",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0004-neighbouring-group-02",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-neighbouring-group-02.native.json",
+        "sha256": "129893f4cdb51c191df753fb8f7cbe33249907d80c0e90ca8178e186c9739fd9",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "selector_register_0003",
+      "selector": "b524020001000300",
+      "gate_response": "010101000100",
+      "response": "0101030000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "selector_register_0006",
+      "selector": "b524020001000600",
+      "gate_response": "010101000100",
+      "response": "0101060000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "selector_register_high_byte",
+      "selector": "b524020001000401",
+      "gate_response": "010101000100",
+      "response": "0101040100004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "selector_opcode_06_setpoint",
+      "selector": "b524060001000400",
+      "gate_response": "010101000100",
+      "response": "0101040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "00004842",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "selector_opcode_06_measured",
+      "selector": "b524060001000500",
+      "gate_response": "010101000100",
+      "response": "0101050000003e42",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "target_to_initiator",
+      "presentation": "",
+      "domain": null,
+      "expected": {
+        "value_tail": "00003e42",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "reply_empty",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "setpoint_comparison",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": {
+        "Min": "35",
+        "Max": "70",
+        "Source": "qualified synthetic requested-temperature input (nativeMinimum/nativeMaximum)",
+        "Scope": "B5/24 local group 01, register 0004"
+      },
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "empty",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": {
+        "case": "vaillant-dhw-0004-short-empty-raw-reply",
+        "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-short-empty-raw-reply.native.json",
+        "sha256": "8abf72ae27d3334d630c7e5442e255b49297fbf7176d61debdda3bbf43d3ff61",
+        "origin": "recorded-current"
+      }
+    },
+    {
+      "name": "reply_status_only",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "00",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "status_only",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "reply_short_two",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "short_header",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "reply_short_three",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "010104",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "short_header",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "reply_header_only",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "01010400",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "header_only",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "reply_instance_header_only",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0100010400",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "header_only",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": 0,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "reply_wrong_group_echo",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0102040000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "unmatched_echo",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "reply_wrong_register_echo",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "0101050000004842",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "unmatched_echo",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "reply_nack",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "",
+      "gate_error": "",
+      "response_error": "nack",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "acquisition_error",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "reply_timeout",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "",
+      "gate_error": "",
+      "response_error": "timeout",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": null,
+        "gate": "present",
+        "read_reason": "acquisition_error",
+        "gate_reason": "",
+        "reason": "no_match",
+        "decode_failure": "",
+        "instance_echo": null,
+        "native_row": null,
+        "native": null,
+        "native_unit": null
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "value_short_value",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "01010400000048",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "000048",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "short_payload",
+        "decode_failure": "short_reply",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": null,
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "value_long_value",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "010104000000484243",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "0000484243",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "decode_error",
+        "decode_failure": "long_reply",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": null,
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "value_nan",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "010104000000c07f",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "0000c07f",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "decode_error",
+        "decode_failure": "not_a_number",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": null,
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    },
+    {
+      "name": "value_infinite",
+      "selector": "b524020001000400",
+      "gate_response": "010101000100",
+      "response": "010104000000807f",
+      "gate_error": "",
+      "response_error": "",
+      "caller": "synthetic",
+      "layout": {
+        "point": "dhw_temperature_setpoint",
+        "codec": "float32_le",
+        "scale_divisor": 1,
+        "unit": "°C",
+        "width": 32
+      },
+      "direction": "controller_to_initiator",
+      "presentation": "controller",
+      "domain": null,
+      "expected": {
+        "value_tail": "0000807f",
+        "gate": "present",
+        "read_reason": "",
+        "gate_reason": "",
+        "reason": "decode_error",
+        "decode_failure": "infinite",
+        "instance_echo": null,
+        "native_row": "dhw_temperature_setpoint",
+        "native": null,
+        "native_unit": "°C"
+      },
+      "specification": {
+        "page": "B5/24 register map, GG=01; SI Brochure §2.3.1"
+      },
+      "old_path": null
+    }
+  ]
+}

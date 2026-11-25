@@ -7,6 +7,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"reflect"
+	"regexp"
+	"sort"
 	"testing"
 
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
@@ -160,5 +162,41 @@ func replayWriteAttempts(t *testing.T, frame protocol.Frame, v nativeResponseVec
 		if err := errText(ack(reply)); err != v.Error {
 			t.Fatalf("acknowledgement %q, recorded %q", err, v.Error)
 		}
+	}
+}
+
+func TestNativeResponseDonorRecord(t *testing.T) {
+	f := fixtureJSON[struct {
+		Donor struct {
+			Repository, Revision string
+			SourceListingDigest  string `json:"source_listing_sha256"`
+		}
+		SourceDigest map[string]string `json:"source_sha256"`
+	}](t, "testdata/vaillant_native_response_vectors.json")
+	// Local consistency only: the listing digest is recomputed from the
+	// fixture's own per-file digests. It does not verify them against the donor.
+	if len(f.SourceDigest) == 0 {
+		t.Fatal("donor record lists no source files")
+	}
+	hexDigest := regexp.MustCompile(`^[0-9a-f]{64}$`)
+	for p, d := range f.SourceDigest {
+		if p == "" || !hexDigest.MatchString(d) {
+			t.Fatalf("source digest of %q is not a SHA-256 hex digest: %q", p, d)
+		}
+	}
+	if !hexDigest.MatchString(f.Donor.SourceListingDigest) {
+		t.Fatalf("listing digest is not a SHA-256 hex digest: %q", f.Donor.SourceListingDigest)
+	}
+	paths := make([]string, 0, len(f.SourceDigest))
+	for p := range f.SourceDigest {
+		paths = append(paths, p)
+	}
+	sort.Strings(paths)
+	h := sha256.New()
+	for _, p := range paths {
+		h.Write([]byte(f.SourceDigest[p] + "  " + p + "\n"))
+	}
+	if f.Donor.Repository == "" || f.Donor.Revision == "" || fmt.Sprintf("%x", h.Sum(nil)) != f.Donor.SourceListingDigest {
+		t.Fatalf("donor record does not identify the frozen source set: %+v", f.Donor)
 	}
 }

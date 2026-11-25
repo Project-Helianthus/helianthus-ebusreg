@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"sync"
 	"testing"
 
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
@@ -71,7 +72,7 @@ func checkDiagnosticCase(t *testing.T, name, request string, target byte, v nati
 		}
 	}
 	if name == "b503_stale_epoch" {
-		checkDiagnosticFence(t, c)
+		checkDiagnosticFence(t, name, v)
 	}
 }
 
@@ -96,22 +97,64 @@ func replayDiagnosticExchange(t *testing.T, name string, v nativeResponseVector,
 	return onSimulatedBus(t, f, rec, true)
 }
 
-func checkDiagnosticFence(t *testing.T, c diagnosticCompletion) {
+// liveStamp is the transport stamp the caller reads once an exchange has completed.
+type liveStamp struct {
+	mu sync.Mutex
+	s  diagnosticStamp
+}
+
+func (l *liveStamp) set(s diagnosticStamp) { l.mu.Lock(); l.s = s; l.mu.Unlock() }
+func (l *liveStamp) get() diagnosticStamp  { l.mu.Lock(); defer l.mu.Unlock(); return l.s }
+
+// checkDiagnosticFence issues the recorded positive read three times. Each run holds the
+// reply until the send is in flight, then moves the live transport (or leaves it), and
+// only afterwards reads the live stamp; no stamp is edited after the exchange completes.
+func checkDiagnosticFence(t *testing.T, name string, v nativeResponseVector) {
 	t.Helper()
-	if c.Current.TransportEpoch != 999 || c.Reply == nil {
-		t.Fatal("not a late positive reply")
+	s, err := diagnosticBody(octets(t, v.Request))
+	if err != nil {
+		t.Fatal(err)
 	}
-	c.ClassifiedError = nil
-	if r := c.observation(); r.Native != diagnosticAmbiguous || r.Response != nil {
-		t.Fatal("admitted obsolete epoch")
+	f, err := s.request(0x7f, v.Target)
+	if err != nil {
+		t.Fatal(err)
 	}
-	c.Current = c.Issued
-	if r := c.observation(); r.Native != diagnosticACK || !bytes.Equal(r.Response, c.Reply.Data) {
-		t.Fatal("did not admit same-stamp ACK")
+	rec := *v.Frame
+	rec.Reply = &v.WireReply
+	if v.CompletionTransport.TransportEpoch == v.Transport.TransportEpoch {
+		t.Fatal("record does not advance the epoch")
 	}
-	c.Current.AdapterInstanceID = "different-adapter"
-	if r := c.observation(); r.Native != diagnosticAmbiguous || r.Response != nil {
-		t.Fatal("admitted different adapter instance")
+	for _, run := range []struct {
+		label    string
+		advance  func(*liveStamp)
+		admitted bool
+	}{
+		{"epoch advanced in flight", func(l *liveStamp) { l.set(v.CompletionTransport) }, false},
+		{"adapter instance replaced in flight", func(l *liveStamp) {
+			l.set(diagnosticStamp{AdapterInstanceID: "different-adapter", TransportEpoch: v.Transport.TransportEpoch})
+		}, false},
+		{"transport unchanged", func(*liveStamp) {}, true},
+	} {
+		live := &liveStamp{s: v.Transport}
+		var started bool
+		reply, sendErr := simulateExchangeInFlight(t, f, rec.Source, rec.Target, nativeBody(t, rec), octets(t, v.WireReply), "", func() {
+			started = true
+			run.advance(live)
+		})
+		if !started || reply == nil || sendErr != nil {
+			t.Fatalf("%s: exchange did not complete a positive reply in flight", run.label)
+		}
+		c := diagnosticCompletion{Issued: v.Transport, Current: live.get(), Emitted: true, Reply: reply}
+		r := c.observation()
+		if run.admitted {
+			if r.Native != diagnosticACK || !bytes.Equal(r.Response, reply.Data) {
+				t.Fatalf("%s: same-stamp reply not admitted", run.label)
+			}
+			continue
+		}
+		if r.Native != diagnosticAmbiguous || r.Response != nil || r.Transport != v.Transport {
+			t.Fatalf("%s: obsolete reply admitted or lost its issuing transport: %+v", run.label, r)
+		}
 	}
 }
 

@@ -519,13 +519,38 @@
         "path": "specification/ss02-vaillant-dhw-0004.new-binding.json",
         "sha256": "295302e08f48c54e5d1efbb64fa678b5643141379c7cb1ce60c7e85d9f3b14b2",
         "origin": "specification",
-        "index": "docs-semantic PR #159"
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004",
+            "kind": "new-binding",
+            "path": "specification/ss02-vaillant-dhw-0004.new-binding.json",
+            "sha256": "295302e08f48c54e5d1efbb64fa678b5643141379c7cb1ce60c7e85d9f3b14b2",
+            "origin": "specification",
+            "recorder": "hand-authored"
+          }
+        }
       },
       "old_path": {
         "case": "vaillant-dhw-0004",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-value-50.native.json",
         "sha256": "c4b77050dfe86ccf195207a5b8df02af586e1e8cc75ec7dcb977a65ef7c761b4",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-value-50.native.json",
+            "sha256": "c4b77050dfe86ccf195207a5b8df02af586e1e8cc75ec7dcb977a65ef7c761b4",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -769,7 +794,19 @@
         "case": "vaillant-dhw-0005",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0005-measured-temperature.native.json",
         "sha256": "516bbd978a51ee7d25c28d5097b7c2f8953a827306b61f216c779c6aeeaadf82",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0005",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0005-measured-temperature.native.json",
+            "sha256": "516bbd978a51ee7d25c28d5097b7c2f8953a827306b61f216c779c6aeeaadf82",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -810,7 +847,19 @@
         "case": "vaillant-dhw-0005",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0005-measured-temperature.native.json",
         "sha256": "516bbd978a51ee7d25c28d5097b7c2f8953a827306b61f216c779c6aeeaadf82",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0005",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0005-measured-temperature.native.json",
+            "sha256": "516bbd978a51ee7d25c28d5097b7c2f8953a827306b61f216c779c6aeeaadf82",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -898,7 +947,19 @@
         "case": "vaillant-dhw-0004-boundary-35",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-boundary-35.native.json",
         "sha256": "4ebed97d0e9065dd668260487dbbd82898495fcfb4fa8559876aff5ec3a8659b",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004-boundary-35",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-boundary-35.native.json",
+            "sha256": "4ebed97d0e9065dd668260487dbbd82898495fcfb4fa8559876aff5ec3a8659b",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -986,7 +1047,19 @@
         "case": "vaillant-dhw-0004-boundary-70",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-boundary-70.native.json",
         "sha256": "bdb3d8ba5064aa123b3815480ef822ff56d007edfc6e52c3027176b6c734e1e1",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004-boundary-70",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-boundary-70.native.json",
+            "sha256": "bdb3d8ba5064aa123b3815480ef822ff56d007edfc6e52c3027176b6c734e1e1",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -1071,7 +1144,19 @@
         "case": "vaillant-dhw-0004-above-bound-71",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-above-bound-71.native.json",
         "sha256": "938ee47322f18016840a7988a32f28a59206416933804e25f8e9e0c17a08be54",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004-above-bound-71",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-above-bound-71.native.json",
+            "sha256": "938ee47322f18016840a7988a32f28a59206416933804e25f8e9e0c17a08be54",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -1159,7 +1244,19 @@
         "case": "vaillant-dhw-0004-sentinel-no-value",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-sentinel-no-value.native.json",
         "sha256": "09688d5d545b22c3655a780683b150b7f78b2acef7c419c8376ecf9c3aa6707f",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004-sentinel-no-value",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-sentinel-no-value.native.json",
+            "sha256": "09688d5d545b22c3655a780683b150b7f78b2acef7c419c8376ecf9c3aa6707f",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -1838,7 +1935,19 @@
         "case": "vaillant-dhw-0004-mirror-presentation",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-mirror-presentation.native.json",
         "sha256": "6c379ba43be81400b2991ca65bd9ba173502622d59f0fdccf4bf9556772aba42",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004-mirror-presentation",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-mirror-presentation.native.json",
+            "sha256": "6c379ba43be81400b2991ca65bd9ba173502622d59f0fdccf4bf9556772aba42",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -1883,7 +1992,19 @@
         "case": "vaillant-dhw-0004-boiler-direct-presentation",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-boiler-direct-presentation.native.json",
         "sha256": "2a66087b45bc26febf885c43fdcdda6845ff355391106c78ca51d8627d6ace1a",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004-boiler-direct-presentation",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-boiler-direct-presentation.native.json",
+            "sha256": "2a66087b45bc26febf885c43fdcdda6845ff355391106c78ca51d8627d6ace1a",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -2733,7 +2854,19 @@
         "case": "vaillant-dhw-0004-neighbouring-sb-23",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-neighbouring-sb-23.native.json",
         "sha256": "ccc2e7a6c738cdfa3ed46eabce6049a899c75199134b6dd0941850b98b35fa04",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004-neighbouring-sb-23",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-neighbouring-sb-23.native.json",
+            "sha256": "ccc2e7a6c738cdfa3ed46eabce6049a899c75199134b6dd0941850b98b35fa04",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -2848,7 +2981,19 @@
         "case": "vaillant-dhw-0004-neighbouring-group-02",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-neighbouring-group-02.native.json",
         "sha256": "129893f4cdb51c191df753fb8f7cbe33249907d80c0e90ca8178e186c9739fd9",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004-neighbouring-group-02",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-neighbouring-group-02.native.json",
+            "sha256": "129893f4cdb51c191df753fb8f7cbe33249907d80c0e90ca8178e186c9739fd9",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {
@@ -3068,7 +3213,19 @@
         "case": "vaillant-dhw-0004-short-empty-raw-reply",
         "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-short-empty-raw-reply.native.json",
         "sha256": "8abf72ae27d3334d630c7e5442e255b49297fbf7176d61debdda3bbf43d3ff61",
-        "origin": "recorded-current"
+        "origin": "recorded-current",
+        "index": {
+          "repository": "helianthus-docs-semantic",
+          "merged_by": "pull request 159 (QQ01)",
+          "path": "acceptance/vectors/index.json",
+          "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
+          "entry": {
+            "case": "vaillant-dhw-0004-short-empty-raw-reply",
+            "path": "current/gateway/cmd-gateway/ss02/vaillant-dhw-0004-short-empty-raw-reply.native.json",
+            "sha256": "8abf72ae27d3334d630c7e5442e255b49297fbf7176d61debdda3bbf43d3ff61",
+            "origin": "recorded-current"
+          }
+        }
       }
     },
     {

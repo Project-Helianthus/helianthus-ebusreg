@@ -13,6 +13,7 @@ import (
 	"github.com/Project-Helianthus/helianthus-semreg/semreg/v1/roweval"
 )
 
+// B524Selector holds the wire fields that identify a B5/24 register request.
 type B524Selector struct {
 	Primary, Secondary byte
 	Opcode, Operation  byte

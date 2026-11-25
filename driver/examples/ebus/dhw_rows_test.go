@@ -26,13 +26,15 @@ type dhwCaller struct {
 	SubjectKind string `json:"subject_kind"`
 }
 
+const vectorIndexMerge = "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159"
+
 type indexRef struct {
 	Repository, Path string
 	Digest           string `json:"sha256"`
-	MergedBy         string `json:"merged_by"`
+	MergeCommitOf    string `json:"merge_commit_of"`
 	Entry            struct {
-		Case, Path, Origin string
-		Digest             string `json:"sha256"`
+		Case, Kind, Path, Origin, Recorder string
+		Digest                             string `json:"sha256"`
 	}
 }
 
@@ -40,19 +42,6 @@ type comparisonRef struct {
 	Case, Path, Origin string
 	Digest             string    `json:"sha256"`
 	Index              *indexRef `json:"index"`
-}
-
-type specRef struct {
-	comparisonRef
-	Index struct {
-		Repository, Path string
-		Digest           string `json:"sha256"`
-		MergedBy         string `json:"merged_by"`
-		Entry            struct {
-			Case, Kind, Path, Origin, Recorder string
-			Digest                             string `json:"sha256"`
-		}
-	} `json:"index"`
 }
 
 type dhwVector struct {
@@ -89,7 +78,7 @@ type dhwVector struct {
 		SIUnit      semreg.DefinitionID `json:"si_unit"`
 	}
 	OldPath  *comparisonRef `json:"old_path"`
-	Spec     *specRef       `json:"specification"`
+	Spec     *comparisonRef `json:"specification"`
 	Verbatim *comparisonRef `json:"verbatim_reply_comparison"`
 }
 
@@ -341,13 +330,8 @@ func readComparison(t *testing.T, ref comparisonRef) dhwComparison {
 	if ref.Origin != "recorded-current" || digest != ref.Digest {
 		t.Fatalf("record %s: unexpected origin or checksum %s", ref.Case, digest)
 	}
-	// Every staged record names the frozen index entry it comes from.
-	if x := ref.Index; x == nil || x.Repository != "helianthus-docs-semantic" || x.Path != "acceptance/vectors/index.json" ||
-		!regexp.MustCompile(`^[0-9a-f]{64}$`).MatchString(x.Digest) || x.MergedBy == "" ||
-		x.Entry.Case != ref.Case || x.Entry.Path != ref.Path || x.Entry.Digest != digest || x.Entry.Origin != ref.Origin {
-		t.Fatalf("record %s: not linked to its frozen index entry: %+v", ref.Case, x)
-	}
-	t.Logf("comparison %s (%s), sha256 %s", ref.Case, ref.Path, digest)
+	verifyDHWIndexEntry(t, ref)
+	t.Logf("comparison %s (%s), sha256 %s; index at merge commit of %s", ref.Case, ref.Path, digest, ref.Index.MergeCommitOf)
 	var data dhwComparison
 	if err := json.Unmarshal(raw, &data); err != nil {
 		t.Fatal(err)
@@ -393,8 +377,18 @@ func compareDHWNative(t *testing.T, ref comparisonRef, got dhwResult, a roweval.
 	}
 }
 
-// Local consistency check of the fixture against its own index entry; the
-// index file itself is not staged, so the index digest is checked for form only.
+// The index itself is not staged; its digest is checked for form only.
+func verifyDHWIndexEntry(t *testing.T, ref comparisonRef) {
+	t.Helper()
+	x := ref.Index
+	hexDigest := regexp.MustCompile(`^[0-9a-f]{64}$`)
+	if x == nil || x.Repository != "helianthus-docs-semantic" || x.Path != "acceptance/vectors/index.json" ||
+		x.MergeCommitOf != vectorIndexMerge || !hexDigest.MatchString(x.Digest) || !hexDigest.MatchString(ref.Digest) ||
+		x.Entry.Case != ref.Case || x.Entry.Path != ref.Path || x.Entry.Digest != ref.Digest || x.Entry.Origin != ref.Origin {
+		t.Fatalf("record %s: not linked to its frozen index entry: %+v", ref.Case, x)
+	}
+}
+
 func TestDHWSpecificationOperandIsTraceable(t *testing.T) {
 	f := fixtureJSON[struct{ Vectors []dhwVector }](t, "testdata/dhw_vectors.json")
 	found := 0
@@ -403,16 +397,12 @@ func TestDHWSpecificationOperandIsTraceable(t *testing.T) {
 			continue
 		}
 		found++
-		s, e := v.Spec, v.Spec.Index.Entry
-		if s.Origin != "specification" || e.Origin != s.Origin || e.Case != s.Case || e.Path != s.Path || e.Digest != s.Digest {
-			t.Fatalf("%s: operand differs from its index entry: %+v", v.Name, s)
-		}
-		if s.Index.Repository == "" || s.Index.Path != "acceptance/vectors/index.json" || !regexp.MustCompile(`^[0-9a-f]{64}$`).MatchString(s.Index.Digest) || !regexp.MustCompile(`^[0-9a-f]{64}$`).MatchString(s.Digest) || s.Index.MergedBy == "" {
-			t.Fatalf("%s: index entry is not immutable and traceable: %+v", v.Name, s.Index)
-		}
-		if v.Name != "setpoint_50" || *v.Expected.SI != "323.15" {
+		s := *v.Spec
+		verifyDHWIndexEntry(t, s)
+		if s.Origin != "specification" || v.Name != "setpoint_50" || v.Expected.SI == nil || *v.Expected.SI != "323.15" {
 			t.Fatalf("%s: unexpected specification operand", v.Name)
 		}
+		t.Logf("specification %s (%s), sha256 %s; index at merge commit of %s", s.Case, s.Path, s.Digest, s.Index.MergeCommitOf)
 	}
 	if found != 1 {
 		t.Fatalf("%d specification operands, want the single 50.0 C operand", found)

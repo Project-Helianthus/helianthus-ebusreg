@@ -51,6 +51,12 @@ type nativeResponseVector struct {
 
 type nativeFixture struct {
 	Gateway, MCP json.RawMessage
+	Donor        struct {
+		Repository          string
+		MergeCommitOf       string `json:"merge_commit_of"`
+		SourceListingDigest string `json:"source_listing_sha256"`
+	}
+	SourceDigest map[string]string `json:"source_sha256"`
 	Receipts     map[string]struct {
 		ExitStatus *int   `json:"exit_status"`
 		Digest     string `json:"sha256"`
@@ -59,6 +65,7 @@ type nativeFixture struct {
 
 func TestVaillantNativeResponseExemplars(t *testing.T) {
 	f := fixtureJSON[nativeFixture](t, "testdata/vaillant_native_response_vectors.json")
+	verifyNativeDonor(t, f)
 	verifyNativeReceipt(t, f, "gateway", f.Gateway)
 	verifyNativeReceipt(t, f, "mcp", f.MCP)
 	var vectors map[string]nativeResponseVector
@@ -165,14 +172,12 @@ func replayWriteAttempts(t *testing.T, frame protocol.Frame, v nativeResponseVec
 	}
 }
 
-func TestNativeResponseDonorRecord(t *testing.T) {
-	f := fixtureJSON[struct {
-		Donor struct {
-			Repository, Revision string
-			SourceListingDigest  string `json:"source_listing_sha256"`
-		}
-		SourceDigest map[string]string `json:"source_sha256"`
-	}](t, "testdata/vaillant_native_response_vectors.json")
+func verifyNativeDonor(t *testing.T, f nativeFixture) {
+	t.Helper()
+	const donorMerge = "https://github.com/Project-Helianthus/helianthus-ebusgateway/pull/1738"
+	if f.Donor.Repository != "helianthus-ebusgateway" || f.Donor.MergeCommitOf != donorMerge {
+		t.Fatalf("donor record does not name the frozen merge: %+v", f.Donor)
+	}
 	// Local consistency only: the listing digest is recomputed from the
 	// fixture's own per-file digests. It does not verify them against the donor.
 	if len(f.SourceDigest) == 0 {
@@ -196,7 +201,8 @@ func TestNativeResponseDonorRecord(t *testing.T) {
 	for _, p := range paths {
 		h.Write([]byte(f.SourceDigest[p] + "  " + p + "\n"))
 	}
-	if f.Donor.Repository == "" || f.Donor.Revision == "" || fmt.Sprintf("%x", h.Sum(nil)) != f.Donor.SourceListingDigest {
+	if fmt.Sprintf("%x", h.Sum(nil)) != f.Donor.SourceListingDigest {
 		t.Fatalf("donor record does not identify the frozen source set: %+v", f.Donor)
 	}
+	t.Logf("donor at merge commit of %s; source listing sha256 %s", f.Donor.MergeCommitOf, f.Donor.SourceListingDigest)
 }

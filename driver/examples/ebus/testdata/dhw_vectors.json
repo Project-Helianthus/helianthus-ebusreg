@@ -521,7 +521,7 @@
         "origin": "specification",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -541,7 +541,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -797,7 +797,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -850,7 +850,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -950,7 +950,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -1050,7 +1050,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -1147,7 +1147,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -1247,7 +1247,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -1938,7 +1938,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -1995,7 +1995,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -2857,7 +2857,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -2984,7 +2984,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {
@@ -3216,7 +3216,7 @@
         "origin": "recorded-current",
         "index": {
           "repository": "helianthus-docs-semantic",
-          "merged_by": "pull request 159 (QQ01)",
+          "merge_commit_of": "https://github.com/Project-Helianthus/helianthus-docs-semantic/pull/159",
           "path": "acceptance/vectors/index.json",
           "sha256": "b5229f453f90983cf807c7c52c201b5f708b3ccca4c71fe19d94f3056fa5f00a",
           "entry": {

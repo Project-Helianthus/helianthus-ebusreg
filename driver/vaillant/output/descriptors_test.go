@@ -93,7 +93,7 @@ func TestVaillantViewDescriptorsMatchServedFields(t *testing.T) {
 			if !ok || attr.MCPTool != tool || attr.MCPKey != key {
 				t.Errorf("wrong root descriptor: %+v", attr)
 			}
-		} else if wantField := fields[attr.Record][attr.Field]; wantField != "" {
+		} else if wantField := outputGoField(fields[attr.Record][attr.Field]); wantField != "" {
 			if attr.GoField != wantField {
 				t.Errorf("%s maps %s, want %s", attr.Key.Local, attr.GoField, wantField)
 			}
@@ -140,6 +140,8 @@ func descriptorRecordType(record string) string {
 	switch record {
 	case "circuit_managing_device":
 		return "ManagingDevice"
+	case "fm5_interpretation":
+		return "FunctionModuleInterpretation"
 	case "system_config_bound":
 		return "ConfigBound"
 	}
@@ -148,6 +150,25 @@ func descriptorRecordType(record string) string {
 		parts[i] = strings.ToUpper(part[:1]) + part[1:]
 	}
 	return strings.Join(parts, "")
+}
+
+// The fixtures retain the gateway's Go selectors; descriptors name the moved selectors.
+func outputGoField(frozen string) string {
+	switch frozen {
+	case "ModuleConfigurationVR71":
+		return "FunctionModuleConfigurationCode"
+	case "OutdoorTemperatureAvg24h":
+		return "OutdoorTemperatureDailyAverage"
+	default:
+		return frozen
+	}
+}
+
+func outputGoRecord(frozen string) string {
+	if frozen == "Fm5Interpretation" {
+		return "FunctionModuleInterpretation"
+	}
+	return frozen
 }
 
 func frozenRootTools() map[string]string {
@@ -258,13 +279,14 @@ func frozenMCPRecordTags(t *testing.T) map[string]map[string]string {
 	for _, decl := range file.Decls {
 		spec := decl.(*ast.GenDecl).Specs[0].(*ast.TypeSpec)
 		record := spec.Type.(*ast.StructType)
-		tags[spec.Name.Name] = make(map[string]string)
+		name := outputGoRecord(spec.Name.Name)
+		tags[name] = make(map[string]string)
 		for _, field := range record.Fields.List {
 			if field.Tag == nil {
 				t.Fatalf("missing frozen tag for %s", field.Names[0].Name)
 			}
 			tag := reflect.StructTag(strings.Trim(field.Tag.Value, "`")).Get("json")
-			tags[spec.Name.Name][field.Names[0].Name] = strings.SplitN(tag, ",", 2)[0]
+			tags[name][outputGoField(field.Names[0].Name)] = strings.SplitN(tag, ",", 2)[0]
 		}
 	}
 	return tags
@@ -283,7 +305,7 @@ func frozenMCPAssignments(t *testing.T) map[string]map[string]bool {
 		if !ok || typ.X.(*ast.Ident).Name != "mcp" {
 			return true
 		}
-		name := typ.Sel.Name
+		name := outputGoRecord(typ.Sel.Name)
 		if assigned[name] == nil {
 			assigned[name] = make(map[string]bool)
 		}
@@ -292,7 +314,7 @@ func frozenMCPAssignments(t *testing.T) map[string]map[string]bool {
 			field := pair.Key.(*ast.Ident).Name
 			// Same-name direct selectors or a nested MCP composite for this field.
 			value := text[pair.Value.Pos()-1 : pair.Value.End()-1]
-			assigned[name][field] = regexp.MustCompile(`\.`+field+`\b`).MatchString(value) || strings.Contains(value, "mcp.")
+			assigned[name][outputGoField(field)] = regexp.MustCompile(`\.`+field+`\b`).MatchString(value) || strings.Contains(value, "mcp.")
 		}
 		return true
 	})
@@ -304,7 +326,7 @@ func frozenMCPAssignments(t *testing.T) map[string]map[string]bool {
 		"TimeProgramWriteResult": "SlotResults",
 	} {
 		for _, field := range strings.Fields(fields) {
-			assigned[record][field] = regexp.MustCompile(`\.` + field + `\s*=`).MatchString(text)
+			assigned[outputGoRecord(record)][outputGoField(field)] = regexp.MustCompile(`\.` + field + `\s*=`).MatchString(text)
 		}
 	}
 	return assigned

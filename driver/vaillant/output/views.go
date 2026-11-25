@@ -210,7 +210,7 @@ func SystemStatusEquals(a, b *SystemStatus) bool {
 		floatPtrEquals(a.State.SystemWaterPressure, b.State.SystemWaterPressure) &&
 		floatPtrEquals(a.State.SystemFlowTemperature, b.State.SystemFlowTemperature) &&
 		floatPtrEquals(a.State.OutdoorTemperature, b.State.OutdoorTemperature) &&
-		floatPtrEquals(a.State.OutdoorTemperatureAvg24h, b.State.OutdoorTemperatureAvg24h) &&
+		floatPtrEquals(a.State.OutdoorTemperatureDailyAverage, b.State.OutdoorTemperatureDailyAverage) &&
 		boolPtrEquals(a.State.MaintenanceDue, b.State.MaintenanceDue) &&
 		floatPtrEquals(a.State.HwcCylinderTemperatureTop, b.State.HwcCylinderTemperatureTop) &&
 		floatPtrEquals(a.State.HwcCylinderTemperatureBottom, b.State.HwcCylinderTemperatureBottom) &&
@@ -227,7 +227,7 @@ func SystemStatusEquals(a, b *SystemStatus) bool {
 		stringPtrEquals(a.Config.InstallerPhone, b.Config.InstallerPhone) &&
 		intPtrEquals(a.Config.InstallerMenuCode, b.Config.InstallerMenuCode) &&
 		intPtrEquals(a.Properties.SystemScheme, b.Properties.SystemScheme) &&
-		intPtrEquals(a.Properties.ModuleConfigurationVR71, b.Properties.ModuleConfigurationVR71)
+		intPtrEquals(a.Properties.FunctionModuleConfigurationCode, b.Properties.FunctionModuleConfigurationCode)
 }
 
 // SystemStatusFromView maps the native values to the corresponding output record.
@@ -236,14 +236,14 @@ func SystemStatusFromView(view NativeSystemView) *SystemStatus {
 	dhwBound := view.DhwBivalenceBound
 	return &SystemStatus{
 		State: SystemState{
-			SystemOff:                    cloneBoilerBoolPtr(snapshot.SystemOff),
-			SystemWaterPressure:          CloneFloat64Ptr(snapshot.SystemWaterPressure),
-			SystemFlowTemperature:        CloneFloat64Ptr(snapshot.SystemFlowTemperature),
-			OutdoorTemperature:           CloneFloat64Ptr(snapshot.OutdoorTemperature),
-			OutdoorTemperatureAvg24h:     CloneFloat64Ptr(snapshot.OutdoorTemperatureAvg24h),
-			MaintenanceDue:               cloneBoilerBoolPtr(snapshot.MaintenanceDue),
-			HwcCylinderTemperatureTop:    CloneFloat64Ptr(snapshot.HwcCylinderTemperatureTop),
-			HwcCylinderTemperatureBottom: CloneFloat64Ptr(snapshot.HwcCylinderTemperatureBottom),
+			SystemOff:                      cloneBoilerBoolPtr(snapshot.SystemOff),
+			SystemWaterPressure:            CloneFloat64Ptr(snapshot.SystemWaterPressure),
+			SystemFlowTemperature:          CloneFloat64Ptr(snapshot.SystemFlowTemperature),
+			OutdoorTemperature:             CloneFloat64Ptr(snapshot.OutdoorTemperature),
+			OutdoorTemperatureDailyAverage: CloneFloat64Ptr(snapshot.OutdoorTemperatureDailyAverage),
+			MaintenanceDue:                 cloneBoilerBoolPtr(snapshot.MaintenanceDue),
+			HwcCylinderTemperatureTop:      CloneFloat64Ptr(snapshot.HwcCylinderTemperatureTop),
+			HwcCylinderTemperatureBottom:   CloneFloat64Ptr(snapshot.HwcCylinderTemperatureBottom),
 		},
 		Config: SystemConfig{
 			AdaptiveHeatingCurve:         cloneBoilerBoolPtr(snapshot.AdaptiveHeatingCurve),
@@ -260,8 +260,8 @@ func SystemStatusFromView(view NativeSystemView) *SystemStatus {
 			InstallerMenuCode:            uint16ToIntPtr(snapshot.InstallerMenuCode),
 		},
 		Properties: SystemProperties{
-			SystemScheme:            uint16ToIntPtr(snapshot.SystemScheme),
-			ModuleConfigurationVR71: uint16ToIntPtr(snapshot.ModuleConfigurationVR71),
+			SystemScheme:                    uint16ToIntPtr(snapshot.SystemScheme),
+			FunctionModuleConfigurationCode: uint16ToIntPtr(snapshot.FunctionModuleConfigurationCode),
 		},
 	}
 }

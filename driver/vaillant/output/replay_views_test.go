@@ -29,6 +29,22 @@ func replayZones(t *testing.T, input json.RawMessage) []Zone {
 	return zones
 }
 
+// The recorded native view uses the original Go field names for these two values.
+type recordedSystemSnapshot struct {
+	NativeSystemSnapshot
+	DailyAverage *float64 `json:"OutdoorTemperatureAvg24h"`
+	ModuleCode   *uint16  `json:"ModuleConfigurationVR71"`
+}
+
+func (recorded *recordedSystemSnapshot) native() *NativeSystemSnapshot {
+	if recorded == nil {
+		return nil
+	}
+	recorded.OutdoorTemperatureDailyAverage = recorded.DailyAverage
+	recorded.FunctionModuleConfigurationCode = recorded.ModuleCode
+	return &recorded.NativeSystemSnapshot
+}
+
 type recordedCircuitsView struct {
 	Circuits []*NativeCircuitSnapshot
 	Managed  bool `json:"managed_by_function_module"`
@@ -69,19 +85,19 @@ func replayView(t *testing.T, input map[string]json.RawMessage, planes replayPla
 			planes.add("boiler_status", boiler, MCPBoilerStatusFromGraphQL(boiler))
 		case "system_view":
 			view := decodeRecorded[struct {
-				Snapshot *NativeSystemSnapshot
+				Snapshot *recordedSystemSnapshot
 				Bound    ConfigBound `json:"dhw_bivalence_bound"`
 			}](t, payload)
-			system := SystemStatusFromView(NativeSystemView{Snapshot: view.Snapshot, DhwBivalenceBound: view.Bound})
+			system := SystemStatusFromView(NativeSystemView{Snapshot: view.Snapshot.native(), DhwBivalenceBound: view.Bound})
 			planes.add("system", system, MCPSystemFromGraphQL(system))
 		case "fm5_view":
-			replayFM5(t, payload, planes)
+			replayFunctionModule(t, payload, planes)
 		case "programs":
 			programs := ScheduleProgramsFromNative(decodeRecorded[[]NativeScheduleProgram](t, payload))
 			status := &ScheduleStatus{Programs: programs}
 			planes.add("schedules", status, MCPSchedulesFromGraphQL(status))
 		case "energy_totals":
-			// The energy ledger and acquisition are not moved here. Feed the recorded
+			// Energy accounting and acquisition are not moved here. Feed the recorded
 			// GraphQL view to the pure MCP adapter using the frozen field selectors.
 			fields := readFixture[map[string]map[string]string](t, "graphql-go-fields.json")
 			view := decodeRecorded[any](t, payload)
@@ -98,25 +114,25 @@ func replayView(t *testing.T, input map[string]json.RawMessage, planes replayPla
 	}
 }
 
-func replayFM5(t *testing.T, payload json.RawMessage, planes replayPlanes) {
+func replayFunctionModule(t *testing.T, payload json.RawMessage, planes replayPlanes) {
 	t.Helper()
-	view := decodeRecorded[NativeFM5View](t, payload)
+	view := decodeRecorded[NativeFunctionModuleView](t, payload)
 	if !view.Verdict.Valid() {
 		t.Fatal("invalid recorded verdict")
 	}
-	published := PublishedFM5Interpretation(view.Verdict)
+	published := PublishedFunctionModuleInterpretation(view.Verdict)
 	if err := published.Validate(); err != nil {
 		t.Fatal(err)
 	}
-	mcp := MCPFM5InterpretationFromGraphQL(published)
+	mcp := MCPFunctionModuleInterpretationFromGraphQL(published)
 	if err := mcp.validate(); err != nil {
 		t.Fatal(err)
 	}
 	planes.add("fm5_interpretation", published, mcp)
-	planes.add("fm5_semantic_mode", published.Mode, MCPFM5SemanticModeFromGraphQL(published.Mode))
+	planes.add("fm5_semantic_mode", published.Mode, MCPFunctionModuleSemanticModeFromGraphQL(published.Mode))
 	// The recorder primes the provider with its empty structural planes.
 	solar, cylinders := &SolarStatus{}, []CylinderStatus{}
-	if published.Mode == Fm5SemanticModeInterpreted {
+	if published.Mode == FunctionModuleSemanticModeInterpreted {
 		solar = SolarStatusFromSnapshot(view.Solar)
 		cylinders = CylinderStatusesFromSnapshots(view.Cylinders)
 	}

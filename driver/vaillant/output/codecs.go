@@ -56,16 +56,16 @@ var circuitStateNames = map[uint16]string{
 }
 
 const (
-	circuitManagingDeviceVR71ID      = "VR_71"
-	circuitManagingDeviceVR71Address = 0x26
+	functionModuleManagingDeviceID      = "VR_71"
+	functionModuleManagingDeviceAddress = 0x26
 )
 
 // CircuitsManagedByFunctionModule reports whether the scheme, module configuration, and mode place circuits under the function module.
-func CircuitsManagedByFunctionModule(system *NativeSystemSnapshot, fm5Mode NativeFM5Mode) bool {
+func CircuitsManagedByFunctionModule(system *NativeSystemSnapshot, moduleMode NativeFunctionModuleMode) bool {
 	return system != nil &&
 		system.SystemScheme != nil && *system.SystemScheme == 1 &&
-		system.ModuleConfigurationVR71 != nil && *system.ModuleConfigurationVR71 == 2 &&
-		fm5Mode == NativeFM5ModeInterpreted
+		system.FunctionModuleConfigurationCode != nil && *system.FunctionModuleConfigurationCode == 2 &&
+		moduleMode == NativeFunctionModuleModeInterpreted
 }
 
 func decodeValvePositionPct(raw *uint16) *float64 {

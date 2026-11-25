@@ -170,9 +170,9 @@ type NativeZoneCacheOverlay struct {
 	AssociatedCircuitRaw *uint16
 }
 
-// NativeFM5View represents the acquisition verdict and retained solar and cylinder values.
-type NativeFM5View struct {
-	Verdict   NativeFM5Interpretation
+// NativeFunctionModuleView represents the acquisition verdict and retained solar and cylinder values.
+type NativeFunctionModuleView struct {
+	Verdict   NativeFunctionModuleInterpretation
 	Solar     *NativeSolarSnapshot
 	Cylinders map[byte]*NativeCylinderSnapshot
 }
@@ -226,15 +226,15 @@ type NativeBoilerSnapshot struct {
 type NativeSystemSnapshot struct {
 	Controller byte
 
-	SystemOff                    *bool
-	SystemWaterPressure          *float64
-	SystemFlowTemperature        *float64
-	SystemFlowTemperatureLiveAt  time.Time
-	OutdoorTemperature           *float64
-	OutdoorTemperatureAvg24h     *float64
-	MaintenanceDue               *bool
-	HwcCylinderTemperatureTop    *float64
-	HwcCylinderTemperatureBottom *float64
+	SystemOff                      *bool
+	SystemWaterPressure            *float64
+	SystemFlowTemperature          *float64
+	SystemFlowTemperatureLiveAt    time.Time
+	OutdoorTemperature             *float64
+	OutdoorTemperatureDailyAverage *float64
+	MaintenanceDue                 *bool
+	HwcCylinderTemperatureTop      *float64
+	HwcCylinderTemperatureBottom   *float64
 
 	AdaptiveHeatingCurve         *bool
 	AlternativePoint             *float64
@@ -248,8 +248,8 @@ type NativeSystemSnapshot struct {
 	InstallerPhone               *string
 	InstallerMenuCode            *uint16
 
-	SystemScheme            *uint16
-	ModuleConfigurationVR71 *uint16
+	SystemScheme                    *uint16
+	FunctionModuleConfigurationCode *uint16
 }
 
 // NativeAdapterInfo represents the parsed adapter version and retained telemetry.
@@ -271,61 +271,61 @@ type NativeAdapterInfo struct {
 	LastTelemetry time.Time
 }
 
-// NativeFM5Mode represents the function-module mode determined by acquisition.
-type NativeFM5Mode string
+// NativeFunctionModuleMode represents the function-module mode determined by acquisition.
+type NativeFunctionModuleMode string
 
-// NativeFM5DegradedReason represents the reason acquisition could not establish or retain a verdict.
-type NativeFM5DegradedReason string
+// NativeFunctionModuleDegradedReason represents the reason acquisition could not establish or retain a verdict.
+type NativeFunctionModuleDegradedReason string
 
-// NativeFM5Interpretation represents the structural acquisition verdict and its evidence reference.
-type NativeFM5Interpretation struct {
-	Mode             NativeFM5Mode
-	DegradedReason   NativeFM5DegradedReason
+// NativeFunctionModuleInterpretation represents the structural acquisition verdict and its evidence reference.
+type NativeFunctionModuleInterpretation struct {
+	Mode             NativeFunctionModuleMode
+	DegradedReason   NativeFunctionModuleDegradedReason
 	EvidenceRevision string
 }
 
 // Structural modes used in acquisition.
 const (
-	NativeFM5ModeInterpreted NativeFM5Mode = "INTERPRETED"
-	NativeFM5ModeGPIOOnly    NativeFM5Mode = "GPIO_ONLY"
-	NativeFM5ModeAbsent      NativeFM5Mode = "ABSENT"
+	NativeFunctionModuleModeInterpreted NativeFunctionModuleMode = "INTERPRETED"
+	NativeFunctionModuleModeGPIOOnly    NativeFunctionModuleMode = "GPIO_ONLY"
+	NativeFunctionModuleModeAbsent      NativeFunctionModuleMode = "ABSENT"
 )
 
 // Degradation reasons used in acquisition.
 const (
-	NativeFM5DegradedControllerUnreachable         NativeFM5DegradedReason = "CONTROLLER_UNREACHABLE"
-	NativeFM5DegradedConfigurationUnavailable      NativeFM5DegradedReason = "CONFIGURATION_UNAVAILABLE"
-	NativeFM5DegradedConfigurationNotInterpretable NativeFM5DegradedReason = "CONFIGURATION_NOT_INTERPRETABLE"
-	NativeFM5DegradedSolarAcquisitionFailed        NativeFM5DegradedReason = "SOLAR_ACQUISITION_FAILED"
-	NativeFM5DegradedCylinderAcquisitionFailed     NativeFM5DegradedReason = "CYLINDER_ACQUISITION_FAILED"
-	NativeFM5DegradedEvidenceStale                 NativeFM5DegradedReason = "EVIDENCE_STALE"
-	NativeFM5DegradedIncoherentAcquisition         NativeFM5DegradedReason = "INCOHERENT_ACQUISITION"
+	NativeFunctionModuleDegradedControllerUnreachable         NativeFunctionModuleDegradedReason = "CONTROLLER_UNREACHABLE"
+	NativeFunctionModuleDegradedConfigurationUnavailable      NativeFunctionModuleDegradedReason = "CONFIGURATION_UNAVAILABLE"
+	NativeFunctionModuleDegradedConfigurationNotInterpretable NativeFunctionModuleDegradedReason = "CONFIGURATION_NOT_INTERPRETABLE"
+	NativeFunctionModuleDegradedSolarAcquisitionFailed        NativeFunctionModuleDegradedReason = "SOLAR_ACQUISITION_FAILED"
+	NativeFunctionModuleDegradedCylinderAcquisitionFailed     NativeFunctionModuleDegradedReason = "CYLINDER_ACQUISITION_FAILED"
+	NativeFunctionModuleDegradedEvidenceStale                 NativeFunctionModuleDegradedReason = "EVIDENCE_STALE"
+	NativeFunctionModuleDegradedIncoherentAcquisition         NativeFunctionModuleDegradedReason = "INCOHERENT_ACQUISITION"
 )
 
 // Valid reports whether the native verdict can be published.
-func (verdict NativeFM5Interpretation) Valid() bool {
+func (verdict NativeFunctionModuleInterpretation) Valid() bool {
 	if strings.TrimSpace(verdict.EvidenceRevision) == "" {
 		return false
 	}
 	switch verdict.Mode {
-	case NativeFM5ModeInterpreted, NativeFM5ModeAbsent:
-		return verdict.DegradedReason == "" || IsFM5TransientAcquisitionReason(verdict.DegradedReason)
-	case NativeFM5ModeGPIOOnly:
-		return verdict.DegradedReason == NativeFM5DegradedConfigurationNotInterpretable
+	case NativeFunctionModuleModeInterpreted, NativeFunctionModuleModeAbsent:
+		return verdict.DegradedReason == "" || IsFunctionModuleTransientAcquisitionReason(verdict.DegradedReason)
+	case NativeFunctionModuleModeGPIOOnly:
+		return verdict.DegradedReason == NativeFunctionModuleDegradedConfigurationNotInterpretable
 	default:
 		return false
 	}
 }
 
-// IsFM5TransientAcquisitionReason reports whether the acquisition reason is transient.
-func IsFM5TransientAcquisitionReason(reason NativeFM5DegradedReason) bool {
+// IsFunctionModuleTransientAcquisitionReason reports whether the acquisition reason is transient.
+func IsFunctionModuleTransientAcquisitionReason(reason NativeFunctionModuleDegradedReason) bool {
 	switch reason {
-	case NativeFM5DegradedControllerUnreachable,
-		NativeFM5DegradedConfigurationUnavailable,
-		NativeFM5DegradedSolarAcquisitionFailed,
-		NativeFM5DegradedCylinderAcquisitionFailed,
-		NativeFM5DegradedEvidenceStale,
-		NativeFM5DegradedIncoherentAcquisition:
+	case NativeFunctionModuleDegradedControllerUnreachable,
+		NativeFunctionModuleDegradedConfigurationUnavailable,
+		NativeFunctionModuleDegradedSolarAcquisitionFailed,
+		NativeFunctionModuleDegradedCylinderAcquisitionFailed,
+		NativeFunctionModuleDegradedEvidenceStale,
+		NativeFunctionModuleDegradedIncoherentAcquisition:
 		return true
 	default:
 		return false

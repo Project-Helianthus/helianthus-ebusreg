@@ -178,14 +178,14 @@ func MCPSystemFromGraphQL(status *SystemStatus) *MCPSystemStatus {
 	}
 	return &MCPSystemStatus{
 		State: &MCPSystemState{
-			SystemOff:                    CloneBoolPtr(status.State.SystemOff),
-			SystemWaterPressure:          CloneFloatPtr(status.State.SystemWaterPressure),
-			SystemFlowTemperature:        CloneFloatPtr(status.State.SystemFlowTemperature),
-			OutdoorTemperature:           CloneFloatPtr(status.State.OutdoorTemperature),
-			OutdoorTemperatureAvg24h:     CloneFloatPtr(status.State.OutdoorTemperatureAvg24h),
-			MaintenanceDue:               CloneBoolPtr(status.State.MaintenanceDue),
-			HwcCylinderTemperatureTop:    CloneFloatPtr(status.State.HwcCylinderTemperatureTop),
-			HwcCylinderTemperatureBottom: CloneFloatPtr(status.State.HwcCylinderTemperatureBottom),
+			SystemOff:                      CloneBoolPtr(status.State.SystemOff),
+			SystemWaterPressure:            CloneFloatPtr(status.State.SystemWaterPressure),
+			SystemFlowTemperature:          CloneFloatPtr(status.State.SystemFlowTemperature),
+			OutdoorTemperature:             CloneFloatPtr(status.State.OutdoorTemperature),
+			OutdoorTemperatureDailyAverage: CloneFloatPtr(status.State.OutdoorTemperatureDailyAverage),
+			MaintenanceDue:                 CloneBoolPtr(status.State.MaintenanceDue),
+			HwcCylinderTemperatureTop:      CloneFloatPtr(status.State.HwcCylinderTemperatureTop),
+			HwcCylinderTemperatureBottom:   CloneFloatPtr(status.State.HwcCylinderTemperatureBottom),
 		},
 		Config: &MCPSystemConfig{
 			AdaptiveHeatingCurve:         CloneBoolPtr(status.Config.AdaptiveHeatingCurve),
@@ -202,8 +202,8 @@ func MCPSystemFromGraphQL(status *SystemStatus) *MCPSystemStatus {
 			InstallerMenuCode:            CloneIntPtr(status.Config.InstallerMenuCode),
 		},
 		Properties: &MCPSystemProperties{
-			SystemScheme:            CloneIntPtr(status.Properties.SystemScheme),
-			ModuleConfigurationVR71: CloneIntPtr(status.Properties.ModuleConfigurationVR71),
+			SystemScheme:                    CloneIntPtr(status.Properties.SystemScheme),
+			FunctionModuleConfigurationCode: CloneIntPtr(status.Properties.FunctionModuleConfigurationCode),
 		},
 	}
 }

@@ -154,14 +154,14 @@ func CircuitsEqual(a, b []CircuitStatus) bool {
 }
 
 // DeriveCircuitManagingDevice maps scheme and mode evidence to the published managing device.
-func DeriveCircuitManagingDevice(system *NativeSystemSnapshot, fm5Mode NativeFM5Mode) ManagingDevice {
-	return circuitManagingDevice(CircuitsManagedByFunctionModule(system, fm5Mode))
+func DeriveCircuitManagingDevice(system *NativeSystemSnapshot, moduleMode NativeFunctionModuleMode) ManagingDevice {
+	return circuitManagingDevice(CircuitsManagedByFunctionModule(system, moduleMode))
 }
 
 func circuitManagingDevice(managedByFunctionModule bool) ManagingDevice {
 	if managedByFunctionModule {
-		deviceID := circuitManagingDeviceVR71ID
-		address := circuitManagingDeviceVR71Address
+		deviceID := functionModuleManagingDeviceID
+		address := functionModuleManagingDeviceAddress
 		return ManagingDevice{
 			Role:     ManagingDeviceRoleFunctionModule,
 			DeviceID: &deviceID,

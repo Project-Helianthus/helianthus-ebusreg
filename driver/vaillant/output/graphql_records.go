@@ -134,18 +134,18 @@ type RadioDevice struct {
 	RoomHumidityPct      *float64
 }
 
-// Fm5Interpretation represents the structural result and its evidence reference.
-type Fm5Interpretation struct {
-	Mode             Fm5SemanticMode
-	DegradedReason   Fm5SemanticDegradedReason
+// FunctionModuleInterpretation represents the structural result and its evidence reference.
+type FunctionModuleInterpretation struct {
+	Mode             FunctionModuleSemanticMode
+	DegradedReason   FunctionModuleSemanticDegradedReason
 	EvidenceRevision string
 }
 
-// Fm5SemanticMode represents the structural mode of the function module.
-type Fm5SemanticMode string
+// FunctionModuleSemanticMode represents the structural mode of the function module.
+type FunctionModuleSemanticMode string
 
-// Fm5SemanticDegradedReason represents the reason a function-module interpretation is degraded.
-type Fm5SemanticDegradedReason string
+// FunctionModuleSemanticDegradedReason represents the reason a function-module interpretation is degraded.
+type FunctionModuleSemanticDegradedReason string
 
 // SolarStatus represents the solar plane.
 type SolarStatus struct {
@@ -276,14 +276,14 @@ type SystemStatus struct {
 
 // SystemState represents the observed state of the system.
 type SystemState struct {
-	SystemOff                    *bool
-	SystemWaterPressure          *float64
-	SystemFlowTemperature        *float64
-	OutdoorTemperature           *float64
-	OutdoorTemperatureAvg24h     *float64
-	MaintenanceDue               *bool
-	HwcCylinderTemperatureTop    *float64
-	HwcCylinderTemperatureBottom *float64
+	SystemOff                      *bool
+	SystemWaterPressure            *float64
+	SystemFlowTemperature          *float64
+	OutdoorTemperature             *float64
+	OutdoorTemperatureDailyAverage *float64
+	MaintenanceDue                 *bool
+	HwcCylinderTemperatureTop      *float64
+	HwcCylinderTemperatureBottom   *float64
 }
 
 // SystemConfig represents the system settings and active bound.
@@ -305,8 +305,8 @@ type SystemConfig struct {
 
 // SystemProperties represents the hydraulic scheme and module settings.
 type SystemProperties struct {
-	SystemScheme            *int
-	ModuleConfigurationVR71 *int
+	SystemScheme                    *int
+	FunctionModuleConfigurationCode *int
 }
 
 // ScheduleTimerSlot represents one scheduled interval.
@@ -406,34 +406,34 @@ func NormalizeVaillantRegulatorCapability(capability VaillantRegulatorCapability
 
 // Published function-module modes.
 const (
-	Fm5SemanticModeInterpreted Fm5SemanticMode = "INTERPRETED"
-	Fm5SemanticModeGPIOOnly    Fm5SemanticMode = "GPIO_ONLY"
-	Fm5SemanticModeAbsent      Fm5SemanticMode = "ABSENT"
+	FunctionModuleSemanticModeInterpreted FunctionModuleSemanticMode = "INTERPRETED"
+	FunctionModuleSemanticModeGPIOOnly    FunctionModuleSemanticMode = "GPIO_ONLY"
+	FunctionModuleSemanticModeAbsent      FunctionModuleSemanticMode = "ABSENT"
 )
 
 // Published reasons for degraded function-module interpretations.
 const (
-	Fm5SemanticDegradedReasonControllerUnreachable         Fm5SemanticDegradedReason = "CONTROLLER_UNREACHABLE"
-	Fm5SemanticDegradedReasonConfigurationUnavailable      Fm5SemanticDegradedReason = "CONFIGURATION_UNAVAILABLE"
-	Fm5SemanticDegradedReasonConfigurationNotInterpretable Fm5SemanticDegradedReason = "CONFIGURATION_NOT_INTERPRETABLE"
-	Fm5SemanticDegradedReasonSolarAcquisitionFailed        Fm5SemanticDegradedReason = "SOLAR_ACQUISITION_FAILED"
-	Fm5SemanticDegradedReasonCylinderAcquisitionFailed     Fm5SemanticDegradedReason = "CYLINDER_ACQUISITION_FAILED"
-	Fm5SemanticDegradedReasonEvidenceStale                 Fm5SemanticDegradedReason = "EVIDENCE_STALE"
-	Fm5SemanticDegradedReasonIncoherentAcquisition         Fm5SemanticDegradedReason = "INCOHERENT_ACQUISITION"
+	FunctionModuleSemanticDegradedReasonControllerUnreachable         FunctionModuleSemanticDegradedReason = "CONTROLLER_UNREACHABLE"
+	FunctionModuleSemanticDegradedReasonConfigurationUnavailable      FunctionModuleSemanticDegradedReason = "CONFIGURATION_UNAVAILABLE"
+	FunctionModuleSemanticDegradedReasonConfigurationNotInterpretable FunctionModuleSemanticDegradedReason = "CONFIGURATION_NOT_INTERPRETABLE"
+	FunctionModuleSemanticDegradedReasonSolarAcquisitionFailed        FunctionModuleSemanticDegradedReason = "SOLAR_ACQUISITION_FAILED"
+	FunctionModuleSemanticDegradedReasonCylinderAcquisitionFailed     FunctionModuleSemanticDegradedReason = "CYLINDER_ACQUISITION_FAILED"
+	FunctionModuleSemanticDegradedReasonEvidenceStale                 FunctionModuleSemanticDegradedReason = "EVIDENCE_STALE"
+	FunctionModuleSemanticDegradedReasonIncoherentAcquisition         FunctionModuleSemanticDegradedReason = "INCOHERENT_ACQUISITION"
 )
 
 // Validate reports an incomplete or inconsistent interpretation.
-func (value Fm5Interpretation) Validate() error {
+func (value FunctionModuleInterpretation) Validate() error {
 	if strings.TrimSpace(value.EvidenceRevision) == "" {
 		return errors.New("fm5 evidence revision is required")
 	}
 	switch value.Mode {
-	case Fm5SemanticModeInterpreted, Fm5SemanticModeAbsent:
-		if value.DegradedReason != "" && !validFm5TransientDegradedReason(value.DegradedReason) {
+	case FunctionModuleSemanticModeInterpreted, FunctionModuleSemanticModeAbsent:
+		if value.DegradedReason != "" && !validFunctionModuleTransientDegradedReason(value.DegradedReason) {
 			return errors.New("fm5 retained structural mode requires a transient degraded reason")
 		}
-	case Fm5SemanticModeGPIOOnly:
-		if value.DegradedReason != Fm5SemanticDegradedReasonConfigurationNotInterpretable {
+	case FunctionModuleSemanticModeGPIOOnly:
+		if value.DegradedReason != FunctionModuleSemanticDegradedReasonConfigurationNotInterpretable {
 			return errors.New("fm5 GPIO_ONLY requires CONFIGURATION_NOT_INTERPRETABLE")
 		}
 	default:
@@ -442,24 +442,24 @@ func (value Fm5Interpretation) Validate() error {
 	return nil
 }
 
-func validFm5SemanticDegradedReason(reason Fm5SemanticDegradedReason) bool {
+func validFunctionModuleSemanticDegradedReason(reason FunctionModuleSemanticDegradedReason) bool {
 	switch reason {
-	case Fm5SemanticDegradedReasonControllerUnreachable,
-		Fm5SemanticDegradedReasonConfigurationUnavailable,
-		Fm5SemanticDegradedReasonConfigurationNotInterpretable,
-		Fm5SemanticDegradedReasonSolarAcquisitionFailed,
-		Fm5SemanticDegradedReasonCylinderAcquisitionFailed,
-		Fm5SemanticDegradedReasonEvidenceStale,
-		Fm5SemanticDegradedReasonIncoherentAcquisition:
+	case FunctionModuleSemanticDegradedReasonControllerUnreachable,
+		FunctionModuleSemanticDegradedReasonConfigurationUnavailable,
+		FunctionModuleSemanticDegradedReasonConfigurationNotInterpretable,
+		FunctionModuleSemanticDegradedReasonSolarAcquisitionFailed,
+		FunctionModuleSemanticDegradedReasonCylinderAcquisitionFailed,
+		FunctionModuleSemanticDegradedReasonEvidenceStale,
+		FunctionModuleSemanticDegradedReasonIncoherentAcquisition:
 		return true
 	default:
 		return false
 	}
 }
 
-func validFm5TransientDegradedReason(reason Fm5SemanticDegradedReason) bool {
-	return validFm5SemanticDegradedReason(reason) &&
-		reason != Fm5SemanticDegradedReasonConfigurationNotInterpretable
+func validFunctionModuleTransientDegradedReason(reason FunctionModuleSemanticDegradedReason) bool {
+	return validFunctionModuleSemanticDegradedReason(reason) &&
+		reason != FunctionModuleSemanticDegradedReasonConfigurationNotInterpretable
 }
 
 // Freshness classifications for energy fields.

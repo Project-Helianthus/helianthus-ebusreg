@@ -10,17 +10,17 @@ import (
 	"time"
 )
 
-func TestSemanticCacheStoreLoad_DiscardsV1(t *testing.T) {
+func TestSemanticCacheStoreLoad_DiscardsSchemaOne(t *testing.T) {
 	logs := &semanticCacheTestLogs{}
 	path := filepath.Join(t.TempDir(), "semantic-cache.json")
-	legacyV1 := `{
+	legacyCache := `{
   "zones": [
     {"id":"zone-2","name":"Zone 2"},
     {"id":"zone-1","name":"Zone 1","allowed_modes":["heat","auto"]}
   ],
   "dhw": {"operating_mode":"auto","preset":"schedule"}
 }`
-	if err := os.WriteFile(path, []byte(legacyV1), 0o644); err != nil {
+	if err := os.WriteFile(path, []byte(legacyCache), 0o644); err != nil {
 		t.Fatalf("WriteFile() error = %v", err)
 	}
 
@@ -31,11 +31,11 @@ func TestSemanticCacheStoreLoad_DiscardsV1(t *testing.T) {
 	logs.requireContains(t, "semantic_cache_discarded")
 }
 
-func TestSemanticCacheStoreLoad_DiscardsV2(t *testing.T) {
+func TestSemanticCacheStoreLoad_DiscardsSchemaTwo(t *testing.T) {
 	logs := &semanticCacheTestLogs{}
 	path := filepath.Join(t.TempDir(), "semantic-cache.json")
-	legacyV2 := `{"schema_version":2,"metadata":{},"zones":[{"id":"zone-1","name":"Zone 1"}]}`
-	if err := os.WriteFile(path, []byte(legacyV2), 0o644); err != nil {
+	legacyCache := `{"schema_version":2,"metadata":{},"zones":[{"id":"zone-1","name":"Zone 1"}]}`
+	if err := os.WriteFile(path, []byte(legacyCache), 0o644); err != nil {
 		t.Fatalf("WriteFile() error = %v", err)
 	}
 
@@ -133,7 +133,7 @@ func TestSemanticCacheStoreSave_SortsZonesAndAllowedModes(t *testing.T) {
 	if err != nil {
 		t.Fatalf("ReadFile() error = %v", err)
 	}
-	var persisted semanticCacheV3
+	var persisted semanticCacheFile
 	if err := json.Unmarshal(payload, &persisted); err != nil {
 		t.Fatalf("Unmarshal() error = %v", err)
 	}

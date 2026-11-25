@@ -112,8 +112,12 @@ func replayCacheLoads(t *testing.T, raw, want json.RawMessage) {
 			"hydration": replayHydration(snapshot), "logs": *logs,
 		})
 	}
-	// encoding/json includes the Go package name in this diagnostic. The
-	// moved record necessarily has a different package name.
-	want = []byte(strings.ReplaceAll(string(want), "[]main.semanticCacheZoneV3", fmt.Sprintf("%T", []semanticCacheZoneV3(nil))))
+	// Translate only the Go type names that encoding/json prints in the
+	// recorded diagnostic. Keep the field, failure reason, and other text exact.
+	names := strings.NewReplacer(
+		"semanticCacheV3.zones", reflect.TypeFor[semanticCacheFile]().Name()+".zones",
+		"[]main.semanticCacheZoneV3", fmt.Sprintf("%T", []semanticCacheZone(nil)),
+	)
+	want = []byte(names.Replace(string(want)))
 	assertRecorded(t, "cache loads", results, want)
 }

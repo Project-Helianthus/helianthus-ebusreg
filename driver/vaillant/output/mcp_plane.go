@@ -131,26 +131,26 @@ func MCPRadioDevicesFromGraphQL(devices []RadioDevice) []MCPRadioDevice {
 	return out
 }
 
-// MCPFM5SemanticModeFromGraphQL maps the FM5SemanticMode output record to its MCP form.
-func MCPFM5SemanticModeFromGraphQL(mode Fm5SemanticMode) MCPFm5SemanticMode {
+// MCPFunctionModuleSemanticModeFromGraphQL maps the FunctionModuleSemanticMode output record to its MCP form.
+func MCPFunctionModuleSemanticModeFromGraphQL(mode FunctionModuleSemanticMode) MCPFunctionModuleSemanticMode {
 	switch mode {
-	case Fm5SemanticModeInterpreted:
-		return MCPFm5SemanticModeInterpreted
-	case Fm5SemanticModeGPIOOnly:
-		return MCPFm5SemanticModeGPIOOnly
+	case FunctionModuleSemanticModeInterpreted:
+		return MCPFunctionModuleSemanticModeInterpreted
+	case FunctionModuleSemanticModeGPIOOnly:
+		return MCPFunctionModuleSemanticModeGPIOOnly
 	default:
-		return MCPFm5SemanticModeAbsent
+		return MCPFunctionModuleSemanticModeAbsent
 	}
 }
 
-// MCPFM5InterpretationFromGraphQL maps the FM5Interpretation output record to its MCP form.
-func MCPFM5InterpretationFromGraphQL(verdict Fm5Interpretation) MCPFm5Interpretation {
-	out := MCPFm5Interpretation{
-		Mode:             MCPFm5SemanticMode(verdict.Mode),
+// MCPFunctionModuleInterpretationFromGraphQL maps the FunctionModuleInterpretation output record to its MCP form.
+func MCPFunctionModuleInterpretationFromGraphQL(verdict FunctionModuleInterpretation) MCPFunctionModuleInterpretation {
+	out := MCPFunctionModuleInterpretation{
+		Mode:             MCPFunctionModuleSemanticMode(verdict.Mode),
 		EvidenceRevision: verdict.EvidenceRevision,
 	}
 	if verdict.DegradedReason != "" {
-		reason := MCPFm5SemanticDegradedReason(verdict.DegradedReason)
+		reason := MCPFunctionModuleSemanticDegradedReason(verdict.DegradedReason)
 		out.DegradedReason = &reason
 	}
 	return out

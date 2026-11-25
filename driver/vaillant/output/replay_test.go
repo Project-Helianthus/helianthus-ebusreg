@@ -148,7 +148,7 @@ func graphqlReplayValue(value reflect.Value, record string, fields map[string]ma
 	}
 	out := make(map[string]any)
 	for field, goField := range fields[record] {
-		v := value.FieldByName(goField)
+		v := value.FieldByName(outputGoField(goField))
 		if record == "zone_config" && field == "allowed_modes" && v.Len() == 0 {
 			// This default belongs to the old GraphQL projection, not the record.
 			out[field] = []string{"off", "auto", "heat"}
@@ -192,15 +192,15 @@ func graphqlChildRecord(record, field string) string {
 func replayManagingDevice(t *testing.T, vector recordedCase) {
 	t.Helper()
 	inputs := decodeRecorded[[]struct {
-		Scheme        *uint16       `json:"system_scheme"`
-		Configuration *uint16       `json:"module_configuration_vr71"`
-		Mode          NativeFM5Mode `json:"fm5_mode"`
+		Scheme        *uint16                  `json:"system_scheme"`
+		Configuration *uint16                  `json:"module_configuration_vr71"`
+		Mode          NativeFunctionModuleMode `json:"fm5_mode"`
 	}](t, vector.Input["pairings"])
 	if len(inputs) != len(vector.Output.Decisions) {
 		t.Fatal("pairing count mismatch")
 	}
 	for i, input := range inputs {
-		snapshot := &NativeSystemSnapshot{SystemScheme: input.Scheme, ModuleConfigurationVR71: input.Configuration}
+		snapshot := &NativeSystemSnapshot{SystemScheme: input.Scheme, FunctionModuleConfigurationCode: input.Configuration}
 		got := map[string]any{
 			"managed_by_function_module": CircuitsManagedByFunctionModule(snapshot, input.Mode),
 			"managing_device":            DeriveCircuitManagingDevice(snapshot, input.Mode),

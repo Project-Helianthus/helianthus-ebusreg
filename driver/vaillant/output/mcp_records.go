@@ -125,18 +125,18 @@ type MCPRadioDevice struct {
 	RoomHumidityPct      *float64 `json:"room_humidity_pct,omitempty"`
 }
 
-// MCPFm5Interpretation represents the structural result and its evidence reference in the MCP output.
-type MCPFm5Interpretation struct {
-	Mode             MCPFm5SemanticMode            `json:"mode"`
-	DegradedReason   *MCPFm5SemanticDegradedReason `json:"degraded_reason"`
-	EvidenceRevision string                        `json:"evidence_revision"`
+// MCPFunctionModuleInterpretation represents the structural result and its evidence reference in the MCP output.
+type MCPFunctionModuleInterpretation struct {
+	Mode             MCPFunctionModuleSemanticMode            `json:"mode"`
+	DegradedReason   *MCPFunctionModuleSemanticDegradedReason `json:"degraded_reason"`
+	EvidenceRevision string                                   `json:"evidence_revision"`
 }
 
-// MCPFm5SemanticMode represents the structural mode of the function module in the MCP output.
-type MCPFm5SemanticMode string
+// MCPFunctionModuleSemanticMode represents the structural mode of the function module in the MCP output.
+type MCPFunctionModuleSemanticMode string
 
-// MCPFm5SemanticDegradedReason represents the reason a function-module interpretation is degraded in the MCP output.
-type MCPFm5SemanticDegradedReason string
+// MCPFunctionModuleSemanticDegradedReason represents the reason a function-module interpretation is degraded in the MCP output.
+type MCPFunctionModuleSemanticDegradedReason string
 
 // MCPSolarStatus represents the solar plane in the MCP output.
 type MCPSolarStatus struct {
@@ -259,14 +259,14 @@ type MCPSystemStatus struct {
 
 // MCPSystemState represents the observed state of the system in the MCP output.
 type MCPSystemState struct {
-	SystemOff                    *bool    `json:"system_off,omitempty"`
-	SystemWaterPressure          *float64 `json:"water_pressure,omitempty"`
-	SystemFlowTemperature        *float64 `json:"flow_temperature,omitempty"`
-	OutdoorTemperature           *float64 `json:"outdoor_temperature,omitempty"`
-	OutdoorTemperatureAvg24h     *float64 `json:"outdoor_temperature_daily_average,omitempty"`
-	MaintenanceDue               *bool    `json:"maintenance_active,omitempty"`
-	HwcCylinderTemperatureTop    *float64 `json:"dhw_cylinder_top_temperature,omitempty"`
-	HwcCylinderTemperatureBottom *float64 `json:"dhw_cylinder_bottom_temperature,omitempty"`
+	SystemOff                      *bool    `json:"system_off,omitempty"`
+	SystemWaterPressure            *float64 `json:"water_pressure,omitempty"`
+	SystemFlowTemperature          *float64 `json:"flow_temperature,omitempty"`
+	OutdoorTemperature             *float64 `json:"outdoor_temperature,omitempty"`
+	OutdoorTemperatureDailyAverage *float64 `json:"outdoor_temperature_daily_average,omitempty"`
+	MaintenanceDue                 *bool    `json:"maintenance_active,omitempty"`
+	HwcCylinderTemperatureTop      *float64 `json:"dhw_cylinder_top_temperature,omitempty"`
+	HwcCylinderTemperatureBottom   *float64 `json:"dhw_cylinder_bottom_temperature,omitempty"`
 }
 
 // MCPSystemConfig represents the system settings and active bound in the MCP output.
@@ -287,8 +287,8 @@ type MCPSystemConfig struct {
 
 // MCPSystemProperties represents the hydraulic scheme and module settings in the MCP output.
 type MCPSystemProperties struct {
-	SystemScheme            *int `json:"hydraulic_scheme_code,omitempty"`
-	ModuleConfigurationVR71 *int `json:"functional_module_configuration_code,omitempty"`
+	SystemScheme                    *int `json:"hydraulic_scheme_code,omitempty"`
+	FunctionModuleConfigurationCode *int `json:"functional_module_configuration_code,omitempty"`
 }
 
 // MCPScheduleTimerSlot represents one scheduled interval in the MCP output.
@@ -395,22 +395,22 @@ type MCPTimeProgramSlotResult struct {
 
 // Function-module modes in MCP output.
 const (
-	MCPFm5SemanticModeInterpreted MCPFm5SemanticMode = "INTERPRETED"
-	MCPFm5SemanticModeGPIOOnly    MCPFm5SemanticMode = "GPIO_ONLY"
-	MCPFm5SemanticModeAbsent      MCPFm5SemanticMode = "ABSENT"
+	MCPFunctionModuleSemanticModeInterpreted MCPFunctionModuleSemanticMode = "INTERPRETED"
+	MCPFunctionModuleSemanticModeGPIOOnly    MCPFunctionModuleSemanticMode = "GPIO_ONLY"
+	MCPFunctionModuleSemanticModeAbsent      MCPFunctionModuleSemanticMode = "ABSENT"
 )
 
-func (value MCPFm5Interpretation) validate() error {
+func (value MCPFunctionModuleInterpretation) validate() error {
 	if strings.TrimSpace(value.EvidenceRevision) == "" {
 		return errors.New("fm5 evidence revision is required")
 	}
-	if value.Mode == MCPFm5SemanticModeGPIOOnly {
+	if value.Mode == MCPFunctionModuleSemanticModeGPIOOnly {
 		if value.DegradedReason == nil || *value.DegradedReason != "CONFIGURATION_NOT_INTERPRETABLE" {
 			return errors.New("fm5 GPIO_ONLY requires CONFIGURATION_NOT_INTERPRETABLE")
 		}
 		return nil
 	}
-	if value.Mode != MCPFm5SemanticModeInterpreted && value.Mode != MCPFm5SemanticModeAbsent {
+	if value.Mode != MCPFunctionModuleSemanticModeInterpreted && value.Mode != MCPFunctionModuleSemanticModeAbsent {
 		return errors.New("invalid fm5 semantic mode")
 	}
 	if value.DegradedReason == nil {

@@ -13,9 +13,9 @@ import (
 )
 
 const (
-	semanticCacheSchemaVersionV1 = 1
-	semanticCacheSchemaVersionV2 = 2
-	semanticCacheSchemaVersionV3 = 3
+	semanticCacheSchemaVersionOne = 1
+	semanticCacheSchemaVersionTwo = 2
+	semanticCacheSchemaVersion    = 3
 )
 
 // SemanticCacheSnapshot represents the records eligible for persistence and the recorded cache time.
@@ -42,11 +42,11 @@ type semanticCacheEnvelope struct {
 	SchemaVersion int `json:"schema_version"`
 }
 
-type semanticCacheV3 struct {
+type semanticCacheFile struct {
 	SchemaVersion int                   `json:"schema_version"`
 	Metadata      semanticCacheMetadata `json:"metadata"`
-	Zones         []semanticCacheZoneV3 `json:"zones,omitempty"`
-	DHW           *semanticCacheDHWV3   `json:"dhw,omitempty"`
+	Zones         []semanticCacheZone   `json:"zones,omitempty"`
+	DHW           *semanticCacheDHW     `json:"dhw,omitempty"`
 	Boiler        *semanticCacheBoiler  `json:"boiler,omitempty"`
 }
 
@@ -55,7 +55,7 @@ type semanticCacheMetadata struct {
 	MigratedFrom int       `json:"migrated_from,omitempty"`
 }
 
-type semanticCacheZoneV3 struct {
+type semanticCacheZone struct {
 	ID     string                  `json:"id"`
 	Name   string                  `json:"name"`
 	State  semanticCacheZoneState  `json:"state"`
@@ -81,7 +81,7 @@ type semanticCacheZoneConfig struct {
 	RoomTemperatureZoneMapping *int     `json:"room_temperature_zone_mapping,omitempty"`
 }
 
-type semanticCacheDHWV3 struct {
+type semanticCacheDHW struct {
 	State  semanticCacheDhwState  `json:"state"`
 	Config semanticCacheDhwConfig `json:"config"`
 }
@@ -148,18 +148,18 @@ func (store *SemanticCacheStore) Load() (SemanticCacheSnapshot, bool) {
 	}
 
 	switch envelope.SchemaVersion {
-	case 0, semanticCacheSchemaVersionV1, semanticCacheSchemaVersionV2:
+	case 0, semanticCacheSchemaVersionOne, semanticCacheSchemaVersionTwo:
 
 		store.logf("semantic_cache_discarded path=%q schema_version=%d reason=outdated_schema", store.path, envelope.SchemaVersion)
 		return SemanticCacheSnapshot{}, false
-	case semanticCacheSchemaVersionV3:
-		var cacheV3 semanticCacheV3
-		if err := json.Unmarshal(payload, &cacheV3); err != nil {
+	case semanticCacheSchemaVersion:
+		var cache semanticCacheFile
+		if err := json.Unmarshal(payload, &cache); err != nil {
 			store.logf("semantic_cache_invalid path=%q reason=v3_unmarshal err=%v", store.path, err)
 			return SemanticCacheSnapshot{}, false
 		}
-		snapshot := semanticCacheV3ToSnapshot(cacheV3)
-		store.logf("semantic_cache_hit path=%q schema_version=%d zones=%d dhw=%t", store.path, semanticCacheSchemaVersionV3, len(snapshot.Zones), snapshot.DHW != nil)
+		snapshot := semanticCacheSnapshotFromFile(cache)
+		store.logf("semantic_cache_hit path=%q schema_version=%d zones=%d dhw=%t", store.path, semanticCacheSchemaVersion, len(snapshot.Zones), snapshot.DHW != nil)
 		return snapshot, true
 	default:
 		store.logf("semantic_cache_invalid path=%q reason=unknown_schema_version schema_version=%d", store.path, envelope.SchemaVersion)
@@ -172,15 +172,15 @@ func (store *SemanticCacheStore) Save(snapshot SemanticCacheSnapshot) error {
 	if store == nil || store.path == "" {
 		return nil
 	}
-	cacheV3 := semanticCacheSnapshotToV3(snapshot, store.now().UTC())
-	return store.writeV3(cacheV3)
+	cache := semanticCacheFileFromSnapshot(snapshot, store.now().UTC())
+	return store.writeFile(cache)
 }
 
-func (store *SemanticCacheStore) writeV3(cacheV3 semanticCacheV3) error {
+func (store *SemanticCacheStore) writeFile(cache semanticCacheFile) error {
 	if store == nil || store.path == "" {
 		return nil
 	}
-	payload, err := json.MarshalIndent(cacheV3, "", "  ")
+	payload, err := json.MarshalIndent(cache, "", "  ")
 	if err != nil {
 		store.logf("semantic_cache_write_error path=%q reason=marshal err=%v", store.path, err)
 		return err
@@ -193,20 +193,20 @@ func (store *SemanticCacheStore) writeV3(cacheV3 semanticCacheV3) error {
 	store.logf(
 		"semantic_cache_write path=%q schema_version=%d zones=%d dhw=%t",
 		store.path,
-		cacheV3.SchemaVersion,
-		len(cacheV3.Zones),
-		cacheV3.DHW != nil,
+		cache.SchemaVersion,
+		len(cache.Zones),
+		cache.DHW != nil,
 	)
 	return nil
 }
 
-func semanticCacheV3ToSnapshot(cacheV3 semanticCacheV3) SemanticCacheSnapshot {
+func semanticCacheSnapshotFromFile(cache semanticCacheFile) SemanticCacheSnapshot {
 	out := SemanticCacheSnapshot{
-		Zones:       make([]Zone, 0, len(cacheV3.Zones)),
+		Zones:       make([]Zone, 0, len(cache.Zones)),
 		DHW:         nil,
-		PersistedAt: cacheV3.Metadata.PersistedAt,
+		PersistedAt: cache.Metadata.PersistedAt,
 	}
-	for _, zone := range normalizeSemanticCacheZonesV3(cacheV3.Zones) {
+	for _, zone := range normalizeSemanticCacheZones(cache.Zones) {
 		out.Zones = append(out.Zones, Zone{
 			ID:   zone.ID,
 			Name: zone.Name,
@@ -229,37 +229,37 @@ func semanticCacheV3ToSnapshot(cacheV3 semanticCacheV3) SemanticCacheSnapshot {
 			},
 		})
 	}
-	if cacheV3.DHW != nil {
+	if cache.DHW != nil {
 		out.DHW = &DhwStatus{
 			State: DhwState{
-				CurrentTempC:     CloneFloatPtr(cacheV3.DHW.State.CurrentTempC),
-				SpecialFunction:  cacheV3.DHW.State.SpecialFunction,
-				HeatingDemandPct: CloneFloatPtr(cacheV3.DHW.State.HeatingDemandPct),
+				CurrentTempC:     CloneFloatPtr(cache.DHW.State.CurrentTempC),
+				SpecialFunction:  cache.DHW.State.SpecialFunction,
+				HeatingDemandPct: CloneFloatPtr(cache.DHW.State.HeatingDemandPct),
 			},
 			Config: DhwConfig{
-				OperatingMode: cacheV3.DHW.Config.OperatingMode,
-				Preset:        cacheV3.DHW.Config.Preset,
-				TargetTempC:   CloneFloatPtr(cacheV3.DHW.Config.TargetTempC),
+				OperatingMode: cache.DHW.Config.OperatingMode,
+				Preset:        cache.DHW.Config.Preset,
+				TargetTempC:   CloneFloatPtr(cache.DHW.Config.TargetTempC),
 			},
 		}
 	}
-	if cacheV3.Boiler != nil {
-		out.Boiler = cacheBoilerToGraphQL(cacheV3.Boiler)
+	if cache.Boiler != nil {
+		out.Boiler = cacheBoilerToGraphQL(cache.Boiler)
 	}
 	return out
 }
 
-func semanticCacheSnapshotToV3(snapshot SemanticCacheSnapshot, persistedAt time.Time) semanticCacheV3 {
+func semanticCacheFileFromSnapshot(snapshot SemanticCacheSnapshot, persistedAt time.Time) semanticCacheFile {
 	normalizedSnapshot := normalizeSemanticCacheSnapshot(snapshot)
-	cacheV3 := semanticCacheV3{
-		SchemaVersion: semanticCacheSchemaVersionV3,
+	cache := semanticCacheFile{
+		SchemaVersion: semanticCacheSchemaVersion,
 		Metadata: semanticCacheMetadata{
 			PersistedAt: persistedAt,
 		},
-		Zones: make([]semanticCacheZoneV3, 0, len(normalizedSnapshot.Zones)),
+		Zones: make([]semanticCacheZone, 0, len(normalizedSnapshot.Zones)),
 	}
 	for _, zone := range normalizedSnapshot.Zones {
-		cacheV3.Zones = append(cacheV3.Zones, semanticCacheZoneV3{
+		cache.Zones = append(cache.Zones, semanticCacheZone{
 			ID:   zone.ID,
 			Name: zone.Name,
 			State: semanticCacheZoneState{
@@ -282,7 +282,7 @@ func semanticCacheSnapshotToV3(snapshot SemanticCacheSnapshot, persistedAt time.
 		})
 	}
 	if normalizedSnapshot.DHW != nil {
-		cacheV3.DHW = &semanticCacheDHWV3{
+		cache.DHW = &semanticCacheDHW{
 			State: semanticCacheDhwState{
 				CurrentTempC:     CloneFloatPtr(normalizedSnapshot.DHW.State.CurrentTempC),
 				SpecialFunction:  normalizedSnapshot.DHW.State.SpecialFunction,
@@ -296,9 +296,9 @@ func semanticCacheSnapshotToV3(snapshot SemanticCacheSnapshot, persistedAt time.
 		}
 	}
 	if normalizedSnapshot.Boiler != nil {
-		cacheV3.Boiler = graphQLBoilerToCache(normalizedSnapshot.Boiler)
+		cache.Boiler = graphQLBoilerToCache(normalizedSnapshot.Boiler)
 	}
-	return cacheV3
+	return cache
 }
 
 func normalizeSemanticCacheSnapshot(snapshot SemanticCacheSnapshot) SemanticCacheSnapshot {
@@ -352,8 +352,8 @@ func normalizeSemanticCacheSnapshot(snapshot SemanticCacheSnapshot) SemanticCach
 	return out
 }
 
-func normalizeSemanticCacheZonesV3(zones []semanticCacheZoneV3) []semanticCacheZoneV3 {
-	out := make([]semanticCacheZoneV3, 0, len(zones))
+func normalizeSemanticCacheZones(zones []semanticCacheZone) []semanticCacheZone {
+	out := make([]semanticCacheZone, 0, len(zones))
 	for _, zone := range zones {
 		zoneCopy := zone
 		zoneCopy.State.CurrentTempC = CloneFloatPtr(zone.State.CurrentTempC)
@@ -367,7 +367,7 @@ func normalizeSemanticCacheZonesV3(zones []semanticCacheZoneV3) []semanticCacheZ
 		zoneCopy.Config.RoomTemperatureZoneMapping = CloneIntPtr(zone.Config.RoomTemperatureZoneMapping)
 		out = append(out, zoneCopy)
 	}
-	slices.SortFunc(out, func(a, b semanticCacheZoneV3) int {
+	slices.SortFunc(out, func(a, b semanticCacheZone) int {
 		if compare := compareSemanticZoneID(a.ID, b.ID); compare != 0 {
 			return compare
 		}

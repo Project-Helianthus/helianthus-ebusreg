@@ -1,0 +1,5137 @@
+{
+  "boiler-status-all-fields": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "boiler_snapshot": {
+        "CentralHeatingHours": 4321.5,
+        "CentralHeatingPumpActive": true,
+        "CentralHeatingStarts": 12345,
+        "CirculationPumpActive": true,
+        "DeactivationsIFC": 3,
+        "DeactivationsTemplimiter": 1,
+        "DhwDemandActive": false,
+        "DhwHours": 987.25,
+        "DhwOperatingMode": 2,
+        "DhwStarts": 6789,
+        "DhwStatusRaw": 1,
+        "DhwTargetTemperatureC": 50,
+        "DhwTempDesiredC": 50,
+        "DhwTemperatureC": 48,
+        "DhwWaterFlowLpm": 7.25,
+        "DiverterValvePositionPct": 100,
+        "ExternalPumpActive": false,
+        "FanHours": 4800,
+        "FanSpeedRpm": 3120,
+        "FlameActive": true,
+        "FlowTempDesiredC": 55,
+        "FlowTemperatureC": 54.5,
+        "FlowsetHcMaxC": 75,
+        "FlowsetHwcMaxC": 80,
+        "GasValveActive": true,
+        "HeatingStatusRaw": 4,
+        "HeatingSwitchActive": true,
+        "HoursTillService": 2400,
+        "InstallerMenuCode": 17,
+        "IonisationVoltageUa": 5.5,
+        "ModulationPct": 35,
+        "PartloadHcKW": 12,
+        "PartloadHwcKW": 24,
+        "PhoneNumber": "0123",
+        "PrimaryCircuitFlowLpm": 12.5,
+        "PumpHours": 5000,
+        "ReturnTemperatureC": 41,
+        "StateNumber": 8,
+        "StorageLoadPumpPct": 65,
+        "TargetFanSpeedRpm": 3200,
+        "WaterPressureBar": 1.6
+      }
+    },
+    "output": {
+      "graphql": {
+        "boiler_status": {
+          "config": {
+            "central_heating_pump_mode": 17,
+            "dhw_operating_mode": "AUTO",
+            "dhw_partial_load_power": 24,
+            "heating_partial_load_power": 12,
+            "installer_phone_number": "0123",
+            "maximum_dhw_flow_temperature_setpoint": 80,
+            "maximum_heating_flow_temperature_setpoint": 75,
+            "service_time_remaining": 2400
+          },
+          "diagnostics": {
+            "central_heating_operating_time": 4321.5,
+            "central_heating_start_count": 12345,
+            "dhw_operating_time": 987.25,
+            "dhw_start_count": 6789,
+            "dhw_status_raw": 1,
+            "fan_operating_time": 4800,
+            "fire_control_deactivation_count": 3,
+            "heating_status_raw": 4,
+            "pump_operating_time": 5000,
+            "temperature_limiter_deactivation_count": 1
+          },
+          "state": {
+            "boiler_state_code": 8,
+            "central_heating_pump_active": true,
+            "circulation_pump_active": true,
+            "dhw_demand_active": false,
+            "dhw_target_temperature_c": 50,
+            "dhw_temperature_c": 48,
+            "dhw_temperature_setpoint": 50,
+            "dhw_water_flow_rate": 7.25,
+            "diverter_valve_position": 100,
+            "external_pump_active": false,
+            "fan_speed": 3120,
+            "fan_speed_setpoint": 3200,
+            "flame_active": true,
+            "flame_ionization_current": 5.5,
+            "flow_temperature": 54.5,
+            "flow_temperature_setpoint": 55,
+            "gas_valve_active": true,
+            "heating_switch_active": true,
+            "modulation_setpoint": 35,
+            "primary_circuit_flow_rate": 12.5,
+            "return_temperature_c": 41,
+            "storage_loading_pump_level": 65,
+            "water_pressure": 1.6
+          }
+        }
+      },
+      "mcp": {
+        "boiler_status": {
+          "config": {
+            "central_heating_pump_mode": 17,
+            "dhw_operating_mode": "AUTO",
+            "dhw_partial_load_power": 24,
+            "heating_partial_load_power": 12,
+            "installer_phone_number": "0123",
+            "maximum_dhw_flow_temperature_setpoint": 80,
+            "maximum_heating_flow_temperature_setpoint": 75,
+            "service_time_remaining": 2400
+          },
+          "diagnostics": {
+            "central_heating_operating_time": 4321.5,
+            "central_heating_start_count": 12345,
+            "dhw_operating_time": 987.25,
+            "dhw_start_count": 6789,
+            "dhw_status_raw": 1,
+            "fan_operating_time": 4800,
+            "fire_control_deactivation_count": 3,
+            "heating_status_raw": 4,
+            "pump_operating_time": 5000,
+            "temperature_limiter_deactivation_count": 1
+          },
+          "state": {
+            "boiler_state_code": 8,
+            "central_heating_pump_active": true,
+            "circulation_pump_active": true,
+            "dhw_demand_active": false,
+            "dhw_target_temperature_c": 50,
+            "dhw_temperature_c": 48,
+            "dhw_temperature_setpoint": 50,
+            "dhw_water_flow_rate": 7.25,
+            "diverter_valve_position": 100,
+            "external_pump_active": false,
+            "fan_speed": 3120,
+            "fan_speed_setpoint": 3200,
+            "flame_active": true,
+            "flame_ionization_current": 5.5,
+            "flow_temperature": 54.5,
+            "flow_temperature_setpoint": 55,
+            "gas_valve_active": true,
+            "heating_switch_active": true,
+            "modulation_setpoint": 35,
+            "primary_circuit_flow_rate": 12.5,
+            "return_temperature_c": 41,
+            "storage_loading_pump_level": 65,
+            "water_pressure": 1.6
+          }
+        }
+      }
+    }
+  },
+  "cache-load-discards-rejects-and-withholds": {
+    "clock": {},
+    "input": {
+      "loads": [
+        {
+          "file_present": false,
+          "name": "miss"
+        },
+        {
+          "bytes": "{not-json",
+          "file_present": true,
+          "name": "invalid_json"
+        },
+        {
+          "bytes": "{\"schema_version\":99,\"zones\":[]}",
+          "file_present": true,
+          "name": "unknown_schema_version"
+        },
+        {
+          "bytes": "{\"zones\":[{\"id\":\"zone-2\",\"name\":\"Zone 2\"},{\"id\":\"zone-1\",\"name\":\"Zone 1\",\"allowed_modes\":[\"heat\",\"auto\"]}],\"dhw\":{\"operating_mode\":\"auto\",\"preset\":\"schedule\"}}",
+          "file_present": true,
+          "name": "schema_version_absent"
+        },
+        {
+          "bytes": "{\"schema_version\":1,\"zones\":[{\"id\":\"zone-1\",\"name\":\"Zone 1\"}]}",
+          "file_present": true,
+          "name": "schema_version_1"
+        },
+        {
+          "bytes": "{\"schema_version\":2,\"metadata\":{},\"zones\":[{\"id\":\"zone-1\",\"name\":\"Zone 1\"}]}",
+          "file_present": true,
+          "name": "schema_version_2"
+        },
+        {
+          "bytes": "{\"schema_version\":3,\"zones\":\"not-a-list\"}",
+          "file_present": true,
+          "name": "schema_version_3_wrong_member_type"
+        },
+        {
+          "bytes": "{\"schema_version\":3,\"metadata\":{\"persisted_at\":\"2030-04-10T08:00:00Z\"}}",
+          "file_present": true,
+          "name": "schema_version_3_minimal"
+        },
+        {
+          "bytes": "{\"schema_version\":3,\"metadata\":{\"persisted_at\":\"2030-04-10T08:00:00Z\"},\"boiler\":{\"flow_temperature_c\":50.5,\"return_temperature_c\":40.25,\"central_heating_pump_active\":true,\"dhw_temperature_c\":47,\"dhw_target_temperature_c\":50,\"dhw_operating_mode\":\"auto\",\"heating_status_raw\":4,\"dhw_status_raw\":1}}",
+          "file_present": true,
+          "name": "schema_version_3_boiler_flow_and_pumps_withheld"
+        }
+      ]
+    },
+    "output": {
+      "cache": {
+        "loads": [
+          {
+            "hydration": {
+              "boiler": null,
+              "dhw": null,
+              "persisted_at": "0001-01-01T00:00:00Z",
+              "zones": null
+            },
+            "logs": [
+              "semantic_cache_miss path=\"semantic-cache.json\""
+            ],
+            "name": "miss",
+            "ok": false,
+            "snapshot": {
+              "Boiler": null,
+              "DHW": null,
+              "PersistedAt": "0001-01-01T00:00:00Z",
+              "Zones": null
+            }
+          },
+          {
+            "hydration": {
+              "boiler": null,
+              "dhw": null,
+              "persisted_at": "0001-01-01T00:00:00Z",
+              "zones": null
+            },
+            "logs": [
+              "semantic_cache_invalid path=\"semantic-cache.json\" reason=json_unmarshal err=invalid character 'n' looking for beginning of object key string"
+            ],
+            "name": "invalid_json",
+            "ok": false,
+            "snapshot": {
+              "Boiler": null,
+              "DHW": null,
+              "PersistedAt": "0001-01-01T00:00:00Z",
+              "Zones": null
+            }
+          },
+          {
+            "hydration": {
+              "boiler": null,
+              "dhw": null,
+              "persisted_at": "0001-01-01T00:00:00Z",
+              "zones": null
+            },
+            "logs": [
+              "semantic_cache_invalid path=\"semantic-cache.json\" reason=unknown_schema_version schema_version=99"
+            ],
+            "name": "unknown_schema_version",
+            "ok": false,
+            "snapshot": {
+              "Boiler": null,
+              "DHW": null,
+              "PersistedAt": "0001-01-01T00:00:00Z",
+              "Zones": null
+            }
+          },
+          {
+            "hydration": {
+              "boiler": null,
+              "dhw": null,
+              "persisted_at": "0001-01-01T00:00:00Z",
+              "zones": null
+            },
+            "logs": [
+              "semantic_cache_discarded path=\"semantic-cache.json\" schema_version=0 reason=outdated_schema"
+            ],
+            "name": "schema_version_absent",
+            "ok": false,
+            "snapshot": {
+              "Boiler": null,
+              "DHW": null,
+              "PersistedAt": "0001-01-01T00:00:00Z",
+              "Zones": null
+            }
+          },
+          {
+            "hydration": {
+              "boiler": null,
+              "dhw": null,
+              "persisted_at": "0001-01-01T00:00:00Z",
+              "zones": null
+            },
+            "logs": [
+              "semantic_cache_discarded path=\"semantic-cache.json\" schema_version=1 reason=outdated_schema"
+            ],
+            "name": "schema_version_1",
+            "ok": false,
+            "snapshot": {
+              "Boiler": null,
+              "DHW": null,
+              "PersistedAt": "0001-01-01T00:00:00Z",
+              "Zones": null
+            }
+          },
+          {
+            "hydration": {
+              "boiler": null,
+              "dhw": null,
+              "persisted_at": "0001-01-01T00:00:00Z",
+              "zones": null
+            },
+            "logs": [
+              "semantic_cache_discarded path=\"semantic-cache.json\" schema_version=2 reason=outdated_schema"
+            ],
+            "name": "schema_version_2",
+            "ok": false,
+            "snapshot": {
+              "Boiler": null,
+              "DHW": null,
+              "PersistedAt": "0001-01-01T00:00:00Z",
+              "Zones": null
+            }
+          },
+          {
+            "hydration": {
+              "boiler": null,
+              "dhw": null,
+              "persisted_at": "0001-01-01T00:00:00Z",
+              "zones": null
+            },
+            "logs": [
+              "semantic_cache_invalid path=\"semantic-cache.json\" reason=v3_unmarshal err=json: cannot unmarshal string into Go struct field semanticCacheV3.zones of type []main.semanticCacheZoneV3"
+            ],
+            "name": "schema_version_3_wrong_member_type",
+            "ok": false,
+            "snapshot": {
+              "Boiler": null,
+              "DHW": null,
+              "PersistedAt": "0001-01-01T00:00:00Z",
+              "Zones": null
+            }
+          },
+          {
+            "hydration": {
+              "boiler": null,
+              "dhw": null,
+              "persisted_at": "2030-04-10T08:00:00Z",
+              "zones": null
+            },
+            "logs": [
+              "semantic_cache_hit path=\"semantic-cache.json\" schema_version=3 zones=0 dhw=false"
+            ],
+            "name": "schema_version_3_minimal",
+            "ok": true,
+            "snapshot": {
+              "Boiler": null,
+              "DHW": null,
+              "PersistedAt": "2030-04-10T08:00:00Z",
+              "Zones": []
+            }
+          },
+          {
+            "hydration": {
+              "boiler": {
+                "CentralHeatingHours": null,
+                "CentralHeatingPumpActive": null,
+                "CentralHeatingStarts": null,
+                "CirculationPumpActive": null,
+                "DeactivationsIFC": null,
+                "DeactivationsTemplimiter": null,
+                "DhwDemandActive": null,
+                "DhwHours": null,
+                "DhwOperatingMode": 2,
+                "DhwStarts": null,
+                "DhwStatusRaw": 1,
+                "DhwTargetTemperatureC": 50,
+                "DhwTempDesiredC": null,
+                "DhwTemperatureC": 47,
+                "DhwWaterFlowLpm": null,
+                "DiverterValvePositionPct": null,
+                "ExternalPumpActive": null,
+                "FanHours": null,
+                "FanSpeedRpm": null,
+                "FlameActive": null,
+                "FlowTempDesiredC": null,
+                "FlowTemperatureC": null,
+                "FlowsetHcMaxC": null,
+                "FlowsetHwcMaxC": null,
+                "GasValveActive": null,
+                "HeatingStatusRaw": null,
+                "HeatingSwitchActive": null,
+                "HoursTillService": null,
+                "InstallerMenuCode": null,
+                "IonisationVoltageUa": null,
+                "ModulationPct": null,
+                "PartloadHcKW": null,
+                "PartloadHwcKW": null,
+                "PhoneNumber": null,
+                "PrimaryCircuitFlowLpm": null,
+                "PumpHours": null,
+                "ReturnTemperatureC": 40.25,
+                "StateNumber": null,
+                "StorageLoadPumpPct": null,
+                "TargetFanSpeedRpm": null,
+                "WaterPressureBar": null
+              },
+              "dhw": null,
+              "persisted_at": "2030-04-10T08:00:00Z",
+              "zones": null
+            },
+            "logs": [
+              "semantic_cache_hit path=\"semantic-cache.json\" schema_version=3 zones=0 dhw=false"
+            ],
+            "name": "schema_version_3_boiler_flow_and_pumps_withheld",
+            "ok": true,
+            "snapshot": {
+              "Boiler": {
+                "Config": {
+                  "DhwOperatingMode": "auto",
+                  "FlowsetHcMaxC": null,
+                  "FlowsetHwcMaxC": null,
+                  "HoursTillService": null,
+                  "InstallerMenuCode": null,
+                  "PartloadHcKW": null,
+                  "PartloadHwcKW": null,
+                  "PhoneNumber": null
+                },
+                "Diagnostics": {
+                  "CentralHeatingHours": null,
+                  "CentralHeatingStarts": null,
+                  "DeactivationsIFC": null,
+                  "DeactivationsTemplimiter": null,
+                  "DhwHours": null,
+                  "DhwStarts": null,
+                  "DhwStatusRaw": 1,
+                  "FanHours": null,
+                  "HeatingStatusRaw": null,
+                  "PumpHours": null
+                },
+                "State": {
+                  "CentralHeatingPumpActive": null,
+                  "CirculationPumpActive": null,
+                  "DhwDemandActive": null,
+                  "DhwTargetTemperatureC": 50,
+                  "DhwTempDesiredC": null,
+                  "DhwTemperatureC": 47,
+                  "DhwWaterFlowLpm": null,
+                  "DiverterValvePositionPct": null,
+                  "ExternalPumpActive": null,
+                  "FanSpeedRpm": null,
+                  "FlameActive": null,
+                  "FlowTempDesiredC": null,
+                  "FlowTemperatureC": null,
+                  "GasValveActive": null,
+                  "HeatingSwitchActive": null,
+                  "IonisationVoltageUa": null,
+                  "ModulationPct": null,
+                  "PrimaryCircuitFlowLpm": null,
+                  "ReturnTemperatureC": 40.25,
+                  "StateNumber": null,
+                  "StorageLoadPumpPct": null,
+                  "TargetFanSpeedRpm": null,
+                  "WaterPressureBar": null
+                }
+              },
+              "DHW": null,
+              "PersistedAt": "2030-04-10T08:00:00Z",
+              "Zones": []
+            }
+          }
+        ]
+      },
+      "graphql": {},
+      "mcp": {}
+    }
+  },
+  "cache-persist-published-planes-with-zone-overlay": {
+    "clock": {
+      "store_now": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "boiler_snapshot": {
+        "CentralHeatingHours": 4321.5,
+        "CentralHeatingPumpActive": true,
+        "CentralHeatingStarts": 12345,
+        "CirculationPumpActive": true,
+        "DeactivationsIFC": 3,
+        "DeactivationsTemplimiter": 1,
+        "DhwDemandActive": false,
+        "DhwHours": 987.25,
+        "DhwOperatingMode": 2,
+        "DhwStarts": 6789,
+        "DhwStatusRaw": 1,
+        "DhwTargetTemperatureC": 50,
+        "DhwTempDesiredC": 50,
+        "DhwTemperatureC": 48,
+        "DhwWaterFlowLpm": 7.25,
+        "DiverterValvePositionPct": 100,
+        "ExternalPumpActive": false,
+        "FanHours": 4800,
+        "FanSpeedRpm": 3120,
+        "FlameActive": true,
+        "FlowTempDesiredC": 55,
+        "FlowTemperatureC": 54.5,
+        "FlowsetHcMaxC": 75,
+        "FlowsetHwcMaxC": 80,
+        "GasValveActive": true,
+        "HeatingStatusRaw": 4,
+        "HeatingSwitchActive": true,
+        "HoursTillService": 2400,
+        "InstallerMenuCode": 17,
+        "IonisationVoltageUa": 5.5,
+        "ModulationPct": 35,
+        "PartloadHcKW": 12,
+        "PartloadHwcKW": 24,
+        "PhoneNumber": "0123",
+        "PrimaryCircuitFlowLpm": 12.5,
+        "PumpHours": 5000,
+        "ReturnTemperatureC": 41,
+        "StateNumber": 8,
+        "StorageLoadPumpPct": 65,
+        "TargetFanSpeedRpm": 3200,
+        "WaterPressureBar": 1.6
+      },
+      "dhw_view": {
+        "expired": false,
+        "snapshot": {
+          "ConfigurationDHWOperationMode": "",
+          "CurrentTempC": 48.5,
+          "FieldFreshness": null,
+          "HolidayEndDate": "",
+          "HolidayStartDate": "",
+          "OperatingMode": "auto",
+          "Preset": "",
+          "StateSpecialFunction": "",
+          "TargetTempC": 55
+        }
+      },
+      "overlays": {
+        "0": {
+          "associated_circuit_raw": 0,
+          "current_temp_c": 20.25,
+          "humidity_pct": 45,
+          "room_mapping_raw": 1
+        }
+      },
+      "zone_views": [
+        {
+          "inferred_room_mapping_raw": null,
+          "instance": 0,
+          "radio_room_humidity_pct": null,
+          "radio_room_temp_c": null,
+          "snapshot": {
+            "AllowedModes": [
+              "auto",
+              "off"
+            ],
+            "ConfigurationAssociatedCircuitRaw": null,
+            "ConfigurationCircuitTypeRaw": null,
+            "ConfigurationHeatingOperationMode": "",
+            "ConfigurationRoomTemperatureZoneMappingRaw": null,
+            "CurrentTempC": 19,
+            "FieldFreshness": null,
+            "HolidayEndDate": "",
+            "HolidayEndTime": "",
+            "HolidaySetpointC": null,
+            "HolidayStartDate": "",
+            "HolidayStartTime": "",
+            "HumidityPct": 40,
+            "HvacAction": "",
+            "Instance": 0,
+            "Name": "Living",
+            "OperatingMode": "auto",
+            "Present": true,
+            "Preset": "",
+            "QuickVetoDurationH": null,
+            "QuickVetoEndDate": "",
+            "QuickVetoEndTime": "",
+            "QuickVetoTempC": null,
+            "StateSpecialFunction": "",
+            "StateValveStatusRaw": null,
+            "TargetTempC": 21
+          }
+        },
+        {
+          "inferred_room_mapping_raw": null,
+          "instance": 1,
+          "radio_room_humidity_pct": null,
+          "radio_room_temp_c": null,
+          "snapshot": {
+            "AllowedModes": null,
+            "ConfigurationAssociatedCircuitRaw": null,
+            "ConfigurationCircuitTypeRaw": null,
+            "ConfigurationHeatingOperationMode": "",
+            "ConfigurationRoomTemperatureZoneMappingRaw": null,
+            "CurrentTempC": 17,
+            "FieldFreshness": null,
+            "HolidayEndDate": "",
+            "HolidayEndTime": "",
+            "HolidaySetpointC": null,
+            "HolidayStartDate": "",
+            "HolidayStartTime": "",
+            "HumidityPct": null,
+            "HvacAction": "",
+            "Instance": 1,
+            "Name": "Bedroom",
+            "OperatingMode": "off",
+            "Present": true,
+            "Preset": "",
+            "QuickVetoDurationH": null,
+            "QuickVetoEndDate": "",
+            "QuickVetoEndTime": "",
+            "QuickVetoTempC": null,
+            "StateSpecialFunction": "",
+            "StateValveStatusRaw": null,
+            "TargetTempC": null
+          }
+        }
+      ]
+    },
+    "output": {
+      "cache": {
+        "loaded_snapshot": {
+          "Boiler": {
+            "Config": {
+              "DhwOperatingMode": "AUTO",
+              "FlowsetHcMaxC": null,
+              "FlowsetHwcMaxC": null,
+              "HoursTillService": null,
+              "InstallerMenuCode": null,
+              "PartloadHcKW": null,
+              "PartloadHwcKW": null,
+              "PhoneNumber": null
+            },
+            "Diagnostics": {
+              "CentralHeatingHours": null,
+              "CentralHeatingStarts": null,
+              "DeactivationsIFC": null,
+              "DeactivationsTemplimiter": null,
+              "DhwHours": null,
+              "DhwStarts": null,
+              "DhwStatusRaw": 1,
+              "FanHours": null,
+              "HeatingStatusRaw": null,
+              "PumpHours": null
+            },
+            "State": {
+              "CentralHeatingPumpActive": null,
+              "CirculationPumpActive": null,
+              "DhwDemandActive": null,
+              "DhwTargetTemperatureC": 50,
+              "DhwTempDesiredC": null,
+              "DhwTemperatureC": 48,
+              "DhwWaterFlowLpm": null,
+              "DiverterValvePositionPct": null,
+              "ExternalPumpActive": null,
+              "FanSpeedRpm": null,
+              "FlameActive": null,
+              "FlowTempDesiredC": null,
+              "FlowTemperatureC": null,
+              "GasValveActive": null,
+              "HeatingSwitchActive": null,
+              "IonisationVoltageUa": null,
+              "ModulationPct": null,
+              "PrimaryCircuitFlowLpm": null,
+              "ReturnTemperatureC": 41,
+              "StateNumber": null,
+              "StorageLoadPumpPct": null,
+              "TargetFanSpeedRpm": null,
+              "WaterPressureBar": null
+            }
+          },
+          "DHW": {
+            "Config": {
+              "HolidayEndDate": "",
+              "HolidayStartDate": "",
+              "OperatingMode": "auto",
+              "OperationModeChangeable": null,
+              "Preset": "",
+              "TargetTempC": 55
+            },
+            "State": {
+              "CurrentTempC": 48.5,
+              "HeatingDemandPct": null,
+              "OverrunActive": null,
+              "SpecialFunction": ""
+            }
+          },
+          "PersistedAt": "2030-04-10T08:00:00Z",
+          "Zones": [
+            {
+              "Config": {
+                "AllowedModes": [
+                  "auto",
+                  "off"
+                ],
+                "AssociatedCircuit": 0,
+                "CircuitType": "",
+                "HolidayEndDate": "",
+                "HolidayEndTime": "",
+                "HolidaySetpointC": null,
+                "HolidayStartDate": "",
+                "HolidayStartTime": "",
+                "OperatingMode": "auto",
+                "OperationModeChangeable": null,
+                "Preset": "",
+                "QuickVeto": false,
+                "QuickVetoDurationH": null,
+                "QuickVetoExpiry": "",
+                "QuickVetoSetpointC": null,
+                "RoomTemperatureZoneMapping": 1,
+                "SourceLabel": null,
+                "TargetTempC": 21
+              },
+              "ID": "zone-1",
+              "Name": "Living",
+              "State": {
+                "CurrentHumidityPct": 45,
+                "CurrentTempC": 20.25,
+                "HeatingDemandPct": null,
+                "HvacAction": "",
+                "SpecialFunction": "",
+                "ValvePositionPct": null
+              }
+            },
+            {
+              "Config": {
+                "AllowedModes": null,
+                "AssociatedCircuit": null,
+                "CircuitType": "",
+                "HolidayEndDate": "",
+                "HolidayEndTime": "",
+                "HolidaySetpointC": null,
+                "HolidayStartDate": "",
+                "HolidayStartTime": "",
+                "OperatingMode": "off",
+                "OperationModeChangeable": null,
+                "Preset": "",
+                "QuickVeto": false,
+                "QuickVetoDurationH": null,
+                "QuickVetoExpiry": "",
+                "QuickVetoSetpointC": null,
+                "RoomTemperatureZoneMapping": null,
+                "SourceLabel": null,
+                "TargetTempC": null
+              },
+              "ID": "zone-2",
+              "Name": "Bedroom",
+              "State": {
+                "CurrentHumidityPct": null,
+                "CurrentTempC": 17,
+                "HeatingDemandPct": null,
+                "HvacAction": "",
+                "SpecialFunction": "",
+                "ValvePositionPct": null
+              }
+            }
+          ]
+        },
+        "saved_bytes": "{\n  \"schema_version\": 3,\n  \"metadata\": {\n    \"persisted_at\": \"2030-04-10T08:00:00Z\"\n  },\n  \"zones\": [\n    {\n      \"id\": \"zone-1\",\n      \"name\": \"Living\",\n      \"state\": {\n        \"current_temp_c\": 20.25,\n        \"current_humidity_pct\": 45\n      },\n      \"config\": {\n        \"operating_mode\": \"auto\",\n        \"target_temp_c\": 21,\n        \"allowed_modes\": [\n          \"auto\",\n          \"off\"\n        ],\n        \"associated_circuit\": 0,\n        \"room_temperature_zone_mapping\": 1\n      }\n    },\n    {\n      \"id\": \"zone-2\",\n      \"name\": \"Bedroom\",\n      \"state\": {\n        \"current_temp_c\": 17\n      },\n      \"config\": {\n        \"operating_mode\": \"off\"\n      }\n    }\n  ],\n  \"dhw\": {\n    \"state\": {\n      \"current_temp_c\": 48.5\n    },\n    \"config\": {\n      \"operating_mode\": \"auto\",\n      \"target_temp_c\": 55\n    }\n  },\n  \"boiler\": {\n    \"flow_temperature_c\": 54.5,\n    \"return_temperature_c\": 41,\n    \"dhw_temperature_c\": 48,\n    \"dhw_target_temperature_c\": 50,\n    \"dhw_operating_mode\": \"AUTO\",\n    \"dhw_status_raw\": 1\n  }\n}\n"
+      },
+      "graphql": {
+        "boiler_status": {
+          "config": {
+            "central_heating_pump_mode": 17,
+            "dhw_operating_mode": "AUTO",
+            "dhw_partial_load_power": 24,
+            "heating_partial_load_power": 12,
+            "installer_phone_number": "0123",
+            "maximum_dhw_flow_temperature_setpoint": 80,
+            "maximum_heating_flow_temperature_setpoint": 75,
+            "service_time_remaining": 2400
+          },
+          "diagnostics": {
+            "central_heating_operating_time": 4321.5,
+            "central_heating_start_count": 12345,
+            "dhw_operating_time": 987.25,
+            "dhw_start_count": 6789,
+            "dhw_status_raw": 1,
+            "fan_operating_time": 4800,
+            "fire_control_deactivation_count": 3,
+            "heating_status_raw": 4,
+            "pump_operating_time": 5000,
+            "temperature_limiter_deactivation_count": 1
+          },
+          "state": {
+            "boiler_state_code": 8,
+            "central_heating_pump_active": true,
+            "circulation_pump_active": true,
+            "dhw_demand_active": false,
+            "dhw_target_temperature_c": 50,
+            "dhw_temperature_c": 48,
+            "dhw_temperature_setpoint": 50,
+            "dhw_water_flow_rate": 7.25,
+            "diverter_valve_position": 100,
+            "external_pump_active": false,
+            "fan_speed": 3120,
+            "fan_speed_setpoint": 3200,
+            "flame_active": true,
+            "flame_ionization_current": 5.5,
+            "flow_temperature": 54.5,
+            "flow_temperature_setpoint": 55,
+            "gas_valve_active": true,
+            "heating_switch_active": true,
+            "modulation_setpoint": 35,
+            "primary_circuit_flow_rate": 12.5,
+            "return_temperature_c": 41,
+            "storage_loading_pump_level": 65,
+            "water_pressure": 1.6
+          }
+        },
+        "dhw": {
+          "config": {
+            "dhw_holiday_end_date": null,
+            "dhw_holiday_start_date": null,
+            "dhw_operating_mode": "auto",
+            "dhw_temperature_setpoint": 55,
+            "operation_mode_changeable": null,
+            "preset": null
+          },
+          "state": {
+            "dhw_special_function_mode": null,
+            "dhw_temperature": 48.5,
+            "heating_demand_pct": null,
+            "overrun_active": null
+          }
+        },
+        "zones": [
+          {
+            "config": {
+              "allowed_modes": [
+                "auto",
+                "off"
+              ],
+              "associated_circuit": null,
+              "circuit_type": null,
+              "operating_mode": "auto",
+              "operation_mode_changeable": null,
+              "preset": null,
+              "quick_veto": false,
+              "quick_veto_expiry": null,
+              "room_temperature_zone_mapping": null,
+              "source_label": null,
+              "target_temp_c": 21,
+              "zone_holiday_end_clock_time": null,
+              "zone_holiday_end_date": null,
+              "zone_holiday_start_clock_time": null,
+              "zone_holiday_start_date": null,
+              "zone_quick_veto_time": null,
+              "zone_room_temperature_setpoint_at_holiday": null,
+              "zone_room_temperature_setpoint_at_quick_veto": null
+            },
+            "id": "zone-1",
+            "name": "Living",
+            "state": {
+              "heating_demand_pct": null,
+              "hvac_action": null,
+              "zone_room_humidity": 40,
+              "zone_room_temperature": 19,
+              "zone_special_function_mode": null,
+              "zone_valve_position": null
+            }
+          },
+          {
+            "config": {
+              "allowed_modes": [
+                "off",
+                "auto",
+                "heat"
+              ],
+              "associated_circuit": null,
+              "circuit_type": null,
+              "operating_mode": "off",
+              "operation_mode_changeable": null,
+              "preset": null,
+              "quick_veto": false,
+              "quick_veto_expiry": null,
+              "room_temperature_zone_mapping": null,
+              "source_label": null,
+              "target_temp_c": null,
+              "zone_holiday_end_clock_time": null,
+              "zone_holiday_end_date": null,
+              "zone_holiday_start_clock_time": null,
+              "zone_holiday_start_date": null,
+              "zone_quick_veto_time": null,
+              "zone_room_temperature_setpoint_at_holiday": null,
+              "zone_room_temperature_setpoint_at_quick_veto": null
+            },
+            "id": "zone-2",
+            "name": "Bedroom",
+            "state": {
+              "heating_demand_pct": null,
+              "hvac_action": null,
+              "zone_room_humidity": null,
+              "zone_room_temperature": 17,
+              "zone_special_function_mode": null,
+              "zone_valve_position": null
+            }
+          }
+        ]
+      },
+      "mcp": {
+        "boiler_status": {
+          "config": {
+            "central_heating_pump_mode": 17,
+            "dhw_operating_mode": "AUTO",
+            "dhw_partial_load_power": 24,
+            "heating_partial_load_power": 12,
+            "installer_phone_number": "0123",
+            "maximum_dhw_flow_temperature_setpoint": 80,
+            "maximum_heating_flow_temperature_setpoint": 75,
+            "service_time_remaining": 2400
+          },
+          "diagnostics": {
+            "central_heating_operating_time": 4321.5,
+            "central_heating_start_count": 12345,
+            "dhw_operating_time": 987.25,
+            "dhw_start_count": 6789,
+            "dhw_status_raw": 1,
+            "fan_operating_time": 4800,
+            "fire_control_deactivation_count": 3,
+            "heating_status_raw": 4,
+            "pump_operating_time": 5000,
+            "temperature_limiter_deactivation_count": 1
+          },
+          "state": {
+            "boiler_state_code": 8,
+            "central_heating_pump_active": true,
+            "circulation_pump_active": true,
+            "dhw_demand_active": false,
+            "dhw_target_temperature_c": 50,
+            "dhw_temperature_c": 48,
+            "dhw_temperature_setpoint": 50,
+            "dhw_water_flow_rate": 7.25,
+            "diverter_valve_position": 100,
+            "external_pump_active": false,
+            "fan_speed": 3120,
+            "fan_speed_setpoint": 3200,
+            "flame_active": true,
+            "flame_ionization_current": 5.5,
+            "flow_temperature": 54.5,
+            "flow_temperature_setpoint": 55,
+            "gas_valve_active": true,
+            "heating_switch_active": true,
+            "modulation_setpoint": 35,
+            "primary_circuit_flow_rate": 12.5,
+            "return_temperature_c": 41,
+            "storage_loading_pump_level": 65,
+            "water_pressure": 1.6
+          }
+        },
+        "dhw": {
+          "config": {
+            "dhw_operating_mode": "auto",
+            "dhw_temperature_setpoint": 55,
+            "preset": ""
+          },
+          "state": {
+            "dhw_temperature": 48.5
+          }
+        },
+        "zones": [
+          {
+            "config": {
+              "allowed_modes": [
+                "auto",
+                "off"
+              ],
+              "operating_mode": "auto",
+              "preset": "",
+              "quick_veto": false,
+              "target_temp_c": 21
+            },
+            "id": "zone-1",
+            "name": "Living",
+            "state": {
+              "zone_room_humidity": 40,
+              "zone_room_temperature": 19
+            }
+          },
+          {
+            "config": {
+              "operating_mode": "off",
+              "preset": "",
+              "quick_veto": false
+            },
+            "id": "zone-2",
+            "name": "Bedroom",
+            "state": {
+              "zone_room_temperature": 17
+            }
+          }
+        ]
+      },
+      "observations": [
+        "semantic_cache_write path=\"semantic-cache.json\" schema_version=3 zones=2 dhw=true",
+        "semantic_cache_hit path=\"semantic-cache.json\" schema_version=3 zones=2 dhw=true"
+      ]
+    }
+  },
+  "cache-save-load-seed-at-pin-clock": {
+    "clock": {
+      "store_now": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "snapshot": {
+        "Boiler": {
+          "Config": {
+            "DhwOperatingMode": "AUTO",
+            "FlowsetHcMaxC": 75,
+            "FlowsetHwcMaxC": 80,
+            "HoursTillService": 2400,
+            "InstallerMenuCode": 17,
+            "PartloadHcKW": 12,
+            "PartloadHwcKW": 24,
+            "PhoneNumber": "0123"
+          },
+          "Diagnostics": {
+            "CentralHeatingHours": 4321.5,
+            "CentralHeatingStarts": 12345,
+            "DeactivationsIFC": 3,
+            "DeactivationsTemplimiter": 1,
+            "DhwHours": 987.25,
+            "DhwStarts": 6789,
+            "DhwStatusRaw": 1,
+            "FanHours": 4800,
+            "HeatingStatusRaw": 4,
+            "PumpHours": 5000
+          },
+          "State": {
+            "CentralHeatingPumpActive": true,
+            "CirculationPumpActive": true,
+            "DhwDemandActive": false,
+            "DhwTargetTemperatureC": 50,
+            "DhwTempDesiredC": 50,
+            "DhwTemperatureC": 48,
+            "DhwWaterFlowLpm": 7.25,
+            "DiverterValvePositionPct": 100,
+            "ExternalPumpActive": false,
+            "FanSpeedRpm": 3120,
+            "FlameActive": true,
+            "FlowTempDesiredC": 55,
+            "FlowTemperatureC": 54.5,
+            "GasValveActive": true,
+            "HeatingSwitchActive": true,
+            "IonisationVoltageUa": 5.5,
+            "ModulationPct": 35,
+            "PrimaryCircuitFlowLpm": 12.5,
+            "ReturnTemperatureC": 41,
+            "StateNumber": 8,
+            "StorageLoadPumpPct": 65,
+            "TargetFanSpeedRpm": 3200,
+            "WaterPressureBar": 1.6
+          }
+        },
+        "DHW": {
+          "Config": {
+            "HolidayEndDate": "2030-12-27",
+            "HolidayStartDate": "2030-12-20",
+            "OperatingMode": "auto",
+            "OperationModeChangeable": null,
+            "Preset": "schedule",
+            "TargetTempC": 55
+          },
+          "State": {
+            "CurrentTempC": 48.5,
+            "HeatingDemandPct": 100,
+            "OverrunActive": null,
+            "SpecialFunction": "load"
+          }
+        },
+        "PersistedAt": "0001-01-01T00:00:00Z",
+        "Zones": [
+          {
+            "Config": {
+              "AllowedModes": [
+                "manual",
+                "auto"
+              ],
+              "AssociatedCircuit": 1,
+              "CircuitType": "underfloor",
+              "HolidayEndDate": "2030-12-27",
+              "HolidayEndTime": "18:30",
+              "HolidaySetpointC": 15,
+              "HolidayStartDate": "2030-12-20",
+              "HolidayStartTime": "08:00",
+              "OperatingMode": "auto",
+              "OperationModeChangeable": null,
+              "Preset": "schedule",
+              "QuickVeto": true,
+              "QuickVetoDurationH": 2,
+              "QuickVetoExpiry": "2030-04-10T10:00",
+              "QuickVetoSetpointC": 23,
+              "RoomTemperatureZoneMapping": 2,
+              "SourceLabel": null,
+              "TargetTempC": 21
+            },
+            "ID": "zone-2",
+            "Name": "Upstairs",
+            "State": {
+              "CurrentHumidityPct": 44,
+              "CurrentTempC": 20.5,
+              "HeatingDemandPct": 10,
+              "HvacAction": "idle",
+              "SpecialFunction": "none",
+              "ValvePositionPct": 50
+            }
+          },
+          {
+            "Config": {
+              "AllowedModes": null,
+              "AssociatedCircuit": null,
+              "CircuitType": "",
+              "HolidayEndDate": "",
+              "HolidayEndTime": "",
+              "HolidaySetpointC": null,
+              "HolidayStartDate": "",
+              "HolidayStartTime": "",
+              "OperatingMode": "manual",
+              "OperationModeChangeable": null,
+              "Preset": "",
+              "QuickVeto": false,
+              "QuickVetoDurationH": null,
+              "QuickVetoExpiry": "",
+              "QuickVetoSetpointC": null,
+              "RoomTemperatureZoneMapping": null,
+              "SourceLabel": null,
+              "TargetTempC": 23
+            },
+            "ID": "zone-1",
+            "Name": "Downstairs",
+            "State": {
+              "CurrentHumidityPct": null,
+              "CurrentTempC": 22,
+              "HeatingDemandPct": null,
+              "HvacAction": "",
+              "SpecialFunction": "",
+              "ValvePositionPct": null
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "cache": {
+        "hydration": {
+          "boiler": {
+            "CentralHeatingHours": null,
+            "CentralHeatingPumpActive": null,
+            "CentralHeatingStarts": null,
+            "CirculationPumpActive": null,
+            "DeactivationsIFC": null,
+            "DeactivationsTemplimiter": null,
+            "DhwDemandActive": null,
+            "DhwHours": null,
+            "DhwOperatingMode": 2,
+            "DhwStarts": null,
+            "DhwStatusRaw": 1,
+            "DhwTargetTemperatureC": 50,
+            "DhwTempDesiredC": null,
+            "DhwTemperatureC": 48,
+            "DhwWaterFlowLpm": null,
+            "DiverterValvePositionPct": null,
+            "ExternalPumpActive": null,
+            "FanHours": null,
+            "FanSpeedRpm": null,
+            "FlameActive": null,
+            "FlowTempDesiredC": null,
+            "FlowTemperatureC": null,
+            "FlowsetHcMaxC": null,
+            "FlowsetHwcMaxC": null,
+            "GasValveActive": null,
+            "HeatingStatusRaw": null,
+            "HeatingSwitchActive": null,
+            "HoursTillService": null,
+            "InstallerMenuCode": null,
+            "IonisationVoltageUa": null,
+            "ModulationPct": null,
+            "PartloadHcKW": null,
+            "PartloadHwcKW": null,
+            "PhoneNumber": null,
+            "PrimaryCircuitFlowLpm": null,
+            "PumpHours": null,
+            "ReturnTemperatureC": 41,
+            "StateNumber": null,
+            "StorageLoadPumpPct": null,
+            "TargetFanSpeedRpm": null,
+            "WaterPressureBar": null
+          },
+          "dhw": {
+            "ConfigurationDHWOperationMode": "",
+            "CurrentTempC": 48.5,
+            "FieldFreshness": {
+              "dhw.current_temp_c": {
+                "Source": 0,
+                "Stale": true
+              },
+              "dhw.operating_mode": {
+                "Source": 0,
+                "Stale": true
+              },
+              "dhw.preset": {
+                "Source": 0,
+                "Stale": true
+              },
+              "dhw.special_function_raw": {
+                "Source": 0,
+                "Stale": true
+              },
+              "dhw.target_temp_c": {
+                "Source": 0,
+                "Stale": true
+              }
+            },
+            "HolidayEndDate": "",
+            "HolidayStartDate": "",
+            "OperatingMode": "auto",
+            "Preset": "schedule",
+            "StateSpecialFunction": "load",
+            "TargetTempC": 55
+          },
+          "persisted_at": "2030-04-10T08:00:00Z",
+          "zones": [
+            {
+              "AllowedModes": null,
+              "ConfigurationAssociatedCircuitRaw": null,
+              "ConfigurationCircuitTypeRaw": null,
+              "ConfigurationHeatingOperationMode": "",
+              "ConfigurationRoomTemperatureZoneMappingRaw": null,
+              "CurrentTempC": 22,
+              "FieldFreshness": {
+                "zone.current_temp_c": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.name": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.operating_mode": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.target_temp_c": {
+                  "Source": 0,
+                  "Stale": true
+                }
+              },
+              "HolidayEndDate": "",
+              "HolidayEndTime": "",
+              "HolidaySetpointC": null,
+              "HolidayStartDate": "",
+              "HolidayStartTime": "",
+              "HumidityPct": null,
+              "HvacAction": "",
+              "Instance": 0,
+              "Name": "Downstairs",
+              "OperatingMode": "manual",
+              "Present": true,
+              "Preset": "",
+              "QuickVetoDurationH": null,
+              "QuickVetoEndDate": "",
+              "QuickVetoEndTime": "",
+              "QuickVetoTempC": null,
+              "StateSpecialFunction": "",
+              "StateValveStatusRaw": null,
+              "TargetTempC": 23
+            },
+            {
+              "AllowedModes": [
+                "auto",
+                "manual"
+              ],
+              "ConfigurationAssociatedCircuitRaw": 1,
+              "ConfigurationCircuitTypeRaw": 1,
+              "ConfigurationHeatingOperationMode": "",
+              "ConfigurationRoomTemperatureZoneMappingRaw": 2,
+              "CurrentTempC": 20.5,
+              "FieldFreshness": {
+                "zone.allowed_modes": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.circuit_index_raw": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.circuit_type_raw": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.current_humidity_pct": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.current_temp_c": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.hvac_action": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.name": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.operating_mode": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.preset": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.room_temperature_zone_mapping_raw": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.special_function_raw": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.target_temp_c": {
+                  "Source": 0,
+                  "Stale": true
+                },
+                "zone.valve_status_raw": {
+                  "Source": 0,
+                  "Stale": true
+                }
+              },
+              "HolidayEndDate": "",
+              "HolidayEndTime": "",
+              "HolidaySetpointC": null,
+              "HolidayStartDate": "",
+              "HolidayStartTime": "",
+              "HumidityPct": 44,
+              "HvacAction": "idle",
+              "Instance": 1,
+              "Name": "Upstairs",
+              "OperatingMode": "auto",
+              "Present": true,
+              "Preset": "schedule",
+              "QuickVetoDurationH": null,
+              "QuickVetoEndDate": "",
+              "QuickVetoEndTime": "",
+              "QuickVetoTempC": null,
+              "StateSpecialFunction": "none",
+              "StateValveStatusRaw": 32767,
+              "TargetTempC": 21
+            }
+          ]
+        },
+        "loaded_snapshot": {
+          "Boiler": {
+            "Config": {
+              "DhwOperatingMode": "AUTO",
+              "FlowsetHcMaxC": null,
+              "FlowsetHwcMaxC": null,
+              "HoursTillService": null,
+              "InstallerMenuCode": null,
+              "PartloadHcKW": null,
+              "PartloadHwcKW": null,
+              "PhoneNumber": null
+            },
+            "Diagnostics": {
+              "CentralHeatingHours": null,
+              "CentralHeatingStarts": null,
+              "DeactivationsIFC": null,
+              "DeactivationsTemplimiter": null,
+              "DhwHours": null,
+              "DhwStarts": null,
+              "DhwStatusRaw": 1,
+              "FanHours": null,
+              "HeatingStatusRaw": null,
+              "PumpHours": null
+            },
+            "State": {
+              "CentralHeatingPumpActive": null,
+              "CirculationPumpActive": null,
+              "DhwDemandActive": null,
+              "DhwTargetTemperatureC": 50,
+              "DhwTempDesiredC": null,
+              "DhwTemperatureC": 48,
+              "DhwWaterFlowLpm": null,
+              "DiverterValvePositionPct": null,
+              "ExternalPumpActive": null,
+              "FanSpeedRpm": null,
+              "FlameActive": null,
+              "FlowTempDesiredC": null,
+              "FlowTemperatureC": null,
+              "GasValveActive": null,
+              "HeatingSwitchActive": null,
+              "IonisationVoltageUa": null,
+              "ModulationPct": null,
+              "PrimaryCircuitFlowLpm": null,
+              "ReturnTemperatureC": 41,
+              "StateNumber": null,
+              "StorageLoadPumpPct": null,
+              "TargetFanSpeedRpm": null,
+              "WaterPressureBar": null
+            }
+          },
+          "DHW": {
+            "Config": {
+              "HolidayEndDate": "",
+              "HolidayStartDate": "",
+              "OperatingMode": "auto",
+              "OperationModeChangeable": null,
+              "Preset": "schedule",
+              "TargetTempC": 55
+            },
+            "State": {
+              "CurrentTempC": 48.5,
+              "HeatingDemandPct": 100,
+              "OverrunActive": null,
+              "SpecialFunction": "load"
+            }
+          },
+          "PersistedAt": "2030-04-10T08:00:00Z",
+          "Zones": [
+            {
+              "Config": {
+                "AllowedModes": null,
+                "AssociatedCircuit": null,
+                "CircuitType": "",
+                "HolidayEndDate": "",
+                "HolidayEndTime": "",
+                "HolidaySetpointC": null,
+                "HolidayStartDate": "",
+                "HolidayStartTime": "",
+                "OperatingMode": "manual",
+                "OperationModeChangeable": null,
+                "Preset": "",
+                "QuickVeto": false,
+                "QuickVetoDurationH": null,
+                "QuickVetoExpiry": "",
+                "QuickVetoSetpointC": null,
+                "RoomTemperatureZoneMapping": null,
+                "SourceLabel": null,
+                "TargetTempC": 23
+              },
+              "ID": "zone-1",
+              "Name": "Downstairs",
+              "State": {
+                "CurrentHumidityPct": null,
+                "CurrentTempC": 22,
+                "HeatingDemandPct": null,
+                "HvacAction": "",
+                "SpecialFunction": "",
+                "ValvePositionPct": null
+              }
+            },
+            {
+              "Config": {
+                "AllowedModes": [
+                  "auto",
+                  "manual"
+                ],
+                "AssociatedCircuit": 1,
+                "CircuitType": "underfloor",
+                "HolidayEndDate": "",
+                "HolidayEndTime": "",
+                "HolidaySetpointC": null,
+                "HolidayStartDate": "",
+                "HolidayStartTime": "",
+                "OperatingMode": "auto",
+                "OperationModeChangeable": null,
+                "Preset": "schedule",
+                "QuickVeto": false,
+                "QuickVetoDurationH": null,
+                "QuickVetoExpiry": "",
+                "QuickVetoSetpointC": null,
+                "RoomTemperatureZoneMapping": 2,
+                "SourceLabel": null,
+                "TargetTempC": 21
+              },
+              "ID": "zone-2",
+              "Name": "Upstairs",
+              "State": {
+                "CurrentHumidityPct": 44,
+                "CurrentTempC": 20.5,
+                "HeatingDemandPct": 10,
+                "HvacAction": "idle",
+                "SpecialFunction": "none",
+                "ValvePositionPct": 50
+              }
+            }
+          ]
+        },
+        "saved_bytes": "{\n  \"schema_version\": 3,\n  \"metadata\": {\n    \"persisted_at\": \"2030-04-10T08:00:00Z\"\n  },\n  \"zones\": [\n    {\n      \"id\": \"zone-1\",\n      \"name\": \"Downstairs\",\n      \"state\": {\n        \"current_temp_c\": 22\n      },\n      \"config\": {\n        \"operating_mode\": \"manual\",\n        \"target_temp_c\": 23\n      }\n    },\n    {\n      \"id\": \"zone-2\",\n      \"name\": \"Upstairs\",\n      \"state\": {\n        \"current_temp_c\": 20.5,\n        \"current_humidity_pct\": 44,\n        \"hvac_action\": \"idle\",\n        \"special_function\": \"none\",\n        \"heating_demand_pct\": 10,\n        \"valve_position_pct\": 50\n      },\n      \"config\": {\n        \"operating_mode\": \"auto\",\n        \"preset\": \"schedule\",\n        \"target_temp_c\": 21,\n        \"allowed_modes\": [\n          \"auto\",\n          \"manual\"\n        ],\n        \"circuit_type\": \"underfloor\",\n        \"associated_circuit\": 1,\n        \"room_temperature_zone_mapping\": 2\n      }\n    }\n  ],\n  \"dhw\": {\n    \"state\": {\n      \"current_temp_c\": 48.5,\n      \"special_function\": \"load\",\n      \"heating_demand_pct\": 100\n    },\n    \"config\": {\n      \"operating_mode\": \"auto\",\n      \"preset\": \"schedule\",\n      \"target_temp_c\": 55\n    }\n  },\n  \"boiler\": {\n    \"flow_temperature_c\": 54.5,\n    \"return_temperature_c\": 41,\n    \"dhw_temperature_c\": 48,\n    \"dhw_target_temperature_c\": 50,\n    \"dhw_operating_mode\": \"AUTO\",\n    \"dhw_status_raw\": 1\n  }\n}\n"
+      },
+      "graphql": {
+        "boiler_status": {
+          "config": {
+            "central_heating_pump_mode": null,
+            "dhw_operating_mode": "AUTO",
+            "dhw_partial_load_power": null,
+            "heating_partial_load_power": null,
+            "installer_phone_number": null,
+            "maximum_dhw_flow_temperature_setpoint": null,
+            "maximum_heating_flow_temperature_setpoint": null,
+            "service_time_remaining": null
+          },
+          "diagnostics": {
+            "central_heating_operating_time": null,
+            "central_heating_start_count": null,
+            "dhw_operating_time": null,
+            "dhw_start_count": null,
+            "dhw_status_raw": 1,
+            "fan_operating_time": null,
+            "fire_control_deactivation_count": null,
+            "heating_status_raw": null,
+            "pump_operating_time": null,
+            "temperature_limiter_deactivation_count": null
+          },
+          "state": {
+            "boiler_state_code": null,
+            "central_heating_pump_active": null,
+            "circulation_pump_active": null,
+            "dhw_demand_active": null,
+            "dhw_target_temperature_c": 50,
+            "dhw_temperature_c": 48,
+            "dhw_temperature_setpoint": null,
+            "dhw_water_flow_rate": null,
+            "diverter_valve_position": null,
+            "external_pump_active": null,
+            "fan_speed": null,
+            "fan_speed_setpoint": null,
+            "flame_active": null,
+            "flame_ionization_current": null,
+            "flow_temperature": null,
+            "flow_temperature_setpoint": null,
+            "gas_valve_active": null,
+            "heating_switch_active": null,
+            "modulation_setpoint": null,
+            "primary_circuit_flow_rate": null,
+            "return_temperature_c": 41,
+            "storage_loading_pump_level": null,
+            "water_pressure": null
+          }
+        },
+        "dhw": {
+          "config": {
+            "dhw_holiday_end_date": null,
+            "dhw_holiday_start_date": null,
+            "dhw_operating_mode": "auto",
+            "dhw_temperature_setpoint": 55,
+            "operation_mode_changeable": null,
+            "preset": "schedule"
+          },
+          "state": {
+            "dhw_special_function_mode": "load",
+            "dhw_temperature": 48.5,
+            "heating_demand_pct": 100,
+            "overrun_active": null
+          }
+        },
+        "zones": [
+          {
+            "config": {
+              "allowed_modes": [
+                "off",
+                "auto",
+                "heat"
+              ],
+              "associated_circuit": null,
+              "circuit_type": null,
+              "operating_mode": "manual",
+              "operation_mode_changeable": null,
+              "preset": null,
+              "quick_veto": false,
+              "quick_veto_expiry": null,
+              "room_temperature_zone_mapping": null,
+              "source_label": null,
+              "target_temp_c": 23,
+              "zone_holiday_end_clock_time": null,
+              "zone_holiday_end_date": null,
+              "zone_holiday_start_clock_time": null,
+              "zone_holiday_start_date": null,
+              "zone_quick_veto_time": null,
+              "zone_room_temperature_setpoint_at_holiday": null,
+              "zone_room_temperature_setpoint_at_quick_veto": null
+            },
+            "id": "zone-1",
+            "name": "Downstairs",
+            "state": {
+              "heating_demand_pct": null,
+              "hvac_action": null,
+              "zone_room_humidity": null,
+              "zone_room_temperature": 22,
+              "zone_special_function_mode": null,
+              "zone_valve_position": null
+            }
+          },
+          {
+            "config": {
+              "allowed_modes": [
+                "auto",
+                "manual"
+              ],
+              "associated_circuit": 1,
+              "circuit_type": "underfloor",
+              "operating_mode": "auto",
+              "operation_mode_changeable": null,
+              "preset": "schedule",
+              "quick_veto": false,
+              "quick_veto_expiry": null,
+              "room_temperature_zone_mapping": 2,
+              "source_label": null,
+              "target_temp_c": 21,
+              "zone_holiday_end_clock_time": null,
+              "zone_holiday_end_date": null,
+              "zone_holiday_start_clock_time": null,
+              "zone_holiday_start_date": null,
+              "zone_quick_veto_time": null,
+              "zone_room_temperature_setpoint_at_holiday": null,
+              "zone_room_temperature_setpoint_at_quick_veto": null
+            },
+            "id": "zone-2",
+            "name": "Upstairs",
+            "state": {
+              "heating_demand_pct": 10,
+              "hvac_action": "idle",
+              "zone_room_humidity": 44,
+              "zone_room_temperature": 20.5,
+              "zone_special_function_mode": "none",
+              "zone_valve_position": 50
+            }
+          }
+        ]
+      },
+      "mcp": {
+        "boiler_status": {
+          "config": {
+            "dhw_operating_mode": "AUTO"
+          },
+          "diagnostics": {
+            "dhw_status_raw": 1
+          },
+          "state": {
+            "dhw_target_temperature_c": 50,
+            "dhw_temperature_c": 48,
+            "return_temperature_c": 41
+          }
+        },
+        "dhw": {
+          "config": {
+            "dhw_operating_mode": "auto",
+            "dhw_temperature_setpoint": 55,
+            "preset": "schedule"
+          },
+          "state": {
+            "dhw_special_function_mode": "load",
+            "dhw_temperature": 48.5,
+            "heating_demand_pct": 100
+          }
+        },
+        "zones": [
+          {
+            "config": {
+              "operating_mode": "manual",
+              "preset": "",
+              "quick_veto": false,
+              "target_temp_c": 23
+            },
+            "id": "zone-1",
+            "name": "Downstairs",
+            "state": {
+              "zone_room_temperature": 22
+            }
+          },
+          {
+            "config": {
+              "allowed_modes": [
+                "auto",
+                "manual"
+              ],
+              "associated_circuit": 1,
+              "circuit_type": "underfloor",
+              "operating_mode": "auto",
+              "preset": "schedule",
+              "quick_veto": false,
+              "room_temperature_zone_mapping": 2,
+              "target_temp_c": 21
+            },
+            "id": "zone-2",
+            "name": "Upstairs",
+            "state": {
+              "heating_demand_pct": 10,
+              "hvac_action": "idle",
+              "zone_room_humidity": 44,
+              "zone_room_temperature": 20.5,
+              "zone_special_function_mode": "none",
+              "zone_valve_position": 50
+            }
+          }
+        ]
+      },
+      "observations": [
+        "semantic_cache_write path=\"semantic-cache.json\" schema_version=3 zones=2 dhw=true",
+        "semantic_cache_hit path=\"semantic-cache.json\" schema_version=3 zones=2 dhw=true",
+        "semantic_cache_hit path=\"semantic-cache.json\" schema_version=3 zones=2 dhw=true"
+      ]
+    }
+  },
+  "cache-save-sorts-zones-and-allowed-modes": {
+    "clock": {
+      "store_now": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "snapshot": {
+        "Boiler": null,
+        "DHW": null,
+        "PersistedAt": "0001-01-01T00:00:00Z",
+        "Zones": [
+          {
+            "Config": {
+              "AllowedModes": [
+                "heat",
+                "off"
+              ],
+              "AssociatedCircuit": null,
+              "CircuitType": "",
+              "HolidayEndDate": "",
+              "HolidayEndTime": "",
+              "HolidaySetpointC": null,
+              "HolidayStartDate": "",
+              "HolidayStartTime": "",
+              "OperatingMode": "",
+              "OperationModeChangeable": null,
+              "Preset": "",
+              "QuickVeto": false,
+              "QuickVetoDurationH": null,
+              "QuickVetoExpiry": "",
+              "QuickVetoSetpointC": null,
+              "RoomTemperatureZoneMapping": null,
+              "SourceLabel": null,
+              "TargetTempC": null
+            },
+            "ID": "zone-10",
+            "Name": "Zone 10",
+            "State": {
+              "CurrentHumidityPct": null,
+              "CurrentTempC": null,
+              "HeatingDemandPct": null,
+              "HvacAction": "",
+              "SpecialFunction": "",
+              "ValvePositionPct": null
+            }
+          },
+          {
+            "Config": {
+              "AllowedModes": [
+                "off",
+                "heat"
+              ],
+              "AssociatedCircuit": null,
+              "CircuitType": "",
+              "HolidayEndDate": "",
+              "HolidayEndTime": "",
+              "HolidaySetpointC": null,
+              "HolidayStartDate": "",
+              "HolidayStartTime": "",
+              "OperatingMode": "",
+              "OperationModeChangeable": null,
+              "Preset": "",
+              "QuickVeto": false,
+              "QuickVetoDurationH": null,
+              "QuickVetoExpiry": "",
+              "QuickVetoSetpointC": null,
+              "RoomTemperatureZoneMapping": null,
+              "SourceLabel": null,
+              "TargetTempC": null
+            },
+            "ID": "zone-2",
+            "Name": "Zone 2",
+            "State": {
+              "CurrentHumidityPct": null,
+              "CurrentTempC": null,
+              "HeatingDemandPct": null,
+              "HvacAction": "",
+              "SpecialFunction": "",
+              "ValvePositionPct": null
+            }
+          },
+          {
+            "Config": {
+              "AllowedModes": [
+                "heat",
+                "auto"
+              ],
+              "AssociatedCircuit": null,
+              "CircuitType": "",
+              "HolidayEndDate": "",
+              "HolidayEndTime": "",
+              "HolidaySetpointC": null,
+              "HolidayStartDate": "",
+              "HolidayStartTime": "",
+              "OperatingMode": "",
+              "OperationModeChangeable": null,
+              "Preset": "",
+              "QuickVeto": false,
+              "QuickVetoDurationH": null,
+              "QuickVetoExpiry": "",
+              "QuickVetoSetpointC": null,
+              "RoomTemperatureZoneMapping": null,
+              "SourceLabel": null,
+              "TargetTempC": null
+            },
+            "ID": "zone-1",
+            "Name": "Zone 1",
+            "State": {
+              "CurrentHumidityPct": null,
+              "CurrentTempC": null,
+              "HeatingDemandPct": null,
+              "HvacAction": "",
+              "SpecialFunction": "",
+              "ValvePositionPct": null
+            }
+          },
+          {
+            "Config": {
+              "AllowedModes": null,
+              "AssociatedCircuit": null,
+              "CircuitType": "",
+              "HolidayEndDate": "",
+              "HolidayEndTime": "",
+              "HolidaySetpointC": null,
+              "HolidayStartDate": "",
+              "HolidayStartTime": "",
+              "OperatingMode": "",
+              "OperationModeChangeable": null,
+              "Preset": "",
+              "QuickVeto": false,
+              "QuickVetoDurationH": null,
+              "QuickVetoExpiry": "",
+              "QuickVetoSetpointC": null,
+              "RoomTemperatureZoneMapping": null,
+              "SourceLabel": null,
+              "TargetTempC": null
+            },
+            "ID": "other",
+            "Name": "Other",
+            "State": {
+              "CurrentHumidityPct": null,
+              "CurrentTempC": null,
+              "HeatingDemandPct": null,
+              "HvacAction": "",
+              "SpecialFunction": "",
+              "ValvePositionPct": null
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "cache": {
+        "loaded_snapshot": {
+          "Boiler": null,
+          "DHW": null,
+          "PersistedAt": "2030-04-10T08:00:00Z",
+          "Zones": [
+            {
+              "Config": {
+                "AllowedModes": null,
+                "AssociatedCircuit": null,
+                "CircuitType": "",
+                "HolidayEndDate": "",
+                "HolidayEndTime": "",
+                "HolidaySetpointC": null,
+                "HolidayStartDate": "",
+                "HolidayStartTime": "",
+                "OperatingMode": "",
+                "OperationModeChangeable": null,
+                "Preset": "",
+                "QuickVeto": false,
+                "QuickVetoDurationH": null,
+                "QuickVetoExpiry": "",
+                "QuickVetoSetpointC": null,
+                "RoomTemperatureZoneMapping": null,
+                "SourceLabel": null,
+                "TargetTempC": null
+              },
+              "ID": "other",
+              "Name": "Other",
+              "State": {
+                "CurrentHumidityPct": null,
+                "CurrentTempC": null,
+                "HeatingDemandPct": null,
+                "HvacAction": "",
+                "SpecialFunction": "",
+                "ValvePositionPct": null
+              }
+            },
+            {
+              "Config": {
+                "AllowedModes": [
+                  "auto",
+                  "heat"
+                ],
+                "AssociatedCircuit": null,
+                "CircuitType": "",
+                "HolidayEndDate": "",
+                "HolidayEndTime": "",
+                "HolidaySetpointC": null,
+                "HolidayStartDate": "",
+                "HolidayStartTime": "",
+                "OperatingMode": "",
+                "OperationModeChangeable": null,
+                "Preset": "",
+                "QuickVeto": false,
+                "QuickVetoDurationH": null,
+                "QuickVetoExpiry": "",
+                "QuickVetoSetpointC": null,
+                "RoomTemperatureZoneMapping": null,
+                "SourceLabel": null,
+                "TargetTempC": null
+              },
+              "ID": "zone-1",
+              "Name": "Zone 1",
+              "State": {
+                "CurrentHumidityPct": null,
+                "CurrentTempC": null,
+                "HeatingDemandPct": null,
+                "HvacAction": "",
+                "SpecialFunction": "",
+                "ValvePositionPct": null
+              }
+            },
+            {
+              "Config": {
+                "AllowedModes": [
+                  "heat",
+                  "off"
+                ],
+                "AssociatedCircuit": null,
+                "CircuitType": "",
+                "HolidayEndDate": "",
+                "HolidayEndTime": "",
+                "HolidaySetpointC": null,
+                "HolidayStartDate": "",
+                "HolidayStartTime": "",
+                "OperatingMode": "",
+                "OperationModeChangeable": null,
+                "Preset": "",
+                "QuickVeto": false,
+                "QuickVetoDurationH": null,
+                "QuickVetoExpiry": "",
+                "QuickVetoSetpointC": null,
+                "RoomTemperatureZoneMapping": null,
+                "SourceLabel": null,
+                "TargetTempC": null
+              },
+              "ID": "zone-2",
+              "Name": "Zone 2",
+              "State": {
+                "CurrentHumidityPct": null,
+                "CurrentTempC": null,
+                "HeatingDemandPct": null,
+                "HvacAction": "",
+                "SpecialFunction": "",
+                "ValvePositionPct": null
+              }
+            },
+            {
+              "Config": {
+                "AllowedModes": [
+                  "heat",
+                  "off"
+                ],
+                "AssociatedCircuit": null,
+                "CircuitType": "",
+                "HolidayEndDate": "",
+                "HolidayEndTime": "",
+                "HolidaySetpointC": null,
+                "HolidayStartDate": "",
+                "HolidayStartTime": "",
+                "OperatingMode": "",
+                "OperationModeChangeable": null,
+                "Preset": "",
+                "QuickVeto": false,
+                "QuickVetoDurationH": null,
+                "QuickVetoExpiry": "",
+                "QuickVetoSetpointC": null,
+                "RoomTemperatureZoneMapping": null,
+                "SourceLabel": null,
+                "TargetTempC": null
+              },
+              "ID": "zone-10",
+              "Name": "Zone 10",
+              "State": {
+                "CurrentHumidityPct": null,
+                "CurrentTempC": null,
+                "HeatingDemandPct": null,
+                "HvacAction": "",
+                "SpecialFunction": "",
+                "ValvePositionPct": null
+              }
+            }
+          ]
+        },
+        "saved_bytes": "{\n  \"schema_version\": 3,\n  \"metadata\": {\n    \"persisted_at\": \"2030-04-10T08:00:00Z\"\n  },\n  \"zones\": [\n    {\n      \"id\": \"other\",\n      \"name\": \"Other\",\n      \"state\": {},\n      \"config\": {}\n    },\n    {\n      \"id\": \"zone-1\",\n      \"name\": \"Zone 1\",\n      \"state\": {},\n      \"config\": {\n        \"allowed_modes\": [\n          \"auto\",\n          \"heat\"\n        ]\n      }\n    },\n    {\n      \"id\": \"zone-2\",\n      \"name\": \"Zone 2\",\n      \"state\": {},\n      \"config\": {\n        \"allowed_modes\": [\n          \"heat\",\n          \"off\"\n        ]\n      }\n    },\n    {\n      \"id\": \"zone-10\",\n      \"name\": \"Zone 10\",\n      \"state\": {},\n      \"config\": {\n        \"allowed_modes\": [\n          \"heat\",\n          \"off\"\n        ]\n      }\n    }\n  ]\n}\n"
+      },
+      "graphql": {},
+      "mcp": {},
+      "observations": [
+        "semantic_cache_write path=\"semantic-cache.json\" schema_version=3 zones=4 dhw=false",
+        "semantic_cache_hit path=\"semantic-cache.json\" schema_version=3 zones=4 dhw=false"
+      ]
+    }
+  },
+  "circuit-managing-device-derivation": {
+    "clock": {},
+    "input": {
+      "pairings": [
+        {
+          "fm5_mode": "",
+          "module_configuration_vr71": null,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "INTERPRETED",
+          "module_configuration_vr71": null,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "GPIO_ONLY",
+          "module_configuration_vr71": null,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "ABSENT",
+          "module_configuration_vr71": null,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "",
+          "module_configuration_vr71": 0,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "INTERPRETED",
+          "module_configuration_vr71": 0,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "GPIO_ONLY",
+          "module_configuration_vr71": 0,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "ABSENT",
+          "module_configuration_vr71": 0,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "",
+          "module_configuration_vr71": 2,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "INTERPRETED",
+          "module_configuration_vr71": 2,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "GPIO_ONLY",
+          "module_configuration_vr71": 2,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "ABSENT",
+          "module_configuration_vr71": 2,
+          "system_scheme": null
+        },
+        {
+          "fm5_mode": "",
+          "module_configuration_vr71": null,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "INTERPRETED",
+          "module_configuration_vr71": null,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "GPIO_ONLY",
+          "module_configuration_vr71": null,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "ABSENT",
+          "module_configuration_vr71": null,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "",
+          "module_configuration_vr71": 0,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "INTERPRETED",
+          "module_configuration_vr71": 0,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "GPIO_ONLY",
+          "module_configuration_vr71": 0,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "ABSENT",
+          "module_configuration_vr71": 0,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "",
+          "module_configuration_vr71": 2,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "INTERPRETED",
+          "module_configuration_vr71": 2,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "GPIO_ONLY",
+          "module_configuration_vr71": 2,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "ABSENT",
+          "module_configuration_vr71": 2,
+          "system_scheme": 0
+        },
+        {
+          "fm5_mode": "",
+          "module_configuration_vr71": null,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "INTERPRETED",
+          "module_configuration_vr71": null,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "GPIO_ONLY",
+          "module_configuration_vr71": null,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "ABSENT",
+          "module_configuration_vr71": null,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "",
+          "module_configuration_vr71": 0,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "INTERPRETED",
+          "module_configuration_vr71": 0,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "GPIO_ONLY",
+          "module_configuration_vr71": 0,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "ABSENT",
+          "module_configuration_vr71": 0,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "",
+          "module_configuration_vr71": 2,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "INTERPRETED",
+          "module_configuration_vr71": 2,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "GPIO_ONLY",
+          "module_configuration_vr71": 2,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "ABSENT",
+          "module_configuration_vr71": 2,
+          "system_scheme": 1
+        },
+        {
+          "fm5_mode": "INTERPRETED",
+          "system_snapshot": null
+        }
+      ]
+    },
+    "output": {
+      "decisions": [
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": true,
+          "managing_device": {
+            "Address": 38,
+            "DeviceID": "VR_71",
+            "Role": "FUNCTION_MODULE"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        },
+        {
+          "managed_by_function_module": false,
+          "managing_device": {
+            "Address": null,
+            "DeviceID": null,
+            "Role": "UNKNOWN"
+          }
+        }
+      ],
+      "graphql": {},
+      "mcp": {},
+      "write_results": []
+    }
+  },
+  "circuits-function-module-managed": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "circuits_views": [
+        {
+          "circuits": [
+            {
+              "Active": true,
+              "CalcFlowTempC": null,
+              "CircuitStateLiveAt": "0001-01-01T00:00:00Z",
+              "CircuitStateRaw": null,
+              "CircuitTypeRaw": 1,
+              "Controller": 0,
+              "CoolingEnabledRaw": null,
+              "DewPointC": null,
+              "FlowSetpointC": null,
+              "FlowTempMaxC": null,
+              "FlowTempMinC": null,
+              "FlowTemperatureC": null,
+              "HeatingCurve": null,
+              "HumidityPct": null,
+              "Instance": 0,
+              "MixerPositionPct": null,
+              "PumpHoursRaw": null,
+              "PumpStartsRaw": null,
+              "PumpStatusLiveAt": "0001-01-01T00:00:00Z",
+              "PumpStatusRaw": null,
+              "RoomTempControlRaw": null,
+              "SpecialFunctionMode": null,
+              "SummerLimitC": null
+            },
+            {
+              "Active": true,
+              "CalcFlowTempC": 34,
+              "CircuitStateLiveAt": "0001-01-01T00:00:00Z",
+              "CircuitStateRaw": 2,
+              "CircuitTypeRaw": 2,
+              "Controller": 0,
+              "CoolingEnabledRaw": 1,
+              "DewPointC": 11.5,
+              "FlowSetpointC": 35,
+              "FlowTempMaxC": 60,
+              "FlowTempMinC": 20,
+              "FlowTemperatureC": 33.5,
+              "HeatingCurve": 1.2,
+              "HumidityPct": 51,
+              "Instance": 1,
+              "MixerPositionPct": 40,
+              "PumpHoursRaw": 1200,
+              "PumpStartsRaw": 87,
+              "PumpStatusLiveAt": "0001-01-01T00:00:00Z",
+              "PumpStatusRaw": 1,
+              "RoomTempControlRaw": 1,
+              "SpecialFunctionMode": 3,
+              "SummerLimitC": 18
+            },
+            null
+          ],
+          "managed_by_function_module": true
+        },
+        {
+          "circuits": null,
+          "managed_by_function_module": false
+        }
+      ]
+    },
+    "output": {
+      "graphql": {
+        "circuits": [
+          {
+            "circuit_type": "heating",
+            "config": {
+              "circuit_cooling_enabled": null,
+              "circuit_flow_temperature_setpoint_minimum": null,
+              "circuit_heating_curve_factor": null,
+              "circuit_room_temperature_influence_mode": null,
+              "circuit_special_function_mode": null,
+              "heating_circuit_flow_temperature_setpoint_maximum": null,
+              "heating_circuit_outdoor_temperature_limit_maximum": null
+            },
+            "has_mixer": false,
+            "index": 0,
+            "managing_device": {
+              "address": 38,
+              "device_id": "VR_71",
+              "role": "FUNCTION_MODULE"
+            },
+            "state": {
+              "calc_flow_temp_c": null,
+              "circuit_dew_point_temperature": null,
+              "circuit_flow_temperature": null,
+              "circuit_flow_temperature_setpoint": null,
+              "circuit_mixer_position": null,
+              "circuit_pump_operating_time_total": null,
+              "circuit_pump_start_count_total": null,
+              "circuit_pump_unknown_8": null,
+              "circuit_room_humidity": null,
+              "circuit_state": null
+            }
+          },
+          {
+            "circuit_type": "fixed_value",
+            "config": {
+              "circuit_cooling_enabled": true,
+              "circuit_flow_temperature_setpoint_minimum": 20,
+              "circuit_heating_curve_factor": 1.2,
+              "circuit_room_temperature_influence_mode": "modulating",
+              "circuit_special_function_mode": 3,
+              "heating_circuit_flow_temperature_setpoint_maximum": 60,
+              "heating_circuit_outdoor_temperature_limit_maximum": 18
+            },
+            "has_mixer": true,
+            "index": 1,
+            "managing_device": {
+              "address": 38,
+              "device_id": "VR_71",
+              "role": "FUNCTION_MODULE"
+            },
+            "state": {
+              "calc_flow_temp_c": 34,
+              "circuit_dew_point_temperature": 11.5,
+              "circuit_flow_temperature": 33.5,
+              "circuit_flow_temperature_setpoint": 35,
+              "circuit_mixer_position": 40,
+              "circuit_pump_operating_time_total": 1200,
+              "circuit_pump_start_count_total": 87,
+              "circuit_pump_unknown_8": true,
+              "circuit_room_humidity": 51,
+              "circuit_state": "cooling"
+            }
+          }
+        ]
+      },
+      "mcp": {
+        "circuits": [
+          {
+            "circuit_type": "heating",
+            "config": {},
+            "has_mixer": false,
+            "index": 0,
+            "managing_device": {
+              "address": 38,
+              "device_id": "VR_71",
+              "role": "FUNCTION_MODULE"
+            },
+            "state": {}
+          },
+          {
+            "circuit_type": "fixed_value",
+            "config": {
+              "circuit_cooling_enabled": true,
+              "circuit_flow_temperature_setpoint_minimum": 20,
+              "circuit_heating_curve_factor": 1.2,
+              "circuit_room_temperature_influence_mode": "modulating",
+              "circuit_special_function_mode": 3,
+              "heating_circuit_flow_temperature_setpoint_maximum": 60,
+              "heating_circuit_outdoor_temperature_limit_maximum": 18
+            },
+            "has_mixer": true,
+            "index": 1,
+            "managing_device": {
+              "address": 38,
+              "device_id": "VR_71",
+              "role": "FUNCTION_MODULE"
+            },
+            "state": {
+              "calc_flow_temp_c": 34,
+              "circuit_dew_point_temperature": 11.5,
+              "circuit_flow_temperature": 33.5,
+              "circuit_flow_temperature_setpoint": 35,
+              "circuit_mixer_position": 40,
+              "circuit_pump_operating_time_total": 1200,
+              "circuit_pump_start_count_total": 87,
+              "circuit_pump_unknown_8": true,
+              "circuit_room_humidity": 51,
+              "circuit_state": "cooling"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "circuits-unmanaged-unknown-raw-values": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "circuits_view": {
+        "circuits": [
+          {
+            "Active": true,
+            "CalcFlowTempC": null,
+            "CircuitStateLiveAt": "0001-01-01T00:00:00Z",
+            "CircuitStateRaw": 0,
+            "CircuitTypeRaw": 99,
+            "Controller": 0,
+            "CoolingEnabledRaw": 0,
+            "DewPointC": null,
+            "FlowSetpointC": null,
+            "FlowTempMaxC": null,
+            "FlowTempMinC": null,
+            "FlowTemperatureC": null,
+            "HeatingCurve": null,
+            "HumidityPct": null,
+            "Instance": 2,
+            "MixerPositionPct": null,
+            "PumpHoursRaw": null,
+            "PumpStartsRaw": null,
+            "PumpStatusLiveAt": "0001-01-01T00:00:00Z",
+            "PumpStatusRaw": 0,
+            "RoomTempControlRaw": 0,
+            "SpecialFunctionMode": null,
+            "SummerLimitC": null
+          }
+        ],
+        "managed_by_function_module": false
+      }
+    },
+    "output": {
+      "graphql": {
+        "circuits": [
+          {
+            "circuit_type": "unknown_99",
+            "config": {
+              "circuit_cooling_enabled": false,
+              "circuit_flow_temperature_setpoint_minimum": null,
+              "circuit_heating_curve_factor": null,
+              "circuit_room_temperature_influence_mode": "off",
+              "circuit_special_function_mode": null,
+              "heating_circuit_flow_temperature_setpoint_maximum": null,
+              "heating_circuit_outdoor_temperature_limit_maximum": null
+            },
+            "has_mixer": false,
+            "index": 2,
+            "managing_device": {
+              "address": null,
+              "device_id": null,
+              "role": "UNKNOWN"
+            },
+            "state": {
+              "calc_flow_temp_c": null,
+              "circuit_dew_point_temperature": null,
+              "circuit_flow_temperature": null,
+              "circuit_flow_temperature_setpoint": null,
+              "circuit_mixer_position": null,
+              "circuit_pump_operating_time_total": null,
+              "circuit_pump_start_count_total": null,
+              "circuit_pump_unknown_8": false,
+              "circuit_room_humidity": null,
+              "circuit_state": "standby"
+            }
+          }
+        ]
+      },
+      "mcp": {
+        "circuits": [
+          {
+            "circuit_type": "unknown_99",
+            "config": {
+              "circuit_cooling_enabled": false,
+              "circuit_room_temperature_influence_mode": "off"
+            },
+            "has_mixer": false,
+            "index": 2,
+            "managing_device": {
+              "role": "UNKNOWN"
+            },
+            "state": {
+              "circuit_pump_unknown_8": false,
+              "circuit_state": "standby"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dhw-all-fields-holiday": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "dhw_view": {
+        "expired": false,
+        "snapshot": {
+          "ConfigurationDHWOperationMode": "",
+          "CurrentTempC": 52.25,
+          "FieldFreshness": null,
+          "HolidayEndDate": "2030-12-27",
+          "HolidayStartDate": "2030-12-20",
+          "OperatingMode": "manual",
+          "Preset": "holiday",
+          "StateSpecialFunction": "load",
+          "TargetTempC": 55
+        }
+      }
+    },
+    "output": {
+      "graphql": {
+        "dhw": {
+          "config": {
+            "dhw_holiday_end_date": "2030-12-27",
+            "dhw_holiday_start_date": "2030-12-20",
+            "dhw_operating_mode": "manual",
+            "dhw_temperature_setpoint": 55,
+            "operation_mode_changeable": null,
+            "preset": "holiday"
+          },
+          "state": {
+            "dhw_special_function_mode": "load",
+            "dhw_temperature": 52.25,
+            "heating_demand_pct": null,
+            "overrun_active": null
+          }
+        }
+      },
+      "mcp": {
+        "dhw": {
+          "config": {
+            "dhw_holiday_end_date": "2030-12-27",
+            "dhw_holiday_start_date": "2030-12-20",
+            "dhw_operating_mode": "manual",
+            "dhw_temperature_setpoint": 55,
+            "preset": "holiday"
+          },
+          "state": {
+            "dhw_special_function_mode": "load",
+            "dhw_temperature": 52.25
+          }
+        }
+      }
+    }
+  },
+  "energy-acquisition-every-query": {
+    "input": {
+      "energy_totals": {
+        "electric": {
+          "climate": {
+            "monthly": [
+              1011,
+              0
+            ],
+            "monthly_meta": [
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": 0,
+              "freshness_state": "fresh",
+              "last_observed_utc": "2030-04-10T08:00:00Z",
+              "provenance": "register",
+              "stale": false
+            },
+            "yearly": [
+              0,
+              1003
+            ],
+            "yearly_meta": [
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              }
+            ]
+          },
+          "dhw": {
+            "monthly": [
+              1012,
+              1008
+            ],
+            "monthly_meta": [
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": 0,
+              "freshness_state": "fresh",
+              "last_observed_utc": "2030-04-10T08:00:00Z",
+              "provenance": "register",
+              "stale": false
+            },
+            "yearly": [
+              0,
+              1004
+            ],
+            "yearly_meta": [
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              }
+            ]
+          }
+        },
+        "gas": {
+          "climate": {
+            "monthly": [
+              1009,
+              1005
+            ],
+            "monthly_meta": [
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": 0,
+              "freshness_state": "fresh",
+              "last_observed_utc": "2030-04-10T08:00:00Z",
+              "provenance": "register",
+              "stale": false
+            },
+            "yearly": [
+              0,
+              1001
+            ],
+            "yearly_meta": [
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              }
+            ]
+          },
+          "dhw": {
+            "monthly": [
+              1010,
+              1006
+            ],
+            "monthly_meta": [
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": 0,
+              "freshness_state": "fresh",
+              "last_observed_utc": "2030-04-10T08:00:00Z",
+              "provenance": "register",
+              "stale": false
+            },
+            "yearly": [
+              0,
+              1002
+            ],
+            "yearly_meta": [
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              }
+            ]
+          }
+        },
+        "solar": {
+          "climate": {
+            "monthly": [],
+            "monthly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": null,
+              "freshness_state": "never_seen",
+              "last_observed_utc": null,
+              "provenance": "none",
+              "stale": false
+            },
+            "yearly": [],
+            "yearly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ]
+          },
+          "dhw": {
+            "monthly": [],
+            "monthly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": null,
+              "freshness_state": "never_seen",
+              "last_observed_utc": null,
+              "provenance": "none",
+              "stale": false
+            },
+            "yearly": [],
+            "yearly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "output": {
+      "mcp": {
+        "energy_totals": {
+          "electric": {
+            "climate": {
+              "monthly": [
+                1011,
+                0
+              ],
+              "monthly_meta": [
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              "yearly": [
+                0,
+                1003
+              ],
+              "yearly_meta": [
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                }
+              ]
+            },
+            "dhw": {
+              "monthly": [
+                1012,
+                1008
+              ],
+              "monthly_meta": [
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              "yearly": [
+                0,
+                1004
+              ],
+              "yearly_meta": [
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                }
+              ]
+            }
+          },
+          "gas": {
+            "climate": {
+              "monthly": [
+                1009,
+                1005
+              ],
+              "monthly_meta": [
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              "yearly": [
+                0,
+                1001
+              ],
+              "yearly_meta": [
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                }
+              ]
+            },
+            "dhw": {
+              "monthly": [
+                1010,
+                1006
+              ],
+              "monthly_meta": [
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              "yearly": [
+                0,
+                1002
+              ],
+              "yearly_meta": [
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                }
+              ]
+            }
+          },
+          "solar": {
+            "climate": {
+              "monthly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "never_seen",
+                "provenance": "none",
+                "stale": false
+              },
+              "yearly": null,
+              "yearly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ]
+            },
+            "dhw": {
+              "monthly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "never_seen",
+                "provenance": "none",
+                "stale": false
+              },
+              "yearly": null,
+              "yearly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "energy-owner-lifetime-and-window-keys": {
+    "input": {
+      "energy_totals": {
+        "electric": {
+          "climate": {
+            "monthly": [
+              45,
+              0
+            ],
+            "monthly_meta": [
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": null,
+              "freshness_state": "never_seen",
+              "last_observed_utc": null,
+              "provenance": "none",
+              "stale": false
+            },
+            "yearly": [],
+            "yearly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ]
+          },
+          "dhw": {
+            "monthly": [],
+            "monthly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": null,
+              "freshness_state": "never_seen",
+              "last_observed_utc": null,
+              "provenance": "none",
+              "stale": false
+            },
+            "yearly": [],
+            "yearly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ]
+          }
+        },
+        "gas": {
+          "climate": {
+            "monthly": [],
+            "monthly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": null,
+              "freshness_state": "never_seen",
+              "last_observed_utc": null,
+              "provenance": "none",
+              "stale": false
+            },
+            "yearly": [],
+            "yearly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ]
+          },
+          "dhw": {
+            "monthly": [],
+            "monthly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": 0,
+              "freshness_state": "fresh",
+              "last_observed_utc": "2030-04-10T08:00:00Z",
+              "provenance": "register",
+              "stale": false
+            },
+            "yearly": [
+              0,
+              321
+            ],
+            "yearly_meta": [
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              {
+                "age_seconds": 0,
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              }
+            ]
+          }
+        },
+        "solar": {
+          "climate": {
+            "monthly": [],
+            "monthly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": null,
+              "freshness_state": "never_seen",
+              "last_observed_utc": null,
+              "provenance": "none",
+              "stale": false
+            },
+            "yearly": [],
+            "yearly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ]
+          },
+          "dhw": {
+            "monthly": [],
+            "monthly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ],
+            "today": 0,
+            "today_meta": {
+              "age_seconds": null,
+              "freshness_state": "never_seen",
+              "last_observed_utc": null,
+              "provenance": "none",
+              "stale": false
+            },
+            "yearly": [],
+            "yearly_meta": [
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              },
+              {
+                "age_seconds": null,
+                "freshness_state": "never_seen",
+                "last_observed_utc": null,
+                "provenance": "none",
+                "stale": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "output": {
+      "mcp": {
+        "energy_totals": {
+          "electric": {
+            "climate": {
+              "monthly": [
+                45,
+                0
+              ],
+              "monthly_meta": [
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "never_seen",
+                "provenance": "none",
+                "stale": false
+              },
+              "yearly": null,
+              "yearly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ]
+            },
+            "dhw": {
+              "monthly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "never_seen",
+                "provenance": "none",
+                "stale": false
+              },
+              "yearly": null,
+              "yearly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ]
+            }
+          },
+          "gas": {
+            "climate": {
+              "monthly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "never_seen",
+                "provenance": "none",
+                "stale": false
+              },
+              "yearly": null,
+              "yearly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ]
+            },
+            "dhw": {
+              "monthly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "fresh",
+                "last_observed_utc": "2030-04-10T08:00:00Z",
+                "provenance": "register",
+                "stale": false
+              },
+              "yearly": [
+                0,
+                321
+              ],
+              "yearly_meta": [
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "fresh",
+                  "last_observed_utc": "2030-04-10T08:00:00Z",
+                  "provenance": "register",
+                  "stale": false
+                }
+              ]
+            }
+          },
+          "solar": {
+            "climate": {
+              "monthly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "never_seen",
+                "provenance": "none",
+                "stale": false
+              },
+              "yearly": null,
+              "yearly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ]
+            },
+            "dhw": {
+              "monthly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ],
+              "today": 0,
+              "today_meta": {
+                "freshness_state": "never_seen",
+                "provenance": "none",
+                "stale": false
+              },
+              "yearly": null,
+              "yearly_meta": [
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                },
+                {
+                  "freshness_state": "never_seen",
+                  "provenance": "none",
+                  "stale": false
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "fm5-absent-without-solar-and-cylinders": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "fm5_view": {
+        "cylinders": null,
+        "solar": null,
+        "verdict": {
+          "DegradedReason": "",
+          "EvidenceRevision": "synthetic-rev-3",
+          "Mode": "ABSENT"
+        }
+      }
+    },
+    "output": {
+      "graphql": {
+        "cylinders": [],
+        "fm5_interpretation": {
+          "degraded_reason": null,
+          "evidence_revision": "synthetic-rev-3",
+          "mode": "ABSENT"
+        },
+        "fm5_semantic_mode": "ABSENT",
+        "solar": {
+          "collector_temperature_c": null,
+          "current_yield": null,
+          "function_mode": null,
+          "pump_active": null,
+          "pump_hours": null,
+          "return_temperature_c": null,
+          "solar_enabled": null
+        }
+      },
+      "mcp": {
+        "cylinders": [],
+        "fm5_interpretation": {
+          "degraded_reason": null,
+          "evidence_revision": "synthetic-rev-3",
+          "mode": "ABSENT"
+        },
+        "fm5_mode": "ABSENT",
+        "solar": {}
+      }
+    }
+  },
+  "fm5-gpio-only-structural-withdrawal": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "fm5_view": {
+        "cylinders": {
+          "0": {
+            "ChargeHysteresis": null,
+            "ChargeOffset": null,
+            "Instance": 0,
+            "MaxSetpointC": 70,
+            "TemperatureC": 48.5
+          },
+          "1": {
+            "ChargeHysteresis": null,
+            "ChargeOffset": null,
+            "Instance": 1,
+            "MaxSetpointC": 60,
+            "TemperatureC": null
+          },
+          "2": {
+            "ChargeHysteresis": 5,
+            "ChargeOffset": 8,
+            "Instance": 2,
+            "MaxSetpointC": 75,
+            "TemperatureC": 55
+          }
+        },
+        "solar": {
+          "CollectorTemperatureC": 68.5,
+          "CurrentYield": 3.75,
+          "FunctionMode": false,
+          "PumpActive": true,
+          "PumpHours": 2200,
+          "ReturnTemperatureC": 41.25,
+          "SolarEnabled": true
+        },
+        "verdict": {
+          "DegradedReason": "CONFIGURATION_NOT_INTERPRETABLE",
+          "EvidenceRevision": "synthetic-rev-2",
+          "Mode": "GPIO_ONLY"
+        }
+      }
+    },
+    "output": {
+      "graphql": {
+        "cylinders": [],
+        "fm5_interpretation": {
+          "degraded_reason": "CONFIGURATION_NOT_INTERPRETABLE",
+          "evidence_revision": "synthetic-rev-2",
+          "mode": "GPIO_ONLY"
+        },
+        "fm5_semantic_mode": "GPIO_ONLY",
+        "solar": {
+          "collector_temperature_c": null,
+          "current_yield": null,
+          "function_mode": null,
+          "pump_active": null,
+          "pump_hours": null,
+          "return_temperature_c": null,
+          "solar_enabled": null
+        }
+      },
+      "mcp": {
+        "cylinders": [],
+        "fm5_interpretation": {
+          "degraded_reason": "CONFIGURATION_NOT_INTERPRETABLE",
+          "evidence_revision": "synthetic-rev-2",
+          "mode": "GPIO_ONLY"
+        },
+        "fm5_mode": "GPIO_ONLY",
+        "solar": {}
+      }
+    }
+  },
+  "fm5-interpreted-published-from-cache-source": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "fm5_view": {
+        "cylinders": {
+          "0": {
+            "ChargeHysteresis": null,
+            "ChargeOffset": null,
+            "Instance": 0,
+            "MaxSetpointC": 70,
+            "TemperatureC": 48.5
+          },
+          "1": {
+            "ChargeHysteresis": null,
+            "ChargeOffset": null,
+            "Instance": 1,
+            "MaxSetpointC": 60,
+            "TemperatureC": null
+          },
+          "2": {
+            "ChargeHysteresis": 5,
+            "ChargeOffset": 8,
+            "Instance": 2,
+            "MaxSetpointC": 75,
+            "TemperatureC": 55
+          }
+        },
+        "solar": {
+          "CollectorTemperatureC": 68.5,
+          "CurrentYield": 3.75,
+          "FunctionMode": false,
+          "PumpActive": true,
+          "PumpHours": 2200,
+          "ReturnTemperatureC": 41.25,
+          "SolarEnabled": true
+        },
+        "verdict": {
+          "DegradedReason": "",
+          "EvidenceRevision": "synthetic-rev-1",
+          "Mode": "INTERPRETED"
+        }
+      }
+    },
+    "output": {
+      "graphql": {
+        "cylinders": [
+          {
+            "charge_hysteresis_c": null,
+            "charge_offset_c": null,
+            "index": 0,
+            "max_setpoint_c": 70,
+            "temperature_c": 48.5
+          },
+          {
+            "charge_hysteresis_c": 5,
+            "charge_offset_c": 8,
+            "index": 2,
+            "max_setpoint_c": 75,
+            "temperature_c": 55
+          }
+        ],
+        "fm5_interpretation": {
+          "degraded_reason": null,
+          "evidence_revision": "synthetic-rev-1",
+          "mode": "INTERPRETED"
+        },
+        "fm5_semantic_mode": "INTERPRETED",
+        "solar": {
+          "collector_temperature_c": 68.5,
+          "current_yield": 3.75,
+          "function_mode": false,
+          "pump_active": true,
+          "pump_hours": 2200,
+          "return_temperature_c": 41.25,
+          "solar_enabled": true
+        }
+      },
+      "mcp": {
+        "cylinders": [
+          {
+            "index": 0,
+            "max_setpoint_c": 70,
+            "temperature_c": 48.5
+          },
+          {
+            "charge_hysteresis_c": 5,
+            "charge_offset_c": 8,
+            "index": 2,
+            "max_setpoint_c": 75,
+            "temperature_c": 55
+          }
+        ],
+        "fm5_interpretation": {
+          "degraded_reason": null,
+          "evidence_revision": "synthetic-rev-1",
+          "mode": "INTERPRETED"
+        },
+        "fm5_mode": "INTERPRETED",
+        "solar": {
+          "collector_temperature_c": 68.5,
+          "current_yield": 3.75,
+          "function_mode": false,
+          "pump_active": true,
+          "pump_hours": 2200,
+          "return_temperature_c": 41.25,
+          "solar_enabled": true
+        }
+      }
+    }
+  },
+  "fm5-interpreted-with-solar-and-cylinders": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "fm5_view": {
+        "cylinders": {
+          "0": {
+            "ChargeHysteresis": null,
+            "ChargeOffset": null,
+            "Instance": 0,
+            "MaxSetpointC": 70,
+            "TemperatureC": 48.5
+          },
+          "1": {
+            "ChargeHysteresis": null,
+            "ChargeOffset": null,
+            "Instance": 1,
+            "MaxSetpointC": 60,
+            "TemperatureC": null
+          },
+          "2": {
+            "ChargeHysteresis": 5,
+            "ChargeOffset": 8,
+            "Instance": 2,
+            "MaxSetpointC": 75,
+            "TemperatureC": 55
+          }
+        },
+        "solar": {
+          "CollectorTemperatureC": 68.5,
+          "CurrentYield": 3.75,
+          "FunctionMode": false,
+          "PumpActive": true,
+          "PumpHours": 2200,
+          "ReturnTemperatureC": 41.25,
+          "SolarEnabled": true
+        },
+        "verdict": {
+          "DegradedReason": "",
+          "EvidenceRevision": "synthetic-rev-1",
+          "Mode": "INTERPRETED"
+        }
+      }
+    },
+    "output": {
+      "graphql": {
+        "cylinders": [
+          {
+            "charge_hysteresis_c": null,
+            "charge_offset_c": null,
+            "index": 0,
+            "max_setpoint_c": 70,
+            "temperature_c": 48.5
+          },
+          {
+            "charge_hysteresis_c": 5,
+            "charge_offset_c": 8,
+            "index": 2,
+            "max_setpoint_c": 75,
+            "temperature_c": 55
+          }
+        ],
+        "fm5_interpretation": {
+          "degraded_reason": null,
+          "evidence_revision": "synthetic-rev-1",
+          "mode": "INTERPRETED"
+        },
+        "fm5_semantic_mode": "INTERPRETED",
+        "solar": {
+          "collector_temperature_c": 68.5,
+          "current_yield": 3.75,
+          "function_mode": false,
+          "pump_active": true,
+          "pump_hours": 2200,
+          "return_temperature_c": 41.25,
+          "solar_enabled": true
+        }
+      },
+      "mcp": {
+        "cylinders": [
+          {
+            "index": 0,
+            "max_setpoint_c": 70,
+            "temperature_c": 48.5
+          },
+          {
+            "charge_hysteresis_c": 5,
+            "charge_offset_c": 8,
+            "index": 2,
+            "max_setpoint_c": 75,
+            "temperature_c": 55
+          }
+        ],
+        "fm5_interpretation": {
+          "degraded_reason": null,
+          "evidence_revision": "synthetic-rev-1",
+          "mode": "INTERPRETED"
+        },
+        "fm5_mode": "INTERPRETED",
+        "solar": {
+          "collector_temperature_c": 68.5,
+          "current_yield": 3.75,
+          "function_mode": false,
+          "pump_active": true,
+          "pump_hours": 2200,
+          "return_temperature_c": 41.25,
+          "solar_enabled": true
+        }
+      }
+    }
+  },
+  "regulator-capability-mapping": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "capabilities": [
+        {
+          "name": "present",
+          "native_value": 2
+        },
+        {
+          "name": "none",
+          "native_value": 1
+        },
+        {
+          "name": "unrecognised",
+          "native_value": 99
+        }
+      ]
+    },
+    "output": {
+      "decisions": [
+        {
+          "published": "PRESENT"
+        },
+        {
+          "published": "NONE"
+        },
+        {
+          "published": "UNKNOWN"
+        }
+      ],
+      "graphql": {
+        "vaillant_regulator_capability": "UNKNOWN"
+      },
+      "mcp": {}
+    }
+  },
+  "schedule-write-mappings": {
+    "clock": {},
+    "input": {
+      "slot_requests": [
+        null,
+        [],
+        [
+          {
+            "end_hour": 8,
+            "end_minute": 0,
+            "start_hour": 6,
+            "start_minute": 15,
+            "temperature_c": 21.5
+          },
+          {
+            "end_hour": 24,
+            "end_minute": 0,
+            "start_hour": 17,
+            "start_minute": 30
+          }
+        ]
+      ],
+      "write_results": [
+        {
+          "error": null,
+          "name": "nil_result_nil_error",
+          "native_result": null
+        },
+        {
+          "error": "synthetic write failure",
+          "name": "nil_result_with_error",
+          "native_result": null
+        },
+        {
+          "error": null,
+          "name": "success_without_slot_results",
+          "native_result": {
+            "Error": "",
+            "SlotResults": null,
+            "Success": true
+          }
+        },
+        {
+          "error": "synthetic write failure",
+          "name": "slot_results_with_rejection",
+          "native_result": {
+            "Error": "slot rejected",
+            "SlotResults": [
+              {
+                "Accepted": true,
+                "ErrorCode": 0,
+                "ErrorDesc": "",
+                "SlotIndex": 0
+              },
+              {
+                "Accepted": false,
+                "ErrorCode": 3,
+                "ErrorDesc": "synthetic description",
+                "SlotIndex": 1
+              }
+            ],
+            "Success": false
+          }
+        }
+      ]
+    },
+    "output": {
+      "decisions": [
+        {
+          "mcp_slots": null,
+          "native_slots": null
+        },
+        {
+          "mcp_slots": [],
+          "native_slots": []
+        },
+        {
+          "mcp_slots": [
+            {
+              "end_hour": 8,
+              "end_minute": 0,
+              "start_hour": 6,
+              "start_minute": 15,
+              "temperature_c": 21.5
+            },
+            {
+              "end_hour": 24,
+              "end_minute": 0,
+              "start_hour": 17,
+              "start_minute": 30
+            }
+          ],
+          "native_slots": [
+            {
+              "EndHour": 8,
+              "EndMinute": 0,
+              "StartHour": 6,
+              "StartMinute": 15,
+              "TemperatureC": 21.5
+            },
+            {
+              "EndHour": 24,
+              "EndMinute": 0,
+              "StartHour": 17,
+              "StartMinute": 30,
+              "TemperatureC": null
+            }
+          ]
+        }
+      ],
+      "graphql": {},
+      "mcp": {},
+      "write_results": [
+        {
+          "error": null,
+          "mcp_result": null,
+          "name": "nil_result_nil_error"
+        },
+        {
+          "error": "synthetic write failure",
+          "mcp_result": null,
+          "name": "nil_result_with_error"
+        },
+        {
+          "error": null,
+          "mcp_result": {
+            "slot_results": null,
+            "success": true
+          },
+          "name": "success_without_slot_results"
+        },
+        {
+          "error": "synthetic write failure",
+          "mcp_result": {
+            "error": "slot rejected",
+            "slot_results": [
+              {
+                "accepted": true,
+                "error_code": 0,
+                "slot_index": 0
+              },
+              {
+                "accepted": false,
+                "error_code": 3,
+                "error_description": "synthetic description",
+                "slot_index": 1
+              }
+            ],
+            "success": false
+          },
+          "name": "slot_results_with_rejection"
+        }
+      ]
+    }
+  },
+  "schedules-programs-every-field": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "programs": [
+        {
+          "Config": {
+            "HasTemperature": true,
+            "MaxSlots": 3,
+            "MaxTempC": 29,
+            "MinDuration": 20,
+            "MinTempC": 11,
+            "TempSlots": 4,
+            "TimeResolution": 10
+          },
+          "Days": [
+            {
+              "Slots": [
+                {
+                  "EndHour": 21,
+                  "EndMinute": 45,
+                  "StartHour": 5,
+                  "StartMinute": 30,
+                  "TemperatureC": 21.5,
+                  "TemperatureRaw": 215
+                }
+              ],
+              "Weekday": "Monday"
+            },
+            {
+              "Slots": null,
+              "Weekday": "Tuesday"
+            }
+          ],
+          "HC": "heating",
+          "SlotsUsed": [
+            1,
+            2,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          "Zone": 2
+        },
+        {
+          "Config": null,
+          "Days": null,
+          "HC": "dhw",
+          "SlotsUsed": null,
+          "Zone": 255
+        }
+      ]
+    },
+    "output": {
+      "graphql": {
+        "schedules": {
+          "programs": [
+            {
+              "config": {
+                "has_temperature": true,
+                "max_slots": 3,
+                "max_temp_c": 29,
+                "min_duration": 20,
+                "min_temp_c": 11,
+                "temp_slots": 4,
+                "time_resolution": 10
+              },
+              "days": [
+                {
+                  "slots": [
+                    {
+                      "end_hour": 21,
+                      "end_minute": 45,
+                      "start_hour": 5,
+                      "start_minute": 30,
+                      "temperature_c": 21.5,
+                      "temperature_raw": 215
+                    }
+                  ],
+                  "weekday": "Monday"
+                },
+                {
+                  "slots": [],
+                  "weekday": "Tuesday"
+                }
+              ],
+              "hc": "heating",
+              "slots_used": [
+                1,
+                2,
+                0,
+                0,
+                0,
+                0,
+                3
+              ],
+              "zone": 2
+            },
+            {
+              "config": null,
+              "days": [],
+              "hc": "dhw",
+              "slots_used": [],
+              "zone": 255
+            }
+          ]
+        }
+      },
+      "mcp": {
+        "schedules": {
+          "programs": [
+            {
+              "config": {
+                "has_temperature": true,
+                "max_slots": 3,
+                "max_temp_c": 29,
+                "min_duration": 20,
+                "min_temp_c": 11,
+                "temp_slots": 4,
+                "time_resolution": 10
+              },
+              "days": [
+                {
+                  "slots": [
+                    {
+                      "end_hour": 21,
+                      "end_minute": 45,
+                      "start_hour": 5,
+                      "start_minute": 30,
+                      "temperature_c": 21.5,
+                      "temperature_raw": 215
+                    }
+                  ],
+                  "weekday": "Monday"
+                },
+                {
+                  "slots": null,
+                  "weekday": "Tuesday"
+                }
+              ],
+              "hc": "heating",
+              "slots_used": [
+                1,
+                2,
+                0,
+                0,
+                0,
+                0,
+                3
+              ],
+              "zone": 2
+            },
+            {
+              "hc": "dhw",
+              "zone": 255
+            }
+          ]
+        }
+      }
+    }
+  },
+  "system-view-all-fields-with-bound": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "system_view": {
+        "dhw_bivalence_bound": {
+          "MaxC": 20,
+          "MinC": -10,
+          "NarrowedOnly": false,
+          "Profile": "synthetic",
+          "Reason": "",
+          "Source": "profile"
+        },
+        "snapshot": {
+          "AdaptiveHeatingCurve": true,
+          "AlternativePoint": -5,
+          "Controller": 21,
+          "DhwBivalencePoint": -2,
+          "HcEmergencyTemperature": -15,
+          "HeatingCircuitBivalencePoint": -3,
+          "HwcCylinderTemperatureBottom": 38,
+          "HwcCylinderTemperatureTop": 51,
+          "HwcMaxFlowTempDesired": 65,
+          "InstallerMenuCode": 17,
+          "InstallerName": "Synthetic Installer",
+          "InstallerPhone": "0123",
+          "MaintenanceDate": "2031-01-15",
+          "MaintenanceDue": true,
+          "MaxRoomHumidity": 70,
+          "ModuleConfigurationVR71": 2,
+          "OutdoorTemperature": 7.5,
+          "OutdoorTemperatureAvg24h": 6.25,
+          "SystemFlowTemperature": 42.5,
+          "SystemFlowTemperatureLiveAt": "0001-01-01T00:00:00Z",
+          "SystemOff": false,
+          "SystemScheme": 3,
+          "SystemWaterPressure": 1.8
+        }
+      }
+    },
+    "output": {
+      "graphql": {
+        "system": {
+          "config": {
+            "adaptive_heating_curve_enabled": true,
+            "dhw_flow_temperature_setpoint_maximum": 65,
+            "dhw_outdoor_bivalence_temperature_limit": -2,
+            "dhw_outdoor_bivalence_temperature_limit_bound": {
+              "max_c": 20,
+              "min_c": -10,
+              "narrowed_only": false,
+              "profile": "synthetic",
+              "reason": null,
+              "source": "profile"
+            },
+            "heating_flow_temperature_setpoint_maximum_at_heat_pump_fault": -15,
+            "heating_outdoor_alternative_temperature_limit": -5,
+            "heating_outdoor_bivalence_temperature_limit": -3,
+            "installer_access_code": 17,
+            "installer_name": "Synthetic Installer",
+            "installer_phone_number": "0123",
+            "maintenance_date": "2031-01-15",
+            "room_humidity_limit_maximum": 70
+          },
+          "gateway_brand": null,
+          "gateway_vendor": null,
+          "properties": {
+            "functional_module_configuration_code": 2,
+            "hydraulic_scheme_code": 3
+          },
+          "state": {
+            "dhw_cylinder_bottom_temperature": 38,
+            "dhw_cylinder_top_temperature": 51,
+            "flow_temperature": 42.5,
+            "maintenance_active": true,
+            "outdoor_temperature": 7.5,
+            "outdoor_temperature_daily_average": 6.25,
+            "system_off": false,
+            "water_pressure": 1.8
+          }
+        }
+      },
+      "mcp": {
+        "system": {
+          "config": {
+            "adaptive_heating_curve_enabled": true,
+            "dhw_flow_temperature_setpoint_maximum": 65,
+            "dhw_outdoor_bivalence_temperature_limit": -2,
+            "dhw_outdoor_bivalence_temperature_limit_bound": {
+              "max_c": 20,
+              "min_c": -10,
+              "narrowed_only": false,
+              "profile": "synthetic",
+              "source": "profile"
+            },
+            "heating_flow_temperature_setpoint_maximum_at_heat_pump_fault": -15,
+            "heating_outdoor_alternative_temperature_limit": -5,
+            "heating_outdoor_bivalence_temperature_limit": -3,
+            "installer_access_code": 17,
+            "installer_name": "Synthetic Installer",
+            "installer_phone_number": "0123",
+            "maintenance_date": "2031-01-15",
+            "room_humidity_limit_maximum": 70
+          },
+          "properties": {
+            "functional_module_configuration_code": 2,
+            "hydraulic_scheme_code": 3
+          },
+          "state": {
+            "dhw_cylinder_bottom_temperature": 38,
+            "dhw_cylinder_top_temperature": 51,
+            "flow_temperature": 42.5,
+            "maintenance_active": true,
+            "outdoor_temperature": 7.5,
+            "outdoor_temperature_daily_average": 6.25,
+            "system_off": false,
+            "water_pressure": 1.8
+          }
+        }
+      }
+    }
+  },
+  "zone-views-quick-veto-holiday-and-defaults": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "zone_views": [
+        {
+          "inferred_room_mapping_raw": null,
+          "instance": 0,
+          "radio_room_humidity_pct": null,
+          "radio_room_temp_c": null,
+          "snapshot": {
+            "AllowedModes": [
+              "off",
+              "auto",
+              "manual"
+            ],
+            "ConfigurationAssociatedCircuitRaw": 0,
+            "ConfigurationCircuitTypeRaw": 1,
+            "ConfigurationHeatingOperationMode": "",
+            "ConfigurationRoomTemperatureZoneMappingRaw": 1,
+            "CurrentTempC": 21.5,
+            "FieldFreshness": null,
+            "HolidayEndDate": "2030-12-27",
+            "HolidayEndTime": "18:30",
+            "HolidaySetpointC": 15,
+            "HolidayStartDate": "2030-12-20",
+            "HolidayStartTime": "08:00",
+            "HumidityPct": 48,
+            "HvacAction": "heating",
+            "Instance": 0,
+            "Name": "Living",
+            "OperatingMode": "auto",
+            "Present": true,
+            "Preset": "quickveto",
+            "QuickVetoDurationH": 3,
+            "QuickVetoEndDate": "2030-04-10",
+            "QuickVetoEndTime": "18:30",
+            "QuickVetoTempC": 23.5,
+            "StateSpecialFunction": "quick_veto",
+            "StateValveStatusRaw": 32768,
+            "TargetTempC": 22
+          }
+        },
+        {
+          "inferred_room_mapping_raw": null,
+          "instance": 1,
+          "radio_room_humidity_pct": null,
+          "radio_room_temp_c": null,
+          "snapshot": {
+            "AllowedModes": null,
+            "ConfigurationAssociatedCircuitRaw": null,
+            "ConfigurationCircuitTypeRaw": 2,
+            "ConfigurationHeatingOperationMode": "",
+            "ConfigurationRoomTemperatureZoneMappingRaw": 3,
+            "CurrentTempC": null,
+            "FieldFreshness": null,
+            "HolidayEndDate": "",
+            "HolidayEndTime": "",
+            "HolidaySetpointC": null,
+            "HolidayStartDate": "",
+            "HolidayStartTime": "",
+            "HumidityPct": null,
+            "HvacAction": "",
+            "Instance": 1,
+            "Name": "  ",
+            "OperatingMode": "off",
+            "Present": true,
+            "Preset": "schedule",
+            "QuickVetoDurationH": null,
+            "QuickVetoEndDate": "2030-04-11",
+            "QuickVetoEndTime": "09:00",
+            "QuickVetoTempC": null,
+            "StateSpecialFunction": "",
+            "StateValveStatusRaw": 0,
+            "TargetTempC": null
+          }
+        },
+        {
+          "inferred_room_mapping_raw": null,
+          "instance": 2,
+          "radio_room_humidity_pct": null,
+          "radio_room_temp_c": null,
+          "snapshot": null
+        }
+      ]
+    },
+    "output": {
+      "graphql": {
+        "zones": [
+          {
+            "config": {
+              "allowed_modes": [
+                "off",
+                "auto",
+                "manual"
+              ],
+              "associated_circuit": 0,
+              "circuit_type": "underfloor",
+              "operating_mode": "auto",
+              "operation_mode_changeable": null,
+              "preset": "quickveto",
+              "quick_veto": true,
+              "quick_veto_expiry": "2030-04-10T18:30",
+              "room_temperature_zone_mapping": 1,
+              "source_label": null,
+              "target_temp_c": 22,
+              "zone_holiday_end_clock_time": "18:30",
+              "zone_holiday_end_date": "2030-12-27",
+              "zone_holiday_start_clock_time": "08:00",
+              "zone_holiday_start_date": "2030-12-20",
+              "zone_quick_veto_time": 3,
+              "zone_room_temperature_setpoint_at_holiday": 15,
+              "zone_room_temperature_setpoint_at_quick_veto": 23.5
+            },
+            "id": "zone-1",
+            "name": "Living",
+            "state": {
+              "heating_demand_pct": null,
+              "hvac_action": "heating",
+              "zone_room_humidity": 48,
+              "zone_room_temperature": 21.5,
+              "zone_special_function_mode": "quick_veto",
+              "zone_valve_position": 50.000762951094835
+            }
+          },
+          {
+            "config": {
+              "allowed_modes": [
+                "off",
+                "auto",
+                "heat"
+              ],
+              "associated_circuit": 2,
+              "circuit_type": "mixed",
+              "operating_mode": "off",
+              "operation_mode_changeable": null,
+              "preset": "schedule",
+              "quick_veto": false,
+              "quick_veto_expiry": null,
+              "room_temperature_zone_mapping": 3,
+              "source_label": null,
+              "target_temp_c": null,
+              "zone_holiday_end_clock_time": null,
+              "zone_holiday_end_date": null,
+              "zone_holiday_start_clock_time": null,
+              "zone_holiday_start_date": null,
+              "zone_quick_veto_time": null,
+              "zone_room_temperature_setpoint_at_holiday": null,
+              "zone_room_temperature_setpoint_at_quick_veto": null
+            },
+            "id": "zone-2",
+            "name": "Zone 2",
+            "state": {
+              "heating_demand_pct": null,
+              "hvac_action": null,
+              "zone_room_humidity": null,
+              "zone_room_temperature": null,
+              "zone_special_function_mode": null,
+              "zone_valve_position": 0
+            }
+          }
+        ]
+      },
+      "mcp": {
+        "zones": [
+          {
+            "config": {
+              "allowed_modes": [
+                "off",
+                "auto",
+                "manual"
+              ],
+              "associated_circuit": 0,
+              "circuit_type": "underfloor",
+              "operating_mode": "auto",
+              "preset": "quickveto",
+              "quick_veto": true,
+              "quick_veto_expiry": "2030-04-10T18:30",
+              "room_temperature_zone_mapping": 1,
+              "target_temp_c": 22,
+              "zone_holiday_end_clock_time": "18:30",
+              "zone_holiday_end_date": "2030-12-27",
+              "zone_holiday_start_clock_time": "08:00",
+              "zone_holiday_start_date": "2030-12-20",
+              "zone_quick_veto_time": 3,
+              "zone_room_temperature_setpoint_at_holiday": 15,
+              "zone_room_temperature_setpoint_at_quick_veto": 23.5
+            },
+            "id": "zone-1",
+            "name": "Living",
+            "state": {
+              "hvac_action": "heating",
+              "zone_room_humidity": 48,
+              "zone_room_temperature": 21.5,
+              "zone_special_function_mode": "quick_veto",
+              "zone_valve_position": 50.000762951094835
+            }
+          },
+          {
+            "config": {
+              "associated_circuit": 2,
+              "circuit_type": "mixed",
+              "operating_mode": "off",
+              "preset": "schedule",
+              "quick_veto": false,
+              "room_temperature_zone_mapping": 3
+            },
+            "id": "zone-2",
+            "name": "Zone 2",
+            "state": {
+              "zone_valve_position": 0
+            }
+          }
+        ]
+      }
+    }
+  },
+  "zone-views-radio-fallback": {
+    "clock": {
+      "energy_clock": "2030-04-10T08:00:00Z"
+    },
+    "input": {
+      "zone_views": [
+        {
+          "inferred_room_mapping_raw": null,
+          "instance": 0,
+          "radio_room_humidity_pct": null,
+          "radio_room_temp_c": null,
+          "snapshot": {
+            "AllowedModes": null,
+            "ConfigurationAssociatedCircuitRaw": null,
+            "ConfigurationCircuitTypeRaw": null,
+            "ConfigurationHeatingOperationMode": "",
+            "ConfigurationRoomTemperatureZoneMappingRaw": 0,
+            "CurrentTempC": 22,
+            "FieldFreshness": null,
+            "HolidayEndDate": "",
+            "HolidayEndTime": "",
+            "HolidaySetpointC": null,
+            "HolidayStartDate": "",
+            "HolidayStartTime": "",
+            "HumidityPct": 51,
+            "HvacAction": "",
+            "Instance": 0,
+            "Name": "",
+            "OperatingMode": "",
+            "Present": true,
+            "Preset": "",
+            "QuickVetoDurationH": null,
+            "QuickVetoEndDate": "",
+            "QuickVetoEndTime": "",
+            "QuickVetoTempC": null,
+            "StateSpecialFunction": "",
+            "StateValveStatusRaw": null,
+            "TargetTempC": null
+          }
+        },
+        {
+          "inferred_room_mapping_raw": 3,
+          "instance": 1,
+          "radio_room_humidity_pct": 44,
+          "radio_room_temp_c": 20.5,
+          "snapshot": {
+            "AllowedModes": [
+              "auto"
+            ],
+            "ConfigurationAssociatedCircuitRaw": null,
+            "ConfigurationCircuitTypeRaw": null,
+            "ConfigurationHeatingOperationMode": "",
+            "ConfigurationRoomTemperatureZoneMappingRaw": null,
+            "CurrentTempC": null,
+            "FieldFreshness": null,
+            "HolidayEndDate": "",
+            "HolidayEndTime": "",
+            "HolidaySetpointC": null,
+            "HolidayStartDate": "",
+            "HolidayStartTime": "",
+            "HumidityPct": null,
+            "HvacAction": "",
+            "Instance": 1,
+            "Name": "Upstairs",
+            "OperatingMode": "",
+            "Present": true,
+            "Preset": "",
+            "QuickVetoDurationH": null,
+            "QuickVetoEndDate": "",
+            "QuickVetoEndTime": "",
+            "QuickVetoTempC": null,
+            "StateSpecialFunction": "",
+            "StateValveStatusRaw": null,
+            "TargetTempC": null
+          }
+        }
+      ]
+    },
+    "output": {
+      "graphql": {
+        "zones": [
+          {
+            "config": {
+              "allowed_modes": [
+                "off",
+                "auto",
+                "heat"
+              ],
+              "associated_circuit": 0,
+              "circuit_type": null,
+              "operating_mode": null,
+              "operation_mode_changeable": null,
+              "preset": null,
+              "quick_veto": false,
+              "quick_veto_expiry": null,
+              "room_temperature_zone_mapping": 0,
+              "source_label": null,
+              "target_temp_c": null,
+              "zone_holiday_end_clock_time": null,
+              "zone_holiday_end_date": null,
+              "zone_holiday_start_clock_time": null,
+              "zone_holiday_start_date": null,
+              "zone_quick_veto_time": null,
+              "zone_room_temperature_setpoint_at_holiday": null,
+              "zone_room_temperature_setpoint_at_quick_veto": null
+            },
+            "id": "zone-1",
+            "name": "Zone 1",
+            "state": {
+              "heating_demand_pct": null,
+              "hvac_action": null,
+              "zone_room_humidity": 51,
+              "zone_room_temperature": 22,
+              "zone_special_function_mode": null,
+              "zone_valve_position": null
+            }
+          },
+          {
+            "config": {
+              "allowed_modes": [
+                "auto"
+              ],
+              "associated_circuit": 2,
+              "circuit_type": null,
+              "operating_mode": null,
+              "operation_mode_changeable": null,
+              "preset": null,
+              "quick_veto": false,
+              "quick_veto_expiry": null,
+              "room_temperature_zone_mapping": 3,
+              "source_label": null,
+              "target_temp_c": null,
+              "zone_holiday_end_clock_time": null,
+              "zone_holiday_end_date": null,
+              "zone_holiday_start_clock_time": null,
+              "zone_holiday_start_date": null,
+              "zone_quick_veto_time": null,
+              "zone_room_temperature_setpoint_at_holiday": null,
+              "zone_room_temperature_setpoint_at_quick_veto": null
+            },
+            "id": "zone-2",
+            "name": "Upstairs",
+            "state": {
+              "heating_demand_pct": null,
+              "hvac_action": null,
+              "zone_room_humidity": 44,
+              "zone_room_temperature": 20.5,
+              "zone_special_function_mode": null,
+              "zone_valve_position": null
+            }
+          }
+        ]
+      },
+      "mcp": {
+        "zones": [
+          {
+            "config": {
+              "associated_circuit": 0,
+              "operating_mode": "",
+              "preset": "",
+              "quick_veto": false,
+              "room_temperature_zone_mapping": 0
+            },
+            "id": "zone-1",
+            "name": "Zone 1",
+            "state": {
+              "zone_room_humidity": 51,
+              "zone_room_temperature": 22
+            }
+          },
+          {
+            "config": {
+              "allowed_modes": [
+                "auto"
+              ],
+              "associated_circuit": 2,
+              "operating_mode": "",
+              "preset": "",
+              "quick_veto": false,
+              "room_temperature_zone_mapping": 3
+            },
+            "id": "zone-2",
+            "name": "Upstairs",
+            "state": {
+              "zone_room_humidity": 44,
+              "zone_room_temperature": 20.5
+            }
+          }
+        ]
+      }
+    }
+  }
+}

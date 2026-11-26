@@ -259,9 +259,8 @@ func TestVaillantInputRowsHistoryStaleEpochKeepsOriginalTransport(t *testing.T) 
 	}
 	issued := TransportStamp{AdapterInstanceID: positive.Transport.AdapterInstanceID, TransportEpoch: positive.Transport.TransportEpoch}
 	for name, current := range map[string]TransportStamp{
-		"epoch advanced":            {AdapterInstanceID: issued.AdapterInstanceID, TransportEpoch: issued.TransportEpoch + 1},
-		"epoch rolled back":         {AdapterInstanceID: issued.AdapterInstanceID, TransportEpoch: issued.TransportEpoch - 1},
-		"adapter instance replaced": {AdapterInstanceID: issued.AdapterInstanceID + "-replaced", TransportEpoch: issued.TransportEpoch},
+		"epoch advanced":    {AdapterInstanceID: issued.AdapterInstanceID, TransportEpoch: issued.TransportEpoch + 1},
+		"epoch rolled back": {AdapterInstanceID: issued.AdapterInstanceID, TransportEpoch: issued.TransportEpoch - 1},
 	} {
 		body := boilerRowsBytes(t, positive.PayloadHex)
 		rec := Record{Selector: DiagnosticSelector{Family: body[0], Selector: body[1]}, Request: body, Reply: boilerRowsBytes(t, *positive.ReplyHex), Replied: true}
@@ -270,9 +269,15 @@ func TestVaillantInputRowsHistoryStaleEpochKeepsOriginalTransport(t *testing.T) 
 			t.Fatalf("%s: %+v, %v", name, r, err)
 		}
 	}
-	same, err := row.Observe(Record{Selector: DiagnosticSelector{Family: 0, Selector: 1}, Reply: []byte{0x19, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff}, Replied: true}, DiagnosticDispatch{Issued: issued, Current: issued, Emitted: true})
-	if err != nil || same.Native != DiagnosticACK || same.Response == nil {
-		t.Fatalf("unchanged transport: %+v, %v", same, err)
+	// The dispatcher compares the epoch only: an adapter instance replaced at the same epoch keeps the reply.
+	for name, current := range map[string]TransportStamp{
+		"unchanged transport":       issued,
+		"adapter instance replaced": {AdapterInstanceID: issued.AdapterInstanceID + "-replaced", TransportEpoch: issued.TransportEpoch},
+	} {
+		same, err := row.Observe(Record{Selector: DiagnosticSelector{Family: 0, Selector: 1}, Reply: []byte{0x19, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff}, Replied: true}, DiagnosticDispatch{Issued: issued, Current: current, Emitted: true})
+		if err != nil || same.Native != DiagnosticACK || same.Response == nil || same.Err != "" || same.Transport != issued {
+			t.Fatalf("%s: %+v, %v", name, same, err)
+		}
 	}
 }
 
@@ -319,7 +324,8 @@ func TestVaillantInputRowsHistoryLiveMonitorContext(t *testing.T) {
 //	Selector:                  a row that ignores the selector would accept the service body for the error row.
 //	Index on a current row:    a row that accepts an index everywhere would accept 00 01 00.
 //	Selector type:             a row that ignores the geometry would accept a live-monitor selector for a history row.
-//	Adapter instance, epoch:   a comparison of one part of the stamp would pass a replaced adapter or an advanced epoch.
+//	Epoch:                     a row that ignores the epoch would keep a reply that completed after the epoch advanced.
+//	Adapter instance:          a row that compares it would discard a reply the dispatcher keeps at an unchanged epoch.
 //	Emitted:                   a row that ignores it would classify a request that was never sent.
 func TestVaillantInputRowsHistoryKey(t *testing.T) {
 	zero := byte(0)
@@ -349,13 +355,15 @@ func TestVaillantInputRowsHistoryKey(t *testing.T) {
 	base := TransportStamp{AdapterInstanceID: "a", TransportEpoch: 7}
 	rec := Record{Selector: DiagnosticSelector{Family: 0, Selector: 1}, Reply: reply, Replied: true, Clock: time.Unix(5, 0)}
 	for name, d := range map[string]DiagnosticDispatch{
-		"instance": {Issued: base, Current: TransportStamp{AdapterInstanceID: "b", TransportEpoch: 7}, Emitted: true},
-		"epoch":    {Issued: base, Current: TransportStamp{AdapterInstanceID: "a", TransportEpoch: 8}, Emitted: true},
-		"emitted":  {Issued: base, Current: base},
+		"epoch":   {Issued: base, Current: TransportStamp{AdapterInstanceID: "a", TransportEpoch: 8}, Emitted: true},
+		"emitted": {Issued: base, Current: base},
 	} {
 		if r, _ := row.Observe(rec, d); r.Native == DiagnosticACK || r.Response != nil {
 			t.Fatalf("%s: %+v", name, r)
 		}
+	}
+	if r, _ := row.Observe(rec, DiagnosticDispatch{Issued: base, Current: TransportStamp{AdapterInstanceID: "b", TransportEpoch: 7}, Emitted: true}); r.Native != DiagnosticACK || r.Response == nil {
+		t.Fatalf("instance replaced at the same epoch: %+v", r)
 	}
 	if r, _ := row.Observe(rec, DiagnosticDispatch{Issued: base, Current: base, Emitted: true}); r.Native != DiagnosticACK || !r.AcquiredAt.Equal(rec.Clock) {
 		t.Fatalf("matching stamp: %+v", r)

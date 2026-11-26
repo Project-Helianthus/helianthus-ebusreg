@@ -93,8 +93,8 @@ func (r DiagnosticRow) accepts(selector Selector) (*byte, bool) {
 	return s.Index, true
 }
 
-// Observe evaluates one dispatched request against the row. A reply that completes on another transport than the one
-// the request was issued on is discarded, whatever it was.
+// Observe evaluates one dispatched request against the row. A reply that completes after the transport epoch differs
+// from the epoch the request was issued on is discarded, whatever it was; the dispatcher compares the epoch only.
 func (r DiagnosticRow) Observe(rec Record, dispatch DiagnosticDispatch) (DiagnosticResult, error) {
 	index, ok := r.accepts(rec.Selector)
 	if !ok {
@@ -106,7 +106,7 @@ func (r DiagnosticRow) Observe(rec Record, dispatch DiagnosticDispatch) (Diagnos
 	}
 	switch {
 	case !dispatch.Emitted:
-	case dispatch.Issued != dispatch.Current:
+	case dispatch.Issued.TransportEpoch != dispatch.Current.TransportEpoch:
 		out.Err = diagnosticStaleEpochText
 	case errors.Is(dispatch.SendError, ebuserrors.ErrNACK):
 		out.Native = DiagnosticNAK

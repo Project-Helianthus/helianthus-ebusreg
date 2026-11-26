@@ -1,0 +1,76 @@
+[
+  {
+    "name": "ebus.v1.semantic.radio_devices.get",
+    "fixture": "complete-synthetic",
+    "tool": "ebus.v1.semantic.radio_devices.get",
+    "arguments": {},
+    "is_error": false,
+    "envelope": {
+      "data": [
+        {
+          "device_class_address": 131,
+          "device_connected": true,
+          "device_model": "synthetic-DeviceModel",
+          "device_paired": true,
+          "firmware_version": "synthetic-FirmwareVersion",
+          "group": 129,
+          "hardware_identifier": 132,
+          "instance": 130,
+          "reception_strength": 134,
+          "remote_control_address": 133,
+          "room_humidity_pct": 47.5,
+          "room_temperature_c": 46.5,
+          "slot_mode": "synthetic-SlotMode",
+          "zone_assignment": 135
+        }
+      ],
+      "error": null,
+      "meta": {
+        "consistency": {
+          "mode": "LIVE"
+        },
+        "contract": {
+          "major": 1,
+          "minor": 0,
+          "name": "helianthus-ebus-mcp"
+        },
+        "data_hash": "30a824db4649904ca4a24854b27546b98738fb59abd2e8e5d7e4a0f8cea84269"
+      }
+    }
+  },
+  {
+    "name": "ebus.v1.semantic.radio_devices.get/semantic-snapshots",
+    "fixture": "the provider of the pin's TestServer_ToolsCallSemanticSnapshots",
+    "tool": "ebus.v1.semantic.radio_devices.get",
+    "arguments": {},
+    "is_error": false,
+    "envelope": {
+      "data": [
+        {
+          "device_model": "VRC720",
+          "group": 9,
+          "instance": 1,
+          "slot_mode": ""
+        },
+        {
+          "device_model": "VR92",
+          "group": 10,
+          "instance": 1,
+          "slot_mode": ""
+        }
+      ],
+      "error": null,
+      "meta": {
+        "consistency": {
+          "mode": "LIVE"
+        },
+        "contract": {
+          "major": 1,
+          "minor": 0,
+          "name": "helianthus-ebus-mcp"
+        },
+        "data_hash": "9481e63aa1f26f5ac0526f8a9e95ffcfd617ee9989742693ef2bca9f3cb9ca61"
+      }
+    }
+  }
+]

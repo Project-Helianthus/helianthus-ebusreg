@@ -1,0 +1,27 @@
+{
+  "carried": [
+    {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestVaillantZoneViewsDeriveRadioStateOnlyForMissingZoneValues", "driver_file": "views_test.go", "driver_test": "TestVaillantZoneViewsDeriveRadioStateOnlyForMissingZoneValues"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestSemanticCacheStoreLoad_MissLogsMarker", "driver_file": "cache_test.go", "driver_test": "TestSemanticCacheStoreLoad_MissLogsMarker"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestSemanticCacheStoreLoad_HitLogsMarker", "driver_file": "cache_test.go", "driver_test": "TestSemanticCacheStoreLoad_HitLogsMarker"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestSemanticCacheStoreLoad_InvalidJSONLogsMarker", "driver_file": "cache_test.go", "driver_test": "TestSemanticCacheStoreLoad_InvalidJSONLogsMarker"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestSemanticCacheStoreLoad_UnknownSchemaVersionLogsInvalid", "driver_file": "cache_test.go", "driver_test": "TestSemanticCacheStoreLoad_UnknownSchemaVersionLogsInvalid"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestSemanticCacheStoreLoad_DiscardsV1", "driver_file": "cache_test.go", "driver_test": "TestSemanticCacheStoreLoad_DiscardsSchemaOne"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestSemanticCacheStoreLoad_DiscardsV2", "driver_file": "cache_test.go", "driver_test": "TestSemanticCacheStoreLoad_DiscardsSchemaTwo"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestSemanticCacheStoreSave_SortsZonesAndAllowedModes", "driver_file": "cache_test.go", "driver_test": "TestSemanticCacheStoreSave_SortsZonesAndAllowedModes"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestSemanticCacheStoreSave_WritePermissionErrorFailsSafe", "driver_file": "cache_test.go", "driver_test": "TestSemanticCacheStoreSave_WritePermissionErrorFailsSafe"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestSemanticCacheStoreSave_WriteFailureKeepsExistingFile", "driver_file": "cache_test.go", "driver_test": "TestSemanticCacheStoreSave_WriteFailureKeepsExistingFile"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestPersistSemanticSnapshotLaysRetainedZoneValuesOverPublishedZones", "driver_file": "cache_test.go", "driver_test": "TestPersistSemanticSnapshotLaysRetainedZoneValuesOverPublishedZones"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestCacheHydrationFromSnapshotKeysZonesAndKeepsLegacyReturn", "driver_file": "cache_test.go", "driver_test": "TestCacheHydrationFromSnapshotKeysZonesAndKeepsLegacyReturn"}
+  ],
+  "left_in_gateway": [
+    {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestVaillantPublicationOwnerPublishesCircuitAndDhwViews", "reason": "drives the publication owner and its retained views"},
+    {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestAcquireEnergyAppliesNativeValuesToTheLedger", "reason": "drives the energy ledger of the gateway provider"},
+    {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestVaillantPublicationEnergyLedgerKeysProviderValues", "reason": "drives the energy ledger of the gateway provider"},
+    {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestVaillantPublicationOwnerPublishesAndWithdrawsBoilerStatus", "reason": "drives the publication owner and its withdrawal"},
+    {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestVaillantPublicationOwnerPublishesSystemView", "reason": "drives the publication owner and its retained views"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestPreloadSemanticCache_AppliesSnapshotAsStale", "reason": "drives the gateway provider preload"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestVaillantSemanticPoller_PersistsOnlyOnLivePublish", "reason": "drives the poller and its cache-save calls"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestVaillantSemanticPoller_CachePublishKeepsPreloadedSnapshotWhenEmpty", "reason": "drives the poller and its cache publication"},
+    {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestVaillantSemanticPoller_HydrateFromCache_SeedsInternalState", "reason": "drives the poller internal state"}
+  ]
+}

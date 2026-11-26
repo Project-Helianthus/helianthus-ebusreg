@@ -1,0 +1,428 @@
+[
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleBarrier",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleBarrier"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleInitialOrder",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleInitialOrder"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleControlledTicks",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleControlledTicks"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleTaskIdentityCoalescingOverload",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleTaskIdentityCoalescingOverload"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleRunningKey",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleRunningKey"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleFallback",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleFallback"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleSerialAcquisition",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleSerialAcquisition"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleSchedulerCancellation",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleSchedulerCancellation"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleRecurringTasks",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleRecurringTasks"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleBinding",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleBinding"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_poll_schedule_test.go",
+    "donor_name": "TestSemanticPollScheduleNilDelegation",
+    "destination_file": "driver/vaillant/owner/semantic_poll_schedule_test.go",
+    "destination_name": "TestVaillantOwnerSemanticPollScheduleNilDelegation"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_task_scheduler_test.go",
+    "donor_name": "TestSemanticTaskScheduler_QueueDepthLimit",
+    "destination_file": "driver/vaillant/owner/semantic_task_scheduler_test.go",
+    "destination_name": "TestVaillantOwnerSemanticTaskSchedulerQueueDepthLimit"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_task_scheduler_test.go",
+    "donor_name": "TestSemanticTaskScheduler_EmergencyPromotionPreventsStarvation",
+    "destination_file": "driver/vaillant/owner/semantic_task_scheduler_test.go",
+    "destination_name": "TestVaillantOwnerSemanticTaskSchedulerEmergencyPromotionPreventsStarvation"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_task_scheduler_test.go",
+    "donor_name": "TestSemanticTaskScheduler_FIFOWithinBand",
+    "destination_file": "driver/vaillant/owner/semantic_task_scheduler_test.go",
+    "destination_name": "TestVaillantOwnerSemanticTaskSchedulerFIFOWithinBand"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_task_scheduler_test.go",
+    "donor_name": "TestSemanticTaskScheduler_RunPriorityOrder",
+    "destination_file": "driver/vaillant/owner/semantic_task_scheduler_test.go",
+    "destination_name": "TestVaillantOwnerSemanticTaskSchedulerRunPriorityOrder"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_task_scheduler_test.go",
+    "donor_name": "TestSemanticTaskScheduler_CoalescesPendingTasksByKey",
+    "destination_file": "driver/vaillant/owner/semantic_task_scheduler_test.go",
+    "destination_name": "TestVaillantOwnerSemanticTaskSchedulerCoalescesPendingTasksByKey"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_task_scheduler_test.go",
+    "donor_name": "TestSemanticTaskScheduler_DefersOneRerunForRunningTaskKey",
+    "destination_file": "driver/vaillant/owner/semantic_task_scheduler_test.go",
+    "destination_name": "TestVaillantOwnerSemanticTaskSchedulerDefersOneRerunForRunningTaskKey"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_snapshot_merge_test.go",
+    "donor_name": "TestSemanticSnapshotMergeFields",
+    "destination_file": "driver/vaillant/owner/semantic_snapshot_merge_test.go",
+    "destination_name": "TestVaillantOwnerSemanticSnapshotMergeFields"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_snapshot_merge_test.go",
+    "donor_name": "TestSemanticSnapshotMergeIndependentFailures",
+    "destination_file": "driver/vaillant/owner/semantic_snapshot_merge_test.go",
+    "destination_name": "TestVaillantOwnerSemanticSnapshotMergeIndependentFailures"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_snapshot_merge_test.go",
+    "donor_name": "TestSemanticSnapshotMergeNilAndFreshness",
+    "destination_file": "driver/vaillant/owner/semantic_snapshot_merge_test.go",
+    "destination_name": "TestVaillantOwnerSemanticSnapshotMergeNilAndFreshness"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestVaillantAdapterInfoStateRefreshCycleRetriesPartialIdentity",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerVaillantAdapterInfoStateRefreshCycleRetriesPartialIdentity"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestVaillantAdapterInfoStateRefreshCycleRebootstrapsAfterTransportClose",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerVaillantAdapterInfoStateRefreshCycleRebootstrapsAfterTransportClose"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestVaillantAdapterInfoStateUnsupportedTransportPublishesContract",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerVaillantAdapterInfoStateUnsupportedTransportPublishesContract"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestVaillantAdapterInfoStateSupportedTransportSeedsEmptyContractBeforeRefresh",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerVaillantAdapterInfoStateSupportedTransportSeedsEmptyContractBeforeRefresh"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestVaillantAdapterInfoStateUsesBusRawTransportRequesterWhenConstructorTransportCannotProbeInfo",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerVaillantAdapterInfoStateUsesBusRawTransportRequesterWhenConstructorTransportCannotProbeInfo"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestVaillantAdapterInfoStateUnsupportedTransitionClearsTelemetry",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerVaillantAdapterInfoStateUnsupportedTransitionClearsTelemetry"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestVaillantAdapterInfoStateResetInfoFailureClearsPreviousState",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerVaillantAdapterInfoStateResetInfoFailureClearsPreviousState"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestVaillantAdapterInfoStateRetriesResetInfoAfterTransientFailure",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerVaillantAdapterInfoStateRetriesResetInfoAfterTransientFailure"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestVaillantAdapterInfoStateExpvarTelemetryResetsOnUnsupportedAndInvalidation",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerVaillantAdapterInfoStateExpvarTelemetryResetsOnUnsupportedAndInvalidation"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestAdapterInfoAndDHWBoundFilesImportNoPublicationPackage",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerAdapterInfoAndDHWBoundFilesImportNoPublicationPackage"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_adapter_info_test.go",
+    "donor_name": "TestAdapterInfoSinkReceivesDetachedNativeValue",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_adapter_info_test.go",
+    "destination_name": "TestVaillantOwnerAdapterInfoSinkReceivesDetachedNativeValue"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestHandleAdjudicatedPassiveEvent_UnmatchedValueBearingReadWritesShadow",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerHandleAdjudicatedPassiveEventUnmatchedValueBearingReadWritesShadow"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestHandleAdjudicatedPassiveEvent_UnmatchedValueBearingB524ReadWritesShadow",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerHandleAdjudicatedPassiveEventUnmatchedValueBearingB524ReadWritesShadow"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestPassiveShadowLaneEnabled_EnergyMergeOnlyPolicyDisabled",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerPassiveShadowLaneEnabledEnergyMergeOnlyPolicyDisabled"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestHandleAdjudicatedPassiveEvent_DirectApplyAdmissionHonorsNormalizedPolicyFlags",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerHandleAdjudicatedPassiveEventDirectApplyAdmissionHonorsNormalizedPolicyFlags"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestHandleAdjudicatedPassiveEvent_UnmatchedExternalWriteInvalidatesShadow",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerHandleAdjudicatedPassiveEventUnmatchedExternalWriteInvalidatesShadow"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestHandleAdjudicatedPassiveEvent_IgnoresNonApplicableEvents",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerHandleAdjudicatedPassiveEventIgnoresNonApplicableEvents"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestHandleAdjudicatedPassiveEvent_ReadSkipsShadowWhenObserveFirstMasterDisabled",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerHandleAdjudicatedPassiveEventReadSkipsShadowWhenObserveFirstMasterDisabled"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestHandleAdjudicatedPassiveEvent_ReadWithoutSharedWatchKeyDoesNotPolluteShadow",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerHandleAdjudicatedPassiveEventReadWithoutSharedWatchKeyDoesNotPolluteShadow"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestHandleAdjudicatedPassiveEvent_ReadUnknownWatchKeyDoesNotPolluteShadow",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerHandleAdjudicatedPassiveEventReadUnknownWatchKeyDoesNotPolluteShadow"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestAttachPassiveShadowProducer_DedupSuppressedWriteStillInvalidatesShadow",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerAttachPassiveShadowProducerDedupSuppressedWriteStillInvalidatesShadow"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_passive_test.go",
+    "donor_name": "TestAttachPassiveShadowProducer_ResubscribesAfterCriticalOverflow",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_passive_test.go",
+    "destination_name": "TestVaillantOwnerAttachPassiveShadowProducerResubscribesAfterCriticalOverflow"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_startup_test.go",
+    "donor_name": "TestStartupRadioDeviceInclude_SkipsDisconnectedRegulatorSlots",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_startup_test.go",
+    "destination_name": "TestVaillantOwnerStartupRadioDeviceIncludeSkipsDisconnectedRegulatorSlots"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_startup_test.go",
+    "donor_name": "TestStartupRadioFullScanGroups_AreSelectedPerGroup",
+    "destination_file": "driver/vaillant/owner/semantic_vaillant_startup_test.go",
+    "destination_name": "TestVaillantOwnerStartupRadioFullScanGroupsAreSelectedPerGroup"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestDecodeDATA2c",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerDecodeData2c"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestDecodeDATA2b",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerDecodeData2b"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestDecodeUCH",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerDecodeUCH"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestDecodeUIN",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerDecodeUIN"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestDecodeSIN",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerDecodeSIN"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestDecodeOnOff",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerDecodeOnOff"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestDecodeHoursum2",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerDecodeHoursum2"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestDecodeUIN100",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerDecodeUnsignedHundredths"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestDecodePercent0",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerDecodePercent0"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestEncodeTempDATA2c",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerEncodeTempData2c"
+  },
+  {
+    "donor_file": "cmd/gateway/b509_decode_test.go",
+    "donor_name": "TestEncodeUCH",
+    "destination_file": "driver/vaillant/owner/b509_decode_test.go",
+    "destination_name": "TestVaillantOwnerEncodeUCH"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityDiscoveryToBound",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityDiscoveryToBound"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityUnrelatedInventoryRefresh",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityUnrelatedInventoryRefresh"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityInvalidReplies",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityInvalidReplies"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityQualifierConversion",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityQualifierConversion"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityExactFields",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityExactFields"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityProvenanceFields",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityProvenanceFields"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentitySwap",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentitySwap"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityNoControllerSplice",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityNoControllerSplice"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityNoGenerationSplice",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityNoGenerationSplice"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityRegistryChangesDuringAcquisition",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityRegistryChangesDuringAcquisition"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityDeadlineAndCompanion",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityDeadlineAndCompanion"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityRegistryAndSourceIsolation",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityRegistryAndSourceIsolation"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityFreshness",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityFreshness"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityExpiryAndRefresh",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityExpiryAndRefresh"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityObservationAndSessionInvalidate",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityObservationAndSessionInvalidate"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b524_interface_identity_test.go",
+    "donor_name": "TestB524InterfaceIdentityNonVaillantFamilyNoReadsNoOverlay",
+    "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
+    "destination_name": "TestVaillantOwnerB524InterfaceIdentityNonVaillantFamilyNoReadsNoOverlay"
+  }
+]

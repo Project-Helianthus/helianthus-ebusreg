@@ -1,0 +1,152 @@
+package owner
+
+import (
+	"context"
+	"encoding/binary"
+	"log"
+	"time"
+)
+
+// --- Energy registers: GG=0x00/OP=0x02 (shared with system/regulator) ---
+// energy4 type = ULG (unsigned 32-bit LE) in kWh.
+const (
+	// STATE registers (read-only counters)
+	energyFuelSumHc                  = uint16(0x0056) // PrFuelSumHc: total gas consumption heating
+	energyElectricitySumHc           = uint16(0x0057) // PrEnergySumHc: total electricity consumption heating
+	energyElectricitySumHwc          = uint16(0x0058) // PrEnergySumHwc: total electricity consumption hot water
+	energyFuelSumHwc                 = uint16(0x0059) // PrFuelSumHwc: total gas consumption hot water
+	energyFuelSumHcThisMonth         = uint16(0x004E) // PrFuelSumHcThisMonth: gas heating this month
+	energyElectricitySumHcThisMonth  = uint16(0x004F) // PrEnergySumHcThisMonth: electricity heating this month
+	energyElectricitySumHwcThisMonth = uint16(0x0050) // PrEnergySumHwcThisMonth: electricity hot water this month
+	energyFuelSumHwcThisMonth        = uint16(0x0051) // PrFuelSumHwcThisMonth: gas hot water this month
+	energyFuelSumHcLastMonth         = uint16(0x0052) // PrFuelSumHcLastMonth: gas heating last month
+	energyElectricitySumHcLastMonth  = uint16(0x0053) // PrEnergySumHcLastMonth: electricity heating last month
+	energyElectricitySumHwcLastMonth = uint16(0x0054) // PrEnergySumHwcLastMonth: electricity hot water last month
+	energyFuelSumHwcLastMonth        = uint16(0x0055) // PrFuelSumHwcLastMonth: gas hot water last month
+)
+
+type b524EnergyQuery struct {
+	addr     uint16 // B5.24 register address
+	channel  string // EnergyMergeKey.Channel
+	usage    string // EnergyMergeKey.Usage
+	period   string // EnergyMergeKey.Period ("year", "month")
+	yearKind string // relative window label ("current", "previous"), resolved to a dated key by the energy ledger at read time
+}
+
+var b524EnergyQueries = []b524EnergyQuery{
+	// All-time (lifetime) totals: undated "all" window, never keyed by the
+	// reference year; projected to the current yearly slot by the provider.
+	{energyFuelSumHc, "gas", "climate", "all", ""},
+	{energyFuelSumHwc, "gas", "hot_water", "all", ""},
+	{energyElectricitySumHc, "electricity", "climate", "all", ""},
+	{energyElectricitySumHwc, "electricity", "hot_water", "all", ""},
+	// Monthly: this month (month/current).
+	{energyFuelSumHcThisMonth, "gas", "climate", "month", "current"},
+	{energyFuelSumHwcThisMonth, "gas", "hot_water", "month", "current"},
+	{energyElectricitySumHcThisMonth, "electricity", "climate", "month", "current"},
+	{energyElectricitySumHwcThisMonth, "electricity", "hot_water", "month", "current"},
+	// Monthly: last month (month/previous).
+	{energyFuelSumHcLastMonth, "gas", "climate", "month", "previous"},
+	{energyFuelSumHwcLastMonth, "gas", "hot_water", "month", "previous"},
+	{energyElectricitySumHcLastMonth, "electricity", "climate", "month", "previous"},
+	{energyElectricitySumHwcLastMonth, "electricity", "hot_water", "month", "previous"},
+}
+
+// vaillantEnergyLedger is the energy ledger that a register acquisition
+// writes to. It speaks only native values: the ledger's reference instant,
+// the channel, usage, period and relative window label of a register, and
+// the register value in kWh. The ledger derives the dated or undated key
+// itself, so the acquisition never holds a published key.
+type vaillantEnergyLedger interface {
+	// energyReferenceTime returns the ledger's current reference instant.
+	energyReferenceTime() time.Time
+	// applyLifetimeEnergy applies an undated lifetime total and reports
+	// whether the ledger accepted it.
+	applyLifetimeEnergy(channel, usage string, kwh float64) bool
+	// applyWindowEnergy applies the value of a relative window dated against
+	// ref and reports whether the ledger accepted it.
+	applyWindowEnergy(channel, usage, period, label string, ref time.Time, kwh float64) bool
+	// publishEnergyTotals publishes the ledger's totals after an accepted
+	// acquisition.
+	publishEnergyTotals()
+}
+
+func (p *vaillantSemanticPoller) refreshEnergy(ctx context.Context) {
+	ledger := p.energyLedger()
+	if ledger == nil {
+		return
+	}
+
+	p.mu.Lock()
+	controller := p.controller
+	p.mu.Unlock()
+	if controller == 0 {
+		p.refreshFunctionModuleSemantic(ctx)
+		return
+	}
+
+	acquireEnergy(ledger, func(q b524EnergyQuery, _ time.Time) (uint32, bool) {
+		return p.readEnergyRegister(ctx, q)
+	})
+}
+
+// acquireEnergy performs one register acquisition into the ledger. The
+// reference time is captured once and every dated key of the acquisition
+// derives from it. If the ledger clock crosses a month or year boundary during
+// the acquisition, the reply read after the crossing is discarded (its
+// relative window would be mislabelled) and the acquisition stops; the next
+// poll re-acquires.
+func acquireEnergy(ledger vaillantEnergyLedger, read func(b524EnergyQuery, time.Time) (uint32, bool)) {
+	ref := ledger.energyReferenceTime()
+	accepted, failed := 0, 0
+	for _, q := range b524EnergyQueries {
+		val, ok := read(q, ref)
+		if !ok {
+			failed++
+			continue
+		}
+		if now := ledger.energyReferenceTime(); now.Year() != ref.Year() || now.Month() != ref.Month() {
+			log.Printf("semantic energy b524: window boundary crossed during acquisition (ref=%s now=%s); discarding remaining replies", ref.Format("2006-01"), now.Format("2006-01"))
+			failed++
+			break
+		}
+		kwh := float64(val)
+
+		var applied bool
+		if q.period == "all" {
+			applied = ledger.applyLifetimeEnergy(q.channel, q.usage, kwh)
+		} else {
+			applied = ledger.applyWindowEnergy(q.channel, q.usage, q.period, q.yearKind, ref, kwh)
+		}
+		if applied {
+			accepted++
+		}
+	}
+	if accepted > 0 || failed > 0 {
+		log.Printf("semantic energy b524: accepted=%d failed=%d", accepted, failed)
+	}
+	if accepted > 0 {
+		ledger.publishEnergyTotals()
+	}
+}
+
+// readEnergyRegister reads one B524 energy register. Relative-window (monthly:
+// this-month / last-month) replies are never served from the scheduler or
+// shadow cache: their window label depends on when the value was acquired, so
+// they always read fresh from the bus (maxAge 0). Lifetime totals are undated
+// and keep the normal TTL.
+func (p *vaillantSemanticPoller) readEnergyRegister(ctx context.Context, q b524EnergyQuery) (uint32, bool) {
+	maxAgeOverride := time.Duration(-1)
+	if q.period == "month" {
+		maxAgeOverride = 0
+	}
+	raw, ok := p.readB524ValueWithMaxAge(ctx, vaillantB524OpcodeLocal, localRegulator.group, regulatorInstance, q.addr, maxAgeOverride)
+	if !ok || !p.b524ReplyWidthMatches(b524ReaderKindUint32, vaillantB524OpcodeLocal, localRegulator.group, q.addr, len(raw), 4) {
+		return 0, false
+	}
+	v := binary.LittleEndian.Uint32(raw[:4])
+	if v == 0xFFFFFFFF {
+		return 0, false
+	}
+	return v, true
+}

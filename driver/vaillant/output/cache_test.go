@@ -253,23 +253,33 @@ func TestCacheHydrationFromSnapshotKeysZonesAndKeepsLegacyReturn(t *testing.T) {
 	if len(hydration.Zones) != 2 || hydration.Zones[0].Instance != 0x02 || hydration.Zones[1].Instance != 0x01 {
 		t.Fatalf("hydrated zones = %+v; want instances 2 then fallback 1", hydration.Zones)
 	}
+	reportTransferredAssertion("hydrated-zones")
 	if hydration.Zones[0].Name != "upstairs" || hydration.Zones[1].Name != "fallback" {
 		t.Fatal("hydrated zones lost cache order")
 	}
+	reportTransferredAssertion("upstairs")
 	if hydration.Dhw == nil || hydration.Dhw.CurrentTempC == nil || *hydration.Dhw.CurrentTempC != current {
 		t.Fatalf("hydrated hot water = %+v; want cached current temperature", hydration.Dhw)
 	}
+	reportTransferredAssertion("hydrated-hot-water")
 	if !hydration.PersistedAt.Equal(persisted) {
 		t.Fatalf("persisted time = %v; want %v", hydration.PersistedAt, persisted)
 	}
+	reportTransferredAssertion("persisted-time")
 	if hydration.Boiler == nil || hydration.Boiler.ReturnTemperatureC == nil || *hydration.Boiler.ReturnTemperatureC != ret {
 		t.Fatalf("hydrated boiler = %+v; want cached legacy return", hydration.Boiler)
 	}
+	reportTransferredAssertion("hydrated-boiler")
 
 	empty := CacheHydrationFromSnapshot(SemanticCacheSnapshot{})
 	if empty.Zones != nil || empty.Dhw != nil || empty.Boiler != nil || !empty.PersistedAt.IsZero() {
 		t.Fatalf("empty cache hydration = %+v; want the zero value", empty)
 	}
+	reportTransferredAssertion("empty-cache-hydration")
+}
+
+func reportTransferredAssertion(name string) {
+	fmt.Printf("MANIFEST_RESULT case= row=EE01 assertion=%s\n", name)
 }
 
 func TestPersistSemanticSnapshotLaysRetainedZoneValuesOverPublishedZones(t *testing.T) {

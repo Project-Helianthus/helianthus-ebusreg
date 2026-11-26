@@ -107,7 +107,7 @@ func boilerStatusRegisterDefinitionsForTier(tier boilerStatusTier) []boilerStatu
 				opcode:   localRegulator.opcode,
 				group:    localRegulator.group,
 				instance: regulatorInstance,
-				addr:     system_flow_temperature,
+				addr:     systemFlowTemperature,
 			},
 		}
 	case boilerStatusTierMedium, boilerStatusTierSlow:

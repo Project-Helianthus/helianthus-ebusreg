@@ -126,7 +126,7 @@ func (p *vaillantSemanticPoller) readB524Float32LE(ctx context.Context, opcode, 
 	// The circuit RR0020 selector is raw evidence in the native catalog.
 	// Reject it before acquisition or cache lookup, regardless of payload
 	// width; this rejection is not a width mismatch.
-	if opcode == localCircuits.opcode && group == localCircuits.group && addr == circuit_calc_flow_temp {
+	if opcode == localCircuits.opcode && group == localCircuits.group && addr == circuitCalcFlowTemp {
 		return 0, false
 	}
 	raw, ok := p.readB524Value(ctx, opcode, group, instance, addr)

@@ -59,6 +59,7 @@ func cloneCircuitSnapshot(snapshot *vaillantCircuitSnapshot) *vaillantCircuitSna
 	}
 }
 
+// DecodeHeatingCircuitTypeToken implements the decode heating circuit type token step of the Vaillant owner.
 func DecodeHeatingCircuitTypeToken(raw *uint16) string {
 	if raw == nil {
 		return ""
@@ -77,6 +78,7 @@ func DecodeHeatingCircuitTypeToken(raw *uint16) string {
 	}
 }
 
+// DecodeRoomTempControlToken implements the decode room temp control token step of the Vaillant owner.
 func DecodeRoomTempControlToken(raw *uint16) string {
 	if raw == nil {
 		return ""
@@ -93,6 +95,7 @@ func DecodeRoomTempControlToken(raw *uint16) string {
 	}
 }
 
+// CircuitStateNames is the circuit state names value of the Vaillant owner.
 var CircuitStateNames = map[uint16]string{
 	0: CircuitStateStandby,
 	1: CircuitStateHeating,
@@ -100,6 +103,7 @@ var CircuitStateNames = map[uint16]string{
 	3: CircuitStateDHW,
 }
 
+// DecodeCircuitStateToken implements the decode circuit state token step of the Vaillant owner.
 func DecodeCircuitStateToken(raw *uint16) string {
 	if raw == nil {
 		return ""
@@ -125,6 +129,7 @@ func circuitsManagedByFunctionModule(system *vaillantSystemSnapshot, functionMod
 		functionModuleMode == vaillantFunctionModuleModeInterpreted
 }
 
+// DecodeValvePositionPct implements the decode valve position pct step of the Vaillant owner.
 func DecodeValvePositionPct(raw *uint16) *float64 {
 	if raw == nil {
 		return nil
@@ -133,6 +138,7 @@ func DecodeValvePositionPct(raw *uint16) *float64 {
 	return &pct
 }
 
+// DecodeCircuitType implements the decode circuit type step of the Vaillant owner.
 func DecodeCircuitType(raw *uint16) string {
 	if raw == nil {
 		return ""
@@ -149,6 +155,7 @@ func DecodeCircuitType(raw *uint16) string {
 	}
 }
 
+// DecodeAssociatedCircuit implements the decode associated circuit step of the Vaillant owner.
 func DecodeAssociatedCircuit(raw *uint16) *int {
 	if raw == nil {
 		return nil

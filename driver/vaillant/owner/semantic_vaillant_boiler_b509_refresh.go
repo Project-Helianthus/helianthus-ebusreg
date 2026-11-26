@@ -26,44 +26,44 @@ func (p *vaillantSemanticPoller) refreshBoilerStatusB509(ctx context.Context, bo
 // flame, gas valve, fan, modulation, state and hot water demand.
 func (p *vaillantSemanticPoller) refreshBoilerStatusB509Fast(ctx context.Context, boilerAddress byte, snapshot *vaillantBoilerSnapshot) bool {
 	// Acquisition retains native evidence; only the hub result supplies flow.
-	_, updated := p.readB509Value(ctx, boilerAddress, boiler_b509_flow_temperature)
-	if value := p.readB509OnOff(ctx, boilerAddress, boiler_b509_central_heating_pump); value != nil {
+	_, updated := p.readB509Value(ctx, boilerAddress, boilerB509FlowTemperature)
+	if value := p.readB509OnOff(ctx, boilerAddress, boilerB509CentralHeatingPump); value != nil {
 		snapshot.CentralHeatingPumpActive = value
 		updated = true
 	}
-	if value := p.readB509Data2b(ctx, boilerAddress, boiler_b509_water_pressure); value != nil {
+	if value := p.readB509Data2b(ctx, boilerAddress, boilerB509WaterPressure); value != nil {
 		snapshot.WaterPressureBar = value
 		updated = true
 	}
-	if value := p.readB509OnOff(ctx, boilerAddress, boiler_b509_flame_active); value != nil {
+	if value := p.readB509OnOff(ctx, boilerAddress, boilerB509FlameActive); value != nil {
 		snapshot.FlameActive = value
 		updated = true
 	}
-	if value := p.readB509OnOff(ctx, boilerAddress, boiler_b509_gas_valve_active); value != nil {
+	if value := p.readB509OnOff(ctx, boilerAddress, boilerB509GasValveActive); value != nil {
 		snapshot.GasValveActive = value
 		updated = true
 	}
-	if value := p.readB509UINInt(ctx, boilerAddress, boiler_b509_fan_speed_rpm); value != nil {
+	if value := p.readB509UINInt(ctx, boilerAddress, boilerB509FanSpeedRpm); value != nil {
 		snapshot.FanSpeedRpm = value
 		updated = true
 	}
-	if value := p.readB509SINScaled(ctx, boilerAddress, boiler_b509_modulation_pct, 10); value != nil {
+	if value := p.readB509SINScaled(ctx, boilerAddress, boilerB509ModulationPct, 10); value != nil {
 		snapshot.ModulationPct = value
 		updated = true
 	}
-	if value := p.readB509UCHInt(ctx, boilerAddress, boiler_b509_state_number); value != nil {
+	if value := p.readB509UCHInt(ctx, boilerAddress, boilerB509StateNumber); value != nil {
 		snapshot.StateNumber = value
 		updated = true
 	}
-	if value := p.readB509UCHFloat(ctx, boilerAddress, boiler_b509_diverter_valve_position); value != nil {
+	if value := p.readB509UCHFloat(ctx, boilerAddress, boilerB509DiverterValvePosition); value != nil {
 		snapshot.DiverterValvePositionPct = value
 		updated = true
 	}
-	if value := p.readB509OnOff(ctx, boilerAddress, boiler_b509_dhw_demand_active); value != nil {
+	if value := p.readB509OnOff(ctx, boilerAddress, boilerB509DhwDemandActive); value != nil {
 		snapshot.DhwDemandActive = value
 		updated = true
 	}
-	if value := p.readB509UnsignedHundredths(ctx, boilerAddress, boiler_b509_dhw_water_flow_lpm); value != nil {
+	if value := p.readB509UnsignedHundredths(ctx, boilerAddress, boilerB509DhwWaterFlowLpm); value != nil {
 		snapshot.DhwWaterFlowLpm = value
 		updated = true
 	}
@@ -90,39 +90,39 @@ func (p *vaillantSemanticPoller) refreshBoilerStatusB509Medium(ctx context.Conte
 		snapshot.PartloadHwcKW = value
 		updated = true
 	}
-	if value := p.readB509Percent0(ctx, boilerAddress, boiler_b509_storage_load_pump_pct); value != nil {
+	if value := p.readB509Percent0(ctx, boilerAddress, boilerB509StorageLoadPumpPct); value != nil {
 		snapshot.StorageLoadPumpPct = value
 		updated = true
 	}
-	if value := p.readB509Data2c(ctx, boilerAddress, boiler_b509_flow_temp_desired_c); value != nil {
+	if value := p.readB509Data2c(ctx, boilerAddress, boilerB509FlowTempDesiredC); value != nil {
 		snapshot.FlowTempDesiredC = value
 		updated = true
 	}
-	if value := p.readB509Data2c(ctx, boilerAddress, boiler_b509_dhw_temp_desired_c); value != nil {
+	if value := p.readB509Data2c(ctx, boilerAddress, boilerB509DhwTempDesiredC); value != nil {
 		snapshot.DhwTempDesiredC = value
 		updated = true
 	}
-	if value := p.readB509OnOff(ctx, boilerAddress, boiler_b509_circulation_pump_active); value != nil {
+	if value := p.readB509OnOff(ctx, boilerAddress, boilerB509CirculationPumpActive); value != nil {
 		snapshot.CirculationPumpActive = value
 		updated = true
 	}
-	if value := p.readB509OnOff(ctx, boilerAddress, boiler_b509_external_pump_active); value != nil {
+	if value := p.readB509OnOff(ctx, boilerAddress, boilerB509ExternalPumpActive); value != nil {
 		snapshot.ExternalPumpActive = value
 		updated = true
 	}
-	if value := p.readB509OnOff(ctx, boilerAddress, boiler_b509_heating_switch_active); value != nil {
+	if value := p.readB509OnOff(ctx, boilerAddress, boilerB509HeatingSwitchActive); value != nil {
 		snapshot.HeatingSwitchActive = value
 		updated = true
 	}
-	if value := p.readB509UINInt(ctx, boilerAddress, boiler_b509_target_fan_speed_rpm); value != nil {
+	if value := p.readB509UINInt(ctx, boilerAddress, boilerB509TargetFanSpeedRpm); value != nil {
 		snapshot.TargetFanSpeedRpm = value
 		updated = true
 	}
-	if value := p.readB509SINScaled(ctx, boilerAddress, boiler_b509_ionisation_voltage_ua, 10); value != nil {
+	if value := p.readB509SINScaled(ctx, boilerAddress, boilerB509IonisationVoltageUa, 10); value != nil {
 		snapshot.IonisationVoltageUa = value
 		updated = true
 	}
-	if value := p.readB509UnsignedHundredths(ctx, boilerAddress, boiler_b509_primary_circuit_flow_lpm); value != nil {
+	if value := p.readB509UnsignedHundredths(ctx, boilerAddress, boilerB509PrimaryCircuitFlowLpm); value != nil {
 		snapshot.PrimaryCircuitFlowLpm = value
 		updated = true
 	}
@@ -133,48 +133,48 @@ func (p *vaillantSemanticPoller) refreshBoilerStatusB509Medium(ctx context.Conte
 // the installer and maintenance configuration.
 func (p *vaillantSemanticPoller) refreshBoilerStatusB509Slow(ctx context.Context, boilerAddress byte, snapshot *vaillantBoilerSnapshot) bool {
 	updated := false
-	if value := p.readB509Hoursum2(ctx, boilerAddress, boiler_b509_central_heating_hours); value != nil {
+	if value := p.readB509Hoursum2(ctx, boilerAddress, boilerB509CentralHeatingHours); value != nil {
 		snapshot.CentralHeatingHours = value
 		updated = true
 	}
-	if value := p.readB509Hoursum2(ctx, boilerAddress, boiler_b509_dhw_hours); value != nil {
+	if value := p.readB509Hoursum2(ctx, boilerAddress, boilerB509DhwHours); value != nil {
 		snapshot.DhwHours = value
 		updated = true
 	}
-	if value := p.readB509UINInt(ctx, boilerAddress, boiler_b509_central_heating_starts); value != nil {
+	if value := p.readB509UINInt(ctx, boilerAddress, boilerB509CentralHeatingStarts); value != nil {
 		snapshot.CentralHeatingStarts = value
 		updated = true
 	}
-	if value := p.readB509UINInt(ctx, boilerAddress, boiler_b509_dhw_starts); value != nil {
+	if value := p.readB509UINInt(ctx, boilerAddress, boilerB509DhwStarts); value != nil {
 		snapshot.DhwStarts = value
 		updated = true
 	}
-	if value := p.readB509Hoursum2(ctx, boilerAddress, boiler_b509_pump_hours); value != nil {
+	if value := p.readB509Hoursum2(ctx, boilerAddress, boilerB509PumpHours); value != nil {
 		snapshot.PumpHours = value
 		updated = true
 	}
-	if value := p.readB509Hoursum2(ctx, boilerAddress, boiler_b509_fan_hours); value != nil {
+	if value := p.readB509Hoursum2(ctx, boilerAddress, boilerB509FanHours); value != nil {
 		snapshot.FanHours = value
 		updated = true
 	}
-	if value := p.readB509UCHInt(ctx, boilerAddress, boiler_b509_deactivations_ifc); value != nil {
+	if value := p.readB509UCHInt(ctx, boilerAddress, boilerB509DeactivationsIfc); value != nil {
 		snapshot.DeactivationsIFC = value
 		updated = true
 	}
-	if value := p.readB509UCHInt(ctx, boilerAddress, boiler_b509_deactivations_limit); value != nil {
+	if value := p.readB509UCHInt(ctx, boilerAddress, boilerB509DeactivationsLimit); value != nil {
 		snapshot.DeactivationsTemplimiter = value
 		updated = true
 	}
 	// Installer/maintenance config.
-	if value := p.readB509UCHInt(ctx, boilerAddress, boiler_b509_installer_menu_code); value != nil {
+	if value := p.readB509UCHInt(ctx, boilerAddress, boilerB509InstallerMenuCode); value != nil {
 		snapshot.InstallerMenuCode = value
 		updated = true
 	}
-	if value := p.readB509PhoneBCD(ctx, boilerAddress, boiler_b509_phone_number); value != nil {
+	if value := p.readB509PhoneBCD(ctx, boilerAddress, boilerB509PhoneNumber); value != nil {
 		snapshot.PhoneNumber = value
 		updated = true
 	}
-	if value := p.readB509Hoursum2Int(ctx, boilerAddress, boiler_b509_hours_till_service); value != nil {
+	if value := p.readB509Hoursum2Int(ctx, boilerAddress, boilerB509HoursTillService); value != nil {
 		snapshot.HoursTillService = value
 		updated = true
 	}

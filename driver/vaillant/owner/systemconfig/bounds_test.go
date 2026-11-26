@@ -147,7 +147,7 @@ func TestSystemConfigBoundSnapshotConcurrentRefresh(t *testing.T) {
 }
 
 func TestSystemConfigFiniteInputAndSpecIsolation(t *testing.T) {
-	for name, spec := range SystemConfigFieldSpecs() {
+	for name, spec := range FieldSpecs() {
 		if spec.ValueType != ValueFloat32 && spec.ValueType != ValueUint16 {
 			continue
 		}
@@ -158,7 +158,7 @@ func TestSystemConfigFiniteInputAndSpecIsolation(t *testing.T) {
 			}
 		}
 	}
-	specs := SystemConfigFieldSpecs()
+	specs := FieldSpecs()
 	delete(specs, SystemConfigFieldDHWBivalencePoint)
 	if _, _, err := EncodeSystemConfigValue(SystemConfigFieldDHWBivalencePoint, "50"); err != nil {
 		t.Fatal(err)

@@ -1,3 +1,4 @@
+// Package owner is the Vaillant acquisition owner: poller, schedule, discovery and tier refreshes.
 package owner
 
 import (
@@ -12,14 +13,21 @@ import (
 const (
 	defaultSemanticConfigInterval = 5 * time.Minute
 
+	// DefaultSemanticZonePresenceMissThreshold is the default semantic zone presence miss threshold value of the Vaillant owner.
 	DefaultSemanticZonePresenceMissThreshold = 3
-	DefaultSemanticZonePresenceHitThreshold  = 2
-	DefaultSemanticDHWStaleTTL               = 15 * time.Minute
-	DefaultSemanticEnergyInterval            = 5 * time.Minute
-	DefaultSemanticRegulatorRecheckInterval  = 60 * time.Second
-	DefaultSemanticRegulatorAbsenceGrace     = 5 * time.Minute
+	// DefaultSemanticZonePresenceHitThreshold is the default semantic zone presence hit threshold value of the Vaillant owner.
+	DefaultSemanticZonePresenceHitThreshold = 2
+	// DefaultSemanticDHWStaleTTL is the default semantic dhwstale ttl value of the Vaillant owner.
+	DefaultSemanticDHWStaleTTL = 15 * time.Minute
+	// DefaultSemanticEnergyInterval is the default semantic energy interval value of the Vaillant owner.
+	DefaultSemanticEnergyInterval = 5 * time.Minute
+	// DefaultSemanticRegulatorRecheckInterval is the default semantic regulator recheck interval value of the Vaillant owner.
+	DefaultSemanticRegulatorRecheckInterval = 60 * time.Second
+	// DefaultSemanticRegulatorAbsenceGrace is the default semantic regulator absence grace value of the Vaillant owner.
+	DefaultSemanticRegulatorAbsenceGrace = 5 * time.Minute
 )
 
+// Config is the config type of the Vaillant owner.
 type Config struct {
 	TransportConfig         engine.TransportConfig
 	WatchObserver           engine.WatchObserver
@@ -48,6 +56,7 @@ type Config struct {
 	SemanticRegulatorAbsenceGrace         time.Duration
 }
 
+// Substrate is the substrate type of the Vaillant owner.
 type Substrate struct {
 	Registry            *registry.DeviceRegistry
 	Bus                 *protocol.Bus

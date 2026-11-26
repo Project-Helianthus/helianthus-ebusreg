@@ -386,14 +386,14 @@ func (p *vaillantSemanticPoller) refreshDHWStartup(ctx context.Context) {
 	attempted := make(semanticFieldSet)
 	status := &vaillantDhwSnapshot{}
 	readAny := false
-	if raw, ok := p.readB524Startup(ctx, localDHW.opcode, localDHW.group, dhwInstance, dhw_current_temp); ok {
+	if raw, ok := p.readB524Startup(ctx, localDHW.opcode, localDHW.group, dhwInstance, dhwCurrentTemp); ok {
 		if value := decodeB524Float32FromRaw(raw); value != nil {
 			status.CurrentTempC = value
 			attempted[dhwFieldCurrentTempC] = struct{}{}
 			readAny = true
 		}
 	}
-	opModeRaw, opModeOK := p.readB524Uint16Startup(ctx, localDHW.opcode, localDHW.group, dhwInstance, dhw_operation_mode)
+	opModeRaw, opModeOK := p.readB524Uint16Startup(ctx, localDHW.opcode, localDHW.group, dhwInstance, dhwOperationMode)
 	if opModeOK {
 		attempted[dhwFieldOperatingMode] = struct{}{}
 		attempted[dhwFieldPreset] = struct{}{}
@@ -434,7 +434,7 @@ func (p *vaillantSemanticPoller) refreshCircuitsStartup(ctx context.Context) {
 	updates := make(map[byte]*vaillantCircuitSnapshot)
 	inactive := make(map[byte]struct{})
 	for _, instance := range instances {
-		circuitTypeRaw, ok := p.readB524Uint16Startup(ctx, localCircuits.opcode, localCircuits.group, instance, circuit_type)
+		circuitTypeRaw, ok := p.readB524Uint16Startup(ctx, localCircuits.opcode, localCircuits.group, instance, circuitTypeRegister)
 		if !ok || circuitTypeRaw == nil {
 			continue
 		}

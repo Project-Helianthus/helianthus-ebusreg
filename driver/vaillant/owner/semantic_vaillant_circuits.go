@@ -75,7 +75,7 @@ func (p *vaillantSemanticPoller) probeCircuitInstances(ctx context.Context, cont
 	probeSuccess := false
 
 	for _, instance := range instances {
-		circuitTypeRaw, ok := p.readB524Uint16(ctx, localCircuits.opcode, localCircuits.group, instance, circuit_type)
+		circuitTypeRaw, ok := p.readB524Uint16(ctx, localCircuits.opcode, localCircuits.group, instance, circuitTypeRegister)
 		if !ok || circuitTypeRaw == nil {
 			continue
 		}
@@ -105,54 +105,54 @@ func (p *vaillantSemanticPoller) probeCircuitInstances(ctx context.Context, cont
 // readCircuitDetails reads the detail registers of one active circuit in a
 // fixed order. A failed read keeps the field the snapshot already holds.
 func (p *vaillantSemanticPoller) readCircuitDetails(ctx context.Context, instance byte, snapshot *vaillantCircuitSnapshot, now time.Time) {
-	if raw := p.readCircuitUint16(ctx, instance, circuit_cooling_enabled); raw != nil {
+	if raw := p.readCircuitUint16(ctx, instance, circuitCoolingEnabled); raw != nil {
 		snapshot.CoolingEnabledRaw = raw
 	}
-	if value := p.readCircuitFloat(ctx, instance, circuit_flow_setpoint); value != nil {
+	if value := p.readCircuitFloat(ctx, instance, circuitFlowSetpoint); value != nil {
 		snapshot.FlowSetpointC = value
 	}
-	if value := p.readCircuitFloat(ctx, instance, circuit_flow_temp); value != nil {
+	if value := p.readCircuitFloat(ctx, instance, circuitFlowTemp); value != nil {
 		snapshot.FlowTemperatureC = value
 	}
-	if value := p.readCircuitFloat(ctx, instance, circuit_heating_curve); value != nil {
+	if value := p.readCircuitFloat(ctx, instance, circuitHeatingCurve); value != nil {
 		snapshot.HeatingCurve = value
 	}
-	if value := p.readCircuitFloat(ctx, instance, circuit_flow_temp_max); value != nil {
+	if value := p.readCircuitFloat(ctx, instance, circuitFlowTempMax); value != nil {
 		snapshot.FlowTempMaxC = value
 	}
-	if value := p.readCircuitFloat(ctx, instance, circuit_flow_temp_min); value != nil {
+	if value := p.readCircuitFloat(ctx, instance, circuitFlowTempMin); value != nil {
 		snapshot.FlowTempMinC = value
 	}
-	if value := p.readCircuitFloat(ctx, instance, circuit_summer_limit); value != nil {
+	if value := p.readCircuitFloat(ctx, instance, circuitSummerLimit); value != nil {
 		snapshot.SummerLimitC = value
 	}
-	if raw := p.readCircuitUint16(ctx, instance, circuit_room_temp_control); raw != nil {
+	if raw := p.readCircuitUint16(ctx, instance, circuitRoomTempControl); raw != nil {
 		snapshot.RoomTempControlRaw = raw
 	}
-	if raw := p.readCircuitUint16(ctx, instance, circuit_circuit_state); raw != nil {
+	if raw := p.readCircuitUint16(ctx, instance, circuitCircuitState); raw != nil {
 		snapshot.CircuitStateRaw = raw
 		snapshot.CircuitStateLiveAt = now
 	}
-	if value := p.readB524Uint8(ctx, localCircuits.opcode, localCircuits.group, instance, circuit_special_function_mode); value != nil {
+	if value := p.readB524Uint8(ctx, localCircuits.opcode, localCircuits.group, instance, circuitSpecialFunctionMode); value != nil {
 		snapshot.SpecialFunctionMode = cloneUint8Ptr(value)
 	}
-	if raw := p.readCircuitUint16(ctx, instance, circuit_pump_status); raw != nil {
+	if raw := p.readCircuitUint16(ctx, instance, circuitPumpStatus); raw != nil {
 		snapshot.PumpStatusRaw = raw
 		snapshot.PumpStatusLiveAt = now
 	}
-	if value := p.readCircuitFloat(ctx, instance, circuit_mixer_position); value != nil {
+	if value := p.readCircuitFloat(ctx, instance, circuitMixerPosition); value != nil {
 		snapshot.MixerPositionPct = value
 	}
-	if value := p.readCircuitFloat(ctx, instance, circuit_humidity); value != nil {
+	if value := p.readCircuitFloat(ctx, instance, circuitHumidity); value != nil {
 		snapshot.HumidityPct = value
 	}
-	if value := p.readCircuitFloat(ctx, instance, circuit_dew_point); value != nil {
+	if value := p.readCircuitFloat(ctx, instance, circuitDewPoint); value != nil {
 		snapshot.DewPointC = value
 	}
-	if value := p.readCircuitUint32(ctx, instance, circuit_pump_hours); value != nil {
+	if value := p.readCircuitUint32(ctx, instance, circuitPumpHours); value != nil {
 		snapshot.PumpHoursRaw = value
 	}
-	if value := p.readCircuitUint32(ctx, instance, circuit_pump_starts); value != nil {
+	if value := p.readCircuitUint32(ctx, instance, circuitPumpStarts); value != nil {
 		snapshot.PumpStartsRaw = value
 	}
 }
@@ -192,7 +192,7 @@ func (p *vaillantSemanticPoller) readDhwPseudoCircuitEvidence(ctx context.Contex
 		return nil, false
 	}
 	snapshot := newDhwPseudoCircuitSnapshot(instance)
-	flow, flowKnown := p.readDhwPseudoCircuitTemperatureEvidence(ctx, instance, circuit_flow_temp)
+	flow, flowKnown := p.readDhwPseudoCircuitTemperatureEvidence(ctx, instance, circuitFlowTemp)
 	if isDhwPseudoCircuitTemperatureEvidence(flow) {
 		snapshot.FlowTemperatureC = flow
 	}

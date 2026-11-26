@@ -11,18 +11,18 @@ import (
 // energy4 type = ULG (unsigned 32-bit LE) in kWh.
 const (
 	// STATE registers (read-only counters)
-	energy_fuel_sum_hc                    = uint16(0x0056) // PrFuelSumHc: total gas consumption heating
-	energy_electricity_sum_hc             = uint16(0x0057) // PrEnergySumHc: total electricity consumption heating
-	energy_electricity_sum_hwc            = uint16(0x0058) // PrEnergySumHwc: total electricity consumption hot water
-	energy_fuel_sum_hwc                   = uint16(0x0059) // PrFuelSumHwc: total gas consumption hot water
-	energy_fuel_sum_hc_this_month         = uint16(0x004E) // PrFuelSumHcThisMonth: gas heating this month
-	energy_electricity_sum_hc_this_month  = uint16(0x004F) // PrEnergySumHcThisMonth: electricity heating this month
-	energy_electricity_sum_hwc_this_month = uint16(0x0050) // PrEnergySumHwcThisMonth: electricity hot water this month
-	energy_fuel_sum_hwc_this_month        = uint16(0x0051) // PrFuelSumHwcThisMonth: gas hot water this month
-	energy_fuel_sum_hc_last_month         = uint16(0x0052) // PrFuelSumHcLastMonth: gas heating last month
-	energy_electricity_sum_hc_last_month  = uint16(0x0053) // PrEnergySumHcLastMonth: electricity heating last month
-	energy_electricity_sum_hwc_last_month = uint16(0x0054) // PrEnergySumHwcLastMonth: electricity hot water last month
-	energy_fuel_sum_hwc_last_month        = uint16(0x0055) // PrFuelSumHwcLastMonth: gas hot water last month
+	energyFuelSumHc                  = uint16(0x0056) // PrFuelSumHc: total gas consumption heating
+	energyElectricitySumHc           = uint16(0x0057) // PrEnergySumHc: total electricity consumption heating
+	energyElectricitySumHwc          = uint16(0x0058) // PrEnergySumHwc: total electricity consumption hot water
+	energyFuelSumHwc                 = uint16(0x0059) // PrFuelSumHwc: total gas consumption hot water
+	energyFuelSumHcThisMonth         = uint16(0x004E) // PrFuelSumHcThisMonth: gas heating this month
+	energyElectricitySumHcThisMonth  = uint16(0x004F) // PrEnergySumHcThisMonth: electricity heating this month
+	energyElectricitySumHwcThisMonth = uint16(0x0050) // PrEnergySumHwcThisMonth: electricity hot water this month
+	energyFuelSumHwcThisMonth        = uint16(0x0051) // PrFuelSumHwcThisMonth: gas hot water this month
+	energyFuelSumHcLastMonth         = uint16(0x0052) // PrFuelSumHcLastMonth: gas heating last month
+	energyElectricitySumHcLastMonth  = uint16(0x0053) // PrEnergySumHcLastMonth: electricity heating last month
+	energyElectricitySumHwcLastMonth = uint16(0x0054) // PrEnergySumHwcLastMonth: electricity hot water last month
+	energyFuelSumHwcLastMonth        = uint16(0x0055) // PrFuelSumHwcLastMonth: gas hot water last month
 )
 
 type b524EnergyQuery struct {
@@ -36,20 +36,20 @@ type b524EnergyQuery struct {
 var b524EnergyQueries = []b524EnergyQuery{
 	// All-time (lifetime) totals: undated "all" window, never keyed by the
 	// reference year; projected to the current yearly slot by the provider.
-	{energy_fuel_sum_hc, "gas", "climate", "all", ""},
-	{energy_fuel_sum_hwc, "gas", "hot_water", "all", ""},
-	{energy_electricity_sum_hc, "electricity", "climate", "all", ""},
-	{energy_electricity_sum_hwc, "electricity", "hot_water", "all", ""},
+	{energyFuelSumHc, "gas", "climate", "all", ""},
+	{energyFuelSumHwc, "gas", "hot_water", "all", ""},
+	{energyElectricitySumHc, "electricity", "climate", "all", ""},
+	{energyElectricitySumHwc, "electricity", "hot_water", "all", ""},
 	// Monthly: this month (month/current).
-	{energy_fuel_sum_hc_this_month, "gas", "climate", "month", "current"},
-	{energy_fuel_sum_hwc_this_month, "gas", "hot_water", "month", "current"},
-	{energy_electricity_sum_hc_this_month, "electricity", "climate", "month", "current"},
-	{energy_electricity_sum_hwc_this_month, "electricity", "hot_water", "month", "current"},
+	{energyFuelSumHcThisMonth, "gas", "climate", "month", "current"},
+	{energyFuelSumHwcThisMonth, "gas", "hot_water", "month", "current"},
+	{energyElectricitySumHcThisMonth, "electricity", "climate", "month", "current"},
+	{energyElectricitySumHwcThisMonth, "electricity", "hot_water", "month", "current"},
 	// Monthly: last month (month/previous).
-	{energy_fuel_sum_hc_last_month, "gas", "climate", "month", "previous"},
-	{energy_fuel_sum_hwc_last_month, "gas", "hot_water", "month", "previous"},
-	{energy_electricity_sum_hc_last_month, "electricity", "climate", "month", "previous"},
-	{energy_electricity_sum_hwc_last_month, "electricity", "hot_water", "month", "previous"},
+	{energyFuelSumHcLastMonth, "gas", "climate", "month", "previous"},
+	{energyFuelSumHwcLastMonth, "gas", "hot_water", "month", "previous"},
+	{energyElectricitySumHcLastMonth, "electricity", "climate", "month", "previous"},
+	{energyElectricitySumHwcLastMonth, "electricity", "hot_water", "month", "previous"},
 }
 
 // vaillantEnergyLedger is the energy ledger that a register acquisition

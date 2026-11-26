@@ -46,8 +46,8 @@ func (p *vaillantSemanticPoller) scanFunctionalModuleIdentityBudgetAwareWith(
 	probes := make([]functionalModuleIdentityProbe, 0, int(lastInstance-firstInstance)+1)
 	preflight := func(first byte, last byte) {
 		for instance := first; instance <= last; instance++ {
-			connectedRaw, connectedOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, device_slot_connected)
-			classRaw, classOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, device_slot_class_address)
+			connectedRaw, connectedOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, deviceSlotConnected)
+			classRaw, classOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, deviceSlotClassAddress)
 			if connectedOK && len(connectedRaw) > 0 {
 				result.observedAny = true
 			}
@@ -62,8 +62,8 @@ func (p *vaillantSemanticPoller) scanFunctionalModuleIdentityBudgetAwareWith(
 	}
 
 	completeProbe := func(probe *functionalModuleIdentityProbe) functionalModuleIdentityTuple {
-		firmwareRaw, firmwareOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, probe.instance, device_slot_firmware)
-		hardwareRaw, hardwareOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, probe.instance, device_slot_hardware_identifier)
+		firmwareRaw, firmwareOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, probe.instance, deviceSlotFirmware)
+		hardwareRaw, hardwareOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, probe.instance, deviceSlotHardwareIdentifier)
 		probe.completed = true
 		tuple := decodeFunctionalModuleIdentityTuple(
 			probe.connectedRaw, probe.connectedOK,
@@ -126,13 +126,13 @@ func (p *vaillantSemanticPoller) readFunctionalModuleIdentitySnapshotWith(
 	instance byte,
 	read functionalModuleIdentityReadFunc,
 ) (*vaillantRadioDeviceSnapshot, bool, bool) {
-	connectedRaw, connectedOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, device_slot_connected)
+	connectedRaw, connectedOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, deviceSlotConnected)
 	if !connectedOK || len(connectedRaw) == 0 {
 		return nil, false, false
 	}
-	classRaw, classOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, device_slot_class_address)
-	firmwareRaw, firmwareOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, device_slot_firmware)
-	hardwareRaw, hardwareOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, device_slot_hardware_identifier)
+	classRaw, classOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, deviceSlotClassAddress)
+	firmwareRaw, firmwareOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, deviceSlotFirmware)
+	hardwareRaw, hardwareOK := read(ctx, vaillantB524OpcodeRead, remoteFunctionalModules.group, instance, deviceSlotHardwareIdentifier)
 	tuple := decodeFunctionalModuleIdentityTuple(
 		connectedRaw, connectedOK,
 		classRaw, classOK,
@@ -356,6 +356,7 @@ func (verdict vaillantFunctionModuleInterpretation) valid() bool {
 	}
 }
 
+// DeriveFunctionModuleSemanticMode implements the derive function module semantic mode step of the Vaillant owner.
 func DeriveFunctionModuleSemanticMode(controllerReachable, functionModuleGateSatisfied, solarReadable, cylindersReadable, hasEvidence bool) vaillantFunctionModuleMode {
 	if controllerReachable && functionModuleGateSatisfied && solarReadable && cylindersReadable {
 		return vaillantFunctionModuleModeInterpreted

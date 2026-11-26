@@ -11,9 +11,9 @@ func (p *vaillantSemanticPoller) refreshZoneDiscovery(ctx context.Context, start
 		var indexBytes []byte
 		var ok bool
 		if startup {
-			indexBytes, ok = p.readB524Startup(ctx, localZones.opcode, localZones.group, instance, zone_index)
+			indexBytes, ok = p.readB524Startup(ctx, localZones.opcode, localZones.group, instance, zoneIndex)
 		} else {
-			indexBytes, ok = p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zone_index)
+			indexBytes, ok = p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zoneIndex)
 		}
 		if !ok {
 			continue
@@ -264,9 +264,9 @@ func (p *vaillantSemanticPoller) refreshConfig(ctx context.Context) {
 
 	zoneLiveReadSuccess := false
 	for _, instance := range zones {
-		primaryName, primaryOK := p.readB524ZoneNamePart(ctx, instance, zone_name)
-		prefix, prefixOK := p.readB524ZoneNamePart(ctx, instance, zone_name_prefix)
-		suffix, suffixOK := p.readB524ZoneNamePart(ctx, instance, zone_name_suffix)
+		primaryName, primaryOK := p.readB524ZoneNamePart(ctx, instance, zoneName)
+		prefix, prefixOK := p.readB524ZoneNamePart(ctx, instance, zoneNamePrefix)
+		suffix, suffixOK := p.readB524ZoneNamePart(ctx, instance, zoneNameSuffix)
 		if primaryOK || prefixOK || suffixOK {
 			zoneLiveReadSuccess = true
 		}

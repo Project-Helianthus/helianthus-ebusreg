@@ -73,6 +73,7 @@ func cloneBoilerIntPtr(value *int) *int {
 	return &cloned
 }
 
+// CloneBoilerModeIntPtr implements the clone boiler mode int ptr step of the Vaillant owner.
 func CloneBoilerModeIntPtr(mode *string) *int {
 	if mode == nil {
 		return nil

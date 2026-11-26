@@ -37,8 +37,11 @@ type RefreshFunc func(ctx context.Context) (TransportKey, error)
 type NativeResult uint8
 
 const (
+	// NativeAmbiguous is the native ambiguous value of the Vaillant owner.
 	NativeAmbiguous NativeResult = iota
+	// NativeACK is the native ack value of the Vaillant owner.
 	NativeACK
+	// NativeNAK is the native nak value of the Vaillant owner.
 	NativeNAK
 )
 
@@ -103,8 +106,11 @@ type cleanupObligation struct {
 type OperationKind uint8
 
 const (
+	// OperationEnable is the operation enable value of the Vaillant owner.
 	OperationEnable OperationKind = iota + 1
+	// OperationRead is the operation read value of the Vaillant owner.
 	OperationRead
+	// OperationDisable is the operation disable value of the Vaillant owner.
 	OperationDisable
 )
 

@@ -282,7 +282,7 @@ func (p *vaillantSemanticPoller) readB509ValueWithMaxAge(ctx context.Context, ta
 			response, err := p.sendSemanticFrame(reqCtx, request)
 			cancel()
 			p.readMu.Unlock()
-			if addr == boiler_b509_flow_temperature {
+			if addr == boilerB509FlowTemperature {
 				p.retainBoilerThermalRead(request, response, err)
 			}
 

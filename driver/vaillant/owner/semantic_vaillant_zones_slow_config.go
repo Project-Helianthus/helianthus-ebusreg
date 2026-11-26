@@ -10,13 +10,13 @@ func (p *vaillantSemanticPoller) refreshZoneSlowConfigFields(ctx context.Context
 	liveReadSuccess := false
 
 	var targetPtr *float64
-	if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zone_target_temp); ok {
+	if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zoneTargetTemp); ok {
 		target := value
 		targetPtr = &target
 		liveReadSuccess = true
 	}
 	if targetPtr == nil {
-		if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zone_fallback_manual_temp); ok {
+		if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zoneFallbackManualTemp); ok {
 			target := value
 			targetPtr = &target
 			liveReadSuccess = true
@@ -24,34 +24,34 @@ func (p *vaillantSemanticPoller) refreshZoneSlowConfigFields(ctx context.Context
 	}
 
 	var humidity *float64
-	if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zone_current_humidity); ok {
+	if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zoneCurrentHumidity); ok {
 		currentHumidity := value
 		humidity = &currentHumidity
 		liveReadSuccess = true
 	}
 
-	zoneOpMode, zoneOpModeOK := p.readB524Uint16(ctx, localZones.opcode, localZones.group, instance, zone_heating_op_mode)
+	zoneOpMode, zoneOpModeOK := p.readB524Uint16(ctx, localZones.opcode, localZones.group, instance, zoneHeatingOpMode)
 	if zoneOpModeOK {
 		liveReadSuccess = true
 	}
 
 	var qvTempPtr, qvDurPtr *float64
-	if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zone_quick_veto_temp); ok {
+	if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zoneQuickVetoTemp); ok {
 		v := value
 		qvTempPtr = &v
 		liveReadSuccess = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zone_quick_veto_duration); ok {
+	if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zoneQuickVetoDuration); ok {
 		v := value
 		qvDurPtr = &v
 		liveReadSuccess = true
 	}
 	var qvEndTime, qvEndDate string
-	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zone_quick_veto_end_time); ok && len(raw) >= 2 {
+	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zoneQuickVetoEndTime); ok && len(raw) >= 2 {
 		qvEndTime = fmt.Sprintf("%02d:%02d", raw[0], raw[1])
 		liveReadSuccess = true
 	}
-	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zone_quick_veto_end_date); ok && len(raw) >= 3 {
+	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zoneQuickVetoEndDate); ok && len(raw) >= 3 {
 		year := 2000 + int(raw[2])
 		qvEndDate = fmt.Sprintf("%04d-%02d-%02d", year, raw[1], raw[0])
 		liveReadSuccess = true
@@ -59,38 +59,38 @@ func (p *vaillantSemanticPoller) refreshZoneSlowConfigFields(ctx context.Context
 
 	var holidayStartDate, holidayEndDate, holidayStartTime, holidayEndTime string
 	var holidaySetpointPtr *float64
-	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zone_holiday_start_date); ok && len(raw) >= 3 {
+	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zoneHolidayStartDate); ok && len(raw) >= 3 {
 		if date := decodeB524DateSuppressSentinel(raw); date != "" {
 			holidayStartDate = date
 		}
 		liveReadSuccess = true
 	}
-	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zone_holiday_end_date); ok && len(raw) >= 3 {
+	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zoneHolidayEndDate); ok && len(raw) >= 3 {
 		if date := decodeB524DateSuppressSentinel(raw); date != "" {
 			holidayEndDate = date
 		}
 		liveReadSuccess = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zone_holiday_setpoint); ok {
+	if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zoneHolidaySetpoint); ok {
 		v := value
 		holidaySetpointPtr = &v
 		liveReadSuccess = true
 	}
-	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zone_holiday_end_time); ok && len(raw) >= 2 {
+	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zoneHolidayEndTime); ok && len(raw) >= 2 {
 		holidayEndTime = fmt.Sprintf("%02d:%02d", raw[0], raw[1])
 		liveReadSuccess = true
 	}
-	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zone_holiday_start_time); ok && len(raw) >= 2 {
+	if raw, ok := p.readB524Value(ctx, localZones.opcode, localZones.group, instance, zoneHolidayStartTime); ok && len(raw) >= 2 {
 		holidayStartTime = fmt.Sprintf("%02d:%02d", raw[0], raw[1])
 		liveReadSuccess = true
 	}
 
-	zoneRoomTemperatureZoneMappingRaw, zoneRoomTemperatureZoneMappingRawOK := p.readB524Uint16(ctx, localZones.opcode, localZones.group, instance, zone_room_temperature_zone_mapping_raw)
+	zoneRoomTemperatureZoneMappingRaw, zoneRoomTemperatureZoneMappingRawOK := p.readB524Uint16(ctx, localZones.opcode, localZones.group, instance, zoneRoomTemperatureZoneMappingRawRegister)
 	if zoneRoomTemperatureZoneMappingRawOK {
 		liveReadSuccess = true
 	}
 	circuitInstance := resolveAssociatedCircuitInstance(zoneRoomTemperatureZoneMappingRaw, instance)
-	circuitType, hasCircuitType := p.readB524Uint16(ctx, localCircuits.opcode, localCircuits.group, circuitInstance, circuit_type)
+	circuitType, hasCircuitType := p.readB524Uint16(ctx, localCircuits.opcode, localCircuits.group, circuitInstance, circuitTypeRegister)
 	if hasCircuitType {
 		liveReadSuccess = true
 	}
@@ -186,14 +186,14 @@ func (p *vaillantSemanticPoller) refreshState(ctx context.Context) {
 	liveReadSuccess := false
 	for _, instance := range zones {
 		var currentPtr *float64
-		if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zone_current_temp); ok {
+		if value, ok := p.readB524Float32LE(ctx, localZones.opcode, localZones.group, instance, zoneCurrentTemp); ok {
 			current := value
 			currentPtr = &current
 			liveReadSuccess = true
 		}
 
-		zoneSF, zoneSFOK := p.readB524Uint16(ctx, localZones.opcode, localZones.group, instance, zone_special_function)
-		zoneValve, zoneValveOK := p.readB524Uint16(ctx, localZones.opcode, localZones.group, instance, zone_valve_status)
+		zoneSF, zoneSFOK := p.readB524Uint16(ctx, localZones.opcode, localZones.group, instance, zoneSpecialFunction)
+		zoneValve, zoneValveOK := p.readB524Uint16(ctx, localZones.opcode, localZones.group, instance, zoneValveStatus)
 		if zoneSFOK || zoneValveOK {
 			liveReadSuccess = true
 		}

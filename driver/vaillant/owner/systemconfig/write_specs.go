@@ -13,17 +13,27 @@ import (
 	ebuserrors "github.com/Project-Helianthus/helianthus-ebusgo/errors"
 )
 
+// OpcodeLocal is the opcode local value of the Vaillant owner.
 const OpcodeLocal = byte(0x02)
+
+// Instance is the instance value of the Vaillant owner.
 const Instance = byte(0x00)
 
+// ValueType is the value type type of the Vaillant owner.
 type ValueType int
 
 const (
+	// ValueFloat32 is the value float32 value of the Vaillant owner.
 	ValueFloat32 ValueType = iota
+	// ValueUint16 is the value uint16 value of the Vaillant owner.
 	ValueUint16
+	// ValueBoolUint8 is the value bool uint8 value of the Vaillant owner.
 	ValueBoolUint8
+	// ValueEnumUint16 is the value enum uint16 value of the Vaillant owner.
 	ValueEnumUint16
+	// ValueCString is the value cstring value of the Vaillant owner.
 	ValueCString
+	// ValueDateThreeByte is the value date three byte value of the Vaillant owner.
 	ValueDateThreeByte
 )
 
@@ -55,6 +65,7 @@ var systemConfigFieldSpecs = map[string]ConfigFieldSpec{
 	"installer_access_code":                                        {RegisterGroup: 0x00, RegisterAddr: 0x0076, ValueType: ValueUint16, Min: 0, Max: 999},
 }
 
+// EncodeSystemConfigValue implements the encode system config value step of the Vaillant owner.
 func EncodeSystemConfigValue(fieldName, rawValue string) ([]byte, ConfigFieldSpec, error) {
 	spec, err := resolveConfigFieldSpec("system", fieldName, systemConfigFieldSpecs)
 	if err != nil {
@@ -67,10 +78,14 @@ func EncodeSystemConfigValue(fieldName, rawValue string) ([]byte, ConfigFieldSpe
 	return payload, spec, nil
 }
 
-func (s ConfigFieldSpec) Group() byte  { return s.RegisterGroup }
+// Group implements the group step of the Vaillant owner.
+func (s ConfigFieldSpec) Group() byte { return s.RegisterGroup }
+
+// Addr implements the addr step of the Vaillant owner.
 func (s ConfigFieldSpec) Addr() uint16 { return s.RegisterAddr }
 
-func SystemConfigFieldSpecs() map[string]ConfigFieldSpec {
+// FieldSpecs implements the system config field specs step of the Vaillant owner.
+func FieldSpecs() map[string]ConfigFieldSpec {
 	out := make(map[string]ConfigFieldSpec, len(systemConfigFieldSpecs))
 	for name, spec := range systemConfigFieldSpecs {
 		out[name] = spec
@@ -89,6 +104,7 @@ func resolveConfigFieldSpec(scope, fieldName string, specs map[string]ConfigFiel
 	return ConfigFieldSpec{}, fmt.Errorf("unknown %s field %q (allowed: %s): %w", scope, fieldName, strings.Join(allowed, ", "), ebuserrors.ErrInvalidPayload)
 }
 
+// EncodeValue implements the encode value step of the Vaillant owner.
 func EncodeValue(spec ConfigFieldSpec, raw string) ([]byte, error) {
 	// Reject non-finite numeric input before range comparisons or conversion:
 	// NaN makes both comparisons false and must never become a bus payload.
@@ -223,6 +239,7 @@ func sortedEnumKeys(values map[string]uint16) []string {
 	return out
 }
 
+// ConfirmDecodableReadback implements the confirm decodable readback step of the Vaillant owner.
 func ConfirmDecodableReadback(spec ConfigFieldSpec, payload []byte) error {
 	switch spec.ValueType {
 	case ValueFloat32:
@@ -272,6 +289,7 @@ func ConfirmDecodableReadback(spec ConfigFieldSpec, payload []byte) error {
 	}
 }
 
+// ConfigReadbackMatchesWrite implements the config readback matches write step of the Vaillant owner.
 func ConfigReadbackMatchesWrite(spec ConfigFieldSpec, written, readback []byte) bool {
 	switch spec.ValueType {
 	case ValueFloat32:

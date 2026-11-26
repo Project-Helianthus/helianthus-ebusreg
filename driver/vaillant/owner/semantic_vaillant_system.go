@@ -58,81 +58,81 @@ func (p *vaillantSemanticPoller) refreshSystem(ctx context.Context) {
 	updated := false
 	configurationAcquired := false
 
-	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_off); ok && raw != nil {
+	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemOff); ok && raw != nil {
 		value := *raw != 0
 		snapshot.SystemOff = &value
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_water_pressure); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemWaterPressure); ok {
 		snapshot.SystemWaterPressure = &value
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_flow_temperature); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemFlowTemperature); ok {
 		snapshot.SystemFlowTemperature = &value
 		snapshot.SystemFlowTemperatureLiveAt = p.now()
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_outdoor_temperature); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemOutdoorTemperature); ok {
 		snapshot.OutdoorTemperature = &value
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_outdoor_temperature_avg_24h); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemOutdoorTemperatureDailyAverage); ok {
 		snapshot.OutdoorTemperatureAverage24Hours = &value
 		updated = true
 	}
-	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_maintenance_due); ok && raw != nil {
+	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemMaintenanceDue); ok && raw != nil {
 		value := *raw != 0
 		snapshot.MaintenanceDue = &value
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_hwc_cylinder_temperature_top); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemHwcCylinderTemperatureTop); ok {
 		snapshot.HwcCylinderTemperatureTop = &value
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_hwc_cylinder_temperature_bottom); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemHwcCylinderTemperatureBottom); ok {
 		snapshot.HwcCylinderTemperatureBottom = &value
 		updated = true
 	}
 
-	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_adaptive_heating_curve); ok && raw != nil {
+	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemAdaptiveHeatingCurve); ok && raw != nil {
 		value := *raw != 0
 		snapshot.AdaptiveHeatingCurve = &value
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_alternative_point); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemAlternativePoint); ok {
 		snapshot.AlternativePoint = &value
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_heating_circuit_bivalence_point); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemHeatingCircuitBivalencePoint); ok {
 		snapshot.HeatingCircuitBivalencePoint = &value
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_dhw_bivalence_point); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemDhwBivalencePoint); ok {
 		snapshot.DhwBivalencePoint = &value
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_hc_emergency_temperature); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemHcEmergencyTemperature); ok {
 		snapshot.HcEmergencyTemperature = &value
 		updated = true
 	}
-	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_hwc_max_flow_temp_desired); ok {
+	if value, ok := p.readB524Float32LE(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemHwcMaxFlowTempDesired); ok {
 		snapshot.HwcMaxFlowTempDesired = &value
 		updated = true
 	}
-	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_max_room_humidity); ok && raw != nil {
+	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemMaxRoomHumidity); ok && raw != nil {
 		snapshot.MaxRoomHumidity = cloneUint16Ptr(raw)
 		updated = true
 	}
 
 	// Installer/maintenance config (slow-config reads).
-	if value, ok := p.readB524DateThreeByte(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_maintenance_date); ok {
+	if value, ok := p.readB524DateThreeByte(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemMaintenanceDate); ok {
 		snapshot.MaintenanceDate = &value
 		updated = true
 	}
 	{
 		// Combined installer name from 2 registers × 6 chars.
-		name1, firstOK := p.readB524NullTerminatedStringSanitized(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_installer_name_1)
-		name2, secondOK := p.readB524NullTerminatedStringSanitized(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_installer_name_2)
+		name1, firstOK := p.readB524NullTerminatedStringSanitized(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemInstallerName1)
+		name2, secondOK := p.readB524NullTerminatedStringSanitized(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemInstallerName2)
 		if firstOK || secondOK {
 			var firstPart, secondPart string
 			if firstOK {
@@ -148,8 +148,8 @@ func (p *vaillantSemanticPoller) refreshSystem(ctx context.Context) {
 	}
 	{
 		// Combined installer phone from 2 registers × 6 chars.
-		phone1, firstOK := p.readB524NullTerminatedStringSanitized(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_installer_phone_1)
-		phone2, secondOK := p.readB524NullTerminatedStringSanitized(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_installer_phone_2)
+		phone1, firstOK := p.readB524NullTerminatedStringSanitized(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemInstallerPhone1)
+		phone2, secondOK := p.readB524NullTerminatedStringSanitized(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemInstallerPhone2)
 		if firstOK || secondOK {
 			var firstPart, secondPart string
 			if firstOK {
@@ -163,16 +163,16 @@ func (p *vaillantSemanticPoller) refreshSystem(ctx context.Context) {
 			updated = true
 		}
 	}
-	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_installer_menu_code); ok && raw != nil {
+	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemInstallerMenuCode); ok && raw != nil {
 		snapshot.InstallerMenuCode = cloneUint16Ptr(raw)
 		updated = true
 	}
 
-	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_scheme); ok && raw != nil {
+	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemScheme); ok && raw != nil {
 		snapshot.SystemScheme = cloneUint16Ptr(raw)
 		updated = true
 	}
-	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_module_configuration_function_module); ok && raw != nil {
+	if raw, ok := p.readB524Uint16(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemModuleConfigurationFunctionModule); ok && raw != nil {
 		snapshot.ModuleConfigurationFunctionModuleController = cloneUint16Ptr(raw)
 		updated = true
 		configurationAcquired = true
@@ -326,6 +326,7 @@ func cloneSystemSnapshot(snapshot *vaillantSystemSnapshot) *vaillantSystemSnapsh
 	}
 }
 
+// Uint16ToIntPtr implements the uint16 to int ptr step of the Vaillant owner.
 func Uint16ToIntPtr(value *uint16) *int {
 	if value == nil {
 		return nil
@@ -334,6 +335,7 @@ func Uint16ToIntPtr(value *uint16) *int {
 	return &v
 }
 
+// Uint8ToIntPtr implements the uint8 to int ptr step of the Vaillant owner.
 func Uint8ToIntPtr(value *uint8) *int {
 	if value == nil {
 		return nil
@@ -349,8 +351,8 @@ type cstringPairSpec struct {
 }
 
 var systemCStringPairSpecs = map[string]cstringPairSpec{
-	"installer_name":         {addr1: system_installer_name_1, addr2: system_installer_name_2},
-	"installer_phone_number": {addr1: system_installer_phone_1, addr2: system_installer_phone_2},
+	"installer_name":         {addr1: systemInstallerName1, addr2: systemInstallerName2},
+	"installer_phone_number": {addr1: systemInstallerPhone1, addr2: systemInstallerPhone2},
 }
 
 func (p *vaillantSemanticPoller) SetSystemConfig(ctx context.Context, fieldName string, rawValue string) vaillantConfigWriteResult {

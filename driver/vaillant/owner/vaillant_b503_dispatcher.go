@@ -134,6 +134,7 @@ func NewRawFrameDispatcher(bus b503Bus, source byte, readMu sync.Locker, mgr *b5
 	}, readMu, mgr, requestTimeout)
 }
 
+// NewRawFrameDispatcherWithSourceProvider implements the new raw frame dispatcher with source provider step of the Vaillant owner.
 func NewRawFrameDispatcherWithSourceProvider(bus b503Bus, sourceProvider func() (byte, bool), readMu sync.Locker, mgr *b503session.Manager, requestTimeout time.Duration) *RawFrameDispatcher {
 	dispatcher := &RawFrameDispatcher{
 		bus:            bus,

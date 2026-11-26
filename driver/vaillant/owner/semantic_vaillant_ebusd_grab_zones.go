@@ -74,22 +74,22 @@ func parseB524DhwFromGrab(lines []string, controller byte) (*vaillantDhwSnapshot
 			continue
 		}
 		switch addr {
-		case dhw_operation_mode:
+		case dhwOperationMode:
 			if value, ok := decodeB524Uint16(payload); ok {
 				typed := value
 				opModeRaw = &typed
 			}
-		case dhw_special_function:
+		case dhwSpecialFunction:
 			if value, ok := decodeB524Uint16(payload); ok {
 				typed := value
 				sfModeRaw = &typed
 			}
-		case dhw_current_temp:
+		case dhwCurrentTemp:
 			if value, ok := decodeFloat32LE(payload); ok {
 				typed := value
 				current = &typed
 			}
-		case dhw_target_temp:
+		case dhwTargetTemp:
 			if value, ok := decodeFloat32LE(payload); ok {
 				typed := value
 				target = &typed

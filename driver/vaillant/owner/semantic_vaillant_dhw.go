@@ -28,12 +28,12 @@ func (p *vaillantSemanticPoller) refreshDHWSlowConfig(ctx context.Context) seman
 
 	attempted := make(semanticFieldSet)
 	liveReadSuccess := false
-	targetPtr := p.readDhwFloat(ctx, dhw_target_temp)
+	targetPtr := p.readDhwFloat(ctx, dhwTargetTemp)
 	if targetPtr != nil {
 		liveReadSuccess = true
 		attempted[dhwFieldTargetTempC] = struct{}{}
 	}
-	opModeRaw, opModeOK := p.readDhwUint16(ctx, dhw_operation_mode)
+	opModeRaw, opModeOK := p.readDhwUint16(ctx, dhwOperationMode)
 	if opModeOK {
 		liveReadSuccess = true
 		attempted[dhwFieldOperatingMode] = struct{}{}
@@ -41,14 +41,14 @@ func (p *vaillantSemanticPoller) refreshDHWSlowConfig(ctx context.Context) seman
 		attempted[dhwFieldDhwOperationModeRaw] = struct{}{}
 	}
 	var dhwHolidayStartDate, dhwHolidayEndDate string
-	if raw, ok := p.readB524Value(ctx, localDHW.opcode, localDHW.group, dhwInstance, dhw_holiday_start_date); ok && len(raw) >= 3 {
+	if raw, ok := p.readB524Value(ctx, localDHW.opcode, localDHW.group, dhwInstance, dhwHolidayStartDateRegister); ok && len(raw) >= 3 {
 		if date := decodeB524DateSuppressSentinel(raw); date != "" {
 			dhwHolidayStartDate = date
 		}
 		liveReadSuccess = true
 		attempted[dhwFieldHolidayStartDate] = struct{}{}
 	}
-	if raw, ok := p.readB524Value(ctx, localDHW.opcode, localDHW.group, dhwInstance, dhw_holiday_end_date); ok && len(raw) >= 3 {
+	if raw, ok := p.readB524Value(ctx, localDHW.opcode, localDHW.group, dhwInstance, dhwHolidayEndDateRegister); ok && len(raw) >= 3 {
 		if date := decodeB524DateSuppressSentinel(raw); date != "" {
 			dhwHolidayEndDate = date
 		}
@@ -103,12 +103,12 @@ func (p *vaillantSemanticPoller) refreshDHW(ctx context.Context) semanticSnapsho
 
 	attempted := make(semanticFieldSet)
 	liveReadSuccess := false
-	currentPtr := p.readDhwFloat(ctx, dhw_current_temp)
+	currentPtr := p.readDhwFloat(ctx, dhwCurrentTemp)
 	if currentPtr != nil {
 		liveReadSuccess = true
 		attempted[dhwFieldCurrentTempC] = struct{}{}
 	}
-	sfModeRaw, sfModeOK := p.readDhwUint16(ctx, dhw_special_function)
+	sfModeRaw, sfModeOK := p.readDhwUint16(ctx, dhwSpecialFunction)
 	if sfModeOK {
 		liveReadSuccess = true
 		attempted[dhwFieldOperatingMode] = struct{}{}
@@ -211,6 +211,7 @@ func (p *vaillantSemanticPoller) dhwViewLocked(expired bool) vaillantDhwView {
 	return vaillantDhwView{snapshot: cloneDhwSnapshot(p.dhw), expired: expired}
 }
 
+// HasLiveCylinderEvidence implements the has live cylinder evidence step of the Vaillant owner.
 func HasLiveCylinderEvidence(snapshot *vaillantCylinderSnapshot) bool {
 	return snapshot != nil && snapshot.TemperatureC != nil
 }
@@ -222,31 +223,31 @@ func (p *vaillantSemanticPoller) readSolarSnapshot(ctx context.Context) (*vailla
 	incoming := &vaillantSolarSnapshot{}
 	readAny := false
 
-	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solar_enabled); ok {
+	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solarEnabled); ok {
 		readAny = true
 		incoming.SolarEnabled = decodeB524BoolFromRaw(raw)
 	}
-	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solar_function_mode); ok {
+	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solarFunctionMode); ok {
 		readAny = true
 		incoming.FunctionMode = decodeB524BoolFromRaw(raw)
 	}
-	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solar_collector_temp); ok {
+	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solarCollectorTemp); ok {
 		readAny = true
 		incoming.CollectorTemperatureC = decodeB524Float32FromRaw(raw)
 	}
-	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solar_return_temp); ok {
+	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solarReturnTemp); ok {
 		readAny = true
 		incoming.ReturnTemperatureC = decodeB524Float32FromRaw(raw)
 	}
-	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solar_pump_active); ok {
+	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solarPumpActive); ok {
 		readAny = true
 		incoming.PumpActive = decodeB524BoolFromRaw(raw)
 	}
-	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solar_current_yield); ok {
+	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solarCurrentYield); ok {
 		readAny = true
 		incoming.CurrentYield = decodeB524Float32FromRaw(raw)
 	}
-	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solar_pump_hours); ok {
+	if raw, ok := p.readB524Value(ctx, localSolar.opcode, localSolar.group, solarInstance, solarPumpHours); ok {
 		readAny = true
 		incoming.PumpHours = decodeB524Uint32FromRaw(raw)
 	}
@@ -267,22 +268,22 @@ func (p *vaillantSemanticPoller) readCylinderSnapshots(ctx context.Context) (map
 		incoming := &vaillantCylinderSnapshot{Instance: instance}
 		instanceRead := false
 
-		if raw, ok := p.readB524Value(ctx, localCylinders.opcode, localCylinders.group, instance, cylinder_max_setpoint); ok {
+		if raw, ok := p.readB524Value(ctx, localCylinders.opcode, localCylinders.group, instance, cylinderMaxSetpoint); ok {
 			instanceRead = true
 			readAny = true
 			incoming.MaxSetpointC = decodeB524Float32FromRaw(raw)
 		}
-		if raw, ok := p.readB524Value(ctx, localCylinders.opcode, localCylinders.group, instance, cylinder_charge_hysteresis); ok {
+		if raw, ok := p.readB524Value(ctx, localCylinders.opcode, localCylinders.group, instance, cylinderChargeHysteresis); ok {
 			instanceRead = true
 			readAny = true
 			incoming.ChargeHysteresis = decodeB524Float32FromRaw(raw)
 		}
-		if raw, ok := p.readB524Value(ctx, localCylinders.opcode, localCylinders.group, instance, cylinder_charge_offset); ok {
+		if raw, ok := p.readB524Value(ctx, localCylinders.opcode, localCylinders.group, instance, cylinderChargeOffset); ok {
 			instanceRead = true
 			readAny = true
 			incoming.ChargeOffset = decodeB524Float32FromRaw(raw)
 		}
-		if raw, ok := p.readB524Value(ctx, localCylinders.opcode, localCylinders.group, instance, cylinder_temperature); ok {
+		if raw, ok := p.readB524Value(ctx, localCylinders.opcode, localCylinders.group, instance, cylinderTemperature); ok {
 			instanceRead = true
 			readAny = true
 			incoming.TemperatureC = decodeB524Float32FromRaw(raw)
@@ -403,6 +404,7 @@ func cloneCylinderSnapshotsMap(source map[byte]*vaillantCylinderSnapshot) map[by
 	return out
 }
 
+// DecodeDhwMode implements the decode dhw mode step of the Vaillant owner.
 func DecodeDhwMode(raw int) string {
 	switch raw {
 	case 0:

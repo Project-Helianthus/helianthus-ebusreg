@@ -47,10 +47,10 @@ const (
 )
 
 var boilerConfigFieldSpecs = map[string]boilerConfigFieldSpec{
-	"maximum_heating_flow_temperature_setpoint": {addrs: []uint16{boiler_b509_flowset_hc_max_c, boiler_b509_flowset_hc_max_c_fallback}, min: 20, max: 80, codec: boilerConfigCodecTempData2c},
-	"maximum_dhw_flow_temperature_setpoint":     {addrs: []uint16{boiler_b509_flowset_hwc_max_c}, min: 30, max: 65, codec: boilerConfigCodecTempData2c},
-	"heating_partial_load_power":                {addrs: []uint16{boiler_b509_partload_hc_kw}, min: 0, max: 40, codec: boilerConfigCodecUCH},
-	"dhw_partial_load_power":                    {addrs: []uint16{boiler_b509_partload_hwc_kw}, min: 0, max: 40, codec: boilerConfigCodecUCH},
+	"maximum_heating_flow_temperature_setpoint": {addrs: []uint16{boilerB509FlowsetHcMaxC, boilerB509FlowsetHcMaxCFallback}, min: 20, max: 80, codec: boilerConfigCodecTempData2c},
+	"maximum_dhw_flow_temperature_setpoint":     {addrs: []uint16{boilerB509FlowsetHwcMaxC}, min: 30, max: 65, codec: boilerConfigCodecTempData2c},
+	"heating_partial_load_power":                {addrs: []uint16{boilerB509PartloadHcKw}, min: 0, max: 40, codec: boilerConfigCodecUCH},
+	"dhw_partial_load_power":                    {addrs: []uint16{boilerB509PartloadHwcKw}, min: 0, max: 40, codec: boilerConfigCodecUCH},
 }
 
 // Boiler setter keys with a writer of their own codec. The 0x4904 key carries
@@ -180,7 +180,7 @@ func (p *vaillantSemanticPoller) writeBoilerPhoneBCD(ctx context.Context, rawVal
 		ctx = context.Background()
 	}
 
-	if err := p.writeB509Value(ctx, boilerAddress, boiler_b509_phone_number, payload); err != nil {
+	if err := p.writeB509Value(ctx, boilerAddress, boilerB509PhoneNumber, payload); err != nil {
 		return vaillantConfigWriteResult{Success: false, Error: fmt.Sprintf("b509 write failed: %v", err)}
 	}
 
@@ -214,7 +214,7 @@ func (p *vaillantSemanticPoller) writeBoilerInstallerMenuCode(ctx context.Contex
 	}
 
 	payload := []byte{byte(value)}
-	if err := p.writeB509Value(ctx, boilerAddress, boiler_b509_installer_menu_code, payload); err != nil {
+	if err := p.writeB509Value(ctx, boilerAddress, boilerB509InstallerMenuCode, payload); err != nil {
 		return vaillantConfigWriteResult{Success: false, Error: fmt.Sprintf("b509 write failed: %v", err)}
 	}
 

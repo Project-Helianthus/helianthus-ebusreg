@@ -39,7 +39,7 @@ type b524ProbeSpec struct {
 // multi-register coherency verification during capability-first discovery.
 var b524CapabilityProbes = []b524ProbeSpec{
 	{opcode: localRegulator.opcode, group: localRegulator.group, instance: regulatorInstance, addr: 0x0001},
-	{opcode: localDHW.opcode, group: localDHW.group, instance: dhwInstance, addr: dhw_operation_mode},
+	{opcode: localDHW.opcode, group: localDHW.group, instance: dhwInstance, addr: dhwOperationMode},
 }
 
 func (p *vaillantSemanticPoller) refreshRegulatorCapability(_ context.Context) {

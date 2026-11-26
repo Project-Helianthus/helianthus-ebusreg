@@ -51,7 +51,7 @@ func (p *vaillantSemanticPoller) discoverDeviceSlotsWithFunctionModuleCompletene
 				continue
 			}
 
-			connectedRaw := p.readB524Uint8(ctx, grp.opcode, grp.group, instance, device_slot_connected)
+			connectedRaw := p.readB524Uint8(ctx, grp.opcode, grp.group, instance, deviceSlotConnected)
 			if connectedRaw == nil {
 				continue
 			}
@@ -235,7 +235,7 @@ func (p *vaillantSemanticPoller) readRadioSlotDetails(ctx context.Context, key d
 	group := key.Group
 	instance := key.Instance
 	opcode := vaillantB524OpcodeRead
-	connectedRaw := p.readB524Uint8(ctx, opcode, group, instance, device_slot_connected)
+	connectedRaw := p.readB524Uint8(ctx, opcode, group, instance, deviceSlotConnected)
 	if connectedRaw == nil {
 		if discovery.activeSlots[key] {
 			p.mu.Lock()
@@ -250,9 +250,9 @@ func (p *vaillantSemanticPoller) readRadioSlotDetails(ctx context.Context, key d
 	scan.readAny = true
 
 	connected := *connectedRaw == 1
-	classAddress := p.readB524Uint8(ctx, opcode, group, instance, device_slot_class_address)
-	firmware := p.readB524Firmware(ctx, opcode, group, instance, device_slot_firmware)
-	hardware := p.readB524Uint16Pointer(ctx, opcode, group, instance, device_slot_hardware_identifier)
+	classAddress := p.readB524Uint8(ctx, opcode, group, instance, deviceSlotClassAddress)
+	firmware := p.readB524Firmware(ctx, opcode, group, instance, deviceSlotFirmware)
+	hardware := p.readB524Uint16Pointer(ctx, opcode, group, instance, deviceSlotHardwareIdentifier)
 
 	slotMode := "active"
 	include := false
@@ -286,12 +286,12 @@ func (p *vaillantSemanticPoller) readRadioSlotDetails(ctx context.Context, key d
 // registers of a connected device slot in a fixed order.
 func (p *vaillantSemanticPoller) readConnectedRadioSlotDetails(ctx context.Context, device *vaillantRadioDeviceSnapshot, group, instance byte) {
 	opcode := vaillantB524OpcodeRead
-	device.RemoteControlAddress = p.readB524Uint8(ctx, opcode, group, instance, device_slot_remote_control_address)
-	device.DevicePaired = p.readB524Bool(ctx, opcode, group, instance, device_slot_paired)
-	device.ReceptionStrength = p.readB524Uint8(ctx, opcode, group, instance, device_slot_reception_strength)
-	device.ZoneAssignment = p.readB524Uint8(ctx, opcode, group, instance, device_slot_zone_assignment)
-	device.RoomTemperatureC = p.readB524Float32(ctx, opcode, group, instance, device_slot_room_temperature)
-	device.RoomHumidityPct = p.readB524Float32(ctx, opcode, group, instance, device_slot_room_humidity)
+	device.RemoteControlAddress = p.readB524Uint8(ctx, opcode, group, instance, deviceSlotRemoteControlAddress)
+	device.DevicePaired = p.readB524Bool(ctx, opcode, group, instance, deviceSlotPaired)
+	device.ReceptionStrength = p.readB524Uint8(ctx, opcode, group, instance, deviceSlotReceptionStrength)
+	device.ZoneAssignment = p.readB524Uint8(ctx, opcode, group, instance, deviceSlotZoneAssignment)
+	device.RoomTemperatureC = p.readB524Float32(ctx, opcode, group, instance, deviceSlotRoomTemperature)
+	device.RoomHumidityPct = p.readB524Float32(ctx, opcode, group, instance, deviceSlotRoomHumidity)
 }
 
 // commitRadioDeviceScan replaces the retained radio devices with the scan

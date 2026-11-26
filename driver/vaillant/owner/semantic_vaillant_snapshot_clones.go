@@ -88,6 +88,7 @@ func markFieldStale(fields map[semanticFieldKey]semanticFieldFreshness, field se
 	fields[field] = freshness
 }
 
+// SeedZoneFreshness implements the seed zone freshness step of the Vaillant owner.
 func SeedZoneFreshness(snapshot *vaillantZoneSnapshot, source semanticSnapshotSource, stale bool) {
 	if snapshot == nil {
 		return
@@ -164,6 +165,7 @@ func SeedZoneFreshness(snapshot *vaillantZoneSnapshot, source semanticSnapshotSo
 	}
 }
 
+// SeedDhwFreshness implements the seed dhw freshness step of the Vaillant owner.
 func SeedDhwFreshness(snapshot *vaillantDhwSnapshot, source semanticSnapshotSource, stale bool) {
 	if snapshot == nil {
 		return

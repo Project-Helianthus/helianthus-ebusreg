@@ -12,7 +12,7 @@ func (p *vaillantSemanticPoller) readDhwPseudoCircuitStartupEvidence(ctx context
 		return nil, false
 	}
 	snapshot := newDhwPseudoCircuitSnapshot(instance)
-	flow, flowKnown := p.readDhwPseudoCircuitStartupTemperatureEvidence(ctx, instance, circuit_flow_temp)
+	flow, flowKnown := p.readDhwPseudoCircuitStartupTemperatureEvidence(ctx, instance, circuitFlowTemp)
 	if isDhwPseudoCircuitTemperatureEvidence(flow) {
 		snapshot.FlowTemperatureC = flow
 	}
@@ -41,16 +41,16 @@ func (p *vaillantSemanticPoller) refreshSystemStartup(ctx context.Context) {
 	snapshot := &vaillantSystemSnapshot{Controller: controller}
 	readAny := false
 	configurationAcquired := false
-	if raw, ok := p.readB524Uint16Startup(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_scheme); ok && raw != nil {
+	if raw, ok := p.readB524Uint16Startup(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemScheme); ok && raw != nil {
 		snapshot.SystemScheme = cloneUint16Ptr(raw)
 		readAny = true
 	}
-	if raw, ok := p.readB524Uint16Startup(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_module_configuration_function_module); ok && raw != nil {
+	if raw, ok := p.readB524Uint16Startup(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemModuleConfigurationFunctionModule); ok && raw != nil {
 		snapshot.ModuleConfigurationFunctionModuleController = cloneUint16Ptr(raw)
 		readAny = true
 		configurationAcquired = true
 	}
-	if raw, ok := p.readB524Startup(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_water_pressure); ok {
+	if raw, ok := p.readB524Startup(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemWaterPressure); ok {
 		if value := decodeB524Float32FromRaw(raw); value != nil {
 			snapshot.SystemWaterPressure = value
 			readAny = true
@@ -84,7 +84,7 @@ func (p *vaillantSemanticPoller) refreshFunctionModuleConfigurationForLateIdenti
 	p.mu.Unlock()
 	snapshot := &vaillantSystemSnapshot{Controller: controller}
 	configurationAcquired := false
-	if raw, ok := p.readB524Uint16Startup(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, system_module_configuration_function_module); ok && raw != nil {
+	if raw, ok := p.readB524Uint16Startup(ctx, localRegulator.opcode, localRegulator.group, regulatorInstance, systemModuleConfigurationFunctionModule); ok && raw != nil {
 		snapshot.ModuleConfigurationFunctionModuleController = cloneUint16Ptr(raw)
 		configurationAcquired = true
 	}
@@ -114,13 +114,13 @@ func (p *vaillantSemanticPoller) refreshRadioDevicesStartup(ctx context.Context)
 	verified := make(map[radioDeviceKey]bool)
 	readAny := false
 	probeSlot := func(grp b524GroupDef, instance byte) {
-		connectedRaw, ok := p.readB524Startup(ctx, grp.opcode, grp.group, instance, device_slot_connected)
+		connectedRaw, ok := p.readB524Startup(ctx, grp.opcode, grp.group, instance, deviceSlotConnected)
 		if !ok || len(connectedRaw) == 0 {
 			return
 		}
 		readAny = true
 		connected := connectedRaw[0] == 1
-		classAddress := p.readB524Uint8Startup(ctx, grp.opcode, grp.group, instance, device_slot_class_address)
+		classAddress := p.readB524Uint8Startup(ctx, grp.opcode, grp.group, instance, deviceSlotClassAddress)
 		key := radioDeviceKey{Group: grp.group, Instance: instance}
 		verified[key] = true
 		include, slotMode := startupRadioDeviceInclude(grp.group, connected, classAddress)
@@ -367,15 +367,15 @@ func (p *vaillantSemanticPoller) refreshFunctionModuleSemanticStartup(ctx contex
 func (p *vaillantSemanticPoller) readSolarSnapshotStartup(ctx context.Context) (*vaillantSolarSnapshot, bool) {
 	incoming := &vaillantSolarSnapshot{}
 	readAny := false
-	if raw, ok := p.readB524Startup(ctx, localSolar.opcode, localSolar.group, solarInstance, solar_enabled); ok {
+	if raw, ok := p.readB524Startup(ctx, localSolar.opcode, localSolar.group, solarInstance, solarEnabled); ok {
 		incoming.SolarEnabled = decodeB524BoolFromRaw(raw)
 		readAny = true
 	}
-	if raw, ok := p.readB524Startup(ctx, localSolar.opcode, localSolar.group, solarInstance, solar_collector_temp); ok {
+	if raw, ok := p.readB524Startup(ctx, localSolar.opcode, localSolar.group, solarInstance, solarCollectorTemp); ok {
 		incoming.CollectorTemperatureC = decodeB524Float32FromRaw(raw)
 		readAny = true
 	}
-	if raw, ok := p.readB524Startup(ctx, localSolar.opcode, localSolar.group, solarInstance, solar_pump_active); ok {
+	if raw, ok := p.readB524Startup(ctx, localSolar.opcode, localSolar.group, solarInstance, solarPumpActive); ok {
 		incoming.PumpActive = decodeB524BoolFromRaw(raw)
 		readAny = true
 	}
@@ -388,7 +388,7 @@ func (p *vaillantSemanticPoller) readSolarSnapshotStartup(ctx context.Context) (
 func (p *vaillantSemanticPoller) readCylinderSnapshotsStartup(ctx context.Context) (map[byte]*vaillantCylinderSnapshot, bool) {
 	out := make(map[byte]*vaillantCylinderSnapshot, 2)
 	for instance := byte(0x00); instance <= 0x01; instance++ {
-		raw, ok := p.readB524Startup(ctx, localCylinders.opcode, localCylinders.group, instance, cylinder_temperature)
+		raw, ok := p.readB524Startup(ctx, localCylinders.opcode, localCylinders.group, instance, cylinderTemperature)
 		if !ok {
 			continue
 		}
@@ -417,7 +417,7 @@ func (p *vaillantSemanticPoller) refreshBoilerStatusStartup(ctx context.Context)
 
 	snapshot := &vaillantBoilerSnapshot{}
 	updated := false
-	if raw, ok := p.readB524Startup(ctx, localDHW.opcode, localDHW.group, dhwInstance, dhw_current_temp); ok {
+	if raw, ok := p.readB524Startup(ctx, localDHW.opcode, localDHW.group, dhwInstance, dhwCurrentTemp); ok {
 		if value := decodeB524Float32FromRaw(raw); value != nil {
 			snapshot.DhwTemperatureC = value
 			updated = true

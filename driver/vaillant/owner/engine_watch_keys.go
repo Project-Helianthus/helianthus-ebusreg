@@ -7,6 +7,7 @@ import (
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
 )
 
+// B555WatchKey is the b555 watch key type of the Vaillant owner.
 type B555WatchKey struct {
 	Target byte
 	Opcode byte
@@ -19,6 +20,7 @@ type B555WatchKey struct {
 	HasSlot    bool
 }
 
+// NewB555ProgramWatchKey implements the new b555 program watch key step of the Vaillant owner.
 func NewB555ProgramWatchKey(target, opcode, zone, hc byte) B555WatchKey {
 	return B555WatchKey{
 		Target: target,
@@ -28,6 +30,7 @@ func NewB555ProgramWatchKey(target, opcode, zone, hc byte) B555WatchKey {
 	}
 }
 
+// NewB555WatchKey implements the new b555 watch key step of the Vaillant owner.
 func NewB555WatchKey(target, opcode, zone, hc, weekday, slot byte) B555WatchKey {
 	return B555WatchKey{
 		Target:     target,
@@ -41,6 +44,7 @@ func NewB555WatchKey(target, opcode, zone, hc, weekday, slot byte) B555WatchKey 
 	}
 }
 
+// Canonical implements the canonical step of the Vaillant owner.
 func (key B555WatchKey) Canonical() string {
 	canonical := fmt.Sprintf(
 		"b555:%02x:%02x:%02x:%02x:%02x:%02x",
@@ -68,10 +72,12 @@ func (key B555WatchKey) String() string {
 	return key.Canonical()
 }
 
+// Family implements the family step of the Vaillant owner.
 func (key B555WatchKey) Family() engine.WatchFamily {
 	return engine.WatchFamilyB555
 }
 
+// PassiveWatchKeyFromEvent implements the passive watch key from event step of the Vaillant owner.
 func PassiveWatchKeyFromEvent(event engine.PassiveClassifiedEvent) (engine.WatchKey, bool) {
 	if !event.HasRequest {
 		return nil, false
@@ -79,6 +85,7 @@ func PassiveWatchKeyFromEvent(event engine.PassiveClassifiedEvent) (engine.Watch
 	return PassiveWatchKeyFromFrame(event.Request)
 }
 
+// PassiveWatchKeyFromFrame implements the passive watch key from frame step of the Vaillant owner.
 func PassiveWatchKeyFromFrame(frame protocol.Frame) (engine.WatchKey, bool) {
 	switch {
 	case frame.Primary == 0xB5 && frame.Secondary == 0x24:

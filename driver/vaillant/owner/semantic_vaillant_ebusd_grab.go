@@ -202,7 +202,7 @@ func parseB524ZonesFromGrab(lines []string, controller byte) map[byte]*vaillantZ
 		if !ok {
 			continue
 		}
-		if group == localCircuits.group && addr == circuit_type {
+		if group == localCircuits.group && addr == circuitTypeRegister {
 			if value, ok := decodeB524Uint16(payload); ok {
 				typed := value
 				circuitTypeByInstance[instance] = &typed
@@ -238,42 +238,42 @@ func parseB524ZonesFromGrab(lines []string, controller byte) map[byte]*vaillantZ
 func applyB524GrabZoneRegister(state *b524GrabZoneState, addr uint16, payload []byte) {
 	snapshot := state.snapshot
 	switch addr {
-	case zone_index:
+	case zoneIndex:
 		state.hasIndex = true
 		if len(payload) > 0 && payload[0] != 0xFF {
 			state.indexPresent = true
 		}
-	case zone_name:
+	case zoneName:
 		parts := state.nameParts
 		parts.primary = decodeCString(payload)
 		state.nameParts = parts
-	case zone_name_prefix:
+	case zoneNamePrefix:
 		parts := state.nameParts
 		parts.prefix = decodeCString(payload)
 		state.nameParts = parts
-	case zone_name_suffix:
+	case zoneNameSuffix:
 		parts := state.nameParts
 		parts.suffix = decodeCString(payload)
 		state.nameParts = parts
-	case zone_heating_op_mode:
+	case zoneHeatingOpMode:
 		if value, ok := decodeB524Uint16(payload); ok {
 			typed := value
 			state.configurationOperationMode = &typed
 			snapshot.ConfigurationHeatingOperationMode = formatUintToken(value)
 		}
-	case zone_special_function:
+	case zoneSpecialFunction:
 		if value, ok := decodeB524Uint16(payload); ok {
 			typed := value
 			state.stateSpecialFunction = &typed
 			snapshot.StateSpecialFunction = formatUintToken(value)
 		}
-	case zone_valve_status:
+	case zoneValveStatus:
 		if value, ok := decodeB524Uint16(payload); ok {
 			typed := value
 			state.stateValveStatus = &typed
 			snapshot.StateValveStatusRaw = &typed
 		}
-	case zone_room_temperature_zone_mapping_raw:
+	case zoneRoomTemperatureZoneMappingRawRegister:
 		if value, ok := decodeB524Uint16(payload); ok {
 			typed := value
 			state.roomTemperatureZoneMappingRaw = &typed
@@ -288,24 +288,24 @@ func applyB524GrabZoneRegister(state *b524GrabZoneState, addr uint16, payload []
 // registers of one zone from a grab dump.
 func applyB524GrabZoneTemperatureRegister(snapshot *vaillantZoneSnapshot, addr uint16, payload []byte) {
 	switch addr {
-	case zone_current_temp:
+	case zoneCurrentTemp:
 		if value, ok := decodeFloat32LE(payload); ok {
 			v := value
 			snapshot.CurrentTempC = &v
 		}
-	case zone_target_temp:
+	case zoneTargetTemp:
 		if value, ok := decodeFloat32LE(payload); ok {
 			v := value
 			snapshot.TargetTempC = &v
 		}
-	case zone_fallback_manual_temp:
+	case zoneFallbackManualTemp:
 		if snapshot.TargetTempC == nil {
 			if value, ok := decodeFloat32LE(payload); ok {
 				v := value
 				snapshot.TargetTempC = &v
 			}
 		}
-	case zone_current_humidity:
+	case zoneCurrentHumidity:
 		if value, ok := decodeFloat32LE(payload); ok {
 			v := value
 			snapshot.HumidityPct = &v

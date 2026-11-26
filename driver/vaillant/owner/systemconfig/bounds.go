@@ -1,3 +1,4 @@
+// Package systemconfig holds the system configuration write specifications and bounds of the Vaillant owner.
 package systemconfig
 
 import (
@@ -13,10 +14,12 @@ import (
 // conservatively narrowed by controller-profile evidence.
 const SystemConfigFieldDHWBivalencePoint = "dhw_outdoor_bivalence_temperature_limit"
 
+// ControllerIdentity is the controller identity type of the Vaillant owner.
 type ControllerIdentity = vaillantsystem.B524ControllerIdentity
 
 var canonicalRegulatorTargetAddresses = [...]byte{0x15, 0x35, 0x75, 0xF5, 0x76, 0xF6}
 
+// CanonicalRegulatorTargetAddresses implements the canonical regulator target addresses step of the Vaillant owner.
 func CanonicalRegulatorTargetAddresses() [6]byte {
 	return canonicalRegulatorTargetAddresses
 }
@@ -96,7 +99,7 @@ func ControllerIdentityFromSnapshot(entry registry.DeviceEntrySnapshot) vaillant
 	}
 }
 
-// controllerIdentityFromRegistry uses the same canonical target priority as
+// ControllerIdentityFromRegistry uses the same canonical target priority as
 // findControllerEntry, but never reads identity accessors on a live entry.
 // Registries without atomic snapshots supply no identity, so the conservative
 // unmatched policy applies.

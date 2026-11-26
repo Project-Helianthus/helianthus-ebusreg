@@ -21,6 +21,7 @@ func parseUint16Token(token string) (*uint16, bool) {
 	return &parsed, true
 }
 
+// DecodeUint16Bool implements the decode uint16 bool step of the Vaillant owner.
 func DecodeUint16Bool(raw *uint16) *bool {
 	if raw == nil {
 		return nil
@@ -29,6 +30,7 @@ func DecodeUint16Bool(raw *uint16) *bool {
 	return &parsed
 }
 
+// DecodeUint32Float64 implements the decode uint32 float64 step of the Vaillant owner.
 func DecodeUint32Float64(raw *uint32) *float64 {
 	if raw == nil {
 		return nil
@@ -37,6 +39,7 @@ func DecodeUint32Float64(raw *uint32) *float64 {
 	return &parsed
 }
 
+// DecodeUint32Int implements the decode uint32 int step of the Vaillant owner.
 func DecodeUint32Int(raw *uint32) *int {
 	if raw == nil {
 		return nil
@@ -45,6 +48,7 @@ func DecodeUint32Int(raw *uint32) *int {
 	return &parsed
 }
 
+// DecodeUint8Int implements the decode uint8 int step of the Vaillant owner.
 func DecodeUint8Int(raw *uint8) *int {
 	if raw == nil {
 		return nil
@@ -98,6 +102,7 @@ func decodeB524Uint32FromRaw(raw []byte) *uint32 {
 	return &value
 }
 
+// BoolPtrEquals implements the bool ptr equals step of the Vaillant owner.
 func BoolPtrEquals(a, b *bool) bool {
 	if a == nil && b == nil {
 		return true
@@ -108,6 +113,7 @@ func BoolPtrEquals(a, b *bool) bool {
 	return *a == *b
 }
 
+// StringPtrEquals implements the string ptr equals step of the Vaillant owner.
 func StringPtrEquals(a, b *string) bool {
 	if a == nil && b == nil {
 		return true
@@ -118,6 +124,7 @@ func StringPtrEquals(a, b *string) bool {
 	return *a == *b
 }
 
+// IntPtrEquals implements the int ptr equals step of the Vaillant owner.
 func IntPtrEquals(a, b *int) bool {
 	if a == nil && b == nil {
 		return true

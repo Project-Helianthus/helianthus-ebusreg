@@ -1,0 +1,36 @@
+{
+ "format": "ef04-session-index/v1",
+ "index": "acceptance/vectors/index.json",
+ "index_format": "helianthus-oracle-vector-index/1",
+ "source": "helianthus-docs-semantic, acceptance/vectors/ at the published QQ01 state; each input is the exact byte content the index entry digests",
+ "verify": "python3 acceptance/oracle/check.py --index in that checkout, and the sha256 of each input file below against its index entry",
+ "replay_command": "python3 acceptance/oracle/replay_session.py --reference current --session <session.json> --output <output.json>",
+ "sessions": [
+  {
+   "case": "poller-full-site",
+   "scenario": "full_site",
+   "index_path": "current/sessions/vaillant/poller-full-site/session.json",
+   "input_file": "poller-full-site/session.json",
+   "input_sha256": "a3ecbfbdb8a1c12980c2afb1bee76e44ee537440b5fda72ea5ff1ea356300708",
+   "input_role": "input",
+   "output_index_path": "current/sessions/vaillant/poller-full-site/output.json",
+   "output_sha256": "312bcfb30d7021d58d872d61f14a3927932b88f502a38fd9d0000b1b14df4b94",
+   "native_file": "poller-full-site/native.json",
+   "acquisitions": 672,
+   "sends": 4
+  },
+  {
+   "case": "poller-cache-hydrated-partial-reads",
+   "scenario": "cache_hydrated_partial_reads",
+   "index_path": "current/sessions/vaillant/poller-cache-hydrated-partial-reads/session.json",
+   "input_file": "poller-cache-hydrated-partial-reads/session.json",
+   "input_sha256": "7b9ddf75164257f4e1165d3e101a715d11bbb97837aa094b829be9d28916b4c7",
+   "input_role": "input",
+   "output_index_path": "current/sessions/vaillant/poller-cache-hydrated-partial-reads/output.json",
+   "output_sha256": "f476fe68a1c92ff8974834ff9940329a348b9bcf44ba328d9a0e0d4871efa160",
+   "native_file": "poller-cache-hydrated-partial-reads/native.json",
+   "acquisitions": 1036,
+   "sends": 0
+  }
+ ]
+}

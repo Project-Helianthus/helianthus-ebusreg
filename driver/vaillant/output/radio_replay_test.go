@@ -130,3 +130,48 @@ func TestVaillantRadioDeviceMCPRecordsReplayRecordedResponses(t *testing.T) {
 		}
 	}
 }
+
+// The recorded old output for an absent boiler (testdata/boiler-missing-recorded.json,
+// the GraphQL boiler_status and MCP records of the recorded withdrawal case, extracted
+// unchanged) holds null on the GraphQL query, the MCP adapter record and the MCP tool
+// response. Mapping an absent GraphQL record must give the same null in this package's
+// MCP form, never an empty record.
+func TestVaillantBoilerStatusAbsentReplaysRecordedResponses(t *testing.T) {
+	type recordedAbsent struct {
+		Name    string
+		Fixture string
+		GraphQL struct {
+			Data json.RawMessage
+		}
+		MCP struct {
+			Adapter struct {
+				BoilerStatus json.RawMessage `json:"boiler_status"`
+			}
+			Tools map[string]struct {
+				Data json.RawMessage
+			}
+		}
+	}
+	recorded := readFixture[[]recordedAbsent](t, "boiler-missing-recorded.json")
+	if len(recorded) != 1 {
+		t.Fatalf("recorded cases: got %d, want 1", len(recorded))
+	}
+	record := recorded[0]
+	got, err := json.Marshal(MCPBoilerStatusFromGraphQL(nil))
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := map[string]json.RawMessage{
+		"GraphQL boiler_status data": record.GraphQL.Data,
+		"MCP adapter boiler_status":  record.MCP.Adapter.BoilerStatus,
+		"MCP tool data":              record.MCP.Tools["ebus_v1_semantic_boiler_status_get"].Data,
+	}
+	for label, recordedValue := range want {
+		if string(recordedValue) != "null" {
+			t.Fatalf("%s: recorded %s, expected the recorded absent value null", label, recordedValue)
+		}
+		if string(got) != string(recordedValue) {
+			t.Errorf("%s (%s): got %s, want %s", label, record.Name, got, recordedValue)
+		}
+	}
+}

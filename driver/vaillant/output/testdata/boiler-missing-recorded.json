@@ -1,0 +1,32 @@
+[
+  {
+    "name": "boiler-missing-snapshot-withdraws-published",
+    "fixture": "absent native boiler snapshot after a published one",
+    "graphql": {
+      "data": null,
+      "query": "{ boiler_status { config { central_heating_pump_mode dhw_operating_mode dhw_partial_load_power heating_partial_load_power installer_phone_number maximum_dhw_flow_temperature_setpoint maximum_heating_flow_temperature_setpoint service_time_remaining } diagnostics { central_heating_operating_time central_heating_start_count dhw_operating_time dhw_start_count dhw_status_raw fan_operating_time fire_control_deactivation_count heating_status_raw pump_operating_time temperature_limiter_deactivation_count } state { boiler_state_code central_heating_pump_active circulation_pump_active dhw_demand_active dhw_target_temperature_c dhw_temperature_c dhw_temperature_setpoint dhw_water_flow_rate diverter_valve_position external_pump_active fan_speed fan_speed_setpoint flame_active flame_ionization_current flow_temperature flow_temperature_setpoint gas_valve_active heating_switch_active modulation_setpoint primary_circuit_flow_rate return_temperature_c storage_loading_pump_level water_pressure } } }"
+    },
+    "mcp": {
+      "adapter": {
+        "boiler_status": null
+      },
+      "tools": {
+        "ebus_v1_semantic_boiler_status_get": {
+          "data": null,
+          "error": null,
+          "meta": {
+            "consistency": {
+              "mode": "LIVE"
+            },
+            "contract": {
+              "major": 1,
+              "minor": 0,
+              "name": "helianthus-ebus-mcp"
+            },
+            "data_hash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+          }
+        }
+      }
+    }
+  }
+]

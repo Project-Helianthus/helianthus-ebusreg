@@ -4,6 +4,34 @@
     {
       "token": "B524",
       "reason": "Protocol vocabulary: the Vaillant extended register service, primary 0xB5 and secondary 0x24."
+    },
+    {
+      "token": "B503",
+      "reason": "Protocol vocabulary: the Vaillant service B503, primary 0xB5 and secondary 0x03."
+    },
+    {
+      "token": "B507",
+      "reason": "Protocol vocabulary: the Vaillant service B507, primary 0xB5 and secondary 0x07."
+    },
+    {
+      "token": "B509",
+      "reason": "Protocol vocabulary: the Vaillant service B509, primary 0xB5 and secondary 0x09."
+    },
+    {
+      "token": "B512",
+      "reason": "Protocol vocabulary: the Vaillant service B512, primary 0xB5 and secondary 0x12."
+    },
+    {
+      "token": "B516",
+      "reason": "Protocol vocabulary: the Vaillant service B516, primary 0xB5 and secondary 0x16."
+    },
+    {
+      "token": "B523",
+      "reason": "Protocol vocabulary: the Vaillant service B523, primary 0xB5 and secondary 0x23."
+    },
+    {
+      "token": "B555",
+      "reason": "Protocol vocabulary: the Vaillant service B555, primary 0xB5 and secondary 0x55."
     }
   ],
   "baseline": [

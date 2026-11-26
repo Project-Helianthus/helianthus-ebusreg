@@ -1,0 +1,5049 @@
+{
+ "schema_version": 1,
+ "description": "Inventory of the eBUS selectors the Vaillant semantic poller sends, taken from the frozen gateway files listed under source_files. Each entry names the gateway constant, the file that defines it and the native view field it fills.",
+ "source_files": [
+  {
+   "path": "cmd/gateway/b509_decode.go",
+   "sha256": "8610fd279faf8d4e68573247a87875a0424f9fccbc547b838b4b66d159f4aa8e"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_b509_access.go",
+   "sha256": "e5e4a076348108d3032f83b725313fd6ca9637fae6acd0b26dda482fa8e549f0"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_b524_access.go",
+   "sha256": "e36f4462b2727c4fa87a40c383d4b86c2cbab6e8a87f93e53fd6580fa5b538bf"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_boiler.go",
+   "sha256": "837246be18352626b15e246fedc2ce75020f25bd10b3da1ddacdab108f5139b1"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_boiler_config.go",
+   "sha256": "0cf6292915b3ef1a3ba57102335587dde7a353a0a324c339f2ff87d7707478c9"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_circuits.go",
+   "sha256": "8eebb1a93b062cb6cdba32e2c4c1cef43eaa5f2f26ea67eb3f68e0dbf4f48dc4"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_codec.go",
+   "sha256": "738831fc6a8e8d37c102761f1f7915f3914772fe52b573bcf99dd257a0325846"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_dhw.go",
+   "sha256": "717edac6f3d14739554fd3ee4fa1950d90e681a097dd247237121d7193db40cb"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_discovery.go",
+   "sha256": "2e3c4a4f43f6ae64be1f41c4f4a3fea93a28dd20c768f554035459acfd36d3ed"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_energy.go",
+   "sha256": "515bb3a953307dbf570626d8f230842527740fe6655ff96cc49634f2fe6bdffb"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_fm5.go",
+   "sha256": "782ab2e3f7c49037c317b70d61f59ba8a5053dd113c709b689491e9f889de833"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_radio_devices.go",
+   "sha256": "aa729fda7e7efc7ef04c26a142508324dbdbd6099d7d337948257e1755dc0cd8"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_registers.go",
+   "sha256": "cb4afa7d80ee738d040d5ba5078be201b2acab118d174e51344b46005a20c4d8"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_schedules.go",
+   "sha256": "3ff6099da0a4efc45479ecd46d6727a7ac77af04b07f7c7b31d52790f2d466be"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_startup.go",
+   "sha256": "c5b971c89e975198c1b0dfaa414ab16ac1cb23977f5cfdb5101629cdb410127a"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_system.go",
+   "sha256": "7a1ef737c0419bbd2c8af598e279c12be39620f5eebb0bd2e85b1d3ed3cc81d3"
+  },
+  {
+   "path": "cmd/gateway/semantic_vaillant_zones.go",
+   "sha256": "1223a15cf7f8da7f5ad72d7657325c58987c987bacb1f21a6f9c5609df60b78e"
+  },
+  {
+   "path": "cmd/gateway/vaillant_b503_dispatcher.go",
+   "sha256": "2178a41f6904403f4dc74b133187cc48c5d666e1a0a00da03b77defba99d5df9"
+  },
+  {
+   "path": "cmd/gateway/vaillant_b524_interface_identity.go",
+   "sha256": "19fd035e7b81a7348413c46a1dde880db4804cac41af31d65144fc35f5fcdff2"
+  }
+ ],
+ "selectors": [
+  {
+   "id": "b524.regulator.system_off",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_off",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0007",
+   "request_hex": "020000000700",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.SystemOff",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_water_pressure",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_water_pressure",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0039",
+   "request_hex": "020000003900",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.SystemWaterPressure",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshSystemStartup"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_flow_temperature",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_flow_temperature",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x004B",
+   "request_hex": "020000004b00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.SystemFlowTemperature",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem",
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB524"
+   ],
+   "note": "The boiler status pass reads the same selector through boilerStatusRegisterDefinitionsForTier and discards the value (controller flow is not qualified boiler flow)."
+  },
+  {
+   "id": "b524.regulator.system_outdoor_temperature",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_outdoor_temperature",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0073",
+   "request_hex": "020000007300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.OutdoorTemperature",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_outdoor_temperature_avg_24h",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_outdoor_temperature_avg_24h",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0095",
+   "request_hex": "020000009500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.OutdoorTemperatureAvg24h",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_maintenance_due",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_maintenance_due",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0096",
+   "request_hex": "020000009600",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.MaintenanceDue",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_hwc_cylinder_temperature_top",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_hwc_cylinder_temperature_top",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x009D",
+   "request_hex": "020000009d00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.HwcCylinderTemperatureTop",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_hwc_cylinder_temperature_bottom",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_hwc_cylinder_temperature_bottom",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x009E",
+   "request_hex": "020000009e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.HwcCylinderTemperatureBottom",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_adaptive_heating_curve",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_adaptive_heating_curve",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0014",
+   "request_hex": "020000001400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.AdaptiveHeatingCurve",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_alternative_point",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_alternative_point",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0022",
+   "request_hex": "020000002200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.AlternativePoint",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_heating_circuit_bivalence_point",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_heating_circuit_bivalence_point",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0023",
+   "request_hex": "020000002300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.HeatingCircuitBivalencePoint",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_dhw_bivalence_point",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_dhw_bivalence_point",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0001",
+   "request_hex": "020000000100",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.DhwBivalencePoint",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ],
+   "note": "The capability probe of root discovery sends the same selector (group 0x00 register 0x0001) with the discovery-probe purpose."
+  },
+  {
+   "id": "b524.regulator.system_hc_emergency_temperature",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_hc_emergency_temperature",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0026",
+   "request_hex": "020000002600",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.HcEmergencyTemperature",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_hwc_max_flow_temp_desired",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_hwc_max_flow_temp_desired",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0046",
+   "request_hex": "020000004600",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.HwcMaxFlowTempDesired",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_max_room_humidity",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_max_room_humidity",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x000E",
+   "request_hex": "020000000e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.MaxRoomHumidity",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_maintenance_date",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_maintenance_date",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x002C",
+   "request_hex": "020000002c00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.MaintenanceDate",
+   "reader": "readB524DateHDA3",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_installer_name_1",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_installer_name_1",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x006C",
+   "request_hex": "020000006c00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.InstallerName",
+   "reader": "readB524CStringSanitized",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ],
+   "note": "Combined with system_installer_name_2."
+  },
+  {
+   "id": "b524.regulator.system_installer_name_2",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_installer_name_2",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x006D",
+   "request_hex": "020000006d00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.InstallerName",
+   "reader": "readB524CStringSanitized",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ],
+   "note": "Combined with system_installer_name_1."
+  },
+  {
+   "id": "b524.regulator.system_installer_phone_1",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_installer_phone_1",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x006F",
+   "request_hex": "020000006f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.InstallerPhone",
+   "reader": "readB524CStringSanitized",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ],
+   "note": "Combined with system_installer_phone_2."
+  },
+  {
+   "id": "b524.regulator.system_installer_phone_2",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_installer_phone_2",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0070",
+   "request_hex": "020000007000",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.InstallerPhone",
+   "reader": "readB524CStringSanitized",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ],
+   "note": "Combined with system_installer_phone_1."
+  },
+  {
+   "id": "b524.regulator.system_installer_menu_code",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_installer_menu_code",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0076",
+   "request_hex": "020000007600",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.InstallerMenuCode",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_scheme",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_scheme",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0036",
+   "request_hex": "020000003600",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.SystemScheme",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshSystemStartup"
+   ]
+  },
+  {
+   "id": "b524.regulator.system_module_configuration_vr71",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "system_module_configuration_vr71",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x002F",
+   "request_hex": "020000002f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSystemSnapshot.ModuleConfigurationVR71",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: refreshSystem",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshSystemStartup"
+   ]
+  },
+  {
+   "id": "b524.energy.energy_fuel_sum_hc",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_fuel_sum_hc",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0056",
+   "request_hex": "020000005600",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: gas/climate/all",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_electricity_sum_hc",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_electricity_sum_hc",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0057",
+   "request_hex": "020000005700",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: electricity/climate/all",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_electricity_sum_hwc",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_electricity_sum_hwc",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0058",
+   "request_hex": "020000005800",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: electricity/hot_water/all",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_fuel_sum_hwc",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_fuel_sum_hwc",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0059",
+   "request_hex": "020000005900",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: gas/hot_water/all",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_fuel_sum_hc_this_month",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_fuel_sum_hc_this_month",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x004E",
+   "request_hex": "020000004e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: gas/climate/month/current",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_electricity_sum_hc_this_month",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_electricity_sum_hc_this_month",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x004F",
+   "request_hex": "020000004f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: electricity/climate/month/current",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_electricity_sum_hwc_this_month",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_electricity_sum_hwc_this_month",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0050",
+   "request_hex": "020000005000",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: electricity/hot_water/month/current",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_fuel_sum_hwc_this_month",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_fuel_sum_hwc_this_month",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0051",
+   "request_hex": "020000005100",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: gas/hot_water/month/current",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_fuel_sum_hc_last_month",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_fuel_sum_hc_last_month",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0052",
+   "request_hex": "020000005200",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: gas/climate/month/previous",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_electricity_sum_hc_last_month",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_electricity_sum_hc_last_month",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0053",
+   "request_hex": "020000005300",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: electricity/climate/month/previous",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_electricity_sum_hwc_last_month",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_electricity_sum_hwc_last_month",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0054",
+   "request_hex": "020000005400",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: electricity/hot_water/month/previous",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.energy.energy_fuel_sum_hwc_last_month",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "energy_fuel_sum_hwc_last_month",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0055",
+   "request_hex": "020000005500",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524EnergyQuery channel/usage/period/window: gas/hot_water/month/previous",
+   "reader": "readB524ValueWithMaxAge + 4-byte little-endian (0xFFFFFFFF is no value)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_energy.go: readEnergyRegister"
+   ],
+   "note": "Monthly windows read with a zero freshness override; lifetime totals use the descriptor freshness."
+  },
+  {
+   "id": "b524.zone.zone_index",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_index",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x001C",
+   "request_hex": "020003001c00",
+   "request_hex_kind": "complete",
+   "native_view_field": "zone presence (first reply byte other than 0xFF)",
+   "reader": "readB524Value / readB524Startup",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneDiscovery"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_name",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_name",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0016",
+   "request_hex": "020003001600",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.Name (primary part)",
+   "reader": "readB524ZoneNamePart",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshConfig"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_name_prefix",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_name_prefix",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0017",
+   "request_hex": "020003001700",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.Name (prefix part)",
+   "reader": "readB524ZoneNamePart",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshConfig"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_name_suffix",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_name_suffix",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0018",
+   "request_hex": "020003001800",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.Name (suffix part)",
+   "reader": "readB524ZoneNamePart",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshConfig"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_target_temp",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_target_temp",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0022",
+   "request_hex": "020003002200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.TargetTempC",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_fallback_manual_temp",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_fallback_manual_temp",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0014",
+   "request_hex": "020003001400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.TargetTempC (fallback when zone_target_temp has no value)",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_current_humidity",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_current_humidity",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0028",
+   "request_hex": "020003002800",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.HumidityPct",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_heating_op_mode",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_heating_op_mode",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0006",
+   "request_hex": "020003000600",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.ConfigurationHeatingOperationMode and OperatingMode",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_quick_veto_temp",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_quick_veto_temp",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0008",
+   "request_hex": "020003000800",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.QuickVetoTempC",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_quick_veto_duration",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_quick_veto_duration",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0026",
+   "request_hex": "020003002600",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.QuickVetoDurationH",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_quick_veto_end_time",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_quick_veto_end_time",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x001E",
+   "request_hex": "020003001e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.QuickVetoEndTime",
+   "reader": "readB524Value (hour, minute)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_quick_veto_end_date",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_quick_veto_end_date",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0024",
+   "request_hex": "020003002400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.QuickVetoEndDate",
+   "reader": "readB524Value (day, month, year offset)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_holiday_start_date",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_holiday_start_date",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0003",
+   "request_hex": "020003000300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.HolidayStartDate",
+   "reader": "readB524Value (day, month, year offset; sentinel suppressed)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_holiday_end_date",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_holiday_end_date",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0004",
+   "request_hex": "020003000400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.HolidayEndDate",
+   "reader": "readB524Value (day, month, year offset; sentinel suppressed)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_holiday_setpoint",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_holiday_setpoint",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0005",
+   "request_hex": "020003000500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.HolidaySetpointC",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_holiday_end_time",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_holiday_end_time",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0020",
+   "request_hex": "020003002000",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.HolidayEndTime",
+   "reader": "readB524Value (hour, minute)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_holiday_start_time",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_holiday_start_time",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0021",
+   "request_hex": "020003002100",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.HolidayStartTime",
+   "reader": "readB524Value (hour, minute)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_room_temperature_zone_mapping_raw",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_room_temperature_zone_mapping_raw",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0013",
+   "request_hex": "020003001300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.ConfigurationRoomTemperatureZoneMappingRaw and ConfigurationAssociatedCircuitRaw",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_current_temp",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_current_temp",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x000F",
+   "request_hex": "020003000f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.CurrentTempC",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshState"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_special_function",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_special_function",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x000E",
+   "request_hex": "020003000e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.StateSpecialFunction and Preset",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshState"
+   ]
+  },
+  {
+   "id": "b524.zone.zone_valve_status",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "zone_valve_status",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localZones",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x03",
+   "instance_first": "0x00",
+   "instance_last": "0x08",
+   "register": "0x0012",
+   "request_hex": "020003001200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantZoneSnapshot.StateValveStatusRaw and HvacAction",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_zones.go: refreshState"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_type",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_type",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0002",
+   "request_hex": "020002000200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.CircuitTypeRaw; vaillantZoneSnapshot.ConfigurationCircuitTypeRaw and AllowedModes (zone derivation input)",
+   "reader": "readB524Uint16 / readB524Uint16Startup",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: probeCircuitInstances",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshCircuitsStartup",
+    "cmd/gateway/semantic_vaillant_zones.go: refreshZoneSlowConfigFields"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_cooling_enabled",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_cooling_enabled",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0006",
+   "request_hex": "020002000600",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.CoolingEnabledRaw",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_flow_setpoint",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_flow_setpoint",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0007",
+   "request_hex": "020002000700",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.FlowSetpointC",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_flow_temp",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_flow_temp",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0008",
+   "request_hex": "020002000800",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.FlowTemperatureC",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails",
+    "cmd/gateway/semantic_vaillant_circuits.go: readDhwPseudoCircuitTemperatureEvidence",
+    "cmd/gateway/semantic_vaillant_startup.go: readDhwPseudoCircuitStartupTemperatureEvidence"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_heating_curve",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_heating_curve",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x000F",
+   "request_hex": "020002000f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.HeatingCurve",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_flow_temp_max",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_flow_temp_max",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0010",
+   "request_hex": "020002001000",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.FlowTempMaxC",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_flow_temp_min",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_flow_temp_min",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0012",
+   "request_hex": "020002001200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.FlowTempMinC",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_summer_limit",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_summer_limit",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0014",
+   "request_hex": "020002001400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.SummerLimitC",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_room_temp_control",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_room_temp_control",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0015",
+   "request_hex": "020002001500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.RoomTempControlRaw",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_circuit_state",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_circuit_state",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x001E",
+   "request_hex": "020002001e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.CircuitStateRaw",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_special_function_mode",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_special_function_mode",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x001D",
+   "request_hex": "020002001d00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.SpecialFunctionMode",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_pump_status",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_pump_status",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x001B",
+   "request_hex": "020002001b00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.PumpStatusRaw",
+   "reader": "readB524Uint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_mixer_position",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_mixer_position",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0021",
+   "request_hex": "020002002100",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.MixerPositionPct",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_humidity",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_humidity",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0022",
+   "request_hex": "020002002200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.HumidityPct",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_dew_point",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_dew_point",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0023",
+   "request_hex": "020002002300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.DewPointC",
+   "reader": "readB524Float32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_pump_hours",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_pump_hours",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0024",
+   "request_hex": "020002002400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.PumpHoursRaw",
+   "reader": "readB524Uint32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_pump_starts",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_pump_starts",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0025",
+   "request_hex": "020002002500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCircuitSnapshot.PumpStartsRaw",
+   "reader": "readB524Uint32LE",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_circuits.go: readCircuitDetails"
+   ]
+  },
+  {
+   "id": "b524.circuit.circuit_calc_flow_temp",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "circuit_calc_flow_temp",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCircuits",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x02",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0020",
+   "request_hex": "020002002000",
+   "request_hex_kind": "complete",
+   "native_view_field": "none: circuit_unknown_10 raw evidence, not a temperature",
+   "reader": "readB524Float32LE rejects the selector before acquisition",
+   "purposes": [
+    "not_sent"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_b524_access.go: readB524Float32LE"
+   ],
+   "note": "The gateway constant is a legacy selector name; readB524Float32LE returns no value for it before any send, so the poller never sends this selector."
+  },
+  {
+   "id": "b524.dhw.dhw_current_temp",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "dhw_current_temp",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localDHW",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x01",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0005",
+   "request_hex": "020001000500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantDhwSnapshot.CurrentTempC",
+   "reader": "readDhwFloat / readB524Startup + decodeB524Float32FromRaw",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: refreshDHW",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshDHWStartup",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshBoilerStatusStartup"
+   ]
+  },
+  {
+   "id": "b524.dhw.dhw_special_function",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "dhw_special_function",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localDHW",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x01",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x000D",
+   "request_hex": "020001000d00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantDhwSnapshot.StateSpecialFunction and Preset",
+   "reader": "readDhwUint16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: refreshDHW"
+   ]
+  },
+  {
+   "id": "b524.dhw.dhw_operation_mode",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "dhw_operation_mode",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localDHW",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x01",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0003",
+   "request_hex": "020001000300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantDhwSnapshot.ConfigurationDHWOperationMode, OperatingMode and Preset",
+   "reader": "readDhwUint16 / readB524Uint16Startup",
+   "purposes": [
+    "value_read",
+    "startup_read",
+    "discovery_probe"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: refreshDHWSlowConfig",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshDHWStartup"
+   ],
+   "note": "The capability probe of root discovery sends the same selector (group 0x01 register 0x0003) with the discovery-probe purpose; the discovery path accepts a header-only reply as coherent while the value read returns no value."
+  },
+  {
+   "id": "b524.dhw.dhw_target_temp",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "dhw_target_temp",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localDHW",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x01",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0004",
+   "request_hex": "020001000400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantDhwSnapshot.TargetTempC",
+   "reader": "readDhwFloat",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: refreshDHWSlowConfig"
+   ]
+  },
+  {
+   "id": "b524.dhw.dhw_holiday_start_date",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "dhw_holiday_start_date",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localDHW",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x01",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0009",
+   "request_hex": "020001000900",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantDhwSnapshot.HolidayStartDate",
+   "reader": "readB524Value (day, month, year offset; sentinel suppressed)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: refreshDHWSlowConfig"
+   ]
+  },
+  {
+   "id": "b524.dhw.dhw_holiday_end_date",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "dhw_holiday_end_date",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localDHW",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x01",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x000A",
+   "request_hex": "020001000a00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantDhwSnapshot.HolidayEndDate",
+   "reader": "readB524Value (day, month, year offset; sentinel suppressed)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: refreshDHWSlowConfig"
+   ]
+  },
+  {
+   "id": "b524.solar.solar_enabled",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "solar_enabled",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localSolar",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x04",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0001",
+   "request_hex": "020004000100",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSolarSnapshot.SolarEnabled",
+   "reader": "readB524Value + decodeB524BoolFromRaw",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readSolarSnapshot",
+    "cmd/gateway/semantic_vaillant_startup.go: readSolarSnapshotStartup"
+   ]
+  },
+  {
+   "id": "b524.solar.solar_function_mode",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "solar_function_mode",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localSolar",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x04",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0002",
+   "request_hex": "020004000200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSolarSnapshot.FunctionMode",
+   "reader": "readB524Value + decodeB524BoolFromRaw",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readSolarSnapshot"
+   ]
+  },
+  {
+   "id": "b524.solar.solar_collector_temp",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "solar_collector_temp",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localSolar",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x04",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0003",
+   "request_hex": "020004000300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSolarSnapshot.CollectorTemperatureC",
+   "reader": "readB524Value + decodeB524Float32FromRaw",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readSolarSnapshot",
+    "cmd/gateway/semantic_vaillant_startup.go: readSolarSnapshotStartup"
+   ]
+  },
+  {
+   "id": "b524.solar.solar_return_temp",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "solar_return_temp",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localSolar",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x04",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0007",
+   "request_hex": "020004000700",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSolarSnapshot.ReturnTemperatureC",
+   "reader": "readB524Value + decodeB524Float32FromRaw",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readSolarSnapshot"
+   ]
+  },
+  {
+   "id": "b524.solar.solar_pump_active",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "solar_pump_active",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localSolar",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x04",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0008",
+   "request_hex": "020004000800",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSolarSnapshot.PumpActive",
+   "reader": "readB524Value + decodeB524BoolFromRaw",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readSolarSnapshot",
+    "cmd/gateway/semantic_vaillant_startup.go: readSolarSnapshotStartup"
+   ]
+  },
+  {
+   "id": "b524.solar.solar_current_yield",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "solar_current_yield",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localSolar",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x04",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0009",
+   "request_hex": "020004000900",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSolarSnapshot.CurrentYield",
+   "reader": "readB524Value + decodeB524Float32FromRaw",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readSolarSnapshot"
+   ]
+  },
+  {
+   "id": "b524.solar.solar_pump_hours",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "solar_pump_hours",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localSolar",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x04",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x000B",
+   "request_hex": "020004000b00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantSolarSnapshot.PumpHours",
+   "reader": "readB524Value + decodeB524Uint32FromRaw",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readSolarSnapshot"
+   ]
+  },
+  {
+   "id": "b524.cylinder.cylinder_max_setpoint",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "cylinder_max_setpoint",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCylinders",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x05",
+   "instance_first": "0x00",
+   "instance_last": "0x01",
+   "register": "0x0001",
+   "request_hex": "020005000100",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCylinderSnapshot.MaxSetpointC",
+   "reader": "readB524Value + decodeB524Float32FromRaw",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readCylinderSnapshots"
+   ]
+  },
+  {
+   "id": "b524.cylinder.cylinder_charge_hysteresis",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "cylinder_charge_hysteresis",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCylinders",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x05",
+   "instance_first": "0x00",
+   "instance_last": "0x01",
+   "register": "0x0002",
+   "request_hex": "020005000200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCylinderSnapshot.ChargeHysteresis",
+   "reader": "readB524Value + decodeB524Float32FromRaw",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readCylinderSnapshots"
+   ]
+  },
+  {
+   "id": "b524.cylinder.cylinder_charge_offset",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "cylinder_charge_offset",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCylinders",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x05",
+   "instance_first": "0x00",
+   "instance_last": "0x01",
+   "register": "0x0003",
+   "request_hex": "020005000300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCylinderSnapshot.ChargeOffset",
+   "reader": "readB524Value + decodeB524Float32FromRaw",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readCylinderSnapshots"
+   ]
+  },
+  {
+   "id": "b524.cylinder.cylinder_temperature",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "cylinder_temperature",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localCylinders",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x05",
+   "instance_first": "0x00",
+   "instance_last": "0x01",
+   "register": "0x0004",
+   "request_hex": "020005000400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantCylinderSnapshot.TemperatureC",
+   "reader": "readB524Value + decodeB524Float32FromRaw",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_dhw.go: readCylinderSnapshots",
+    "cmd/gateway/semantic_vaillant_startup.go: readCylinderSnapshotsStartup"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteRegulators.device_slot_connected",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_connected",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteRegulators",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x09",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0001",
+   "request_hex": "060009000100",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.DeviceConnected",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: discoverDeviceSlotsWithFM5Completeness",
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshRadioDevicesStartup"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteThermostats.device_slot_connected",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_connected",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteThermostats",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0A",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0001",
+   "request_hex": "06000a000100",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.DeviceConnected",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: discoverDeviceSlotsWithFM5Completeness",
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshRadioDevicesStartup"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteFunctionalModules.device_slot_connected",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_connected",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteFunctionalModules",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0C",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0001",
+   "request_hex": "06000c000100",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.DeviceConnected",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: discoverDeviceSlotsWithFM5Completeness",
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshRadioDevicesStartup"
+   ],
+   "note": "Functional module slots are read through readFunctionalModuleIdentitySnapshotWith; the instance range follows the startup slot scan limits and 0x0A in the full pass."
+  },
+  {
+   "id": "b524.remote.remoteRegulators.device_slot_class_address",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_class_address",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteRegulators",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x09",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0002",
+   "request_hex": "060009000200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.DeviceClassAddress and DeviceModel",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshRadioDevicesStartup"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteThermostats.device_slot_class_address",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_class_address",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteThermostats",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0A",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0002",
+   "request_hex": "06000a000200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.DeviceClassAddress and DeviceModel",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshRadioDevicesStartup"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteFunctionalModules.device_slot_class_address",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_class_address",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteFunctionalModules",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0C",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0002",
+   "request_hex": "06000c000200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.DeviceClassAddress and DeviceModel",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read",
+    "startup_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith",
+    "cmd/gateway/semantic_vaillant_startup.go: refreshRadioDevicesStartup"
+   ],
+   "note": "Functional module slots are read through readFunctionalModuleIdentitySnapshotWith; the instance range follows the startup slot scan limits and 0x0A in the full pass."
+  },
+  {
+   "id": "b524.remote.remoteRegulators.device_slot_firmware",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_firmware",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteRegulators",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x09",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0004",
+   "request_hex": "060009000400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.FirmwareVersion",
+   "reader": "readB524Firmware",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteThermostats.device_slot_firmware",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_firmware",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteThermostats",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0A",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0004",
+   "request_hex": "06000a000400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.FirmwareVersion",
+   "reader": "readB524Firmware",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteFunctionalModules.device_slot_firmware",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_firmware",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteFunctionalModules",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0C",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0004",
+   "request_hex": "06000c000400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.FirmwareVersion",
+   "reader": "readB524Firmware",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith"
+   ],
+   "note": "Functional module slots are read through readFunctionalModuleIdentitySnapshotWith; the instance range follows the startup slot scan limits and 0x0A in the full pass."
+  },
+  {
+   "id": "b524.remote.remoteRegulators.device_slot_hardware_identifier",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_hardware_identifier",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteRegulators",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x09",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0023",
+   "request_hex": "060009002300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.HardwareIdentifier",
+   "reader": "readB524U16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteThermostats.device_slot_hardware_identifier",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_hardware_identifier",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteThermostats",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0A",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0023",
+   "request_hex": "06000a002300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.HardwareIdentifier",
+   "reader": "readB524U16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteFunctionalModules.device_slot_hardware_identifier",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_hardware_identifier",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteFunctionalModules",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0C",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0023",
+   "request_hex": "06000c002300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.HardwareIdentifier",
+   "reader": "readB524U16",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readRadioSlotDetails",
+    "cmd/gateway/semantic_vaillant_fm5.go: readFunctionalModuleIdentitySnapshotWith"
+   ],
+   "note": "Functional module slots are read through readFunctionalModuleIdentitySnapshotWith; the instance range follows the startup slot scan limits and 0x0A in the full pass."
+  },
+  {
+   "id": "b524.remote.remoteRegulators.device_slot_remote_control_address",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_remote_control_address",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteRegulators",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x09",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0019",
+   "request_hex": "060009001900",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.RemoteControlAddress",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteThermostats.device_slot_remote_control_address",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_remote_control_address",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteThermostats",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0A",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0019",
+   "request_hex": "06000a001900",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.RemoteControlAddress",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteFunctionalModules.device_slot_remote_control_address",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_remote_control_address",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteFunctionalModules",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0C",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0019",
+   "request_hex": "06000c001900",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.RemoteControlAddress",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ],
+   "note": "Functional module slots are read through readFunctionalModuleIdentitySnapshotWith; the instance range follows the startup slot scan limits and 0x0A in the full pass."
+  },
+  {
+   "id": "b524.remote.remoteRegulators.device_slot_paired",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_paired",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteRegulators",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x09",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x001E",
+   "request_hex": "060009001e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.DevicePaired",
+   "reader": "readB524Bool",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteThermostats.device_slot_paired",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_paired",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteThermostats",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0A",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x001E",
+   "request_hex": "06000a001e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.DevicePaired",
+   "reader": "readB524Bool",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteFunctionalModules.device_slot_paired",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_paired",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteFunctionalModules",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0C",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x001E",
+   "request_hex": "06000c001e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.DevicePaired",
+   "reader": "readB524Bool",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ],
+   "note": "Functional module slots are read through readFunctionalModuleIdentitySnapshotWith; the instance range follows the startup slot scan limits and 0x0A in the full pass."
+  },
+  {
+   "id": "b524.remote.remoteRegulators.device_slot_reception_strength",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_reception_strength",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteRegulators",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x09",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x001F",
+   "request_hex": "060009001f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.ReceptionStrength",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteThermostats.device_slot_reception_strength",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_reception_strength",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteThermostats",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0A",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x001F",
+   "request_hex": "06000a001f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.ReceptionStrength",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteFunctionalModules.device_slot_reception_strength",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_reception_strength",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteFunctionalModules",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0C",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x001F",
+   "request_hex": "06000c001f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.ReceptionStrength",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ],
+   "note": "Functional module slots are read through readFunctionalModuleIdentitySnapshotWith; the instance range follows the startup slot scan limits and 0x0A in the full pass."
+  },
+  {
+   "id": "b524.remote.remoteRegulators.device_slot_zone_assignment",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_zone_assignment",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteRegulators",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x09",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0025",
+   "request_hex": "060009002500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.ZoneAssignment",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteThermostats.device_slot_zone_assignment",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_zone_assignment",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteThermostats",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0A",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0025",
+   "request_hex": "06000a002500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.ZoneAssignment",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteFunctionalModules.device_slot_zone_assignment",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_zone_assignment",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteFunctionalModules",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0C",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0025",
+   "request_hex": "06000c002500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.ZoneAssignment",
+   "reader": "readB524U8",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ],
+   "note": "Functional module slots are read through readFunctionalModuleIdentitySnapshotWith; the instance range follows the startup slot scan limits and 0x0A in the full pass."
+  },
+  {
+   "id": "b524.remote.remoteRegulators.device_slot_room_temperature",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_room_temperature",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteRegulators",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x09",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x000F",
+   "request_hex": "060009000f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.RoomTemperatureC",
+   "reader": "readB524F32",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteThermostats.device_slot_room_temperature",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_room_temperature",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteThermostats",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0A",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x000F",
+   "request_hex": "06000a000f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.RoomTemperatureC",
+   "reader": "readB524F32",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteFunctionalModules.device_slot_room_temperature",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_room_temperature",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteFunctionalModules",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0C",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x000F",
+   "request_hex": "06000c000f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.RoomTemperatureC",
+   "reader": "readB524F32",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ],
+   "note": "Functional module slots are read through readFunctionalModuleIdentitySnapshotWith; the instance range follows the startup slot scan limits and 0x0A in the full pass."
+  },
+  {
+   "id": "b524.remote.remoteRegulators.device_slot_room_humidity",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_room_humidity",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteRegulators",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x09",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0007",
+   "request_hex": "060009000700",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.RoomHumidityPct",
+   "reader": "readB524F32",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteThermostats.device_slot_room_humidity",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_room_humidity",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteThermostats",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0A",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0007",
+   "request_hex": "06000a000700",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.RoomHumidityPct",
+   "reader": "readB524F32",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ]
+  },
+  {
+   "id": "b524.remote.remoteFunctionalModules.device_slot_room_humidity",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "read",
+   "gateway_constant": "device_slot_room_humidity",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "remoteFunctionalModules",
+   "opcode_constant": "vaillantB524OpcodeRead",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x06",
+   "operation_byte": "0x00",
+   "group": "0x0C",
+   "instance_first": "0x00",
+   "instance_last": "0x0A",
+   "register": "0x0007",
+   "request_hex": "06000c000700",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantRadioDeviceSnapshot.RoomHumidityPct",
+   "reader": "readB524F32",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_radio_devices.go: readConnectedRadioSlotDetails"
+   ],
+   "note": "Functional module slots are read through readFunctionalModuleIdentitySnapshotWith; the instance range follows the startup slot scan limits and 0x0A in the full pass."
+  },
+  {
+   "id": "b524.discovery.capability_probe_regulator",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "probe",
+   "gateway_constant": "b524CapabilityProbes[0]",
+   "defined_in": "cmd/gateway/semantic_vaillant_discovery.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0001",
+   "request_hex": "020000000100",
+   "request_hex_kind": "complete",
+   "native_view_field": "none: probe coherence decides root discovery",
+   "reader": "probeB524Register + IsB524ResponseCoherent",
+   "purposes": [
+    "discovery_probe"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_discovery.go: discoverB524RootWithOptions"
+   ]
+  },
+  {
+   "id": "b524.discovery.capability_probe_hot_water_mode",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "probe",
+   "gateway_constant": "b524CapabilityProbes[1]",
+   "defined_in": "cmd/gateway/semantic_vaillant_discovery.go",
+   "group_constant": "localDHW",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x00",
+   "group": "0x01",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0003",
+   "request_hex": "020001000300",
+   "request_hex_kind": "complete",
+   "native_view_field": "none: probe coherence decides root discovery",
+   "reader": "probeB524Register + IsB524ResponseCoherent",
+   "purposes": [
+    "discovery_probe"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_discovery.go: discoverB524RootWithOptions"
+   ]
+  },
+  {
+   "id": "b524.regulator.write.system_installer_name_1",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "write",
+   "gateway_constant": "system_installer_name_1",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x01",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x006C",
+   "request_hex": "020100006c00",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantSystemSnapshot.InstallerName (after a confirmed write)",
+   "reader": "writeB524Value (seven-byte null-padded text)",
+   "purposes": [
+    "write"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: writeSystemCStringPair"
+   ]
+  },
+  {
+   "id": "b524.regulator.write.system_installer_name_2",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "write",
+   "gateway_constant": "system_installer_name_2",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x01",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x006D",
+   "request_hex": "020100006d00",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantSystemSnapshot.InstallerName (after a confirmed write)",
+   "reader": "writeB524Value (seven-byte null-padded text)",
+   "purposes": [
+    "write"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: writeSystemCStringPair"
+   ]
+  },
+  {
+   "id": "b524.regulator.write.system_installer_phone_1",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "write",
+   "gateway_constant": "system_installer_phone_1",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x01",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x006F",
+   "request_hex": "020100006f00",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantSystemSnapshot.InstallerPhone (after a confirmed write)",
+   "reader": "writeB524Value (seven-byte null-padded text)",
+   "purposes": [
+    "write"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: writeSystemCStringPair"
+   ]
+  },
+  {
+   "id": "b524.regulator.write.system_installer_phone_2",
+   "service": "B524",
+   "geometry": "B524Selector",
+   "operation": "write",
+   "gateway_constant": "system_installer_phone_2",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "group_constant": "localRegulator",
+   "opcode_constant": "vaillantB524OpcodeLocal",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "opcode": "0x02",
+   "operation_byte": "0x01",
+   "group": "0x00",
+   "instance_first": "0x00",
+   "instance_last": "0x00",
+   "register": "0x0070",
+   "request_hex": "020100007000",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantSystemSnapshot.InstallerPhone (after a confirmed write)",
+   "reader": "writeB524Value (seven-byte null-padded text)",
+   "purposes": [
+    "write"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_system.go: writeSystemCStringPair"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_water_pressure",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_water_pressure",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x0200",
+   "target": "boiler",
+   "request_hex": "0d0200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.WaterPressureBar",
+   "reader": "readB509DATA2b",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_flame_active",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_flame_active",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x0500",
+   "target": "boiler",
+   "request_hex": "0d0500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.FlameActive",
+   "reader": "readB509OnOff",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_partload_hc_kw",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_partload_hc_kw",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x0704",
+   "target": "boiler",
+   "request_hex": "0d0704",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.PartloadHcKW",
+   "reader": "readB509BoilerConfigFloat (UCH)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_partload_hwc_kw",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_partload_hwc_kw",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x0804",
+   "target": "boiler",
+   "request_hex": "0d0804",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.PartloadHwcKW",
+   "reader": "readB509BoilerConfigFloat (UCH)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_flowset_hc_max_c",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_flowset_hc_max_c",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x0E04",
+   "target": "boiler",
+   "request_hex": "0d0e04",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.FlowsetHcMaxC",
+   "reader": "readB509BoilerConfigFloat (DATA2c)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_flowset_hc_max_c_fallback",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_flowset_hc_max_c_fallback",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0xA500",
+   "target": "boiler",
+   "request_hex": "0da500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.FlowsetHcMaxC (second address tried when the first has no value)",
+   "reader": "readB509BoilerConfigFloat (DATA2c)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_flowset_hwc_max_c",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_flowset_hwc_max_c",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x0F04",
+   "target": "boiler",
+   "request_hex": "0d0f04",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.FlowsetHwcMaxC",
+   "reader": "readB509BoilerConfigFloat (DATA2c)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_pump_hours",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_pump_hours",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x1400",
+   "target": "boiler",
+   "request_hex": "0d1400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.PumpHours",
+   "reader": "readB509Hoursum2",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_flow_temperature",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_flow_temperature",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x1800",
+   "target": "boiler",
+   "request_hex": "0d1800",
+   "request_hex_kind": "complete",
+   "native_view_field": "none: native evidence retained through retainBoilerThermalRead; the hub result supplies flow",
+   "reader": "readB509Value",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_fan_hours",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_fan_hours",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x1B00",
+   "target": "boiler",
+   "request_hex": "0d1b00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.FanHours",
+   "reader": "readB509Hoursum2",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_deactivations_ifc",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_deactivations_ifc",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x1F00",
+   "target": "boiler",
+   "request_hex": "0d1f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.DeactivationsIFC",
+   "reader": "readB509UCHInt",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_hours_till_service",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_hours_till_service",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x2004",
+   "target": "boiler",
+   "request_hex": "0d2004",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.HoursTillService",
+   "reader": "readB509Hoursum2Int",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_deactivations_limit",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_deactivations_limit",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x2000",
+   "target": "boiler",
+   "request_hex": "0d2000",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.DeactivationsTemplimiter",
+   "reader": "readB509UCHInt",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_dhw_hours",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_dhw_hours",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x2200",
+   "target": "boiler",
+   "request_hex": "0d2200",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.DhwHours",
+   "reader": "readB509Hoursum2",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_dhw_starts",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_dhw_starts",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x2300",
+   "target": "boiler",
+   "request_hex": "0d2300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.DhwStarts",
+   "reader": "readB509UINInt",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_target_fan_speed_rpm",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_target_fan_speed_rpm",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x2400",
+   "target": "boiler",
+   "request_hex": "0d2400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.TargetFanSpeedRpm",
+   "reader": "readB509UINInt",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_central_heating_hours",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_central_heating_hours",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x2800",
+   "target": "boiler",
+   "request_hex": "0d2800",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.CentralHeatingHours",
+   "reader": "readB509Hoursum2",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_central_heating_starts",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_central_heating_starts",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x2900",
+   "target": "boiler",
+   "request_hex": "0d2900",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.CentralHeatingStarts",
+   "reader": "readB509UINInt",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_modulation_pct",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_modulation_pct",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x2E00",
+   "target": "boiler",
+   "request_hex": "0d2e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.ModulationPct",
+   "reader": "readB509SINScaled (divisor 10)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_flow_temp_desired_c",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_flow_temp_desired_c",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x3900",
+   "target": "boiler",
+   "request_hex": "0d3900",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.FlowTempDesiredC",
+   "reader": "readB509DATA2c",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_external_pump_active",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_external_pump_active",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x3F00",
+   "target": "boiler",
+   "request_hex": "0d3f00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.ExternalPumpActive",
+   "reader": "readB509OnOff",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_installer_menu_code",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_installer_menu_code",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x4904",
+   "target": "boiler",
+   "request_hex": "0d4904",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.InstallerMenuCode",
+   "reader": "readB509UCHInt",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_central_heating_pump",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_central_heating_pump",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x4400",
+   "target": "boiler",
+   "request_hex": "0d4400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.CentralHeatingPumpActive",
+   "reader": "readB509OnOff",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_diverter_valve_position",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_diverter_valve_position",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x5400",
+   "target": "boiler",
+   "request_hex": "0d5400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.DiverterValvePositionPct",
+   "reader": "readB509UCHFloat",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_dhw_water_flow_lpm",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_dhw_water_flow_lpm",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x5500",
+   "target": "boiler",
+   "request_hex": "0d5500",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.DhwWaterFlowLpm",
+   "reader": "readB509UIN100",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_dhw_demand_active",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_dhw_demand_active",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x5800",
+   "target": "boiler",
+   "request_hex": "0d5800",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.DhwDemandActive",
+   "reader": "readB509OnOff",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_circulation_pump_active",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_circulation_pump_active",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x7B00",
+   "target": "boiler",
+   "request_hex": "0d7b00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.CirculationPumpActive",
+   "reader": "readB509OnOff",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_phone_number",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_phone_number",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x8104",
+   "target": "boiler",
+   "request_hex": "0d8104",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.PhoneNumber",
+   "reader": "readB509PhoneBCD",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Slow"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_fan_speed_rpm",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_fan_speed_rpm",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x8300",
+   "target": "boiler",
+   "request_hex": "0d8300",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.FanSpeedRpm",
+   "reader": "readB509UINInt",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_storage_load_pump_pct",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_storage_load_pump_pct",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0x9E00",
+   "target": "boiler",
+   "request_hex": "0d9e00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.StorageLoadPumpPct",
+   "reader": "readB509Percent0",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_ionisation_voltage_ua",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_ionisation_voltage_ua",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0xA400",
+   "target": "boiler",
+   "request_hex": "0da400",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.IonisationVoltageUa",
+   "reader": "readB509SINScaled (divisor 10)",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_state_number",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_state_number",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0xAB00",
+   "target": "boiler",
+   "request_hex": "0dab00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.StateNumber",
+   "reader": "readB509UCHInt",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_gas_valve_active",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_gas_valve_active",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0xBB00",
+   "target": "boiler",
+   "request_hex": "0dbb00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.GasValveActive",
+   "reader": "readB509OnOff",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Fast"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_heating_switch_active",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_heating_switch_active",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0xF203",
+   "target": "boiler",
+   "request_hex": "0df203",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.HeatingSwitchActive",
+   "reader": "readB509OnOff",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_primary_circuit_flow_lpm",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_primary_circuit_flow_lpm",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0xFB00",
+   "target": "boiler",
+   "request_hex": "0dfb00",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.PrimaryCircuitFlowLpm",
+   "reader": "readB509UIN100",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.boiler_b509_dhw_temp_desired_c",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "read",
+   "gateway_constant": "boiler_b509_dhw_temp_desired_c",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeRead",
+   "opcode": "0x0D",
+   "register": "0xEA03",
+   "target": "boiler",
+   "request_hex": "0dea03",
+   "request_hex_kind": "complete",
+   "native_view_field": "vaillantBoilerSnapshot.DhwTempDesiredC",
+   "reader": "readB509DATA2c",
+   "purposes": [
+    "value_read"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler.go: refreshBoilerStatusB509Medium"
+   ]
+  },
+  {
+   "id": "b509.write.boiler_b509_flowset_hc_max_c",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "write",
+   "gateway_constant": "boiler_b509_flowset_hc_max_c",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeWrite",
+   "opcode": "0x0E",
+   "register": "0x0E04",
+   "target": "boiler",
+   "request_hex": "0e0e04",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantBoilerSnapshot.FlowsetHcMaxC (after a confirmed write and live read-back)",
+   "reader": "writeB509Value, then readB509ValueLive",
+   "purposes": [
+    "write",
+    "write_readback"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler_config.go: SetBoilerConfig"
+   ]
+  },
+  {
+   "id": "b509.write.boiler_b509_flowset_hc_max_c_fallback",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "write",
+   "gateway_constant": "boiler_b509_flowset_hc_max_c_fallback",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeWrite",
+   "opcode": "0x0E",
+   "register": "0xA500",
+   "target": "boiler",
+   "request_hex": "0ea500",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantBoilerSnapshot.FlowsetHcMaxC (after a confirmed write and live read-back)",
+   "reader": "writeB509Value, then readB509ValueLive",
+   "purposes": [
+    "write",
+    "write_readback"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler_config.go: SetBoilerConfig"
+   ]
+  },
+  {
+   "id": "b509.write.boiler_b509_flowset_hwc_max_c",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "write",
+   "gateway_constant": "boiler_b509_flowset_hwc_max_c",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeWrite",
+   "opcode": "0x0E",
+   "register": "0x0F04",
+   "target": "boiler",
+   "request_hex": "0e0f04",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantBoilerSnapshot.FlowsetHwcMaxC (after a confirmed write and live read-back)",
+   "reader": "writeB509Value, then readB509ValueLive",
+   "purposes": [
+    "write",
+    "write_readback"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler_config.go: SetBoilerConfig"
+   ]
+  },
+  {
+   "id": "b509.write.boiler_b509_partload_hc_kw",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "write",
+   "gateway_constant": "boiler_b509_partload_hc_kw",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeWrite",
+   "opcode": "0x0E",
+   "register": "0x0704",
+   "target": "boiler",
+   "request_hex": "0e0704",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantBoilerSnapshot.PartloadHcKW (after a confirmed write and live read-back)",
+   "reader": "writeB509Value, then readB509ValueLive",
+   "purposes": [
+    "write",
+    "write_readback"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler_config.go: SetBoilerConfig"
+   ]
+  },
+  {
+   "id": "b509.write.boiler_b509_partload_hwc_kw",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "write",
+   "gateway_constant": "boiler_b509_partload_hwc_kw",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeWrite",
+   "opcode": "0x0E",
+   "register": "0x0804",
+   "target": "boiler",
+   "request_hex": "0e0804",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantBoilerSnapshot.PartloadHwcKW (after a confirmed write and live read-back)",
+   "reader": "writeB509Value, then readB509ValueLive",
+   "purposes": [
+    "write",
+    "write_readback"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler_config.go: SetBoilerConfig"
+   ]
+  },
+  {
+   "id": "b509.write.boiler_b509_phone_number",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "write",
+   "gateway_constant": "boiler_b509_phone_number",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeWrite",
+   "opcode": "0x0E",
+   "register": "0x8104",
+   "target": "boiler",
+   "request_hex": "0e8104",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantBoilerSnapshot.PhoneNumber (after a confirmed write and live read-back)",
+   "reader": "writeB509Value, then readB509ValueLive",
+   "purposes": [
+    "write",
+    "write_readback"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler_config.go: writeBoilerPhoneBCD"
+   ]
+  },
+  {
+   "id": "b509.write.boiler_b509_installer_menu_code",
+   "service": "B509",
+   "geometry": "B509Selector",
+   "operation": "write",
+   "gateway_constant": "boiler_b509_installer_menu_code",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x09",
+   "opcode_constant": "vaillantB509OpcodeWrite",
+   "opcode": "0x0E",
+   "register": "0x4904",
+   "target": "boiler",
+   "request_hex": "0e4904",
+   "request_hex_kind": "header_before_value",
+   "native_view_field": "vaillantBoilerSnapshot.InstallerMenuCode (after a confirmed write and live read-back)",
+   "reader": "writeB509Value, then readB509ValueLive",
+   "purposes": [
+    "write",
+    "write_readback"
+   ],
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_boiler_config.go: writeBoilerInstallerMenuCode"
+   ]
+  },
+  {
+   "id": "b555.schedule_config_read",
+   "service": "B555",
+   "geometry": "ScheduleConfigSelector",
+   "operation": "read",
+   "gateway_constant": "b555OpcodeConfigRead",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x55",
+   "opcode": "0xA3",
+   "fields": [
+    "zone",
+    "circuit"
+   ],
+   "native_view_field": "vaillantScheduleConfig",
+   "reader": "readB555Config",
+   "purposes": [
+    "value_read"
+   ],
+   "request_layout": "A3 zone circuit",
+   "program_pairs": "zones 0x00..0x02 with circuit 0x00 and 0x01; zone 0xFF with circuits 0x02, 0x03, 0x04",
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_schedules.go: readB555Config"
+   ]
+  },
+  {
+   "id": "b555.schedule_counts_read",
+   "service": "B555",
+   "geometry": "ScheduleCountsSelector",
+   "operation": "read",
+   "gateway_constant": "b555OpcodeSlotsRead",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x55",
+   "opcode": "0xA4",
+   "fields": [
+    "zone",
+    "circuit"
+   ],
+   "native_view_field": "vaillantScheduleProgram.SlotsUsed",
+   "reader": "readB555Slots",
+   "purposes": [
+    "value_read"
+   ],
+   "request_layout": "A4 zone circuit",
+   "program_pairs": "zones 0x00..0x02 with circuit 0x00 and 0x01; zone 0xFF with circuits 0x02, 0x03, 0x04",
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_schedules.go: readB555Slots"
+   ]
+  },
+  {
+   "id": "b555.schedule_timer_read",
+   "service": "B555",
+   "geometry": "ScheduleTimerSelector",
+   "operation": "read",
+   "gateway_constant": "b555OpcodeTimerRead",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x55",
+   "opcode": "0xA5",
+   "fields": [
+    "zone",
+    "circuit",
+    "weekday",
+    "index"
+   ],
+   "native_view_field": "vaillantScheduleDay.Slots (vaillantScheduleTimerSlot)",
+   "reader": "readB555Timer",
+   "purposes": [
+    "value_read"
+   ],
+   "request_layout": "A5 zone circuit weekday index",
+   "program_pairs": "zones 0x00..0x02 with circuit 0x00 and 0x01; zone 0xFF with circuits 0x02, 0x03, 0x04",
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_schedules.go: readB555Timer"
+   ]
+  },
+  {
+   "id": "b555.schedule_timer_write",
+   "service": "B555",
+   "geometry": "ScheduleTimerWriteSelector",
+   "operation": "write",
+   "gateway_constant": "b555OpcodeTimerWrite",
+   "defined_in": "cmd/gateway/semantic_vaillant_registers.go",
+   "primary": "0xB5",
+   "secondary": "0x55",
+   "opcode": "0xA6",
+   "fields": [
+    "zone",
+    "circuit",
+    "weekday",
+    "index",
+    "count",
+    "start_hour",
+    "start_minute",
+    "end_hour",
+    "end_minute",
+    "temperature_raw"
+   ],
+   "native_view_field": "vaillantTimeProgramSlotResult (status byte) and the program re-read",
+   "reader": "writeB555TimerSlot",
+   "purposes": [
+    "write"
+   ],
+   "request_layout": "A6 zone circuit weekday index count start_hour start_minute end_hour end_minute temperature_raw_lo temperature_raw_hi",
+   "program_pairs": "zone 0x00..0x02 circuit 0x00 (heating); zone 0xFF circuit 0x02 (hot water)",
+   "call_sites": [
+    "cmd/gateway/semantic_vaillant_schedules.go: setZoneTimeProgram and setDhwTimeProgram"
+   ]
+  },
+  {
+   "id": "b524.interface_identity.api_version",
+   "service": "B524",
+   "geometry": "InterfaceIdentitySelector",
+   "operation": "read",
+   "gateway_constant": "literal id byte in enrichB524InterfaceIdentity",
+   "defined_in": "cmd/gateway/vaillant_b524_interface_identity.go",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "identity_id": "0x06",
+   "request_hex": "000600",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524InterfaceIdentityRecord.identity.APIVersion",
+   "reader": "b524InterfaceQualifier",
+   "purposes": [
+    "identity_acquisition"
+   ],
+   "call_sites": [
+    "cmd/gateway/vaillant_b524_interface_identity.go: enrichB524InterfaceIdentity"
+   ]
+  },
+  {
+   "id": "b524.interface_identity.revision",
+   "service": "B524",
+   "geometry": "InterfaceIdentitySelector",
+   "operation": "read",
+   "gateway_constant": "literal id byte in enrichB524InterfaceIdentity",
+   "defined_in": "cmd/gateway/vaillant_b524_interface_identity.go",
+   "primary": "0xB5",
+   "secondary": "0x24",
+   "identity_id": "0x07",
+   "request_hex": "000700",
+   "request_hex_kind": "complete",
+   "native_view_field": "b524InterfaceIdentityRecord.identity.Revision",
+   "reader": "b524InterfaceQualifier",
+   "purposes": [
+    "identity_acquisition"
+   ],
+   "call_sites": [
+    "cmd/gateway/vaillant_b524_interface_identity.go: enrichB524InterfaceIdentity"
+   ]
+  },
+  {
+   "id": "b503.current_error_slots",
+   "service": "B503",
+   "geometry": "DiagnosticSelector",
+   "operation": "read",
+   "gateway_constant": "none: the payload is supplied by the caller of rawFrameDispatcher.invokeB503Outcome",
+   "defined_in": "cmd/gateway/vaillant_b503_dispatcher.go",
+   "primary": "0xB5",
+   "secondary": "0x03",
+   "family": "0x00",
+   "selector": "0x01",
+   "request_hex": "0001",
+   "request_hex_kind": "complete",
+   "native_view_field": "mcp.B503DispatchOutcome (Response, Err, Native, Emitted, Transport)",
+   "reader": "rawFrameDispatcher.invokeB503Outcome",
+   "purposes": [
+    "dispatch"
+   ],
+   "call_sites": [
+    "cmd/gateway/vaillant_b503_dispatcher.go: invokeB503Outcome"
+   ]
+  },
+  {
+   "id": "b503.current_service_slots",
+   "service": "B503",
+   "geometry": "DiagnosticSelector",
+   "operation": "read",
+   "gateway_constant": "none: the payload is supplied by the caller of rawFrameDispatcher.invokeB503Outcome",
+   "defined_in": "cmd/gateway/vaillant_b503_dispatcher.go",
+   "primary": "0xB5",
+   "secondary": "0x03",
+   "family": "0x00",
+   "selector": "0x02",
+   "request_hex": "0002",
+   "request_hex_kind": "complete",
+   "native_view_field": "mcp.B503DispatchOutcome (Response, Err, Native, Emitted, Transport)",
+   "reader": "rawFrameDispatcher.invokeB503Outcome",
+   "purposes": [
+    "dispatch"
+   ],
+   "call_sites": [
+    "cmd/gateway/vaillant_b503_dispatcher.go: invokeB503Outcome"
+   ]
+  },
+  {
+   "id": "b503.error_history",
+   "service": "B503",
+   "geometry": "DiagnosticSelector",
+   "operation": "read",
+   "gateway_constant": "none: the payload is supplied by the caller of rawFrameDispatcher.invokeB503Outcome",
+   "defined_in": "cmd/gateway/vaillant_b503_dispatcher.go",
+   "primary": "0xB5",
+   "secondary": "0x03",
+   "family": "0x01",
+   "selector": "0x01",
+   "request_hex": "0101",
+   "request_hex_kind": "body_with_optional_index_byte",
+   "native_view_field": "mcp.B503DispatchOutcome (Response, Err, Native, Emitted, Transport)",
+   "reader": "rawFrameDispatcher.invokeB503Outcome",
+   "purposes": [
+    "dispatch"
+   ],
+   "call_sites": [
+    "cmd/gateway/vaillant_b503_dispatcher.go: invokeB503Outcome"
+   ]
+  },
+  {
+   "id": "b503.service_history",
+   "service": "B503",
+   "geometry": "DiagnosticSelector",
+   "operation": "read",
+   "gateway_constant": "none: the payload is supplied by the caller of rawFrameDispatcher.invokeB503Outcome",
+   "defined_in": "cmd/gateway/vaillant_b503_dispatcher.go",
+   "primary": "0xB5",
+   "secondary": "0x03",
+   "family": "0x01",
+   "selector": "0x02",
+   "request_hex": "0102",
+   "request_hex_kind": "body_with_optional_index_byte",
+   "native_view_field": "mcp.B503DispatchOutcome (Response, Err, Native, Emitted, Transport)",
+   "reader": "rawFrameDispatcher.invokeB503Outcome",
+   "purposes": [
+    "dispatch"
+   ],
+   "call_sites": [
+    "cmd/gateway/vaillant_b503_dispatcher.go: invokeB503Outcome"
+   ]
+  },
+  {
+   "id": "b503.live_monitor_main",
+   "service": "B503",
+   "geometry": "LiveMonitorSelector",
+   "operation": "service_write",
+   "gateway_constant": "none: the payload is supplied by the caller of rawFrameDispatcher.invokeB503Outcome",
+   "defined_in": "cmd/gateway/vaillant_b503_dispatcher.go",
+   "primary": "0xB5",
+   "secondary": "0x03",
+   "family": "0x00",
+   "selector": "0x03",
+   "request_hex": "0003",
+   "request_hex_kind": "complete",
+   "native_view_field": "mcp.B503DispatchOutcome (Response, Err, Native, Emitted, Transport)",
+   "reader": "rawFrameDispatcher.invokeB503Outcome",
+   "purposes": [
+    "dispatch"
+   ],
+   "call_sites": [
+    "cmd/gateway/vaillant_b503_dispatcher.go: invokeB503Outcome"
+   ],
+   "actions": [
+    "enable",
+    "read",
+    "disable"
+   ]
+  }
+ ],
+ "gaps": [
+  {
+   "id": "b503_payload_source",
+   "text": "rawFrameDispatcher.invokeB503Outcome sends the payload its caller supplies; the files named for the inventory hold no family or selector constant. The five bodies are the payloads the dispatcher tests send and the bodies of the merged native diagnostic rows; the history index byte is optional and is not a constant of the named files."
+  },
+  {
+   "id": "b524_system_write_registers",
+   "text": "writeSystemSingleRegister takes its group and register from a system configuration field specification held outside the named files; only the installer name and phone register pairs are named in them, so no other B524 write register is inventoried."
+  },
+  {
+   "id": "remote_slot_instance_range",
+   "text": "The named files bound the remote slot instance with the constant 0x0A for the regulator, thermostat and functional-module groups in the full pass and with startup scan limits that the named files do not define as a number; 0x0A is recorded as the upper bound."
+  },
+  {
+   "id": "circuit_calc_flow_temp_never_sent",
+   "text": "circuit_calc_flow_temp is a constant of the register file, but readB524Float32LE rejects it before any send; it is inventoried so the constant has a row and is marked not sent."
+  }
+ ]
+}

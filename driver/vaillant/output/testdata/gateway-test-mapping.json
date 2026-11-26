@@ -15,8 +15,8 @@
   ],
   "left_in_gateway": [
     {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestVaillantPublicationOwnerPublishesCircuitAndDhwViews", "reason": "drives the publication owner and its retained views"},
-    {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestAcquireEnergyAppliesNativeValuesToTheLedger", "reason": "drives the energy ledger of the gateway provider"},
-    {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestVaillantPublicationEnergyLedgerKeysProviderValues", "reason": "drives the energy ledger of the gateway provider"},
+    {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestAcquireEnergyAppliesNativeValuesToTheLedger", "reason": "drives the energy accounting of the gateway provider"},
+    {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestVaillantPublicationEnergyLedgerKeysProviderValues", "reason": "drives the energy accounting of the gateway provider"},
     {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestVaillantPublicationOwnerPublishesAndWithdrawsBoilerStatus", "reason": "drives the publication owner and its withdrawal"},
     {"gateway_file": "cmd/gateway/vaillant_semantic_publication_views_test.go", "gateway_test": "TestVaillantPublicationOwnerPublishesSystemView", "reason": "drives the publication owner and its retained views"},
     {"gateway_file": "cmd/gateway/semantic_cache_test.go", "gateway_test": "TestPreloadSemanticCache_AppliesSnapshotAsStale", "reason": "drives the gateway provider preload"},

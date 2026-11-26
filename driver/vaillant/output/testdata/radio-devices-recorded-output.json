@@ -1,0 +1,34 @@
+[
+  {
+    "DeviceClassAddress": 58,
+    "DeviceConnected": true,
+    "DeviceModel": "Unknown (0x3A)",
+    "DevicePaired": true,
+    "FirmwareVersion": "01.02.03",
+    "Group": 10,
+    "HardwareIdentifier": 258,
+    "Instance": 1,
+    "ReceptionStrength": 7,
+    "RemoteControlAddress": 1,
+    "RoomHumidityPct": 48,
+    "RoomTemperatureC": 20.75,
+    "SlotMode": "active",
+    "ZoneAssignment": 0
+  },
+  {
+    "DeviceClassAddress": 38,
+    "DeviceConnected": true,
+    "DeviceModel": "VR71/FM5",
+    "DevicePaired": null,
+    "FirmwareVersion": "02.01.00",
+    "Group": 12,
+    "HardwareIdentifier": 513,
+    "Instance": 0,
+    "ReceptionStrength": null,
+    "RemoteControlAddress": null,
+    "RoomHumidityPct": null,
+    "RoomTemperatureC": null,
+    "SlotMode": "active",
+    "ZoneAssignment": null
+  }
+]

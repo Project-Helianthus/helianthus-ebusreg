@@ -1,52 +1,75 @@
 package output
 
 import (
-	"encoding/json"
 	"reflect"
 	"testing"
 )
 
-// The recorded old output for the identifier-bearing radio devices is retained by
-// digest only, so the expectation below is written from the old mapping
-// (radioDeviceFromSnapshot and the MCP adapter) over the same synthetic devices
-// as the recording, not produced by this package.
-func TestVaillantRadioDeviceOutputMatchesOldMapping(t *testing.T) {
+// goFieldValues renders a record the way the recorded old outputs do: keyed by
+// the Go field name, pointers dereferenced, nil pointers as null.
+func goFieldValues(value reflect.Value) map[string]any {
+	out := make(map[string]any, value.NumField())
+	for i := 0; i < value.NumField(); i++ {
+		field := value.Field(i)
+		if field.Kind() == reflect.Pointer {
+			if field.IsNil() {
+				out[value.Type().Field(i).Name] = nil
+				continue
+			}
+			field = field.Elem()
+		}
+		switch field.Kind() {
+		case reflect.String:
+			out[value.Type().Field(i).Name] = field.String()
+		case reflect.Bool:
+			out[value.Type().Field(i).Name] = field.Bool()
+		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+			out[value.Type().Field(i).Name] = float64(field.Int())
+		case reflect.Float32, reflect.Float64:
+			out[value.Type().Field(i).Name] = field.Float()
+		}
+	}
+	return out
+}
+
+// The recorded old radio-device output (testdata/radio-devices-recorded-output.json,
+// copied unchanged from the recorded full-site public output) is compared exactly
+// with what this package builds. The recording holds the published records, not the
+// native snapshots, so the native snapshots below carry the recorded values in
+// their native widths.
+func TestVaillantRadioDeviceOutputReplaysRecordedOutput(t *testing.T) {
+	recorded := readFixture[[]map[string]any](t, "radio-devices-recorded-output.json")
 	boolPtr := func(v bool) *bool { return &v }
 	byteRef := func(v uint8) *uint8 { return &v }
-	intPtr := func(v int) *int { return &v }
 	strPtr := func(v string) *string { return &v }
 	floatPtr := func(v float64) *float64 { return &v }
+	hardware := func(v uint16) *uint16 { return &v }
 
 	native := []*NativeRadioDeviceSnapshot{
 		{
-			Group: 0x09, Instance: 0x00, SlotMode: "paired", DeviceConnected: boolPtr(true), DeviceClassAddress: byteRef(0x15), DeviceModel: "SYN-RC-1",
-			FirmwareVersion: strPtr("1.2.3"), HardwareIdentifier: func() *uint16 { v := uint16(0x1234); return &v }(), RemoteControlAddress: byteRef(0x10), DevicePaired: boolPtr(true),
-			ReceptionStrength: byteRef(4), ZoneAssignment: byteRef(1), RoomTemperatureC: floatPtr(21.25), RoomHumidityPct: floatPtr(47),
+			Group: 10, Instance: 1, SlotMode: "active", DeviceConnected: boolPtr(true), DeviceClassAddress: byteRef(58), DeviceModel: "Unknown (0x3A)",
+			FirmwareVersion: strPtr("01.02.03"), HardwareIdentifier: hardware(258), RemoteControlAddress: byteRef(1), DevicePaired: boolPtr(true),
+			ReceptionStrength: byteRef(7), ZoneAssignment: byteRef(0), RoomTemperatureC: floatPtr(20.75), RoomHumidityPct: floatPtr(48),
 		},
-		{Group: 0x0A, Instance: 0x01, SlotMode: "free", DeviceConnected: boolPtr(false), DeviceModel: "SYN-RC-2"},
-	}
-	wantGraphQL := []RadioDevice{
 		{
-			Group: 9, Instance: 0, SlotMode: "paired", DeviceConnected: boolPtr(true), DeviceClassAddress: intPtr(21), DeviceModel: "SYN-RC-1",
-			FirmwareVersion: strPtr("1.2.3"), HardwareIdentifier: intPtr(4660), RemoteControlAddress: intPtr(16), DevicePaired: boolPtr(true),
-			ReceptionStrength: intPtr(4), ZoneAssignment: intPtr(1), RoomTemperatureC: floatPtr(21.25), RoomHumidityPct: floatPtr(47),
+			Group: 12, Instance: 0, SlotMode: "active", DeviceConnected: boolPtr(true), DeviceClassAddress: byteRef(38), DeviceModel: "VR71/FM5",
+			FirmwareVersion: strPtr("02.01.00"), HardwareIdentifier: hardware(513),
 		},
-		{Group: 10, Instance: 1, SlotMode: "free", DeviceConnected: boolPtr(false), DeviceModel: "SYN-RC-2"},
 	}
-	wantMCP := `[{"group":9,"instance":0,"slot_mode":"paired","device_connected":true,"device_class_address":21,"device_model":"SYN-RC-1","firmware_version":"1.2.3","hardware_identifier":4660,"remote_control_address":16,"device_paired":true,"reception_strength":4,"zone_assignment":1,"room_temperature_c":21.25,"room_humidity_pct":47},{"group":10,"instance":1,"slot_mode":"free","device_connected":false,"device_model":"SYN-RC-2"}]`
-
-	got := make([]RadioDevice, 0, len(native))
+	graphql := make([]RadioDevice, 0, len(native))
 	for _, device := range native {
-		got = append(got, RadioDeviceFromSnapshot(device))
+		graphql = append(graphql, RadioDeviceFromSnapshot(device))
 	}
-	if !reflect.DeepEqual(got, wantGraphQL) {
-		t.Fatalf("radio device records:\ngot  %#v\nwant %#v", got, wantGraphQL)
+	mcp := MCPRadioDevicesFromGraphQL(graphql)
+	if len(mcp) != len(recorded) || len(graphql) != len(recorded) {
+		t.Fatalf("record counts: got %d GraphQL and %d MCP; recorded %d", len(graphql), len(mcp), len(recorded))
 	}
-	encoded, err := json.Marshal(MCPRadioDevicesFromGraphQL(got))
-	if err != nil {
-		t.Fatal(err)
-	}
-	if string(encoded) != wantMCP {
-		t.Fatalf("radio device MCP output:\ngot  %s\nwant %s", encoded, wantMCP)
+	for i, want := range recorded {
+		if got := goFieldValues(reflect.ValueOf(graphql[i])); !reflect.DeepEqual(got, want) {
+			t.Errorf("GraphQL radio device %d:\ngot  %v\nwant %v", i, got, want)
+		}
+		if got := goFieldValues(reflect.ValueOf(mcp[i])); !reflect.DeepEqual(got, want) {
+			t.Errorf("MCP radio device %d:\ngot  %v\nwant %v", i, got, want)
+		}
 	}
 }

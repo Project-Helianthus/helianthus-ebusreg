@@ -1,0 +1,33 @@
+[
+  {
+    "name": "ebus.v1.semantic.boiler_status.get/boiler-fixture",
+    "fixture": "the boiler status of the pin's MCP boiler case",
+    "tool": "ebus.v1.semantic.boiler_status.get",
+    "arguments": {},
+    "is_error": false,
+    "envelope": {
+      "data": {
+        "diagnostics": {
+          "heating_status_raw": 2
+        },
+        "state": {
+          "central_heating_pump_active": true,
+          "flow_temperature_c": 52.5,
+          "return_temperature_c": 47
+        }
+      },
+      "error": null,
+      "meta": {
+        "consistency": {
+          "mode": "LIVE"
+        },
+        "contract": {
+          "major": 1,
+          "minor": 0,
+          "name": "helianthus-ebus-mcp"
+        },
+        "data_hash": "2143e45c4e955a050b0c96162a93010570fbabc5e6c970fff82c531b80a4d29b"
+      }
+    }
+  }
+]

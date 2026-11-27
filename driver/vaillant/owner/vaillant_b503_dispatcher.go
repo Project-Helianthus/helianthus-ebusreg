@@ -105,6 +105,7 @@ type RawFrameDispatcher struct {
 	readMu              sync.Locker
 	mgr                 *b503session.Manager
 	requestTimeout      time.Duration
+	runtime             *B503Runtime
 	disconnectIfCurrent func(b503session.TransportKey)
 	// afterPendingEmission is a deterministic test seam. Production leaves it
 	// nil; it runs while the Manager's emission fence is held and before
@@ -149,6 +150,7 @@ func NewRawFrameDispatcherWithSourceProvider(bus b503Bus, sourceProvider func() 
 		// installVaillantB503 replaces this private gate with the process-owned
 		// B503Runtime shared by DriverManager lifecycle notifications.
 		lifecycle := &B503Runtime{manager: mgr}
+		dispatcher.runtime = lifecycle
 		dispatcher.disconnectIfCurrent = lifecycle.disconnectIfCurrent
 	}
 	return dispatcher

@@ -22,6 +22,7 @@ type ZoneState struct {
 	SpecialFunction    string
 	HeatingDemandPct   *float64
 	ValvePositionPct   *float64
+	enumerations       []CatalogueEnumeration
 }
 
 // ZoneConfig represents the settings of a zone.
@@ -58,6 +59,7 @@ type DhwState struct {
 	OverrunActive    *bool
 	SpecialFunction  string
 	HeatingDemandPct *float64
+	enumerations     []CatalogueEnumeration
 }
 
 // DhwConfig represents domestic hot water settings.
@@ -104,6 +106,7 @@ type CircuitConfig struct {
 	SpecialFunctionMode *int
 	RoomTempControl     string
 	CoolingEnabled      *bool
+	enumerations        []CatalogueEnumeration
 }
 
 // ManagingDevice represents the device responsible for a circuit.
@@ -185,9 +188,13 @@ type EnergyChannel struct {
 
 // EnergyTotals represents the totals for the supported energy sources.
 type EnergyTotals struct {
-	Gas      EnergyChannel
-	Electric EnergyChannel
-	Solar    EnergyChannel
+	Gas                 EnergyChannel
+	Electric            EnergyChannel
+	Solar               EnergyChannel
+	registerDirections  []EnergyDirection
+	catalogueDirections []EnergyDirection
+	residualFields      []EnergyResidual
+	candidateFields     []EnergyResidual
 }
 
 // EnergyFreshnessState represents the freshness classification of an energy value.
@@ -210,6 +217,8 @@ type BoilerStatus struct {
 	State       BoilerState
 	Config      BoilerConfig
 	Diagnostics BoilerDiagnostics
+	selectors   []BoilerSelectorEvidence
+	operations  []RawOperation
 }
 
 // BoilerState represents the observed state of the boiler.
@@ -272,6 +281,8 @@ type SystemStatus struct {
 	Properties    SystemProperties
 	GatewayBrand  *string
 	GatewayVendor *string
+	ventilation   *VentilationView
+	catalogue     *FamilyCatalogue
 }
 
 // SystemState represents the observed state of the system.

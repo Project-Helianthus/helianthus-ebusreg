@@ -6,9 +6,13 @@ func MCPEnergyTotalsFromGraphQL(totals *EnergyTotals) *MCPEnergyTotals {
 		return nil
 	}
 	return &MCPEnergyTotals{
-		Gas:      mapEnergyChannel(totals.Gas),
-		Electric: mapEnergyChannel(totals.Electric),
-		Solar:    mapEnergyChannel(totals.Solar),
+		Gas:                 mapEnergyChannel(totals.Gas),
+		Electric:            mapEnergyChannel(totals.Electric),
+		Solar:               mapEnergyChannel(totals.Solar),
+		registerDirections:  cloneEnergyDirections(totals.registerDirections),
+		catalogueDirections: cloneEnergyDirections(totals.catalogueDirections),
+		residualFields:      cloneEnergyResiduals(totals.residualFields),
+		candidateFields:     cloneEnergyResiduals(totals.candidateFields),
 	}
 }
 
@@ -65,6 +69,8 @@ func MCPBoilerStatusFromGraphQL(status *BoilerStatus) *MCPBoilerStatus {
 			DeactivationsIFC:         CloneIntPtr(status.Diagnostics.DeactivationsIFC),
 			DeactivationsTemplimiter: CloneIntPtr(status.Diagnostics.DeactivationsTemplimiter),
 		},
+		selectors:  cloneBoilerSelectors(status.selectors),
+		operations: cloneRawOperations(status.operations),
 	}
 	return out
 }
@@ -177,6 +183,8 @@ func MCPSystemFromGraphQL(status *SystemStatus) *MCPSystemStatus {
 		return nil
 	}
 	return &MCPSystemStatus{
+		ventilation: cloneVentilation(status.ventilation),
+		catalogue:   cloneFamilyCatalogue(status.catalogue),
 		State: &MCPSystemState{
 			SystemOff:                      CloneBoolPtr(status.State.SystemOff),
 			SystemWaterPressure:            CloneFloatPtr(status.State.SystemWaterPressure),

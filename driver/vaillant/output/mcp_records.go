@@ -21,6 +21,7 @@ type MCPZoneState struct {
 	SpecialFunction    string   `json:"zone_special_function_mode,omitempty"`
 	HeatingDemandPct   *float64 `json:"heating_demand_pct,omitempty"`
 	ValvePositionPct   *float64 `json:"zone_valve_position,omitempty"`
+	enumerations       []CatalogueEnumeration
 }
 
 // MCPZoneConfig represents the settings of a zone in the MCP output.
@@ -54,6 +55,7 @@ type MCPDhwState struct {
 	CurrentTempC     *float64 `json:"dhw_temperature,omitempty"`
 	SpecialFunction  string   `json:"dhw_special_function_mode,omitempty"`
 	HeatingDemandPct *float64 `json:"heating_demand_pct,omitempty"`
+	enumerations     []CatalogueEnumeration
 }
 
 // MCPDhwConfig represents domestic hot water settings in the MCP output.
@@ -98,6 +100,7 @@ type MCPCircuitConfig struct {
 	SpecialFunctionMode *int     `json:"circuit_special_function_mode,omitempty"`
 	RoomTempControl     string   `json:"circuit_room_temperature_influence_mode,omitempty"`
 	CoolingEnabled      *bool    `json:"circuit_cooling_enabled,omitempty"`
+	enumerations        []CatalogueEnumeration
 }
 
 // MCPManagingDevice represents the device responsible for a circuit in the MCP output.
@@ -176,9 +179,13 @@ type MCPEnergyChannel struct {
 
 // MCPEnergyTotals represents the totals for the supported energy sources in the MCP output.
 type MCPEnergyTotals struct {
-	Gas      MCPEnergyChannel `json:"gas"`
-	Electric MCPEnergyChannel `json:"electric"`
-	Solar    MCPEnergyChannel `json:"solar"`
+	Gas                 MCPEnergyChannel `json:"gas"`
+	Electric            MCPEnergyChannel `json:"electric"`
+	Solar               MCPEnergyChannel `json:"solar"`
+	registerDirections  []EnergyDirection
+	catalogueDirections []EnergyDirection
+	residualFields      []EnergyResidual
+	candidateFields     []EnergyResidual
 }
 
 // MCPEnergyPointMeta represents the freshness and provenance of one energy value in the MCP output.
@@ -195,6 +202,8 @@ type MCPBoilerStatus struct {
 	State       *MCPBoilerState       `json:"state,omitempty"`
 	Config      *MCPBoilerConfig      `json:"config,omitempty"`
 	Diagnostics *MCPBoilerDiagnostics `json:"diagnostics,omitempty"`
+	selectors   []BoilerSelectorEvidence
+	operations  []RawOperation
 }
 
 // MCPBoilerState represents the observed state of the boiler in the MCP output.
@@ -252,9 +261,11 @@ type MCPBoilerDiagnostics struct {
 
 // MCPSystemStatus represents the system status in the MCP output.
 type MCPSystemStatus struct {
-	State      *MCPSystemState      `json:"state,omitempty"`
-	Config     *MCPSystemConfig     `json:"config,omitempty"`
-	Properties *MCPSystemProperties `json:"properties,omitempty"`
+	State       *MCPSystemState      `json:"state,omitempty"`
+	Config      *MCPSystemConfig     `json:"config,omitempty"`
+	Properties  *MCPSystemProperties `json:"properties,omitempty"`
+	ventilation *VentilationView
+	catalogue   *FamilyCatalogue
 }
 
 // MCPSystemState represents the observed state of the system in the MCP output.

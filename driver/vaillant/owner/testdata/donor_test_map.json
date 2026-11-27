@@ -426,6 +426,204 @@
     "destination_name": "TestVaillantOwnerB524InterfaceIdentityNonVaillantFamilyNoReadsNoOverlay"
   },
   {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_ErrorsCurrent_RoutesViaBusSend",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_routing_test.go",
+    "destination_name": "TestHistoryDispatcherErrorsCurrentRoutesViaBusSend"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_ErrorsHistory_RoutesViaBusSend",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_routing_test.go",
+    "destination_name": "TestHistoryDispatcherErrorsHistoryRoutesViaBusSend"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_ServiceCurrent_RoutesViaBusSend",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_routing_test.go",
+    "destination_name": "TestHistoryDispatcherServiceCurrentRoutesViaBusSend"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_ServiceHistory_RoutesViaBusSend",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_routing_test.go",
+    "destination_name": "TestHistoryDispatcherServiceHistoryRoutesViaBusSend"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_LiveMonitor_RoutesViaBusSend",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_routing_test.go",
+    "destination_name": "TestHistoryDispatcherLiveMonitorRoutesViaBusSend"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_Rejects_PayloadStartingWithNamespaceBytes",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_routing_test.go",
+    "destination_name": "TestHistoryDispatcherRejectsPayloadStartingWithNamespaceBytes"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_TransportDown_FiresOnTransportDisconnect",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_routing_test.go",
+    "destination_name": "TestHistoryDispatcherTransportDownFiresOnTransportDisconnect"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue851B503StaleSendErrorCannotClearUnsettledCleanup",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_routing_test.go",
+    "destination_name": "TestHistoryDispatcherStaleSendErrorCannotClearUnsettledCleanup"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_CtxCanceled_MapsToUpstreamTimeout",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_routing_test.go",
+    "destination_name": "TestHistoryDispatcherCtxCanceledMapsToUpstreamTimeout"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_LifecycleCanceledContextMapsTransportDown",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_routing_test.go",
+    "destination_name": "TestHistoryDispatcherLifecycleCanceledContextMapsTransportDown"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue552B503OutcomePreCanceledIsNotEmitted",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_lifecycle_test.go",
+    "destination_name": "TestHistoryDispatcherOutcomePreCanceledIsNotEmitted"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue552B503OutcomeNAKIsEmittedAndNativeNAK",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_lifecycle_test.go",
+    "destination_name": "TestHistoryDispatcherOutcomeNAKIsEmittedAndNativeNAK"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue552B503OutcomeNAKTextWithoutSentinelRemainsAmbiguous",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_lifecycle_test.go",
+    "destination_name": "TestHistoryDispatcherOutcomeNAKTextWithoutSentinelRemainsAmbiguous"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue552B503OutcomeACKIsNativeEvidenceOnly",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_lifecycle_test.go",
+    "destination_name": "TestHistoryDispatcherOutcomeACKIsNativeEvidenceOnly"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue552B503EnableDisconnectBeforeEmissionReturnsIdleWithoutCleanup",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_lifecycle_test.go",
+    "destination_name": "TestHistoryDispatcherEnableDisconnectBeforeEmissionReturnsIdleWithoutCleanup"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue552B503EpochAdvanceAfterAdmissionDoesNotWriteReplacementGeneration",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_lifecycle_test.go",
+    "destination_name": "TestHistoryDispatcherEpochAdvanceAfterAdmissionDoesNotWriteReplacementGeneration"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue552B503DisableReadMuDeadlineBeforeEmissionPreservesOwner",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_lifecycle_test.go",
+    "destination_name": "TestHistoryDispatcherDisableReadMuDeadlineBeforeEmissionPreservesOwner"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue988B503DispatcherRejectsLaggingParentDeadlineBeforeEmission",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_lifecycle_test.go",
+    "destination_name": "TestHistoryDispatcherDispatcherRejectsLaggingParentDeadlineBeforeEmission"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue552B503DisableDisconnectBeforeEmissionRetainsFenceWithoutWrite",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_lifecycle_test.go",
+    "destination_name": "TestHistoryDispatcherDisableDisconnectBeforeEmissionRetainsFenceWithoutWrite"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue552B503EnableDisconnectAfterEmissionRetainsUnknownFence",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_lifecycle_test.go",
+    "destination_name": "TestHistoryDispatcherEnableDisconnectAfterEmissionRetainsUnknownFence"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_NAKErrors_MapToUpstreamRPCFailed",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_admission_test.go",
+    "destination_name": "TestHistoryDispatcherNAKErrorsMapToUpstreamRPCFailed"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_CRCError_MapsToUpstreamRPCFailed",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_admission_test.go",
+    "destination_name": "TestHistoryDispatcherCRCErrorMapsToUpstreamRPCFailed"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_NilBus_ReturnsMisconfigured",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_admission_test.go",
+    "destination_name": "TestHistoryDispatcherNilBusReturnsMisconfigured"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_NilManager_ReturnsMisconfigured",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_admission_test.go",
+    "destination_name": "TestHistoryDispatcherNilManagerReturnsMisconfigured"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue851B503SourceNotAdmittedDisconnectsOwnerWithoutAdvancingEpoch",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_admission_test.go",
+    "destination_name": "TestHistoryDispatcherSourceNotAdmittedDisconnectsOwnerWithoutAdvancingEpoch"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue552B503CurrentLifecycleWithdrawalReleasesUnrefreshedOwner",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_admission_test.go",
+    "destination_name": "TestHistoryDispatcherCurrentLifecycleWithdrawalReleasesUnrefreshedOwner"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestIssue851B503StaleSourceFallbackCannotClearUnsettledCleanup",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_admission_test.go",
+    "destination_name": "TestHistoryDispatcherStaleSourceFallbackCannotClearUnsettledCleanup"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_test.go",
+    "donor_name": "TestM6Dispatcher_NoStubLiteralInProductionWiring",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_admission_test.go",
+    "destination_name": "TestHistoryDispatcherNoStubLiteralInProductionWiring"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_concurrency_test.go",
+    "donor_name": "TestM6Conc01_DisconnectDuringEnableHandshake",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_concurrency_test.go",
+    "destination_name": "TestHistoryDispatcherConcDisconnectDuringEnableHandshake"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_concurrency_test.go",
+    "donor_name": "TestM6Conc02_DisconnectDuringSteadyStateRead",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_concurrency_test.go",
+    "destination_name": "TestHistoryDispatcherConcDisconnectDuringSteadyStateRead"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_concurrency_test.go",
+    "donor_name": "TestM6Conc03_DisconnectDuringDisable",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_concurrency_test.go",
+    "destination_name": "TestHistoryDispatcherConcDisconnectDuringDisable"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_concurrency_test.go",
+    "donor_name": "TestM6Conc04_ReconnectUnderConcurrentTraffic_NoStaleEpochLeak",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_concurrency_test.go",
+    "destination_name": "TestHistoryDispatcherConcReconnectUnderConcurrentTrafficNoStaleEpochLeak"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_b503_dispatcher_concurrency_test.go",
+    "donor_name": "TestM6Conc_TracerSelfTest",
+    "destination_file": "driver/vaillant/owner/history_dispatcher_concurrency_test.go",
+    "destination_name": "TestHistoryDispatcherConcTracerSelfTest"
+  },
+  {
     "donor_file": "cmd/gateway/vaillant_publication_golden_test.go",
     "donor_name": "TestVaillantPublicationGolden",
     "destination_file": "driver/vaillant/owner/publication_golden_test.go",

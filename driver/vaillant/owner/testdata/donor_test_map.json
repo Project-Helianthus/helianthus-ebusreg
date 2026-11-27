@@ -736,5 +736,1325 @@
     "donor_name": "TestVaillantPublicationOwnerPublishesSystemView",
     "destination_file": "driver/vaillant/owner/publication_views_test.go",
     "destination_name": "TestVaillantPublicationOwnerPublishesSystemView"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestBuildB524ReadSelector",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerBuildB524ReadSelector"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestParseB524ReadPayload",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerParseB524ReadPayload"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestReadB524StartupUsesLivePathWithoutScheduler",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerReadB524StartupUsesLivePathWithoutScheduler"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshStateSkipsSlowZoneAndDHWB524Selectors",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshStateSkipsSlowZoneAndHotWaterB524Selectors"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshConfigReadsSlowZoneAndDHWB524Selectors",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshConfigReadsSlowZoneAndHotWaterB524Selectors"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshBoilerStatusFastProjectsB524MirrorsWithoutActiveB524Reads",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshBoilerStatusFastProjectsB524MirrorsWithoutActiveB524Reads"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshBoilerStatusFastIgnoresStaleB524Mirrors",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshBoilerStatusFastIgnoresStaleB524Mirrors"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshBoilerStatusFastIgnoresDifferentControllerB524Mirrors",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshBoilerStatusFastIgnoresDifferentControllerB524Mirrors"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshBoilerStatusFastIgnoresRestampedPartialMirrorSnapshots",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshBoilerStatusFastIgnoresRestampedPartialMirrorSnapshots"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshConfigDHWOnlySuccessKeepsZonesCacheSource",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshConfigDHWOnlySuccessKeepsZonesCacheSource"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshConfigNoZonesStillRefreshesDHWSlowConfig",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshConfigNoZonesStillRefreshesDHWSlowConfig"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshDiscoveryPrimesDHWBeforeStartupZoneScan",
+    "destination_file": "driver/vaillant/owner/semantic_poller_selector_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshDiscoveryPrimesDHWBeforeStartupZoneScan"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshDiscoveryRetriesDHWBeforeStartupZoneScan",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshDiscoveryRetriesDHWBeforeStartupZoneScan"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestParseB509ReadPayload",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerParseB509ReadPayload"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestEncodeBoilerConfigPayload",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerEncodeBoilerConfigPayload"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestParseBoilerConfigValue",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerParseBoilerConfigValue"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestSetBoilerConfig_WriteConfirmForcesLiveReadAfterWrite",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerSetBoilerConfigWriteConfirmForcesLiveReadAfterWrite"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestSetBoilerConfig_WriteConfirmInvalidatesShadowBeforeReadback",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerSetBoilerConfigWriteConfirmInvalidatesShadowBeforeReadback"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestBoilerSnapshotWithConfigValue_ClonesExistingSnapshot",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerBoilerSnapshotWithConfigValueClonesExistingSnapshot"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDecodeBoilerConfigRaw",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDecodeBoilerConfigRaw"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestFlowsetHcMaxSpecIncludesFallbackAddress",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFlowsetHcMaxSpecIncludesFallbackAddress"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestComposeZoneName",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerComposeZoneName"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDecodeB524Uint16",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDecodeB524Uint16"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDecodeB524FirmwareVersion",
+    "destination_file": "driver/vaillant/owner/semantic_poller_payload_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDecodeB524FirmwareVersion"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDecodeRadioDeviceModel",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDecodeRadioDeviceModel"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestHasRemoteIdentityEvidence",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerHasRemoteIdentityEvidence"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestMatchesB524ReplyInstance",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerMatchesB524ReplyInstance"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestSourceFromEbusdGrab",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerSourceFromEbusdGrab"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestNewVaillantSemanticPoller_BoilerTierCadence",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerNewVaillantSemanticPollerBoilerTierCadence"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestNewVaillantSemanticPoller_NormalizesObserveFirstFlagsFromScalarOnlyConfig",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerNewVaillantSemanticPollerNormalizesObserveFirstFlagsFromScalarOnlyConfig"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestNewVaillantSemanticPoller_AttachesRuntimeShadowCache",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerNewVaillantSemanticPollerAttachesRuntimeShadowCache"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestPrepareSemanticReadWatch_UsesObserverDescriptorFreshness",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerPrepareSemanticReadWatchUsesObserverDescriptorFreshness"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestSemanticReadWatchDescriptorWithDecoderID_ClassifiesB524Cadence",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerSemanticReadWatchDescriptorWithDecoderIDClassifiesB524Cadence"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestPrepareSemanticReadWatchRuntime_FallbackDescriptorB524DiscoveryBucketsCorrectly",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerPrepareSemanticReadWatchRuntimeFallbackDescriptorB524DiscoveryBucketsCorrectly"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestReadB509Value_EmitsWatchEfficiencyShadowHit",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerReadB509ValueEmitsWatchEfficiencyShadowHit"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestHandleAdjudicatedPassiveEvent_EmitsWatchEfficiencyDirectApply",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerHandleAdjudicatedPassiveEventEmitsWatchEfficiencyDirectApply"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestHandleAdjudicatedPassiveEvent_EmitsWatchEfficiencyCandidateForRejectedDirectApply",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerHandleAdjudicatedPassiveEventEmitsWatchEfficiencyCandidateForRejectedDirectApply"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshDiscovery_PrimesBoilerTiersWhenBoilerAppears",
+    "destination_file": "driver/vaillant/owner/semantic_poller_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshDiscoveryPrimesBoilerTiersWhenBoilerAppears"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshDiscovery_PrimesControllerSemanticTasksWhenControllerAppears",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshDiscoveryPrimesControllerSemanticTasksWhenControllerAppears"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestBoilerStatusRegisterDefinitionsForTier_NoReturnTemperatureMapping",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerBoilerStatusRegisterDefinitionsForTierNoReturnTemperatureMapping"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestMergeBoilerSnapshotNonDestructive_PartialUpdatePreservesLastKnown",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerMergeBoilerSnapshotNonDestructivePartialUpdatePreservesLastKnown"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshBoilerStatusTier_NoSuccessfulReadsPreservesSnapshot",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshBoilerStatusTierNoSuccessfulReadsPreservesSnapshot"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshBoilerStatusFastUsesCachedDHWWithoutB524DHWReads",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshBoilerStatusFastUsesCachedDHWWithoutB524HotWaterReads"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshBoilerStatusFastCachedDHWOnlyDoesNotPublishLive",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshBoilerStatusFastCachedDHWOnlyDoesNotPublishLive"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshBoilerStatusFastMergesCachedDHWWhenB509UpdatesWithoutB524Mirrors",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshBoilerStatusFastMergesCachedDHWWhenB509UpdatesWithoutB524Mirrors"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDeriveCircuitManagingDevice",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDeriveCircuitManagingDevice"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestFM5InventoryRegistryInfos_MaterializesVR71ForInterpretedTopology",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModuleInventoryRegistryInfosMaterializesFunctionModuleModelForInterpretedTopology"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDeriveFM5SemanticModeTransitions",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDeriveFunctionModuleSemanticModeTransitions"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestMergeSystemSnapshotNonDestructive_PartialUpdatePreservesLastKnown",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerMergeSystemSnapshotNonDestructivePartialUpdatePreservesLastKnown"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshSystem_NoSuccessfulReadsPreservesSnapshot",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshSystemNoSuccessfulReadsPreservesSnapshot"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestPublishCircuits_UsesExplicitManagingDeviceForProvenTopology",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerPublishCircuitsUsesExplicitManagingDeviceForProvenTopology"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestPublishCircuits_UsesUnknownManagingDeviceForUnprovenTopology",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerPublishCircuitsUsesUnknownManagingDeviceForUnprovenTopology"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestPublishSystem_RehydratesCircuitOwnershipAfterSystemArrives",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerPublishSystemRehydratesCircuitOwnershipAfterSystemArrives"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestMergeCircuitSnapshotNonDestructive_PartialUpdatePreservesLastKnown",
+    "destination_file": "driver/vaillant/owner/semantic_poller_refresh_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerMergeCircuitSnapshotNonDestructivePartialUpdatePreservesLastKnown"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshCircuits_NoSuccessfulReadsPreservesSnapshot",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshCircuitsNoSuccessfulReadsPreservesSnapshot"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshCircuits_PromotesDhwPseudoCircuitWithTemperatureEvidence",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshCircuitsPromotesDhwPseudoCircuitWithTemperatureEvidence"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshCircuits_DoesNotPromoteDhwPseudoCircuitWithoutTemperatureEvidence",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshCircuitsDoesNotPromoteDhwPseudoCircuitWithoutTemperatureEvidence"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshCircuits_PreservesDhwPseudoCircuitWhenEvidenceReadsFail",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshCircuitsPreservesDhwPseudoCircuitWhenEvidenceReadsFail"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshCircuits_TargetedProbeFailureForcesNextFullScan",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshCircuitsTargetedProbeFailureForcesNextFullScan"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCircuitRefreshInstances_UsesKnownActiveCircuitsBeforeFullScanDue",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCircuitRefreshInstancesUsesKnownActiveCircuitsBeforeFullScanDue"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCircuitRefreshInstances_FullScanAfterRediscoveryInterval",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCircuitRefreshInstancesFullScanAfterRediscoveryInterval"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCircuitRefreshInstances_RetriesPartialFullScanOnConfigCadence",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCircuitRefreshInstancesRetriesPartialFullScanOnConfigCadence"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDecodeHeatingCircuitTypeToken",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDecodeHeatingCircuitTypeToken"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDecodeRoomTempControlToken",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDecodeRoomTempControlToken"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCircuitState_DecodesKnownValues",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCircuitStateDecodesKnownValues"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCircuitRegisterSelectors_PinCircuitStateAndPumpStatus",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCircuitRegisterSelectorsPinCircuitStateAndPumpStatus"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshCircuits_ReadsCircuitStateFromRR001EAndPumpFromRR001B",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshCircuitsReadsCircuitStateFromCircuitStateRegisterAndPumpFromPumpStatusRegister"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCircuitState_ReturnsUnknownForUnmappedValue",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCircuitStateReturnsUnknownForUnmappedValue"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCircuitState_NilReturnsEmpty",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCircuitStateNilReturnsEmpty"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshEnergy_NilControllerKeepsEnergyNull",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshEnergyNilControllerKeepsEnergyNull"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshEnergy_NoRegulatorKeepsEnergyNull",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshEnergyNoRegulatorKeepsEnergyNull"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshEnergy_ReadFailurePreservesLastKnown",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshEnergyReadFailurePreservesLastKnown"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestPublishEnergyTotals_PublishesProviderSnapshot",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerPublishEnergyTotalsPublishesProviderSnapshot"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestPublishFM5Semantic_SkipsConfigOnlyCylinderWithoutTemperature",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerPublishFunctionModuleSemanticSkipsConfigOnlyCylinderWithoutTemperature"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestPublishFM5Semantic_DowngradeRehydratesCircuitOwnershipToUnknown",
+    "destination_file": "driver/vaillant/owner/semantic_poller_boiler_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerPublishFunctionModuleSemanticDowngradeRehydratesCircuitOwnershipToUnknown"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestMergeCylinderSnapshotMapNonDestructive_PreservesTemperatureWhileRefreshingConfig",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerMergeCylinderSnapshotMapNonDestructivePreservesTemperatureWhileRefreshingConfig"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_DHWTransientCacheFailurePreservesLastKnown",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerDHWTransientCacheFailurePreservesLastKnown"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_DHWCacheFailureExpiresAfterTTL",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerDHWCacheFailureExpiresAfterTTL"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_HydrateFromCacheSeedsDHWStalenessFromPersistedAt",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerHydrateFromCacheSeedsDHWStalenessFromPersistedAt"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_HydrateFromCacheFallsBackToNowWhenPersistedAtZero",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerHydrateFromCacheFallsBackToNowWhenPersistedAtZero"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_DiscoveryLossTTLExpiresDHW",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerDiscoveryLossTTLExpiresDHW"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_DiscoveryLossPreservesDHWBeforeTTL",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerDiscoveryLossPreservesDHWBeforeTTL"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_DiscoveryFlapDuringStartup",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerDiscoveryFlapDuringStartup"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestMergeZoneSnapshotFields_PartialLiveUpdatePreservesLastKnownAndFreshness",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerMergeZoneSnapshotFieldsPartialLiveUpdatePreservesLastKnownAndFreshness"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_PublishZones_SeparatesRoomTemperatureZoneMappingFromAssociatedCircuit",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerPublishZonesSeparatesRoomTemperatureZoneMappingFromAssociatedCircuit"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_PublishZones_FillsRoomStateFromMappedRadioSensors",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerPublishZonesFillsRoomStateFromMappedRadioSensors"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_PublishZones_InfersThermostatMappingFromRadioAssignment",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerPublishZonesInfersThermostatMappingFromRadioAssignment"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_PublishZones_DoesNotInferAmbiguousThermostatAssignment",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerPublishZonesDoesNotInferAmbiguousThermostatAssignment"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_PublishZones_KeepsDirectRoomStateOverRadioFallback",
+    "destination_file": "driver/vaillant/owner/semantic_poller_configwrite_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerPublishZonesKeepsDirectRoomStateOverRadioFallback"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_PublishZones_RadioFallbackDoesNotPersistAsDirectState",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerPublishZonesRadioFallbackDoesNotPersistAsDirectState"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_PublishZones_SkipsUnknownRoomSensorMappingFallback",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerPublishZonesSkipsUnknownRoomSensorMappingFallback"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestMergeDhwSnapshotFields_PartialLiveUpdatePreservesLastKnownAndFreshness",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerMergeDhwSnapshotFieldsPartialLiveUpdatePreservesLastKnownAndFreshness"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestZonePresenceFSM_NoRegressionWithFreshnessMetadata",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerZonePresenceFSMNoRegressionWithFreshnessMetadata"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestZonePresenceFSM_AbsenceRequiresConsecutiveMisses",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerZonePresenceFSMAbsenceRequiresConsecutiveMisses"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestZonePresenceFSM_ResurrectionRequiresConsecutiveHits",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerZonePresenceFSMResurrectionRequiresConsecutiveHits"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestZonePresenceFSM_AlternatingProbesDoNotFlapPresentZone",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerZonePresenceFSMAlternatingProbesDoNotFlapPresentZone"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestReconcileDiscoveryPresence_SkipsMissDemotionWhenFallbackHydrates",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerReconcileDiscoveryPresenceSkipsMissDemotionWhenFallbackHydrates"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestReconcileDiscoveryPresence_AppliesMissesWhenFallbackUnavailable",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerReconcileDiscoveryPresenceAppliesMissesWhenFallbackUnavailable"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestReconcileDiscoveryPresence_TracksMissesWithPartialFallback",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerReconcileDiscoveryPresenceTracksMissesWithPartialFallback"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestReconcileDiscoveryPresence_DoesNotDoubleCountFallbackHit",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerReconcileDiscoveryPresenceDoesNotDoubleCountFallbackHit"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestSemanticReadBreakerKeyIncludesOpcode",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerSemanticReadBreakerKeyIncludesOpcode"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestParseB524ZonesFromGrabFiltersAbsentInstances",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerParseB524ZonesFromGrabFiltersAbsentInstances"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestParseB524ZonesFromGrabIncludesHumidityAndAllowedModes",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerParseB524ZonesFromGrabIncludesHumidityAndAllowedModes"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestParseB524DhwFromGrab",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerParseB524DhwFromGrab"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestParseB524DhwFromGrabAcceptsRemoteReadOpcode",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerParseB524DhwFromGrabAcceptsRemoteReadOpcode"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestParseB524GrabLineRejectsUnsupportedOpcode",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerParseB524GrabLineRejectsUnsupportedOpcode"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_RegulatorDetectionPresent",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerRegulatorDetectionPresent"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_RegulatorDetectionNone",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerRegulatorDetectionNone"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_RegulatorDetectionEbusregRepinDelta",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerRegulatorDetectionEbusregRepinDelta"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_RegulatorDetectionUnknown",
+    "destination_file": "driver/vaillant/owner/semantic_poller_discovery_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerRegulatorDetectionUnknown"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_RegulatorDetectionCatalogError",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerRegulatorDetectionCatalogError"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_RegulatorDetectionMixedKnownAndUnknown",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerRegulatorDetectionMixedKnownAndUnknown"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_RefreshDiscoverySetsRegulatorCapability",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerRefreshDiscoverySetsRegulatorCapability"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_RefreshDiscoveryNoBasvSetsRegulatorCapability",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerRefreshDiscoveryNoBasvSetsRegulatorCapability"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestExtractPartNumberFromSerial",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerExtractPartNumberFromSerial"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRegulatorRedetection_PresentToAbsentGrace",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRegulatorRedetectionPresentToAbsentGrace"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRegulatorRedetection_GraceToAbsent",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRegulatorRedetectionGraceToAbsent"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRegulatorRedetection_AbsentToPresent",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRegulatorRedetectionAbsentToPresent"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRegulatorRedetection_InventoryTrigger",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRegulatorRedetectionInventoryTrigger"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshRegulatorCapability_NoChangeNoLog",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshRegulatorCapabilityNoChangeNoLog"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestB524EnergyQueries_Coverage",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerB524EnergyQueriesCoverage"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestIsB524ProbeCoherent",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerIsB524ProbeCoherent"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRadioInventoryRegistryInfo_MaterializesVR71PhysicalDevice",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRadioInventoryRegistryInfoMaterializesFunctionModuleModelPhysicalDevice"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRegistryRadioDeviceSeeds_UsesKnownRegulatorAndFM5Identities",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRegistryRadioDeviceSeedsUsesKnownRegulatorAndFunctionModuleIdentities"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestReconcileDiscoveryPresence_PublishesStartupZonesOnFirstHit",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerReconcileDiscoveryPresencePublishesStartupZonesOnFirstHit"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestPreserveExistingRegistryMetadata_KeepsRicherIdentityFields",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerPreserveExistingRegistryMetadataKeepsRicherIdentityFields"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_FindsRootWithSingleCandidate",
+    "destination_file": "driver/vaillant/owner/semantic_poller_snapshot_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryFindsRootWithSingleCandidate"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_Prefers0x15WhenCoherent",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryPrefersPreferredControllerWhenCoherent"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_FallsBackWhen0x15NonCoherent",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryFallsBackWhenPreferredControllerNonCoherent"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_RejectsShortResponse",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryRejectsShortResponse"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_ReturnsDefinitiveWhenNoneQualify",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryReturnsDefinitiveWhenNoneQualify"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_SucceedsWhenEnrichmentFails",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoverySucceedsWhenEnrichmentFails"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_SkipsNonCoherentDevice",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoverySkipsNonCoherentDevice"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_StructuralFallbackWhenRegistryHasOnlyBoiler",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryStructuralFallbackWhenRegistryHasOnlyBoiler"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_RichRegistryStopsAt0x15CoherentRoot",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryRichRegistryStopsAtPreferredControllerCoherentRoot"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_HostileRegistryWithStaleSecondaryStillProbesRegulator",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryHostileRegistryWithStaleSecondaryStillProbesRegulator"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshDiscovery_StructuralFallbackRegistersControllerInRegistry",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshDiscoveryStructuralFallbackRegistersControllerInRegistry"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_StructuralFallbackSkipsAdmittedSource",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryStructuralFallbackSkipsAdmittedSource"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_StructuralFallbackSkipsAdmittedCompanion",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryStructuralFallbackSkipsAdmittedCompanion"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_DropsAdmittedSourceFromRegistryCandidates",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryDropsAdmittedSourceFromRegistryCandidates"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_DropsAdmittedCompanionFromRegistryCandidates",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryDropsAdmittedCompanionFromRegistryCandidates"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshDiscovery_RecomputesRegulatorCapabilityAfterStructuralRegistration",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshDiscoveryRecomputesRegulatorCapabilityAfterStructuralRegistration"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRegisterStructuralControllerIfMissing_NoOpWhenAlreadyRegistered",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRegisterStructuralControllerIfMissingNoOpWhenAlreadyRegistered"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestCapabilityFirstDiscovery_StructuralFallbackEmptyRegistry",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCapabilityFirstDiscoveryStructuralFallbackEmptyRegistry"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestEnrichRegulatorIdentity",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerEnrichRegulatorIdentity"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDecodeB524DateSuppressSentinel",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDecodeB524DateSuppressSentinel"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_StartDefersPollingUntilBarrier",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerStartDefersPollingUntilBarrier"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_StartWithoutBarrierSubmitsImmediately",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerStartWithoutBarrierSubmitsImmediately"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPoller_StartBarrierExitsOnContextCancel",
+    "destination_file": "driver/vaillant/owner/semantic_poller_circuit_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerStartBarrierExitsOnContextCancel"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestB524GroupDef_OpcodeGroupBindingIsCorrect",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerB524GroupDefOpcodeGroupBindingIsCorrect"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDiscoverDeviceSlotsExcludesDisconnectedRegulatorAndThermostatSlots",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDiscoverDeviceSlotsExcludesDisconnectedRegulatorAndThermostatSlots"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDiscoverDeviceSlotsKeepsDisconnectedFunctionalModuleIdentityEvidence",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDiscoverDeviceSlotsKeepsDisconnectedFunctionalModuleIdentityEvidence"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshRadioDevicesSkipsVolatileDetailsForDisconnectedFunctionalModuleInventory",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshRadioDevicesSkipsVolatileDetailsForDisconnectedFunctionalModuleInventory"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshRadioDevicesClearsStaleSnapshotsWhenDiscoveryFindsNoRefreshableSlots",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshRadioDevicesClearsStaleSnapshotsWhenDiscoveryFindsNoRefreshableSlots"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestRefreshRadioDevicesPreservesSnapshotsWhenRediscoveryOnlyTimesOut",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshRadioDevicesPreservesSnapshotsWhenRediscoveryOnlyTimesOut"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDeviceSlotCacheGating_OnlyPollsCachedSlots",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDeviceSlotCacheGatingOnlyPollsCachedSlots"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestDeviceSlotCacheGating_RequiresRediscoveryAfterTTL",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDeviceSlotCacheGatingRequiresRediscoveryAfterTTL"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestAcquireEnergy_BoundaryCrossingDiscardsLaterReplies",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerAcquireEnergyBoundaryCrossingDiscardsLaterReplies"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestReadEnergyRegister_MonthlyNeverServedFromCache",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerReadEnergyRegisterMonthlyNeverServedFromCache"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPollerFallbackDiscoveryGate",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerFallbackDiscoveryGate"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPollerFallbackSuspensionLogsOnTransition",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerFallbackSuspensionLogsOnTransition"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPollerKeepsRecoveryWhenAbsentControllerWasDiscovered",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerKeepsRecoveryWhenAbsentControllerWasDiscovered"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPollerFallbackKeptWhenPeriodicDiscoveryDisabled",
+    "destination_file": "driver/vaillant/owner/semantic_poller_energy_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerFallbackKeptWhenPeriodicDiscoveryDisabled"
+  },
+  {
+    "donor_file": "cmd/gateway/semantic_vaillant_test.go",
+    "donor_name": "TestVaillantSemanticPollerAbsenceStartsUnknown",
+    "destination_file": "driver/vaillant/owner/semantic_poller_presence_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerVaillantSemanticPollerAbsenceStartsUnknown"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestDeriveFM5Interpretation_CoherentClassificationsAndUnavailableBootstrap",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDeriveFunctionModuleInterpretationCoherentClassificationsAndUnavailableBootstrap"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestDeriveFM5Interpretation_TransientReasonPrecedence",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerDeriveFunctionModuleInterpretationTransientReasonPrecedence"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestApplyFM5Acquisition_RetainsTransientAndWithdrawsStructural",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerApplyFunctionModuleAcquisitionRetainsTransientAndWithdrawsStructural"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestCommitFM5Acquisition_RetainsCoherentModeAcrossTransientFailures",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCommitFunctionModuleAcquisitionRetainsCoherentModeAcrossTransientFailures"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestFM5EvidenceCapture_DetectsStaleAndGenerationChange",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModuleEvidenceCaptureDetectsStaleAndGenerationChange"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestRefreshFM5Semantic_StaleEvidenceSkipsReadsAndRetainsCoherentFamily",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshFunctionModuleSemanticStaleEvidenceSkipsReadsAndRetainsCoherentFamily"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestCommitFM5Acquisition_RegistryMutationAfterPostReadCaptureIsIncoherent",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCommitFunctionModuleAcquisitionRegistryMutationAfterPostReadCaptureIsIncoherent"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestRefreshDiscovery_TransientRootFailureRetainsFM5ClassificationAndValues",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshDiscoveryTransientRootFailureRetainsFunctionModuleClassificationAndValues"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestRefreshFM5Semantic_StaleIdentityOutranksUnsupportedConfiguration",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshFunctionModuleSemanticStaleIdentityOutranksUnsupportedConfiguration"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestRefreshFM5Semantic_AbsenceRequiresFreshCompletedNegativeIdentityAcquisition",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshFunctionModuleSemanticAbsenceRequiresFreshCompletedNegativeIdentityAcquisition"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestFM5Acquisition_EmptyEvidenceGenerationInterleavingRetainsPriorClassification",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModuleAcquisitionEmptyEvidenceGenerationInterleavingRetainsPriorClassification"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestFM5IdentityClassification_RequiresCompleteFunctionalModuleNamespaceScan",
+    "destination_file": "driver/vaillant/owner/function_module_interpretation_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModuleIdentityClassificationRequiresCompleteFunctionalModuleNamespaceScan"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestFM5StartupIdentityClassification_UsesCompleteFunctionalModuleIdentityTuple",
+    "destination_file": "driver/vaillant/owner/function_module_acquisition_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModuleStartupIdentityClassificationUsesCompleteFunctionalModuleIdentityTuple"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestRefreshRadioDevices_IncompleteCurrentFM5IdentityTupleRetainsPriorClassification",
+    "destination_file": "driver/vaillant/owner/function_module_acquisition_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshRadioDevicesIncompleteCurrentFunctionModuleIdentityTupleRetainsPriorClassification"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestRefreshSystem_FM5ConfigurationRequiresCurrentAcquisition",
+    "destination_file": "driver/vaillant/owner/function_module_acquisition_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshSystemFunctionModuleConfigurationRequiresCurrentAcquisition"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestFM5PositiveIdentityDoesNotRequireNegativeNamespaceCompleteness",
+    "destination_file": "driver/vaillant/owner/function_module_identity_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModulePositiveIdentityDoesNotRequireNegativeNamespaceCompleteness"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestFM5Startup_UnseededLowSlotPositiveDoesNotLosePrimingBudget",
+    "destination_file": "driver/vaillant/owner/function_module_identity_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModuleStartupUnseededLowSlotPositiveDoesNotLosePrimingBudget"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestEnqueueAddressIdentityProbe_LateFM5SuccessTriggersBoundedSemanticReacquisition",
+    "destination_file": "driver/vaillant/owner/function_module_identity_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerEnqueueAddressIdentityProbeLateFunctionModuleSuccessTriggersBoundedSemanticReacquisition"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestFM5Startup_PositiveFastSlotClassifiesBeforeUnrelatedRadioTailDeadline",
+    "destination_file": "driver/vaillant/owner/function_module_identity_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModuleStartupPositiveFastSlotClassifiesBeforeUnrelatedRadioTailDeadline"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestEnqueueAddressIdentityProbe_SaturatedQueueCoalescesGuaranteedOrderedFM5Recovery",
+    "destination_file": "driver/vaillant/owner/function_module_identity_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerEnqueueAddressIdentityProbeSaturatedQueueCoalescesGuaranteedOrderedFunctionModuleRecovery"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestEnqueueAddressIdentityProbe_LateFM5RecoveryReadsStartupSubsetBeforeOtherSystem",
+    "destination_file": "driver/vaillant/owner/function_module_identity_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerEnqueueAddressIdentityProbeLateFunctionModuleRecoveryReadsStartupSubsetBeforeOtherSystem"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestEnqueueAddressIdentityProbe_FreshEmptySlotCacheForcesBoundedFM5Discovery",
+    "destination_file": "driver/vaillant/owner/function_module_identity_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerEnqueueAddressIdentityProbeFreshEmptySlotCacheForcesBoundedFunctionModuleDiscovery"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestFM5Startup_HighSlotPositivePreemptsUnrelatedRadioTails",
+    "destination_file": "driver/vaillant/owner/function_module_identity_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModuleStartupHighSlotPositivePreemptsUnrelatedRadioTails"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestFM5Startup_FastPositiveRetainsDeferredHighSlotRegistrySeed",
+    "destination_file": "driver/vaillant/owner/function_module_identity_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModuleStartupFastPositiveRetainsDeferredHighSlotRegistrySeed"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestFM5Startup_MaxSlotVR71ConvergesWithinBoundedIdentityBudget",
+    "destination_file": "driver/vaillant/owner/function_module_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerFunctionModuleStartupMaxSlotFunctionModuleModelConvergesWithinBoundedIdentityBudget"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestEnqueueAddressIdentityProbe_GenericFunctionalModuleDoesNotPreemptLaterVR71",
+    "destination_file": "driver/vaillant/owner/function_module_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerEnqueueAddressIdentityProbeGenericFunctionalModuleDoesNotPreemptLaterFunctionModuleModel"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestEnqueueAddressIdentityProbe_MaxSlotVR71ConvergesWithinBoundedRecoveryBudget",
+    "destination_file": "driver/vaillant/owner/function_module_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerEnqueueAddressIdentityProbeMaxSlotFunctionModuleModelConvergesWithinBoundedRecoveryBudget"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestEnqueueAddressIdentityProbe_MaxSlotVR71RecoveryReadsOnlyConfigurationGate",
+    "destination_file": "driver/vaillant/owner/function_module_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerEnqueueAddressIdentityProbeMaxSlotFunctionModuleModelRecoveryReadsOnlyConfigurationGate"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestRefreshRadioDevices_CompleteNegativeFM5ScanSupersedesRetainedRegistryIdentity",
+    "destination_file": "driver/vaillant/owner/function_module_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerRefreshRadioDevicesCompleteNegativeFunctionModuleScanSupersedesRetainedRegistryIdentity"
+  },
+  {
+    "donor_file": "cmd/gateway/post_m9_defects_red_test.go",
+    "donor_name": "TestCommitFM5Acquisition_SerializesWriterAfterCommitWithoutDeadlock",
+    "destination_file": "driver/vaillant/owner/function_module_startup_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerCommitFunctionModuleAcquisitionSerializesWriterAfterCommitWithoutDeadlock"
+  },
+  {
+    "donor_file": "cmd/gateway/boiler_circuit_zero_isolation_test.go",
+    "donor_name": "TestM62BoilerUnavailableLeavesBoilerFieldsUnknownAndPublishesCircuit",
+    "destination_file": "driver/vaillant/owner/boiler_circuit_isolation_test.go",
+    "destination_name": "TestVaillantOwnerBoilerCircuitIsolationBoilerUnavailableLeavesBoilerFieldsUnknownAndPublishesCircuit"
+  },
+  {
+    "donor_file": "cmd/gateway/boiler_circuit_zero_isolation_test.go",
+    "donor_name": "TestM62BoilerPumpComesOnlyFromB509",
+    "destination_file": "driver/vaillant/owner/boiler_circuit_isolation_test.go",
+    "destination_name": "TestVaillantOwnerBoilerCircuitIsolationBoilerPumpComesOnlyFromB509"
+  },
+  {
+    "donor_file": "cmd/gateway/boiler_circuit_zero_isolation_test.go",
+    "donor_name": "TestM62CachedHeatingStatusRawWithoutBoilerSourceIsDiscarded",
+    "destination_file": "driver/vaillant/owner/boiler_circuit_isolation_test.go",
+    "destination_name": "TestVaillantOwnerBoilerCircuitIsolationCachedHeatingStatusRawWithoutBoilerSourceIsDiscarded"
+  },
+  {
+    "donor_file": "cmd/gateway/boiler_circuit_zero_isolation_test.go",
+    "donor_name": "TestM62BoilerRegisterDefinitionsNeverReadCircuitPumpOrState",
+    "destination_file": "driver/vaillant/owner/boiler_circuit_isolation_test.go",
+    "destination_name": "TestVaillantOwnerBoilerCircuitIsolationBoilerRegisterDefinitionsNeverReadCircuitPumpOrState"
+  },
+  {
+    "donor_file": "cmd/gateway/circuit_special_function_mode_test.go",
+    "donor_name": "TestCircuitSpecialFunctionModePublishesOneByteReply",
+    "destination_file": "driver/vaillant/owner/circuit_special_function_mode_test.go",
+    "destination_name": "TestVaillantOwnerCircuitSpecialFunctionModePublishesOneByteReply"
+  },
+  {
+    "donor_file": "cmd/gateway/circuit_special_function_mode_test.go",
+    "donor_name": "TestCircuitSpecialFunctionModeHasNoAliasAndNoWrite",
+    "destination_file": "driver/vaillant/owner/circuit_special_function_mode_test.go",
+    "destination_name": "TestVaillantOwnerCircuitSpecialFunctionModeHasNoAliasAndNoWrite"
+  },
+  {
+    "donor_file": "cmd/gateway/circuit_special_function_mode_test.go",
+    "donor_name": "TestB524ReplyWidthMismatchOnCircuitRefresh",
+    "destination_file": "driver/vaillant/owner/circuit_special_function_mode_test.go",
+    "destination_name": "TestVaillantOwnerB524ReplyWidthMismatchOnCircuitRefresh"
+  },
+  {
+    "donor_file": "cmd/gateway/circuit_special_function_mode_test.go",
+    "donor_name": "TestB524ReplyWidthMismatchEveryFixedWidthReader",
+    "destination_file": "driver/vaillant/owner/circuit_special_function_mode_test.go",
+    "destination_name": "TestVaillantOwnerB524ReplyWidthMismatchEveryFixedWidthReader"
+  },
+  {
+    "donor_file": "cmd/gateway/circuit_special_function_mode_test.go",
+    "donor_name": "TestB524ReplyWidthMismatchCircuitRR0020StaysSilent",
+    "destination_file": "driver/vaillant/owner/circuit_special_function_mode_test.go",
+    "destination_name": "TestVaillantOwnerB524ReplyWidthMismatchCircuitRawFlowRegisterStaysSilent"
+  },
+  {
+    "donor_file": "cmd/gateway/circuit_special_function_mode_test.go",
+    "donor_name": "TestB524ReplyWidthMismatchLogIsRateLimitedPerSelector",
+    "destination_file": "driver/vaillant/owner/circuit_special_function_mode_test.go",
+    "destination_name": "TestVaillantOwnerB524ReplyWidthMismatchLogIsRateLimitedPerSelector"
+  },
+  {
+    "donor_file": "cmd/gateway/heat_source_path_reason_test.go",
+    "donor_name": "TestHeatSourcePathReasonCondition",
+    "destination_file": "driver/vaillant/owner/heat_source_path_reason_test.go",
+    "destination_name": "TestVaillantOwnerHeatSourcePathReasonCondition"
+  },
+  {
+    "donor_file": "cmd/gateway/heat_source_path_reason_test.go",
+    "donor_name": "TestHeatSourcePathReasonFollowsDiscoveryPasses",
+    "destination_file": "driver/vaillant/owner/heat_source_path_reason_test.go",
+    "destination_name": "TestVaillantOwnerHeatSourcePathReasonFollowsDiscoveryPasses"
+  },
+  {
+    "donor_file": "cmd/gateway/heat_source_path_reason_test.go",
+    "donor_name": "TestHeatSourcePathReasonClearedByBoilerClassHeatSource",
+    "destination_file": "driver/vaillant/owner/heat_source_path_reason_test.go",
+    "destination_name": "TestVaillantOwnerHeatSourcePathReasonClearedByBoilerClassHeatSource"
+  },
+  {
+    "donor_file": "cmd/gateway/heat_source_path_reason_test.go",
+    "donor_name": "TestHeatSourcePathReasonClearedByCapabilityRecheck",
+    "destination_file": "driver/vaillant/owner/heat_source_path_reason_test.go",
+    "destination_name": "TestVaillantOwnerHeatSourcePathReasonClearedByCapabilityRecheck"
+  },
+  {
+    "donor_file": "cmd/gateway/o18_circuit_rr0020_test.go",
+    "donor_name": "TestO18FloatSelectorIsolation",
+    "destination_file": "driver/vaillant/owner/circuit_raw_flow_isolation_test.go",
+    "destination_name": "TestVaillantOwnerRawFlowFloatSelectorIsolation"
+  },
+  {
+    "donor_file": "cmd/gateway/o18_circuit_rr0020_test.go",
+    "donor_name": "TestO18RefreshDoesNotAcquireRawTemperature",
+    "destination_file": "driver/vaillant/owner/circuit_raw_flow_isolation_test.go",
+    "destination_name": "TestVaillantOwnerRawFlowRefreshDoesNotAcquireRawTemperature"
+  },
+  {
+    "donor_file": "cmd/gateway/o18_circuit_rr0020_test.go",
+    "donor_name": "TestO18RetainedAndIncomingSnapshots",
+    "destination_file": "driver/vaillant/owner/circuit_raw_flow_isolation_test.go",
+    "destination_name": "TestVaillantOwnerRawFlowRetainedAndIncomingSnapshots"
+  },
+  {
+    "donor_file": "cmd/gateway/o18_circuit_rr0020_test.go",
+    "donor_name": "TestO18RawCannotEstablishPseudoCircuit",
+    "destination_file": "driver/vaillant/owner/circuit_raw_flow_isolation_test.go",
+    "destination_name": "TestVaillantOwnerRawFlowRawCannotEstablishPseudoCircuit"
+  },
+  {
+    "donor_file": "cmd/gateway/o18_circuit_rr0020_test.go",
+    "donor_name": "TestO18StartupRawCannotEstablishPseudoCircuit",
+    "destination_file": "driver/vaillant/owner/circuit_raw_flow_isolation_test.go",
+    "destination_name": "TestVaillantOwnerRawFlowStartupRawCannotEstablishPseudoCircuit"
+  },
+  {
+    "donor_file": "cmd/gateway/o18_circuit_rr0020_test.go",
+    "donor_name": "TestO18RawEvidenceStillReadable",
+    "destination_file": "driver/vaillant/owner/circuit_raw_flow_isolation_test.go",
+    "destination_name": "TestVaillantOwnerRawFlowRawEvidenceStillReadable"
+  },
+  {
+    "donor_file": "cmd/gateway/config_setter_names_test.go",
+    "donor_name": "TestConfigSetterNamesSystemKeysWriteThroughGraphQLAndMCP",
+    "destination_file": "driver/vaillant/owner/config_setter_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerConfigSetterNamesSystemKeysWriteReadBackAndPublish"
+  },
+  {
+    "donor_file": "cmd/gateway/config_setter_names_test.go",
+    "donor_name": "TestConfigSetterNamesBoilerKeysWriteThroughGraphQLAndMCP",
+    "destination_file": "driver/vaillant/owner/config_setter_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerConfigSetterNamesBoilerKeysWriteReadBackAndPublish"
+  },
+  {
+    "donor_file": "cmd/gateway/config_setter_names_test.go",
+    "donor_name": "TestConfigSetterNamesSystemPhoneValidationFollowsKey",
+    "destination_file": "driver/vaillant/owner/config_setter_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerConfigSetterNamesSystemPhoneValidationFollowsKey"
+  },
+  {
+    "donor_file": "cmd/gateway/config_setter_names_test.go",
+    "donor_name": "TestConfigSetterNamesFormerKeysRejected",
+    "destination_file": "driver/vaillant/owner/config_setter_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerConfigSetterNamesFormerKeysRejected"
+  },
+  {
+    "donor_file": "cmd/gateway/config_setter_names_test.go",
+    "donor_name": "TestConfigSetterNamesFixtureComparisonCoversEveryField",
+    "destination_file": "driver/vaillant/owner/config_setter_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerConfigSetterNamesFixtureComparisonCoversEveryField"
+  },
+  {
+    "donor_file": "cmd/gateway/config_setter_names_test.go",
+    "donor_name": "TestConfigSetterNamesBoilerPumpModeKeepsItsBound",
+    "destination_file": "driver/vaillant/owner/config_setter_behaviour_test.go",
+    "destination_name": "TestVaillantOwnerConfigSetterNamesBoilerPumpModeKeepsItsBound"
   }
 ]

@@ -104,6 +104,7 @@ func (p *vaillantSemanticPoller) publishZones(source semanticSnapshotSource) {
 	if !p.publishing() {
 		return
 	}
+	defer p.reapplyFamilyCatalogue()
 
 	p.mu.Lock()
 	views := p.zoneViewsLocked()
@@ -121,6 +122,7 @@ func (p *vaillantSemanticPoller) publishDHW(source semanticSnapshotSource) {
 	if !p.publishing() {
 		return
 	}
+	defer p.reapplyFamilyCatalogue()
 
 	p.mu.Lock()
 	expired := p.expireDHWIfStaleLocked(source)
@@ -143,6 +145,7 @@ func (p *vaillantSemanticPoller) publishCircuits(source semanticSnapshotSource) 
 	if !p.publishing() {
 		return
 	}
+	defer p.reapplyFamilyCatalogue()
 
 	p.mu.Lock()
 	view := p.circuitsViewLocked()
@@ -174,6 +177,7 @@ func (p *vaillantSemanticPoller) publishBoilerStatus(source semanticSnapshotSour
 	if p.publication.publishBoilerStatusView(snapshot, source) {
 		p.persistSemanticCache(source)
 	}
+	p.reapplyBoilerCatalogue()
 }
 
 // publishRadioDevices hands the native radio device views to the publication
@@ -200,6 +204,7 @@ func (p *vaillantSemanticPoller) publishSystem(source semanticSnapshotSource) {
 	if !p.publishing() {
 		return
 	}
+	defer p.reapplyFamilyCatalogue()
 
 	p.mu.Lock()
 	view := vaillantSystemView{snapshot: cloneSystemSnapshot(p.system)}

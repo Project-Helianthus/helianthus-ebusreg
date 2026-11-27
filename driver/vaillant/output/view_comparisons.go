@@ -71,6 +71,18 @@ func AdapterHardwareInfoFromNative(native NativeAdapterInfo) *AdapterHardwareInf
 	return info
 }
 
+func enumerationsEqual(a, b []CatalogueEnumeration) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i].Group != b[i].Group || a[i].Register != b[i].Register || a[i].Alternative != b[i].Alternative || a[i].Label != b[i].Label || a[i].Level != b[i].Level || !slices.Equal(a[i].Raw, b[i].Raw) || !intPtrEquals(a[i].Code, b[i].Code) {
+			return false
+		}
+	}
+	return true
+}
+
 func configBoundEquals(a, b *ConfigBound) bool {
 	if a == nil || b == nil {
 		return a == b
@@ -140,6 +152,9 @@ func CircuitsEqual(a, b []CircuitStatus) bool {
 		if !boolPtrEquals(left.Config.CoolingEnabled, right.Config.CoolingEnabled) {
 			return false
 		}
+		if !enumerationsEqual(left.Config.enumerations, right.Config.enumerations) {
+			return false
+		}
 		if left.ManagingDevice.Role != right.ManagingDevice.Role {
 			return false
 		}
@@ -183,6 +198,9 @@ func DhwEquals(a, b *DhwStatus) bool {
 		return false
 	}
 	if a.State.SpecialFunction != b.State.SpecialFunction {
+		return false
+	}
+	if !enumerationsEqual(a.State.enumerations, b.State.enumerations) {
 		return false
 	}
 	if !floatPtrEquals(a.State.CurrentTempC, b.State.CurrentTempC) {
@@ -255,6 +273,9 @@ func ZoneEquals(a, b Zone) bool {
 	}
 
 	if a.State.HvacAction != b.State.HvacAction || a.State.SpecialFunction != b.State.SpecialFunction {
+		return false
+	}
+	if !enumerationsEqual(a.State.enumerations, b.State.enumerations) {
 		return false
 	}
 	if !floatPtrEquals(a.State.CurrentTempC, b.State.CurrentTempC) {

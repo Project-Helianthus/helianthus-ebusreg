@@ -246,9 +246,9 @@ func TestVaillantOwnerSemanticPollScheduleSchedulerCancellation(t *testing.T) {
 }
 
 func scheduleExpectedTasks() []semanticPollTask {
-	keys := []semanticTaskKey{"refresh_regulator_capability", "refresh_discovery", "refresh_config", "refresh_state", "refresh_circuits", "refresh_system", "refresh_radio_devices", "refresh_energy", "refresh_schedules", "refresh_boiler_fast", "refresh_boiler_medium", "refresh_boiler_slow"}
-	priorities := []semanticTaskPriority{0, 0, 1, 2, 0, 0, 0, 1, 0, 2, 1, 0}
-	intervals := []time.Duration{11, 13, 17, 19, 17, 17, 17, 23, 29, 31, 37, 41}
+	keys := []semanticTaskKey{"refresh_regulator_capability", "refresh_discovery", "refresh_config", "refresh_state", "refresh_circuits", "refresh_system", "refresh_radio_devices", "refresh_energy", "refresh_schedules", "refresh_catalogues", "refresh_boiler_fast", "refresh_boiler_medium", "refresh_boiler_slow"}
+	priorities := []semanticTaskPriority{0, 0, 1, 2, 0, 0, 0, 1, 0, 0, 2, 1, 0}
+	intervals := []time.Duration{11, 13, 17, 19, 17, 17, 17, 23, 29, 17, 31, 37, 41}
 	tasks := make([]semanticPollTask, len(keys))
 	for i, key := range keys {
 		tasks[i] = semanticPollTask{key: key, priority: priorities[i], interval: intervals[i] * time.Second}
@@ -261,7 +261,7 @@ func TestVaillantOwnerSemanticPollScheduleRecurringTasks(t *testing.T) {
 		interval time.Duration
 		ch       chan time.Time
 	}
-	ticks := make(chan tick, 12)
+	ticks := make(chan tick, 13)
 	calls := make(map[semanticTaskKey]int)
 	q := newSemanticTaskScheduler()
 	tasks := scheduleExpectedTasks()
@@ -270,7 +270,7 @@ func TestVaillantOwnerSemanticPollScheduleRecurringTasks(t *testing.T) {
 		tasks[i].refresh = func(context.Context) { calls[key]++ }
 	}
 	adapter := make(chan struct{})
-	stops := make(chan struct{}, 12)
+	stops := make(chan struct{}, 13)
 	s := newScheduleUnderTest(&semanticPollSchedule{tasks: q, pollMu: &sync.Mutex{}, recurring: tasks,
 		initial: []semanticPollTask{{key: "refresh_discovery", priority: 2, refresh: tasks[1].refresh}, {key: "refresh_schedules", priority: 0, refresh: tasks[8].refresh}},
 		adapter: func(ctx context.Context) { close(adapter); <-ctx.Done() },
@@ -285,7 +285,7 @@ func TestVaillantOwnerSemanticPollScheduleRecurringTasks(t *testing.T) {
 	s.startPollingLoops(ctx)
 	scheduleWait(t, adapter)
 	seenIntervals := map[time.Duration]int{}
-	for range 12 {
+	for range len(tasks) {
 		select {
 		case tk := <-ticks:
 			seenIntervals[tk.interval]++
@@ -301,13 +301,13 @@ func TestVaillantOwnerSemanticPollScheduleRecurringTasks(t *testing.T) {
 	if !reflect.DeepEqual(seenIntervals, expectedIntervals) {
 		t.Fatalf("cadences %v want %v", seenIntervals, expectedIntervals)
 	}
-	// Each tick send unblocks before enqueue completes; wait for the queue's twelve identities.
+	// Each tick send unblocks before enqueue completes; wait for every recurring identity.
 	deadline := time.After(time.Second)
 	for {
 		q.mu.Lock()
 		n := len(q.queue)
 		q.mu.Unlock()
-		if n == 12 {
+		if n == len(tasks) {
 			break
 		}
 		select {
@@ -318,7 +318,7 @@ func TestVaillantOwnerSemanticPollScheduleRecurringTasks(t *testing.T) {
 		}
 	}
 	cancel()
-	for range 12 {
+	for range len(tasks) {
 		scheduleWait(t, stops)
 	}
 	if q.queue[0].key != "refresh_discovery" || q.queue[0].seq != 1 || q.queue[1].key != "refresh_schedules" || q.queue[1].seq != 2 {
@@ -334,7 +334,7 @@ func TestVaillantOwnerSemanticPollScheduleRecurringTasks(t *testing.T) {
 			t.Fatalf("descriptor %s priority want %d", want.key, priority)
 		}
 	}
-	for range 12 {
+	for range len(tasks) {
 		task := q.nextTask(context.Background())
 		task.run(context.Background())
 		q.taskDone(task)
@@ -365,7 +365,7 @@ func TestVaillantOwnerSemanticPollScheduleBinding(t *testing.T) {
 	if len(s.recurring) != len(expected) {
 		t.Fatalf("recurring tasks %d", len(s.recurring))
 	}
-	callbacks := []func(context.Context){p.refreshRegulatorCapability, p.refreshDiscovery, p.refreshConfig, p.refreshState, p.refreshCircuits, p.refreshSystem, p.refreshRadioDevices, p.refreshEnergy, p.refreshSchedules}
+	callbacks := []func(context.Context){p.refreshRegulatorCapability, p.refreshDiscovery, p.refreshConfig, p.refreshState, p.refreshCircuits, p.refreshSystem, p.refreshRadioDevices, p.refreshEnergy, p.refreshSchedules, p.refreshPublishedCatalogues}
 	for i, want := range expected {
 		got := s.recurring[i]
 		if got.key != want.key || got.priority != want.priority || got.interval != want.interval || got.refresh == nil {

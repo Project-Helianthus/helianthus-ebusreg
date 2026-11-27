@@ -77,6 +77,36 @@ func TestEbusFactoryTwoInstances(t *testing.T) {
 	assertIndependentInstances(t, instA, instB)
 }
 
+func TestEbusFactoryStartSuppliesInstallationSession(t *testing.T) {
+	factory := NewFactory()
+	factory.open = func(context.Context, owner.Config) (owner.Substrate, error) {
+		raw := newSimulatedTransport()
+		return owner.Substrate{
+			Registry:  registry.NewDeviceRegistry(nil),
+			Bus:       protocol.NewBus(raw, protocol.BusConfig{}, 1),
+			Transport: raw,
+		}, nil
+	}
+	left := constructHeld(t, factory, planInstance(t, factory, "bus-a", 17, time.Second))
+	right := constructHeld(t, factory, planInstance(t, factory, "bus-b", 34, 2*time.Second))
+	sessionA := &factoryInstallationSession{}
+	sessionB := &factoryInstallationSession{}
+	if err := left.Start(context.Background(), sessionA); err != nil {
+		t.Fatal(err)
+	}
+	if err := right.Start(context.Background(), sessionB); err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = left.Stop(context.Background()) })
+	t.Cleanup(func() { _ = right.Stop(context.Background()) })
+	if owner.InstallationSessionFromContext(left.runCtx) != sessionA || owner.InstallationSessionFromContext(right.runCtx) != sessionB {
+		t.Fatal("started owner did not keep its installation session")
+	}
+	if !left.Stop(context.Background()).Confirmed || owner.InstallationSessionFromContext(right.runCtx) != sessionB {
+		t.Fatal("stopping one owner changed the other's installation session")
+	}
+}
+
 func TestEbusFactoryB503Lifecycle(t *testing.T) {
 	t.Run("cold-start", testEbusFactoryColdStartFence)
 	t.Run("withdrawal", testEbusFactoryCurrentWithdrawal)
@@ -334,6 +364,17 @@ func (s *simulatedTransport) Write(payload []byte) (int, error) {
 	}
 	s.writes.Add(1)
 	return len(payload), nil
+}
+
+type factoryInstallationSession struct{}
+
+func (factoryInstallationSession) Native() semdriver.NativeRegistry             { return nil }
+func (factoryInstallationSession) SemanticInput() semdriver.SemanticInput       { return nil }
+func (factoryInstallationSession) ScopedOperations() semdriver.ScopedOperations { return nil }
+func (factoryInstallationSession) Calendar() semdriver.Calendar                 { return nil }
+func (factoryInstallationSession) Publisher() semdriver.Publisher               { return nil }
+func (factoryInstallationSession) RegisterExecutor(semdriver.SettingRoute, semdriver.Executor) (func(), error) {
+	return func() {}, nil
 }
 
 func (s *simulatedTransport) Close() error {

@@ -5,13 +5,11 @@ import (
 	"context"
 	"encoding/binary"
 	"encoding/json"
-	"errors"
 	"reflect"
 	"testing"
 	"time"
 
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
-	semdriver "github.com/Project-Helianthus/helianthus-semreg/semreg/v1/driver"
 
 	catalogvaillant "github.com/Project-Helianthus/helianthus-ebusreg/catalog/vaillant"
 	"github.com/Project-Helianthus/helianthus-ebusreg/driver/vaillant/output"
@@ -577,70 +575,6 @@ func (bus *energyCatalogueBus) send(_ context.Context, frame protocol.Frame) (*p
 	}
 	raw := []byte{byte(value), byte(value >> 8), byte(value >> 16), byte(value >> 24)}
 	return testB524ResponseForSelectorPayload(frame.Data, raw...), nil
-}
-
-type energyCatalogueSession struct {
-	calendar semdriver.Calendar
-	later    semdriver.Calendar
-	calls    int
-}
-
-func (s *energyCatalogueSession) Native() semdriver.NativeRegistry             { return nil }
-func (s *energyCatalogueSession) SemanticInput() semdriver.SemanticInput       { return nil }
-func (s *energyCatalogueSession) ScopedOperations() semdriver.ScopedOperations { return nil }
-func (s *energyCatalogueSession) Publisher() semdriver.Publisher               { return nil }
-func (s *energyCatalogueSession) RegisterExecutor(semdriver.SettingRoute, semdriver.Executor) (func(), error) {
-	return func() {}, nil
-}
-func (s *energyCatalogueSession) Calendar() semdriver.Calendar {
-	s.calls++
-	if s.later != nil && s.calls > 2 {
-		return s.later
-	}
-	return s.calendar
-}
-
-type energyTestCalendar struct {
-	day        int
-	generation int
-	begins     int
-}
-
-func (c *energyTestCalendar) BeginAcquisition() semdriver.CalendarAcquisition {
-	c.begins++
-	return &energyTestAcquisition{calendar: c, day: c.day, generation: c.generation}
-}
-
-type energyTestAcquisition struct {
-	calendar   *energyTestCalendar
-	day        int
-	generation int
-}
-
-func (a *energyTestAcquisition) Reference() semdriver.CalendarReference { return energyTestReference{} }
-func (a *energyTestAcquisition) Check(calendar semdriver.Calendar) error {
-	current, ok := calendar.(*energyTestCalendar)
-	if !ok || current != a.calendar || current.day != a.day || current.generation != a.generation {
-		return errors.New("calendar guard")
-	}
-	return nil
-}
-
-type energyTestReference struct{}
-
-func (energyTestReference) Instant() time.Time {
-	return time.Date(2024, time.March, 15, 12, 0, 0, 0, time.UTC)
-}
-func (energyTestReference) Date() semdriver.CalendarDate {
-	return semdriver.CalendarDate{Year: 2024, Month: time.March, Day: 15}
-}
-func (energyTestReference) Year() int         { return 2024 }
-func (energyTestReference) PreviousYear() int { return 2023 }
-func (energyTestReference) Month() semdriver.CalendarMonth {
-	return semdriver.CalendarMonth{Year: 2024, Month: time.March}
-}
-func (energyTestReference) PreviousMonth() semdriver.CalendarMonth {
-	return semdriver.CalendarMonth{Year: 2024, Month: time.February}
 }
 
 func cloneStatisticsKey(key catalogvaillant.B516StatisticsDirectionKey) catalogvaillant.B516StatisticsDirectionKey {

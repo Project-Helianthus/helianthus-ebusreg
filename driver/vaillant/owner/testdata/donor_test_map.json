@@ -424,5 +424,119 @@
     "donor_name": "TestB524InterfaceIdentityNonVaillantFamilyNoReadsNoOverlay",
     "destination_file": "driver/vaillant/owner/vaillant_b524_interface_identity_test.go",
     "destination_name": "TestVaillantOwnerB524InterfaceIdentityNonVaillantFamilyNoReadsNoOverlay"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_publication_golden_test.go",
+    "donor_name": "TestVaillantPublicationGolden",
+    "destination_file": "driver/vaillant/owner/publication_golden_test.go",
+    "destination_name": "TestVaillantPublicationGolden"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_acquisition_ownership_test.go",
+    "donor_name": "TestVaillantAcquisitionOwnershipImportsNoPublishedPackage",
+    "destination_file": "driver/vaillant/owner/publication_ownership_test.go",
+    "destination_name": "TestVaillantAcquisitionOwnershipImportsNoPublishedPackage"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_acquisition_ownership_test.go",
+    "donor_name": "TestVaillantAcquisitionOwnershipPollerFieldsAreNative",
+    "destination_file": "driver/vaillant/owner/publication_ownership_test.go",
+    "destination_name": "TestVaillantAcquisitionOwnershipPollerFieldsAreNative"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_acquisition_ownership_test.go",
+    "donor_name": "TestVaillantAcquisitionOwnershipPublisherIsNative",
+    "destination_file": "driver/vaillant/owner/publication_ownership_test.go",
+    "destination_name": "TestVaillantAcquisitionOwnershipPublisherIsNative"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_acquisition_ownership_test.go",
+    "donor_name": "TestVaillantAcquisitionOwnershipPublicationHoldsNoBusAccess",
+    "destination_file": "driver/vaillant/owner/publication_ownership_test.go",
+    "destination_name": "TestVaillantAcquisitionOwnershipPublicationHoldsNoBusAccess"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_acquisition_ownership_test.go",
+    "donor_name": "TestVaillantAcquisitionOwnershipGuardDetectsEachViolation",
+    "destination_file": "driver/vaillant/owner/publication_ownership_test.go",
+    "destination_name": "TestVaillantAcquisitionOwnershipGuardDetectsEachViolation"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_test.go",
+    "donor_name": "TestVaillantSemanticPublicationAccessorsReturnEachCollaborator",
+    "destination_file": "driver/vaillant/owner/publication_test.go",
+    "destination_name": "TestVaillantSemanticPublicationAccessorsReturnEachCollaborator"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_test.go",
+    "donor_name": "TestVaillantSemanticPollerWithoutPublicationOwnerIsInert",
+    "destination_file": "driver/vaillant/owner/publication_test.go",
+    "destination_name": "TestVaillantSemanticPollerWithoutPublicationOwnerIsInert"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_test.go",
+    "donor_name": "TestNewVaillantSemanticPollerBuildsPublicationOwner",
+    "destination_file": "driver/vaillant/owner/publication_test.go",
+    "destination_name": "TestNewVaillantSemanticPollerBuildsPublicationOwner"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_test.go",
+    "donor_name": "TestVaillantBoilerStatusPublicationWaitsForBoilerPublishLock",
+    "destination_file": "driver/vaillant/owner/publication_test.go",
+    "destination_name": "TestVaillantBoilerStatusPublicationWaitsForBoilerPublishLock"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_schedules_test.go",
+    "donor_name": "TestVaillantScheduleAcquisitionImportsNoPublicationPackages",
+    "destination_file": "driver/vaillant/owner/publication_schedules_test.go",
+    "destination_name": "TestVaillantScheduleAcquisitionImportsNoPublicationPackages"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_schedules_test.go",
+    "donor_name": "TestVaillantPublicationOwnerMapsNativeSchedulePrograms",
+    "destination_file": "driver/vaillant/owner/publication_schedules_test.go",
+    "destination_name": "TestVaillantPublicationOwnerMapsNativeSchedulePrograms"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_schedules_test.go",
+    "donor_name": "TestVaillantPublicationOwnerPublishesScheduleDayForMatchingProgram",
+    "destination_file": "driver/vaillant/owner/publication_schedules_test.go",
+    "destination_name": "TestVaillantPublicationOwnerPublishesScheduleDayForMatchingProgram"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_views_test.go",
+    "donor_name": "TestVaillantZoneViewsDeriveRadioStateOnlyForMissingZoneValues",
+    "destination_file": "driver/vaillant/owner/publication_views_test.go",
+    "destination_name": "TestVaillantZoneViewsDeriveRadioStateOnlyForMissingZoneValues"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_views_test.go",
+    "donor_name": "TestVaillantPublicationOwnerPublishesCircuitAndDhwViews",
+    "destination_file": "driver/vaillant/owner/publication_views_test.go",
+    "destination_name": "TestVaillantPublicationOwnerPublishesCircuitAndDhwViews"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_views_test.go",
+    "donor_name": "TestAcquireEnergyAppliesNativeValuesToTheLedger",
+    "destination_file": "driver/vaillant/owner/publication_views_test.go",
+    "destination_name": "TestAcquireEnergyAppliesNativeValuesToTheLedger"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_views_test.go",
+    "donor_name": "TestVaillantPublicationEnergyLedgerKeysProviderValues",
+    "destination_file": "driver/vaillant/owner/publication_views_test.go",
+    "destination_name": "TestVaillantPublicationEnergyLedgerKeysProviderValues"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_views_test.go",
+    "donor_name": "TestVaillantPublicationOwnerPublishesAndWithdrawsBoilerStatus",
+    "destination_file": "driver/vaillant/owner/publication_views_test.go",
+    "destination_name": "TestVaillantPublicationOwnerPublishesAndWithdrawsBoilerStatus"
+  },
+  {
+    "donor_file": "cmd/gateway/vaillant_semantic_publication_views_test.go",
+    "donor_name": "TestVaillantPublicationOwnerPublishesSystemView",
+    "destination_file": "driver/vaillant/owner/publication_views_test.go",
+    "destination_name": "TestVaillantPublicationOwnerPublishesSystemView"
   }
 ]

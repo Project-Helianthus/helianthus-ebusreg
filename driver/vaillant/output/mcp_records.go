@@ -261,11 +261,14 @@ type MCPBoilerDiagnostics struct {
 
 // MCPSystemStatus represents the system status in the MCP output.
 type MCPSystemStatus struct {
-	State       *MCPSystemState      `json:"state,omitempty"`
-	Config      *MCPSystemConfig     `json:"config,omitempty"`
-	Properties  *MCPSystemProperties `json:"properties,omitempty"`
-	ventilation *VentilationView
-	catalogue   *FamilyCatalogue
+	State          *MCPSystemState      `json:"state,omitempty"`
+	Config         *MCPSystemConfig     `json:"config,omitempty"`
+	Properties     *MCPSystemProperties `json:"properties,omitempty"`
+	ventilation    *VentilationView
+	catalogue      *FamilyCatalogue
+	history        *HistoryOwnerRecord
+	functionModule *FunctionModuleRecord
+	legacyPlanes   *LegacyPlaneRecord
 }
 
 // MCPSystemState represents the observed state of the system in the MCP output.

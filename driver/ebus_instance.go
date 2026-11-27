@@ -27,7 +27,7 @@ type instance struct {
 }
 
 // Start opens the instance transport and starts its owner. It dials nothing itself.
-func (i *instance) Start(ctx context.Context, _ semdriver.Session) error {
+func (i *instance) Start(ctx context.Context, session semdriver.Session) error {
 	if i == nil {
 		return errors.New("nil instance")
 	}
@@ -55,6 +55,7 @@ func (i *instance) Start(ctx context.Context, _ semdriver.Session) error {
 		acquired.HoldStartup()
 	}
 	runCtx, cancel := context.WithCancel(context.WithoutCancel(ctx))
+	runCtx = owner.ContextWithInstallationSession(runCtx, session)
 	acquired.Begin(runCtx)
 
 	i.mu.Lock()

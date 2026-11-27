@@ -22,7 +22,7 @@ func (p *vaillantSemanticPoller) refreshPublishedCatalogues(ctx context.Context)
 	if boiler != 0 {
 		_, _ = fillBoilerDictionary(p, ctx, boiler)
 	}
-	_, _ = fillEnergyCatalogues(p, ctx, nil)
+	_, _ = refreshEnergyCatalogues(p, ctx, InstallationSessionFromContext(ctx))
 }
 
 // codebookFamily is the registered device id when that id is the family name.

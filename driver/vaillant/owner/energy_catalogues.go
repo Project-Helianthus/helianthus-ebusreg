@@ -25,6 +25,27 @@ var (
 	energyResiduals   = map[*vaillantSemanticPoller]map[string][]byte{}
 )
 
+type energyInstallationSessionKey struct{}
+
+// ContextWithInstallationSession returns a context carrying the installation
+// session whose calendar a dated energy acquisition uses.
+func ContextWithInstallationSession(ctx context.Context, session semdriver.Session) context.Context {
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	return context.WithValue(ctx, energyInstallationSessionKey{}, session)
+}
+
+// InstallationSessionFromContext returns the installation session stored for
+// a dated energy acquisition, or nil when the context has none.
+func InstallationSessionFromContext(ctx context.Context) semdriver.Session {
+	if ctx == nil {
+		return nil
+	}
+	session, _ := ctx.Value(energyInstallationSessionKey{}).(semdriver.Session)
+	return session
+}
+
 func noteEnergyResidual(p *vaillantSemanticPoller, field string, raw []byte) {
 	energyResidualMu.Lock()
 	defer energyResidualMu.Unlock()
@@ -44,7 +65,16 @@ func fillEnergyCatalogues(p *vaillantSemanticPoller, ctx context.Context, sessio
 		return totals, nil
 	}
 	energyCatalogueMu.Unlock()
+	return readEnergyCatalogues(p, ctx, session)
+}
 
+// refreshEnergyCatalogues reads the catalogued directions again. The stored
+// fill serves a later view; a scheduled pass must not keep the first one.
+func refreshEnergyCatalogues(p *vaillantSemanticPoller, ctx context.Context, session semdriver.Session) (output.EnergyTotals, error) {
+	return readEnergyCatalogues(p, ctx, session)
+}
+
+func readEnergyCatalogues(p *vaillantSemanticPoller, ctx context.Context, session semdriver.Session) (output.EnergyTotals, error) {
 	var acquisition semdriver.CalendarAcquisition
 	var reference semdriver.CalendarReference
 	if session != nil && session.Calendar() != nil {

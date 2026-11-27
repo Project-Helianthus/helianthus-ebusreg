@@ -121,6 +121,111 @@ func TestVaillantEnergyCataloguesFillEveryDirection(t *testing.T) {
 	})
 }
 
+func TestVaillantEnergyCataloguesScheduledFillUsesInstallationSession(t *testing.T) {
+	bus := &energyCatalogueBus{}
+	poller, provider := prepareEnergyPoller(bus)
+	calendar := &energyTestCalendar{day: 15, generation: 1}
+	session := &energyCatalogueSession{calendar: calendar}
+	ctx := ContextWithInstallationSession(context.Background(), session)
+	stamp := time.Date(2024, time.March, 15, 8, 0, 0, 123456789, time.UTC)
+	poller.nowFn = func() time.Time { return stamp }
+	fire, stop := startCatalogueSchedule(t, poller, ctx)
+	defer stop()
+
+	fire()
+	if calendar.begins != 1 {
+		t.Fatalf("begins = %d; the scheduled fill must take one calendar acquisition", calendar.begins)
+	}
+	receipt := stamp.UTC().Format(time.RFC3339Nano)
+	view := provider.EnergyTotals()
+	monthly := energyDirectionNamed(view, energyRegisterName(energyFuelSumHcThisMonth))
+	if monthly.ValueKWh == nil || *monthly.ValueKWh != 55 || monthly.ObservedAt != receipt || monthly.ScopeYear != 2024 || monthly.ScopeMonth != int(time.March) {
+		t.Fatalf("scheduled monthly = %+v; want 55 at %s in March 2024", monthly, receipt)
+	}
+	if countEnergyReads(bus.reads, energyFuelSumHcThisMonth) != 1 {
+		t.Fatalf("this-month reads = %d; want one acquisition", countEnergyReads(bus.reads, energyFuelSumHcThisMonth))
+	}
+
+	later := stamp.Add(time.Hour)
+	poller.nowFn = func() time.Time { return later }
+	bus.replace = map[uint16]uint32{energyFuelSumHcThisMonth: 56}
+	bus.advance = func() { calendar.day++ }
+	bus.advanced = false
+	fire()
+	if calendar.begins != 2 {
+		t.Fatalf("begins = %d; the next scheduled fill must acquire the calendar again", calendar.begins)
+	}
+	laterReceipt := later.UTC().Format(time.RFC3339Nano)
+	fresh := make([]byte, 4)
+	binary.LittleEndian.PutUint32(fresh, 56)
+	view = provider.EnergyTotals()
+	monthly = energyDirectionNamed(view, energyRegisterName(energyFuelSumHcThisMonth))
+	if monthly.ValueKWh != nil || monthly.ObservedAt != laterReceipt || !bytes.Equal(monthly.Raw, fresh) {
+		t.Fatalf("second monthly = %+v; a moved civil day must reject the new reply %x at %s", monthly, fresh, laterReceipt)
+	}
+	lifetime := energyDirectionNamed(view, energyRegisterName(energyFuelSumHc))
+	if lifetime.ValueKWh == nil || lifetime.ObservedAt != laterReceipt {
+		t.Fatalf("second lifetime = %+v; want a new receipt %s", lifetime, laterReceipt)
+	}
+	if countEnergyReads(bus.reads, energyFuelSumHcThisMonth) != 2 {
+		t.Fatalf("this-month reads = %d; the scheduled fill kept the first reply", countEnergyReads(bus.reads, energyFuelSumHcThisMonth))
+	}
+
+	reads, begins := len(bus.reads), calendar.begins
+	if _, err := fillEnergyCatalogues(poller, ctx, session); err != nil {
+		t.Fatalf("view fill: %v", err)
+	}
+	if len(bus.reads) != reads || calendar.begins != begins {
+		t.Fatalf("view reads=%d begins=%d; a view read must not poll or begin again", len(bus.reads), calendar.begins)
+	}
+
+	otherBus := &energyCatalogueBus{}
+	other, otherProvider := prepareEnergyPoller(otherBus)
+	other.refreshPublishedCatalogues(context.Background())
+	if calendar.begins != begins {
+		t.Fatalf("begins = %d; another owner used this installation calendar", calendar.begins)
+	}
+	otherMonthly := energyDirectionNamed(otherProvider.EnergyTotals(), energyRegisterName(energyFuelSumHcThisMonth))
+	if otherMonthly.ValueKWh != nil {
+		t.Fatalf("other monthly = %+v; a missing session must not accept a dated reply", otherMonthly)
+	}
+}
+
+func startCatalogueSchedule(t *testing.T, poller *vaillantSemanticPoller, ctx context.Context) (fire func(), stop func()) {
+	t.Helper()
+	ticks := make(chan time.Time)
+	ready := make(chan struct{})
+	stopped := make(chan struct{})
+	done := make(chan struct{}, 1)
+	schedule := &semanticPollSchedule{
+		tasks:  newSemanticTaskScheduler(),
+		pollMu: &poller.pollMu,
+		newTicker: func(time.Duration) *semanticPollTicker {
+			close(ready)
+			return &semanticPollTicker{C: ticks, stop: func() { close(stopped) }}
+		},
+		recurring: []semanticPollTask{{
+			key:      semanticTaskRefreshCatalogues,
+			interval: time.Second,
+			refresh: func(ctx context.Context) {
+				poller.refreshPublishedCatalogues(ctx)
+				done <- struct{}{}
+			},
+		}},
+	}
+	runCtx, cancel := context.WithCancel(ctx)
+	schedule.Start(runCtx)
+	scheduleWait(t, ready)
+	return func() {
+			t.Helper()
+			ticks <- time.Time{}
+			scheduleWait(t, done)
+		}, func() {
+			cancel()
+			scheduleWait(t, stopped)
+		}
+}
+
 func TestVaillantEnergyCataloguesRejectsMutatedIdentityAxis(t *testing.T) {
 	statistics, err := catalogvaillant.B516StatisticsDirectionEntries()
 	if err != nil || len(statistics) == 0 {
@@ -393,6 +498,28 @@ func assertDatedEnergyRejected(t *testing.T, view output.EnergyTotals, provider 
 	}
 }
 
+func energyDirectionNamed(view *output.EnergyTotals, name string) output.EnergyDirection {
+	if view == nil {
+		return output.EnergyDirection{}
+	}
+	for _, item := range view.RegisterDirections() {
+		if item.Name == name {
+			return item
+		}
+	}
+	return output.EnergyDirection{}
+}
+
+func countEnergyReads(reads []uint16, addr uint16) int {
+	count := 0
+	for _, item := range reads {
+		if item == addr {
+			count++
+		}
+	}
+	return count
+}
+
 func energyCatalogueValue(addr uint16) (uint32, bool) {
 	switch addr {
 	case energyFuelSumHc:
@@ -428,6 +555,7 @@ type energyCatalogueBus struct {
 	reads    []uint16
 	advance  func()
 	advanced bool
+	replace  map[uint16]uint32
 }
 
 func (bus *energyCatalogueBus) send(_ context.Context, frame protocol.Frame) (*protocol.Frame, error) {
@@ -441,6 +569,9 @@ func (bus *energyCatalogueBus) send(_ context.Context, frame protocol.Frame) (*p
 		bus.advance()
 	}
 	value, ok := energyCatalogueValue(addr)
+	if replaced, found := bus.replace[addr]; found {
+		value, ok = replaced, true
+	}
 	if !ok {
 		return &protocol.Frame{Data: []byte{0x00}}, nil
 	}

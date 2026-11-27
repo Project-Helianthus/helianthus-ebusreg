@@ -64,6 +64,7 @@ func (provider *retainedSemanticState) EnergyTotals() *output.EnergyTotals {
 	copy.Gas = cloneEnergyChannel(copy.Gas)
 	copy.Electric = cloneEnergyChannel(copy.Electric)
 	copy.Solar = cloneEnergyChannel(copy.Solar)
+	overlayEnergyCatalogue(provider, &copy)
 	return &copy
 }
 

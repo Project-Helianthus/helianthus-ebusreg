@@ -254,6 +254,22 @@ func storeBoilerSelectors(p *vaillantSemanticPoller, selectors []output.BoilerSe
 	overlayBoilerCatalogue(p, selectors, operations)
 }
 
+func reapplyStoredBoilerCatalogue(p *vaillantSemanticPoller) {
+	if p == nil {
+		return
+	}
+	boilerCatalogueMu.Lock()
+	hold := boilerCatalogues[p]
+	if hold == nil || (len(hold.selectors) == 0 && len(hold.operations) == 0) {
+		boilerCatalogueMu.Unlock()
+		return
+	}
+	selectors := append([]output.BoilerSelectorEvidence(nil), hold.selectors...)
+	operations := append([]output.RawOperation(nil), hold.operations...)
+	boilerCatalogueMu.Unlock()
+	overlayBoilerCatalogue(p, selectors, operations)
+}
+
 func overlayBoilerCatalogue(p *vaillantSemanticPoller, selectors []output.BoilerSelectorEvidence, operations []output.RawOperation) {
 	owner := publicationOwner(p)
 	if owner == nil || owner.state == nil {

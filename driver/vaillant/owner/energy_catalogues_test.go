@@ -6,6 +6,7 @@ import (
 	"encoding/binary"
 	"encoding/json"
 	"errors"
+	"reflect"
 	"testing"
 	"time"
 
@@ -38,8 +39,9 @@ func TestVaillantEnergyCataloguesFillEveryDirection(t *testing.T) {
 		assertAcceptedEnergy(t, view, energyTestReference{}, receipt, noon)
 		assertEnergyProjection(t, provider.EnergyTotals())
 		assertEnergyProjection(t, &view)
-		if len(provider.EnergyTotals().CatalogueDirections()) != 0 || len(provider.EnergyTotals().RegisterDirections()) != 0 || len(provider.EnergyTotals().ResidualFields()) != 0 || len(provider.EnergyTotals().CandidateFields()) != 0 {
-			t.Fatalf("provider rebuild kept catalogue rows; the fill view carries them")
+		published := provider.EnergyTotals()
+		if published == nil || !reflect.DeepEqual(published.RegisterDirections(), view.RegisterDirections()) || !reflect.DeepEqual(published.CatalogueDirections(), view.CatalogueDirections()) || !reflect.DeepEqual(published.ResidualFields(), view.ResidualFields()) || !reflect.DeepEqual(published.CandidateFields(), view.CandidateFields()) {
+			t.Fatalf("published energy view = %+v; want the fill view's directions, residuals and candidates", published)
 		}
 		assertEnergyCatalogue(t, view, supplied)
 		mapped := output.MCPEnergyTotalsFromGraphQL(&view)

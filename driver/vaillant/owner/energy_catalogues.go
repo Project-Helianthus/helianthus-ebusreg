@@ -99,9 +99,6 @@ func fillEnergyCatalogues(p *vaillantSemanticPoller, ctx context.Context, sessio
 		}
 		directions = append(directions, direction)
 	}
-	if ledger != nil {
-		ledger.publishEnergyTotals()
-	}
 	catalogue, err := catalogueEnergyDirections()
 	if err != nil {
 		return output.EnergyTotals{}, err
@@ -129,7 +126,34 @@ func fillEnergyCatalogues(p *vaillantSemanticPoller, ctx context.Context, sessio
 	energyCatalogueMu.Lock()
 	energyCatalogues[p] = &energyCatalogueHold{totals: totals, ready: true}
 	energyCatalogueMu.Unlock()
+	if ledger != nil {
+		ledger.publishEnergyTotals()
+	}
 	return totals, nil
+}
+
+// overlayEnergyCatalogue copies the stored catalogue rows onto a rebuilt
+// energy view. Channel totals stay the values the merge store just projected.
+func overlayEnergyCatalogue(provider *retainedSemanticState, totals *output.EnergyTotals) {
+	if provider == nil || totals == nil {
+		return
+	}
+	energyCatalogueMu.Lock()
+	defer energyCatalogueMu.Unlock()
+	for poller, hold := range energyCatalogues {
+		if hold == nil || !hold.ready {
+			continue
+		}
+		owner := publicationOwner(poller)
+		if owner == nil || owner.state != provider {
+			continue
+		}
+		totals.SetRegisterDirections(hold.totals.RegisterDirections())
+		totals.SetCatalogueDirections(hold.totals.CatalogueDirections())
+		totals.SetResidualFields(hold.totals.ResidualFields())
+		totals.SetCandidateFields(hold.totals.CandidateFields())
+		return
+	}
 }
 
 func energyResponseAdmitted(session semdriver.Session, acquisition semdriver.CalendarAcquisition, ledger vaillantEnergyLedger, reference semdriver.CalendarReference) bool {

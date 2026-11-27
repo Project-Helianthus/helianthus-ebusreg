@@ -237,6 +237,7 @@ func (p *vaillantSemanticPoller) pollSchedule() *semanticPollSchedule {
 			{key: semanticTaskRefreshRadioDevices, interval: p.configInterval, priority: semanticTaskPriorityLow, refresh: p.refreshRadioDevices},
 			{key: semanticTaskRefreshEnergy, interval: p.energyInterval, priority: semanticTaskPriorityMedium, refresh: p.refreshEnergy},
 			{key: semanticTaskRefreshSchedules, interval: p.scheduleInterval, priority: semanticTaskPriorityLow, refresh: p.refreshSchedules},
+			{key: semanticTaskRefreshCatalogues, interval: p.configInterval, priority: semanticTaskPriorityLow, refresh: p.refreshPublishedCatalogues},
 		},
 	}
 	for _, tier := range p.boilerStatusTierSchedules() {

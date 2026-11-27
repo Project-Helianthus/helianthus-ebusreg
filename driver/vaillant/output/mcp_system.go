@@ -183,8 +183,11 @@ func MCPSystemFromGraphQL(status *SystemStatus) *MCPSystemStatus {
 		return nil
 	}
 	return &MCPSystemStatus{
-		ventilation: cloneVentilation(status.ventilation),
-		catalogue:   cloneFamilyCatalogue(status.catalogue),
+		ventilation:    cloneVentilation(status.ventilation),
+		catalogue:      cloneFamilyCatalogue(status.catalogue),
+		history:        cloneHistoryPtr(status.history),
+		functionModule: cloneFunctionModulePtr(status.functionModule),
+		legacyPlanes:   cloneLegacyPlanePtr(status.legacyPlanes),
 		State: &MCPSystemState{
 			SystemOff:                      CloneBoolPtr(status.State.SystemOff),
 			SystemWaterPressure:            CloneFloatPtr(status.State.SystemWaterPressure),

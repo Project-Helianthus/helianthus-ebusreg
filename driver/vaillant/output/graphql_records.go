@@ -276,13 +276,16 @@ type BoilerDiagnostics struct {
 
 // SystemStatus represents the system status.
 type SystemStatus struct {
-	State         SystemState
-	Config        SystemConfig
-	Properties    SystemProperties
-	GatewayBrand  *string
-	GatewayVendor *string
-	ventilation   *VentilationView
-	catalogue     *FamilyCatalogue
+	State          SystemState
+	Config         SystemConfig
+	Properties     SystemProperties
+	GatewayBrand   *string
+	GatewayVendor  *string
+	ventilation    *VentilationView
+	catalogue      *FamilyCatalogue
+	history        *HistoryOwnerRecord
+	functionModule *FunctionModuleRecord
+	legacyPlanes   *LegacyPlaneRecord
 }
 
 // SystemState represents the observed state of the system.

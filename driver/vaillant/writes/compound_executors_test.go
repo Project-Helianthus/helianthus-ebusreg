@@ -27,6 +27,8 @@ func TestTimeProgramExecutorSlots(t *testing.T) {
 	assertTimerRejected(t, 7, 6, 10, 12, 20)
 	assertTimerSilent(t, false, true)
 	assertTimerSilent(t, true, false)
+	assertInexactSlotTemperature(t)
+	assertExactHundredthsTemperature(t)
 }
 
 func TestCStringPairExecutor(t *testing.T) {
@@ -191,6 +193,51 @@ func assertTimerRejected(t *testing.T, weekday, startHour, startMinute, endHour,
 	if err != nil || completion.Outcome != operation.OutcomeRejected || completion.CompoundExecution != nil || len(bus.snapshot()) != 0 {
 		t.Fatalf("completion=%+v frames=%d err=%v", completion, len(bus.snapshot()), err)
 	}
+}
+
+func assertInexactSlotTemperature(t *testing.T) {
+	t.Helper()
+	programs := [][]slotSpec{
+		{{6, 10, 12, 20, decimalPtr("5555", -2)}},
+		{
+			{6, 10, 12, 20, decimalPtr("40", 0)},
+			{12, 20, 23, 50, decimalPtr("2025", -2)},
+		},
+	}
+	for _, slots := range programs {
+		bus := &scriptReply{respond: dhwTimerReply(false)}
+		owner := compoundOwner(map[semreg.NativeBindingID]byte{"hot-water": 0x01})
+		executor := NewCompound(bus, ownerSource(&owner), nil)
+		dispatch := programDispatch("ebusreg.operation.dhw_time_program", "hot-water", 3, len(slots), slots)
+		completion, err := executor.Execute(context.Background(), dispatch)
+		if err != nil || completion.Outcome != operation.OutcomeFailedNoContact || completion.CompoundExecution != nil || len(bus.snapshot()) != 0 {
+			t.Fatalf("completion=%+v frames=%d err=%v", completion, len(bus.snapshot()), err)
+		}
+	}
+}
+
+func assertExactHundredthsTemperature(t *testing.T) {
+	t.Helper()
+	bus := &scriptReply{respond: dhwTimerReply(false)}
+	owner := compoundOwner(map[semreg.NativeBindingID]byte{"hot-water": 0x01})
+	executor := NewCompound(bus, ownerSource(&owner), nil)
+	dispatch := programDispatch("ebusreg.operation.dhw_time_program", "hot-water", 3, 2, []slotSpec{
+		{6, 10, 12, 20, decimalPtr("4000", -2)},
+		{12, 20, 23, 50, decimalPtr("5550", -2)},
+	})
+	completion, err := executor.Execute(context.Background(), dispatch)
+	if err != nil {
+		t.Fatal(err)
+	}
+	frames := bus.snapshot()
+	if len(frames) != 4 {
+		t.Fatalf("frames = %d", len(frames))
+	}
+	assertTimerFrame(t, frames[0], []byte{0xa6, 0xff, 0x02, 0x03, 0x00, 0x02, 0x06, 0x0a, 0x0c, 0x14, 0x90, 0x01})
+	assertTimerFrame(t, frames[1], []byte{0xa6, 0xff, 0x02, 0x03, 0x01, 0x02, 0x0c, 0x14, 0x17, 0x32, 0x2b, 0x02})
+	assertTimerFrame(t, frames[2], []byte{0xa5, 0xff, 0x02, 0x03, 0x00})
+	assertTimerFrame(t, frames[3], []byte{0xa5, 0xff, 0x02, 0x03, 0x01})
+	assertCompoundOutcome(t, completion, operation.OutcomeApplied, operation.ReadbackConfirms, false, "hot-water")
 }
 
 func assertTimerSilent(t *testing.T, cancel, block bool) {

@@ -480,7 +480,12 @@ func slotTemperature(field semreg.TypedField) (*big.Rat, uint16, decodeStatus) {
 	if !ok || number == nil {
 		return nil, 0, decodeSilent
 	}
-	scaled := new(big.Int).Quo(new(big.Int).Mul(number.Num(), big.NewInt(10)), number.Denom())
+	// The native word is tenths of a degree. A finer value has no exact encoding.
+	tenths := new(big.Rat).Mul(number, big.NewRat(10, 1))
+	if !tenths.IsInt() {
+		return nil, 0, decodeSilent
+	}
+	scaled := tenths.Num()
 	if scaled.Sign() < 0 || !scaled.IsUint64() || scaled.Uint64() >= 0xffff {
 		return nil, 0, decodeSilent
 	}

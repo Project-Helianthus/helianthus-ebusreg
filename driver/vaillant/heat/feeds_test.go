@@ -42,12 +42,8 @@ func TestThermalZoneFeed(t *testing.T) {
 	coolingMode := mustFeed(t, feeds, "zone.cooling_mode")
 	comfort := mustFeed(t, feeds, "zone.comfort_setpoint")
 	comfortOther := mustFeed(t, feeds, "zone.comfort_setpoint_other")
-	setback := mustFeed(t, feeds, "zone.unoccupied_heating")
-	coolingManual := mustFeed(t, feeds, "zone.occupied_cooling_manual")
-	coolingEffective := mustFeed(t, feeds, "zone.occupied_cooling_effective")
 	coolingNative := mustFeed(t, feeds, "zone.cooling_setpoint_native")
 	special := mustFeed(t, feeds, "zone.special_function_native")
-	valve := mustFeed(t, feeds, "zone.valve_position")
 
 	t.Run("identity and scale", func(t *testing.T) {
 		east := textAt(air, "0", "zone-east", "controller-700", 0)
@@ -164,6 +160,19 @@ func TestThermalZoneFeed(t *testing.T) {
 		specialGot := Apply(special, textAt(special, "3", "zone-east", "controller-700", 0))
 		mustNamespace(t, specialGot, "3")
 	})
+}
+
+func TestThermalZoneFeedSources(t *testing.T) {
+	feeds := ZoneFeeds()
+	air := mustFeed(t, feeds, "zone.air_temperature")
+	manual := mustFeed(t, feeds, "zone.manual_setpoint")
+	effective := mustFeed(t, feeds, "zone.effective_setpoint")
+	heatingMode := mustFeed(t, feeds, "zone.heating_mode")
+	coolingMode := mustFeed(t, feeds, "zone.cooling_mode")
+	setback := mustFeed(t, feeds, "zone.unoccupied_heating")
+	coolingManual := mustFeed(t, feeds, "zone.occupied_cooling_manual")
+	coolingEffective := mustFeed(t, feeds, "zone.occupied_cooling_effective")
+	valve := mustFeed(t, feeds, "zone.valve_position")
 
 	t.Run("cooling rank", func(t *testing.T) {
 		manualGot := Apply(coolingManual, textAt(coolingManual, "21", "zone-east", "controller-700", 4))

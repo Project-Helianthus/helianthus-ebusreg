@@ -25,7 +25,7 @@ type Statement struct {
 	Zones             []Zone
 	Circuits          []Circuit
 	Cylinders         []Cylinder
-	HeatPumps         []HeatPump
+	HeatPumps         []Pump
 }
 
 // Zone is one present zone. Assignment is the circuit-assignment register.
@@ -47,8 +47,8 @@ type Cylinder struct {
 	Instance byte
 }
 
-// HeatPump is one heat-pump identity carried by its transmitted serial.
-type HeatPump struct {
+// Pump is one heat-pump identity carried by its transmitted serial.
+type Pump struct {
 	Serial string
 }
 
@@ -308,8 +308,8 @@ func addCylinders(list *resourceList, index *graphIndex, cylinders []Cylinder, p
 	}
 }
 
-func addHeatPumps(list *resourceList, index *graphIndex, pumps []HeatPump, parent string) {
-	copied := append([]HeatPump(nil), pumps...)
+func addHeatPumps(list *resourceList, index *graphIndex, pumps []Pump, parent string) {
+	copied := append([]Pump(nil), pumps...)
 	sort.Slice(copied, func(i, j int) bool { return copied[i].Serial < copied[j].Serial })
 	for _, pump := range copied {
 		if !slotOK(pump.Serial) {

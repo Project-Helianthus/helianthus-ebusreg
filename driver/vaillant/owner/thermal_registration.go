@@ -120,16 +120,16 @@ func (p *vaillantSemanticPoller) thermalStatement(draft thermalDraft) heat.State
 	return statement
 }
 
-func (p *vaillantSemanticPoller) heatPumps(catalog productids.Catalog, catalogErr error) []heat.HeatPump {
+func (p *vaillantSemanticPoller) heatPumps(catalog productids.Catalog, catalogErr error) []heat.Pump {
 	if p == nil || p.reg == nil {
 		return nil
 	}
-	var pumps []heat.HeatPump
+	var pumps []heat.Pump
 	p.reg.IterateSnapshots(func(snap registry.DeviceEntrySnapshot) bool {
 		if snap.SerialNumber == "" || !isHeatPumpDeviceSnapshotCandidate(snap, catalog, catalogErr) {
 			return true
 		}
-		pumps = append(pumps, heat.HeatPump{Serial: snap.SerialNumber})
+		pumps = append(pumps, heat.Pump{Serial: snap.SerialNumber})
 		return true
 	})
 	sort.Slice(pumps, func(i, j int) bool { return pumps[i].Serial < pumps[j].Serial })

@@ -20,6 +20,7 @@ import (
 //   - circuit instance: the circuit slot. A hash that uses the zone instance keeps the old circuit id.
 //   - cylinder instance: the store slot. A hash that uses another instance keeps the old store id.
 //   - heat-pump serial: the refrigerant and compressor slots. A hash that uses the controller serial keeps those ids.
+//   - pump type: Statement.HeatPumps elements are Pump, so other packages see heat.Pump.
 //   - operator label: the operator slot and operator origin. A native origin on that root keeps a source pointer.
 //   - generator serial: the root slot when no controller is present. A second generator resource is a duplicate root.
 //   - binding: "binding", NUL, root id. A pending link for another formula is not applied.
@@ -29,6 +30,20 @@ func TestThermalPublisher(t *testing.T) {
 	t.Run("graph", testPublisherGraph)
 	t.Run("identity fields", testPublisherIdentityFields)
 	t.Run("operator links", testPublisherOperatorLinks)
+	t.Run("pump type", testPumpTypeName)
+}
+
+func testPumpTypeName(t *testing.T) {
+	field, ok := reflect.TypeOf(Statement{}).FieldByName("HeatPumps")
+	if !ok {
+		t.Fatal("Statement.HeatPumps missing")
+	}
+	if field.Type.Kind() != reflect.Slice {
+		t.Fatalf("HeatPumps kind = %s", field.Type.Kind())
+	}
+	if name := field.Type.Elem().Name(); name != "Pump" {
+		t.Fatalf("HeatPumps element type = %s, want Pump", name)
+	}
 }
 
 func testPublisherGraph(t *testing.T) {
@@ -55,12 +70,12 @@ func testPublisherGraph(t *testing.T) {
 	forward.Zones = []Zone{{Instance: 1, Assignment: assignment, ValveReported: true}, {Instance: 2}}
 	forward.Circuits = []Circuit{{Instance: 0}, {Instance: 4}}
 	forward.Cylinders = []Cylinder{{Instance: 4}, {Instance: 1}}
-	forward.HeatPumps = []HeatPump{{Serial: "pump-a"}, {Serial: "pump-serial"}}
+	forward.HeatPumps = []Pump{{Serial: "pump-a"}, {Serial: "pump-serial"}}
 	backward := forward
 	backward.Zones = []Zone{forward.Zones[1], forward.Zones[0]}
 	backward.Circuits = []Circuit{forward.Circuits[1], forward.Circuits[0]}
 	backward.Cylinders = []Cylinder{forward.Cylinders[1], forward.Cylinders[0]}
-	backward.HeatPumps = []HeatPump{forward.HeatPumps[1], forward.HeatPumps[0]}
+	backward.HeatPumps = []Pump{forward.HeatPumps[1], forward.HeatPumps[0]}
 	if !reflect.DeepEqual(resourceIDs(publishStatement(t, forward, nil)), resourceIDs(publishStatement(t, backward, nil))) {
 		t.Fatal("reversed inventory changed resource ids")
 	}
@@ -260,7 +275,7 @@ func baseStatement() Statement {
 		Zones:             []Zone{{Instance: 1, Assignment: &assignment, ValveReported: true}},
 		Circuits:          []Circuit{{Instance: 0}},
 		Cylinders:         []Cylinder{{Instance: 4}},
-		HeatPumps:         []HeatPump{{Serial: "pump-serial"}},
+		HeatPumps:         []Pump{{Serial: "pump-serial"}},
 	}
 }
 

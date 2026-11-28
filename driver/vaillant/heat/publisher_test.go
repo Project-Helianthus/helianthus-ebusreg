@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/sha256"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"reflect"
 	"testing"
@@ -24,6 +25,7 @@ import (
 //   - operator label: the operator slot and operator origin. A native origin on that root keeps a source pointer.
 //   - generator serial: the root slot when no controller is present. A second generator resource is a duplicate root.
 //   - binding: "binding", NUL, root id. A pending link for another formula is not applied.
+//   - committed operator link: a later batch leaves it. A candidate upsert for that binding is refused.
 //   - supersedes: stays empty. A replacement record sets it.
 
 func TestThermalPublisher(t *testing.T) {
@@ -262,6 +264,71 @@ func testPublisherOperatorLinks(t *testing.T) {
 			t.Fatal("beta batch carried the alpha binding")
 		}
 	}
+
+	publisher := &Publisher{}
+	carrying := &recordingSession{links: func(upserts []semreg.NativeBinding) []semreg.IdentityLink {
+		for _, upsert := range upserts {
+			if upsert.BindingID == binding {
+				return []semreg.IdentityLink{pending}
+			}
+		}
+		return nil
+	}}
+	if err := publisher.Publish(context.Background(), carrying, baseStatement()); err != nil {
+		t.Fatal(err)
+	}
+	following := &recordingSession{}
+	if err := publisher.Publish(context.Background(), following, baseStatement()); err != nil {
+		t.Fatal(err)
+	}
+	if len(following.staged) != 1 {
+		t.Fatalf("staged %d batches after the committed operator link", len(following.staged))
+	}
+	if following.staged[0].IdentityLinkUpserts == nil || hasBindingLink(following.staged[0].IdentityLinkUpserts, binding) {
+		t.Fatal("the batch after the committed operator link replaced it with the candidate")
+	}
+	if len(following.staged[0].ResourceUpserts) == 0 {
+		t.Fatal("leaving the operator link dropped the thermal graph")
+	}
+	withdrawing := &recordingSession{links: func(upserts []semreg.NativeBinding) []semreg.IdentityLink {
+		for _, upsert := range upserts {
+			if upsert.BindingID == binding {
+				return []semreg.IdentityLink{withdrawal}
+			}
+		}
+		return nil
+	}}
+	if err := publisher.Publish(context.Background(), withdrawing, baseStatement()); err != nil {
+		t.Fatal(err)
+	}
+	if got := linkByBinding(t, withdrawing.staged[0].IdentityLinkUpserts, binding); got.State != semreg.LinkWithdrawn {
+		t.Fatalf("withdrawal after a committed operator link = %+v", got)
+	}
+	restored := &recordingSession{}
+	if err := publisher.Publish(context.Background(), restored, baseStatement()); err != nil {
+		t.Fatal(err)
+	}
+	if got := linkByBinding(t, restored.staged[0].IdentityLinkUpserts, binding); got.State != semreg.LinkCandidate {
+		t.Fatalf("candidate after the withdrawal = %+v", got)
+	}
+
+	fresh := &Publisher{}
+	refused := &recordingSession{committedOperator: binding}
+	if err := fresh.Publish(context.Background(), refused, baseStatement()); err != nil {
+		t.Fatalf("a committed operator link with an empty pending set rejected the batch: %v", err)
+	}
+	if len(refused.staged) != 2 {
+		t.Fatalf("staged %d batches, want the refused candidate and the batch that leaves the operator link", len(refused.staged))
+	}
+	if !hasBindingLink(refused.staged[0].IdentityLinkUpserts, binding) {
+		t.Fatal("the refused batch did not upsert the candidate")
+	}
+	if refused.staged[1].IdentityLinkUpserts == nil || hasBindingLink(refused.staged[1].IdentityLinkUpserts, binding) {
+		t.Fatal("the batch that follows a committed operator link replaced it")
+	}
+	if len(refused.staged[1].ResourceUpserts) == 0 {
+		t.Fatal("leaving the operator link dropped the thermal graph")
+	}
 }
 
 func baseStatement() Statement {
@@ -409,6 +476,15 @@ func linkByBinding(t *testing.T, links []semreg.IdentityLink, id semreg.NativeBi
 	return semreg.IdentityLink{}
 }
 
+func hasBindingLink(links []semreg.IdentityLink, id semreg.NativeBindingID) bool {
+	for _, link := range links {
+		if link.BindingID == id {
+			return true
+		}
+	}
+	return false
+}
+
 func testDigest(parts ...string) string {
 	hash := sha256.New()
 	for i, part := range parts {
@@ -445,6 +521,10 @@ type recordingSession struct {
 	begins int
 	staged []semreg.PublicationBatch
 	links  func([]semreg.NativeBinding) []semreg.IdentityLink
+	// committedOperator is a binding whose published operator link already
+	// matches its declaration, so OperatorLinks stays empty. A batch that
+	// upserts a link for it is the replacement the runtime refuses.
+	committedOperator semreg.NativeBindingID
 }
 
 func (s *recordingSession) Native() semdriver.NativeRegistry             { return nil }
@@ -513,5 +593,16 @@ func (tx *recordingTransaction) DeclareSettingRoute(semdriver.SettingRoute) erro
 }
 func (tx *recordingTransaction) StageSample(semdriver.Sample) error  { return nil }
 func (tx *recordingTransaction) StageLink(semdriver.LinkClaim) error { return nil }
-func (tx *recordingTransaction) Commit(context.Context) error        { return nil }
-func (tx *recordingTransaction) Abort(context.Context) error         { return nil }
+func (tx *recordingTransaction) Commit(context.Context) error {
+	if tx.session.committedOperator == "" || len(tx.session.staged) == 0 {
+		return nil
+	}
+	batch := tx.session.staged[len(tx.session.staged)-1]
+	for _, link := range batch.IdentityLinkUpserts {
+		if link.BindingID == tx.session.committedOperator {
+			return errors.New(operatorLinkRefusal)
+		}
+	}
+	return nil
+}
+func (tx *recordingTransaction) Abort(context.Context) error { return nil }

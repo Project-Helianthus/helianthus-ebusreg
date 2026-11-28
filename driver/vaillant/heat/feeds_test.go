@@ -1,6 +1,8 @@
 package heat
 
 import (
+	"reflect"
+	"runtime"
 	"strings"
 	"testing"
 
@@ -18,6 +20,7 @@ import (
 //   - instance: the native instance bounds. A match that drops the upper bound binds instance 11.
 //   - family: the controller family table. A match that ignores the family uses the other family's codes.
 //   - selector: the heat-pump locator. A match that also requires a group misses a selector reading.
+//   - constructor: the heat-pump table function. A name that repeats the package is used as heat.HeatPumpFeeds.
 //   - native unit: the evidence unit. An evidence string that omits the unit publishes a bare number.
 //   - celsius offset: kelvin is the native number plus 273.15. Dropping the offset leaves 0 °C as 0 K.
 //   - percent scale: a ratio is the percent divided by 100. Leaving the percent unchanged publishes 50 as 50.
@@ -681,7 +684,11 @@ func TestThermalOverrunFeed(t *testing.T) {
 }
 
 func TestThermalHeatPumpFeed(t *testing.T) {
-	feeds := HeatPumpFeeds()
+	constructor := PumpFeeds
+	if name := feedFuncName(constructor); name != "PumpFeeds" {
+		t.Fatalf("constructor %s repeats package heat", name)
+	}
+	feeds := constructor()
 	high := mustFeed(t, feeds, "heatpump.high_pressure")
 	low := mustFeed(t, feeds, "heatpump.low_pressure")
 	interfaceHigh := mustFeed(t, feeds, "heatpump.high_pressure_interface")
@@ -779,6 +786,11 @@ func TestThermalHeatPumpFeed(t *testing.T) {
 	if !gapNamed(feeds, "thermal.energy.heat_output has no documented register") || !gapNamed(feeds, "thermal.measurement.thermal_power has no documented register") {
 		t.Fatal("unfed heat-pump elements missing")
 	}
+}
+
+func feedFuncName(fn func() []Feed) string {
+	name := runtime.FuncForPC(reflect.ValueOf(fn).Pointer()).Name()
+	return name[strings.LastIndex(name, ".")+1:]
 }
 
 func mustFeed(t *testing.T, feeds []Feed, id string) Feed {

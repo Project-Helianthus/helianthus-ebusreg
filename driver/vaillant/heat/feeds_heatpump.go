@@ -1,8 +1,8 @@
 package heat
 
-// HeatPumpFeeds are the heat-pump table rows. A register whose reference,
+// PumpFeeds are the heat-pump table rows. A register whose reference,
 // codec or unit is not stated does not publish a pack fact.
-func HeatPumpFeeds() []Feed {
+func PumpFeeds() []Feed {
 	min, max := singleInstance()
 	return []Feed{
 		{

@@ -96,6 +96,7 @@ func newVaillantSemanticAcquisition(cfg Config, substrate Substrate, publication
 	if substrate.RefreshRouterPlanes != nil {
 		poller.routerPlanesRefreshFn = func() { _ = substrate.RefreshRouterPlanes() }
 	}
+	poller.thermalGraph = newThermalGraphPublisher()
 	return poller
 }
 

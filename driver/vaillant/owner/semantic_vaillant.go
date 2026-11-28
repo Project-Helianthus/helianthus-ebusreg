@@ -8,6 +8,8 @@ import (
 
 	"github.com/Project-Helianthus/helianthus-ebusgo/engine"
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
+	semdriver "github.com/Project-Helianthus/helianthus-semreg/semreg/v1/driver"
+
 	"github.com/Project-Helianthus/helianthus-ebusreg/registry"
 	"github.com/Project-Helianthus/helianthus-ebusreg/vaillant/productids"
 )
@@ -85,7 +87,8 @@ func (p *vaillantSemanticPoller) SetSourceAndCompanion(source, companion byte) {
 //     frame with its timeout context, never across a retry pause, a
 //     snapshot change or a publication.
 //   - mu guards the native snapshot and qualification state: every field
-//     declared from mu down to solarCylinders, and source and companion. It
+//     declared from mu down to solarCylinders, the installation session and
+//     context, the thermal publisher, and source and companion. It
 //     is held for short copies and updates; the views for the publication
 //     owner are built under it and handed over after it is released.
 //   - b524WidthMismatchMu guards b524WidthMismatchLoggedAt only.
@@ -140,7 +143,8 @@ type vaillantSemanticPoller struct {
 	catalogErr error
 
 	// mu guards the native snapshot and qualification state below, down to
-	// solarCylinders, and source and companion above.
+	// solarCylinders, the installation session, context and thermal publisher
+	// after the startup barrier, and source and companion above.
 	mu                                    sync.Mutex
 	controller                            byte
 	boilerAddress                         byte
@@ -183,6 +187,10 @@ type vaillantSemanticPoller struct {
 	adapterInfo    *vaillantAdapterInfoState
 	startupBarrier <-chan struct{}
 
+	installationSession semdriver.Session
+	installationCtx     context.Context
+	thermalGraph        thermalGraphPublisher
+
 	refreshFromEbusdGrabFn                  func(context.Context) (map[byte]bool, bool)
 	b524ProbeFn                             func(ctx context.Context, target, opcode, group, instance byte, addr uint16) bool
 	sendFrameFn                             func(ctx context.Context, frame protocol.Frame) (*protocol.Frame, error)
@@ -201,6 +209,12 @@ type vaillantSemanticPoller struct {
 }
 
 func (p *vaillantSemanticPoller) Start(ctx context.Context) {
+	if p != nil {
+		p.mu.Lock()
+		p.installationSession = InstallationSessionFromContext(ctx)
+		p.installationCtx = ctx
+		p.mu.Unlock()
+	}
 	p.pollSchedule().Start(ctx)
 }
 

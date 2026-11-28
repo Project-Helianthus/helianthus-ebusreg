@@ -48,7 +48,7 @@ func assertTwoSlotProgram(t *testing.T, contradict bool) {
 	t.Helper()
 	bus := &scriptReply{respond: dhwTimerReply(contradict)}
 	owner := compoundOwner(map[semreg.NativeBindingID]byte{"hot-water": 0x01})
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	dispatch := programDispatch("ebusreg.operation.dhw_time_program", "hot-water", 3, 2, []slotSpec{
 		{6, 10, 12, 20, decimalPtr("40", 0)},
 		{12, 20, 23, 50, decimalPtr("555", -1)},
@@ -89,7 +89,7 @@ func assertOmittedTemperature(t *testing.T) {
 	t.Helper()
 	bus := &scriptReply{respond: dhwTimerReply(false)}
 	owner := compoundOwner(map[semreg.NativeBindingID]byte{"hot-water": 0x01})
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	dispatch := programDispatch("ebusreg.operation.dhw_time_program", "hot-water", 3, 2, []slotSpec{
 		{6, 10, 12, 20, nil},
 		{12, 20, 23, 50, nil},
@@ -111,7 +111,7 @@ func assertHeatingSlot(t *testing.T) {
 	t.Helper()
 	bus := &scriptReply{respond: heatingTimerReply()}
 	owner := compoundOwner(map[semreg.NativeBindingID]byte{"zone-h": 0x01})
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	dispatch := programDispatch("ebusreg.operation.zone_heating_time_program", "zone-h", 4, 1, []slotSpec{
 		{8, 15, 9, 45, decimalPtr("215", -1)},
 	})
@@ -133,7 +133,7 @@ func assertTimerFence(t *testing.T) {
 	owner := compoundOwner(map[semreg.NativeBindingID]byte{"hot-water": 0x01})
 	bus := &scriptReply{respond: dhwTimerReply(false)}
 	bus.onSend = func() { owner.Generation = "9" }
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	dispatch := programDispatch("ebusreg.operation.dhw_time_program", "hot-water", 3, 2, []slotSpec{
 		{6, 10, 12, 20, decimalPtr("40", 0)},
 		{12, 20, 23, 50, decimalPtr("555", -1)},
@@ -160,7 +160,7 @@ func assertTimerDrop(t *testing.T) {
 		return false, nil, errors.New("drop")
 	}}
 	owner := compoundOwner(map[semreg.NativeBindingID]byte{"hot-water": 0x01})
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	dispatch := programDispatch("ebusreg.operation.dhw_time_program", "hot-water", 3, 2, []slotSpec{
 		{6, 10, 12, 20, decimalPtr("40", 0)},
 		{12, 20, 23, 50, decimalPtr("555", -1)},
@@ -183,7 +183,7 @@ func assertTimerRejected(t *testing.T, weekday, startHour, startMinute, endHour,
 	t.Helper()
 	bus := &scriptReply{respond: dhwTimerReply(false)}
 	owner := compoundOwner(map[semreg.NativeBindingID]byte{"hot-water": 0x01})
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	dispatch := programDispatch("ebusreg.operation.dhw_time_program", "hot-water", weekday, 1, []slotSpec{
 		{startHour, startMinute, endHour, endMinute, decimalPtr("40", 0)},
 	})
@@ -200,7 +200,7 @@ func assertTimerSilent(t *testing.T, cancel, block bool) {
 	if block {
 		owner.Admitted = false
 	}
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	ctx := context.Background()
 	if cancel {
 		var stop context.CancelFunc
@@ -228,7 +228,7 @@ func assertNamePair(t *testing.T, tweak bool) {
 	}
 	bus := &scriptReply{respond: registerReply(payloads, tweakRegister, 0)}
 	owner := compoundOwner(nil)
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	completion, err := executor.Execute(context.Background(), textDispatch("ebusreg.operation.installer_name", "  Helianthus  "))
 	if err != nil {
 		t.Fatal(err)
@@ -266,7 +266,7 @@ func assertStatusFirstName(t *testing.T) {
 	}
 	bus := &scriptReply{respond: registerReplyShape(payloads, 0, 0, false)}
 	owner := compoundOwner(nil)
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	completion, err := executor.Execute(context.Background(), textDispatch("ebusreg.operation.installer_name", "Helianthus"))
 	if err != nil {
 		t.Fatal(err)
@@ -290,7 +290,7 @@ func assertPhonePair(t *testing.T) {
 	}
 	bus := &scriptReply{respond: registerReply(payloads, 0, 0)}
 	owner := compoundOwner(nil)
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	completion, err := executor.Execute(context.Background(), textDispatch("ebusreg.operation.installer_phone_number", "+155512"))
 	if err != nil {
 		t.Fatal(err)
@@ -312,7 +312,7 @@ func assertExactSix(t *testing.T) {
 	second := []byte{0, 0, 0, 0, 0, 0, 0}
 	bus := &scriptReply{respond: registerReply(map[uint16][]byte{0x006c: first, 0x006d: second}, 0, 0)}
 	owner := compoundOwner(nil)
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	completion, err := executor.Execute(context.Background(), textDispatch("ebusreg.operation.installer_name", "Helian"))
 	if err != nil {
 		t.Fatal(err)
@@ -331,7 +331,7 @@ func assertTwelve(t *testing.T) {
 	second := []byte{'G', 'H', 'I', 'J', 'K', 'L', 0}
 	bus := &scriptReply{respond: registerReply(map[uint16][]byte{0x006c: first, 0x006d: second}, 0, 0)}
 	owner := compoundOwner(nil)
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	_, err := executor.Execute(context.Background(), textDispatch("ebusreg.operation.installer_name", "ABCDEFGHIJKL"))
 	if err != nil {
 		t.Fatal(err)
@@ -348,7 +348,7 @@ func assertRejectedText(t *testing.T, id, text string) {
 	t.Helper()
 	bus := &scriptReply{}
 	owner := compoundOwner(nil)
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	completion, err := executor.Execute(context.Background(), textDispatch(id, text))
 	if err != nil || completion.Outcome != operation.OutcomeRejected || completion.CompoundExecution != nil || len(bus.snapshot()) != 0 {
 		t.Fatalf("completion=%+v frames=%d err=%v", completion, len(bus.snapshot()), err)
@@ -359,7 +359,7 @@ func assertSilentText(t *testing.T, id, text string) {
 	t.Helper()
 	bus := &scriptReply{}
 	owner := compoundOwner(nil)
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	completion, err := executor.Execute(context.Background(), textDispatch(id, text))
 	if err != nil || completion.Outcome != operation.OutcomeFailedNoContact || len(bus.snapshot()) != 0 {
 		t.Fatalf("completion=%+v frames=%d err=%v", completion, len(bus.snapshot()), err)
@@ -372,7 +372,7 @@ func assertFirstRegisterDropped(t *testing.T) {
 		return false, nil, errors.New("drop")
 	}}
 	owner := compoundOwner(nil)
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	completion, err := executor.Execute(context.Background(), textDispatch("ebusreg.operation.installer_name", "Helianthus"))
 	if err != nil || len(bus.snapshot()) != 1 || completion.CompoundExecution == nil {
 		t.Fatalf("completion=%+v frames=%d err=%v", completion, len(bus.snapshot()), err)
@@ -399,7 +399,7 @@ func assertNonzeroStatusWritesSecond(t *testing.T) {
 		}, 0, 0)(frame)
 	}}
 	owner := compoundOwner(nil)
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	_, err := executor.Execute(context.Background(), textDispatch("ebusreg.operation.installer_name", "Helianthus"))
 	if err != nil {
 		t.Fatal(err)
@@ -419,7 +419,7 @@ func assertLongStatusWritesSecond(t *testing.T) {
 	}
 	bus := &scriptReply{respond: registerReply(payloads, 0, 1)}
 	owner := compoundOwner(nil)
-	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	executor := NewCompound(bus, ownerSource(&owner), nil)
 	completion, err := executor.Execute(context.Background(), textDispatch("ebusreg.operation.installer_name", "Helianthus"))
 	if err != nil {
 		t.Fatal(err)
@@ -485,6 +485,10 @@ func (s *scriptReply) reset() {
 type slotSpec struct {
 	startHour, startMinute, endHour, endMinute int
 	temperature                                *semreg.Decimal
+}
+
+func ownerSource(owner *Owner) func() Owner {
+	return func() Owner { return *owner }
 }
 
 func compoundOwner(instances map[semreg.NativeBindingID]byte) Owner {

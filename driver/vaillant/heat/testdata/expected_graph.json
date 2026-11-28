@@ -1,0 +1,73 @@
+{
+  "installation": {
+    "controller_serial": "serial-alpha",
+    "generator_present": true,
+    "generator_serial": "generator-serial",
+    "hot_water": true,
+    "zones": [
+      {"instance": 1, "assignment": 0, "valve": true},
+      {"instance": 2, "assignment": 1, "valve": false},
+      {"instance": 3, "assignment": 255, "valve": false}
+    ],
+    "circuits": [
+      {"instance": 0},
+      {"instance": 1}
+    ],
+    "cylinders": [
+      {"instance": 1},
+      {"instance": 4}
+    ],
+    "heat_pumps": ["pump-other", "pump-serial"]
+  },
+  "resource_state": "current",
+  "relation_pack": "helianthus.pack.thermal",
+  "relation_version": "1.0.0",
+  "relation_basis": "gate_rule",
+  "relation_state": "qualified",
+  "resources": [
+    {"role": "controller", "kind": "resource.equipment", "class": "equipment", "basis": "native_slot", "slot": "serial-alpha"},
+    {"role": "system", "kind": "resource.thermal_system", "class": "function", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "02/00/00"},
+    {"role": "generator", "kind": "resource.heat_generator", "class": "equipment", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "generator-serial"},
+    {"role": "zone", "kind": "resource.zone", "class": "function", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "02/03/01"},
+    {"role": "valve", "kind": "resource.terminal_unit", "class": "equipment", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "02/03/01/valve"},
+    {"role": "zone", "kind": "resource.zone", "class": "function", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "02/03/02"},
+    {"role": "zone", "kind": "resource.zone", "class": "function", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "02/03/03"},
+    {"role": "circuit", "kind": "resource.thermal_circuit", "class": "function", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "02/02/00"},
+    {"role": "circuit", "kind": "resource.thermal_circuit", "class": "function", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "02/02/01"},
+    {"role": "store", "kind": "resource.thermal_store", "class": "equipment", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "02/05/01"},
+    {"role": "store", "kind": "resource.thermal_store", "class": "equipment", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "02/05/04"},
+    {"role": "hot-water", "kind": "resource.domestic_hot_water", "class": "function", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "02/01/00"},
+    {"role": "refrigerant", "kind": "resource.refrigerant_circuit", "class": "function", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "refrigerant/pump-other"},
+    {"role": "compressor", "kind": "resource.compressor", "class": "component", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "compressor/pump-other"},
+    {"role": "refrigerant", "kind": "resource.refrigerant_circuit", "class": "function", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "refrigerant/pump-serial"},
+    {"role": "compressor", "kind": "resource.compressor", "class": "component", "basis": "native_slot", "parent_role": "controller", "parent_slot": "serial-alpha", "slot": "compressor/pump-serial"}
+  ],
+  "relations": [
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "generator", "to_slot": "generator-serial", "from_kind": "resource.thermal_system", "to_kind": "resource.heat_generator"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "zone", "to_slot": "02/03/01", "from_kind": "resource.thermal_system", "to_kind": "resource.zone"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "valve", "to_slot": "02/03/01/valve", "from_kind": "resource.thermal_system", "to_kind": "resource.terminal_unit"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "zone", "to_slot": "02/03/02", "from_kind": "resource.thermal_system", "to_kind": "resource.zone"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "zone", "to_slot": "02/03/03", "from_kind": "resource.thermal_system", "to_kind": "resource.zone"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "circuit", "to_slot": "02/02/00", "from_kind": "resource.thermal_system", "to_kind": "resource.thermal_circuit"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "circuit", "to_slot": "02/02/01", "from_kind": "resource.thermal_system", "to_kind": "resource.thermal_circuit"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "store", "to_slot": "02/05/01", "from_kind": "resource.thermal_system", "to_kind": "resource.thermal_store"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "store", "to_slot": "02/05/04", "from_kind": "resource.thermal_system", "to_kind": "resource.thermal_store"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "hot-water", "to_slot": "02/01/00", "from_kind": "resource.thermal_system", "to_kind": "resource.domestic_hot_water"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "refrigerant", "to_slot": "refrigerant/pump-other", "from_kind": "resource.thermal_system", "to_kind": "resource.refrigerant_circuit"},
+    {"id": "thermal.relation.system_member", "from_role": "system", "from_slot": "02/00/00", "to_role": "refrigerant", "to_slot": "refrigerant/pump-serial", "from_kind": "resource.thermal_system", "to_kind": "resource.refrigerant_circuit"},
+    {"id": "thermal.relation.fluid_supply", "from_role": "circuit", "from_slot": "02/02/00", "to_role": "zone", "to_slot": "02/03/01", "from_kind": "resource.thermal_circuit", "to_kind": "resource.zone"},
+    {"id": "thermal.relation.fluid_supply", "from_role": "circuit", "from_slot": "02/02/01", "to_role": "zone", "to_slot": "02/03/02", "from_kind": "resource.thermal_circuit", "to_kind": "resource.zone"}
+  ],
+  "source_links": [
+    {
+      "asset": "asset.thermal.synthetic",
+      "binding_role": "controller",
+      "binding_slot": "serial-alpha",
+      "resource_role": "controller",
+      "resource_slot": "serial-alpha",
+      "state": "candidate",
+      "revision": "1",
+      "evidence": "controller-serial serial-alpha"
+    }
+  ]
+}

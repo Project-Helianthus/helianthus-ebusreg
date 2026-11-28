@@ -17,7 +17,7 @@ func MCPZonesFromGraphQL(zones []Zone) []MCPZone {
 				SpecialFunction:    zone.State.SpecialFunction,
 				HeatingDemandPct:   CloneFloatPtr(zone.State.HeatingDemandPct),
 				ValvePositionPct:   CloneFloatPtr(zone.State.ValvePositionPct),
-				enumerations:       cloneEnumerations(zone.State.enumerations),
+				Enumerations:       cloneEnumerations(zone.State.Enumerations),
 			},
 			Config: MCPZoneConfig{
 				OperatingMode:              zone.Config.OperatingMode,
@@ -52,7 +52,7 @@ func MCPDHWFromGraphQL(status *DhwStatus) *MCPDhwStatus {
 			CurrentTempC:     CloneFloatPtr(status.State.CurrentTempC),
 			SpecialFunction:  status.State.SpecialFunction,
 			HeatingDemandPct: CloneFloatPtr(status.State.HeatingDemandPct),
-			enumerations:     cloneEnumerations(status.State.enumerations),
+			Enumerations:     cloneEnumerations(status.State.Enumerations),
 		},
 		Config: MCPDhwConfig{
 			OperatingMode:    status.Config.OperatingMode,
@@ -95,7 +95,7 @@ func MCPCircuitsFromGraphQL(circuits []CircuitStatus) []MCPCircuitStatus {
 				SpecialFunctionMode: CloneIntPtr(circuit.Config.SpecialFunctionMode),
 				RoomTempControl:     circuit.Config.RoomTempControl,
 				CoolingEnabled:      CloneBoolPtr(circuit.Config.CoolingEnabled),
-				enumerations:        cloneEnumerations(circuit.Config.enumerations),
+				Enumerations:        cloneEnumerations(circuit.Config.Enumerations),
 			},
 			ManagingDevice: MCPManagingDevice{
 				Role:     string(circuit.ManagingDevice.Role),

@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/binary"
 	"encoding/json"
-	"sync"
 	"time"
 
 	semdriver "github.com/Project-Helianthus/helianthus-semreg/semreg/v1/driver"
@@ -19,10 +18,9 @@ type energyCatalogueHold struct {
 }
 
 var (
-	energyCatalogueMu sync.Mutex
-	energyCatalogues  = map[*vaillantSemanticPoller]*energyCatalogueHold{}
-	energyResidualMu  sync.Mutex
-	energyResiduals   = map[*vaillantSemanticPoller]map[string][]byte{}
+	loadEnergyDirectionCatalogue = catalogueEnergyDirections
+	loadEnergyResidualCatalogue  = catalogueEnergyResiduals
+	loadEnergyCandidateCatalogue = catalogueEnergyCandidates
 )
 
 type energyInstallationSessionKey struct{}
@@ -47,24 +45,13 @@ func InstallationSessionFromContext(ctx context.Context) semdriver.Session {
 }
 
 func noteEnergyResidual(p *vaillantSemanticPoller, field string, raw []byte) {
-	energyResidualMu.Lock()
-	defer energyResidualMu.Unlock()
-	noted := energyResiduals[p]
-	if noted == nil {
-		noted = map[string][]byte{}
-		energyResiduals[p] = noted
-	}
-	noted[field] = append([]byte(nil), raw...)
+	p.catalogueState().noteResidual(field, raw)
 }
 
 func fillEnergyCatalogues(p *vaillantSemanticPoller, ctx context.Context, session semdriver.Session) (output.EnergyTotals, error) {
-	energyCatalogueMu.Lock()
-	if hold := energyCatalogues[p]; hold != nil && hold.ready {
-		totals := hold.totals
-		energyCatalogueMu.Unlock()
+	if totals, ok := p.catalogueState().readyEnergy(); ok {
 		return totals, nil
 	}
-	energyCatalogueMu.Unlock()
 	return readEnergyCatalogues(p, ctx, session)
 }
 
@@ -75,6 +62,13 @@ func refreshEnergyCatalogues(p *vaillantSemanticPoller, ctx context.Context, ses
 }
 
 func readEnergyCatalogues(p *vaillantSemanticPoller, ctx context.Context, session semdriver.Session) (output.EnergyTotals, error) {
+	if p.catalogueStateReleased() {
+		return output.EnergyTotals{}, errCatalogueStateReleased
+	}
+	catalogue, residuals, candidates, err := loadEnergyCatalogueRows(p)
+	if err != nil {
+		return output.EnergyTotals{}, err
+	}
 	var acquisition semdriver.CalendarAcquisition
 	var reference semdriver.CalendarReference
 	if session != nil && session.Calendar() != nil {
@@ -129,18 +123,6 @@ func readEnergyCatalogues(p *vaillantSemanticPoller, ctx context.Context, sessio
 		}
 		directions = append(directions, direction)
 	}
-	catalogue, err := catalogueEnergyDirections()
-	if err != nil {
-		return output.EnergyTotals{}, err
-	}
-	residuals, err := catalogueEnergyResiduals(p)
-	if err != nil {
-		return output.EnergyTotals{}, err
-	}
-	candidates, err := catalogueEnergyCandidates()
-	if err != nil {
-		return output.EnergyTotals{}, err
-	}
 	totals := output.EnergyTotals{}
 	if publication := publicationOwner(p); publication != nil && publication.state != nil {
 		if published := publication.state.EnergyTotals(); published != nil {
@@ -153,13 +135,29 @@ func readEnergyCatalogues(p *vaillantSemanticPoller, ctx context.Context, sessio
 	totals.SetCatalogueDirections(catalogue)
 	totals.SetResidualFields(residuals)
 	totals.SetCandidateFields(candidates)
-	energyCatalogueMu.Lock()
-	energyCatalogues[p] = &energyCatalogueHold{totals: totals, ready: true}
-	energyCatalogueMu.Unlock()
+	if !p.catalogueState().storeEnergy(totals) {
+		return output.EnergyTotals{}, errCatalogueStateReleased
+	}
 	if ledger != nil {
 		ledger.publishEnergyTotals()
 	}
 	return totals, nil
+}
+
+func loadEnergyCatalogueRows(p *vaillantSemanticPoller) ([]output.EnergyDirection, []output.EnergyResidual, []output.EnergyResidual, error) {
+	catalogue, err := loadEnergyDirectionCatalogue()
+	if err != nil {
+		return nil, nil, nil, err
+	}
+	residuals, err := loadEnergyResidualCatalogue(p)
+	if err != nil {
+		return nil, nil, nil, err
+	}
+	candidates, err := loadEnergyCandidateCatalogue()
+	if err != nil {
+		return nil, nil, nil, err
+	}
+	return catalogue, residuals, candidates, nil
 }
 
 // overlayEnergyCatalogue copies the stored catalogue rows onto a rebuilt
@@ -168,22 +166,7 @@ func overlayEnergyCatalogue(provider *retainedSemanticState, totals *output.Ener
 	if provider == nil || totals == nil {
 		return
 	}
-	energyCatalogueMu.Lock()
-	defer energyCatalogueMu.Unlock()
-	for poller, hold := range energyCatalogues {
-		if hold == nil || !hold.ready {
-			continue
-		}
-		owner := publicationOwner(poller)
-		if owner == nil || owner.state != provider {
-			continue
-		}
-		totals.SetRegisterDirections(hold.totals.RegisterDirections())
-		totals.SetCatalogueDirections(hold.totals.CatalogueDirections())
-		totals.SetResidualFields(hold.totals.ResidualFields())
-		totals.SetCandidateFields(hold.totals.CandidateFields())
-		return
-	}
+	provider.catalogueState().overlayEnergy(totals)
 }
 
 func energyResponseAdmitted(session semdriver.Session, acquisition semdriver.CalendarAcquisition, ledger vaillantEnergyLedger, reference semdriver.CalendarReference) bool {
@@ -310,9 +293,7 @@ func catalogueEnergyResiduals(p *vaillantSemanticPoller) ([]output.EnergyResidua
 	if err := json.Unmarshal(raw, &rows); err != nil {
 		return nil, err
 	}
-	energyResidualMu.Lock()
-	noted := energyResiduals[p]
-	energyResidualMu.Unlock()
+	state := p.catalogueState()
 	residuals := make([]output.EnergyResidual, 0, len(rows))
 	for _, row := range rows {
 		item := output.EnergyResidual{
@@ -322,8 +303,8 @@ func catalogueEnergyResiduals(p *vaillantSemanticPoller) ([]output.EnergyResidua
 			Field:   row.Key.Field,
 			Level:   row.Grade,
 		}
-		if raw, ok := noted[row.Key.Field]; ok {
-			item.Raw = append([]byte(nil), raw...)
+		if raw, ok := state.residual(row.Key.Field); ok {
+			item.Raw = raw
 		}
 		residuals = append(residuals, item)
 	}

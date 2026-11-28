@@ -460,7 +460,9 @@
                   "StorageLoadPumpPct": null,
                   "TargetFanSpeedRpm": null,
                   "WaterPressureBar": null
-                }
+                },
+                "Selectors": null,
+                "Operations": null
               },
               "DHW": null,
               "PersistedAt": "2030-04-10T08:00:00Z",
@@ -667,7 +669,9 @@
               "StorageLoadPumpPct": null,
               "TargetFanSpeedRpm": null,
               "WaterPressureBar": null
-            }
+            },
+            "Selectors": null,
+            "Operations": null
           },
           "DHW": {
             "Config": {
@@ -682,7 +686,8 @@
               "CurrentTempC": 48.5,
               "HeatingDemandPct": null,
               "OverrunActive": null,
-              "SpecialFunction": ""
+              "SpecialFunction": "",
+              "Enumerations": null
             }
           },
           "PersistedAt": "2030-04-10T08:00:00Z",
@@ -719,7 +724,8 @@
                 "HeatingDemandPct": null,
                 "HvacAction": "",
                 "SpecialFunction": "",
-                "ValvePositionPct": null
+                "ValvePositionPct": null,
+                "Enumerations": null
               }
             },
             {
@@ -751,7 +757,8 @@
                 "HeatingDemandPct": null,
                 "HvacAction": "",
                 "SpecialFunction": "",
-                "ValvePositionPct": null
+                "ValvePositionPct": null,
+                "Enumerations": null
               }
             }
           ]
@@ -1399,7 +1406,9 @@
               "StorageLoadPumpPct": null,
               "TargetFanSpeedRpm": null,
               "WaterPressureBar": null
-            }
+            },
+            "Selectors": null,
+            "Operations": null
           },
           "DHW": {
             "Config": {
@@ -1414,7 +1423,8 @@
               "CurrentTempC": 48.5,
               "HeatingDemandPct": 100,
               "OverrunActive": null,
-              "SpecialFunction": "load"
+              "SpecialFunction": "load",
+              "Enumerations": null
             }
           },
           "PersistedAt": "2030-04-10T08:00:00Z",
@@ -1448,7 +1458,8 @@
                 "HeatingDemandPct": null,
                 "HvacAction": "",
                 "SpecialFunction": "",
-                "ValvePositionPct": null
+                "ValvePositionPct": null,
+                "Enumerations": null
               }
             },
             {
@@ -1483,7 +1494,8 @@
                 "HeatingDemandPct": 10,
                 "HvacAction": "idle",
                 "SpecialFunction": "none",
-                "ValvePositionPct": 50
+                "ValvePositionPct": 50,
+                "Enumerations": null
               }
             }
           ]
@@ -1891,7 +1903,8 @@
                 "HeatingDemandPct": null,
                 "HvacAction": "",
                 "SpecialFunction": "",
-                "ValvePositionPct": null
+                "ValvePositionPct": null,
+                "Enumerations": null
               }
             },
             {
@@ -1926,7 +1939,8 @@
                 "HeatingDemandPct": null,
                 "HvacAction": "",
                 "SpecialFunction": "",
-                "ValvePositionPct": null
+                "ValvePositionPct": null,
+                "Enumerations": null
               }
             },
             {
@@ -1961,7 +1975,8 @@
                 "HeatingDemandPct": null,
                 "HvacAction": "",
                 "SpecialFunction": "",
-                "ValvePositionPct": null
+                "ValvePositionPct": null,
+                "Enumerations": null
               }
             },
             {
@@ -1996,7 +2011,8 @@
                 "HeatingDemandPct": null,
                 "HvacAction": "",
                 "SpecialFunction": "",
-                "ValvePositionPct": null
+                "ValvePositionPct": null,
+                "Enumerations": null
               }
             }
           ]

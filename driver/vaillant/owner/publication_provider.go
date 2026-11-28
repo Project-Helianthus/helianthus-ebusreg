@@ -73,6 +73,7 @@ type retainedSemanticState struct {
 	vaillantRegulatorCapability output.VaillantRegulatorCapability
 
 	energyMerge                *energyMergeStore
+	catalogues                 *instanceCatalogues
 	energyRevision             uint64
 	energyClock                func() time.Time
 	energyPassiveState         string

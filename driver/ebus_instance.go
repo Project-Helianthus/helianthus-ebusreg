@@ -94,10 +94,14 @@ func (i *instance) Stop(context.Context) semdriver.CloseReport {
 	i.mu.Lock()
 	cancel := i.cancel
 	transport := i.substrate.Transport
+	acquired := i.acquired
 	i.cancel = nil
 	i.mu.Unlock()
 	if cancel != nil {
 		cancel()
+	}
+	if acquired != nil {
+		acquired.ReleaseCatalogueState()
 	}
 	if transport == nil {
 		return semdriver.CloseReport{Confirmed: true}

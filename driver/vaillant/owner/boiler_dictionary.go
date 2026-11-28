@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"sync"
 
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
 
@@ -23,10 +22,7 @@ type boilerCatalogueHold struct {
 	operations []output.RawOperation
 }
 
-var (
-	boilerCatalogueMu sync.Mutex
-	boilerCatalogues  = map[*vaillantSemanticPoller]*boilerCatalogueHold{}
-)
+var loadBoilerDictionaryEntries = catalogvaillant.B509BoilerCodecDictionaryEntries
 
 func polledBoilerSelectors() map[uint16]string {
 	return map[uint16]string{
@@ -73,7 +69,10 @@ func fillBoilerDictionary(p *vaillantSemanticPoller, ctx context.Context, boiler
 	if p == nil || boilerAddress == 0 {
 		return nil, fmt.Errorf("boiler dictionary target is zero")
 	}
-	entries, err := catalogvaillant.B509BoilerCodecDictionaryEntries()
+	if p.catalogueStateReleased() {
+		return nil, errCatalogueStateReleased
+	}
+	entries, err := loadBoilerDictionaryEntries()
 	if err != nil {
 		return nil, err
 	}
@@ -115,7 +114,9 @@ func fillBoilerDictionary(p *vaillantSemanticPoller, ctx context.Context, boiler
 		}
 		selectors = append(selectors, item)
 	}
-	storeBoilerSelectors(p, selectors)
+	if !storeBoilerSelectors(p, selectors) {
+		return nil, errCatalogueStateReleased
+	}
 	return append([]output.BoilerSelectorEvidence(nil), selectors...), nil
 }
 
@@ -245,28 +246,20 @@ func boilerSymbolicAnnotation(addr uint16) (name string, unresolved bool, grade,
 	return decoded.Name, decoded.Unresolved, decoded.Grade, note, true
 }
 
-func storeBoilerSelectors(p *vaillantSemanticPoller, selectors []output.BoilerSelectorEvidence) {
-	boilerCatalogueMu.Lock()
-	hold := boilerCatalogueHoldFor(p)
-	hold.selectors = append([]output.BoilerSelectorEvidence(nil), selectors...)
-	operations := append([]output.RawOperation(nil), hold.operations...)
-	boilerCatalogueMu.Unlock()
+func storeBoilerSelectors(p *vaillantSemanticPoller, selectors []output.BoilerSelectorEvidence) bool {
+	operations, ok := p.catalogueState().storeBoilerSelectors(selectors)
+	if !ok {
+		return false
+	}
 	overlayBoilerCatalogue(p, selectors, operations)
+	return true
 }
 
 func reapplyStoredBoilerCatalogue(p *vaillantSemanticPoller) {
-	if p == nil {
+	selectors, operations, ok := p.catalogueState().storedBoiler()
+	if !ok {
 		return
 	}
-	boilerCatalogueMu.Lock()
-	hold := boilerCatalogues[p]
-	if hold == nil || (len(hold.selectors) == 0 && len(hold.operations) == 0) {
-		boilerCatalogueMu.Unlock()
-		return
-	}
-	selectors := append([]output.BoilerSelectorEvidence(nil), hold.selectors...)
-	operations := append([]output.RawOperation(nil), hold.operations...)
-	boilerCatalogueMu.Unlock()
 	overlayBoilerCatalogue(p, selectors, operations)
 }
 
@@ -284,15 +277,6 @@ func overlayBoilerCatalogue(p *vaillantSemanticPoller, selectors []output.Boiler
 	owner.state.SetBoilerStatus(status)
 }
 
-func boilerCatalogueHoldFor(p *vaillantSemanticPoller) *boilerCatalogueHold {
-	hold := boilerCatalogues[p]
-	if hold == nil {
-		hold = &boilerCatalogueHold{}
-		boilerCatalogues[p] = hold
-	}
-	return hold
-}
-
 func admitOpenSelector(p *vaillantSemanticPoller, ctx context.Context) (output.RawOperation, bool) {
 	operation := output.RawOperation{
 		Namespace: "ebusreg",
@@ -302,19 +286,16 @@ func admitOpenSelector(p *vaillantSemanticPoller, ctx context.Context) (output.R
 	}
 	reply, ok := readOpenSelectorReply(p, ctx, localZones.group, 0, zoneSpecialFunction)
 	admitted := ok && len(reply) > 0 && reply[0]&catalogueWritePermission != 0
-	boilerCatalogueMu.Lock()
-	hold := boilerCatalogueHoldFor(p)
-	if admitted {
-		hold.operations = []output.RawOperation{operation}
-	} else {
-		hold.operations = nil
-		operation = output.RawOperation{}
+	state := p.catalogueState()
+	selectors, operations := state.admitOperation(operation, admitted)
+	if state.isReleased() {
+		return output.RawOperation{}, false
 	}
-	selectors := append([]output.BoilerSelectorEvidence(nil), hold.selectors...)
-	operations := append([]output.RawOperation(nil), hold.operations...)
-	boilerCatalogueMu.Unlock()
 	overlayBoilerCatalogue(p, selectors, operations)
-	return operation, admitted
+	if !admitted {
+		return output.RawOperation{}, false
+	}
+	return operation, true
 }
 
 func readOpenSelectorReply(p *vaillantSemanticPoller, ctx context.Context, group, instance byte, addr uint16) ([]byte, bool) {
@@ -346,20 +327,8 @@ func readOpenSelectorReply(p *vaillantSemanticPoller, ctx context.Context, group
 }
 
 func callRawSelectorOperation(p *vaillantSemanticPoller, ctx context.Context, name string, payload []byte) error {
-	boilerCatalogueMu.Lock()
-	hold := boilerCatalogues[p]
-	var admitted *output.RawOperation
-	if hold != nil {
-		for i := range hold.operations {
-			if hold.operations[i].Name == name && hold.operations[i].Namespace == "ebusreg" {
-				copied := hold.operations[i]
-				admitted = &copied
-				break
-			}
-		}
-	}
-	boilerCatalogueMu.Unlock()
-	if admitted == nil {
+	admitted, ok := p.catalogueState().admittedOperation(name)
+	if !ok {
 		return fmt.Errorf("raw operation is not admitted")
 	}
 	return p.writeB524Value(ctx, vaillantB524OpcodeLocal, admitted.Group, 0, admitted.Register, append([]byte(nil), payload...))

@@ -141,13 +141,13 @@ func TestVaillantB509DictionaryKeepsExecutableDecode(t *testing.T) {
 		t.Fatalf("flame evidence after F0 = %+v; want raw F0, annotation flame_active and codec onoff", flame)
 	}
 	published := provider.BoilerStatus()
-	publishedFlame := boilerSelector(published.Selectors(), boilerB509FlameActive)
+	publishedFlame := boilerSelector(published.Selectors, boilerB509FlameActive)
 	if !bytes.Equal(publishedFlame.Raw, []byte{0xF0}) || published.State.FlameActive == nil || *published.State.FlameActive {
 		t.Fatalf("published flame = %+v evidence %+v; want false beside raw F0", published.State.FlameActive, publishedFlame)
 	}
 	mapped := output.MCPBoilerStatusFromGraphQL(published)
-	if mapped.Selectors() == nil || !bytes.Equal(boilerSelector(mapped.Selectors(), boilerB509FlameActive).Raw, []byte{0xF0}) {
-		t.Fatalf("mcp flame selectors = %+v; want raw F0", mapped.Selectors())
+	if mapped.Selectors == nil || !bytes.Equal(boilerSelector(mapped.Selectors, boilerB509FlameActive).Raw, []byte{0xF0}) {
+		t.Fatalf("mcp flame selectors = %+v; want raw F0", mapped.Selectors)
 	}
 }
 
@@ -265,8 +265,8 @@ func TestVaillantB509DictionaryOpenSelectorPermissionBit(t *testing.T) {
 		t.Fatalf("writes = %d payload %x; want one write of 01", bus.writes, bus.lastWrite)
 	}
 	status := provider.BoilerStatus()
-	if len(status.Operations()) != 1 || status.Operations()[0].Name != rawZoneSpecialFunctionName {
-		t.Fatalf("published operations = %+v; want the admitted raw operation", status.Operations())
+	if len(status.Operations) != 1 || status.Operations[0].Name != rawZoneSpecialFunctionName {
+		t.Fatalf("published operations = %+v; want the admitted raw operation", status.Operations)
 	}
 
 	bus.flags = 0x00

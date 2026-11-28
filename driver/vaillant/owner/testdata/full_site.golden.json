@@ -15,7 +15,7 @@
        "Preset": "schedule",
        "TargetTempC": null
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": []
@@ -31,7 +31,7 @@
        "Preset": "schedule",
        "TargetTempC": null
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": []
@@ -60,6 +60,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": null,
        "CirculationPumpActive": null,
@@ -95,7 +97,7 @@
        "Preset": "schedule",
        "TargetTempC": null
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": []
@@ -124,6 +126,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": null,
        "CirculationPumpActive": null,
@@ -159,7 +163,7 @@
        "Preset": "schedule",
        "TargetTempC": null
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -189,6 +193,7 @@
        "State": {
         "CurrentHumidityPct": null,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -221,6 +226,7 @@
        "State": {
         "CurrentHumidityPct": null,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -253,6 +259,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": null,
        "CirculationPumpActive": null,
@@ -288,7 +296,7 @@
        "Preset": "schedule",
        "TargetTempC": null
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -318,6 +326,7 @@
        "State": {
         "CurrentHumidityPct": null,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -350,6 +359,7 @@
        "State": {
         "CurrentHumidityPct": null,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -382,6 +392,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": null,
        "CirculationPumpActive": null,
@@ -417,7 +429,7 @@
        "Preset": "schedule",
        "TargetTempC": null
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -447,6 +459,7 @@
        "State": {
         "CurrentHumidityPct": null,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -479,6 +492,7 @@
        "State": {
         "CurrentHumidityPct": null,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -511,6 +525,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": null,
        "CirculationPumpActive": null,
@@ -546,7 +562,7 @@
        "Preset": "schedule",
        "TargetTempC": null
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -576,6 +592,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -608,6 +625,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -640,6 +658,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": null,
        "CirculationPumpActive": null,
@@ -675,7 +695,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -705,6 +725,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -737,6 +758,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -769,6 +791,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": null,
@@ -804,7 +828,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -834,6 +858,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -866,6 +891,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -898,6 +924,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": null,
@@ -933,7 +961,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -963,6 +991,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -995,6 +1024,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1027,6 +1057,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": null,
@@ -1062,7 +1094,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -1092,6 +1124,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1124,6 +1157,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1156,6 +1190,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": null,
@@ -1191,7 +1227,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -1221,6 +1257,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1253,6 +1290,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1285,6 +1323,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": null,
@@ -1320,7 +1360,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -1350,6 +1390,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1382,6 +1423,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1414,6 +1456,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": null,
@@ -1449,7 +1493,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -1479,6 +1523,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1511,6 +1556,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1543,6 +1589,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": null,
@@ -1578,7 +1626,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -1608,6 +1656,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1640,6 +1689,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1672,6 +1722,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -1707,7 +1759,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -1737,6 +1789,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1769,6 +1822,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1801,6 +1855,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -1836,7 +1892,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -1866,6 +1922,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1898,6 +1955,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -1932,6 +1990,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": null,
        "CirculationPumpActive": null,
@@ -1981,6 +2041,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": null,
@@ -2030,6 +2092,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": null
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -2079,6 +2143,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -2116,7 +2182,7 @@
        "Preset": "schedule",
        "TargetTempC": null
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      {
       "Config": {
@@ -2127,11 +2193,13 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      }
     ],
     "Energy": [
      {
+      "CandidateFields": null,
+      "CatalogueDirections": null,
       "Electric": {
        "Climate": {
         "Monthly": [605,201],
@@ -2312,6 +2380,8 @@
         ]
        }
       },
+      "RegisterDirections": null,
+      "ResidualFields": null,
       "Solar": {
        "Climate": {
         "Monthly": null,
@@ -2441,6 +2511,7 @@
       "State": {
        "CurrentHumidityPct": null,
        "CurrentTempC": null,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "",
@@ -2473,6 +2544,7 @@
       "State": {
        "CurrentHumidityPct": null,
        "CurrentTempC": null,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "",
@@ -2505,6 +2577,7 @@
       "State": {
        "CurrentHumidityPct": 45,
        "CurrentTempC": null,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "",
@@ -2537,6 +2610,7 @@
       "State": {
        "CurrentHumidityPct": 46,
        "CurrentTempC": null,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "",
@@ -2594,6 +2668,8 @@
       "HeatingStatusRaw": null,
       "PumpHours": 0
      },
+     "Operations": null,
+     "Selectors": null,
      "State": {
       "CentralHeatingPumpActive": true,
       "CirculationPumpActive": true,
@@ -2625,6 +2701,7 @@
       "CircuitType": "heating",
       "Config": {
        "CoolingEnabled": false,
+       "Enumerations": null,
        "FlowTempMaxC": 75,
        "FlowTempMinC": 25,
        "HeatingCurve": 1.2000000476837158,
@@ -2652,6 +2729,7 @@
       "CircuitType": "fixed_value",
       "Config": {
        "CoolingEnabled": false,
+       "Enumerations": null,
        "FlowTempMaxC": 75,
        "FlowTempMinC": 25,
        "HeatingCurve": 1.2999999523162842,
@@ -2688,9 +2766,11 @@
       "Preset": "schedule",
       "TargetTempC": 50
      },
-     "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"SpecialFunction":""}
+     "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"SpecialFunction":""}
     },
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -2871,6 +2951,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -3338,6 +3420,7 @@
      "SolarEnabled": true
     },
     "System": {
+     "Catalogue": null,
      "Config": {
       "AdaptiveHeatingCurve": true,
       "AlternativePoint": -5,
@@ -3362,7 +3445,8 @@
       "SystemFlowTemperature": 42.5,
       "SystemOff": false,
       "SystemWaterPressure": 1.625
-     }
+     },
+     "Ventilation": null
     },
     "Zones": [
      {
@@ -3389,6 +3473,7 @@
       "State": {
        "CurrentHumidityPct": 45,
        "CurrentTempC": null,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "",
@@ -3419,6 +3504,7 @@
       "State": {
        "CurrentHumidityPct": 46,
        "CurrentTempC": null,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "",
@@ -3476,6 +3562,8 @@
       "HeatingStatusRaw": null,
       "PumpHours": 0
      },
+     "Operations": null,
+     "Selectors": null,
      "State": {
       "CentralHeatingPumpActive": true,
       "CirculationPumpActive": true,
@@ -3507,6 +3595,7 @@
       "CircuitType": "heating",
       "Config": {
        "CoolingEnabled": false,
+       "Enumerations": null,
        "FlowTempMaxC": 75,
        "FlowTempMinC": 25,
        "HeatingCurve": 1.2000000476837158,
@@ -3534,6 +3623,7 @@
       "CircuitType": "fixed_value",
       "Config": {
        "CoolingEnabled": false,
+       "Enumerations": null,
        "FlowTempMaxC": 75,
        "FlowTempMinC": 25,
        "HeatingCurve": 1.2999999523162842,
@@ -3571,9 +3661,11 @@
       "Preset": "schedule",
       "TargetTempC": 50
      },
-     "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+     "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
     },
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -3754,6 +3846,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -4223,6 +4317,7 @@
     "StartupEpochs": {"CacheEpoch":0,"LiveEpoch":12},
     "StartupPhase": "LIVE_READY",
     "System": {
+     "Catalogue": null,
      "Config": {
       "AdaptiveHeatingCurve": true,
       "AlternativePoint": -5,
@@ -4268,7 +4363,8 @@
       "SystemFlowTemperature": 42.5,
       "SystemOff": false,
       "SystemWaterPressure": 1.625
-     }
+     },
+     "Ventilation": null
     },
     "VaillantRegulatorCapability": "PRESENT",
     "Zones": [
@@ -4298,6 +4394,7 @@
       "State": {
        "CurrentHumidityPct": 45,
        "CurrentTempC": null,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "",
@@ -4330,6 +4427,7 @@
       "State": {
        "CurrentHumidityPct": 46,
        "CurrentTempC": null,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "",
@@ -4352,6 +4450,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -4532,6 +4632,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -4579,6 +4681,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -4759,6 +4863,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -4832,6 +4938,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -4867,7 +4975,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -4897,6 +5005,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -4929,6 +5038,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": null,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "",
@@ -4946,6 +5056,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -5126,6 +5238,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -5173,6 +5287,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -5353,6 +5469,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -5426,6 +5544,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -5461,7 +5581,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":""}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -5491,6 +5611,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -5523,6 +5644,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -5555,6 +5677,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -5590,7 +5714,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -5620,6 +5744,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -5652,6 +5777,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -5673,7 +5799,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      }
     ],
     "Energy": [],
@@ -5705,6 +5831,7 @@
       "State": {
        "CurrentHumidityPct": 45,
        "CurrentTempC": 20.5,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "heating",
        "SpecialFunction": "0",
@@ -5737,6 +5864,7 @@
       "State": {
        "CurrentHumidityPct": 46,
        "CurrentTempC": 21.5,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "0",
@@ -5758,9 +5886,11 @@
       "Preset": "schedule",
       "TargetTempC": 50
      },
-     "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"SpecialFunction":"0"}
+     "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"SpecialFunction":"0"}
     },
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -5941,6 +6071,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -6396,6 +6528,7 @@
       "State": {
        "CurrentHumidityPct": 45,
        "CurrentTempC": 20.5,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "heating",
        "SpecialFunction": "0",
@@ -6426,6 +6559,7 @@
       "State": {
        "CurrentHumidityPct": 46,
        "CurrentTempC": 21.5,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "0",
@@ -6448,9 +6582,11 @@
       "Preset": "schedule",
       "TargetTempC": 50
      },
-     "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+     "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
     },
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -6631,6 +6767,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -7091,6 +7229,7 @@
       "State": {
        "CurrentHumidityPct": 45,
        "CurrentTempC": 20.5,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "heating",
        "SpecialFunction": "0",
@@ -7123,6 +7262,7 @@
       "State": {
        "CurrentHumidityPct": 46,
        "CurrentTempC": 21.5,
+       "Enumerations": null,
        "HeatingDemandPct": null,
        "HvacAction": "",
        "SpecialFunction": "0",
@@ -7161,6 +7301,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -7196,7 +7338,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -7226,6 +7368,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -7258,6 +7401,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -7290,6 +7434,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -7325,7 +7471,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -7355,6 +7501,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -7387,6 +7534,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -7404,6 +7552,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -7584,6 +7734,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -7631,6 +7783,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -7811,6 +7965,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -7884,6 +8040,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -7919,7 +8077,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -7949,6 +8107,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -7981,6 +8140,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -7998,6 +8158,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -8178,6 +8340,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -8225,6 +8389,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -8405,6 +8571,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -8478,6 +8646,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -8513,7 +8683,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -8543,6 +8713,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -8575,6 +8746,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -8607,6 +8779,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -8642,7 +8816,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -8672,6 +8846,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -8704,6 +8879,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -8736,6 +8912,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -8771,7 +8949,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -8801,6 +8979,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -8833,6 +9012,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -8850,6 +9030,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -9030,6 +9212,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -9077,6 +9261,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -9257,6 +9443,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -9297,6 +9485,7 @@
     "StartupEpochs": "<unchanged>",
     "StartupPhase": "<unchanged>",
     "System": {
+     "Catalogue": null,
      "Config": {
       "AdaptiveHeatingCurve": true,
       "AlternativePoint": -5,
@@ -9342,7 +9531,8 @@
       "SystemFlowTemperature": 42.5,
       "SystemOff": false,
       "SystemWaterPressure": 1.625
-     }
+     },
+     "Ventilation": null
     },
     "VaillantRegulatorCapability": "<unchanged>",
     "Zones": "<unchanged>"
@@ -9358,6 +9548,8 @@
     "DHW": [],
     "Energy": [
      {
+      "CandidateFields": null,
+      "CatalogueDirections": null,
       "Electric": {
        "Climate": {
         "Monthly": [605,201],
@@ -9538,6 +9730,8 @@
         ]
        }
       },
+      "RegisterDirections": null,
+      "ResidualFields": null,
       "Solar": {
        "Climate": {
         "Monthly": null,
@@ -9580,6 +9774,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -9760,6 +9956,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -9807,6 +10005,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -9987,6 +10187,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -10044,6 +10246,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -10224,6 +10428,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -11029,6 +11235,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -11209,6 +11417,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -12040,6 +12250,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -12075,7 +12287,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -12105,6 +12317,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -12137,6 +12350,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -12154,6 +12368,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -12334,6 +12550,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -12381,6 +12599,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -12561,6 +12781,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -12634,6 +12856,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -12669,7 +12893,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -12699,6 +12923,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -12731,6 +12956,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -12748,6 +12974,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -12928,6 +13156,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -12975,6 +13205,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -13155,6 +13387,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -13228,6 +13462,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -13263,7 +13499,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -13293,6 +13529,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -13325,6 +13562,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -13342,6 +13580,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -13522,6 +13762,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -13569,6 +13811,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -13749,6 +13993,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -13822,6 +14068,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -13857,7 +14105,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -13887,6 +14135,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -13919,6 +14168,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -13951,6 +14201,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -13986,7 +14238,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -14016,6 +14268,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -14048,6 +14301,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -14065,6 +14319,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -14245,6 +14501,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -14292,6 +14550,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -14472,6 +14732,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -14545,6 +14807,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -14580,7 +14844,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -14610,6 +14874,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -14642,6 +14907,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -14659,6 +14925,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -14839,6 +15107,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -14886,6 +15156,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -15066,6 +15338,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -15139,6 +15413,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -15174,7 +15450,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -15204,6 +15480,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -15236,6 +15513,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -15270,6 +15548,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -15327,6 +15607,8 @@
       "HeatingStatusRaw": null,
       "PumpHours": 0
      },
+     "Operations": null,
+     "Selectors": null,
      "State": {
       "CentralHeatingPumpActive": true,
       "CirculationPumpActive": true,
@@ -15357,6 +15639,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -15537,6 +15821,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -15602,6 +15888,8 @@
       "HeatingStatusRaw": null,
       "PumpHours": 0
      },
+     "Operations": null,
+     "Selectors": null,
      "State": {
       "CentralHeatingPumpActive": true,
       "CirculationPumpActive": true,
@@ -15632,6 +15920,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -15812,6 +16102,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -15885,6 +16177,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -15920,7 +16214,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -15950,6 +16244,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -15982,6 +16277,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -16014,6 +16310,8 @@
        "HeatingStatusRaw": null,
        "PumpHours": 0
       },
+      "Operations": null,
+      "Selectors": null,
       "State": {
        "CentralHeatingPumpActive": true,
        "CirculationPumpActive": true,
@@ -16049,7 +16347,7 @@
        "Preset": "schedule",
        "TargetTempC": 50
       },
-      "State": {"CurrentTempC":48.5,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
+      "State": {"CurrentTempC":48.5,"Enumerations":null,"HeatingDemandPct":null,"OverrunActive":null,"SpecialFunction":"0"}
      },
      "PersistedAt": "0001-01-01T00:00:00Z",
      "Zones": [
@@ -16079,6 +16377,7 @@
        "State": {
         "CurrentHumidityPct": 45,
         "CurrentTempC": 20.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "heating",
         "SpecialFunction": "0",
@@ -16111,6 +16410,7 @@
        "State": {
         "CurrentHumidityPct": 46,
         "CurrentTempC": 21.5,
+        "Enumerations": null,
         "HeatingDemandPct": null,
         "HvacAction": "",
         "SpecialFunction": "0",
@@ -16128,6 +16428,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -16308,6 +16610,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -16355,6 +16659,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -16535,6 +16841,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -16575,6 +16883,7 @@
     "StartupEpochs": "<unchanged>",
     "StartupPhase": "<unchanged>",
     "System": {
+     "Catalogue": null,
      "Config": {
       "AdaptiveHeatingCurve": true,
       "AlternativePoint": -5,
@@ -16620,7 +16929,8 @@
       "SystemFlowTemperature": 42.5,
       "SystemOff": false,
       "SystemWaterPressure": 1.625
-     }
+     },
+     "Ventilation": null
     },
     "VaillantRegulatorCapability": "<unchanged>",
     "Zones": "<unchanged>"
@@ -16639,6 +16949,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -16819,6 +17131,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -17019,6 +17333,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -17199,6 +17515,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -17412,6 +17730,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -17592,6 +17912,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,
@@ -18390,6 +18712,8 @@
     "Cylinders": "<unchanged>",
     "DHW": "<unchanged>",
     "EnergyTotals": {
+     "CandidateFields": null,
+     "CatalogueDirections": null,
      "Electric": {
       "Climate": {
        "Monthly": [605,201],
@@ -18570,6 +18894,8 @@
        ]
       }
      },
+     "RegisterDirections": null,
+     "ResidualFields": null,
      "Solar": {
       "Climate": {
        "Monthly": null,

@@ -38,12 +38,12 @@ func TestVaillantEnergyCataloguesFillEveryDirection(t *testing.T) {
 		assertEnergyProjection(t, provider.EnergyTotals())
 		assertEnergyProjection(t, &view)
 		published := provider.EnergyTotals()
-		if published == nil || !reflect.DeepEqual(published.RegisterDirections(), view.RegisterDirections()) || !reflect.DeepEqual(published.CatalogueDirections(), view.CatalogueDirections()) || !reflect.DeepEqual(published.ResidualFields(), view.ResidualFields()) || !reflect.DeepEqual(published.CandidateFields(), view.CandidateFields()) {
+		if published == nil || !reflect.DeepEqual(published.RegisterDirections, view.RegisterDirections) || !reflect.DeepEqual(published.CatalogueDirections, view.CatalogueDirections) || !reflect.DeepEqual(published.ResidualFields, view.ResidualFields) || !reflect.DeepEqual(published.CandidateFields, view.CandidateFields) {
 			t.Fatalf("published energy view = %+v; want the fill view's directions, residuals and candidates", published)
 		}
 		assertEnergyCatalogue(t, view, supplied)
 		mapped := output.MCPEnergyTotalsFromGraphQL(&view)
-		if mapped == nil || len(mapped.RegisterDirections()) != len(view.RegisterDirections()) || mapped.RegisterDirections()[0].ObservedAt != receipt || len(mapped.CatalogueDirections()) != len(view.CatalogueDirections()) || len(mapped.CandidateFields()) != len(view.CandidateFields()) || len(mapped.ResidualFields()) != len(view.ResidualFields()) {
+		if mapped == nil || len(mapped.RegisterDirections) != len(view.RegisterDirections) || mapped.RegisterDirections[0].ObservedAt != receipt || len(mapped.CatalogueDirections) != len(view.CatalogueDirections) || len(mapped.CandidateFields) != len(view.CandidateFields) || len(mapped.ResidualFields) != len(view.ResidualFields) {
 			t.Fatalf("mcp energy = %+v; want the same directions, residuals and candidates", mapped)
 		}
 		reads, begins := len(bus.reads), calendar.begins
@@ -54,8 +54,8 @@ func TestVaillantEnergyCataloguesFillEveryDirection(t *testing.T) {
 		if len(bus.reads) != reads || calendar.begins != begins {
 			t.Fatalf("second view reads=%d begins=%d; a view read must not poll or begin again", len(bus.reads), calendar.begins)
 		}
-		if again.RegisterDirections()[4].ObservedAt != receipt || again.RegisterDirections()[4].ValueKWh == nil || *again.RegisterDirections()[4].ValueKWh != 55 {
-			t.Fatalf("second view monthly = %+v; the receipt and value must stay", again.RegisterDirections()[4])
+		if again.RegisterDirections[4].ObservedAt != receipt || again.RegisterDirections[4].ValueKWh == nil || *again.RegisterDirections[4].ValueKWh != 55 {
+			t.Fatalf("second view monthly = %+v; the receipt and value must stay", again.RegisterDirections[4])
 		}
 	})
 
@@ -360,11 +360,11 @@ func assertEnergyReads(t *testing.T, reads []uint16) {
 
 func assertAcceptedEnergy(t *testing.T, view output.EnergyTotals, ref energyTestReference, receipt, noon string) {
 	t.Helper()
-	if len(view.RegisterDirections()) != len(b524EnergyQueries) {
-		t.Fatalf("register directions = %d; want %d", len(view.RegisterDirections()), len(b524EnergyQueries))
+	if len(view.RegisterDirections) != len(b524EnergyQueries) {
+		t.Fatalf("register directions = %d; want %d", len(view.RegisterDirections), len(b524EnergyQueries))
 	}
 	for i, query := range b524EnergyQueries {
-		item := view.RegisterDirections()[i]
+		item := view.RegisterDirections[i]
 		value, _ := energyCatalogueValue(query.addr)
 		raw := make([]byte, 4)
 		binary.LittleEndian.PutUint32(raw, value)
@@ -422,11 +422,11 @@ func assertEnergyCatalogue(t *testing.T, view output.EnergyTotals, supplied []by
 	if err := json.Unmarshal(rawTypes, &types); err != nil {
 		t.Fatalf("directional types: %v", err)
 	}
-	if len(view.CatalogueDirections()) != len(statistics)+len(types) {
-		t.Fatalf("catalogue directions = %d; want %d statistics and %d directional types", len(view.CatalogueDirections()), len(statistics), len(types))
+	if len(view.CatalogueDirections) != len(statistics)+len(types) {
+		t.Fatalf("catalogue directions = %d; want %d statistics and %d directional types", len(view.CatalogueDirections), len(statistics), len(types))
 	}
 	unresolved := 0
-	for _, item := range view.CatalogueDirections() {
+	for _, item := range view.CatalogueDirections {
 		if item.ValueKWh != nil || len(item.Raw) != 0 {
 			t.Fatalf("catalogue direction %s copied a register value %v raw %x", item.Name, item.ValueKWh, item.Raw)
 		}
@@ -440,7 +440,7 @@ func assertEnergyCatalogue(t *testing.T, view output.EnergyTotals, supplied []by
 		t.Fatalf("unresolved catalogue labels = %d; want one per directional type", unresolved)
 	}
 	setpoints := 0
-	for _, item := range view.ResidualFields() {
+	for _, item := range view.ResidualFields {
 		if item.Field != "setpoint" {
 			if len(item.Raw) != 0 {
 				t.Fatalf("residual %s raw %x; only the supplied field keeps bytes", item.Field, item.Raw)
@@ -459,10 +459,10 @@ func assertEnergyCatalogue(t *testing.T, view output.EnergyTotals, supplied []by
 	if err != nil {
 		t.Fatalf("energy candidates: %v", err)
 	}
-	if len(view.CandidateFields()) != len(candidates) {
-		t.Fatalf("candidates = %d; want %d", len(view.CandidateFields()), len(candidates))
+	if len(view.CandidateFields) != len(candidates) {
+		t.Fatalf("candidates = %d; want %d", len(view.CandidateFields), len(candidates))
 	}
-	for _, item := range view.CandidateFields() {
+	for _, item := range view.CandidateFields {
 		if item.Register != nil || item.Note != "register absent" {
 			t.Fatalf("candidate %s register %v note %q; dropping the absent register would still publish an address", item.Field, item.Register, item.Note)
 		}
@@ -471,11 +471,11 @@ func assertEnergyCatalogue(t *testing.T, view output.EnergyTotals, supplied []by
 
 func assertDatedEnergyRejected(t *testing.T, view output.EnergyTotals, provider *retainedSemanticState, receipt string) {
 	t.Helper()
-	if len(view.RegisterDirections()) != len(b524EnergyQueries) {
-		t.Fatalf("directions = %d; want %d", len(view.RegisterDirections()), len(b524EnergyQueries))
+	if len(view.RegisterDirections) != len(b524EnergyQueries) {
+		t.Fatalf("directions = %d; want %d", len(view.RegisterDirections), len(b524EnergyQueries))
 	}
 	for i, query := range b524EnergyQueries {
-		item := view.RegisterDirections()[i]
+		item := view.RegisterDirections[i]
 		if query.period == "month" {
 			if item.ValueKWh != nil || item.ObservedAt != receipt || len(item.Raw) != 4 {
 				t.Fatalf("%s = %+v; a rejected dated reply keeps its wire receipt and raw bytes", item.Name, item)
@@ -500,7 +500,7 @@ func energyDirectionNamed(view *output.EnergyTotals, name string) output.EnergyD
 	if view == nil {
 		return output.EnergyDirection{}
 	}
-	for _, item := range view.RegisterDirections() {
+	for _, item := range view.RegisterDirections {
 		if item.Name == name {
 			return item
 		}

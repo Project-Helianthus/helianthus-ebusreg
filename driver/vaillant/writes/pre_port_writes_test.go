@@ -35,20 +35,58 @@ func TestPrePortWritesHaveOperations(t *testing.T) {
 			t.Fatalf("Operation(%s) missing", row.Operation)
 		}
 	}
-	requireKeys(t, bySurface, "set_zone_config", "desiredSetpoint", "operatingMode", "quickVetoTemperature", "quickVetoDuration", "holidaySetpoint")
-	requireKeys(t, bySurface, "set_circuit_config", "heatingCurve", "flowTempMaxC", "flowTempMinC", "summerLimitC", "frostProtC", "roomTempControl", "coolingEnabled")
-	systemKeys := []string{"dhwBivalencePointC", "maxRoomHumidityPct", "adaptiveHeatingCurve", "hcBivalencePointC", "hcEmergencyTempC", "hwcMaxFlowTempC", "maintenanceDate", "installerName", "installerPhone", "installerMenuCode"}
+	zoneKeys := []string{
+		"heating_zone_operating_mode",
+		"heating_zone_room_manual_temperature_setpoint",
+		"zone_quick_veto_time",
+		"zone_room_temperature_setpoint_at_holiday",
+		"zone_room_temperature_setpoint_at_quick_veto",
+	}
+	circuitKeys := []string{
+		"circuit_cooling_enabled",
+		"circuit_flow_temperature_setpoint_minimum",
+		"circuit_heating_curve_factor",
+		"circuit_room_temperature_influence_mode",
+		"heating_circuit_flow_temperature_setpoint_maximum",
+		"heating_circuit_outdoor_temperature_limit_maximum",
+	}
+	systemKeys := []string{
+		"adaptive_heating_curve_enabled",
+		"dhw_flow_temperature_setpoint_maximum",
+		"dhw_outdoor_bivalence_temperature_limit",
+		"heating_flow_temperature_setpoint_maximum_at_heat_pump_fault",
+		"heating_outdoor_bivalence_temperature_limit",
+		"installer_access_code",
+		"installer_name",
+		"installer_phone_number",
+		"maintenance_date",
+		"room_humidity_limit_maximum",
+	}
+	boilerKeys := []string{
+		"central_heating_pump_mode",
+		"dhw_partial_load_power",
+		"heating_partial_load_power",
+		"installer_phone_number",
+		"maximum_dhw_flow_temperature_setpoint",
+		"maximum_heating_flow_temperature_setpoint",
+	}
+	requireKeys(t, bySurface, "set_zone_config", zoneKeys...)
+	requireKeys(t, bySurface, "set_circuit_config", circuitKeys...)
 	requireKeys(t, bySurface, "set_system_config", systemKeys...)
-	requireKeys(t, bySurface, "ebus.v1.semantic.system.set_config", systemKeys...)
-	boilerKeys := []string{"flowsetHcMaxC", "flowsetHwcMaxC", "partloadHcKW", "partloadHwcKW", "phoneNumber", "installerMenuCode"}
+	requireKeys(t, bySurface, "ebus_v1_semantic_system_set_config", systemKeys...)
 	requireKeys(t, bySurface, "set_boiler_config", boilerKeys...)
-	requireKeys(t, bySurface, "ebus.v1.semantic.boiler_status.set_config", boilerKeys...)
+	requireKeys(t, bySurface, "ebus_v1_semantic_boiler_status_set_config", boilerKeys...)
+	for _, surface := range []string{"ebus.v1.semantic.system.set_config", "ebus.v1.semantic.boiler_status.set_config"} {
+		if bySurface[surface] != nil {
+			t.Fatalf("surface %s is not an MCP tool name", surface)
+		}
+	}
 	requireKeys(t, bySurface, "set_zone_time_program", "zone", "weekday", "slots")
 	requireKeys(t, bySurface, "ebus_v1_semantic_schedules_set_zone_time_program", "zone", "weekday", "slots")
 	requireKeys(t, bySurface, "set_dhw_time_program", "weekday", "slots")
 	requireKeys(t, bySurface, "ebus_v1_semantic_schedules_set_dhw_time_program", "weekday", "slots")
 
-	setpoint := bySurface["set_zone_config"]["desiredSetpoint"]
+	setpoint := bySurface["set_zone_config"]["heating_zone_room_manual_temperature_setpoint"]
 	if setpoint.Operation != "thermal.operation.set_temperature" || setpoint.Selector.Group != "03" || setpoint.Selector.Register != "0022" || setpoint.Kind != "kelvin_celsius" || setpoint.Argument != "thermal.setpoint.temperature_setpoint" {
 		t.Fatalf("zone setpoint = %+v", setpoint)
 	}
@@ -59,22 +97,36 @@ func TestPrePortWritesHaveOperations(t *testing.T) {
 	if bySurface["ebusreg"]["dhw_operating_mode"].Selector.Register != "0003" || bySurface["ebusreg"]["dhw_temperature_setpoint"].Selector.Register != "0004" || bySurface["ebusreg"]["dhw_temperature_setpoint"].Selector.Group != "01" {
 		t.Fatal("group 01 registers 0003 and 0004 missing")
 	}
-	frost := bySurface["set_circuit_config"]["frostProtC"]
-	if frost.Form != "unknown" || frost.Selector.Register != "001d" || frost.Kind != "" {
-		t.Fatalf("frost = %+v", frost)
+	for _, row := range rows {
+		if row.Key == "frostProtC" || row.Key == "frost_prot_c" {
+			t.Fatalf("withdrawn circuit key %s is not a setter field", row.Key)
+		}
 	}
-	name := bySurface["set_system_config"]["installerName"]
-	phone := bySurface["set_system_config"]["installerPhone"]
+	special := byOperation["ebusreg.operation.circuit_special_function_mode"]
+	if special.Key != "" || special.Surface != "ebusreg" || special.Form != "unknown" || special.Selector.Register != "001d" || special.Kind != "" {
+		t.Fatalf("circuit register 001d = %+v", special)
+	}
+	name := bySurface["set_system_config"]["installer_name"]
+	phone := bySurface["set_system_config"]["installer_phone_number"]
 	if name.Form != "compound" || name.PairRegister != "006d" || phone.Form != "compound" || phone.PairRegister != "0070" {
 		t.Fatalf("installer strings = %+v %+v", name, phone)
+	}
+	pump := bySurface["set_boiler_config"]["central_heating_pump_mode"]
+	if pump.Selector.Register != "4904" || pump.Selector.Family != "boiler" {
+		t.Fatalf("central heating pump mode = %+v", pump)
 	}
 	for _, key := range boilerKeys {
 		row := bySurface["set_boiler_config"][key]
 		if row.Form != "unknown" || row.Selector.Family != "boiler" || row.Selector.Register == "a500" || row.Selector.Opcode != "0e" {
 			t.Fatalf("boiler %s = %+v", key, row)
 		}
-		if !sameOperation(row, bySurface["ebus.v1.semantic.boiler_status.set_config"][key]) {
+		if !sameOperation(row, bySurface["ebus_v1_semantic_boiler_status_set_config"][key]) {
 			t.Fatalf("boiler surfaces disagree for %s", key)
+		}
+	}
+	for _, key := range systemKeys {
+		if !sameOperation(bySurface["set_system_config"][key], bySurface["ebus_v1_semantic_system_set_config"][key]) {
+			t.Fatalf("system surfaces disagree for %s", key)
 		}
 	}
 	for _, row := range rows {
@@ -93,9 +145,19 @@ func requireKeys(t *testing.T, bySurface map[string]map[string]Row, surface stri
 	if got == nil {
 		t.Fatalf("surface %s missing", surface)
 	}
+	want := map[string]struct{}{}
 	for _, key := range keys {
+		if _, dup := want[key]; dup {
+			t.Fatalf("expected key %s repeated for %s", key, surface)
+		}
+		want[key] = struct{}{}
 		if _, ok := got[key]; !ok {
 			t.Fatalf("surface %s key %s missing", surface, key)
+		}
+	}
+	for key := range got {
+		if _, ok := want[key]; !ok {
+			t.Fatalf("surface %s key %s is outside the expected set", surface, key)
 		}
 	}
 }

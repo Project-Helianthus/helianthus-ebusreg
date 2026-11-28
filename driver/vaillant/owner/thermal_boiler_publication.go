@@ -69,15 +69,6 @@ func (p *vaillantSemanticPoller) attachBoilerThermal(hub BoilerThermalHub, handl
 	}
 	pub := &boilerThermalPublisher{hub: hub, handle: handle, start: time.Now()}
 	pub.onControl = func() error {
-		boilerPublish := p.boilerPublishLock()
-		boilerPublish.Lock()
-		defer boilerPublish.Unlock()
-		p.mu.Lock()
-		if p.boiler != nil {
-			p.boiler.FlowTemperatureC = nil
-		}
-		p.mu.Unlock()
-		p.publication.withdrawBoilerFlowTemperature()
 		return nil
 	}
 	pub.now = func() (semreg.TimePoint, semreg.MonotonicPoint) {

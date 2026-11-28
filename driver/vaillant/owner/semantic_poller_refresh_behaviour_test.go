@@ -152,8 +152,8 @@ func TestVaillantOwnerRefreshBoilerStatusTierNoSuccessfulReadsPreservesSnapshot(
 				if got == nil || *got != flow {
 					t.Fatalf("qualified flow = %v; want preserved %.1f", got, flow)
 				}
-			} else if got != nil {
-				t.Fatalf("unqualified flow = %v; want withheld", got)
+			} else if got == nil || *got != flow {
+				t.Fatalf("unqualified flow = %v; want retained %.1f", got, flow)
 			}
 			if poller.boiler.CentralHeatingPumpActive == nil || !*poller.boiler.CentralHeatingPumpActive {
 				t.Fatalf("poller.boiler.CentralHeatingPumpActive = %v; want preserved true", poller.boiler.CentralHeatingPumpActive)

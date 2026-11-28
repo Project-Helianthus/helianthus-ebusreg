@@ -162,6 +162,9 @@ type vaillantSemanticPoller struct {
 	dhw                                   *vaillantDhwSnapshot
 	dhwLastUpdateAt                       time.Time
 	boiler                                *vaillantBoilerSnapshot
+	boilerFlowCached                      bool
+	boilerFlowObservedAt                  time.Time
+	currentErrorFault                     string
 	system                                *vaillantSystemSnapshot
 	circuits                              map[byte]*vaillantCircuitSnapshot
 	lastCircuitFullScanAt                 time.Time

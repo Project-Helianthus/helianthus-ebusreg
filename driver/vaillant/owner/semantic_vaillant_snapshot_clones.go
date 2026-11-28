@@ -197,8 +197,9 @@ func SeedDhwFreshness(snapshot *vaillantDhwSnapshot, source semanticSnapshotSour
 	}
 }
 
-// mergePublishedBoilerFlow replaces the legacy scalar even on withholding;
-// value-only cache and system-flow mirrors cannot seed this field.
+// mergePublishedBoilerFlow copies a qualified thermal scalar into the native
+// field and clears its cached mark. A withheld scalar leaves the native value
+// and its age. System flow does not seed this field.
 func (p *vaillantSemanticPoller) mergePublishedBoilerFlow() bool {
 	p.mu.Lock()
 	publisher, target := p.boilerThermal, p.boilerAddress
@@ -207,19 +208,22 @@ func (p *vaillantSemanticPoller) mergePublishedBoilerFlow() bool {
 	if publisher != nil {
 		flow = publisher.scalar(target)
 	}
+	if flow == nil {
+		return false
+	}
 	p.mu.Lock()
+	defer p.mu.Unlock()
 	var previous *float64
 	if p.boiler != nil {
 		previous = p.boiler.FlowTemperatureC
 	}
-	changed := !floatPtrEquals(previous, flow)
-	if p.boiler == nil && flow != nil {
+	changed := !floatPtrEquals(previous, flow) || p.boilerFlowCached
+	if p.boiler == nil {
 		p.boiler = &vaillantBoilerSnapshot{}
 	}
-	if p.boiler != nil {
-		p.boiler.FlowTemperatureC = flow
-	}
-	p.mu.Unlock()
+	p.boiler.FlowTemperatureC = flow
+	p.boilerFlowCached = false
+	p.boilerFlowObservedAt = p.now()
 	return changed
 }
 

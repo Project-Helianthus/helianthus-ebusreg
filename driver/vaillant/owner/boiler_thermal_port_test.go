@@ -54,11 +54,11 @@ func TestVaillantOwnerThermalControlWithdrawsFlowTemperature(t *testing.T) {
 	if err := poller.boilerThermal.onControl(); err != nil {
 		t.Fatalf("onControl() = %v; want nil", err)
 	}
-	if poller.boiler.FlowTemperatureC != nil {
-		t.Fatalf("flow temperature after control = %v; want withdrawn", *poller.boiler.FlowTemperatureC)
+	if poller.boiler.FlowTemperatureC == nil || *poller.boiler.FlowTemperatureC != flow {
+		t.Fatalf("flow temperature after control = %v; want retained %.1f", poller.boiler.FlowTemperatureC, flow)
 	}
-	if publication.withdrawn != 1 {
-		t.Fatalf("publication withdrawals = %d; want 1", publication.withdrawn)
+	if publication.withdrawn != 0 {
+		t.Fatalf("publication withdrawals = %d; want 0", publication.withdrawn)
 	}
 }
 

@@ -246,9 +246,9 @@ func TestVaillantOwnerSemanticPollScheduleSchedulerCancellation(t *testing.T) {
 }
 
 func scheduleExpectedTasks() []semanticPollTask {
-	keys := []semanticTaskKey{"refresh_regulator_capability", "refresh_discovery", "refresh_config", "refresh_state", "refresh_circuits", "refresh_system", "refresh_radio_devices", "refresh_energy", "refresh_schedules", "refresh_catalogues", "refresh_boiler_fast", "refresh_boiler_medium", "refresh_boiler_slow"}
-	priorities := []semanticTaskPriority{0, 0, 1, 2, 0, 0, 0, 1, 0, 0, 2, 1, 0}
-	intervals := []time.Duration{11, 13, 17, 19, 17, 17, 17, 23, 29, 17, 31, 37, 41}
+	keys := []semanticTaskKey{"refresh_regulator_capability", "refresh_discovery", "refresh_config", "refresh_state", "refresh_circuits", "refresh_system", "refresh_radio_devices", "refresh_energy", "refresh_schedules", "refresh_catalogues", "refresh_boiler_fast", "refresh_boiler_medium", "refresh_boiler_slow", "refresh_b503_current_error"}
+	priorities := []semanticTaskPriority{0, 0, 1, 2, 0, 0, 0, 1, 0, 0, 2, 1, 0, 0}
+	intervals := []time.Duration{11, 13, 17, 19, 17, 17, 17, 23, 29, 17, 31, 37, 41, 41}
 	tasks := make([]semanticPollTask, len(keys))
 	for i, key := range keys {
 		tasks[i] = semanticPollTask{key: key, priority: priorities[i], interval: intervals[i] * time.Second}
@@ -261,7 +261,7 @@ func TestVaillantOwnerSemanticPollScheduleRecurringTasks(t *testing.T) {
 		interval time.Duration
 		ch       chan time.Time
 	}
-	ticks := make(chan tick, 13)
+	ticks := make(chan tick, 14)
 	calls := make(map[semanticTaskKey]int)
 	q := newSemanticTaskScheduler()
 	tasks := scheduleExpectedTasks()
@@ -270,7 +270,7 @@ func TestVaillantOwnerSemanticPollScheduleRecurringTasks(t *testing.T) {
 		tasks[i].refresh = func(context.Context) { calls[key]++ }
 	}
 	adapter := make(chan struct{})
-	stops := make(chan struct{}, 13)
+	stops := make(chan struct{}, 14)
 	s := newScheduleUnderTest(&semanticPollSchedule{tasks: q, pollMu: &sync.Mutex{}, recurring: tasks,
 		initial: []semanticPollTask{{key: "refresh_discovery", priority: 2, refresh: tasks[1].refresh}, {key: "refresh_schedules", priority: 0, refresh: tasks[8].refresh}},
 		adapter: func(ctx context.Context) { close(adapter); <-ctx.Done() },

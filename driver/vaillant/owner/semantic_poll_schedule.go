@@ -246,5 +246,9 @@ func (p *vaillantSemanticPoller) pollSchedule() *semanticPollSchedule {
 			priority: tier.priority, refresh: p.boilerStatusTierTask(tier.tier),
 		})
 	}
+	schedule.recurring = append(schedule.recurring, semanticPollTask{
+		key: semanticTaskRefreshCurrentError, interval: p.boilerSlowInterval,
+		priority: semanticTaskPriorityLow, refresh: p.refreshCurrentError,
+	})
 	return schedule
 }

@@ -25,8 +25,18 @@ func (p *vaillantSemanticPoller) refreshBoilerStatusB509(ctx context.Context, bo
 // refreshBoilerStatusB509Fast reads the fast tier: flow evidence, pumps,
 // flame, gas valve, fan, modulation, state and hot water demand.
 func (p *vaillantSemanticPoller) refreshBoilerStatusB509Fast(ctx context.Context, boilerAddress byte, snapshot *vaillantBoilerSnapshot) bool {
-	// Acquisition retains native evidence; only the hub result supplies flow.
-	_, updated := p.readB509Value(ctx, boilerAddress, boilerB509FlowTemperature)
+	updated := false
+	if raw, ok := p.readB509Value(ctx, boilerAddress, boilerB509FlowTemperature); ok {
+		next, applied := applyOwnBoilerFlow(boilerB509FlowTemperature, p.boilerFlowReading(), raw, p.now())
+		if applied {
+			snapshot.FlowTemperatureC = cloneFloat64Ptr(next.celsius)
+			p.mu.Lock()
+			p.boilerFlowCached = next.cached
+			p.boilerFlowObservedAt = next.observedAt
+			p.mu.Unlock()
+			updated = true
+		}
+	}
 	if value := p.readB509OnOff(ctx, boilerAddress, boilerB509CentralHeatingPump); value != nil {
 		snapshot.CentralHeatingPumpActive = value
 		updated = true

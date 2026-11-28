@@ -21,13 +21,10 @@ import (
 // the energy ledger of a register acquisition: it derives the retained
 // state's energy keys from native channel, usage and window values.
 //
-// boilerPublishMu orders boiler-status publication against the
-// thermal withdrawal: publishBoilerStatus and the thermal publisher's
-// control callback each hold it across their change of the native boiler
-// snapshot and the owner's publication or withdrawal of the provider's
-// boiler status, so a withdrawn flow temperature is never overwritten by an
-// interleaved publication and neither path publishes a status the other is
-// still changing. The lock guards no other state.
+// boilerPublishMu orders boiler-status publication. publishBoilerStatus holds
+// it across the native snapshot copy and the provider update. The thermal
+// control callback does not clear the native flow temperature. The lock
+// guards no other state.
 type vaillantSemanticPublication struct {
 	state  *retainedSemanticState
 	events publicationEvents

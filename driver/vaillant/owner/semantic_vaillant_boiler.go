@@ -223,6 +223,11 @@ func (p *vaillantSemanticPoller) mergeBoilerMirrorFieldsFromSnapshots(snapshot *
 	maxAge := p.boilerMirrorMaxAge()
 	// Fresh controller flow triggers publication without supplying boiler flow.
 	updated := system != nil && system.Controller == controller && system.SystemFlowTemperature != nil && semanticSnapshotObservedWithin(system.SystemFlowTemperatureLiveAt, now, maxAge)
+	var systemFlow *float64
+	if system != nil {
+		systemFlow = system.SystemFlowTemperature
+	}
+	snapshot.FlowTemperatureC = boilerFlowWithoutSystem(systemFlow, snapshot.FlowTemperatureC)
 	// Circuit 0 is not a boiler source. Its pump status and circuit state stay
 	// on the circuit surface; the boiler pump and heating-status diagnostic
 	// remain absent here, so partial merges preserve independent boiler evidence.

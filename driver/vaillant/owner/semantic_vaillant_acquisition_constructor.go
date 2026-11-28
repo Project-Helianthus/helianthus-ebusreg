@@ -176,6 +176,11 @@ func (p *vaillantSemanticPoller) HydrateFromCache(hydration VaillantCacheHydrati
 	}
 	if hydration.boiler != nil {
 		p.boiler = hydration.boiler
+		if hydration.boiler.FlowTemperatureC != nil {
+			reading := restoreBoilerFlowMark(hydration.boiler.FlowTemperatureC, hydration.persistedAt)
+			p.boilerFlowCached = reading.cached
+			p.boilerFlowObservedAt = reading.observedAt
+		}
 	}
 	semanticZoneCount.Set(int64(len(p.zones)))
 }

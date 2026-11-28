@@ -410,6 +410,7 @@ func cacheBoilerToGraphQL(cache *semanticCacheBoiler) *BoilerStatus {
 
 	out := &BoilerStatus{
 		State: BoilerState{
+			FlowTemperatureC:      CloneFloatPtr(cache.FlowTemperatureC),
 			ReturnTemperatureC:    CloneFloatPtr(cache.ReturnTemperatureC),
 			DhwTemperatureC:       CloneFloatPtr(cache.DhwTemperatureC),
 			DhwTargetTemperatureC: CloneFloatPtr(cache.DhwTargetTemperatureC),

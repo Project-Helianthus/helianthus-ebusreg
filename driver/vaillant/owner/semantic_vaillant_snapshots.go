@@ -272,6 +272,7 @@ const (
 	semanticTaskRefreshBoilerFast          semanticTaskKey = "refresh_boiler_fast"
 	semanticTaskRefreshBoilerMedium        semanticTaskKey = "refresh_boiler_medium"
 	semanticTaskRefreshBoilerSlow          semanticTaskKey = "refresh_boiler_slow"
+	semanticTaskRefreshCurrentError        semanticTaskKey = "refresh_b503_current_error"
 )
 
 var (

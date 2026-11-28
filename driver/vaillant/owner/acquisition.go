@@ -225,6 +225,22 @@ func (a *Acquisition) Suspend() {
 	a.poller.SuspendAcquisition()
 }
 
+// ReleaseCatalogueState drops this owner's codebook, boiler-dictionary and energy-catalogue state.
+func (a *Acquisition) ReleaseCatalogueState() {
+	if a == nil || a.poller == nil {
+		return
+	}
+	a.poller.releaseCatalogueState()
+}
+
+// CatalogueStateReleased reports whether this owner's catalogue state has been released.
+func (a *Acquisition) CatalogueStateReleased() bool {
+	if a == nil || a.poller == nil {
+		return false
+	}
+	return a.poller.catalogueStateReleased()
+}
+
 // RefreshCalls reports how often the history refresh stub has run.
 func (a *Acquisition) RefreshCalls() int {
 	if a == nil {

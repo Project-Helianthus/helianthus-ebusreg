@@ -178,7 +178,9 @@ func fillFamilyCodebooks(p *vaillantSemanticPoller, ctx context.Context, family 
 }
 
 func publishFamilyCatalogue(p *vaillantSemanticPoller, view output.FamilyCatalogue) {
-	rememberFamilyCatalogue(p, view)
+	if !rememberFamilyCatalogue(p, view) {
+		return
+	}
 	owner := publicationOwner(p)
 	if owner == nil || owner.state == nil {
 		return

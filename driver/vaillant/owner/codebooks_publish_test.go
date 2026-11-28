@@ -39,10 +39,10 @@ func TestVaillantPublishedCataloguesFillOrdinaryViews(t *testing.T) {
 	poller.publishCircuits(semanticSnapshotSourceLive)
 	poller.publishSystem(semanticSnapshotSourceLive)
 	poller.publishBoilerStatus(semanticSnapshotSourceLive)
-	if zones := provider.Zones(); len(zones) != 1 || len(zones[0].State.Enumerations()) != 0 {
+	if zones := provider.Zones(); len(zones) != 1 || len(zones[0].State.Enumerations) != 0 {
 		t.Fatal("ordinary publication filled zone enumerations before the catalogue task")
 	}
-	if totals := provider.EnergyTotals(); totals != nil && len(totals.CatalogueDirections()) != 0 {
+	if totals := provider.EnergyTotals(); totals != nil && len(totals.CatalogueDirections) != 0 {
 		t.Fatal("ordinary publication filled energy directions before the catalogue task")
 	}
 
@@ -75,36 +75,36 @@ func assertPublishedCatalogueViews(t *testing.T, provider *retainedSemanticState
 	if len(zones) != 1 {
 		t.Fatalf("zones = %d; want the published zone", len(zones))
 	}
-	assertEnumeration(t, zones[0].State.Enumerations(), localZones.group, 27, "u8", []byte{1, 0}, 1, "ventilation-boost", "Hypothesis")
-	assertEnumeration(t, zones[0].State.Enumerations(), localZones.group, 0x000E, "u16", []byte{4, 0}, 4, catalogueUnresolved, "Unknown")
+	assertEnumeration(t, zones[0].State.Enumerations, localZones.group, 27, "u8", []byte{1, 0}, 1, "ventilation-boost", "Hypothesis")
+	assertEnumeration(t, zones[0].State.Enumerations, localZones.group, 0x000E, "u16", []byte{4, 0}, 4, catalogueUnresolved, "Unknown")
 	dhw := provider.DHW()
 	if dhw == nil {
 		t.Fatal("hot water view missing")
 	}
-	assertEnumeration(t, dhw.State.Enumerations(), localDHW.group, 3, "u16", []byte{1, 0}, 1, "automatic", "Hypothesis")
+	assertEnumeration(t, dhw.State.Enumerations, localDHW.group, 3, "u16", []byte{1, 0}, 1, "automatic", "Hypothesis")
 	circuits := provider.Circuits()
 	if len(circuits) != 1 {
 		t.Fatalf("circuits = %d; want the published circuit", len(circuits))
 	}
-	assertEnumeration(t, circuits[0].Config.Enumerations(), localCircuits.group, 29, "u8", []byte{2}, 2, "party", "Hypothesis")
+	assertEnumeration(t, circuits[0].Config.Enumerations, localCircuits.group, 29, "u8", []byte{2}, 2, "party", "Hypothesis")
 	system := provider.System()
-	if system == nil || system.Ventilation() == nil || system.Ventilation().DayFanSpeedLimit == nil || *system.Ventilation().DayFanSpeedLimit != 300 {
+	if system == nil || system.Ventilation == nil || system.Ventilation.DayFanSpeedLimit == nil || *system.Ventilation.DayFanSpeedLimit != 300 {
 		t.Fatalf("system ventilation missing; want day word 300")
 	}
 	status := provider.BoilerStatus()
 	if status == nil {
 		t.Fatal("boiler status missing")
 	}
-	flame := boilerSelector(status.Selectors(), boilerB509FlameActive)
+	flame := boilerSelector(status.Selectors, boilerB509FlameActive)
 	if !bytes.Equal(flame.Raw, []byte{0x00}) || flame.CodecUsed != "onoff" || flame.Label != "flame_active" {
 		t.Fatalf("published flame = %+v; want raw 00 and codec onoff", flame)
 	}
-	pump := boilerSelector(status.Selectors(), boilerB509PumpHours)
+	pump := boilerSelector(status.Selectors, boilerB509PumpHours)
 	if !bytes.Equal(pump.Raw, []byte{0x05, 0x00}) || pump.CodecUsed != "hoursum2" {
 		t.Fatalf("published pump hours = %+v; want raw 05 00 and hoursum2", pump)
 	}
 	totals := provider.EnergyTotals()
-	if totals == nil || len(totals.RegisterDirections()) != len(b524EnergyQueries) || len(totals.CatalogueDirections()) == 0 || len(totals.ResidualFields()) == 0 || len(totals.CandidateFields()) == 0 {
+	if totals == nil || len(totals.RegisterDirections) != len(b524EnergyQueries) || len(totals.CatalogueDirections) == 0 || len(totals.ResidualFields) == 0 || len(totals.CandidateFields) == 0 {
 		t.Fatalf("published energy directions missing")
 	}
 }

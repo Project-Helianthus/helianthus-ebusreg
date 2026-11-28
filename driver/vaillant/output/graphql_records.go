@@ -22,7 +22,7 @@ type ZoneState struct {
 	SpecialFunction    string
 	HeatingDemandPct   *float64
 	ValvePositionPct   *float64
-	enumerations       []CatalogueEnumeration
+	Enumerations       []CatalogueEnumeration
 }
 
 // ZoneConfig represents the settings of a zone.
@@ -59,7 +59,7 @@ type DhwState struct {
 	OverrunActive    *bool
 	SpecialFunction  string
 	HeatingDemandPct *float64
-	enumerations     []CatalogueEnumeration
+	Enumerations     []CatalogueEnumeration
 }
 
 // DhwConfig represents domestic hot water settings.
@@ -106,7 +106,7 @@ type CircuitConfig struct {
 	SpecialFunctionMode *int
 	RoomTempControl     string
 	CoolingEnabled      *bool
-	enumerations        []CatalogueEnumeration
+	Enumerations        []CatalogueEnumeration
 }
 
 // ManagingDevice represents the device responsible for a circuit.
@@ -191,10 +191,10 @@ type EnergyTotals struct {
 	Gas                 EnergyChannel
 	Electric            EnergyChannel
 	Solar               EnergyChannel
-	registerDirections  []EnergyDirection
-	catalogueDirections []EnergyDirection
-	residualFields      []EnergyResidual
-	candidateFields     []EnergyResidual
+	RegisterDirections  []EnergyDirection
+	CatalogueDirections []EnergyDirection
+	ResidualFields      []EnergyResidual
+	CandidateFields     []EnergyResidual
 }
 
 // EnergyFreshnessState represents the freshness classification of an energy value.
@@ -217,8 +217,8 @@ type BoilerStatus struct {
 	State       BoilerState
 	Config      BoilerConfig
 	Diagnostics BoilerDiagnostics
-	selectors   []BoilerSelectorEvidence
-	operations  []RawOperation
+	Selectors   []BoilerSelectorEvidence
+	Operations  []RawOperation
 }
 
 // BoilerState represents the observed state of the boiler.
@@ -281,8 +281,8 @@ type SystemStatus struct {
 	Properties     SystemProperties
 	GatewayBrand   *string
 	GatewayVendor  *string
-	ventilation    *VentilationView
-	catalogue      *FamilyCatalogue
+	Ventilation    *VentilationView
+	Catalogue      *FamilyCatalogue
 	history        *HistoryOwnerRecord
 	functionModule *FunctionModuleRecord
 	legacyPlanes   *LegacyPlaneRecord

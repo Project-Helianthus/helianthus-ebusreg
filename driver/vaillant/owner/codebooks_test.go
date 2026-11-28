@@ -38,24 +38,24 @@ func TestVaillantB524CodebooksLabelEnumerationBesideRaw(t *testing.T) {
 	if len(zones) != 1 {
 		t.Fatalf("zones = %d; want the pre-published zone", len(zones))
 	}
-	assertEnumeration(t, zones[0].State.Enumerations(), 3, 27, "u8", []byte{1, 0}, 1, "ventilation-boost", "Hypothesis")
-	assertEnumeration(t, zones[0].State.Enumerations(), 3, 0x000E, "u16", []byte{4, 0}, 4, catalogueUnresolved, "Unknown")
-	if enumerationAt(zones[0].State.Enumerations(), 1, 13, "u8").Label != "" {
+	assertEnumeration(t, zones[0].State.Enumerations, 3, 27, "u8", []byte{1, 0}, 1, "ventilation-boost", "Hypothesis")
+	assertEnumeration(t, zones[0].State.Enumerations, 3, 0x000E, "u16", []byte{4, 0}, 4, catalogueUnresolved, "Unknown")
+	if enumerationAt(zones[0].State.Enumerations, 1, 13, "u8").Label != "" {
 		t.Fatalf("zone view carries the hot-water special-function label; group is not part of the published zone enumeration")
 	}
 	dhw := provider.DHW()
-	assertEnumeration(t, dhw.State.Enumerations(), 1, 3, "u16", []byte{1, 0}, 1, "automatic", "Hypothesis")
-	assertEnumeration(t, dhw.State.Enumerations(), 1, 13, "u8", []byte{6}, 6, "start a one-time DHW load", "Hypothesis")
+	assertEnumeration(t, dhw.State.Enumerations, 1, 3, "u16", []byte{1, 0}, 1, "automatic", "Hypothesis")
+	assertEnumeration(t, dhw.State.Enumerations, 1, 13, "u8", []byte{6}, 6, "start a one-time DHW load", "Hypothesis")
 	circuits := provider.Circuits()
-	assertEnumeration(t, circuits[0].Config.Enumerations(), 2, 29, "u8", []byte{2}, 2, "party", "Hypothesis")
-	assertEnumeration(t, circuits[0].Config.Enumerations(), 2, 2, "u16", []byte{5, 0}, 5, "pool", "Hypothesis")
+	assertEnumeration(t, circuits[0].Config.Enumerations, 2, 29, "u8", []byte{2}, 2, "party", "Hypothesis")
+	assertEnumeration(t, circuits[0].Config.Enumerations, 2, 2, "u16", []byte{5, 0}, 5, "pool", "Hypothesis")
 
 	mapped := output.MCPZonesFromGraphQL(zones)
-	assertEnumeration(t, mapped[0].State.Enumerations(), 3, 27, "u8", []byte{1, 0}, 1, "ventilation-boost", "Hypothesis")
+	assertEnumeration(t, mapped[0].State.Enumerations, 3, 27, "u8", []byte{1, 0}, 1, "ventilation-boost", "Hypothesis")
 	mappedDHW := output.MCPDHWFromGraphQL(dhw)
-	assertEnumeration(t, mappedDHW.State.Enumerations(), 1, 13, "u8", []byte{6}, 6, "start a one-time DHW load", "Hypothesis")
+	assertEnumeration(t, mappedDHW.State.Enumerations, 1, 13, "u8", []byte{6}, 6, "start a one-time DHW load", "Hypothesis")
 	mappedCircuits := output.MCPCircuitsFromGraphQL(circuits)
-	assertEnumeration(t, mappedCircuits[0].Config.Enumerations(), 2, 29, "u8", []byte{2}, 2, "party", "Hypothesis")
+	assertEnumeration(t, mappedCircuits[0].Config.Enumerations, 2, 29, "u8", []byte{2}, 2, "party", "Hypothesis")
 
 	day := scalarAt(view.Scalars, 0, 0x0002)
 	if day.Value == nil || *day.Value != 21.5 || day.Unit != "°C" || day.Name != "" {
@@ -107,11 +107,11 @@ func TestVaillantB524CodebooksLabelEnumerationBesideRaw(t *testing.T) {
 	}
 	system := provider.System()
 	mappedSystem := output.MCPSystemFromGraphQL(system)
-	if system.Ventilation() == nil || mappedSystem.Ventilation() == nil || mappedSystem.Catalogue() == nil {
-		t.Fatalf("system ventilation missing from provider=%+v mcp=%+v", system.Ventilation(), mappedSystem.Ventilation())
+	if system.Ventilation == nil || mappedSystem.Ventilation == nil || mappedSystem.Catalogue == nil {
+		t.Fatalf("system ventilation missing from provider=%+v mcp=%+v", system.Ventilation, mappedSystem.Ventilation)
 	}
-	if mappedSystem.Ventilation().DayFanSpeedLimit == nil || *mappedSystem.Ventilation().DayFanSpeedLimit != 300 {
-		t.Fatalf("mcp ventilation = %+v; want day word 300", mappedSystem.Ventilation())
+	if mappedSystem.Ventilation.DayFanSpeedLimit == nil || *mappedSystem.Ventilation.DayFanSpeedLimit != 300 {
+		t.Fatalf("mcp ventilation = %+v; want day word 300", mappedSystem.Ventilation)
 	}
 
 	other, _ := newCataloguePoller(bus.send)

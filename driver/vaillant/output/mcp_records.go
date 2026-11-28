@@ -15,13 +15,13 @@ type MCPZone struct {
 
 // MCPZoneState represents the observed state of a zone in the MCP output.
 type MCPZoneState struct {
-	CurrentTempC       *float64 `json:"zone_room_temperature,omitempty"`
-	CurrentHumidityPct *float64 `json:"zone_room_humidity,omitempty"`
-	HvacAction         string   `json:"hvac_action,omitempty"`
-	SpecialFunction    string   `json:"zone_special_function_mode,omitempty"`
-	HeatingDemandPct   *float64 `json:"heating_demand_pct,omitempty"`
-	ValvePositionPct   *float64 `json:"zone_valve_position,omitempty"`
-	enumerations       []CatalogueEnumeration
+	CurrentTempC       *float64               `json:"zone_room_temperature,omitempty"`
+	CurrentHumidityPct *float64               `json:"zone_room_humidity,omitempty"`
+	HvacAction         string                 `json:"hvac_action,omitempty"`
+	SpecialFunction    string                 `json:"zone_special_function_mode,omitempty"`
+	HeatingDemandPct   *float64               `json:"heating_demand_pct,omitempty"`
+	ValvePositionPct   *float64               `json:"zone_valve_position,omitempty"`
+	Enumerations       []CatalogueEnumeration `json:"enumerations,omitempty"`
 }
 
 // MCPZoneConfig represents the settings of a zone in the MCP output.
@@ -52,10 +52,10 @@ type MCPDhwStatus struct {
 
 // MCPDhwState represents the observed state of domestic hot water in the MCP output.
 type MCPDhwState struct {
-	CurrentTempC     *float64 `json:"dhw_temperature,omitempty"`
-	SpecialFunction  string   `json:"dhw_special_function_mode,omitempty"`
-	HeatingDemandPct *float64 `json:"heating_demand_pct,omitempty"`
-	enumerations     []CatalogueEnumeration
+	CurrentTempC     *float64               `json:"dhw_temperature,omitempty"`
+	SpecialFunction  string                 `json:"dhw_special_function_mode,omitempty"`
+	HeatingDemandPct *float64               `json:"heating_demand_pct,omitempty"`
+	Enumerations     []CatalogueEnumeration `json:"enumerations,omitempty"`
 }
 
 // MCPDhwConfig represents domestic hot water settings in the MCP output.
@@ -93,14 +93,14 @@ type MCPCircuitState struct {
 
 // MCPCircuitConfig represents the settings of a circuit in the MCP output.
 type MCPCircuitConfig struct {
-	HeatingCurve        *float64 `json:"circuit_heating_curve_factor,omitempty"`
-	FlowTempMaxC        *float64 `json:"heating_circuit_flow_temperature_setpoint_maximum,omitempty"`
-	FlowTempMinC        *float64 `json:"circuit_flow_temperature_setpoint_minimum,omitempty"`
-	SummerLimitC        *float64 `json:"heating_circuit_outdoor_temperature_limit_maximum,omitempty"`
-	SpecialFunctionMode *int     `json:"circuit_special_function_mode,omitempty"`
-	RoomTempControl     string   `json:"circuit_room_temperature_influence_mode,omitempty"`
-	CoolingEnabled      *bool    `json:"circuit_cooling_enabled,omitempty"`
-	enumerations        []CatalogueEnumeration
+	HeatingCurve        *float64               `json:"circuit_heating_curve_factor,omitempty"`
+	FlowTempMaxC        *float64               `json:"heating_circuit_flow_temperature_setpoint_maximum,omitempty"`
+	FlowTempMinC        *float64               `json:"circuit_flow_temperature_setpoint_minimum,omitempty"`
+	SummerLimitC        *float64               `json:"heating_circuit_outdoor_temperature_limit_maximum,omitempty"`
+	SpecialFunctionMode *int                   `json:"circuit_special_function_mode,omitempty"`
+	RoomTempControl     string                 `json:"circuit_room_temperature_influence_mode,omitempty"`
+	CoolingEnabled      *bool                  `json:"circuit_cooling_enabled,omitempty"`
+	Enumerations        []CatalogueEnumeration `json:"enumerations,omitempty"`
 }
 
 // MCPManagingDevice represents the device responsible for a circuit in the MCP output.
@@ -179,13 +179,13 @@ type MCPEnergyChannel struct {
 
 // MCPEnergyTotals represents the totals for the supported energy sources in the MCP output.
 type MCPEnergyTotals struct {
-	Gas                 MCPEnergyChannel `json:"gas"`
-	Electric            MCPEnergyChannel `json:"electric"`
-	Solar               MCPEnergyChannel `json:"solar"`
-	registerDirections  []EnergyDirection
-	catalogueDirections []EnergyDirection
-	residualFields      []EnergyResidual
-	candidateFields     []EnergyResidual
+	Gas                 MCPEnergyChannel  `json:"gas"`
+	Electric            MCPEnergyChannel  `json:"electric"`
+	Solar               MCPEnergyChannel  `json:"solar"`
+	RegisterDirections  []EnergyDirection `json:"register_directions,omitempty"`
+	CatalogueDirections []EnergyDirection `json:"catalogue_directions,omitempty"`
+	ResidualFields      []EnergyResidual  `json:"residual_fields,omitempty"`
+	CandidateFields     []EnergyResidual  `json:"candidate_fields,omitempty"`
 }
 
 // MCPEnergyPointMeta represents the freshness and provenance of one energy value in the MCP output.
@@ -199,11 +199,11 @@ type MCPEnergyPointMeta struct {
 
 // MCPBoilerStatus represents the full boiler status in the MCP output.
 type MCPBoilerStatus struct {
-	State       *MCPBoilerState       `json:"state,omitempty"`
-	Config      *MCPBoilerConfig      `json:"config,omitempty"`
-	Diagnostics *MCPBoilerDiagnostics `json:"diagnostics,omitempty"`
-	selectors   []BoilerSelectorEvidence
-	operations  []RawOperation
+	State       *MCPBoilerState          `json:"state,omitempty"`
+	Config      *MCPBoilerConfig         `json:"config,omitempty"`
+	Diagnostics *MCPBoilerDiagnostics    `json:"diagnostics,omitempty"`
+	Selectors   []BoilerSelectorEvidence `json:"selectors,omitempty"`
+	Operations  []RawOperation           `json:"operations,omitempty"`
 }
 
 // MCPBoilerState represents the observed state of the boiler in the MCP output.
@@ -264,8 +264,8 @@ type MCPSystemStatus struct {
 	State          *MCPSystemState      `json:"state,omitempty"`
 	Config         *MCPSystemConfig     `json:"config,omitempty"`
 	Properties     *MCPSystemProperties `json:"properties,omitempty"`
-	ventilation    *VentilationView
-	catalogue      *FamilyCatalogue
+	Ventilation    *VentilationView     `json:"ventilation,omitempty"`
+	Catalogue      *FamilyCatalogue     `json:"catalogue,omitempty"`
 	history        *HistoryOwnerRecord
 	functionModule *FunctionModuleRecord
 	legacyPlanes   *LegacyPlaneRecord

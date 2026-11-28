@@ -108,6 +108,42 @@ func TestEbusFactoryStartSuppliesInstallationSession(t *testing.T) {
 	}
 }
 
+func TestEbusFactoryStopReleasesOneCatalogueState(t *testing.T) {
+	factory := NewFactory()
+	factory.open = func(context.Context, owner.Config) (owner.Substrate, error) {
+		raw := newSimulatedTransport()
+		return owner.Substrate{
+			Registry:  registry.NewDeviceRegistry(nil),
+			Bus:       protocol.NewBus(raw, protocol.BusConfig{}, 1),
+			Transport: raw,
+		}, nil
+	}
+	left := constructHeld(t, factory, planInstance(t, factory, "bus-a", 17, time.Second))
+	right := constructHeld(t, factory, planInstance(t, factory, "bus-b", 34, 2*time.Second))
+	if err := left.Start(context.Background(), nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := right.Start(context.Background(), nil); err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = right.Stop(context.Background()) })
+	if left.acquired.CatalogueStateReleased() || right.acquired.CatalogueStateReleased() {
+		t.Fatal("catalogue state was released before stop")
+	}
+	if left.cfg.ScanSource == right.cfg.ScanSource || left.key == right.key {
+		t.Fatal("the two instances do not differ in scan source and instance key")
+	}
+	if !left.Stop(context.Background()).Confirmed {
+		t.Fatal("stop did not confirm")
+	}
+	if !left.acquired.CatalogueStateReleased() {
+		t.Fatal("stopped instance kept its catalogue state")
+	}
+	if right.acquired.CatalogueStateReleased() || !right.running() {
+		t.Fatal("stopping one instance released or stopped the other")
+	}
+}
+
 func TestEbusFactoryB503Lifecycle(t *testing.T) {
 	t.Run("cold-start", testEbusFactoryColdStartFence)
 	t.Run("withdrawal", testEbusFactoryCurrentWithdrawal)

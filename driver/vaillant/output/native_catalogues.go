@@ -212,12 +212,7 @@ func (s *ZoneState) SetEnumerations(items []CatalogueEnumeration) {
 	if s == nil {
 		return
 	}
-	s.enumerations = cloneEnumerations(items)
-}
-
-// Enumerations returns the zone codebook rows.
-func (s ZoneState) Enumerations() []CatalogueEnumeration {
-	return cloneEnumerations(s.enumerations)
+	s.Enumerations = cloneEnumerations(items)
 }
 
 // SetEnumerations stores the hot-water codebook rows beside the hot-water state.
@@ -225,12 +220,7 @@ func (s *DhwState) SetEnumerations(items []CatalogueEnumeration) {
 	if s == nil {
 		return
 	}
-	s.enumerations = cloneEnumerations(items)
-}
-
-// Enumerations returns the hot-water codebook rows.
-func (s DhwState) Enumerations() []CatalogueEnumeration {
-	return cloneEnumerations(s.enumerations)
+	s.Enumerations = cloneEnumerations(items)
 }
 
 // SetEnumerations stores the circuit codebook rows beside the circuit settings.
@@ -238,12 +228,7 @@ func (s *CircuitConfig) SetEnumerations(items []CatalogueEnumeration) {
 	if s == nil {
 		return
 	}
-	s.enumerations = cloneEnumerations(items)
-}
-
-// Enumerations returns the circuit codebook rows.
-func (s CircuitConfig) Enumerations() []CatalogueEnumeration {
-	return cloneEnumerations(s.enumerations)
+	s.Enumerations = cloneEnumerations(items)
 }
 
 // SetVentilation stores the native ventilation view on the system record.
@@ -251,12 +236,7 @@ func (s *SystemStatus) SetVentilation(view *VentilationView) {
 	if s == nil {
 		return
 	}
-	s.ventilation = cloneVentilation(view)
-}
-
-// Ventilation returns the native ventilation view.
-func (s SystemStatus) Ventilation() *VentilationView {
-	return cloneVentilation(s.ventilation)
+	s.Ventilation = cloneVentilation(view)
 }
 
 // SetCatalogue stores the family catalogue on the system record.
@@ -264,12 +244,7 @@ func (s *SystemStatus) SetCatalogue(view *FamilyCatalogue) {
 	if s == nil {
 		return
 	}
-	s.catalogue = cloneFamilyCatalogue(view)
-}
-
-// Catalogue returns the family catalogue.
-func (s SystemStatus) Catalogue() *FamilyCatalogue {
-	return cloneFamilyCatalogue(s.catalogue)
+	s.Catalogue = cloneFamilyCatalogue(view)
 }
 
 // SetRegisterDirections stores the register energy directions.
@@ -277,12 +252,7 @@ func (s *EnergyTotals) SetRegisterDirections(items []EnergyDirection) {
 	if s == nil {
 		return
 	}
-	s.registerDirections = cloneEnergyDirections(items)
-}
-
-// RegisterDirections returns the register energy directions.
-func (s EnergyTotals) RegisterDirections() []EnergyDirection {
-	return cloneEnergyDirections(s.registerDirections)
+	s.RegisterDirections = cloneEnergyDirections(items)
 }
 
 // SetCatalogueDirections stores the catalogue energy directions.
@@ -290,12 +260,7 @@ func (s *EnergyTotals) SetCatalogueDirections(items []EnergyDirection) {
 	if s == nil {
 		return
 	}
-	s.catalogueDirections = cloneEnergyDirections(items)
-}
-
-// CatalogueDirections returns the catalogue energy directions.
-func (s EnergyTotals) CatalogueDirections() []EnergyDirection {
-	return cloneEnergyDirections(s.catalogueDirections)
+	s.CatalogueDirections = cloneEnergyDirections(items)
 }
 
 // SetResidualFields stores the residual energy fields.
@@ -303,12 +268,7 @@ func (s *EnergyTotals) SetResidualFields(items []EnergyResidual) {
 	if s == nil {
 		return
 	}
-	s.residualFields = cloneEnergyResiduals(items)
-}
-
-// ResidualFields returns the residual energy fields.
-func (s EnergyTotals) ResidualFields() []EnergyResidual {
-	return cloneEnergyResiduals(s.residualFields)
+	s.ResidualFields = cloneEnergyResiduals(items)
 }
 
 // SetCandidateFields stores the candidate energy fields.
@@ -316,12 +276,7 @@ func (s *EnergyTotals) SetCandidateFields(items []EnergyResidual) {
 	if s == nil {
 		return
 	}
-	s.candidateFields = cloneEnergyResiduals(items)
-}
-
-// CandidateFields returns the candidate energy fields.
-func (s EnergyTotals) CandidateFields() []EnergyResidual {
-	return cloneEnergyResiduals(s.candidateFields)
+	s.CandidateFields = cloneEnergyResiduals(items)
 }
 
 // SetSelectors stores the boiler selector evidence.
@@ -329,12 +284,7 @@ func (s *BoilerStatus) SetSelectors(items []BoilerSelectorEvidence) {
 	if s == nil {
 		return
 	}
-	s.selectors = cloneBoilerSelectors(items)
-}
-
-// Selectors returns the boiler selector evidence.
-func (s BoilerStatus) Selectors() []BoilerSelectorEvidence {
-	return cloneBoilerSelectors(s.selectors)
+	s.Selectors = cloneBoilerSelectors(items)
 }
 
 // SetOperations stores the admitted raw operations.
@@ -342,12 +292,7 @@ func (s *BoilerStatus) SetOperations(items []RawOperation) {
 	if s == nil {
 		return
 	}
-	s.operations = cloneRawOperations(items)
-}
-
-// Operations returns the admitted raw operations.
-func (s BoilerStatus) Operations() []RawOperation {
-	return cloneRawOperations(s.operations)
+	s.Operations = cloneRawOperations(items)
 }
 
 // SetEnumerations stores the zone codebook rows on the MCP zone state.
@@ -355,12 +300,7 @@ func (s *MCPZoneState) SetEnumerations(items []CatalogueEnumeration) {
 	if s == nil {
 		return
 	}
-	s.enumerations = cloneEnumerations(items)
-}
-
-// Enumerations returns the MCP zone codebook rows.
-func (s MCPZoneState) Enumerations() []CatalogueEnumeration {
-	return cloneEnumerations(s.enumerations)
+	s.Enumerations = cloneEnumerations(items)
 }
 
 // SetEnumerations stores the hot-water codebook rows on the MCP hot-water state.
@@ -368,12 +308,7 @@ func (s *MCPDhwState) SetEnumerations(items []CatalogueEnumeration) {
 	if s == nil {
 		return
 	}
-	s.enumerations = cloneEnumerations(items)
-}
-
-// Enumerations returns the MCP hot-water codebook rows.
-func (s MCPDhwState) Enumerations() []CatalogueEnumeration {
-	return cloneEnumerations(s.enumerations)
+	s.Enumerations = cloneEnumerations(items)
 }
 
 // SetEnumerations stores the circuit codebook rows on the MCP circuit settings.
@@ -381,12 +316,7 @@ func (s *MCPCircuitConfig) SetEnumerations(items []CatalogueEnumeration) {
 	if s == nil {
 		return
 	}
-	s.enumerations = cloneEnumerations(items)
-}
-
-// Enumerations returns the MCP circuit codebook rows.
-func (s MCPCircuitConfig) Enumerations() []CatalogueEnumeration {
-	return cloneEnumerations(s.enumerations)
+	s.Enumerations = cloneEnumerations(items)
 }
 
 // SetVentilation stores the native ventilation view on the MCP system record.
@@ -394,12 +324,7 @@ func (s *MCPSystemStatus) SetVentilation(view *VentilationView) {
 	if s == nil {
 		return
 	}
-	s.ventilation = cloneVentilation(view)
-}
-
-// Ventilation returns the MCP native ventilation view.
-func (s MCPSystemStatus) Ventilation() *VentilationView {
-	return cloneVentilation(s.ventilation)
+	s.Ventilation = cloneVentilation(view)
 }
 
 // SetCatalogue stores the family catalogue on the MCP system record.
@@ -407,12 +332,7 @@ func (s *MCPSystemStatus) SetCatalogue(view *FamilyCatalogue) {
 	if s == nil {
 		return
 	}
-	s.catalogue = cloneFamilyCatalogue(view)
-}
-
-// Catalogue returns the MCP family catalogue.
-func (s MCPSystemStatus) Catalogue() *FamilyCatalogue {
-	return cloneFamilyCatalogue(s.catalogue)
+	s.Catalogue = cloneFamilyCatalogue(view)
 }
 
 // SetRegisterDirections stores the MCP register energy directions.
@@ -420,12 +340,7 @@ func (s *MCPEnergyTotals) SetRegisterDirections(items []EnergyDirection) {
 	if s == nil {
 		return
 	}
-	s.registerDirections = cloneEnergyDirections(items)
-}
-
-// RegisterDirections returns the MCP register energy directions.
-func (s MCPEnergyTotals) RegisterDirections() []EnergyDirection {
-	return cloneEnergyDirections(s.registerDirections)
+	s.RegisterDirections = cloneEnergyDirections(items)
 }
 
 // SetCatalogueDirections stores the MCP catalogue energy directions.
@@ -433,12 +348,7 @@ func (s *MCPEnergyTotals) SetCatalogueDirections(items []EnergyDirection) {
 	if s == nil {
 		return
 	}
-	s.catalogueDirections = cloneEnergyDirections(items)
-}
-
-// CatalogueDirections returns the MCP catalogue energy directions.
-func (s MCPEnergyTotals) CatalogueDirections() []EnergyDirection {
-	return cloneEnergyDirections(s.catalogueDirections)
+	s.CatalogueDirections = cloneEnergyDirections(items)
 }
 
 // SetResidualFields stores the MCP residual energy fields.
@@ -446,12 +356,7 @@ func (s *MCPEnergyTotals) SetResidualFields(items []EnergyResidual) {
 	if s == nil {
 		return
 	}
-	s.residualFields = cloneEnergyResiduals(items)
-}
-
-// ResidualFields returns the MCP residual energy fields.
-func (s MCPEnergyTotals) ResidualFields() []EnergyResidual {
-	return cloneEnergyResiduals(s.residualFields)
+	s.ResidualFields = cloneEnergyResiduals(items)
 }
 
 // SetCandidateFields stores the MCP candidate energy fields.
@@ -459,12 +364,7 @@ func (s *MCPEnergyTotals) SetCandidateFields(items []EnergyResidual) {
 	if s == nil {
 		return
 	}
-	s.candidateFields = cloneEnergyResiduals(items)
-}
-
-// CandidateFields returns the MCP candidate energy fields.
-func (s MCPEnergyTotals) CandidateFields() []EnergyResidual {
-	return cloneEnergyResiduals(s.candidateFields)
+	s.CandidateFields = cloneEnergyResiduals(items)
 }
 
 // SetSelectors stores the MCP boiler selector evidence.
@@ -472,12 +372,7 @@ func (s *MCPBoilerStatus) SetSelectors(items []BoilerSelectorEvidence) {
 	if s == nil {
 		return
 	}
-	s.selectors = cloneBoilerSelectors(items)
-}
-
-// Selectors returns the MCP boiler selector evidence.
-func (s MCPBoilerStatus) Selectors() []BoilerSelectorEvidence {
-	return cloneBoilerSelectors(s.selectors)
+	s.Selectors = cloneBoilerSelectors(items)
 }
 
 // SetOperations stores the MCP admitted raw operations.
@@ -485,10 +380,5 @@ func (s *MCPBoilerStatus) SetOperations(items []RawOperation) {
 	if s == nil {
 		return
 	}
-	s.operations = cloneRawOperations(items)
-}
-
-// Operations returns the MCP admitted raw operations.
-func (s MCPBoilerStatus) Operations() []RawOperation {
-	return cloneRawOperations(s.operations)
+	s.Operations = cloneRawOperations(items)
 }

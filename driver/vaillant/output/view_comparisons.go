@@ -152,7 +152,7 @@ func CircuitsEqual(a, b []CircuitStatus) bool {
 		if !boolPtrEquals(left.Config.CoolingEnabled, right.Config.CoolingEnabled) {
 			return false
 		}
-		if !enumerationsEqual(left.Config.enumerations, right.Config.enumerations) {
+		if !enumerationsEqual(left.Config.Enumerations, right.Config.Enumerations) {
 			return false
 		}
 		if left.ManagingDevice.Role != right.ManagingDevice.Role {
@@ -200,7 +200,7 @@ func DhwEquals(a, b *DhwStatus) bool {
 	if a.State.SpecialFunction != b.State.SpecialFunction {
 		return false
 	}
-	if !enumerationsEqual(a.State.enumerations, b.State.enumerations) {
+	if !enumerationsEqual(a.State.Enumerations, b.State.Enumerations) {
 		return false
 	}
 	if !floatPtrEquals(a.State.CurrentTempC, b.State.CurrentTempC) {
@@ -275,7 +275,7 @@ func ZoneEquals(a, b Zone) bool {
 	if a.State.HvacAction != b.State.HvacAction || a.State.SpecialFunction != b.State.SpecialFunction {
 		return false
 	}
-	if !enumerationsEqual(a.State.enumerations, b.State.enumerations) {
+	if !enumerationsEqual(a.State.Enumerations, b.State.Enumerations) {
 		return false
 	}
 	if !floatPtrEquals(a.State.CurrentTempC, b.State.CurrentTempC) {

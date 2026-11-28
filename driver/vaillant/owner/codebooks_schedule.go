@@ -2,6 +2,8 @@ package owner
 
 import (
 	"context"
+	"errors"
+	"log"
 	"strings"
 )
 
@@ -19,10 +21,22 @@ func (p *vaillantSemanticPoller) refreshPublishedCatalogues(ctx context.Context)
 	p.mu.Lock()
 	boiler := p.boilerAddress
 	p.mu.Unlock()
+	var errs []error
 	if boiler != 0 {
-		_, _ = fillBoilerDictionary(p, ctx, boiler)
+		if _, err := fillBoilerDictionary(p, ctx, boiler); err != nil {
+			errs = append(errs, err)
+		}
 	}
-	_, _ = refreshEnergyCatalogues(p, ctx, InstallationSessionFromContext(ctx))
+	if _, err := refreshEnergyCatalogues(p, ctx, InstallationSessionFromContext(ctx)); err != nil {
+		errs = append(errs, err)
+	}
+	joined := errors.Join(errs...)
+	if state := p.catalogueState(); state != nil {
+		state.recordFillError(joined)
+	}
+	if joined != nil {
+		log.Printf("semantic catalogue refresh failed key=%s err=%v", semanticTaskRefreshCatalogues, joined)
+	}
 }
 
 // codebookFamily is the registered device id when that id is the family name.
@@ -42,6 +56,40 @@ func (p *vaillantSemanticPoller) codebookFamily() string {
 		return ""
 	}
 	return strings.ToLower(strings.TrimSpace(snapshot.DeviceID))
+}
+
+func (p *vaillantSemanticPoller) catalogueState() *instanceCatalogues {
+	owner := publicationOwner(p)
+	if owner == nil || owner.state == nil {
+		return nil
+	}
+	return owner.state.catalogueState()
+}
+
+func (p *vaillantSemanticPoller) releaseCatalogueState() {
+	owner := publicationOwner(p)
+	if owner == nil || owner.state == nil {
+		return
+	}
+	owner.state.releaseCatalogueState()
+}
+
+func (p *vaillantSemanticPoller) catalogueStateReleased() bool {
+	owner := publicationOwner(p)
+	if owner == nil || owner.state == nil {
+		return false
+	}
+	return owner.state.catalogueStateReleased()
+}
+
+func (p *vaillantSemanticPoller) catalogueFillError() error {
+	state := p.catalogueState()
+	if state == nil {
+		return nil
+	}
+	state.mu.Lock()
+	defer state.mu.Unlock()
+	return state.fillErr
 }
 
 func (p *vaillantSemanticPoller) reapplyFamilyCatalogue() {

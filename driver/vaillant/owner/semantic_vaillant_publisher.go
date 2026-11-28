@@ -112,6 +112,7 @@ func (p *vaillantSemanticPoller) publishZones(source semanticSnapshotSource) {
 
 	if p.publication.publishZoneViews(views, source) {
 		p.persistSemanticCache(source)
+		p.publishThermalGraph()
 	}
 }
 
@@ -134,9 +135,10 @@ func (p *vaillantSemanticPoller) publishDHW(source semanticSnapshotSource) {
 	}
 	if view.snapshot == nil && view.expired {
 		p.persistSemanticSnapshot()
-		return
+	} else {
+		p.persistSemanticCache(source)
 	}
-	p.persistSemanticCache(source)
+	p.publishThermalGraph()
 }
 
 // publishCircuits hands the native circuits view to the publication owner
@@ -153,6 +155,7 @@ func (p *vaillantSemanticPoller) publishCircuits(source semanticSnapshotSource) 
 
 	if p.publication.publishCircuitsView(view, source) {
 		p.persistSemanticCache(source)
+		p.publishThermalGraph()
 	}
 }
 
@@ -165,19 +168,26 @@ func (p *vaillantSemanticPoller) publishBoilerStatus(source semanticSnapshotSour
 		return
 	}
 
-	boilerPublish := p.boilerPublishLock()
-	boilerPublish.Lock()
-	defer boilerPublish.Unlock()
+	published := false
+	func() {
+		boilerPublish := p.boilerPublishLock()
+		boilerPublish.Lock()
+		defer boilerPublish.Unlock()
 
-	p.mergePublishedBoilerFlow()
-	p.mu.Lock()
-	snapshot := cloneBoilerSnapshot(p.boiler)
-	p.mu.Unlock()
+		p.mergePublishedBoilerFlow()
+		p.mu.Lock()
+		snapshot := cloneBoilerSnapshot(p.boiler)
+		p.mu.Unlock()
 
-	if p.publication.publishBoilerStatusView(snapshot, source) {
-		p.persistSemanticCache(source)
+		if p.publication.publishBoilerStatusView(snapshot, source) {
+			p.persistSemanticCache(source)
+			published = true
+		}
+		p.reapplyBoilerCatalogue()
+	}()
+	if published {
+		p.publishThermalGraph()
 	}
-	p.reapplyBoilerCatalogue()
 }
 
 // publishRadioDevices hands the native radio device views to the publication
@@ -193,6 +203,7 @@ func (p *vaillantSemanticPoller) publishRadioDevices(source semanticSnapshotSour
 
 	if p.publication.publishRadioDeviceViews(views, source) {
 		p.persistSemanticCache(source)
+		p.publishThermalGraph()
 	}
 }
 

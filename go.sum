@@ -1,7 +1,7 @@
 github.com/Project-Helianthus/helianthus-ebusgo v0.5.1-0.20261125131228-635da20e8b88 h1:Qm7TimEMKcJ+GhpK8paWf6r/V8S9OikEzVo3w+so7yI=
 github.com/Project-Helianthus/helianthus-ebusgo v0.5.1-0.20261125131228-635da20e8b88/go.mod h1:Qz5elrQ4VCJ+A/S63iYtu03l4CQHKMb18ZdyV09nfiw=
-github.com/Project-Helianthus/helianthus-semreg v0.0.0-20261124100158-93b56d48797e h1:ya/niokvAejA+4mgp1yOgcJiqlgGrErRJcIoklyHBUM=
-github.com/Project-Helianthus/helianthus-semreg v0.0.0-20261124100158-93b56d48797e/go.mod h1:Nk9VAXLA7iJBXbWPRL6s5+DWqc2OJkUzg8zdlDdUdes=
+github.com/Project-Helianthus/helianthus-semreg v0.0.0-20261127212318-f70319645ea7 h1:Pu5xmhHJtU9XQ2E0MQuoNZ4nXSequsyKQE/6Tw0g0Wg=
+github.com/Project-Helianthus/helianthus-semreg v0.0.0-20261127212318-f70319645ea7/go.mod h1:Nk9VAXLA7iJBXbWPRL6s5+DWqc2OJkUzg8zdlDdUdes=
 golang.org/x/text v0.22.0 h1:bofq7m3/HAFvbF51jz3Q9wLg3jkvSPuiZu/pD1XwgtM=
 golang.org/x/text v0.22.0/go.mod h1:YRoo4H8PVmsu+E3Ou7cqLVH8oXWIHVoX0jqUWALQhfY=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=

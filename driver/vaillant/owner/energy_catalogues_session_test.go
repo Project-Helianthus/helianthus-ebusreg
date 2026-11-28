@@ -4,6 +4,7 @@ import (
 	"errors"
 	"time"
 
+	semreg "github.com/Project-Helianthus/helianthus-semreg/semreg/v1"
 	semdriver "github.com/Project-Helianthus/helianthus-semreg/semreg/v1/driver"
 )
 
@@ -20,6 +21,10 @@ func (s *energyCatalogueSession) Publisher() semdriver.Publisher               {
 func (s *energyCatalogueSession) RegisterExecutor(semdriver.SettingRoute, semdriver.Executor) (func(), error) {
 	return func() {}, nil
 }
+func (s *energyCatalogueSession) Prepare(func(*semreg.PublicationBatch)) (semreg.PublicationBatch, error) {
+	return semreg.PublicationBatch{}, nil
+}
+
 func (s *energyCatalogueSession) Calendar() semdriver.Calendar {
 	s.calls++
 	if s.later != nil && s.calls > 2 {

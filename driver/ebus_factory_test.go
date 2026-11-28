@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/Project-Helianthus/helianthus-ebusgo/protocol"
+	semreg "github.com/Project-Helianthus/helianthus-semreg/semreg/v1"
 	semdriver "github.com/Project-Helianthus/helianthus-semreg/semreg/v1/driver"
 
 	"github.com/Project-Helianthus/helianthus-ebusreg/driver/vaillant/owner"
@@ -375,6 +376,9 @@ func (factoryInstallationSession) Calendar() semdriver.Calendar                 
 func (factoryInstallationSession) Publisher() semdriver.Publisher               { return nil }
 func (factoryInstallationSession) RegisterExecutor(semdriver.SettingRoute, semdriver.Executor) (func(), error) {
 	return func() {}, nil
+}
+func (factoryInstallationSession) Prepare(func(*semreg.PublicationBatch)) (semreg.PublicationBatch, error) {
+	return semreg.PublicationBatch{}, nil
 }
 
 func (s *simulatedTransport) Close() error {

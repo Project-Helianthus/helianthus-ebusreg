@@ -28,9 +28,10 @@ import (
 //   - bar scale: one bar is 100000 Pa. The held pressure rows must not emit that quantity.
 //   - grade: Hypothesis and Proven both feed. A grade gate drops one of them.
 //   - source rank: a stale, failed, absent or unmapped higher source stays. A lower source that replaces it hides the gap.
-//   - absence: a missing zone withdraws. An absent reply stays unknown. A feed that still publishes keeps a departed zone.
+//   - absence: a missing zone withdraws that zone's fact key. An absent reply stays unknown. A feed that still publishes keeps a departed zone.
 //   - failure: a failed reply has no quantity. A feed that keeps the text publishes a value that was not read.
-//   - deactivation: a deactivated circuit withdraws. A zone reading with the same flag still feeds. A missing flag on another subject still feeds.
+//   - deactivation: a deactivated circuit withdraws that circuit's fact key. A zone reading with the same flag still feeds. A missing flag on another subject still feeds.
+//   - withdrawal key: fact id, dimension and resource. A keyless withdrawal of two zones leaves both candidates published.
 
 func TestThermalZoneFeed(t *testing.T) {
 	feeds := ZoneFeeds()
@@ -247,6 +248,27 @@ func TestThermalZoneFeedSources(t *testing.T) {
 		if withdrawn.Status != StatusWithdrawn || withdrawn.Value != nil {
 			t.Fatalf("missing zone %+v", withdrawn)
 		}
+		assertKey(t, withdrawn.Key, "thermal.measurement.air_temperature", "thermal.dimension.zone", "zone-east")
+		other := textAt(air, "0", "zone-west", "controller-700", 1)
+		other.Missing = true
+		otherWithdrawn := Apply(air, other)
+		if otherWithdrawn.Status != StatusWithdrawn || otherWithdrawn.Value != nil {
+			t.Fatalf("missing other zone %+v", otherWithdrawn)
+		}
+		assertKey(t, otherWithdrawn.Key, "thermal.measurement.air_temperature", "thermal.dimension.zone", "zone-west")
+		modeGone := codeAt(heatingMode, 0, "zone-east", "controller-700", 1)
+		modeGone.Missing = true
+		modeWithdrawn := Apply(heatingMode, modeGone)
+		if modeWithdrawn.Status != StatusWithdrawn || modeWithdrawn.Value != nil {
+			t.Fatalf("missing mode %+v", modeWithdrawn)
+		}
+		assertKey(t, modeWithdrawn.Key, "thermal.mode.zone", "thermal.dimension.zone", "zone-east")
+		selected := Select([]Outcome{withdrawn, otherWithdrawn, modeWithdrawn})
+		if !hasWithdrawn(selected, "thermal.measurement.air_temperature", "zone-east") ||
+			!hasWithdrawn(selected, "thermal.measurement.air_temperature", "zone-west") ||
+			!hasWithdrawn(selected, "thermal.mode.zone", "zone-east") {
+			t.Fatal("selection dropped a withdrawal key")
+		}
 		absentReply := textAt(air, "0", "zone-east", "controller-700", 0)
 		absentReply.Present = false
 		if got := Apply(air, absentReply); got.Status != StatusUnknown || got.Value != nil || got.Key.FactID == "" {
@@ -420,8 +442,20 @@ func TestThermalCircuitFeed(t *testing.T) {
 	}
 	off := textAt(flow, "35", "circuit-east", "controller-700", 2)
 	off.Deactivated = true
-	if got := Apply(flow, off); got.Status != StatusWithdrawn || got.Value != nil {
-		t.Fatalf("deactivated flow %+v", got)
+	withdrawnFlow := Apply(flow, off)
+	if withdrawnFlow.Status != StatusWithdrawn || withdrawnFlow.Value != nil {
+		t.Fatalf("deactivated flow %+v", withdrawnFlow)
+	}
+	assertKey(t, withdrawnFlow.Key, "thermal.measurement.circuit_flow_temperature", "thermal.dimension.circuit", "circuit-east")
+	otherOff := textAt(flow, "35", "circuit-west", "controller-720", 3)
+	otherOff.Deactivated = true
+	otherFlow := Apply(flow, otherOff)
+	if otherFlow.Status != StatusWithdrawn || otherFlow.Value != nil {
+		t.Fatalf("deactivated other flow %+v", otherFlow)
+	}
+	assertKey(t, otherFlow.Key, "thermal.measurement.circuit_flow_temperature", "thermal.dimension.circuit", "circuit-west")
+	if dimensionText(withdrawnFlow.Key) == dimensionText(otherFlow.Key) {
+		t.Fatal("two withdrawn circuits share one resource")
 	}
 	missingCircuit := textAt(flow, "35", "circuit-east", "controller-700", 2)
 	missingCircuit.Missing = true
@@ -433,12 +467,12 @@ func TestThermalCircuitFeed(t *testing.T) {
 	if got := Apply(flow, absentCircuit); got.Status != StatusUnknown || got.Value != nil || got.Key.FactID == "" {
 		t.Fatalf("absent circuit reply %+v", got)
 	}
-	if got := Apply(capability, off); got.Status != StatusWithdrawn {
+	if got := Apply(capability, off); got.Status != StatusWithdrawn || got.Key.FactID != "" {
 		t.Fatalf("deactivated capability %+v", got)
 	}
 	offReturn := textAt(returned, "30", "circuit-east", "controller-700", 2)
 	offReturn.Deactivated = true
-	if got := Apply(returned, offReturn); got.Status != StatusWithdrawn {
+	if got := Apply(returned, offReturn); got.Status != StatusWithdrawn || got.Key.FactID != "" {
 		t.Fatalf("deactivated return %+v", got)
 	}
 	returnGot := Apply(returned, textAt(returned, "30", "circuit-east", "controller-700", 2))
@@ -894,6 +928,18 @@ func requireEvidence(t *testing.T, out Outcome, parts ...string) {
 			t.Fatalf("evidence %s missing %s", out.Evidence, part)
 		}
 	}
+}
+
+func hasWithdrawn(outcomes []Outcome, element, resource string) bool {
+	for _, outcome := range outcomes {
+		if outcome.Status != StatusWithdrawn || outcome.Value != nil || string(outcome.Key.FactID) != element {
+			continue
+		}
+		if len(outcome.Key.Dimensions) == 1 && dimensionText(outcome.Key) == resource {
+			return true
+		}
+	}
+	return false
 }
 
 func fedFor(outcomes []Outcome, element semreg.DefinitionID) []Outcome {

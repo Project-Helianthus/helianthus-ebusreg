@@ -155,8 +155,9 @@ func (f Feed) Matches(reading Reading) bool {
 // Apply binds one reading to one row. An unmatched reading publishes nothing.
 // A failed or absent reply publishes no fact and leaves the element unknown.
 // Withdrawal is a zone missing from the inventory or a deactivated circuit.
-// A value the pack cannot express stays in the driver namespace with its
-// native value and unit.
+// The outcome key names the fact and the resource that leave, so two
+// withdrawals of the same element stay distinct. A value the pack cannot
+// express stays in the driver namespace with its native value and unit.
 func Apply(feed Feed, reading Reading) Outcome {
 	out := Outcome{Feed: feed, Status: StatusUnmatched, Grade: feed.Grade, Rank: feed.SourceRank, Gap: feed.Gap}
 	if !feed.Matches(reading) {
@@ -164,6 +165,7 @@ func Apply(feed Feed, reading Reading) Outcome {
 	}
 	if (reading.Missing && feed.Subject == "zone") || (reading.Deactivated && feed.Subject == "circuit") {
 		out.Status = StatusWithdrawn
+		out.Key = factKeyIfElement(feed, reading.Resource)
 		out.Evidence = evidenceOf(feed, reading, "", "")
 		return out
 	}

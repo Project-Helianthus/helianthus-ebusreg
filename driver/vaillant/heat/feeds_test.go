@@ -24,10 +24,10 @@ import (
 //   - valve canonical form: 1.0 is ratio 1. A valve check that rejects the canonical coefficient publishes nothing.
 //   - bar scale: one bar is 100000 Pa. The held pressure rows must not emit that quantity.
 //   - grade: Hypothesis and Proven both feed. A grade gate drops one of them.
-//   - source rank: a stale, failed or unmapped higher source stays. A lower source that replaces it hides the gap.
-//   - absence: a missing zone withdraws. A feed that still publishes keeps a departed zone.
+//   - source rank: a stale, failed, absent or unmapped higher source stays. A lower source that replaces it hides the gap.
+//   - absence: a missing zone withdraws. An absent reply stays unknown. A feed that still publishes keeps a departed zone.
 //   - failure: a failed reply has no quantity. A feed that keeps the text publishes a value that was not read.
-//   - deactivation: a deactivated circuit withdraws. A zone reading with the same flag still feeds.
+//   - deactivation: a deactivated circuit withdraws. A zone reading with the same flag still feeds. A missing flag on another subject still feeds.
 
 func TestThermalZoneFeed(t *testing.T) {
 	feeds := ZoneFeeds()
@@ -205,13 +205,45 @@ func TestThermalZoneFeed(t *testing.T) {
 		}
 		absent := textAt(coolingManual, "21", "zone-east", "controller-700", 4)
 		absent.Present = false
-		withdrawn := Apply(coolingManual, absent)
-		if withdrawn.Status != StatusWithdrawn || withdrawn.Value != nil {
-			t.Fatalf("withdrawn %+v", withdrawn)
+		unknownAbsent := Apply(coolingManual, absent)
+		if unknownAbsent.Status != StatusUnknown || unknownAbsent.Value != nil || unknownAbsent.Key.FactID == "" {
+			t.Fatalf("absent %+v", unknownAbsent)
 		}
-		replaced := Select([]Outcome{withdrawn, effectiveGot})
-		if len(fedFor(replaced, "thermal.setpoint.occupied_cooling")) != 1 {
-			t.Fatal("withdrawn higher source still blocked the lower source")
+		keptAbsent := Select([]Outcome{unknownAbsent, effectiveGot})
+		foundAbsent := false
+		for _, outcome := range keptAbsent {
+			if outcome.Key.FactID != "thermal.setpoint.occupied_cooling" {
+				continue
+			}
+			if outcome.Status != StatusUnknown || outcome.Value != nil || outcome.Rank != sourceRankPrimary {
+				t.Fatal("absent higher source did not keep the fact unknown")
+			}
+			foundAbsent = true
+		}
+		if !foundAbsent {
+			t.Fatal("absent higher source was dropped")
+		}
+		if len(fedFor(keptAbsent, "thermal.setpoint.occupied_cooling")) != 0 {
+			t.Fatal("lower source replaced an absent higher source")
+		}
+	})
+
+	t.Run("missing zone", func(t *testing.T) {
+		gone := textAt(air, "0", "zone-east", "controller-700", 0)
+		gone.Missing = true
+		withdrawn := Apply(air, gone)
+		if withdrawn.Status != StatusWithdrawn || withdrawn.Value != nil {
+			t.Fatalf("missing zone %+v", withdrawn)
+		}
+		absentReply := textAt(air, "0", "zone-east", "controller-700", 0)
+		absentReply.Present = false
+		if got := Apply(air, absentReply); got.Status != StatusUnknown || got.Value != nil || got.Key.FactID == "" {
+			t.Fatalf("absent zone reply %+v", got)
+		}
+		valveReading := textAt(valve, "1.0", "terminal-east", "controller-700", 5)
+		valveReading.Missing = true
+		if got := Apply(valve, valveReading); got.Status != StatusFed {
+			t.Fatalf("missing flag withdrew a terminal %+v", got)
 		}
 	})
 
@@ -378,6 +410,16 @@ func TestThermalCircuitFeed(t *testing.T) {
 	off.Deactivated = true
 	if got := Apply(flow, off); got.Status != StatusWithdrawn || got.Value != nil {
 		t.Fatalf("deactivated flow %+v", got)
+	}
+	missingCircuit := textAt(flow, "35", "circuit-east", "controller-700", 2)
+	missingCircuit.Missing = true
+	if got := Apply(flow, missingCircuit); got.Status != StatusFed {
+		t.Fatalf("missing flag withdrew a circuit %+v", got)
+	}
+	absentCircuit := textAt(flow, "35", "circuit-east", "controller-700", 2)
+	absentCircuit.Present = false
+	if got := Apply(flow, absentCircuit); got.Status != StatusUnknown || got.Value != nil || got.Key.FactID == "" {
+		t.Fatalf("absent circuit reply %+v", got)
 	}
 	if got := Apply(capability, off); got.Status != StatusWithdrawn {
 		t.Fatalf("deactivated capability %+v", got)

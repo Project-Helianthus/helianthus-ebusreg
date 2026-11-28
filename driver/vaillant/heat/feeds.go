@@ -72,12 +72,14 @@ type FeedCode struct {
 }
 
 // Reading is one decoded device row. A failed or absent reply sets Failed or
-// leaves Present false. Code is set for an enumeration; Text is the decoded
-// native quantity or label.
+// leaves Present false. Missing is a zone that left the inventory.
+// Deactivated is a circuit the controller reports off. Code is set for an
+// enumeration; Text is the decoded native quantity or label.
 type Reading struct {
 	Present     bool
 	Failed      bool
 	Deactivated bool
+	Missing     bool
 	Stale       bool
 	Text        string
 	Code        *int
@@ -151,24 +153,21 @@ func (f Feed) Matches(reading Reading) bool {
 }
 
 // Apply binds one reading to one row. An unmatched reading publishes nothing.
-// A failed or absent reply publishes no fact. A value the pack cannot express
-// stays in the driver namespace with its native value and unit.
+// A failed or absent reply publishes no fact and leaves the element unknown.
+// Withdrawal is a zone missing from the inventory or a deactivated circuit.
+// A value the pack cannot express stays in the driver namespace with its
+// native value and unit.
 func Apply(feed Feed, reading Reading) Outcome {
 	out := Outcome{Feed: feed, Status: StatusUnmatched, Grade: feed.Grade, Rank: feed.SourceRank, Gap: feed.Gap}
 	if !feed.Matches(reading) {
 		return out
 	}
-	if reading.Deactivated && feed.Subject == "circuit" {
+	if (reading.Missing && feed.Subject == "zone") || (reading.Deactivated && feed.Subject == "circuit") {
 		out.Status = StatusWithdrawn
 		out.Evidence = evidenceOf(feed, reading, "", "")
 		return out
 	}
-	if !reading.Present {
-		out.Status = StatusWithdrawn
-		out.Evidence = evidenceOf(feed, reading, "", "")
-		return out
-	}
-	if reading.Failed {
+	if reading.Failed || !reading.Present {
 		out.Status = StatusUnknown
 		out.Freshness = freshnessOf(reading)
 		out.Key = factKeyIfElement(feed, reading.Resource)

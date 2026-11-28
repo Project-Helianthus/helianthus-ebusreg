@@ -32,6 +32,7 @@ func TestTimeProgramExecutorSlots(t *testing.T) {
 func TestCStringPairExecutor(t *testing.T) {
 	assertNamePair(t, false)
 	assertNamePair(t, true)
+	assertStatusFirstName(t)
 	assertPhonePair(t)
 	assertExactSix(t)
 	assertTwelve(t)
@@ -40,6 +41,7 @@ func TestCStringPairExecutor(t *testing.T) {
 	assertSilentText(t, "ebusreg.operation.installer_phone_number", "55\x000188")
 	assertFirstRegisterDropped(t)
 	assertNonzeroStatusWritesSecond(t)
+	assertLongStatusWritesSecond(t)
 }
 
 func assertTwoSlotProgram(t *testing.T, contradict bool) {
@@ -249,6 +251,35 @@ func assertNamePair(t *testing.T, tweak bool) {
 	if len(completion.CompoundExecution.Steps) != 2 || completion.CompoundExecution.Steps[0].Point != "first" || completion.CompoundExecution.Steps[1].Point != "second" {
 		t.Fatalf("steps = %+v", completion.CompoundExecution.Steps)
 	}
+	for _, step := range completion.CompoundExecution.Steps {
+		if step.Acknowledgement != operation.AckAccepted {
+			t.Fatalf("acknowledgement = %+v", step)
+		}
+	}
+}
+
+func assertStatusFirstName(t *testing.T) {
+	t.Helper()
+	payloads := map[uint16][]byte{
+		0x006c: {'H', 'e', 'l', 'i', 'a', 'n', 0},
+		0x006d: {'t', 'h', 'u', 's', 0, 0, 0},
+	}
+	bus := &scriptReply{respond: registerReplyShape(payloads, 0, 0, false)}
+	owner := compoundOwner(nil)
+	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	completion, err := executor.Execute(context.Background(), textDispatch("ebusreg.operation.installer_name", "Helianthus"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(bus.snapshot()) != 4 {
+		t.Fatalf("frames = %d", len(bus.snapshot()))
+	}
+	assertCompoundOutcome(t, completion, operation.OutcomeApplied, operation.ReadbackConfirms, false, "system")
+	for _, step := range completion.CompoundExecution.Steps {
+		if step.Acknowledgement != operation.AckAccepted {
+			t.Fatalf("acknowledgement = %+v", step)
+		}
+	}
 }
 
 func assertPhonePair(t *testing.T) {
@@ -378,6 +409,40 @@ func assertNonzeroStatusWritesSecond(t *testing.T) {
 		t.Fatalf("frames=%d writes=%d", len(frames), writes)
 	}
 	assertLocalFrame(t, frames[1], 0x31, 0x15, 0x01, 0x00, 0x00, 0x006d, []byte{'t', 'h', 'u', 's', 0, 0, 0})
+}
+
+func assertLongStatusWritesSecond(t *testing.T) {
+	t.Helper()
+	payloads := map[uint16][]byte{
+		0x006c: {'H', 'e', 'l', 'i', 'a', 'n', 0},
+		0x006d: {'t', 'h', 'u', 's', 0, 0, 0},
+	}
+	bus := &scriptReply{respond: registerReply(payloads, 0, 1)}
+	owner := compoundOwner(nil)
+	executor := NewCompound(bus, func() Owner { return owner }, nil)
+	completion, err := executor.Execute(context.Background(), textDispatch("ebusreg.operation.installer_name", "Helianthus"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	frames := bus.snapshot()
+	if len(frames) != 4 {
+		t.Fatalf("frames = %d", len(frames))
+	}
+	assertLocalFrame(t, frames[1], 0x31, 0x15, 0x01, 0x00, 0x00, 0x006d, payloads[0x006d])
+	if completion.Outcome == operation.OutcomeApplied || completion.CompoundExecution == nil {
+		t.Fatalf("completion = %+v", completion)
+	}
+	steps := completion.CompoundExecution.Steps
+	if len(steps) != 2 || steps[0].Acknowledgement != operation.AckRejected || steps[1].Acknowledgement != operation.AckAccepted {
+		t.Fatalf("steps = %+v", steps)
+	}
+}
+
+func localWriteReply(request []byte, status byte, opcodeEcho bool) []byte {
+	if opcodeEcho {
+		return []byte{request[0], status, request[2], request[4], request[5]}
+	}
+	return []byte{status, request[2], request[4], request[5]}
 }
 
 type scriptReply struct {
@@ -524,6 +589,10 @@ func timerBody(status, startHour, startMinute, endHour, endMinute byte, temperat
 }
 
 func registerReply(payloads map[uint16][]byte, tweak uint16, nonzeroWrites int) func(protocol.Frame) (bool, *protocol.Frame, error) {
+	return registerReplyShape(payloads, tweak, nonzeroWrites, true)
+}
+
+func registerReplyShape(payloads map[uint16][]byte, tweak uint16, nonzeroWrites int, opcodeEcho bool) func(protocol.Frame) (bool, *protocol.Frame, error) {
 	seenWrites := 0
 	return func(frame protocol.Frame) (bool, *protocol.Frame, error) {
 		data := frame.Data
@@ -536,7 +605,7 @@ func registerReply(payloads map[uint16][]byte, tweak uint16, nonzeroWrites int) 
 			if seenWrites <= nonzeroWrites {
 				status = 0x02
 			}
-			return true, &protocol.Frame{Data: []byte{status}}, nil
+			return true, &protocol.Frame{Data: localWriteReply(data, status, opcodeEcho)}, nil
 		}
 		register := binary.LittleEndian.Uint16(data[4:6])
 		payload := append([]byte(nil), payloads[register]...)

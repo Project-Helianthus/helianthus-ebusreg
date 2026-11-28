@@ -286,7 +286,7 @@ func (c *Compound) executePair(ctx context.Context, dispatch semdriver.Dispatch,
 		steps[index].Delivery = operation.DeliveryNotSent
 		if sent {
 			steps[index].Delivery = operation.DeliverySent
-			steps[index].Acknowledgement = acknowledgement(response)
+			steps[index].Acknowledgement = registerAcknowledgement(response)
 		}
 		if !sent {
 			break
@@ -495,6 +495,34 @@ func acknowledgement(response *protocol.Frame) operation.AckState {
 		return operation.AckAccepted
 	}
 	return operation.AckRejected
+}
+
+// registerAcknowledgement reads the status of one local register write.
+// A one-byte reply is that status. A longer reply carries the status after
+// opcode 02 or 06, and otherwise in the first byte. Status 0 accepts the write.
+func registerAcknowledgement(response *protocol.Frame) operation.AckState {
+	status, ok := registerWriteStatus(response)
+	if !ok {
+		return ""
+	}
+	if status == 0 {
+		return operation.AckAccepted
+	}
+	return operation.AckRejected
+}
+
+func registerWriteStatus(response *protocol.Frame) (byte, bool) {
+	if response == nil || len(response.Data) == 0 {
+		return 0, false
+	}
+	data := response.Data
+	if len(data) == 1 {
+		return data[0], true
+	}
+	if data[0] == 0x02 || data[0] == 0x06 {
+		return data[1], true
+	}
+	return data[0], true
 }
 
 func rejected() semdriver.Completion {
